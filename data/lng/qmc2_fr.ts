@@ -7372,7 +7372,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../keyseqscan.cpp" line="21"/>
         <location filename="../../keyseqscan.cpp" line="22"/>
         <source>Scanning special key</source>
-        <translation type="unfinished">Scanne la touche spéciale</translation>
+        <translation>Analyse de la touche spéciale</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="15"/>
@@ -7380,7 +7380,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../keyseqscan.cpp" line="24"/>
         <location filename="../../keyseqscan.cpp" line="25"/>
         <source>Scanning shortcut</source>
-        <translation type="unfinished">Scanne les raccourcis</translation>
+        <translation>Analyse du raccourci</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="43"/>
@@ -7391,7 +7391,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../keyseqscan.ui" line="61"/>
         <source>Accept key sequence</source>
-        <translation type="unfinished">Accepter la séquence de touches</translation>
+        <translation>Valider la séquence de touches</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="64"/>
@@ -7401,7 +7401,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../keyseqscan.ui" line="77"/>
         <source>Cancel redefinition of key sequence</source>
-        <translation type="unfinished">Annuler la redéfinition de la séquence de touches</translation>
+        <translation>Annuler la redéfinition de la séquence de touches</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="80"/>
@@ -7411,12 +7411,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../keyseqscan.ui" line="93"/>
         <source>Clear custom key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer la séquence de touches personnalisée</translation>
     </message>
     <message>
         <location filename="../../keyseqscan.ui" line="96"/>
         <source>Clear</source>
-        <translation type="unfinished">Nettoyer</translation>
+        <translation>Effacer</translation>
     </message>
 </context>
 <context>
@@ -16228,96 +16228,105 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../qftp/qftp.cpp" line="841"/>
         <source>Not connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Non connecté</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="909"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Hôte %1 introuvable</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="913"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Refus de la connexion à l&apos;hôte %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="917"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Délai de connexion à l&apos;hôte %1 dépassé</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1021"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Connecté à l&apos;hôte %1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1240"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Refus de la connexion en vue de l&apos;échange de données</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="1414"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur inconnue</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2314"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de la connexion à l&apos;hôte :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2318"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de l&apos;ouverture de session :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2322"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du listage du dossier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2326"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Éched du changement de dossier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2330"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du téléchargement du fichier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2334"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du téléversement du fichier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2338"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de la suppression du fichier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2342"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de la création du dossier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2346"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de la suppression du dossier :
+%1</translation>
     </message>
     <message>
         <location filename="../../qftp/qftp.cpp" line="2374"/>
         <source>Connection closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion fermée</translation>
     </message>
 </context>
 <context>
@@ -19869,36 +19878,36 @@ Are you sure you want to do this?</source>
         <location filename="../../romstatefilter.ui" line="32"/>
         <location filename="../../romstatefilter.ui" line="35"/>
         <source>Toggle ROM state &apos;correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état de ROM &apos;correct&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="58"/>
         <location filename="../../romstatefilter.ui" line="61"/>
         <source>Toggle ROM state &apos;unknown&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état de ROM &apos;inconnu&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="84"/>
         <location filename="../../romstatefilter.ui" line="87"/>
         <source>Toggle ROM state &apos;mostly correct&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état de ROM &apos;globalement correct&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="110"/>
         <location filename="../../romstatefilter.ui" line="113"/>
         <source>Toggle ROM state &apos;not found&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état de ROM &apos;non trouvé&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.ui" line="136"/>
         <location filename="../../romstatefilter.ui" line="139"/>
         <source>Toggle ROM state &apos;incorrect&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;état de ROM &apos;incorrect&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatefilter.cpp" line="182"/>
         <source>State filter settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Réglages du filtre d&apos;états</translation>
     </message>
 </context>
 <context>
@@ -19906,12 +19915,12 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../samplechecker.cpp" line="84"/>
         <source>verifying samples</source>
-        <translation type="unfinished">Vérification des samples</translation>
+        <translation>Vérification des échantillons en cours</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="52"/>
         <source>Current status and check progress</source>
-        <translation type="unfinished"></translation>
+        <translation>StatutEtat actuel et vérification de la progression</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="58"/>
@@ -19920,218 +19929,218 @@ Are you sure you want to do this?</source>
         <location filename="../../samplechecker.cpp" line="295"/>
         <location filename="../../samplechecker.cpp" line="418"/>
         <source>Idle</source>
-        <translation type="unfinished">Idle</translation>
+        <translation>En attente</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="73"/>
         <location filename="../../samplechecker.cpp" line="90"/>
         <source>Good: 0</source>
-        <translation type="unfinished">Bon: 0</translation>
+        <translation>Bon : 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="86"/>
         <location filename="../../samplechecker.cpp" line="92"/>
         <source>Bad: 0</source>
-        <translation type="unfinished">Mauvais: 0</translation>
+        <translation>Mauvais : 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="99"/>
         <location filename="../../samplechecker.cpp" line="94"/>
         <source>Missing: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Manquant : 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="114"/>
         <location filename="../../samplechecker.cpp" line="96"/>
         <source>Obsolete: 0</source>
-        <translation type="unfinished">Obsolète: 0</translation>
+        <translation>Obsolète : 0</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="130"/>
         <source>Remove obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les fichiers et dossiers obsolètes</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="334"/>
         <location filename="../../samplechecker.cpp" line="387"/>
         <location filename="../../samplechecker.cpp" line="402"/>
         <source>Obsolete: %1</source>
-        <translation type="unfinished">Obsolète: %1</translation>
+        <translation>Obsolète : %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="171"/>
         <location filename="../../samplechecker.cpp" line="289"/>
         <source>done (verifying samples, elapsed time = %1)</source>
-        <translation type="unfinished">fait (samples vérifiés, temps écoulé = %1)</translation>
+        <translation>terminé (vérification des échantillons, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="32"/>
         <location filename="../../samplechecker.cpp" line="167"/>
         <location filename="../../samplechecker.cpp" line="291"/>
         <source>&amp;Check samples</source>
-        <translation type="unfinished">&amp;Check samples</translation>
+        <translation>&amp;Vérifier les échantillons</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="99"/>
         <source>preparing sample-check: parsing XML data for relevant sample information</source>
-        <translation type="unfinished"></translation>
+        <translation>Préparation de la vérification des échantillons : analyse des informations concernant les échantillons dans les données XML</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="104"/>
         <source>Parsing XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse des données XML</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="193"/>
         <source>found %n individual sample set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>trouvé %n ensemble individuel d&apos;échantillons</numerusform>
+            <numerusform>trouvé %n ensembles individuels d&apos;échantillons</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="193"/>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>et</translation>
     </message>
     <message numerus="yes">
         <location filename="../../samplechecker.cpp" line="193"/>
         <source>%n system(s) using samples</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n systeme utilisant des échantillons</numerusform>
+            <numerusform>%n systèmes utilisant des échantillons</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="197"/>
         <source>Checking sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification du statut des échantillons</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="198"/>
         <source>check pass 1: checking sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>Première passe de la vérification : vérification des états des échantillons</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="239"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : impossible de lancer l&apos;exécutable de l&apos;émulateur dans un délais raisonnable, abandon</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="261"/>
         <source>Good: %1</source>
-        <translation type="unfinished">Bon: %1</translation>
+        <translation>Bon : %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="264"/>
         <source>Bad: %1</source>
-        <translation type="unfinished">Mauvais: %1</translation>
+        <translation>Mauvais : %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="267"/>
         <source>Missing: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Manquant : %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="269"/>
         <source>WARNING: received unknown output when checking the sample status of &apos;%1&apos;: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : réception d&apos;une réponse inconnue en vérifiant l&apos;état de l&apos;échantillon &apos;%1&apos; : &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="272"/>
         <location filename="../../samplechecker.cpp" line="274"/>
         <source>WARNING: received no output when checking the sample status of &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : aucune réponse reçue lors de la vérification de l&apos;état de l&apos;échantillon &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="290"/>
         <source>%1 good, %2 bad, %3 missing, %4 obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 bon, %2 mauvais, %3 manquant, %4 obsolète</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="302"/>
         <source>Checking for obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification des fichiers et dossiers obsolètes</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="305"/>
         <source>check pass 2: checking for obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Deuxième passe de la vérification : vérification des fichiers et dossiers obsolètes</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="338"/>
         <source>WARNING: sample path &apos;%1&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : le chemin des échantillons &apos;%1&apos; n&apos;existe pas</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="369"/>
         <source>Removing obsolete files / folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression des fichiers et dossiers obsolètes</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="383"/>
         <source>obsolete folder &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire obsolète &apos;%1&apos; supprimé</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="391"/>
         <source>obsolete folder &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Le dossier obolète &apos;%1&apos; ne peut pas être supprimé, veuillez vérifier les permissions</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="398"/>
         <source>obsolete file &apos;%1&apos; removed</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression du fichier &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="406"/>
         <source>obsolete file &apos;%1&apos; cannot be removed, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier obsolète &apos;%1&apos; ne peut pas être supprimé, veuillez vérifier les permissions</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="345"/>
         <source>stopping sample check upon user request</source>
-        <translation type="unfinished">Arrêt de la vérification des samples à la demande de l&apos;utilisateur</translation>
+        <translation>Arrêt de la vérification des échantillons à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="151"/>
         <source>WARNING: XML bug: the machine &apos;%1&apos; is referencing a non-existing sample-set (sampleof=&quot;%2&quot;) -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : erreur XML : la machine &apos;%1&apos; référence un ensemble d&apos;échantillons inexistant (échantillon =&quot;%2&quot;) -- veuillez informer les développeurs MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="185"/>
         <source>WARNING: XML bug: the following machines are referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : erreur XML : les machines ci-après référencent un ensemble d&apos;échantillons qui n&apos;est pas nécessaire  (échantillon =&quot;%1&quot;) : %2 -- veuillez informer les développeurs MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="187"/>
         <source>WARNING: XML bug: the following machine is referencing a sample-set which isn&apos;t required (sampleof=&quot;%1&quot;): %2 -- please inform MAME developers</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : erreur XML : la machine ci-après référence un ensemble d&apos;échantillons qui nest pas nécessaire (échantillon =&quot;%1&quot;) : %2 -- veuillez informer les développeurs MAME</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="239"/>
         <source>error text = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte d&apos;erreur : %1</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="351"/>
         <source>please wait for current activity to finish and try again (the sample-checker can only run exclusively)</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez patienter jusqu&apos;à ce que l&apos;opération en cours soit terminée et essayez à nouveau (la vérification des échantillons est un processus exclusif)</translation>
     </message>
     <message>
         <location filename="../../samplechecker.cpp" line="355"/>
         <source>&amp;Stop check</source>
-        <translation type="unfinished">&amp;Stop vérification</translation>
+        <translation>&amp;Arrêter la vérification</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="15"/>
         <source>Check samples</source>
-        <translation type="unfinished">Vérifier les samples</translation>
+        <translation>Vérifier les échantillons</translation>
     </message>
     <message>
         <location filename="../../samplechecker.ui" line="29"/>
         <source>Check samples / stop check</source>
-        <translation type="unfinished">Vérifier les samples / Stopper</translation>
+        <translation>Vérifier les échantillons / Arrêter la vérification</translation>
     </message>
 </context>
 <context>
@@ -20358,29 +20367,29 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="56"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;image dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="62"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copie du chemin de fichier dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="71"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Rafraîchissement de l&apos;emplacement du cache</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="104"/>
         <location filename="../../softwareimagewidget.cpp" line="112"/>
         <location filename="../../softwareimagewidget.cpp" line="124"/>
         <source>FATAL: can&apos;t open %1 file, please check access permissions for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : ouverture du fichier %1 impossible, veuillez vérifier les permissions d&apos;accès pour %2</translation>
     </message>
     <message>
         <location filename="../../softwareimagewidget.cpp" line="306"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Décompression de l&apos;archive en cours, veuillez patienter...</translation>
     </message>
 </context>
 <context>
@@ -21619,81 +21628,81 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwarelist.cpp" line="4356"/>
         <source>Copy image to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;image dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4362"/>
         <source>Copy file path to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier le chemin de l&apos;image dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4371"/>
         <source>Zoom in (+10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapprocher (+10%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4377"/>
         <source>Zoom out (-10%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eloigner (-10%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4383"/>
         <source>Reset zoom (100%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille réelle (100%)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4391"/>
         <source>Refresh cache slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Rafraîchir l&apos;emplacement du cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4413"/>
         <location filename="../../softwarelist.cpp" line="4750"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: impossible d&apos;ouvrir le fichier de captures du logiciel, vérifiez les permissions de %1</translation>
+        <translation>FATAL: impossible d&apos;ouvrir le fichier de l&apos;instantané, veuillez vérifier les permissions de %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4419"/>
         <location filename="../../softwarelist.cpp" line="4432"/>
         <location filename="../../softwarelist.cpp" line="4797"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : impossible d&apos;ouvrir le fichier de l&apos;instantané %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4419"/>
         <location filename="../../softwarelist.cpp" line="4797"/>
         <source>7z error</source>
-        <translation type="unfinished"></translation>
+        <translation>erreur 7z</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4432"/>
         <source>libarchive error</source>
-        <translation type="unfinished"></translation>
+        <translation>erreur libarchive</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4490"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : impossible de créer la sauvegarde du chier image existant &apos;%1&apos; en tant que &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4505"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : impossible de créer le fichier d&apos;image &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4511"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL : impossible de déterminer le chemin primaire pour le type d&apos;image &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4511"/>
         <source>software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Instantané logiciel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4832"/>
         <source>Decompressing archive, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Décompression de l&apos;archive en cours, veuillez patienter...</translation>
     </message>
 </context>
 <context>
@@ -21701,7 +21710,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../softwaresnapshot.h" line="17"/>
         <source>software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>instantané logiciel</translation>
     </message>
 </context>
 <context>
@@ -22354,7 +22363,7 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../xmldbmgr.cpp" line="31"/>
         <source>WARNING: failed to open XML cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;ouverture de la base de données du cache XML &apos;%1&apos;: erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="50"/>
@@ -22371,7 +22380,7 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
         <location filename="../../xmldbmgr.cpp" line="295"/>
         <location filename="../../xmldbmgr.cpp" line="314"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction de &apos;%1&apos; depuis la base de données du cache XML : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="64"/>
@@ -22380,7 +22389,7 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
         <location filename="../../xmldbmgr.cpp" line="175"/>
         <location filename="../../xmldbmgr.cpp" line="230"/>
         <source>WARNING: failed to add &apos;%1&apos; to XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;insertion de &apos;%1&apos; dans la base de données du cache XML : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="70"/>
@@ -22389,43 +22398,43 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
         <location filename="../../xmldbmgr.cpp" line="181"/>
         <location filename="../../xmldbmgr.cpp" line="237"/>
         <source>WARNING: failed to update &apos;%1&apos; in XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la mise à jour de &apos;%1&apos; dans la base de données du cache XML : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="253"/>
         <source>WARNING: failed to fetch row count from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: échec de l&apos;extraction du nombre de rangées depuis la base de données du cache XML : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="272"/>
         <source>WARNING: failed to fetch row IDs from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction des identifiants de rangées depuis la base de données du cache XML : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="362"/>
         <location filename="../../xmldbmgr.cpp" line="372"/>
         <location filename="../../xmldbmgr.cpp" line="382"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la mise à jour du réglage &apos;%1&apos; dans la base de données du cache XML : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="389"/>
         <location filename="../../xmldbmgr.cpp" line="394"/>
         <location filename="../../xmldbmgr.cpp" line="399"/>
         <source>WARNING: failed to remove XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: échec de la suppresion de la base de données du cache XML : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="407"/>
         <location filename="../../xmldbmgr.cpp" line="412"/>
         <location filename="../../xmldbmgr.cpp" line="417"/>
         <source>WARNING: failed to create XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la création de la base de données du cache XML : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../xmldbmgr.cpp" line="421"/>
         <source>XML cache database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de données du cache XML &apos;%1&apos; initialisée</translation>
     </message>
 </context>
 <context>
