@@ -16,15 +16,14 @@ class MachineList : public QObject
 	Q_OBJECT
 
 	public:
-		int numTotalGames;
-		int numGames;
-		int numCorrectGames;
-		int numMostlyCorrectGames;
-		int numIncorrectGames;
-		int numNotFoundGames;
-		int numUnknownGames;
-		int numSearchGames;
-		int cachedGamesCounter;
+		int numTotalMachines;
+		int numMachines;
+		int numCorrectMachines;
+		int numMostlyCorrectMachines;
+		int numIncorrectMachines;
+		int numNotFoundMachines;
+		int numUnknownMachines;
+		int numMatchedMachines;
 		int numTaggedSets;
 		int numVerifyRoms;
 		int uncommittedXmlDbRows;
@@ -125,7 +124,7 @@ class MachineList : public QObject
 		// internal methods
 		QString value(QString, QString, bool translate = false);
 		void parse();
-		void parseGameDetail(QTreeWidgetItem *);
+		void parseMachineDetail(QTreeWidgetItem *);
 		void insertAttributeItems(QTreeWidgetItem *, QString, QStringList, QStringList, bool translate = false);
 		void insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate = false);
 		void enableWidgets(bool enable = true);

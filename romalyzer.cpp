@@ -317,7 +317,7 @@ void ROMAlyzer::on_pushButtonAnalyze_clicked()
 		// stop ROMAlyzer
 		log(tr("stopping analysis"));
 		qmc2StopParser = true;
-	} else if ( qmc2MachineList->numGames > 0 ) {
+	} else if ( qmc2MachineList->numMachines > 0 ) {
 		// start ROMAlyzer
 		log(tr("starting analysis"));
 		qmc2StopParser = false;
@@ -724,7 +724,7 @@ void ROMAlyzer::analyze()
 				if ( analyzerList.empty() ) {
 					// determine list of sets to analyze
 					labelStatus->setText(tr("Searching sets"));
-					progressBar->setRange(0, qmc2MachineList->numGames);
+					progressBar->setRange(0, qmc2MachineList->numMachines);
 					progressBar->reset();
 					QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 					i = 0;

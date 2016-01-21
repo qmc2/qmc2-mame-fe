@@ -143,7 +143,7 @@ void ROMStatusExporter::exportToASCII()
 
 	frameExportParams->setEnabled(false);
 
-	progressBarExport->setRange(0, qmc2MachineList->numGames);
+	progressBarExport->setRange(0, qmc2MachineList->numMachines);
 	progressBarExport->reset();
 	progressBarExport->setValue(0);
 
@@ -173,12 +173,12 @@ void ROMStatusExporter::exportToASCII()
 	QLocale locale;
 	if ( checkBoxIncludeStatistics->isChecked() ) {
 		ts << tr("Overall ROM Status") << "\n" << QString().leftJustified(tr("Overall ROM Status").length(), '-', true) << "\n\n";
-		ts << tr("Total sets") << " " << QString().leftJustified(maxLength - tr("Total sets").length(), '.', true) << " " << locale.toString(qmc2MachineList->numGames) << "\n";
-		ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2MachineList->numCorrectGames) << "\n";
-		ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2MachineList->numMostlyCorrectGames) << "\n";
-		ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2MachineList->numIncorrectGames) << "\n";
-		ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2MachineList->numNotFoundGames) << "\n";
-		ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2MachineList->numUnknownGames) << "\n\n";
+		ts << tr("Total sets") << " " << QString().leftJustified(maxLength - tr("Total sets").length(), '.', true) << " " << locale.toString(qmc2MachineList->numMachines) << "\n";
+		ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2MachineList->numCorrectMachines) << "\n";
+		ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2MachineList->numMostlyCorrectMachines) << "\n";
+		ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2MachineList->numIncorrectMachines) << "\n";
+		ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2MachineList->numNotFoundMachines) << "\n";
+		ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2MachineList->numUnknownMachines) << "\n\n";
 	}
 
 	ts << tr("Detailed ROM Status") << "\n" << QString().leftJustified(tr("Detailed ROM Status").length(), '-', true) << "\n\n";
@@ -451,7 +451,7 @@ void ROMStatusExporter::exportToCSV()
 
 	frameExportParams->setEnabled(false);
 
-	progressBarExport->setRange(0, qmc2MachineList->numGames);
+	progressBarExport->setRange(0, qmc2MachineList->numMachines);
 	progressBarExport->reset();
 	progressBarExport->setValue(0);
 
@@ -476,12 +476,12 @@ void ROMStatusExporter::exportToCSV()
 	if ( checkBoxIncludeStatistics->isChecked() ) {
 		QLocale locale;
 		ts << del << tr("Overall ROM Status") << del << "\n" << del << del << "\n";
-		ts << del << tr("Total sets") << del << sep << del << locale.toString(qmc2MachineList->numGames) << del << "\n";
-		ts << del << tr("Correct") << del << sep << del << locale.toString(qmc2MachineList->numCorrectGames) << del << "\n";
-		ts << del << tr("Mostly correct") << del << sep << del << locale.toString(qmc2MachineList->numMostlyCorrectGames) << del << "\n";
-		ts << del << tr("Incorrect") << del << sep << del << locale.toString(qmc2MachineList->numIncorrectGames) << del << "\n";
-		ts << del << tr("Not found") << del << sep << del << locale.toString(qmc2MachineList->numNotFoundGames) << del << "\n";
-		ts << del << tr("Unknown") << del << sep << del << locale.toString(qmc2MachineList->numUnknownGames) << del << "\n" << del << del << "\n";
+		ts << del << tr("Total sets") << del << sep << del << locale.toString(qmc2MachineList->numMachines) << del << "\n";
+		ts << del << tr("Correct") << del << sep << del << locale.toString(qmc2MachineList->numCorrectMachines) << del << "\n";
+		ts << del << tr("Mostly correct") << del << sep << del << locale.toString(qmc2MachineList->numMostlyCorrectMachines) << del << "\n";
+		ts << del << tr("Incorrect") << del << sep << del << locale.toString(qmc2MachineList->numIncorrectMachines) << del << "\n";
+		ts << del << tr("Not found") << del << sep << del << locale.toString(qmc2MachineList->numNotFoundMachines) << del << "\n";
+		ts << del << tr("Unknown") << del << sep << del << locale.toString(qmc2MachineList->numUnknownMachines) << del << "\n" << del << del << "\n";
 	}
 
 	ts << del << tr("Detailed ROM Status") << del << "\n" << del << del << "\n";
@@ -677,7 +677,7 @@ void ROMStatusExporter::exportToHTML()
 
       	frameExportParams->setEnabled(false);
 
-      	progressBarExport->setRange(0, qmc2MachineList->numGames);
+      	progressBarExport->setRange(0, qmc2MachineList->numMachines);
       	progressBarExport->reset();
       	progressBarExport->setValue(0);
 
@@ -719,17 +719,17 @@ void ROMStatusExporter::exportToHTML()
 		 	<< "<p>\n"
 		 	<< "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
 		 	<< "<tr>\n"
-		 	<< "<td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numMachines) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numCorrectGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numCorrectMachines) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Mostly correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numMostlyCorrectGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Mostly correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numMostlyCorrectMachines) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Incorrect") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numIncorrectGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Incorrect") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numIncorrectMachines) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Not found") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numNotFoundGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Not found") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numNotFoundMachines) << "</td>\n"
 		 	<< "</tr>\n<tr>\n"
-		 	<< "<td nowrap>" << tr("Unknown") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numUnknownGames) << "</td>\n"
+		 	<< "<td nowrap>" << tr("Unknown") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2MachineList->numUnknownMachines) << "</td>\n"
 		 	<< "</tr>\n"
 		 	<< "</table>\n"
 		 	<< "</p>\n";
