@@ -1853,8 +1853,10 @@ void MachineList::parse()
 	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
 	while ( i.hasNext() && !qmc2StopParser ) {
 		i.next();
-		if ( counter++ % qmc2MachineListResponsiveness == 0 )
+		if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
+			qApp->processEvents();
+		}
 		QString iValue = i.key();
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(iValue);
 		MachineListItem *hierarchyItem = new MachineListItem();
@@ -1880,8 +1882,10 @@ void MachineList::parse()
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 		// sub-items
 		for (int j = 0; j < i.value().count(); j++) {
-			if ( counter++ % qmc2MachineListResponsiveness == 0 )
+			if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
+				qApp->processEvents();
+			}
 			QString jValue = i.value().at(j);
 			baseItem = qmc2MachineListItemHash.value(jValue);
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
