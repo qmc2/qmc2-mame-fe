@@ -697,7 +697,7 @@ void MachineList::load()
 		emulatorType = tr("unknown");
 	}
 
-	// supported games/machines
+	// supported machines
 	args.clear();
 	args << "-listfull";
 	qApp->processEvents();
@@ -1431,7 +1431,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_MLC_INDEX_SRCFILE]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_MLC_INDEX_HAS_ROM] == "1") + int(machineData[QMC2_MLC_INDEX_HAS_CHD] == "1") * 2]);
 					if ( useCatverIni ) {
-						QString *versionString = versionHash[machineName];
+						QString *versionString = versionHash.value(machineName);
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
 					switch ( machineStatusHash.value(machineName) ) {
@@ -1440,7 +1440,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[machineName];
+										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
@@ -1471,7 +1471,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[machineName];
+										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
@@ -1502,7 +1502,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[machineName];
+										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
@@ -1533,7 +1533,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[machineName];
+										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
@@ -1565,7 +1565,7 @@ void MachineList::parse()
 							switch ( machineType ) {
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
-										QString *categoryString = categoryHash[machineName];
+										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
@@ -1732,12 +1732,12 @@ void MachineList::parse()
 						else if ( isDevice )
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 						else {
-							QString *categoryString = categoryHash[machineName];
+							QString *categoryString = categoryHash.value(machineName);
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
 						}
 					}
 					if ( useCatverIni ) {
-						QString *versionString = versionHash[machineName];
+						QString *versionString = versionHash.value(machineName);
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
 					switch ( machineStatusHash.value(machineName) ) {
@@ -3310,7 +3310,7 @@ void MachineList::loadCategoryIni()
 			} else if ( !categoryName.isEmpty() ) {
 				if ( !categoryNames.contains(categoryName) )
 					categoryNames[categoryName] = new QString(categoryName);
-				categoryHash.insert(categoryLine, categoryNames[categoryName]);
+				categoryHash.insert(categoryLine, categoryNames.value(categoryName));
 				entryCounter++;
 			}
 		}
@@ -3531,7 +3531,7 @@ void MachineList::loadCatverIni()
 							QString token1 = tokens[1].trimmed();
 							if ( !categoryNames.contains(token1) )
 								categoryNames[token1] = new QString(token1);
-							categoryHash.insert(token0, categoryNames[token1]);
+							categoryHash.insert(token0, categoryNames.value(token1));
 						}
 					}
 					break;
@@ -3544,7 +3544,7 @@ void MachineList::loadCatverIni()
 								token1.prepend("0");
 							if ( !versionNames.contains(token1) )
 								versionNames[token1] = new QString(token1);
-							versionHash.insert(token0, versionNames[token1]);
+							versionHash.insert(token0, versionNames.value(token1));
 						}
 					}
 					break;
