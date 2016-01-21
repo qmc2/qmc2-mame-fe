@@ -272,8 +272,15 @@ MachineList::~MachineList()
 
 void MachineList::enableWidgets(bool enable)
 {
+	static bool lastEnable = true;
+
 	// store widget enablement flag for later dialog setups
 	qmc2WidgetsEnabled = enable;
+
+	// avoid redundant operations
+	if ( lastEnable == enable )
+		return;
+	lastEnable = enable;
 
 	qmc2Options->toolButtonBrowseStyleSheet->setEnabled(enable);
 	qmc2Options->toolButtonBrowseFont->setEnabled(enable);
