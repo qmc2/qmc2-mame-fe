@@ -1917,7 +1917,7 @@ void MachineList::parse()
 			QIcon icon = baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON);
 			if ( icon.isNull() ) {
 				if ( iconFallback ) {
-					icon = qmc2IconHash[iValue]; // parent icon
+					icon = qmc2IconHash.value(iValue); // parent icon
 					if ( !icon.isNull() ) {
 						baseItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
 						hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
@@ -3039,7 +3039,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 {
 	if ( fileName )
 		*fileName = machineName;
-	QIcon cachedIcon = qmc2IconHash[machineName];
+	QIcon cachedIcon = qmc2IconHash.value(machineName);
 	if ( !cachedIcon.isNull() ) {
 		// use cached icon
 		if ( !checkOnly )
