@@ -1861,11 +1861,10 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 			qApp->processEvents();
 		}
-		QString iValue = i.key();
-		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(iValue);
+		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(i.key());
 		MachineListItem *hierarchyItem = new MachineListItem();
-		qmc2HierarchyItemHash.insert(iValue, hierarchyItem);
-		if ( (!showBiosSets && isBios(iValue)) || (!showDeviceSets && isDevice(iValue)) )
+		qmc2HierarchyItemHash.insert(i.key(), hierarchyItem);
+		if ( (!showBiosSets && isBios(i.key())) || (!showDeviceSets && isDevice(i.key())) )
 			hideList << hierarchyItem;
 		hierarchyItem->setFlags(defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1890,7 +1889,7 @@ void MachineList::parse()
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
 				qApp->processEvents();
 			}
-			QString jValue = i.value().at(j);
+			QString jValue(i.value().at(j));
 			baseItem = qmc2MachineListItemHash.value(jValue);
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
@@ -1907,7 +1906,7 @@ void MachineList::parse()
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
 			if ( useCategories ) {
-				QString category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+				QString category(baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
 				if ( category == trQuestionMark ) {
 					category = hierarchyItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 					baseItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
@@ -1918,10 +1917,10 @@ void MachineList::parse()
 				hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
 			if ( showROMStatusIcons )
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->icon(QMC2_MACHINELIST_COLUMN_MACHINE));
-			QIcon icon = baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON);
+			QIcon icon(baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( icon.isNull() ) {
 				if ( iconFallback ) {
-					icon = qmc2IconHash.value(iValue); // parent icon
+					icon = qmc2IconHash.value(i.key()); // parent icon
 					if ( !icon.isNull() ) {
 						baseItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
 						hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
@@ -1929,7 +1928,7 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-			qmc2ParentHash.insert(jValue, iValue);
+			qmc2ParentHash.insert(jValue, i.key());
 		}
 		itemList << hierarchyItem;
 	}
