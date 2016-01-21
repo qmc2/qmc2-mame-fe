@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1396,7 +1396,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -18843,48 +18843,48 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="643"/>
         <source>Select the reproduction type</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar tipo de reprodução</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="647"/>
         <source>ZIPs (built-in)</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIPs (nativo)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="656"/>
         <source>ZIPs (libarchive)</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIPs (libarchive)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="665"/>
         <source>Sub-directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Subdiretórios</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="722"/>
         <location filename="../../romalyzer.ui" line="789"/>
         <source>Compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Compressão</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="759"/>
         <source>Enable / disable ZIP compression</source>
-        <translation type="unfinished"></translation>
+        <translation>Habiltar / desabilitar compressão ZIP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="763"/>
         <source>On</source>
-        <translation type="unfinished">Ligado</translation>
+        <translation>Ligado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="768"/>
         <source>Off</source>
-        <translation type="unfinished">Desligado</translation>
+        <translation>Desligado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="813"/>
         <source>&lt;b&gt;There are no options for this reproduction type&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Não existem opções para esse tipo de reprodução&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="970"/>
