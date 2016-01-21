@@ -87,7 +87,6 @@
 // external global variables
 extern Settings *qmc2Config;
 extern bool qmc2CleaningUp;
-extern QHash<QString, QIcon> qmc2IconHash;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
