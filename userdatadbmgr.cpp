@@ -518,16 +518,16 @@ void UserDataDatabaseManager::fillUpRankCache()
 			int rankInt = rank(row);
 			m_rankCache[idString] = rankInt;
 			QString rankString = QString::number(rankInt);
-			QTreeWidgetItem *item = qmc2MachineListItemHash[idString];
+			QTreeWidgetItem *item = qmc2MachineListItemHash.value(idString);
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
-			item = qmc2HierarchyItemHash[idString];
+			item = qmc2HierarchyItemHash.value(idString);
 			if ( item)
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
-			item = qmc2CategoryItemHash[idString];
+			item = qmc2CategoryItemHash.value(idString);
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
-			item = qmc2VersionItemHash[idString];
+			item = qmc2VersionItemHash.value(idString);
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 		}

@@ -1623,7 +1623,7 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
 	if ( !suggestorAppendString.isEmpty() )
 		suggestedSearchPattern.append(" " + suggestorAppendString);
-	QTreeWidgetItem *item = qmc2MachineListItemHash[mySetID];
+	QTreeWidgetItem *item = qmc2MachineListItemHash.value(mySetID);
 	if ( item )
 		suggestedSearchPattern.replace("$MANUFACTURER$", item->text(QMC2_MACHINELIST_COLUMN_MANU)).replace("$YEAR$", item->text(QMC2_MACHINELIST_COLUMN_YEAR));
 	lineEditSearchString->setText(suggestedSearchPattern);

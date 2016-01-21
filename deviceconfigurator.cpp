@@ -1090,7 +1090,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 			QStringList newSlotOptionDescriptions;
 			foreach (QString newSlotOption, xmlHandler.newSlotOptions[newSlot]) {
 				QString xmlHandlerNewSlotOption = xmlHandler.newSlotDevices[newSlotOption];
-				QTreeWidgetItem *item = qmc2MachineListItemHash[xmlHandlerNewSlotOption];
+				QTreeWidgetItem *item = qmc2MachineListItemHash.value(xmlHandlerNewSlotOption);
 				if ( item ) {
 					QString slotOptionDescription = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 #ifdef QMC2_DEBUG

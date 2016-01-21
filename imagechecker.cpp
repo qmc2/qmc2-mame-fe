@@ -848,7 +848,7 @@ void ImageChecker::feedWorkerThreads()
 					QStringList workUnit;
 					while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
 						it.next();
-						if ( qmc2MachineListItemHash[it.key()] )
+						if ( qmc2MachineListItemHash.contains(it.key()) )
 							workUnit << it.key();
 					}
 					threadMap[selectedThread]->workUnitMutex.unlock();
@@ -875,7 +875,7 @@ void ImageChecker::feedWorkerThreads()
 			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
 				it.next();
 				QString gameName = it.key();
-				if ( !qmc2MachineListItemHash[gameName] )
+				if ( !qmc2MachineListItemHash.contains(gameName) )
 					continue;
 				if ( qmc2MachineList->loadIcon(gameName, NULL, true, NULL) ) {
 					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(gameName));
@@ -1867,7 +1867,7 @@ void ImageChecker::selectItem(QString setName)
 {
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWMACHINELIST_INDEX: {
-			QTreeWidgetItem *gameItem = qmc2MachineListItemHash[setName];
+			QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(setName);
 			if ( gameItem ) {
 				qmc2MainWindow->treeWidgetMachineList->clearSelection();
 				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(gameItem);
@@ -1877,7 +1877,7 @@ void ImageChecker::selectItem(QString setName)
 			break;
 		}
 		case QMC2_VIEWHIERARCHY_INDEX: {
-			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[setName];
+			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(setName);
 			if ( hierarchyItem ) {
 				qmc2MainWindow->treeWidgetHierarchy->clearSelection();
 				qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
@@ -1887,7 +1887,7 @@ void ImageChecker::selectItem(QString setName)
 			break;
 		}
 		case QMC2_VIEWCATEGORY_INDEX: {
-			QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[setName];
+			QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(setName);
 			if ( categoryItem ) {
 				qmc2MainWindow->treeWidgetCategoryView->clearSelection();
 				qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
@@ -1897,7 +1897,7 @@ void ImageChecker::selectItem(QString setName)
 			break;
 		}
 		case QMC2_VIEWVERSION_INDEX: {
-			QTreeWidgetItem *versionItem = qmc2VersionItemHash[setName];
+			QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(setName);
 			if ( versionItem ) {
 				qmc2MainWindow->treeWidgetVersionView->clearSelection();
 				qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
