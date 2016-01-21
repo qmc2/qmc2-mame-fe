@@ -1298,7 +1298,7 @@ QStringList HtmlEditor::videoSnapUrls(QString id)
 		}
 		if ( vsUrls.isEmpty() ) { // parent fallback
 			if ( qmc2ParentImageFallback ) {
-				QString parentId = qmc2ParentHash[id];
+				QString parentId = qmc2ParentHash.value(id);
 				if ( !parentId.isEmpty() ) {
 					foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
 						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));

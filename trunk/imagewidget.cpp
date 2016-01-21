@@ -348,7 +348,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
-						QString parentName = qmc2ParentHash[gameName];
+						QString parentName = qmc2ParentHash.value(gameName);
 						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
@@ -407,7 +407,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
-						QString parentName = qmc2ParentHash[gameName];
+						QString parentName = qmc2ParentHash.value(gameName);
 						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
@@ -477,7 +477,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
-						QString parentName = qmc2ParentHash[gameName];
+						QString parentName = qmc2ParentHash.value(gameName);
 						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
@@ -529,7 +529,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							QFile f(imagePath);
 							fileOk = f.exists();
 							if ( !fileOk ) {
-								QString parentName = qmc2ParentHash[gameName];
+								QString parentName = qmc2ParentHash.value(gameName);
 								if ( parentFallback() && !parentName.isEmpty() )
 									fileOk = loadImage(parentName, onBehalfOf, checkOnly, fileName, false);
 							}
@@ -544,7 +544,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							currentPixmap = pm;
 							fileOk = true;
 						} else {
-							QString parentName = qmc2ParentHash[gameName];
+							QString parentName = qmc2ParentHash.value(gameName);
 							if ( parentFallback() && !parentName.isEmpty() ) {
 								fileOk = loadImage(parentName, onBehalfOf);
 							} else {

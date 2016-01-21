@@ -1857,8 +1857,6 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 		QString iValue = i.key();
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(iValue);
-		if ( !baseItem )
-			continue;
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(iValue, hierarchyItem);
 		if ( (!showBiosSets && isBios(iValue)) || (!showDeviceSets && isDevice(iValue)) )
@@ -1882,14 +1880,10 @@ void MachineList::parse()
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 		// sub-items
 		for (int j = 0; j < i.value().count(); j++) {
-			if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
-				qApp->processEvents();
+			if ( counter++ % qmc2MachineListResponsiveness == 0 )
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
-			}
 			QString jValue = i.value().at(j);
 			baseItem = qmc2MachineListItemHash.value(jValue);
-			if ( !baseItem )
-				continue;
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
 			if ( (!showBiosSets && isBios(jValue)) || (!showDeviceSets && isDevice(jValue)) )
@@ -3833,5 +3827,5 @@ char MachineListItem::romStatus()
 
 QString MachineListItem::parentId()
 {
-	return qmc2ParentHash[id()];
+	return qmc2ParentHash.value(id());
 }
