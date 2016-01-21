@@ -3068,14 +3068,14 @@ void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current
 	if ( isActive )
 		return;
 	isActive = true;
-	QTreeWidgetItem *glItem = NULL;
+	QTreeWidgetItem *mlItem = 0;
 	if ( current )
-		glItem = qmc2MachineListItemHash.value(current->whatsThis());
-	if ( glItem ) {
+		mlItem = qmc2MachineListItemHash.value(current->whatsThis());
+	if ( mlItem ) {
 		qmc2CheckItemVisibility = false;
 		treeWidgetMachineList->clearSelection();
-		qmc2CurrentItem = glItem;
-		treeWidgetMachineList->setCurrentItem(glItem);
+		qmc2CurrentItem = mlItem;
+		treeWidgetMachineList->setCurrentItem(mlItem);
 	}
 	isActive = false;
 }
