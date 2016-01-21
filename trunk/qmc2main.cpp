@@ -2920,9 +2920,9 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastNegatedMatch = negatedMatch;
 		lastIncludeBioses = includeBioses;
 		lastIncludeDevices = includeDevices;
-		qmc2MachineList->numSearchGames = listWidgetSearch->count();
+		qmc2MachineList->numMatchedMachines = listWidgetSearch->count();
 		labelMachineListStatus->setText(qmc2MachineList->status());
-		lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
+		lcdNumberSearchResults->display(qmc2MachineList->numMatchedMachines);
 		return;
 	} else if ( listWidgetSearch->count() == 0 )
 		lastSearchText.clear();
@@ -2970,9 +2970,9 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		lastNegatedMatch = negatedMatch;
 		lastIncludeBioses = includeBioses;
 		lastIncludeDevices = includeDevices;
-		qmc2MachineList->numSearchGames = listWidgetSearch->count();
+		qmc2MachineList->numMatchedMachines = listWidgetSearch->count();
 		labelMachineListStatus->setText(qmc2MachineList->status());
-		lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
+		lcdNumberSearchResults->display(qmc2MachineList->numMatchedMachines);
 		return;
 	}
 
@@ -3016,9 +3016,9 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			foreach (QListWidgetItem *item, itemList)
 				listWidgetSearch->addItem(item);
 			itemList.clear();
-			qmc2MachineList->numSearchGames = listWidgetSearch->count();
+			qmc2MachineList->numMatchedMachines = listWidgetSearch->count();
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
+			lcdNumberSearchResults->display(qmc2MachineList->numMatchedMachines);
 			if ( currentItemPendant ) {
 				listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 				listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -3030,9 +3030,9 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( !stopSearch && !qmc2CleaningUp ) {
 		foreach (QListWidgetItem *item, itemList)
 			listWidgetSearch->addItem(item);
-		qmc2MachineList->numSearchGames = listWidgetSearch->count();
+		qmc2MachineList->numMatchedMachines = listWidgetSearch->count();
 		labelMachineListStatus->setText(qmc2MachineList->status());
-		lcdNumberSearchResults->display(qmc2MachineList->numSearchGames);
+		lcdNumberSearchResults->display(qmc2MachineList->numMatchedMachines);
 		if ( currentItemPendant ) {
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -4647,7 +4647,7 @@ void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
 		qApp->processEvents();
 		if ( item->child(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") ) {
 			treeWidgetMachineList->viewport()->update();
-			qmc2MachineList->parseGameDetail(item);
+			qmc2MachineList->parseMachineDetail(item);
 			qmc2ExpandedMachineListItems << item;
 		}
 	}
@@ -8251,7 +8251,7 @@ void MainWindow::on_actionPlayTagged_triggered(bool)
 		progressBarMachineList->setFormat(tr("Play tagged - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
+	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
 
@@ -8281,7 +8281,7 @@ void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 		progressBarMachineList->setFormat(tr("Play tagged - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
+	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
 
@@ -8313,7 +8313,7 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 		progressBarMachineList->setFormat(tr("Add favorites - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
+	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
 
@@ -8414,7 +8414,7 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 		progressBarMachineList->setFormat(tr("ROM tool tagged - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numGames);
+	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
 
@@ -8635,7 +8635,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalMachines + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Tagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8666,7 +8666,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 			qApp->processEvents();
 		}
 	}
-	qmc2MachineList->numTaggedSets = qmc2MachineList->numGames;
+	qmc2MachineList->numTaggedSets = qmc2MachineList->numMachines;
 	progressBarMachineList->setValue(count);
 	labelMachineListStatus->setText(qmc2MachineList->status());
 	hideLoadAnim();
@@ -8685,7 +8685,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalMachines + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Untagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8735,7 +8735,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalMachines + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Inverting tags, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8788,7 +8788,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalMachines + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Tagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8838,7 +8838,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalMachines + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Untagging, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8888,7 +8888,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
 		progressBarMachineList->setFormat("%p%");
-	progressBarMachineList->setRange(0, qmc2MachineList->numTotalGames + qmc2MachineList->deviceSets.count());
+	progressBarMachineList->setRange(0, qmc2MachineList->numTotalMachines + qmc2MachineList->deviceSets.count());
 	showLoadAnim(tr("Inverting tags, please wait..."));
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
