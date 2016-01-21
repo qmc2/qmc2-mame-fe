@@ -82,6 +82,7 @@ class MachineList : public QObject
 		static bool creatingCatView;
 		static bool creatingVerView;
 		static Qt::ItemFlags defaultItemFlags;
+		static QString trQuestionMark;
 
 		QString lookupDriverName(QString);
 		QString romStatus(QString, bool translated = false);

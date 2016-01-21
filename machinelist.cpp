@@ -127,6 +127,7 @@ QHash<QString, QStringList> qmc2HierarchyHash;
 bool MachineList::creatingCatView = false;
 bool MachineList::creatingVerView = false;
 Qt::ItemFlags MachineList::defaultItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
+QString MachineList::trQuestionMark;
 
 MachineList::MachineList(QObject *parent)
 	: QObject(parent)
@@ -176,6 +177,8 @@ MachineList::MachineList(QObject *parent)
 		reverseTranslation[QObject::tr("no")] = "no";
 		reverseTranslation[QObject::tr("partially")] = "partially";
 	}
+
+	trQuestionMark = tr("?");
 
 	if ( machineStateTranslations.isEmpty() ) {
 		machineStateTranslations["good"] = tr("good");
@@ -1432,7 +1435,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_MLC_INDEX_HAS_ROM] == "1") + int(machineData[QMC2_MLC_INDEX_HAS_CHD] == "1") * 2]);
 					if ( useCatverIni ) {
 						QString *versionString = versionHash.value(machineName);
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
 					}
 					switch ( machineStatusHash.value(machineName) ) {
 						case 'C': 
@@ -1441,7 +1444,7 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash.value(machineName);
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
 									break;
@@ -1472,7 +1475,7 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash.value(machineName);
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
 									break;
@@ -1503,7 +1506,7 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash.value(machineName);
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
 									break;
@@ -1534,7 +1537,7 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash.value(machineName);
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
 									break;
@@ -1566,7 +1569,7 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
 										QString *categoryString = categoryHash.value(machineName);
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
 									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
 									break;
@@ -1675,7 +1678,7 @@ void MachineList::parse()
 					// find year & manufacturer and determine ROM/CHD requirements
 					bool endGame = false;
 					int i = lineCounter;
-					QString machineYear = tr("?"), machineManufacturer = tr("?"), machinePlayers = tr("?"), machineDrvStat = tr("?");
+					QString machineYear = trQuestionMark, machineManufacturer = trQuestionMark, machinePlayers = trQuestionMark, machineDrvStat = trQuestionMark;
 					bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
 					QString endMark = "</machine>";
 					while ( !endGame ) {
@@ -1717,7 +1720,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineSource);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
 					if ( isDevice ) {
-						if ( machinePlayers != tr("?") )
+						if ( machinePlayers != trQuestionMark )
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
 						else
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, tr("N/A"));
@@ -1733,12 +1736,12 @@ void MachineList::parse()
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 						else {
 							QString *categoryString = categoryHash.value(machineName);
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : tr("?"));
+							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 						}
 					}
 					if ( useCatverIni ) {
 						QString *versionString = versionHash.value(machineName);
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
 					}
 					switch ( machineStatusHash.value(machineName) ) {
 						case 'C': 
@@ -1851,6 +1854,7 @@ void MachineList::parse()
 	QList<QTreeWidgetItem *> itemList, hideList;
 	int counter = numMachines;
 	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
+	qmc2HierarchyItemHash.reserve(qmc2MachineListItemHash.count());
 	while ( i.hasNext() && !qmc2StopParser ) {
 		i.next();
 		if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
@@ -1904,7 +1908,7 @@ void MachineList::parse()
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
 			if ( useCategories ) {
 				QString category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
-				if ( category == tr("?") ) {
+				if ( category == trQuestionMark ) {
 					category = hierarchyItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 					baseItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
 				}
@@ -1925,7 +1929,7 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-			qmc2ParentHash[jValue] = iValue;
+			qmc2ParentHash.insert(jValue, iValue);
 		}
 		itemList << hierarchyItem;
 	}
@@ -1937,7 +1941,7 @@ void MachineList::parse()
 	}
 	foreach (QTreeWidgetItem *hiddenItem, hideList)
 		hiddenItem->setHidden(true);
-	QString sortCriteria = tr("?");
+	QString sortCriteria = trQuestionMark;
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
 			sortCriteria = QObject::tr("machine description");
@@ -2033,12 +2037,12 @@ void MachineList::parse()
 			f.remove();
 		}
 	}
-	QString sL = numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : tr("?");
-	QString sC = numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : tr("?");
-	QString sM = numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : tr("?");
-	QString sI = numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : tr("?");
-	QString sN = numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : tr("?");
-	QString sU = numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : tr("?");
+	QString sL = numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark;
+	QString sC = numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark;
+	QString sM = numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark;
+	QString sI = numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark;
+	QString sN = numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark;
+	QString sU = numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
 	qmc2ReloadActive = qmc2StartingUp = false;
@@ -2275,14 +2279,14 @@ QString &MachineList::status()
 {
 	QLocale locale;
 	statusString = "<b>";
-	statusString += "<font color=\"black\">" + tr("L:") + QString(numMachines > -1 ? locale.toString(numMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"chocolate\">" + tr("S:") + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : tr("?")) + "</font> ";
-	statusString += "<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : tr("?")) + "</font>";
+	statusString += "<font color=\"black\">" + tr("L:") + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"chocolate\">" + tr("S:") + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark) + "</font> ";
+	statusString += "<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark) + "</font>";
 	statusString += "</b>";
 	return statusString;
 }
@@ -2765,12 +2769,12 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(elapsedTime.toString("mm:ss.zzz")));
 	else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-	QString sL = numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : tr("?");
-	QString sC = numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : tr("?");
-	QString sM = numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : tr("?");
-	QString sI = numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : tr("?");
-	QString sN = numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : tr("?");
-	QString sU = numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : tr("?");
+	QString sL = numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark;
+	QString sC = numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark;
+	QString sM = numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark;
+	QString sI = numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark;
+	QString sN = numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark;
+	QString sU = numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
 	if ( verifyProc )

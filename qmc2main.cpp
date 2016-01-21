@@ -8940,7 +8940,7 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 
 	QString manu = item->text(QMC2_MACHINELIST_COLUMN_MANU);
 	QString searchPattern;
-	if ( manu != tr("?") )
+	if ( manu != MachineList::trQuestionMark )
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE) + " " + manu;
 	else
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
