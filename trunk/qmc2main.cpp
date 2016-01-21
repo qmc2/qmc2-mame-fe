@@ -1612,7 +1612,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 				QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator), QString()).toString();
 				QString argString = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString();
 				QStringList emuArgs;
-				argString.replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+				argString.replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2MachineListItemHash.value(gameName)->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 				QRegExp rx("([^\\s]+|[^\\s]*\"[^\"]+\"[^\\s]*)");
 				int i = 0;
 				while ( (i = rx.indexIn(argString, i)) != -1 ) {
@@ -1985,14 +1985,15 @@ void MainWindow::on_actionPlay_triggered(bool)
 	if ( qmc2DemoGame.isEmpty() ) {
 		// add game/machine to played list
 		listWidgetPlayed->blockSignals(true);
-		QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+		QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(gameName);
+		QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(mlItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 		QListWidgetItem *playedItem;
 		if ( matches.count() > 0 )
 			playedItem = listWidgetPlayed->takeItem(listWidgetPlayed->row(matches[0]));
 		else {
 			playedItem = new QListWidgetItem();
-			playedItem->setText(qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-			playedItem->setWhatsThis(qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_NAME));
+			playedItem->setText(mlItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+			playedItem->setWhatsThis(mlItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		}
 		listWidgetPlayed->insertItem(0, playedItem);
 		listWidgetPlayed->setCurrentItem(playedItem);
@@ -3069,7 +3070,7 @@ void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current
 	isActive = true;
 	QTreeWidgetItem *glItem = NULL;
 	if ( current )
-		glItem = qmc2MachineListItemHash[current->whatsThis()];
+		glItem = qmc2MachineListItemHash.value(current->whatsThis());
 	if ( glItem ) {
 		qmc2CheckItemVisibility = false;
 		treeWidgetMachineList->clearSelection();
@@ -3547,7 +3548,7 @@ void MainWindow::scrollToCurrentItem()
 			return;
 		switch ( stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWHIERARCHY_INDEX:
-				ci = qmc2HierarchyItemHash[ci->text(QMC2_MACHINELIST_COLUMN_NAME)];
+				ci = qmc2HierarchyItemHash.value(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
 				if ( ci ) {
 					treeWidgetHierarchy->clearSelection();
 					treeWidgetHierarchy->setCurrentItem(ci);
@@ -3555,7 +3556,7 @@ void MainWindow::scrollToCurrentItem()
 				}
 				break;
 			case QMC2_VIEWCATEGORY_INDEX:
-				ci = qmc2CategoryItemHash[ci->text(QMC2_MACHINELIST_COLUMN_NAME)];
+				ci = qmc2CategoryItemHash.value(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
 				if ( ci ) {
 					treeWidgetCategoryView->clearSelection();
 					treeWidgetCategoryView->setCurrentItem(ci);
@@ -3563,7 +3564,7 @@ void MainWindow::scrollToCurrentItem()
 				}
 				break;
 			case QMC2_VIEWVERSION_INDEX:
-				ci = qmc2VersionItemHash[ci->text(QMC2_MACHINELIST_COLUMN_NAME)];
+				ci = qmc2VersionItemHash.value(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
 				if ( ci ) {
 					treeWidgetVersionView->clearSelection();
 					treeWidgetVersionView->setCurrentItem(ci);
@@ -3801,7 +3802,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				QVBoxLayout *layout = new QVBoxLayout;
 				layout->setContentsMargins(left, top, right, bottom);
 				QString setID = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-				qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2MachineListItemHash[setID]->text(QMC2_MACHINELIST_COLUMN_MACHINE), tabYouTube);
+				qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2MachineListItemHash.value(setID)->text(QMC2_MACHINELIST_COLUMN_MACHINE), tabYouTube);
 				layout->addWidget(qmc2YouTubeWidget);
 				tabYouTube->setLayout(layout);
 				qmc2YouTubeWidget->show();
@@ -4092,9 +4093,9 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 						else
 							textBrowserGameInfo->setHtml(gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 					} else
-						textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
+						textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash.value(gameName)->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
 				} else
-					textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash[gameName]->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
+					textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash.value(gameName)->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
 				qmc2LastGameInfoItem = qmc2CurrentItem;
 				tabGameInfo->setUpdatesEnabled(true);
 			}
@@ -4730,7 +4731,7 @@ void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
 	if ( selected.count() > 0 ) {
 		if ( selected.at(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
 			return;
-		qmc2HierarchySelectedItem = qmc2MachineListItemHash[selected.at(0)->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		qmc2HierarchySelectedItem = qmc2MachineListItemHash.value(selected.at(0)->text(QMC2_MACHINELIST_COLUMN_NAME));
 		qmc2CheckItemVisibility = false;
 		treeWidgetMachineList->setCurrentItem(qmc2HierarchySelectedItem);
 	}
@@ -4807,7 +4808,7 @@ void MainWindow::action_embedEmulator_triggered()
 			continue;
 		}
 
-		QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
+		QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(gameName);
 #if defined(QMC2_OS_UNIX)
 		QList<WId> winIdList;
 		int xwininfoRetries = 0;
@@ -5079,7 +5080,7 @@ void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 	QTabBar *tabBar = (QTabBar *)toolButton->parent();
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
 	if ( embedder ) {
-		QString gameDescription = qmc2MachineListItemHash[embedder->machineName]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+		QString gameDescription = qmc2MachineListItemHash.value(embedder->machineName)->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 		QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
 		if ( matches.count() <= 0 ) {
 			QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
@@ -5334,7 +5335,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 		case QMC2_VIEWHIERARCHY_INDEX:
 			if ( !qmc2ReloadActive ) {
 				QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(gameName);
 				treeWidgetHierarchy->clearSelection();
 				if ( hierarchyItem ) {
 					treeWidgetHierarchy->setCurrentItem(hierarchyItem);
@@ -5347,7 +5348,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 		case QMC2_VIEWCATEGORY_INDEX:
 			if ( !qmc2ReloadActive ) {
 				QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(gameName);
 				treeWidgetCategoryView->clearSelection();
 				if ( categoryItem ) {
 					treeWidgetCategoryView->setCurrentItem(categoryItem);
@@ -5360,7 +5361,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 		case QMC2_VIEWVERSION_INDEX:
 			if ( !qmc2ReloadActive ) {
 				QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-				QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(gameName);
 				treeWidgetVersionView->clearSelection();
 				if ( versionItem ) {
 					treeWidgetVersionView->setCurrentItem(versionItem);
@@ -7568,7 +7569,7 @@ void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 		QTreeWidgetItem *item = selected.at(0);
 		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 			return;
-		qmc2CategoryViewSelectedItem = qmc2MachineListItemHash[item->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		qmc2CategoryViewSelectedItem = qmc2MachineListItemHash.value(item->text(QMC2_MACHINELIST_COLUMN_NAME));
 		qmc2CheckItemVisibility = false;
 		treeWidgetMachineList->setCurrentItem(qmc2CategoryViewSelectedItem);
 	}
@@ -7648,7 +7649,7 @@ void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 		QTreeWidgetItem *item = selected.at(0);
 		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 			return;
-		qmc2VersionViewSelectedItem = qmc2MachineListItemHash[item->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		qmc2VersionViewSelectedItem = qmc2MachineListItemHash.value(item->text(QMC2_MACHINELIST_COLUMN_NAME));
 		qmc2CheckItemVisibility = false;
 		treeWidgetMachineList->setCurrentItem(qmc2VersionViewSelectedItem);
 	}
@@ -8026,13 +8027,13 @@ void MainWindow::on_treeWidgetMachineList_itemEntered(QTreeWidgetItem *item, int
 				bool wasTagged = (cs != Qt::Checked);
 				item->setCheckState(column, cs);
 				QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-				item = qmc2HierarchyItemHash[gameName];
+				item = qmc2HierarchyItemHash.value(gameName);
 				if ( item )
 					item->setCheckState(column, cs);
-				item = qmc2CategoryItemHash[gameName];
+				item = qmc2CategoryItemHash.value(gameName);
 				if ( item )
 					item->setCheckState(column, cs);
-				item = qmc2VersionItemHash[gameName];
+				item = qmc2VersionItemHash.value(gameName);
 				if ( item )
 					item->setCheckState(column, cs);
 				if ( wasTagged )
@@ -8060,13 +8061,13 @@ void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int c
 				bool wasTagged = (cs != Qt::Checked);
 				item->setCheckState(column, cs);
 				QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-				item = qmc2MachineListItemHash[gameName];
+				item = qmc2MachineListItemHash.value(gameName);
 				if ( item )
 					item->setCheckState(column, cs);
-				item = qmc2CategoryItemHash[gameName];
+				item = qmc2CategoryItemHash.value(gameName);
 				if ( item )
 					item->setCheckState(column, cs);
-				item = qmc2VersionItemHash[gameName];
+				item = qmc2VersionItemHash.value(gameName);
 				if ( item )
 					item->setCheckState(column, cs);
 				if ( wasTagged )
@@ -8095,13 +8096,13 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 					bool wasTagged = (cs != Qt::Checked);
 					item->setCheckState(column, cs);
 					QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-					item = qmc2MachineListItemHash[gameName];
+					item = qmc2MachineListItemHash.value(gameName);
 					if ( item )
 						item->setCheckState(column, cs);
-					item = qmc2HierarchyItemHash[gameName];
+					item = qmc2HierarchyItemHash.value(gameName);
 					if ( item )
 						item->setCheckState(column, cs);
-					item = qmc2VersionItemHash[gameName];
+					item = qmc2VersionItemHash.value(gameName);
 					if ( item )
 						item->setCheckState(column, cs);
 					if ( wasTagged )
@@ -8131,13 +8132,13 @@ void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int
 					bool wasTagged = (cs != Qt::Checked);
 					item->setCheckState(column, cs);
 					QString gameName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-					item = qmc2MachineListItemHash[gameName];
+					item = qmc2MachineListItemHash.value(gameName);
 					if ( item )
 						item->setCheckState(column, cs);
-					item = qmc2HierarchyItemHash[gameName];
+					item = qmc2HierarchyItemHash.value(gameName);
 					if ( item )
 						item->setCheckState(column, cs);
-					item = qmc2CategoryItemHash[gameName];
+					item = qmc2CategoryItemHash.value(gameName);
 					if ( item )
 						item->setCheckState(column, cs);
 					if ( wasTagged )
@@ -8261,7 +8262,7 @@ void MainWindow::on_actionPlayTagged_triggered(bool)
 	while ( it.hasNext() ) {
 		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -8291,7 +8292,7 @@ void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 	while ( it.hasNext() ) {
 		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -8323,7 +8324,7 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 	while ( it.hasNext() ) {
 		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -8348,7 +8349,7 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 	qmc2StopParser = false;
 	while ( it.hasNext() && !qmc2StopParser ) {
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -8376,7 +8377,7 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item )
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				setsToAnalyze << item->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -8424,7 +8425,7 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 	while ( it.hasNext() && !qmc2StopParser ) {
 		progressBarMachineList->setValue(count++);
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
@@ -8444,18 +8445,18 @@ void MainWindow::on_actionSetTag_triggered(bool)
 
 	bool wasUntagged = false;
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2MachineListItemHash[gameName];
+	QTreeWidgetItem *item = qmc2MachineListItemHash.value(gameName);
 	if ( item ) {
 		wasUntagged = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 	}
-	item = qmc2HierarchyItemHash[gameName];
+	item = qmc2HierarchyItemHash.value(gameName);
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-	item = qmc2CategoryItemHash[gameName];
+	item = qmc2CategoryItemHash.value(gameName);
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-	item = qmc2VersionItemHash[gameName];
+	item = qmc2VersionItemHash.value(gameName);
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 	if ( wasUntagged ) {
@@ -8471,18 +8472,18 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 
 	bool wasTagged = false;
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2MachineListItemHash[gameName];
+	QTreeWidgetItem *item = qmc2MachineListItemHash.value(gameName);
 	if ( item ) {
 		wasTagged = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 	}
-	item = qmc2HierarchyItemHash[gameName];
+	item = qmc2HierarchyItemHash.value(gameName);
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-	item = qmc2CategoryItemHash[gameName];
+	item = qmc2CategoryItemHash.value(gameName);
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-	item = qmc2VersionItemHash[gameName];
+	item = qmc2VersionItemHash.value(gameName);
 	if ( item )
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 	if ( wasTagged ) {
@@ -8497,18 +8498,18 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 		return;
 
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2MachineListItemHash[gameName];
+	QTreeWidgetItem *item = qmc2MachineListItemHash.value(gameName);
 	if ( item ) {
 		Qt::CheckState cs = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
 		bool wasTagged = (cs != Qt::Checked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2HierarchyItemHash[gameName];
+		item = qmc2HierarchyItemHash.value(gameName);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2CategoryItemHash[gameName];
+		item = qmc2CategoryItemHash.value(gameName);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2VersionItemHash[gameName];
+		item = qmc2VersionItemHash.value(gameName);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 		if ( wasTagged )
@@ -8645,18 +8646,18 @@ void MainWindow::on_actionTagAll_triggered(bool)
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2MachineListItemHash[id];
+		item = qmc2MachineListItemHash.value(id);
 		if ( !item )
 			continue;
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2HierarchyItemHash[id];
+		item = qmc2HierarchyItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2CategoryItemHash[id];
+		item = qmc2CategoryItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2VersionItemHash[id];
+		item = qmc2VersionItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 		qmc2MachineList->numTaggedSets++;
@@ -8695,18 +8696,18 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2MachineListItemHash[id];
+		item = qmc2MachineListItemHash.value(id);
 		if ( !item )
 			continue;
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2HierarchyItemHash[id];
+		item = qmc2HierarchyItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2CategoryItemHash[id];
+		item = qmc2CategoryItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2VersionItemHash[id];
+		item = qmc2VersionItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		qmc2MachineList->numTaggedSets--;
@@ -8745,19 +8746,19 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2MachineListItemHash[id];
+		item = qmc2MachineListItemHash.value(id);
 		if ( !item )
 			continue;
 		Qt::CheckState cs = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
 		bool wasTagged = (cs != Qt::Checked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2HierarchyItemHash[id];
+		item = qmc2HierarchyItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2CategoryItemHash[id];
+		item = qmc2CategoryItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2VersionItemHash[id];
+		item = qmc2VersionItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 		if ( wasTagged )
@@ -8798,19 +8799,19 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2MachineListItemHash[id];
+		item = qmc2MachineListItemHash.value(id);
 		if ( !item )
 			continue;
 		if ( item->isHidden() )
 			continue;
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2HierarchyItemHash[id];
+		item = qmc2HierarchyItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2CategoryItemHash[id];
+		item = qmc2CategoryItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
-		item = qmc2VersionItemHash[id];
+		item = qmc2VersionItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 		qmc2MachineList->numTaggedSets++;
@@ -8848,19 +8849,19 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2MachineListItemHash[id];
+		item = qmc2MachineListItemHash.value(id);
 		if ( !item )
 			continue;
 		if ( item->isHidden() )
 			continue;
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2HierarchyItemHash[id];
+		item = qmc2HierarchyItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2CategoryItemHash[id];
+		item = qmc2CategoryItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-		item = qmc2VersionItemHash[id];
+		item = qmc2VersionItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		qmc2MachineList->numTaggedSets--;
@@ -8898,7 +8899,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	while ( it.hasNext() ) {
 		it.next();
 		id = it.key();
-		item = qmc2MachineListItemHash[id];
+		item = qmc2MachineListItemHash.value(id);
 		if ( !item )
 			continue;
 		if ( item->isHidden() )
@@ -8906,13 +8907,13 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		Qt::CheckState cs = (item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
 		bool wasTagged = (cs != Qt::Checked);
 		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2HierarchyItemHash[id];
+		item = qmc2HierarchyItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2CategoryItemHash[id];
+		item = qmc2CategoryItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
-		item = qmc2VersionItemHash[id];
+		item = qmc2VersionItemHash.value(id);
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 		if ( wasTagged )
@@ -9015,7 +9016,7 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item )
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				setsToRebuild << item->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -9847,15 +9848,15 @@ RankItemWidget *MainWindow::getCurrentRankItemWidget()
 	switch ( stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWHIERARCHY_INDEX:
 			treeWidget = treeWidgetHierarchy;
-			item = qmc2HierarchyItemHash[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
+			item = qmc2HierarchyItemHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 			break;
 		case QMC2_VIEWCATEGORY_INDEX:
 			treeWidget = treeWidgetCategoryView;
-			item = qmc2CategoryItemHash[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
+			item = qmc2CategoryItemHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 			break;
 		case QMC2_VIEWVERSION_INDEX:
 			treeWidget = treeWidgetVersionView;
-			item = qmc2VersionItemHash[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
+			item = qmc2VersionItemHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
@@ -9877,7 +9878,7 @@ QList<RankItemWidget *> *MainWindow::getTaggedRankItemWidgets()
 	QTreeWidgetItem *item;
 	while ( it.hasNext() ) {
 		it.next();
-		item = qmc2MachineListItemHash[it.key()];
+		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				taggedRiwList << (RankItemWidget *)treeWidgetMachineList->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);

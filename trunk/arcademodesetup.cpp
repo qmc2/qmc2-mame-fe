@@ -705,7 +705,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	foreach (QString game, qmc2MachineListItemHash.keys()) {
 		progressBarFilter->setValue(++itemCount);
 
-		MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash[game];
+		MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash.value(game);
 		if ( !machineItem )
 			continue;
 
@@ -722,7 +722,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// favorite sets only?
 		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
-			MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash[game];
+			MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash.value(game);
 			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 			if ( !favoritesMatches.isEmpty() )
 				selectedGames << machineItem;

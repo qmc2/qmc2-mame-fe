@@ -173,25 +173,25 @@ void RankItemWidget::updateForeignItems()
 {
 	RankItemWidget *foreignRiw;
 	QString myId = m_item->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QTreeWidgetItem *item = qmc2MachineListItemHash[myId];
+	QTreeWidgetItem *item = qmc2MachineListItemHash.value(myId);
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
-	item = qmc2HierarchyItemHash[myId];
+	item = qmc2HierarchyItemHash.value(myId);
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
-	item = qmc2CategoryItemHash[myId];
+	item = qmc2CategoryItemHash.value(myId);
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
 	}
-	item = qmc2VersionItemHash[myId];
+	item = qmc2VersionItemHash.value(myId);
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )

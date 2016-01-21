@@ -178,7 +178,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			foreach (QString game, qmc2MachineListItemHash.keys()) {
 				if ( qmc2MachineList->isDevice(game) )
 					continue;
-				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[game];
+				QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(game);
 				if ( !gameItem )
 					continue;
 				if ( gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
@@ -188,7 +188,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			foreach (QString game, qmc2MachineListItemHash.keys()) {
 				if ( qmc2MachineList->isDevice(game) )
 					continue;
-				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[game];
+				QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(game);
 				if ( gameItem ) {
 					QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 					if ( !favoritesMatches.isEmpty() )
@@ -217,7 +217,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 					category = tr("?");
 				if ( qmc2MachineList->isDevice(game) || (!qmc2MachineList->categoryHash.isEmpty() && excludedCategories.contains(category)) )
 					continue;
-				QTreeWidgetItem *gameItem = qmc2MachineListItemHash[game];
+				QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(game);
 				if ( !gameItem )
 					continue;
 				if ( minDrvStatus < QMC2_DEMO_MODE_DRV_STATUS_PRELIMINARY ) {
@@ -320,7 +320,7 @@ void DemoModeDialog::startNextEmu()
 		qmc2DemoGame = selectedGames[seqNum];
 	} else
 		qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-	QString gameDescription = qmc2MachineListItemHash[qmc2DemoGame]->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+	QString gameDescription = qmc2MachineListItemHash.value(qmc2DemoGame)->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
 	setStatus(gameDescription);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)

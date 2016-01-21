@@ -924,7 +924,7 @@ void MachineList::verify(bool currentOnly)
 			tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 		}
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for '%1'").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)));
-		oldRomState = machineStatusHash[checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME)];
+		oldRomState = machineStatusHash.value(checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		// decrease counter for current game's/machine's state
 		switch ( oldRomState ) {
 			case 'C':
@@ -1434,7 +1434,7 @@ void MachineList::parse()
 						QString *versionString = versionHash[machineName];
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
-					switch ( machineStatusHash[machineName] ) {
+					switch ( machineStatusHash.value(machineName) ) {
 						case 'C': 
 							numCorrectMachines++;
 							switch ( machineType ) {
@@ -1740,7 +1740,7 @@ void MachineList::parse()
 						QString *versionString = versionHash[machineName];
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : tr("?"));
 					}
-					switch ( machineStatusHash[machineName] ) {
+					switch ( machineStatusHash.value(machineName) ) {
 						case 'C': 
 							numCorrectMachines++;
 							if ( isBIOS ) {
@@ -1856,7 +1856,7 @@ void MachineList::parse()
 		if ( counter++ % qmc2MachineListResponsiveness == 0 )
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 		QString iValue = i.key();
-		QTreeWidgetItem *baseItem = qmc2MachineListItemHash[iValue];
+		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(iValue);
 		if ( !baseItem )
 			continue;
 		MachineListItem *hierarchyItem = new MachineListItem();
@@ -1887,7 +1887,7 @@ void MachineList::parse()
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
 			}
 			QString jValue = i.value().at(j);
-			baseItem = qmc2MachineListItemHash[jValue];
+			baseItem = qmc2MachineListItemHash.value(jValue);
 			if ( !baseItem )
 				continue;
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
@@ -1992,9 +1992,9 @@ void MachineList::parse()
 		if ( ci->isSelected() ) {
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 		} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-			QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
-			if ( !selectedGame.isEmpty() ) {
-				QTreeWidgetItem *glItem = qmc2MachineListItemHash[selectedGame];
+			QString selectedMachine = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
+			if ( !selectedMachine.isEmpty() ) {
+				QTreeWidgetItem *glItem = qmc2MachineListItemHash.value(selectedMachine);
 				if ( glItem ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
@@ -2005,9 +2005,9 @@ void MachineList::parse()
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 		}
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-		QString selectedGame = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
-		if ( !selectedGame.isEmpty() ) {
-			QTreeWidgetItem *glItem = qmc2MachineListItemHash[selectedGame];
+		QString selectedMachine = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
+		if ( !selectedMachine.isEmpty() ) {
+			QTreeWidgetItem *glItem = qmc2MachineListItemHash.value(selectedMachine);
 			if ( glItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
@@ -2109,7 +2109,7 @@ void MachineList::filter(bool initial)
 			checkedItem->setHidden(true);
 		else if ( !showDeviceSets && isDevice(machineName) )
 			checkedItem->setHidden(true);
-		else switch ( machineStatusHash[machineName] ) {
+		else switch ( machineStatusHash.value(machineName) ) {
 			case 'C':
 				checkedItem->setHidden(!showC);
 				break;
@@ -2145,7 +2145,7 @@ void MachineList::filter(bool initial)
 				item->setHidden(true);
 			else if ( !showDeviceSets && isDevice(machineName) )
 				item->setHidden(true);
-			else switch ( machineStatusHash[machineName] ) {
+			else switch ( machineStatusHash.value(machineName) ) {
 				case 'C':
 					item->setHidden(!showC);
 					break;
@@ -2196,7 +2196,7 @@ void MachineList::loadFavorites()
 		while ( !ts.atEnd() ) {
 			QString machineName = ts.readLine();
 			if ( !machineName.isEmpty() ) {
-				QTreeWidgetItem *machineItem = qmc2MachineListItemHash[machineName];
+				QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(machineName);
 				if ( machineItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
 					item->setText(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -2240,7 +2240,7 @@ void MachineList::loadPlayHistory()
 		while ( !ts.atEnd() ) {
 			QString machineName = ts.readLine();
 			if ( !machineName.isEmpty() ) {
-				QTreeWidgetItem *machineItem = qmc2MachineListItemHash[machineName];
+				QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(machineName);
 				if ( machineItem ) {
 					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
 					item->setText(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -2519,11 +2519,11 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					qApp->processEvents();
 				}
 				QString machineName = remainingGames[i];
-				QTreeWidgetItem *romItem = qmc2MachineListItemHash[machineName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[machineName];
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash.value(machineName);
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(machineName);
 				if ( romItem && hierarchyItem ) {
-					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[machineName];
-					QTreeWidgetItem *versionItem = qmc2VersionItemHash[machineName];
+					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(machineName);
+					QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(machineName);
 					machineStatusHash[machineName] = 'U';
 					bool isBIOS = isBios(machineName);
 					bool isDevice = this->isDevice(machineName);
@@ -2575,10 +2575,10 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				QString machineName = remainingGames[i];
 				bool isBIOS = isBios(machineName);
 				bool isDevice = this->isDevice(machineName);
-				QTreeWidgetItem *romItem = qmc2MachineListItemHash[machineName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[machineName];
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[machineName];
-				QTreeWidgetItem *versionItem = qmc2VersionItemHash[machineName];
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash.value(machineName);
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(machineName);
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(machineName);
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(machineName);
 				// there are quite a number of sets in MESS and MAME that don't require any ROMs... many/most device-sets in particular
 				bool romRequired = true;
 				int xmlCounter = 0;
@@ -2689,7 +2689,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		if ( verifiedList.isEmpty() && checkedItem && exitCode == QMC2_MAME_ERROR_NO_SUCH_MACHINE ) {
 			// many device-sets that have no ROMs are declared as being "invalid" during the audit, but that isn't true :)
 			machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[machineName];
+			QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(machineName);
 			if ( hierarchyItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM status for '%1' is '%2'").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(QObject::tr("correct")));
 				machineStatusHash[machineName] = 'C';
@@ -2697,8 +2697,8 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				numCorrectMachines++;
 				if ( checkedItem == qmc2CurrentItem )
 					qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorGreen);
-				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[machineName];
-				QTreeWidgetItem *versionItem = qmc2VersionItemHash[machineName];
+				QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(machineName);
+				QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(machineName);
 				if ( isBios(machineName) ) {
 					if ( showROMStatusIcons ) {
 						checkedItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
@@ -2759,7 +2759,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 		}
-		doFilter = (oldRomState != machineStatusHash[machineName]);
+		doFilter = (oldRomState != machineStatusHash.value(machineName));
 	}
 	QTime elapsedTime(0, 0, 0, 0);
 	elapsedTime = elapsedTime.addMSecs(verifyTimer.elapsed());
@@ -2859,11 +2859,11 @@ void MachineList::verifyReadyReadStandardOutput()
 			numVerifyRoms++;
 			if ( words.count() > 2 ) {
 				romName = words[1].remove("\"");
-				QTreeWidgetItem *romItem = qmc2MachineListItemHash[romName];
-				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[romName];
+				QTreeWidgetItem *romItem = qmc2MachineListItemHash.value(romName);
+				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(romName);
 				if ( romItem && hierarchyItem ) {
-					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[romName];
-					QTreeWidgetItem *versionItem = qmc2VersionItemHash[romName];
+					QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(romName);
+					QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(romName);
 					bool isBIOS = isBios(romName);
 					bool isDevice = this->isDevice(romName);
 					if ( words.last() == "good" || lines[i].endsWith("has no roms!") ) {
@@ -3410,7 +3410,7 @@ void MachineList::createCategoryView()
 			machineItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
 			machineItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
-				switch ( machineStatusHash[machineName] ) {
+				switch ( machineStatusHash.value(machineName) ) {
 					case 'C':
 						if ( isBIOS )
 							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
@@ -3643,7 +3643,7 @@ void MachineList::createVersionView()
 			machineItem->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, baseItem->whatsThis(QMC2_MACHINELIST_COLUMN_RANK));
 			machineItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
-				switch ( machineStatusHash[machineName] ) {
+				switch ( machineStatusHash.value(machineName) ) {
 					case 'C':
 						if ( isBIOS )
 							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
@@ -3715,7 +3715,7 @@ void MachineList::createVersionView()
 
 QString MachineList::romStatus(QString systemName, bool translated)
 {
-	switch ( machineStatusHash[systemName] ) {
+	switch ( machineStatusHash.value(systemName) ) {
 		case 'C':
 			return translated ? tr("correct") : "correct";
 		case 'M':
@@ -3731,7 +3731,7 @@ QString MachineList::romStatus(QString systemName, bool translated)
 
 char MachineList::romState(QString systemName)
 {
-	char state = machineStatusHash[systemName];
+	char state = machineStatusHash.value(systemName);
 	return (state == 0 ? 'U' : state);
 }
 
@@ -3776,7 +3776,7 @@ bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 			return (text(QMC2_MACHINELIST_COLUMN_MACHINE).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::CaseInsensitive) < 0);
 
 		case QMC2_SORT_BY_ROM_STATE:
-			return (qmc2MachineList->machineStatusHash[text(QMC2_MACHINELIST_COLUMN_NAME)] < qmc2MachineList->machineStatusHash[otherItem.text(QMC2_MACHINELIST_COLUMN_NAME)]);
+			return (qmc2MachineList->machineStatusHash.value(text(QMC2_MACHINELIST_COLUMN_NAME)) < qmc2MachineList->machineStatusHash.value(otherItem.text(QMC2_MACHINELIST_COLUMN_NAME)));
 
 		case QMC2_SORT_BY_TAG:
 			return (int(checkState(QMC2_MACHINELIST_COLUMN_TAG)) < int(otherItem.checkState(QMC2_MACHINELIST_COLUMN_TAG)));
@@ -3828,7 +3828,7 @@ bool MachineListItem::isDevice()
 
 char MachineListItem::romStatus()
 {
-	return qmc2MachineList->machineStatusHash[id()];
+	return qmc2MachineList->machineStatusHash.value(id());
 }
 
 QString MachineListItem::parentId()

@@ -2339,7 +2339,7 @@ void ROMAlyzer::selectItem(QString gameName)
 {
 	switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 		case QMC2_VIEWMACHINELIST_INDEX: {
-			      QTreeWidgetItem *gameItem = qmc2MachineListItemHash[gameName];
+			      QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(gameName);
 			      if ( gameItem ) {
 				      qmc2MainWindow->treeWidgetMachineList->clearSelection();
 				      qmc2MainWindow->treeWidgetMachineList->setCurrentItem(gameItem);
@@ -2349,7 +2349,7 @@ void ROMAlyzer::selectItem(QString gameName)
 			      break;
 		      }
 		case QMC2_VIEWHIERARCHY_INDEX: {
-			       QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash[gameName];
+			       QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(gameName);
 			       if ( hierarchyItem ) {
 				       qmc2MainWindow->treeWidgetHierarchy->clearSelection();
 				       qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
@@ -2359,7 +2359,7 @@ void ROMAlyzer::selectItem(QString gameName)
 			       break;
 		       }
 		case QMC2_VIEWCATEGORY_INDEX: {
-			      QTreeWidgetItem *categoryItem = qmc2CategoryItemHash[gameName];
+			      QTreeWidgetItem *categoryItem = qmc2CategoryItemHash.value(gameName);
 			      if ( categoryItem ) {
 				      qmc2MainWindow->treeWidgetCategoryView->clearSelection();
 				      qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
@@ -2369,7 +2369,7 @@ void ROMAlyzer::selectItem(QString gameName)
 			      break;
 		      }
 		case QMC2_VIEWVERSION_INDEX: {
-			     QTreeWidgetItem *versionItem = qmc2VersionItemHash[gameName];
+			     QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(gameName);
 			     if ( versionItem ) {
 				     qmc2MainWindow->treeWidgetVersionView->clearSelection();
 				     qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
