@@ -731,7 +731,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 
 		// parent sets only?
 		if ( checkBoxParentSetsOnly->isChecked() )
-			if ( !qmc2ParentHash[game].isEmpty() )
+			if ( !qmc2ParentHash.value(game).isEmpty() )
 				continue;
 
 		// rank filter
@@ -810,7 +810,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		   << machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) << "\t"
 		   << machineItem->text(QMC2_MACHINELIST_COLUMN_MANU) << "\t"
 		   << machineItem->text(QMC2_MACHINELIST_COLUMN_YEAR) << "\t"
-		   << qmc2ParentHash[machineName] << "\t"
+		   << qmc2ParentHash.value(machineName) << "\t"
 	   	   << (qmc2MachineList->isBios(machineName) ? "1": "0") << "\t"
 		   << (machineItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("ROM")) ? "1" : "0") << "\t"
 		   << (machineItem->text(QMC2_MACHINELIST_COLUMN_RTYPES).contains(tr("CHD")) ? "1": "0") << "\t"

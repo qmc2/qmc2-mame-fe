@@ -871,7 +871,7 @@ void YouTubeVideoPlayer::init()
 		}
 		if ( videoSnapCounter == 0 ) { // parent fallback
 			if ( qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/VideoFallback", 0).toInt() == 0 ) {
-				QString parentId = qmc2ParentHash[mySetID];
+				QString parentId = qmc2ParentHash.value(mySetID);
 				if ( !parentId.isEmpty() ) {
 					foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
 						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));

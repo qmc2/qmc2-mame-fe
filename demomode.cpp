@@ -204,7 +204,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: demo mode: the name filter regular expression is invalid"));
 			foreach (QString game, qmc2MachineListItemHash.keys()) {
 				if ( checkBoxParents->isChecked() )
-					if ( !qmc2ParentHash[game].isEmpty() )
+					if ( !qmc2ParentHash.value(game).isEmpty() )
 						continue;
 				if ( !nameFilter.isEmpty() )
 					if ( game.indexOf(nameFilterRegExp) < 0 )

@@ -4080,7 +4080,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				tabGameInfo->setUpdatesEnabled(false);
 				QString machineInfoKey = gameName;
 				if ( !qmc2MachineList->datInfoDb()->existsMachineInfo(machineInfoKey) ) {
-					machineInfoKey = qmc2ParentHash[gameName];
+					machineInfoKey = qmc2ParentHash.value(gameName);
 					if ( !qmc2MachineList->datInfoDb()->existsMachineInfo(machineInfoKey) )
 						machineInfoKey.clear();
 				}
@@ -4110,7 +4110,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				tabEmuInfo->setUpdatesEnabled(false);
 				QString emuInfoKey = gameName;
 				if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) ) {
-					emuInfoKey = qmc2ParentHash[gameName];
+					emuInfoKey = qmc2ParentHash.value(gameName);
 					if ( !qmc2MachineList->datInfoDb()->existsEmuInfo(emuInfoKey) )
 						emuInfoKey.clear();
 				}
@@ -4157,7 +4157,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				bool useSystemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UseSystemNotesTemplate").toBool();
 				QString fileName = systemNotesFolder + gameName + ".html";
 				qmc2SystemNotesEditor->setCurrentFileName(fileName);
-				QString parentSystem = qmc2ParentHash[gameName];
+				QString parentSystem = qmc2ParentHash.value(gameName);
 
 				qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
 
@@ -4334,7 +4334,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 					}
 					if ( videoSnapUrl.isEmpty() ) { // parent fallback
 						if ( qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/VideoFallback", 0).toInt() == 0 ) {
-							QString parentId = qmc2ParentHash[gameName];
+							QString parentId = qmc2ParentHash.value(gameName);
 							if ( !parentId.isEmpty() ) {
 								foreach (QString formatExtension, videoSnapAllowedFormatExtensions) {
 									QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));
