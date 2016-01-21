@@ -1336,12 +1336,6 @@ void MachineList::parse()
 	} else {
 		parseTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading ROM state from cache"));
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM states - %p%"));
-		else
-			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		qmc2MainWindow->progressBarMachineList->reset();
-		qApp->processEvents();
 		tsRomCache.setDevice(&romStateCache);
 		tsRomCache.reset();
 		tsRomCache.readLine(); // ignore first line
@@ -1355,7 +1349,6 @@ void MachineList::parse()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading ROM state from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n cached ROM state(s) loaded", "", machineStatusHash.count()));
 		romStateCache.close();
-		qApp->processEvents();
 	}
 	QTime processMachineListElapsedTimer(0, 0, 0, 0);
 	parseTimer.start();
