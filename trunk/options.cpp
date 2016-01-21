@@ -1402,7 +1402,7 @@ void Options::on_pushButtonApply_clicked()
 
 	if ( needResort && !needReload ) {
 		qmc2SortingActive = true;
-		QString sortCriteria = tr("?");
+		QString sortCriteria = MachineList::trQuestionMark;
 		switch ( qmc2SortCriteria ) {
 			case QMC2_SORT_BY_DESCRIPTION:
 				sortCriteria = QObject::tr("machine description");

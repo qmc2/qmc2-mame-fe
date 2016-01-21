@@ -537,9 +537,9 @@ void ArcadeModeSetup::updateCategoryFilter()
 	QStringList excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
 	listWidgetCategoryFilter->setUpdatesEnabled(false);
 	listWidgetCategoryFilter->clear();
-	QListWidgetItem *item = new QListWidgetItem(tr("?"), listWidgetCategoryFilter);
+	QListWidgetItem *item = new QListWidgetItem(MachineList::trQuestionMark, listWidgetCategoryFilter);
 	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
-	item->setCheckState(excludedCategories.contains(tr("?")) ? Qt::Unchecked : Qt::Checked);
+	item->setCheckState(excludedCategories.contains(MachineList::trQuestionMark) ? Qt::Unchecked : Qt::Checked);
 	foreach (QString category, categoryNames) {
 		if ( !category.isEmpty() ) {
 			item = new QListWidgetItem(category, listWidgetCategoryFilter);
@@ -557,7 +557,7 @@ void ArcadeModeSetup::saveCategoryFilter()
 	if ( listWidgetCategoryFilter->count() == 1 ) {
 		excludedCategories = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExcludedCategories", QStringList()).toStringList();
 		if ( listWidgetCategoryFilter->item(0)->checkState() == Qt::Checked )
-			excludedCategories.removeAll(tr("?"));
+			excludedCategories.removeAll(MachineList::trQuestionMark);
 	} else {
 		for (int i = 0; i < listWidgetCategoryFilter->count(); i++) {
 			QListWidgetItem *item = listWidgetCategoryFilter->item(i);
