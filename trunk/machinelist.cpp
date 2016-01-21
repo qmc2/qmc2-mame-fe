@@ -1850,21 +1850,21 @@ void MachineList::parse()
 	// create parent/clone hierarchy tree
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetHierarchy->clear();
-	QHashIterator<QString, QStringList> i(qmc2HierarchyHash);
+	QHashIterator<QString, QStringList> itHierarchyHash(qmc2HierarchyHash);
 	QList<QTreeWidgetItem *> itemList, hideList;
 	int counter = numMachines;
 	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
-	qmc2HierarchyItemHash.reserve(qmc2MachineListItemHash.count());
-	while ( i.hasNext() && !qmc2StopParser ) {
-		i.next();
+	qmc2HierarchyItemHash.reserve(numMachines);
+	while ( itHierarchyHash.hasNext() && !qmc2StopParser ) {
+		itHierarchyHash.next();
 		if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 			qApp->processEvents();
 		}
-		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(i.key());
+		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(itHierarchyHash.key());
 		MachineListItem *hierarchyItem = new MachineListItem();
-		qmc2HierarchyItemHash.insert(i.key(), hierarchyItem);
-		if ( (!showBiosSets && isBios(i.key())) || (!showDeviceSets && isDevice(i.key())) )
+		qmc2HierarchyItemHash.insert(itHierarchyHash.key(), hierarchyItem);
+		if ( (!showBiosSets && isBios(itHierarchyHash.key())) || (!showDeviceSets && isDevice(itHierarchyHash.key())) )
 			hideList << hierarchyItem;
 		hierarchyItem->setFlags(defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1884,12 +1884,12 @@ void MachineList::parse()
 			hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->icon(QMC2_MACHINELIST_COLUMN_MACHINE));
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 		// sub-items
-		for (int j = 0; j < i.value().count(); j++) {
+		for (int j = 0; j < itHierarchyHash.value().count(); j++) {
 			if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
 				qApp->processEvents();
 			}
-			QString jValue(i.value().at(j));
+			QString jValue(itHierarchyHash.value().at(j));
 			baseItem = qmc2MachineListItemHash.value(jValue);
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
@@ -1920,7 +1920,7 @@ void MachineList::parse()
 			QIcon icon(baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( icon.isNull() ) {
 				if ( iconFallback ) {
-					icon = qmc2IconHash.value(i.key()); // parent icon
+					icon = qmc2IconHash.value(itHierarchyHash.key()); // parent icon
 					if ( !icon.isNull() ) {
 						baseItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
 						hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
@@ -1928,7 +1928,7 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-			qmc2ParentHash.insert(jValue, i.key());
+			qmc2ParentHash.insert(jValue, itHierarchyHash.key());
 		}
 		itemList << hierarchyItem;
 	}
@@ -1940,7 +1940,7 @@ void MachineList::parse()
 	}
 	foreach (QTreeWidgetItem *hiddenItem, hideList)
 		hiddenItem->setHidden(true);
-	QString sortCriteria = trQuestionMark;
+	QString sortCriteria(trQuestionMark);
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
 			sortCriteria = QObject::tr("machine description");
@@ -1995,10 +1995,10 @@ void MachineList::parse()
 		} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 			QString selectedMachine = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
 			if ( !selectedMachine.isEmpty() ) {
-				QTreeWidgetItem *glItem = qmc2MachineListItemHash.value(selectedMachine);
-				if ( glItem ) {
+				QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
+				if ( mlItem ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
+					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(mlItem);
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 				} else
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
@@ -2008,10 +2008,10 @@ void MachineList::parse()
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 		QString selectedMachine = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
 		if ( !selectedMachine.isEmpty() ) {
-			QTreeWidgetItem *glItem = qmc2MachineListItemHash.value(selectedMachine);
-			if ( glItem ) {
+			QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
+			if ( mlItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(glItem);
+				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(mlItem);
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 			} else
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
