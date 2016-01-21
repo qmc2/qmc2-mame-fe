@@ -209,7 +209,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				if ( !nameFilter.isEmpty() )
 					if ( game.indexOf(nameFilterRegExp) < 0 )
 						continue;
-				QString *categoryPtr = qmc2MachineList->categoryHash[game];
+				QString *categoryPtr = qmc2MachineList->categoryHash.value(game);
 				QString category;
 				if ( categoryPtr )
 					category = *categoryPtr;
