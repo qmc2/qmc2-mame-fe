@@ -123,7 +123,6 @@ QStringList MachineList::phraseTranslatorList;
 QStringList MachineList::romTypeNames;
 QHash<QString, QString> MachineList::reverseTranslation;
 QHash<QString, QString> MachineList::machineStateTranslations;
-QHash<QString, QStringList> qmc2HierarchyHash;
 bool MachineList::creatingCatView = false;
 bool MachineList::creatingVerView = false;
 Qt::ItemFlags MachineList::defaultItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
@@ -1357,8 +1356,8 @@ void MachineList::parse()
 	parseTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
 	qmc2MainWindow->treeWidgetMachineList->clear();
-	qmc2HierarchyHash.clear();
 	qmc2ParentHash.clear();
+	hierarchyHash.clear();
 	qmc2MainWindow->progressBarMachineList->reset();
 	machineListCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
 	machineListCache.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -1393,8 +1392,7 @@ void MachineList::parse()
 			}
 		}
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
-		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
-		bool useCategories = useCatverIni | useCategoryIni;
+		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
 		if ( !reparseMachineList && !qmc2StopParser ) {
 			qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines * 2);
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
@@ -1424,9 +1422,9 @@ void MachineList::parse()
 					machineItem->setFlags(defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 					if ( !machineCloneOf.isEmpty() )
-						qmc2HierarchyHash[machineCloneOf].append(machineName);
-					else if ( !qmc2HierarchyHash.contains(machineName) )
-						qmc2HierarchyHash.insert(machineName, QStringList());
+						hierarchyHash[machineCloneOf].append(machineName);
+					else if ( !hierarchyHash.contains(machineName) )
+						hierarchyHash.insert(machineName, QStringList());
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_MLC_INDEX_MACHINE]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_MLC_INDEX_YEAR]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_MLC_INDEX_MANU]);
@@ -1641,8 +1639,7 @@ void MachineList::parse()
 			tsMachineListCache << "MAME_VERSION\t" + emulatorVersion + "\tMLC_VERSION\t" + QString::number(QMC2_MLC_VERSION) + "\n";
 		}
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
-		bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
-		bool useCategories = useCatverIni | useCategoryIni;
+		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();;
 		// parse XML data
 		numMachines = numUnknownMachines = 0;
 		QList <QTreeWidgetItem *> itemList;
@@ -1710,9 +1707,9 @@ void MachineList::parse()
 						i++;
 					}
 					if ( !machineCloneOf.isEmpty() )
-						qmc2HierarchyHash[machineCloneOf].append(machineName);
-					else if ( !qmc2HierarchyHash.contains(machineName) )
-						qmc2HierarchyHash.insert(machineName, QStringList());
+						hierarchyHash[machineCloneOf].append(machineName);
+					else if ( !hierarchyHash.contains(machineName) )
+						hierarchyHash.insert(machineName, QStringList());
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineDescription);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineYear);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineManufacturer);
@@ -1844,16 +1841,15 @@ void MachineList::parse()
 	}
 	if ( machineListCache.isOpen() )
 		machineListCache.close();
+	// create hierarchical view
 	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
-	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
-	bool useCategories = useCatverIni | useCategoryIni;
-	// create parent/clone hierarchy tree
+	bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
+	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetHierarchy->clear();
-	QHashIterator<QString, QStringList> itHierarchyHash(qmc2HierarchyHash);
+	QHashIterator<QString, QStringList> itHierarchyHash(hierarchyHash);
 	QList<QTreeWidgetItem *> itemList, hideList;
 	int counter = numMachines;
-	bool iconFallback = qmc2ParentImageFallback && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFallback", 0).toInt() == 0;
 	qmc2HierarchyItemHash.reserve(numMachines);
 	while ( itHierarchyHash.hasNext() && !qmc2StopParser ) {
 		itHierarchyHash.next();
@@ -1864,7 +1860,7 @@ void MachineList::parse()
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(itHierarchyHash.key());
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(itHierarchyHash.key(), hierarchyItem);
-		if ( (!showBiosSets && isBios(itHierarchyHash.key())) || (!showDeviceSets && isDevice(itHierarchyHash.key())) )
+		if ( baseItem->isHidden() )
 			hideList << hierarchyItem;
 		hierarchyItem->setFlags(defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1889,11 +1885,11 @@ void MachineList::parse()
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
 				qApp->processEvents();
 			}
-			QString jValue(itHierarchyHash.value().at(j));
-			baseItem = qmc2MachineListItemHash.value(jValue);
+			const QString &cloneName = itHierarchyHash.value().at(j);
+			baseItem = qmc2MachineListItemHash.value(cloneName);
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
-			qmc2HierarchyItemHash.insert(jValue, hierarchySubItem);
-			if ( (!showBiosSets && isBios(jValue)) || (!showDeviceSets && isDevice(jValue)) )
+			qmc2HierarchyItemHash.insert(cloneName, hierarchySubItem);
+			if ( baseItem->isHidden() )
 				hideList << hierarchySubItem;
 			hierarchySubItem->setFlags(defaultItemFlags);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1907,7 +1903,7 @@ void MachineList::parse()
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
 			if ( useCategories ) {
 				QString category(baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
-				if ( category == trQuestionMark ) {
+				if ( category.compare(trQuestionMark) == 0 ) {
 					category = hierarchyItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 					baseItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, category);
 				}
@@ -1920,7 +1916,7 @@ void MachineList::parse()
 			QIcon icon(baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( icon.isNull() ) {
 				if ( iconFallback ) {
-					icon = qmc2IconHash.value(itHierarchyHash.key()); // parent icon
+					icon = hierarchyItem->icon(QMC2_MACHINELIST_COLUMN_ICON);
 					if ( !icon.isNull() ) {
 						baseItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
 						hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
@@ -1928,7 +1924,7 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-			qmc2ParentHash.insert(jValue, itHierarchyHash.key());
+			qmc2ParentHash.insert(cloneName, itHierarchyHash.key());
 		}
 		itemList << hierarchyItem;
 	}
