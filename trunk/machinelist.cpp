@@ -1861,6 +1861,7 @@ void MachineList::parse()
 		qmc2HierarchyItemHash.insert(itHierarchyHash.key(), hierarchyItem);
 		if ( baseItem->isHidden() )
 			hideList << hierarchyItem;
+		itemList << hierarchyItem;
 		hierarchyItem->setFlags(defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -1879,6 +1880,7 @@ void MachineList::parse()
 			hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->icon(QMC2_MACHINELIST_COLUMN_MACHINE));
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 		// sub-items
+		QList<QTreeWidgetItem *> childList;
 		for (int j = 0; j < itHierarchyHash.value().count(); j++) {
 			if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
@@ -1886,8 +1888,9 @@ void MachineList::parse()
 			}
 			const QString &cloneName = itHierarchyHash.value().at(j);
 			baseItem = qmc2MachineListItemHash.value(cloneName);
-			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
+			MachineListItem *hierarchySubItem = new MachineListItem();
 			qmc2HierarchyItemHash.insert(cloneName, hierarchySubItem);
+			childList << hierarchySubItem;
 			if ( baseItem->isHidden() )
 				hideList << hierarchySubItem;
 			hierarchySubItem->setFlags(defaultItemFlags);
@@ -1915,7 +1918,7 @@ void MachineList::parse()
 			QIcon icon(baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 			if ( icon.isNull() ) {
 				if ( iconFallback ) {
-					icon = hierarchyItem->icon(QMC2_MACHINELIST_COLUMN_ICON);
+					QIcon icon(hierarchyItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 					if ( !icon.isNull() ) {
 						baseItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
 						hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
@@ -1925,7 +1928,8 @@ void MachineList::parse()
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
 			qmc2ParentHash.insert(cloneName, itHierarchyHash.key());
 		}
-		itemList << hierarchyItem;
+		if ( !childList.isEmpty() )
+			hierarchyItem->addChildren(childList);
 	}
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
