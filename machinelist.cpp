@@ -1613,8 +1613,8 @@ void MachineList::parse()
 			}
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 			qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
-			foreach (QTreeWidgetItem *hiddenItem, hideList)
-				hiddenItem->setHidden(true);
+			for (int i = 0; i < hideList.count(); i++)
+				hideList[i]->setHidden(true);
 			qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 			loadedFromCache = true;
 		}
@@ -1642,8 +1642,7 @@ void MachineList::parse()
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();;
 		// parse XML data
 		numMachines = numUnknownMachines = 0;
-		QList <QTreeWidgetItem *> itemList;
-		QList <QTreeWidgetItem *> hideList;
+		QList<QTreeWidgetItem *> itemList, hideList;
 		qint64 xmlRowCount = xmlDb()->xmlRowCount();
 		for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
 			QStringList xmlLines = xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
@@ -1834,8 +1833,8 @@ void MachineList::parse()
 		}
 		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 		qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
-		foreach (QTreeWidgetItem *hiddenItem, hideList)
-			hiddenItem->setHidden(true);
+		for (int i = 0; i < hideList.count(); i++)
+			hideList[i]->setHidden(true);
 		qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 		qApp->processEvents();
 	}
@@ -1934,8 +1933,8 @@ void MachineList::parse()
 		gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
 	}
-	foreach (QTreeWidgetItem *hiddenItem, hideList)
-		hiddenItem->setHidden(true);
+	for (int i = 0; i < hideList.count(); i++)
+		hideList[i]->setHidden(true);
 	QString sortCriteria(trQuestionMark);
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
@@ -3356,8 +3355,7 @@ void MachineList::createCategoryView()
 		qmc2MainWindow->progressBarMachineList->reset();
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
-		QList<QTreeWidgetItem *> itemList;
-		QList<QTreeWidgetItem *> hideList;
+		QList<QTreeWidgetItem *> itemList, hideList;
 		QHash<QString, QTreeWidgetItem *> itemHash;
 		int loadResponse = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount() / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
@@ -3461,8 +3459,8 @@ void MachineList::createCategoryView()
 				hideList << item;
 		}
 		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
-		foreach (QTreeWidgetItem *hiddenItem, hideList)
-			hiddenItem->setHidden(true);
+		for (int i = 0; i < hideList.count(); i++)
+			hideList[i]->setHidden(true);
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
@@ -3596,8 +3594,7 @@ void MachineList::createVersionView()
 		qmc2MainWindow->progressBarMachineList->reset();
 		bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 		bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
-		QList<QTreeWidgetItem *> itemList;
-		QList<QTreeWidgetItem *> hideList;
+		QList<QTreeWidgetItem *> itemList, hideList;
 		QHash<QString, QTreeWidgetItem *> itemHash;
 		int loadResponse = numMachines / QMC2_GENERAL_LOADING_UPDATES;
 		if ( loadResponse == 0 )
@@ -3694,8 +3691,8 @@ void MachineList::createVersionView()
 				hideList << item;
 		}
 		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
-		foreach (QTreeWidgetItem *hiddenItem, hideList)
-			hiddenItem->setHidden(true);
+		for (int i = 0; i < hideList.count(); i++)
+			hideList[i]->setHidden(true);
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
