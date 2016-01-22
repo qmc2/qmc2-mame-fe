@@ -73,6 +73,7 @@ class MachineList : public QObject
 		QHash<QString, QString *> versionHash;
 		QHash<QString, bool> biosSets;
 		QHash<QString, bool> deviceSets;
+		QHash<QString, QStringList> hierarchyHash;
 		QTreeWidgetItem *checkedItem;
 
 		static QStringList romTypeNames;
