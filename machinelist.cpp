@@ -1364,7 +1364,7 @@ void MachineList::parse()
 	bool reparseMachineList = true;
 	bool romStateCacheUpdate = false;
 	bool loadedFromCache = false;
-	QTime gameDataCacheElapsedTime(0, 0, 0, 0);
+	QTime machineListCacheElapsedTime(0, 0, 0, 0);
 	if ( machineListCache.isOpen() ) {
 		QString line;
 		tsMachineListCache.setDevice(&machineListCache);
@@ -1716,7 +1716,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineSource);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
 					if ( isDevice ) {
-						if ( machinePlayers != trQuestionMark )
+						if ( machinePlayers.compare(trQuestionMark) != 0 )
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
 						else
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, tr("N/A"));
@@ -1934,8 +1934,8 @@ void MachineList::parse()
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
 	if ( loadedFromCache ) {
-		gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
+		machineListCacheElapsedTime = machineListCacheElapsedTime.addMSecs(miscTimer.elapsed());
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(machineListCacheElapsedTime.toString("mm:ss.zzz")));
 	}
 	for (int i = 0; i < hideList.count(); i++)
 		hideList[i]->setHidden(true);
