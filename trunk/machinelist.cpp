@@ -1404,32 +1404,34 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
 			QList<QTreeWidgetItem *> itemList, hideList;
+			QString one("1");
 			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
-				readBuffer += tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE);
+				readBuffer.append(tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE));
 				bool endsWithNewLine = readBuffer.endsWith("\n");
-				QStringList lines = readBuffer.split("\n", QString::SkipEmptyParts);
+				QStringList lines(readBuffer.split("\n", QString::SkipEmptyParts));
 				int lc = endsWithNewLine ? lines.count() : lines.count() - 1;
 				for (int l = 0; l < lc; l++) {
-					QStringList machineData = lines[l].split("\t");
+					QStringList machineData(lines[l].split("\t"));
 					QString machineName(machineData[QMC2_MLC_INDEX_NAME]);
 					QString machineCloneOf(machineData[QMC2_MLC_INDEX_CLONEOF]);
 					QString machinePlayers(machineData[QMC2_MLC_INDEX_PLAYERS]);
 					QString machineDrvStat(machineData[QMC2_MLC_INDEX_DRVSTAT]);
-					int machineType = int(machineData[QMC2_MLC_INDEX_IS_BIOS] == "1") + int(machineData[QMC2_MLC_INDEX_IS_DEVICE] == "1") * 2; // 0: normal, 1: BIOS, 2: device
+					int machineType = int(machineData[QMC2_MLC_INDEX_IS_BIOS].compare(one) == 0) + int(machineData[QMC2_MLC_INDEX_IS_DEVICE].compare(one) == 0) * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-					if ( !machineCloneOf.isEmpty() )
+					if ( machineCloneOf.isEmpty() ) {
+						if ( !hierarchyHash.contains(machineName) )
+							hierarchyHash.insert(machineName, QStringList());
+					} else
 						hierarchyHash[machineCloneOf].append(machineName);
-					else if ( !hierarchyHash.contains(machineName) )
-						hierarchyHash.insert(machineName, QStringList());
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_MLC_INDEX_MACHINE]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_MLC_INDEX_YEAR]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_MLC_INDEX_MANU]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_MLC_INDEX_SRCFILE]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_MLC_INDEX_HAS_ROM] == "1") + int(machineData[QMC2_MLC_INDEX_HAS_CHD] == "1") * 2]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_MLC_INDEX_HAS_ROM].compare(one) == 0) + int(machineData[QMC2_MLC_INDEX_HAS_CHD].compare(one) == 0) * 2]);
 					if ( useCatverIni ) {
 						QString *versionString = versionHash.value(machineName);
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
@@ -1704,10 +1706,11 @@ void MachineList::parse()
 						endGame = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
 						i++;
 					}
-					if ( !machineCloneOf.isEmpty() )
+					if ( machineCloneOf.isEmpty() ) {
+						if ( !hierarchyHash.contains(machineName) )
+							hierarchyHash.insert(machineName, QStringList());
+					} else
 						hierarchyHash[machineCloneOf].append(machineName);
-					else if ( !hierarchyHash.contains(machineName) )
-						hierarchyHash.insert(machineName, QStringList());
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineDescription);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineYear);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineManufacturer);
