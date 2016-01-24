@@ -450,15 +450,12 @@ void MachineList::enableWidgets(bool enable)
 
 void MachineList::load()
 {
-	QString userScopePath = Options::configPath();
-
+	QString userScopePath(Options::configPath());
 	QString machineName;
 	if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )
 		machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
-
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
-
 	qmc2ReloadActive = qmc2EarlyReloadActive = true;
 	qmc2StopParser = false;
 	machineStatusHash.clear();
@@ -471,11 +468,8 @@ void MachineList::load()
 	deviceSets.clear();
 	userDataDb()->clearRankCache();
 	userDataDb()->clearCommentCache();
-
 	enableWidgets(false);
-
 	qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
-
 	numMachines = numTotalMachines = numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numUnknownMachines = numNotFoundMachines = -1;
 	numTaggedSets = numMatchedMachines = 0;
 	qmc2MainWindow->treeWidgetMachineList->clear();
@@ -507,13 +501,11 @@ void MachineList::load()
 		qmc2SystemNotesEditor->closeXmlBuffer();
 		qmc2SystemNotesEditor->clearContent();
 	}
-
 	if ( qmc2SoftwareNotesEditor ) {
 		qmc2SoftwareNotesEditor->save();
 		qmc2SoftwareNotesEditor->closeXmlBuffer();
 		qmc2SoftwareNotesEditor->clearContent();
 	}
-
 	if ( qmc2SoftwareList ) {
 		if ( qmc2SoftwareList->isLoading ) {
 			qmc2SoftwareList->interruptLoad = true;
@@ -544,7 +536,6 @@ void MachineList::load()
 		qmc2ProjectMESSLookup = NULL;
 	}
 	qmc2LastProjectMESSItem = NULL;
-
 #if defined(QMC2_YOUTUBE_ENABLED)
 	qmc2LastYouTubeItem = NULL;
 	if ( qmc2YouTubeWidget ) {
@@ -576,9 +567,7 @@ void MachineList::load()
 		delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
 		qmc2EmulatorOptions = NULL;
 	}
-
 	ImageWidget::updateArtwork();
-
 	QTreeWidgetItem *dummyItem;
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
 	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
@@ -588,9 +577,7 @@ void MachineList::load()
 	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
 	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-
 	qmc2MainWindow->labelMachineListStatus->setText(status());
-
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWCATEGORY_INDEX:
@@ -603,15 +590,11 @@ void MachineList::load()
 				break;
 		}
 	}
-
-	// determine emulator version and supported sets
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
-
 	QStringList args;
 	QTime elapsedTime(0, 0, 0, 0);
 	parseTimer.start();
 	QString command;
-
 	// emulator version
 	QProcess commandProc;
 #if defined(QMC2_SDLMAME)
@@ -624,11 +607,10 @@ void MachineList::load()
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
-	qApp->processEvents();
 	args << "-help";
 	bool commandProcStarted = false;
 	int retries = 0;
-	QString execFile = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
+	QString execFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	QFileInfo fi(execFile);
 	bool started = false;
 	if ( fi.exists() && fi.isReadable() ) {
@@ -659,7 +641,6 @@ void MachineList::load()
 		enableWidgets(true);
 		return;
 	}
-
 #if defined(QMC2_SDLMAME)
 	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
@@ -670,15 +651,15 @@ void MachineList::load()
 	if ( commandProcStarted && qmc2TempVersion.open(QFile::ReadOnly) ) {
 		QTextStream ts(&qmc2TempVersion);
 		qApp->processEvents();
-		QString s = ts.readAll();
+		QString s(ts.readAll());
 		qApp->processEvents();
 		qmc2TempVersion.close();
 		qmc2TempVersion.remove();
 #if defined(QMC2_OS_WIN)
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-		QStringList versionLines = s.split("\n");
-		QStringList versionWords = versionLines.first().split(" ");
+		QStringList versionLines(s.split("\n"));
+		QStringList versionWords(versionLines.first().split(" "));
 		if ( versionWords.count() > 1 ) {
 			emulatorVersion = versionWords[1].remove("v");
 			if ( emulatorIdentifiers.contains(versionWords[0]) )
@@ -697,11 +678,9 @@ void MachineList::load()
 		emulatorVersion = tr("unknown");
 		emulatorType = tr("unknown");
 	}
-
 	// supported machines
 	args.clear();
 	args << "-listfull";
-	qApp->processEvents();
 	commandProcStarted = false;
 	retries = 0;
 	commandProc.start(execFile, args);
@@ -723,7 +702,6 @@ void MachineList::load()
 		qmc2StopParser = true;
 		return;
 	}
-
 #if defined(QMC2_SDLMAME)
 	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
@@ -736,19 +714,18 @@ void MachineList::load()
 		QCryptographicHash sha1(QCryptographicHash::Sha1);
 		QTextStream ts(&qmc2Temp);
 		qApp->processEvents();
-		QString lfOutput = ts.readAll();
+		QString lfOutput(ts.readAll());
 		numTotalMachines = lfOutput.count("\n") - 1;
 		qmc2Temp.close();
 		qmc2Temp.remove();
-		qApp->processEvents();
 		sha1.addData(lfOutput.toUtf8().constData());
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+		qApp->processEvents();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
 	qmc2MainWindow->labelMachineListStatus->setText(status());
-
 	if ( emulatorVersion != tr("unknown") )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
 	else {
@@ -757,7 +734,6 @@ void MachineList::load()
 		enableWidgets(true);
 		return;
 	}
-
 	if ( numTotalMachines > 0 )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalMachines));
 	else {
@@ -766,7 +742,6 @@ void MachineList::load()
 		enableWidgets(true);
 		return;
 	}
-
 	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
 		if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES && qmc2Config->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool() ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output from -listfull changed, forcing a refresh of all emulator caches"));
@@ -776,7 +751,6 @@ void MachineList::load()
 		}
 	}
 	qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "ListfullSha1", listfullSha1);
-
 	categoryHash.clear();
 	versionHash.clear();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool() ) {
@@ -786,20 +760,16 @@ void MachineList::load()
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool() )
 		loadCategoryIni();
 	mergeCategories = false;
-
 	if ( qmc2DemoModeDialog )
 		QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(updateCategoryFilter()));
-
 	qmc2EarlyReloadActive = false;
-
 	if ( qmc2StopParser ) {
 		qmc2MainWindow->progressBarMachineList->reset();
 		qmc2ReloadActive = false;
 		enableWidgets(true);
 		return;
 	}
-
-	// hide game list / show loading animation
+	// hide machine list / show loading animation
 	qmc2MainWindow->treeWidgetMachineList->setVisible(false);
 	((AspectRatioLabel *)qmc2MainWindow->labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
 	qmc2MainWindow->labelLoadingMachineList->setVisible(true);
@@ -809,26 +779,22 @@ void MachineList::load()
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 		qmc2MainWindow->loadAnimMovie->start();
 	qApp->processEvents();
-
 	if ( (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0) ) {
 		parse();
 		loadFavorites();
 		loadPlayHistory();
-
 		if ( initialLoad ) {
 			QTime startupTime(0, 0, 0, 0);
 			startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
 			initialLoad = false;
 		}
-
 		// show game list / hide loading animation
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
 		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
-
 		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 			if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 				switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
@@ -863,7 +829,6 @@ void MachineList::load()
 					break;
 			}
 		}
-
 		qApp->processEvents();
 	} else {
 		loadTimer.start();
@@ -891,7 +856,6 @@ void MachineList::load()
 		loadProc->setProcessChannelMode(QProcess::MergedChannels);
 		loadProc->start(command, args);
 	}
-
 	userDataDb()->setEmulatorVersion(emulatorVersion);
 	userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
 	userDataDb()->setUserDataVersion(QMC2_USERDATA_VERSION);
@@ -1341,7 +1305,7 @@ void MachineList::parse()
 		tsRomCache.reset();
 		tsRomCache.readLine(); // ignore first line
 		while ( !tsRomCache.atEnd() ) {
-			QStringList words = tsRomCache.readLine().split(" ");
+			QStringList words(tsRomCache.readLine().split(" "));
 			if ( words.count() > 1 )
 				machineStatusHash.insert(words[0], words[1].at(0).toLatin1());
 		}
