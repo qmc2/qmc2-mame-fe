@@ -5,6 +5,7 @@
 #include <QIcon>
 #include <QTreeWidgetItem>
 #include <QHash>
+#include <QList>
 
 #include "xmldbmgr.h"
 #include "userdatadbmgr.h"
