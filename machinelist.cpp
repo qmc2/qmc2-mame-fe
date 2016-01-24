@@ -14,7 +14,6 @@
 #include <QFont>
 #include <QTimer>
 #include <QMap>
-#include <QHash>
 #include <QSet>
 #include <QDir>
 #include <QBitArray>
@@ -1852,13 +1851,14 @@ void MachineList::parse()
 	qmc2HierarchyItemHash.reserve(numMachines);
 	while ( itHierarchyHash.hasNext() && !qmc2StopParser ) {
 		itHierarchyHash.next();
+		const QString &parentName = itHierarchyHash.key();
 		if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 			qmc2MainWindow->progressBarMachineList->setValue(counter);
 			qApp->processEvents();
 		}
-		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(itHierarchyHash.key());
+		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(parentName);
 		MachineListItem *hierarchyItem = new MachineListItem();
-		qmc2HierarchyItemHash.insert(itHierarchyHash.key(), hierarchyItem);
+		qmc2HierarchyItemHash.insert(parentName, hierarchyItem);
 		if ( baseItem->isHidden() )
 			hideList << hierarchyItem;
 		itemList << hierarchyItem;
@@ -1881,12 +1881,13 @@ void MachineList::parse()
 		hierarchyItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, baseItem->icon(QMC2_MACHINELIST_COLUMN_ICON));
 		// sub-items
 		QList<QTreeWidgetItem *> childList;
-		for (int j = 0; j < itHierarchyHash.value().count(); j++) {
+		const QStringList &children = itHierarchyHash.value();
+		for (int j = 0; j < children.count(); j++) {
 			if ( counter++ % qmc2MachineListResponsiveness == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(counter);
 				qApp->processEvents();
 			}
-			const QString &cloneName = itHierarchyHash.value().at(j);
+			const QString &cloneName = children.at(j);
 			baseItem = qmc2MachineListItemHash.value(cloneName);
 			MachineListItem *hierarchySubItem = new MachineListItem();
 			qmc2HierarchyItemHash.insert(cloneName, hierarchySubItem);
@@ -1898,7 +1899,7 @@ void MachineList::parse()
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MANU, baseItem->text(QMC2_MACHINELIST_COLUMN_MANU));
-			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_NAME, baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_NAME, cloneName);
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, baseItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, baseItem->text(QMC2_MACHINELIST_COLUMN_RTYPES));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, baseItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS));
@@ -1926,7 +1927,7 @@ void MachineList::parse()
 				}
 			} else
 				hierarchySubItem->setIcon(QMC2_MACHINELIST_COLUMN_ICON, icon);
-			qmc2ParentHash.insert(cloneName, itHierarchyHash.key());
+			qmc2ParentHash.insert(cloneName, parentName);
 		}
 		if ( !childList.isEmpty() )
 			hierarchyItem->addChildren(childList);
@@ -2018,7 +2019,6 @@ void MachineList::parse()
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	} else
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
-	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
 	processMachineListElapsedTimer = processMachineListElapsedTimer.addMSecs(parseTimer.elapsed());
