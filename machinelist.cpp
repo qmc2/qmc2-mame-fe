@@ -3292,7 +3292,7 @@ void MachineList::loadCategoryIni()
 		QString guiLanguage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 		bool trFound = false;
 		while ( !tsCategoryIni.atEnd() ) {
-			QString categoryLine = tsCategoryIni.readLine().simplified().trimmed();
+			QString categoryLine(tsCategoryIni.readLine().simplified().trimmed());
 			qmc2MainWindow->progressBarMachineList->setValue(categoryIniFile.pos());
 			if ( categoryLine.isEmpty() )
 				continue;
@@ -3303,9 +3303,9 @@ void MachineList::loadCategoryIni()
 				trFound = false;
 				while ( !categoryLine.isEmpty() && categoryLine.startsWith("tr[") ) {
 					int endIndex = categoryLine.indexOf("]", 3);
-					QString trLanguage = categoryLine.mid(3, endIndex - 3);
+					QString trLanguage(categoryLine.mid(3, endIndex - 3));
 					translations[trLanguage] = categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2);
-					trFound = (trLanguage == guiLanguage);
+					trFound = (trLanguage.compare(guiLanguage) == 0);
 					if ( trFound )
 						break;
 					categoryLine = tsCategoryIni.readLine().simplified().trimmed();
@@ -3501,6 +3501,8 @@ void MachineList::loadCatverIni()
 	qmc2MainWindow->progressBarMachineList->reset();
 	qApp->processEvents();
 	QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
+	QString catStr("[Category]");
+	QString verStr("[VerAdded]");
 	if ( catverIniFile.open(QFile::ReadOnly) ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
@@ -3508,7 +3510,7 @@ void MachineList::loadCatverIni()
 		int lineCounter = 0;
 		char catVerSwitch = 0;
 		while ( !tsCatverIni.atEnd() ) {
-			QString catverLine = tsCatverIni.readLine();
+			QString catverLine(tsCatverIni.readLine());
 			if ( lineCounter++ % QMC2_CATVERINI_LOAD_RESPONSE == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(catverIniFile.pos());
 				qApp->processEvents();
@@ -3516,43 +3518,41 @@ void MachineList::loadCatverIni()
 			if ( catverLine.isEmpty() )
 				continue;
 			if ( !categoryDone && catVerSwitch != 1 ) {
-				if ( catverLine.indexOf("[Category]") >= 0 ) {
+				if ( catverLine.indexOf(catStr) >= 0 ) {
 					categoryDone = true;
 					catVerSwitch = 1;
 				}
 			}
 			if ( !versionDone && catVerSwitch != 2 ) {
-				if ( catverLine.indexOf("[VerAdded]") >= 0 ) {
+				if ( catverLine.indexOf(verStr) >= 0 ) {
 					versionDone = true;
 					catVerSwitch = 2;
 				}
 			}
 			switch ( catVerSwitch ) {
 				case 1: {	// category
-						QStringList tokens = catverLine.split("=");
-						if ( tokens.count() >= 2 ) {
-							QString token0 = tokens[0].trimmed();
-							QString token1 = tokens[1].trimmed();
+						QStringList tokens(catverLine.split("="));
+						if ( tokens.count() > 1 ) {
+							QString token0(tokens[0].trimmed());
+							QString token1(tokens[1].trimmed());
 							if ( !categoryNames.contains(token1) )
-								categoryNames[token1] = new QString(token1);
+								categoryNames.insert(token1, new QString(token1));
 							categoryHash.insert(token0, categoryNames.value(token1));
 						}
 					}
 					break;
 				case 2: {	// version
-						QStringList tokens = catverLine.split("=");
-						if ( tokens.count() >= 2 ) {
-							QString token0 = tokens[0].trimmed();
-							QString token1 = tokens[1].trimmed();
+						QStringList tokens(catverLine.split("="));
+						if ( tokens.count() > 1 ) {
+							QString token0(tokens[0].trimmed());
+							QString token1(tokens[1].trimmed());
 							if ( token1.startsWith(".") )
 								token1.prepend("0");
 							if ( !versionNames.contains(token1) )
-								versionNames[token1] = new QString(token1);
+								versionNames.insert(token1, new QString(token1));
 							versionHash.insert(token0, versionNames.value(token1));
 						}
 					}
-					break;
-				default:
 					break;
 			}
 		}
