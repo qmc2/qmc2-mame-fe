@@ -597,16 +597,6 @@ void MachineList::load()
 	QString command;
 	// emulator version
 	QProcess commandProc;
-#if defined(QMC2_SDLMAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#else
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
-#endif
-#if !defined(QMC2_OS_WIN)
-	commandProc.setStandardErrorFile("/dev/null");
-#endif
 	args << "-help";
 	bool commandProcStarted = false;
 	int retries = 0;
@@ -641,20 +631,8 @@ void MachineList::load()
 		enableWidgets(true);
 		return;
 	}
-#if defined(QMC2_SDLMAME)
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#else
-	QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
-#endif
-	if ( commandProcStarted && qmc2TempVersion.open(QFile::ReadOnly) ) {
-		QTextStream ts(&qmc2TempVersion);
-		qApp->processEvents();
-		QString s(ts.readAll());
-		qApp->processEvents();
-		qmc2TempVersion.close();
-		qmc2TempVersion.remove();
+	if ( commandProcStarted ) {
+		QString s(commandProc.readAllStandardOutput());
 #if defined(QMC2_OS_WIN)
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
@@ -674,7 +652,6 @@ void MachineList::load()
 			emulatorType = tr("unknown");
 		}
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
 		emulatorVersion = tr("unknown");
 		emulatorType = tr("unknown");
 	}
@@ -702,29 +679,17 @@ void MachineList::load()
 		qmc2StopParser = true;
 		return;
 	}
-#if defined(QMC2_SDLMAME)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#else
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
-#endif
 	QString listfullSha1;
-	if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
+	if ( commandProcStarted ) {
 		QCryptographicHash sha1(QCryptographicHash::Sha1);
-		QTextStream ts(&qmc2Temp);
-		qApp->processEvents();
-		QString lfOutput(ts.readAll());
+		QString lfOutput(commandProc.readAllStandardOutput());
 		numTotalMachines = lfOutput.count("\n") - 1;
-		qmc2Temp.close();
-		qmc2Temp.remove();
 		sha1.addData(lfOutput.toUtf8().constData());
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 		qApp->processEvents();
-	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
+	}
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	if ( emulatorVersion != tr("unknown") )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
