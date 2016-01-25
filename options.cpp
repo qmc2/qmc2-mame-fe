@@ -3436,11 +3436,9 @@ void Options::on_pushButtonEditPalette_clicked()
 void Options::checkShortcuts()
 {
 	static char lastShortcutsState = -1;
-
 	char shortcutsState = 1;
 	int itemCount = treeWidgetShortcuts->topLevelItemCount();
-	int i, j;
-	for (i = 0; i < itemCount; i++) {
+	for (int i = 0; i < itemCount; i++) {
 		QTreeWidgetItem *iItem = treeWidgetShortcuts->topLevelItem(i);
 		if ( iItem->text(2).isEmpty() )
 			iItem->setForeground(1, greenBrush);
@@ -3448,28 +3446,25 @@ void Options::checkShortcuts()
 			iItem->setForeground(1, greyBrush);
 		iItem->setForeground(2, greenBrush);
 	}
-	for (i = 0; i < itemCount; i++) {
+	for (int i = 0; i < itemCount; i++) {
 		QTreeWidgetItem *iItem = treeWidgetShortcuts->topLevelItem(i);
-		QString iShortcut;
 		int iColumn = 1;
 		if ( !iItem->text(2).isEmpty() )
 			iColumn = 2;
-		iShortcut = iItem->text(iColumn);
-		for (j = i + 1; j < itemCount; j++) {
+		QString iShortcut(iItem->text(iColumn));
+		for (int j = i + 1; j < itemCount; j++) {
 			QTreeWidgetItem *jItem = treeWidgetShortcuts->topLevelItem(j);
-			QString jShortcut;
 			int jColumn = 1;
 			if ( !jItem->text(2).isEmpty() )
 				jColumn = 2;
-			jShortcut = jItem->text(jColumn);
-			if ( iShortcut == jShortcut ) {
+			QString jShortcut(jItem->text(jColumn));
+			if ( iShortcut.compare(jShortcut) == 0 ) {
 				iItem->setForeground(iColumn, redBrush);
 				jItem->setForeground(jColumn, redBrush);
 				shortcutsState = 0;
 			}
 		}
 	}
-
 	if ( shortcutsState != lastShortcutsState || lastShortcutsState == -1 ) {
 		if ( shortcutsState == 1 )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("shortcut map is clean"));
@@ -4066,29 +4061,26 @@ void Options::on_pushButtonRemoveJoystickMapping_clicked()
 void Options::checkJoystickMappings()
 {
 	static char lastJoystickMappingsState = -1;
-
 	char joystickMappingsState = 1;
 	int itemCount = treeWidgetJoystickMappings->topLevelItemCount();
-	int i, j;
-	for (i = 0; i < itemCount; i++) {
+	for (int i = 0; i < itemCount; i++) {
 		QTreeWidgetItem *iItem = treeWidgetJoystickMappings->topLevelItem(i);
 		if ( !iItem->text(1).isEmpty() )
 			iItem->setForeground(1, greenBrush);
 	}
-	for (i = 0; i < itemCount; i++) {
+	for (int i = 0; i < itemCount; i++) {
 		QTreeWidgetItem *iItem = treeWidgetJoystickMappings->topLevelItem(i);
-		QString iMapping = iItem->text(1);
-		for (j = i + 1; j < itemCount; j++) {
+		QString iMapping(iItem->text(1));
+		for (int j = i + 1; j < itemCount; j++) {
 			QTreeWidgetItem *jItem = treeWidgetJoystickMappings->topLevelItem(j);
-			QString jMapping = jItem->text(1);
-			if ( iMapping == jMapping && !jMapping.isEmpty() ) {
+			QString jMapping(jItem->text(1));
+			if ( iMapping.compare(jMapping) == 0 && !jMapping.isEmpty() ) {
 				iItem->setForeground(1, redBrush);
 				jItem->setForeground(1, redBrush);
 				joystickMappingsState = 0;
 			}
 		}
 	}
-
 	if ( joystickMappingsState != lastJoystickMappingsState || lastJoystickMappingsState == -1 ) {
 		if ( joystickMappingsState == 1 )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("joystick map is clean"));

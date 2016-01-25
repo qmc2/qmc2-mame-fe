@@ -943,12 +943,14 @@ void EmulatorOptions::createMap()
 	optionsMap.clear();
 	sectionItemMap.clear();
 	QString sectionTitle;
-
-	foreach (sectionTitle, templateMap.keys()) {
+	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
+	while ( it.hasNext() ) {
+		it.next();
+		QString sectionTitle(it.key());
 		QTreeWidgetItem *sectionItem = new QTreeWidgetItem(this);
 		sectionItemMap[sectionTitle] = sectionItem;
 		sectionItem->setText(0, sectionTitle);
-		optionsMap[sectionTitle] = templateMap[sectionTitle];
+		optionsMap[sectionTitle] = it.value();
 		for (int i = 0; i < optionsMap[sectionTitle].count(); i++ ) {
 			optionsMap[sectionTitle][i].value = optionsMap[sectionTitle][i].dvalue;
 			EmulatorOption emulatorOption = optionsMap[sectionTitle].at(i);
