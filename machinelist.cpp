@@ -1345,7 +1345,7 @@ void MachineList::parse()
 					QString machineCloneOf(machineData[QMC2_MLC_INDEX_CLONEOF]);
 					QString machinePlayers(machineData[QMC2_MLC_INDEX_PLAYERS]);
 					QString machineDrvStat(machineData[QMC2_MLC_INDEX_DRVSTAT]);
-					int machineType = int(machineData[QMC2_MLC_INDEX_IS_BIOS].compare(one) == 0) + int(machineData[QMC2_MLC_INDEX_IS_DEVICE].compare(one) == 0) * 2; // 0: normal, 1: BIOS, 2: device
+					int machineType = int(one.compare(machineData[QMC2_MLC_INDEX_IS_BIOS]) == 0) + int(one.compare(machineData[QMC2_MLC_INDEX_IS_DEVICE]) == 0) * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(defaultItemFlags);
@@ -1360,7 +1360,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_MLC_INDEX_MANU]);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_MLC_INDEX_SRCFILE]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(machineData[QMC2_MLC_INDEX_HAS_ROM].compare(one) == 0) + int(machineData[QMC2_MLC_INDEX_HAS_CHD].compare(one) == 0) * 2]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(one.compare(machineData[QMC2_MLC_INDEX_HAS_ROM]) == 0) + int(one.compare(machineData[QMC2_MLC_INDEX_HAS_CHD]) == 0) * 2]);
 					if ( useCatverIni ) {
 						QString *versionString = versionHash.value(machineName);
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
