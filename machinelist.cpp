@@ -124,8 +124,8 @@ QHash<QString, QString> MachineList::reverseTranslation;
 QHash<QString, QString> MachineList::machineStateTranslations;
 bool MachineList::creatingCatView = false;
 bool MachineList::creatingVerView = false;
-Qt::ItemFlags MachineList::defaultItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
 QString MachineList::trQuestionMark;
+Qt::ItemFlags MachineListItem::defaultItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
 
 MachineList::MachineList(QObject *parent)
 	: QObject(parent)
@@ -1348,7 +1348,7 @@ void MachineList::parse()
 					int machineType = int(one.compare(machineData[QMC2_MLC_INDEX_IS_BIOS]) == 0) + int(one.compare(machineData[QMC2_MLC_INDEX_IS_DEVICE]) == 0) * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
-					machineItem->setFlags(defaultItemFlags);
+					machineItem->setFlags(MachineListItem::defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 					if ( machineCloneOf.isEmpty() ) {
 						if ( !hierarchyHash.contains(machineName) )
@@ -1597,7 +1597,7 @@ void MachineList::parse()
 					QString machineDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
-					machineItem->setFlags(defaultItemFlags);
+					machineItem->setFlags(MachineListItem::defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 					if ( (isBIOS && !showBiosSets) || (isDevice && !showDeviceSets) )
 						hideList << machineItem;
@@ -1794,7 +1794,7 @@ void MachineList::parse()
 		if ( baseItem->isHidden() )
 			hideList << hierarchyItem;
 		itemList << hierarchyItem;
-		hierarchyItem->setFlags(defaultItemFlags);
+		hierarchyItem->setFlags(MachineListItem::defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
@@ -1826,7 +1826,7 @@ void MachineList::parse()
 			childList << hierarchySubItem;
 			if ( baseItem->isHidden() )
 				hideList << hierarchySubItem;
-			hierarchySubItem->setFlags(defaultItemFlags);
+			hierarchySubItem->setFlags(MachineListItem::defaultItemFlags);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
@@ -3320,7 +3320,7 @@ void MachineList::createCategoryView()
 				hideList << machineItem;
 				childCountHash[categoryItem]--;
 			}
-			machineItem->setFlags(defaultItemFlags);
+			machineItem->setFlags(MachineListItem::defaultItemFlags);
 			machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
@@ -3552,7 +3552,7 @@ void MachineList::createVersionView()
 				hideList << machineItem;
 				childCountHash[versionItem]--;
 			}
-			machineItem->setFlags(defaultItemFlags);
+			machineItem->setFlags(MachineListItem::defaultItemFlags);
 			machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, baseItem->checkState(QMC2_MACHINELIST_COLUMN_TAG));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 			machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, baseItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
