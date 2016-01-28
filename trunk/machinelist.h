@@ -83,7 +83,6 @@ class MachineList : public QObject
 		static QHash<QString, QString> machineStateTranslations;
 		static bool creatingCatView;
 		static bool creatingVerView;
-		static Qt::ItemFlags defaultItemFlags;
 		static QString trQuestionMark;
 
 		QString lookupDriverName(QString);
@@ -143,6 +142,8 @@ class MachineList : public QObject
 class MachineListItem : public QTreeWidgetItem
 {
 	public:
+		static Qt::ItemFlags defaultItemFlags;
+
 		MachineListItem(QTreeWidget *parentTreeWidget = 0) : QTreeWidgetItem(parentTreeWidget, QTreeWidgetItem::UserType) {}
 		MachineListItem(QTreeWidgetItem *parentItem) : QTreeWidgetItem(parentItem, QTreeWidgetItem::UserType) {}
 
