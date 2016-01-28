@@ -74,8 +74,8 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 		joyFunctionMapBases << "Arcade/ToxicWaste/joyFunctionMap" << "Arcade/darkone/joyFunctionMap";
 #endif
 
-	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni").toBool();
-	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni").toBool();
+	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
+	bool useCategoryIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
 	m_useCategories = useCatverIni | useCategoryIni;
 	m_useVersions = useCatverIni;
 

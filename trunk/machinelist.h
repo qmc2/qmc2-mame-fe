@@ -85,14 +85,14 @@ class MachineList : public QObject
 		static bool creatingVerView;
 		static QString trQuestionMark;
 
-		QString lookupDriverName(QString);
-		QString romStatus(QString, bool translated = false);
+		QString lookupDriverName(const QString &);
+		QString romStatus(const QString &, bool translated = false);
 		QString &status();
-		char romState(QString);
-		bool isBios(QString systemName) { return biosSets.contains(systemName); }
-		bool isDevice(QString systemName) { return deviceSets.contains(systemName); }
-		int rank(QString systemName) { return userDataDb()->rank(systemName); }
-		QString comment(QString systemName) { return userDataDb()->comment(systemName); }
+		char romState(const QString &systemName) { char state = machineStatusHash.value(systemName); return (state == 0 ? 'U' : state); }
+		bool isBios(const QString &systemName) { return biosSets.contains(systemName); }
+		bool isDevice(const QString &systemName) { return deviceSets.contains(systemName); }
+		int rank(const QString &systemName) { return userDataDb()->rank(systemName); }
+		QString comment(const QString systemName) { return userDataDb()->comment(systemName); }
 
 		void clearCategoryNames();
 		void clearVersionNames();
