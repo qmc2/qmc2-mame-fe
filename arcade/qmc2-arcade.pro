@@ -1,5 +1,5 @@
-VERSION = 0.23
-MAIN_UI_VERSION = 0.60
+VERSION = 0.24
+MAIN_UI_VERSION = 0.61
 
 # Add more folders to ship with the application, here
 folder_01.source = qml/ToxicWaste
