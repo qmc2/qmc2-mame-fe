@@ -2973,7 +2973,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 {
 	if ( fileName )
 		*fileName = machineName;
-	QIcon cachedIcon = qmc2IconHash.value(machineName);
+	QIcon cachedIcon(qmc2IconHash.value(machineName));
 	if ( !cachedIcon.isNull() ) {
 		// use cached icon
 		if ( !checkOnly )
@@ -3017,11 +3017,9 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 							int index = 0;
 							char unzFileName[QMC2_MAX_PATH_LENGTH];
 							unz_file_info unzFileInfo;
-							QString gameFileName;
 							do {
 								if ( unzGetCurrentFileInfo(iconFile, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
 									QFileInfo fi(unzFileName);
-									gameFileName = fi.fileName();
 									imageData.clear();
 									if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {
 										while ( (len = unzReadCurrentFile(iconFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
@@ -3029,8 +3027,8 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 										unzCloseCurrentFile(iconFile);
 										QPixmap iconPixmap;
 										if ( iconPixmap.loadFromData(imageData) ) {
-											QFileInfo fi(gameFileName.toLower());
-											qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
+											QFileInfo fi2(fi.fileName().toLower());
+											qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
 											iconCount++;
 										}
 									}
@@ -3061,18 +3059,15 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 					qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->itemList().count());
 					qmc2MainWindow->progressBarMachineList->reset();
-					qApp->processEvents();
-					QString gameFileName;
 					for (int index = 0; index < sevenZipFile->itemList().count(); index++) {
 						SevenZipMetaData metaData = sevenZipFile->itemList()[index];
 						QFileInfo fi(metaData.name());
-						gameFileName = fi.fileName();
 						sevenZipFile->read(index, &imageData);
 						if ( !sevenZipFile->hasError() ) {
 							QPixmap iconPixmap;
 							if ( iconPixmap.loadFromData(imageData) ) {
-								QFileInfo fi(gameFileName.toLower());
-								qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
+								QFileInfo fi2(fi.fileName().toLower());
+								qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
 								iconCount++;
 							}
 						}
@@ -3102,17 +3097,15 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 					qmc2MainWindow->progressBarMachineList->setRange(0, 0);
 					qmc2MainWindow->progressBarMachineList->reset();
-					QString gameFileName;
 					ArchiveEntryMetaData metaData;
 					int counter = 0;
 					while ( archiveFile->seekNextEntry(&metaData) ) {
 						QFileInfo fi(metaData.name());
-						gameFileName = fi.fileName();
 						if ( archiveFile->readEntry(imageData) ) {
 							QPixmap iconPixmap;
 							if ( iconPixmap.loadFromData(imageData) ) {
-								QFileInfo fi(gameFileName.toLower());
-								qmc2IconHash[fi.baseName()] = QIcon(iconPixmap);
+								QFileInfo fi2(fi.fileName().toLower());
+								qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
 								iconCount++;
 							}
 						}
