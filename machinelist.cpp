@@ -2012,7 +2012,7 @@ void MachineList::filter(bool initial)
 	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", true).toBool();
 	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
-	if ( initial && showC && showM && showI && showN && showU && showDeviceSets && showBiosSets ) {
+	if ( initial && showC && showM && showI && showN && showU ) {
 		qmc2StatesTogglesEnabled = true;
 		return;
 	}
