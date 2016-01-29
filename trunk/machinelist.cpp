@@ -1294,6 +1294,7 @@ void MachineList::parse()
 	bool loadedFromCache = false;
 	QTime machineListCacheElapsedTime(0, 0, 0, 0);
 	QList<QTreeWidgetItem *> itemList, hideList;
+	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
 	if ( machineListCache.isOpen() ) {
 		QString line;
 		tsMachineListCache.setDevice(&machineListCache);
@@ -1379,8 +1380,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
-									if ( !showBiosSets )
+									if ( !showBiosSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
@@ -1388,8 +1391,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
-									if ( !showDeviceSets )
+									if ( !showDeviceSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 									deviceSets.insert(machineName, true);
@@ -1410,8 +1415,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
-									if ( !showBiosSets )
+									if ( !showBiosSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
@@ -1419,8 +1426,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
-									if ( !showDeviceSets )
+									if ( !showDeviceSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 									deviceSets.insert(machineName, true);
@@ -1441,8 +1450,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
-									if ( !showBiosSets )
+									if ( !showBiosSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
@@ -1450,8 +1461,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
-									if ( !showDeviceSets )
+									if ( !showDeviceSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 									deviceSets.insert(machineName, true);
@@ -1472,8 +1485,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
-									if ( !showBiosSets )
+									if ( !showBiosSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
@@ -1481,8 +1496,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
-									if ( !showDeviceSets )
+									if ( !showDeviceSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 									deviceSets.insert(machineName, true);
@@ -1504,8 +1521,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
-									if ( !showBiosSets )
+									if ( !showBiosSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
 									biosSets.insert(machineName, true);
@@ -1513,8 +1532,10 @@ void MachineList::parse()
 								case QMC2_MACHINETYPE_DEVICE:
 									if ( showROMStatusIcons )
 										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
-									if ( !showDeviceSets )
+									if ( !showDeviceSets ) {
 										hideList << machineItem;
+										hiddenItemHash.insert(machineItem, true);
+									}
 									if ( useCategories )
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
 									deviceSets.insert(machineName, true);
@@ -1594,8 +1615,10 @@ void MachineList::parse()
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(MachineListItem::defaultItemFlags);
 					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-					if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) )
+					if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) ) {
 						hideList << machineItem;
+						hiddenItemHash.insert(machineItem, true);
+					}
 					// find year & manufacturer and determine ROM/CHD requirements
 					bool endGame = false;
 					int i = lineCounter;
@@ -1781,7 +1804,7 @@ void MachineList::parse()
 		QTreeWidgetItem *baseItem = qmc2MachineListItemHash.value(parentName);
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(parentName, hierarchyItem);
-		if ( baseItem->isHidden() )
+		if ( hiddenItemHash.contains(baseItem) )
 			hierarchyHideList << hierarchyItem;
 		hierarchyItemList << hierarchyItem;
 		hierarchyItem->setFlags(MachineListItem::defaultItemFlags);
@@ -1812,7 +1835,7 @@ void MachineList::parse()
 			baseItem = qmc2MachineListItemHash.value(cloneName);
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(cloneName, hierarchySubItem);
-			if ( baseItem->isHidden() )
+			if ( hiddenItemHash.contains(baseItem) )
 				hierarchyHideList << hierarchySubItem;
 			hierarchySubItem->setFlags(MachineListItem::defaultItemFlags);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
