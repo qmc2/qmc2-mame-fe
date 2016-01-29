@@ -1293,6 +1293,7 @@ void MachineList::parse()
 	bool romStateCacheUpdate = false;
 	bool loadedFromCache = false;
 	QTime machineListCacheElapsedTime(0, 0, 0, 0);
+	QList<QTreeWidgetItem *> itemList, hideList;
 	if ( machineListCache.isOpen() ) {
 		QString line;
 		tsMachineListCache.setDevice(&machineListCache);
@@ -1332,7 +1333,6 @@ void MachineList::parse()
 			numMachines = numUnknownMachines = 0;
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
-			QList<QTreeWidgetItem *> itemList, hideList;
 			QString one("1");
 			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
 				readBuffer.append(tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE));
@@ -1541,10 +1541,6 @@ void MachineList::parse()
 				else
 					readBuffer = lines.last();
 			}
-			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
-			qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
-			for (int i = 0; i < hideList.count(); i++)
-				hideList[i]->setHidden(true);
 			qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 			loadedFromCache = true;
 		}
@@ -1572,7 +1568,6 @@ void MachineList::parse()
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();;
 		// parse XML data
 		numMachines = numUnknownMachines = 0;
-		QList<QTreeWidgetItem *> itemList, hideList;
 		qint64 xmlRowCount = xmlDb()->xmlRowCount();
 		for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
 			QStringList xmlLines = xmlDb()->xml(rowCounter).split("\n", QString::SkipEmptyParts);
@@ -1762,12 +1757,7 @@ void MachineList::parse()
 				}
 			}
 		}
-		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
-		qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
-		for (int i = 0; i < hideList.count(); i++)
-			hideList[i]->setHidden(true);
 		qmc2MainWindow->progressBarMachineList->setValue(numMachines);
-		qApp->processEvents();
 	}
 	if ( machineListCache.isOpen() )
 		machineListCache.close();
@@ -1778,7 +1768,7 @@ void MachineList::parse()
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetHierarchy->clear();
 	QHashIterator<QString, QStringList> itHierarchyHash(hierarchyHash);
-	QList<QTreeWidgetItem *> itemList, hideList;
+	QList<QTreeWidgetItem *> hierarchyItemList, hierarchyHideList;
 	int counter = numMachines;
 	qmc2HierarchyItemHash.reserve(numMachines);
 	while ( itHierarchyHash.hasNext() && !qmc2StopParser ) {
@@ -1792,8 +1782,8 @@ void MachineList::parse()
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(parentName, hierarchyItem);
 		if ( baseItem->isHidden() )
-			hideList << hierarchyItem;
-		itemList << hierarchyItem;
+			hierarchyHideList << hierarchyItem;
+		hierarchyItemList << hierarchyItem;
 		hierarchyItem->setFlags(MachineListItem::defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -1823,7 +1813,7 @@ void MachineList::parse()
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(cloneName, hierarchySubItem);
 			if ( baseItem->isHidden() )
-				hideList << hierarchySubItem;
+				hierarchyHideList << hierarchySubItem;
 			hierarchySubItem->setFlags(MachineListItem::defaultItemFlags);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -1860,14 +1850,18 @@ void MachineList::parse()
 			qmc2ParentHash.insert(cloneName, parentName);
 		}
 	}
+	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
+	qmc2MainWindow->treeWidgetMachineList->addTopLevelItems(itemList);
+	for (int i = 0; i < hideList.count(); i++)
+		hideList[i]->setHidden(true);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
-	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(itemList);
+	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(hierarchyItemList);
+	for (int i = 0; i < hierarchyHideList.count(); i++)
+		hierarchyHideList[i]->setHidden(true);
 	if ( loadedFromCache ) {
 		machineListCacheElapsedTime = machineListCacheElapsedTime.addMSecs(miscTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(machineListCacheElapsedTime.toString("mm:ss.zzz")));
 	}
-	for (int i = 0; i < hideList.count(); i++)
-		hideList[i]->setHidden(true);
 	QString sortCriteria(trQuestionMark);
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
