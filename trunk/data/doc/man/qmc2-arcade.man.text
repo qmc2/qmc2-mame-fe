@@ -8,11 +8,10 @@ DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
   machine-list, launching emulators in the same smart way that you're used to with QMC2's main GUI (see qmc2(6)).
 
-  QMC2 Arcade usually loads within just a few seconds and is by far less bloated than the main GUI, trimmed to what's absolutely required.
-  But although it's designed to run stand-alone, you must start QMC2's main GUI at least once prior to using QMC2 Arcade, because some of
-  the file caches need to be created first - QMC2 Arcade doesn't take care of this itself, which is one of the reasons why it's so much
-  faster. Also, you cannot change the emulator's configuration from within QMC2 Arcade. So whenever you want to make modifications to a
-  machine's configuration (or the global setup) you have to do this through QMC2's main GUI as well. 
+  Although it's designed to run stand-alone, you must start QMC2's main GUI at least once prior to using QMC2 Arcade, because some of
+  the file caches need to be created first - QMC2 Arcade doesn't take care of this itself. Also, you cannot change the emulator's configuration
+  from within QMC2 Arcade. So whenever you want to make modifications to a machine's configuration (or the global setup) you have to do this
+  through QMC2's main GUI as well.
 
   The main GUI also has a specific dialog for setting up all relevant back-end default options (-theme, -console, -graphicssystem, -language
   and -video), for producing a filtered machine list used by QMC2 Arcade exclusively (optional) and for mapping key-sequences or
