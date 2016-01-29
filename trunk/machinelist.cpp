@@ -1769,7 +1769,8 @@ void MachineList::parse()
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	qmc2MainWindow->treeWidgetHierarchy->clear();
 	QHashIterator<QString, QStringList> itHierarchyHash(hierarchyHash);
-	QList<QTreeWidgetItem *> hierarchyItemList, hierarchyHideList;
+	QList<QTreeWidgetItem *> hierarchyItemList;
+	QHash<QTreeWidgetItem *, bool> hierarchyHiddenItemHash;
 	int counter = numMachines;
 	qmc2HierarchyItemHash.reserve(numMachines);
 	while ( itHierarchyHash.hasNext() && !qmc2StopParser ) {
@@ -1783,7 +1784,7 @@ void MachineList::parse()
 		MachineListItem *hierarchyItem = new MachineListItem();
 		qmc2HierarchyItemHash.insert(parentName, hierarchyItem);
 		if ( hiddenItemHash.contains(baseItem) )
-			hierarchyHideList << hierarchyItem;
+			hierarchyHiddenItemHash.insert(hierarchyItem, true);
 		hierarchyItemList << hierarchyItem;
 		hierarchyItem->setFlags(MachineListItem::defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
@@ -1814,7 +1815,7 @@ void MachineList::parse()
 			MachineListItem *hierarchySubItem = new MachineListItem(hierarchyItem);
 			qmc2HierarchyItemHash.insert(cloneName, hierarchySubItem);
 			if ( hiddenItemHash.contains(baseItem) )
-				hierarchyHideList << hierarchySubItem;
+				hierarchyHiddenItemHash.insert(hierarchyItem, true);
 			hierarchySubItem->setFlags(MachineListItem::defaultItemFlags);
 			hierarchySubItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 			hierarchySubItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -1860,8 +1861,11 @@ void MachineList::parse()
 	}
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(false);
 	qmc2MainWindow->treeWidgetHierarchy->addTopLevelItems(hierarchyItemList);
-	for (int i = 0; i < hierarchyHideList.count(); i++)
-		hierarchyHideList[i]->setHidden(true);
+	QHashIterator<QTreeWidgetItem *, bool> itHierarchyHiddenItemHash(hierarchyHiddenItemHash);
+	while ( itHierarchyHiddenItemHash.hasNext() ) {
+		itHierarchyHiddenItemHash.next();
+		itHierarchyHiddenItemHash.key()->setHidden(true);
+	}
 	if ( loadedFromCache ) {
 		machineListCacheElapsedTime = machineListCacheElapsedTime.addMSecs(miscTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(machineListCacheElapsedTime.toString("mm:ss.zzz")));
