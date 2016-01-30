@@ -65,16 +65,6 @@ ifndef QUIET
 QUIET = 0
 endif
 
-# >>> CTIME <<<
-#
-# Decides if compilation time is measured (1) or not (0).
-#
-# Of course, you could as well use 'time make ...' :).
-#
-ifndef CTIME
-CTIME = 0
-endif
-
 # >>> DEBUG <<<
 #
 # Choose debugging options:
@@ -954,21 +944,13 @@ ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QT_LIB48PLUS)' 'true'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null
 else
-ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null
-else
-	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null)
-endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > NUL
 else
-ifeq '$(CTIME)' '0'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null
-else
-	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
-endif
 endif
 endif
 	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
@@ -1009,21 +991,13 @@ ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QT_LIB48PLUS)' 'true'
 	+@$(MAKE) -f $(QMAKEFILE)
 else
-ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release
-else
-	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release)
-endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
 	+@$(MAKE) -f $(QMAKEFILE)
 else
-ifeq '$(CTIME)' '0'
 	+@$(MAKE) -f $(QMAKEFILE)
-else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE))
-endif
 endif
 endif
 	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
@@ -1312,7 +1286,6 @@ config:
 	@$(ECHO) "CHOWN                  UNIX command chown                            $(CHOWN)"
 	@$(ECHO) "COLRM                  UNIX command colrm                            $(COLRM)"
 	@$(ECHO) "CP                     UNIX command cp                               $(CP)"
-	@$(ECHO) "CTIME                  Measure compilation & linkage time (0, 1)     $(CTIME)"
 	@$(ECHO) "DATADIR                Data directory for installation               $(DATADIR)"
 	@$(ECHO) "DATE                   UNIX command date                             $(DATE)"
 	@$(ECHO) "DEBUG                  Choose debugging level (0, 1, 2)              $(DEBUG)"
