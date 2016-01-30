@@ -290,20 +290,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 57, osr, 6989) ) {
-			QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
-							    << "/MAME/DatInfoDatabase/GameInfoImportDates";
-			QStringList newKeys = QStringList() << "/MAME/DatInfoDatabase/MachineInfoImportFiles"
-							    << "/MAME/DatInfoDatabase/MachineInfoImportDates";
-			for (int i = 0; i < oldKeys.count(); i++) {
-				QString oldKey = oldKeys[i];
-				QString newKey = newKeys[i];
-				if ( startupConfig->contains(oldKey) ) {
-					startupConfig->setValue(newKey, startupConfig->value(oldKey));
-					startupConfig->remove(oldKey);
-				}
-			}
-		}
 		if ( QMC2_TEST_VERSION(omv, 58, osr, 7054) ) {
 			QStringList oldKeys = QStringList() << "/Frontend/Layout/MainWidget/GameDetailTab";
 			QStringList newKeys = QStringList() << "/Frontend/Layout/MainWidget/MachineDetailTab";
