@@ -278,6 +278,15 @@ void MachineList::enableWidgets(bool enable)
 	// store widget enablement flag for later dialog setups
 	qmc2WidgetsEnabled = enable;
 
+	if ( enable && qmc2MainWindow->labelLoadingMachineList->isVisible() ) {
+		// show machine list / hide loading animation
+		qmc2MainWindow->loadAnimMovie->setPaused(true);
+		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
+		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
+		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
+		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+	}
+
 	// avoid redundant operations
 	if ( lastEnable == enable )
 		return;
@@ -734,16 +743,18 @@ void MachineList::load()
 		enableWidgets(true);
 		return;
 	}
-	// hide machine list / show loading animation
-	qmc2MainWindow->treeWidgetMachineList->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelLoadingMachineList->setVisible(true);
-	qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
-	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
-		qmc2MainWindow->loadAnimMovie->start();
-	qApp->processEvents();
+	if ( !initialLoad ) {
+		// hide machine list / show loading animation
+		qmc2MainWindow->treeWidgetMachineList->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelLoadingMachineList->setVisible(true);
+		qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+			qmc2MainWindow->loadAnimMovie->start();
+		qApp->processEvents();
+	}
 	if ( (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0) ) {
 		parse();
 		loadFavorites();
@@ -754,7 +765,7 @@ void MachineList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
 			initialLoad = false;
 		}
-		// show game list / hide loading animation
+		// show machine list / hide loading animation
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
 		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
@@ -2259,7 +2270,7 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
 		initialLoad = false;
 	}
-	// show game list / hide loading animation
+	// show machine list / hide loading animation
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 	qmc2MainWindow->treeWidgetMachineList->setVisible(true);

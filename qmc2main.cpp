@@ -6086,6 +6086,16 @@ void MainWindow::init()
 	ImageWidget::reloadArtworkFormats();
 	qmc2EarlyStartup = false;
 
+	// hide machine list / show loading animation initially
+	treeWidgetMachineList->setVisible(false);
+	((AspectRatioLabel *)labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
+	labelLoadingMachineList->setVisible(true);
+	treeWidgetHierarchy->setVisible(false);
+	((AspectRatioLabel *)labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
+	labelLoadingHierarchy->setVisible(true);
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
+		loadAnimMovie->start();
+
 	setUpdatesEnabled(true);
 	setVisible(true);
 	qApp->processEvents();
