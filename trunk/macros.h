@@ -450,11 +450,8 @@
 // default machine list responsiveness
 #define QMC2_DEFAULT_MACHINELIST_RESPONSE	2500
 
-// responsiveness while reading the XML machine list cache
-#define QMC2_XMLCACHE_RESPONSIVENESS		50
-
 // responsiveness while pre-caching icons
-#define QMC2_ICONCACHE_RESPONSIVENESS		250
+#define QMC2_ICONCACHE_RESPONSIVENESS		500
 
 // responsiveness while loading the YouTube video info map
 #define QMC2_YOUTUBE_VIDEO_INFO_RSP		50
