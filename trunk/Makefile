@@ -468,7 +468,7 @@ endif
 
 # >>> SDL <<<
 #
-# SDL version to use (1 or 2). Auto-detected if unspecified -- SDL=1 has
+# SDL version to use (1 or 2). Auto-detected if unspecified -- SDL=2 has
 # precendence.
 #
 ifneq '$(FORCE_MINGW)' '1'
