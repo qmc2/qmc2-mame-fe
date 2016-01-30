@@ -82,7 +82,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	// loading animation
 	loadAnimMovie = new QMovie(QString::fromUtf8(":/data/img/loadanim.gif"), QByteArray(), this);
 	loadAnimMovie->setCacheMode(QMovie::CacheAll);
-	loadAnimMovie->setSpeed(50);
+	loadAnimMovie->setSpeed(QMC2_LOADANIM_SPEED);
 	loadAnimMovie->stop();
 
 	// replace loading animation label with an aspect-ratio keeping one
