@@ -2985,18 +2985,19 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 	QIcon cachedIcon(qmc2IconHash.value(machineName));
 	if ( !cachedIcon.isNull() ) {
 		// use cached icon
-		if ( !checkOnly )
-			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, cachedIcon);
-		else
+		if ( checkOnly )
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
+		else
+			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, cachedIcon);
 		return true;
 	} else if ( qmc2IconsPreloaded ) {
 		// icon wasn't found
-		if ( !checkOnly ) {
-			qmc2IconHash[machineName] = QIcon();
-			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, QIcon());
-		} else
+		if ( checkOnly )
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
+		else {
+			qmc2IconHash.insert(machineName, QIcon());
+			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, QIcon());
+		}
 		return false;
 	}
 	if ( qmc2UseIconFile ) {
@@ -3163,7 +3164,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 					if ( fi.isFile() ) {
 						QPixmap iconPixmap;
 						if ( iconPixmap.load(fi.absoluteFilePath()) ) {
-							qmc2IconHash[fi.baseName().toLower()] = QIcon(iconPixmap);
+							qmc2IconHash.insert(fi.baseName().toLower(), QIcon(iconPixmap));
 							iconCount++;
 						}
 					}
