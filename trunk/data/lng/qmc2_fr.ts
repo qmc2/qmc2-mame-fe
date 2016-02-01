@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -113,7 +113,7 @@
         <source>Project details</source>
         <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1396,7 +1396,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Angle</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation>°</translation>
@@ -7416,50 +7416,50 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="694"/>
         <location filename="../../machinelist.cpp" line="3658"/>
         <source>unknown</source>
-        <translation type="unfinished">inconnu</translation>
+        <translation>inconnu</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <location filename="../../machinelist.cpp" line="182"/>
         <source>good</source>
-        <translation type="unfinished">bon</translation>
+        <translation>valide</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>bad</source>
-        <translation type="unfinished">mauvais</translation>
+        <translation>invalide</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <location filename="../../machinelist.cpp" line="183"/>
         <source>preliminary</source>
-        <translation type="unfinished">préliminaire</translation>
+        <translation>préliminaire</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>supported</source>
-        <translation type="unfinished">supporté</translation>
+        <translation>pris en charge</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="158"/>
         <source>unsupported</source>
-        <translation type="unfinished">non supporté</translation>
+        <translation>non pris en charge</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="159"/>
         <location filename="../../machinelist.cpp" line="184"/>
         <source>imperfect</source>
-        <translation type="unfinished">imparfait</translation>
+        <translation>imparfait</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="159"/>
         <source>yes</source>
-        <translation type="unfinished">oui</translation>
+        <translation>oui</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="159"/>
         <source>no</source>
-        <translation type="unfinished">non</translation>
+        <translation>non</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="159"/>
@@ -7474,12 +7474,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="160"/>
         <source>vertical</source>
-        <translation type="unfinished">vertical</translation>
+        <translation>vertical</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="160"/>
         <source>horizontal</source>
-        <translation type="unfinished">horizontal</translation>
+        <translation>horizontal</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="160"/>
@@ -7489,37 +7489,37 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="160"/>
         <source>Unknown</source>
-        <translation type="unfinished">Inconnu</translation>
+        <translation>Inconnu</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="161"/>
         <source>On</source>
-        <translation type="unfinished">Activé</translation>
+        <translation>Activé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="161"/>
         <source>Off</source>
-        <translation type="unfinished">Désactivé</translation>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="161"/>
         <source>audio</source>
-        <translation type="unfinished">audio</translation>
+        <translation>audio</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="161"/>
         <source>Unused</source>
-        <translation type="unfinished">Inutilisé</translation>
+        <translation>Inutilisé</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="166"/>
         <source>original</source>
-        <translation type="unfinished">original</translation>
+        <translation>original</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="167"/>
         <source>compatible</source>
-        <translation type="unfinished">compatible</translation>
+        <translation>compatible</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="197"/>
@@ -7535,7 +7535,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="205"/>
         <source>7z error</source>
-        <translation type="unfinished">erreur 7z</translation>
+        <translation>erreur 7z</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="573"/>
@@ -7546,7 +7546,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1746"/>
         <location filename="../../machinelist.cpp" line="2728"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">En attente de données...</translation>
+        <translation>En attente de données...</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="628"/>
@@ -7589,32 +7589,32 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="978"/>
         <source>Updating</source>
-        <translation type="unfinished">Mise à jour</translation>
+        <translation>Mise à jour en cours</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="987"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="987"/>
         <source>Source file</source>
-        <translation type="unfinished">Fichier source</translation>
+        <translation>Fichier source</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="987"/>
         <source>Clone of</source>
-        <translation type="unfinished">Clone de</translation>
+        <translation>Clone de</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="987"/>
         <source>ROM of</source>
-        <translation type="unfinished">ROM de</translation>
+        <translation>ROM de</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="987"/>
         <source>Sample of</source>
-        <translation type="unfinished">Sample de</translation>
+        <translation>Échantillon de</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="987"/>
@@ -7629,19 +7629,19 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1005"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricant</translation>
+        <translation>Fabricant</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="189"/>
         <location filename="../../machinelist.cpp" line="1010"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="621"/>
         <location filename="../../machinelist.cpp" line="677"/>
         <source>error text = %1</source>
-        <translation type="unfinished">Texte d&apos;erreur : %1</translation>
+        <translation>Texte d&apos;erreur : %1</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="974"/>
@@ -7651,17 +7651,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>BIOS</source>
-        <translation type="unfinished">BIOS</translation>
+        <translation>BIOS</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>Size</source>
-        <translation type="unfinished">Taille</translation>
+        <translation>Taille</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
         <source>CRC</source>
-        <translation type="unfinished">CRC</translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
@@ -7673,7 +7673,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1015"/>
         <location filename="../../machinelist.cpp" line="1145"/>
         <source>Region</source>
-        <translation type="unfinished">Région</translation>
+        <translation>Région</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1015"/>
@@ -7686,7 +7686,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1145"/>
         <location filename="../../machinelist.cpp" line="1165"/>
         <source>Status</source>
-        <translation type="unfinished">Statut</translation>
+        <translation>Statut</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1020"/>
@@ -7696,54 +7696,54 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1025"/>
         <source>Chip</source>
-        <translation type="unfinished">Chip</translation>
+        <translation>Puce</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1030"/>
         <location filename="../../machinelist.cpp" line="1039"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1030"/>
         <source>Clock</source>
-        <translation type="unfinished">Horloge</translation>
+        <translation>Horloge</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1039"/>
         <source>Width</source>
-        <translation type="unfinished">Largeur</translation>
+        <translation>Largeur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1039"/>
         <source>Height</source>
-        <translation type="unfinished">Hauteur</translation>
+        <translation>Hauteur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1039"/>
         <source>Refresh</source>
-        <translation type="unfinished">Rafraîchir</translation>
+        <translation>Rafraîchir</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1044"/>
         <location filename="../../machinelist.cpp" line="1120"/>
         <source>Sound</source>
-        <translation type="unfinished">Son</translation>
+        <translation>Son</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1048"/>
         <source>Channels</source>
-        <translation type="unfinished">Canaux</translation>
+        <translation>Canaux</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1053"/>
         <source>Input</source>
-        <translation type="unfinished">Entrée</translation>
+        <translation>Entrée</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1057"/>
         <source>Service</source>
-        <translation type="unfinished">Service</translation>
+        <translation>Service</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1057"/>
@@ -7753,17 +7753,17 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1057"/>
         <source>Players</source>
-        <translation type="unfinished">Joueurs</translation>
+        <translation>Joueurs</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1057"/>
         <source>Buttons</source>
-        <translation type="unfinished">Boutons</translation>
+        <translation>Boutons</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1057"/>
         <source>Coins</source>
-        <translation type="unfinished">Pièces</translation>
+        <translation>Pièces</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1075"/>
@@ -7881,7 +7881,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1661"/>
         <location filename="../../machinelist.cpp" line="3311"/>
         <source>System / BIOS</source>
-        <translation type="unfinished">Système / BIOS</translation>
+        <translation>Système / BIOS</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1394"/>
@@ -7892,22 +7892,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1663"/>
         <location filename="../../machinelist.cpp" line="3313"/>
         <source>System / Device</source>
-        <translation type="unfinished">Système / Dispositif</translation>
+        <translation>Système / Dispositif</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3650"/>
         <source>correct</source>
-        <translation type="unfinished">correct</translation>
+        <translation>correct</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3652"/>
         <source>mostly correct</source>
-        <translation type="unfinished">à peu près correct</translation>
+        <translation>globalement correct</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3654"/>
         <source>incorrect</source>
-        <translation type="unfinished">incorrect</translation>
+        <translation>incorrect</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3656"/>
@@ -7928,7 +7928,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="216"/>
         <source>libarchive error</source>
-        <translation type="unfinished">erreur libarchive</translation>
+        <translation>erreur libarchive</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="646"/>
@@ -7969,7 +7969,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1093"/>
         <source>Configuration</source>
-        <translation type="unfinished">Configuration</translation>
+        <translation>Configuration</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1098"/>
@@ -7979,27 +7979,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1104"/>
         <source>Setting</source>
-        <translation type="unfinished">Paramètre</translation>
+        <translation>Paramètre</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1109"/>
         <source>Value</source>
-        <translation type="unfinished">Valeur</translation>
+        <translation>Valeur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1116"/>
         <source>Driver</source>
-        <translation type="unfinished">Pilote</translation>
+        <translation>Pilote</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1120"/>
         <source>Emulation</source>
-        <translation type="unfinished">Emulation</translation>
+        <translation>Émulation</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1120"/>
         <source>Color</source>
-        <translation type="unfinished">Couleur</translation>
+        <translation>Couleur</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1120"/>
@@ -8014,7 +8014,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1120"/>
         <source>Protection</source>
-        <translation type="unfinished">Protection</translation>
+        <translation>Protection</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1120"/>
@@ -8254,37 +8254,37 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="2212"/>
         <source>L:</source>
-        <translation type="unfinished">L:</translation>
+        <translation>L :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2213"/>
         <source>C:</source>
-        <translation type="unfinished">C:</translation>
+        <translation>C :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2214"/>
         <source>M:</source>
-        <translation type="unfinished">M:</translation>
+        <translation>M :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2215"/>
         <source>I:</source>
-        <translation type="unfinished">I:</translation>
+        <translation>I :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2216"/>
         <source>N:</source>
-        <translation type="unfinished">N:</translation>
+        <translation>N :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2217"/>
         <source>U:</source>
-        <translation type="unfinished">U:</translation>
+        <translation>U :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2218"/>
         <source>S:</source>
-        <translation type="unfinished">S:</translation>
+        <translation>S :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="847"/>
@@ -8302,7 +8302,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="2219"/>
         <source>T:</source>
-        <translation type="unfinished">T:</translation>
+        <translation>T :</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2699"/>
@@ -8748,12 +8748,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="1219"/>
         <source>RAM options</source>
-        <translation type="unfinished">options de RAM</translation>
+        <translation>options de RAM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1223"/>
         <source>Option</source>
-        <translation type="unfinished">Option</translation>
+        <translation>Option</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2234"/>
@@ -8765,13 +8765,13 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="2234"/>
         <location filename="../../machinelist.cpp" line="2434"/>
         <source>normal</source>
-        <translation type="unfinished">normal</translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2234"/>
         <location filename="../../machinelist.cpp" line="2434"/>
         <source>crashed</source>
-        <translation type="unfinished">crashé</translation>
+        <translation>planté</translation>
     </message>
 </context>
 <context>
@@ -20081,115 +20081,115 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../sevenzipfile.cpp" line="36"/>
         <source>file name &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier &apos;%1&apos; introuvable</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="47"/>
         <source>archive not open</source>
-        <translation type="unfinished"></translation>
+        <translation>Archive non ouverte</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="53"/>
         <source>null-buffer not allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>tampon vide non autorisé</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="80"/>
         <location filename="../../sevenzipfile.cpp" line="101"/>
         <location filename="../../sevenzipfile.cpp" line="119"/>
         <source>extraction of file &apos;%1&apos; (index %2) failed</source>
-        <translation type="unfinished"></translation>
+        <translation>échec de l&apos;extraction du fichier &apos;%1&apos; (index %2)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="133"/>
         <source>no error</source>
-        <translation type="unfinished">pas d&apos;erreur</translation>
+        <translation>pas d&apos;erreur</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="135"/>
         <source>incorrect data</source>
-        <translation type="unfinished"></translation>
+        <translation>données incorrectes</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="137"/>
         <source>out of memory</source>
-        <translation type="unfinished"></translation>
+        <translation>mémoire saturée</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="139"/>
         <source>incorrect CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>somme de contrôle incorrecte</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="141"/>
         <source>unsupported compression</source>
-        <translation type="unfinished"></translation>
+        <translation>format de compression non géré</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="143"/>
         <source>incorrect properties</source>
-        <translation type="unfinished"></translation>
+        <translation>propriétés incorrectes</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="145"/>
         <source>premature end-of-file (input)</source>
-        <translation type="unfinished"></translation>
+        <translation>fin de fichier prématurée (entrée)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="147"/>
         <source>premature end-of-file (output)</source>
-        <translation type="unfinished"></translation>
+        <translation>fin de fichier prématurée (sortie)</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="149"/>
         <source>failed reading</source>
-        <translation type="unfinished"></translation>
+        <translation>échec de lecture</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="151"/>
         <source>failed writing</source>
-        <translation type="unfinished"></translation>
+        <translation>échec d&apos;écriture</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="153"/>
         <source>failed signalling progress</source>
-        <translation type="unfinished"></translation>
+        <translation>échec de transmission de la progression</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="155"/>
         <source>fatal error</source>
-        <translation type="unfinished">erreur fatale</translation>
+        <translation>erreur fatale</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="157"/>
         <source>thread error</source>
-        <translation type="unfinished"></translation>
+        <translation>erreur du fil d&apos;exécution</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="159"/>
         <source>invalid archive structure</source>
-        <translation type="unfinished"></translation>
+        <translation>structure de l&apos;archive invalide</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="161"/>
         <source>invalid header structure</source>
-        <translation type="unfinished"></translation>
+        <translation>structure de l&apos;en-tête invalide</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="163"/>
         <source>unknown error</source>
-        <translation type="unfinished">erreur inconnue</translation>
+        <translation>erreur inconnue</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="178"/>
         <source>no file name specified</source>
-        <translation type="unfinished"></translation>
+        <translation>aucun nom de fichier renseigné</translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="184"/>
         <location filename="../../sevenzipfile.cpp" line="204"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>impossible d&apos;ouvrir l&apos;archive &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -20197,38 +20197,38 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../embedderopt.cpp" line="179"/>
         <source>Snapshot viewer</source>
-        <translation type="unfinished">Visualiseur de Captures</translation>
+        <translation>Visualiseur d&apos;instantanés</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="195"/>
         <source>Zoom in (+10%)</source>
-        <translation type="unfinished">Rapprocher (+10%)</translation>
+        <translation>Rapprocher (+10%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="201"/>
         <source>Zoom out (-10%)</source>
-        <translation type="unfinished">Eloigner (-10%)</translation>
+        <translation>Éloigner (-10%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="207"/>
         <source>Reset zoom (100%)</source>
-        <translation type="unfinished">Taille réelle (100%)</translation>
+        <translation>Taille réelle (100%)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="215"/>
         <source>Save as...</source>
-        <translation type="unfinished">Sauvegarder sous...</translation>
+        <translation>Enregistrer sous...</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="187"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copier dans le presse-papier</translation>
+        <translation>Copier dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="311"/>
         <source>Preview</source>
-        <translation type="unfinished">Aperçu</translation>
+        <translation>Aperçu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
@@ -20236,63 +20236,63 @@ Are you sure you want to do this?</source>
         <location filename="../../embedderopt.cpp" line="236"/>
         <location filename="../../embedderopt.cpp" line="319"/>
         <source>Software snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Instantané logiciel</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="323"/>
         <source>Flyer</source>
-        <translation type="unfinished">Flyer</translation>
+        <translation>Prospectus</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="327"/>
         <source>Cabinet</source>
-        <translation type="unfinished">Borne</translation>
+        <translation>Borne</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="331"/>
         <source>Controller</source>
-        <translation type="unfinished">Contrôleur</translation>
+        <translation>Contrôleur</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="339"/>
         <source>PCB</source>
-        <translation type="unfinished">PCB</translation>
+        <translation>carte</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="315"/>
         <source>Title</source>
-        <translation type="unfinished">Titre</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="223"/>
         <location filename="../../embedderopt.cpp" line="335"/>
         <source>Marquee</source>
-        <translation type="unfinished">Marquee</translation>
+        <translation>Auvent</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="227"/>
         <source>Use as</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser comme</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="453"/>
         <source>Choose PNG file to store image</source>
-        <translation type="unfinished">Choisir le fichier PNG à enregistrer</translation>
+        <translation>Choisir le fichier PNG pour enregistrer l&apos;image</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="453"/>
         <source>PNG images (*.png)</source>
-        <translation type="unfinished">images PNG (*.png)</translation>
+        <translation>images PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="458"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
-        <translation type="unfinished">FATAL: échec de sauvegarde de l&apos;image en &apos;%1&apos;</translation>
+        <translation>FATAL: échec de l&apos;enregistrement de l&apos;instantané de l&apos;image dans &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -21931,7 +21931,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="51"/>
         <source>WARNING: failed to open user data database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;ouverture de la base de données des utilisateurs &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="71"/>
@@ -21956,7 +21956,7 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="692"/>
         <location filename="../../userdatadbmgr.cpp" line="766"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction de &apos;%1&apos; depuis la base de données des utilisateurs : requête = &apos;%2&apos; : erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="85"/>
@@ -21968,7 +21968,7 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="611"/>
         <location filename="../../userdatadbmgr.cpp" line="664"/>
         <source>WARNING: failed to add &apos;%1&apos; to user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;insertion de &apos;%1&apos; dans la base de données des utilisateurs : requête = &apos;%2&apos; : erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="91"/>
@@ -21980,27 +21980,27 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="618"/>
         <location filename="../../userdatadbmgr.cpp" line="671"/>
         <source>WARNING: failed to update &apos;%1&apos; in user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la mise à jour de &apos;%1&apos; dans la base de données des utilisateurs : requête = &apos;%2&apos; : erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="311"/>
         <source>WARNING: failed to fetch row count from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction du nombre de lignes depuis la base de données des utilisateurs : requête = &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="330"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction des identifiants des lignes depuis la base de données des utilisateurs : requête = &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="374"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>nettoyage de la base de données des utilisateurs &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="387"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>suppression de l&apos;identifiant obsolète &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="389"/>
@@ -22010,24 +22010,24 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="649"/>
         <location filename="../../userdatadbmgr.cpp" line="702"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la suppression de &apos;%1&apos; depuis la base de données des utilisateurs : requête = &apos;%2&apos; : erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="396"/>
         <source>removed ID &apos;%1&apos; due to no data</source>
-        <translation type="unfinished"></translation>
+        <translation>suppression de l&apos;identifiant &apos;%1&apos; car ne contenant aucune donnée</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="409"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminé (nettoyage de la base de données des utilisateurs &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="448"/>
         <location filename="../../userdatadbmgr.cpp" line="458"/>
         <location filename="../../userdatadbmgr.cpp" line="468"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec du changement du réglage &apos;%1&apos; de la base de données des utilisateurs : requête = &apos;%2&apos; : erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="475"/>
@@ -22036,7 +22036,7 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="709"/>
         <location filename="../../userdatadbmgr.cpp" line="714"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la suppression de la base de données des utilisateurs : requête = &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="493"/>
@@ -22048,22 +22048,22 @@ Are you sure you want to do this?</source>
         <location filename="../../userdatadbmgr.cpp" line="743"/>
         <location filename="../../userdatadbmgr.cpp" line="750"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la création de la base de données des utilisateurs : requête = &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="508"/>
         <source>user data database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de données des utilisateurs &apos;%1&apos; initialisée</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="513"/>
         <source>filling up rank cache from user data database &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>remplissage du cache des rangs depuis la base de données des utilisateurs &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../userdatadbmgr.cpp" line="538"/>
         <source>done (filling up rank cache from user data database &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminé (remplissage du cache des rangs depuis la base de données des utilisateurs &apos;%1&apos;)</translation>
     </message>
 </context>
 <context>
