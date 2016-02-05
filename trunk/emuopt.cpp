@@ -967,18 +967,17 @@ void EmulatorOptions::createMap()
 {
 	optionsMap.clear();
 	sectionItemMap.clear();
-	QString sectionTitle;
 	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
 	while ( it.hasNext() ) {
 		it.next();
 		QString sectionTitle(it.key());
 		QTreeWidgetItem *sectionItem = new QTreeWidgetItem(this);
-		sectionItemMap[sectionTitle] = sectionItem;
+		sectionItemMap.insert(sectionTitle, sectionItem);
 		sectionItem->setText(0, sectionTitle);
-		optionsMap[sectionTitle] = it.value();
+		optionsMap.insert(sectionTitle, it.value());
 		for (int i = 0; i < optionsMap[sectionTitle].count(); i++ ) {
 			optionsMap[sectionTitle][i].value = optionsMap[sectionTitle][i].dvalue;
-			EmulatorOption emulatorOption = optionsMap[sectionTitle].at(i);
+			EmulatorOption emulatorOption = optionsMap.value(sectionTitle).at(i);
 			QTreeWidgetItem *optionItem = new QTreeWidgetItem(sectionItem);
 			optionItem->setHidden(!emulatorOption.visible);
 			optionsMap[sectionTitle][i].item = optionItem;
@@ -992,48 +991,37 @@ void EmulatorOptions::createMap()
 				case QMC2_EMUOPT_TYPE_BOOL:
 					childItem->setText(1, tr("bool"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_INT:
 					childItem->setText(1, tr("int"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_FLOAT:
 					childItem->setText(1, tr("float"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_FLOAT2:
 					childItem->setText(1, tr("float2"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_FLOAT3:
 					childItem->setText(1, tr("float3"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_FILE:
 					childItem->setText(1, tr("file"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_DIRECTORY:
 					childItem->setText(1, tr("directory"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_COMBO:
 					childItem->setText(1, tr("choice"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_COLOR:
 					childItem->setText(1, tr("color"));
 					break;
-
 				case QMC2_EMUOPT_TYPE_STRING:
 					childItem->setText(1, tr("string"));
 					break;
-
 				default:
 					childItem->setText(1, tr("unknown"));
 					break;
 			}
-
 			if ( !emulatorOption.shortname.isEmpty() ) {
 				childItem = new QTreeWidgetItem(optionItem);
 				childItem->setText(0, tr("Short name"));
