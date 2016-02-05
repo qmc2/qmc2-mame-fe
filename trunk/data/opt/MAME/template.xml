@@ -147,6 +147,14 @@
 			<description lang="us" text="Path to UI files"/>
 			<description lang="de" text="Pfad zu UI Dateien"/>
 		</option>
+		<option default="folders" name="extrainipath" type="directory">
+			<description lang="us" text="Path to extra ini files"/>
+			<description lang="de" text="Pfad zu weiteren INI Dateien"/>
+		</option>
+		<option default="history;dats;." name="historypath" type="directory">
+			<description lang="us" text="Path to history files"/>
+			<description lang="de" text="Pfad zu History Dateien"/>
+		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="us" text="Output directories"/>
@@ -902,14 +910,6 @@
 			<description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>
 			<description lang="pt" text="Pular tela de informações ao iniciar"/>
 			<description lang="es" text="Saltarse la pantalla de información al inicio"/>
-		</option>
-		<option default="false" name="skip_biosmenu" type="bool">
-			<description lang="us" text="Skip BIOS sub-menu, start with configured or default BIOS"/>
-			<description lang="de" text="BIOS-Untermenü überspringen, starte mit dem konfigurierten BIOS oder dem Standard BIOS"/>
-		</option>
-		<option default="false" name="skip_partsmenu" type="bool">
-			<description lang="us" text="Skip parts sub-menu, start with first part"/>
-			<description lang="de" text="Teil-Untermenü überspringen, starte mit dem ersten Teil"/>
 		</option>
 		<option default="default" name="uifont" type="combo">
 			<description lang="us" text="Specify a font to use"/>
@@ -2225,6 +2225,68 @@
 			<description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 9 da tela"/>
 			<description lang="es" text="OpenGL GLSL shader personalizado para bitmap 9 de la pantalla"/>
 			<choice name="none"/>
+		</option>
+	</section>
+	<section name="ui_options">
+		<description lang="us" text="UI options"/>
+		<description lang="de" text="UI Optionen"/>
+		<option default="false" name="skip_biosmenu" type="bool">
+			<description lang="us" text="Skip BIOS sub-menu, start with configured or default BIOS"/>
+			<description lang="de" text="BIOS-Untermenü überspringen, starte mit dem konfigurierten BIOS oder dem Standard BIOS"/>
+		</option>
+		<option default="false" name="skip_partsmenu" type="bool">
+			<description lang="us" text="Skip parts sub-menu, start with first part"/>
+			<description lang="de" text="Teil-Untermenü überspringen, starte mit dem ersten Teil"/>
+		</option>
+		<option default="true" name="dats_enabled" type="bool">
+			<description lang="us" text="Enable DATs support"/>
+			<description lang="de" text="Unterstützung für DAT Dateien aktivieren"/>
+		</option>
+		<option default="true" name="enlarge_snaps" type="bool">
+			<description lang="us" text="Enlarge arts (snapshot, title, etc.) in right panel, keeping the aspect ratio"/>
+			<description lang="de" text="Bilder in rechtem Panel skalieren (unter Beibehaltung des Seitenverhältnisses)"/>
+		</option>
+		<option default="30" name="font_rows" type="int">
+			<description lang="us" text="UI font text size (25 - 40)"/>
+			<description lang="de" text="UI Schriftart Größe (25 - 40)"/>
+		</option>
+		<option default="true" name="forced4x3" type="bool">
+			<description lang="us" text="Force the appearance of the snapshot in the list software to 4:3"/>
+			<description lang="de" text="Seitenverhältnis 4:3 für Snapshots in der Software-Liste festlegen"/>
+		</option>
+		<option default="false" name="hide_main_panel" type="bool">
+			<description lang="us" text="UI hide left/right panel in main view (0 = show all, 1 = hide left, 2 = hide right, 3 = hide both)"/>
+			<description lang="de" text="Linkes / rechtes Panel in Hauptansicht verstecken (0 = beide anzeigen, 1 = linkes Panel verstecken, 2 = rechtes Panel verstecken, 3 = beide verstecken)"/>
+		</option>
+		<option default="false" name="info_audit_enabled" type="bool">
+			<description lang="us" text="Enable automatic audit in the general info panel"/>
+			<description lang="de" text="Automatischen Audit im allgemeinen Info Panel aktivieren"/>
+		</option>
+		<option default="0.75" name="infos_text_size" type="float">
+			<description lang="us" text="UI right panel info text size (0.05 - 1.00)"/>
+			<description lang="de" text="UI Info Text Größe im rechten Panel (0.05 - 1.00)"/>
+		</option>
+		<option default="" name="last_used_filter" type="string">
+			<description lang="us" text="Latest used filter"/>
+			<description lang="de" text="Zuletzt verwendeter Filter"/>
+		</option>
+		<option default="" name="last_used_machine" type="string">
+			<description lang="us" text="Latest used machine"/>
+			<description lang="de" text="Zuletzt verwendete Maschine"/>
+		</option>
+		<option default="true" name="remember_last" type="bool">
+			<description lang="us" text="Reselect the last played machine in the main menu"/>
+			<description lang="de" text="Zuletzt verwendete Maschine im Hauptmenü auswählen"/>
+		</option>
+		<option default="true" name="use_background" type="bool">
+			<description lang="us" text="Enable background image in main view"/>
+			<description lang="de" text="Hintergrund in Hauptansicht anzeigen"/>
+		</option>
+		<option default="cabinet" name="ui" type="combo">
+			<description lang="us" text="Type of UI ('simple' or 'cabinet')"/>
+			<description lang="de" text="UI Typ ('simple' oder 'cabinet')"/>
+			<choice name="cabinet"/>
+			<choice name="simple"/>
 		</option>
 	</section>
 </template>
