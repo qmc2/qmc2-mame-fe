@@ -22,6 +22,7 @@
 #include "floateditwidget.h"
 #include "direditwidget.h"
 #include "comboeditwidget.h"
+#include "colorwidget.h"
 #include "emuoptactions.h"
 #include "macros.h"
 #include "demomode.h"
@@ -185,6 +186,16 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			return comboEditor;
 		}
 
+		case QMC2_EMUOPT_TYPE_COLOR: {
+			ColorWidget *colorEditor = new ColorWidget(QString(), QString(), QPalette::Active, QPalette::NoRole, QColor(), QBrush(), parent, false, true);
+			colorEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			colorEditor->setWhatsThis("colorEditor");
+			if ( !optionDescription.isEmpty() )
+				colorEditor->setToolTip(optionDescription);
+			connect(colorEditor, SIGNAL(dataChanged()), this, SLOT(dataChanged()));
+			return colorEditor;
+		}
+
 		case QMC2_EMUOPT_TYPE_STRING:
 		default: {
 			QLineEdit *lineEditEditor = new QLineEdit(parent);
@@ -299,6 +310,11 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 		int itemIndex = comboEditor->comboBoxValue->findText(value);
 		if ( itemIndex >= 0 )
 			comboEditor->comboBoxValue->setCurrentIndex(itemIndex);
+	} else if ( editor->whatsThis() == "colorEditor" ) {
+		QString value = index.model()->data(index, Qt::EditRole).toString();
+		ColorWidget *colorEditor = static_cast<ColorWidget *>(editor);
+		colorEditor->setArgb(value);
+		colorEditor->updateColor();
 	} else {
 		QString value = index.model()->data(index, Qt::EditRole).toString();
 		QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
@@ -361,6 +377,11 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 		optionType = QMC2_EMUOPT_TYPE_COMBO;
 		ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
 		QString v = comboEditor->comboBoxValue->lineEdit()->text();
+		model->setData(index, v);
+	} else if ( editor->whatsThis() == "colorEditor" ) {
+		optionType = QMC2_EMUOPT_TYPE_COLOR;
+		ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
+		QString v = colorEditor->argbValue();
 		model->setData(index, v);
 	} else {
 		optionType = QMC2_EMUOPT_TYPE_STRING;
@@ -536,13 +557,15 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 		} else if ( editor->whatsThis() == "comboEditor" ) {
 			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
 			currentValue = comboEditor->comboBoxValue->lineEdit()->text();
+		} else if ( editor->whatsThis() == "colorEditor" ) {
+			ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
+			currentValue = colorEditor->argbValue();
 		} else {
 			QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
 			currentValue = lineEdit->text();
 		}
 		if ( currentValue.isEmpty() )
 			currentValue = tr("<EMPTY>");
-
 		if ( isGlobal ) {
 			if ( currentValue == defaultValue )
 				emuOptActions->disableResetAction();
@@ -736,6 +759,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 				}
 
 				case QMC2_EMUOPT_TYPE_COMBO:
+				case QMC2_EMUOPT_TYPE_COLOR:
 				case QMC2_EMUOPT_TYPE_FILE:
 				case QMC2_EMUOPT_TYPE_DIRECTORY:
 				case QMC2_EMUOPT_TYPE_STRING:
@@ -876,6 +900,7 @@ void EmulatorOptions::save(QString optName)
 				}
 
 				case QMC2_EMUOPT_TYPE_COMBO:
+				case QMC2_EMUOPT_TYPE_COLOR:
 				case QMC2_EMUOPT_TYPE_FILE:
 				case QMC2_EMUOPT_TYPE_DIRECTORY:
 				case QMC2_EMUOPT_TYPE_STRING:
@@ -994,6 +1019,10 @@ void EmulatorOptions::createMap()
 
 				case QMC2_EMUOPT_TYPE_COMBO:
 					childItem->setText(1, tr("choice"));
+					break;
+
+				case QMC2_EMUOPT_TYPE_COLOR:
+					childItem->setText(1, tr("color"));
 					break;
 
 				case QMC2_EMUOPT_TYPE_STRING:
@@ -1440,6 +1469,9 @@ void EmulatorOptions::checkTemplateMap()
 
 					case QMC2_EMUOPT_TYPE_COMBO:
 						assumedType = "combo";
+					case QMC2_EMUOPT_TYPE_COLOR:
+						if ( assumedType == "unknown" )
+							assumedType = "color";
 					case QMC2_EMUOPT_TYPE_FILE:
 						if ( assumedType == "unknown" )
 							assumedType = "file";
@@ -1674,6 +1706,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 					}
 
 					case QMC2_EMUOPT_TYPE_COMBO:
+					case QMC2_EMUOPT_TYPE_COLOR:
 					case QMC2_EMUOPT_TYPE_FILE:
 					case QMC2_EMUOPT_TYPE_DIRECTORY:
 					case QMC2_EMUOPT_TYPE_STRING:
@@ -1853,6 +1886,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 							}
 
 							case QMC2_EMUOPT_TYPE_COMBO:
+							case QMC2_EMUOPT_TYPE_COLOR:
 							case QMC2_EMUOPT_TYPE_FILE:
 							case QMC2_EMUOPT_TYPE_DIRECTORY:
 							case QMC2_EMUOPT_TYPE_STRING:

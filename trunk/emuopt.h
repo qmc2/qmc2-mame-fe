@@ -57,17 +57,37 @@ class EmulatorOption
 			shortname = sn;
 			type = QMC2_EMUOPT_TYPE_UNKNOWN;
 			switch ( t.at(0).toLatin1() ) {
-				case 'b': type = QMC2_EMUOPT_TYPE_BOOL; break;
-				case 'i': type = QMC2_EMUOPT_TYPE_INT; break;
-				case 'f': if ( t == "float" || t == "float1" ) type = QMC2_EMUOPT_TYPE_FLOAT;
-					else if ( t == "file" ) type = QMC2_EMUOPT_TYPE_FILE;
-					else if ( t == "float2" ) type = QMC2_EMUOPT_TYPE_FLOAT2;
-					else if ( t == "float3" ) type = QMC2_EMUOPT_TYPE_FLOAT3;
+				case 'b':
+					type = QMC2_EMUOPT_TYPE_BOOL;
 					break;
-				case 's': type = QMC2_EMUOPT_TYPE_STRING; break;
-				case 'd': type = QMC2_EMUOPT_TYPE_DIRECTORY; break;
-				case 'c': type = QMC2_EMUOPT_TYPE_COMBO; break;
-				default: type = QMC2_EMUOPT_TYPE_UNKNOWN; break;
+				case 'i':
+					type = QMC2_EMUOPT_TYPE_INT;
+					break;
+				case 'f':
+					if ( t == "float" || t == "float1" )
+						type = QMC2_EMUOPT_TYPE_FLOAT;
+					else if ( t == "file" )
+						type = QMC2_EMUOPT_TYPE_FILE;
+					else if ( t == "float2" )
+						type = QMC2_EMUOPT_TYPE_FLOAT2;
+					else if ( t == "float3" )
+						type = QMC2_EMUOPT_TYPE_FLOAT3;
+					break;
+				case 's':
+					type = QMC2_EMUOPT_TYPE_STRING;
+					break;
+				case 'd':
+					type = QMC2_EMUOPT_TYPE_DIRECTORY;
+					break;
+				case 'c':
+					if ( t == "color" )
+						type = QMC2_EMUOPT_TYPE_COLOR;
+					else
+						type = QMC2_EMUOPT_TYPE_COMBO;
+					break;
+				default:
+					type = QMC2_EMUOPT_TYPE_UNKNOWN;
+					break;
 			}
 			dvalue = dv;
 			description = d;

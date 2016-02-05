@@ -489,6 +489,7 @@
 #define QMC2_EMUOPT_TYPE_COMBO			7
 #define QMC2_EMUOPT_TYPE_FLOAT2			8
 #define QMC2_EMUOPT_TYPE_FLOAT3			9
+#define QMC2_EMUOPT_TYPE_COLOR			10
 
 // supported image formats
 #define QMC2_IMAGE_FORMAT_INDEX_PNG		0

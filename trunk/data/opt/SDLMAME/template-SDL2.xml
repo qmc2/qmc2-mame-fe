@@ -2180,5 +2180,69 @@
 			<choice name="cabinet"/>
 			<choice name="simple"/>
 		</option>
+		<option default="ef101030" name="ui_bg_color" type="color">
+			<description lang="us" text="UI background color"/>
+			<description lang="de" text="UI Hintergrund Farbe"/>
+		</option>
+		<option default="ffffffff" name="ui_border_color" type="color">
+			<description lang="us" text="UI border color"/>
+			<description lang="de" text="UI Rahmen Farbe"/>
+		</option>
+		<option default="ff808080" name="ui_clone_color" type="color">
+			<description lang="us" text="UI clone color"/>
+			<description lang="de" text="UI Klon Farbe"/>
+		</option>
+		<option default="ffffff00" name="ui_dipsw_color" type="color">
+			<description lang="us" text="UI dipswitch color"/>
+			<description lang="de" text="UI DIP Switch Farbe"/>
+		</option>
+		<option default="ef101030" name="ui_gfxviewer_color" type="color">
+			<description lang="us" text="UI gfx viewer color"/>
+			<description lang="de" text="UI GFX Viewer Farbe"/>
+		</option>
+		<option default="b0606000" name="ui_mousedown_bg_color" type="color">
+			<description lang="us" text="UI mouse down background color"/>
+			<description lang="de" text="UI Mouse Down Hintergrund Farbe"/>
+		</option>
+		<option default="ffffff80" name="ui_mousedown_color" type="color">
+			<description lang="us" text="UI mouse down color"/>
+			<description lang="de" text="UI Mouse Down Farbe"/>
+		</option>
+		<option default="70404000" name="ui_mouseover_bg_color" type="color">
+			<description lang="us" text="UI mouse over background color"/>
+			<description lang="de" text="UI Mouse Over Hintergrund Farbe"/>
+		</option>
+		<option default="ffffff80" name="ui_mouseover_color" type="color">
+			<description lang="us" text="UI mouse over color"/>
+			<description lang="de" text="UI Mouse Over Farbe"/>
+		</option>
+		<option default="ef808000" name="ui_selected_bg_color" type="color">
+			<description lang="us" text="UI selected background color"/>
+			<description lang="de" text="UI Auswahl Hintergrund Farbe"/>
+		</option>
+		<option default="ffffff00" name="ui_selected_color" type="color">
+			<description lang="us" text="UI selected color"/>
+			<description lang="de" text="UI Auswahl Farbe"/>
+		</option>
+		<option default="ffffffff" name="ui_slider_color" type="color">
+			<description lang="us" text="UI slider color"/>
+			<description lang="de" text="UI Slider Farbe"/>
+		</option>
+		<option default="ffffffff" name="ui_subitem_color" type="color">
+			<description lang="us" text="UI sub item color"/>
+			<description lang="de" text="UI Unter Item Farbe"/>
+		</option>
+		<option default="ef000000" name="ui_text_bg_color" type="color">
+			<description lang="us" text="UI text background color"/>
+			<description lang="de" text="UI Text Hintergrund Farbe"/>
+		</option>
+		<option default="ffffffff" name="ui_text_color" type="color">
+			<description lang="us" text="UI text color"/>
+			<description lang="de" text="UI Text Farbe"/>
+		</option>
+		<option default="ff404040" name="ui_unavail_color" type="color">
+			<description lang="us" text="UI unavailable color"/>
+			<description lang="de" text="UI Farbe für 'nicht verfügbar'"/>
+		</option>
 	</section>
 </template>
