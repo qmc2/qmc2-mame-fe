@@ -79,6 +79,74 @@
 			<description lang="pt" text="Caminho para os arquivos de cruzes"/>
 			<description lang="es" text="Ruta a archivos de puntos de mira"/>
 		</option>
+		<option default="artwork preview" name="artwork_preview_directory" type="directory">
+			<description lang="us" text="Path to artwork preview images"/>
+			<description lang="de" text="Pfad zu Artwork Vorschau Screenshots"/>
+		</option>
+		<option default="bosses" name="bosses_directory" type="directory">
+			<description lang="us" text="Path to boss images"/>
+			<description lang="de" text="Pfad zu Boss Screenshots"/>
+		</option>
+		<option default="cabinets;cabdevs" name="cabinets_directory" type="directory">
+			<description lang="us" text="Path to cabinet images"/>
+			<description lang="de" text="Pfad zu Gehäuse Screenshots"/>
+		</option>
+		<option default="cpanel" name="cpanels_directory" type="directory">
+			<description lang="us" text="Path to control panel images"/>
+			<description lang="de" text="Pfad zu Bildern der Steuerungselemente"/>
+		</option>
+		<option default="ends" name="ends_directory" type="directory">
+			<description lang="us" text="Path to end images"/>
+			<description lang="de" text="Pfad zu Ende Screenshots"/>
+		</option>
+		<option default="flyers" name="flyers_directory" type="directory">
+			<description lang="us" text="Path to flyer images"/>
+			<description lang="de" text="Pfad zu Flyer Bildern"/>
+		</option>
+		<option default="gameover" name="gameover_directory" type="directory">
+			<description lang="us" text="Path to game over images"/>
+			<description lang="de" text="Pfad zu Game Over Screenshots"/>
+		</option>
+		<option default="howto" name="howto_directory" type="directory">
+			<description lang="us" text="Path to how to images"/>
+			<description lang="de" text="Pfad zu How-To Screenshots"/>
+		</option>
+		<option default="icons" name="icons_directory" type="directory">
+			<description lang="us" text="Path to icon images"/>
+			<description lang="de" text="Pfad zu Icons"/>
+		</option>
+		<option default="logo" name="logos_directory" type="directory">
+			<description lang="us" text="Path to logo images"/>
+			<description lang="de" text="Pfad zu Logo Bildern"/>
+		</option>
+		<option default="marquees" name="marquees_directory" type="directory">
+			<description lang="us" text="Path to marquee images"/>
+			<description lang="de" text="Pfad zu Marquee Bildern"/>
+		</option>
+		<option default="pcb" name="pcbs_directory" type="directory">
+			<description lang="us" text="Path to PCB images"/>
+			<description lang="de" text="Pfad zu PCB Bildern"/>
+		</option>
+		<option default="scores" name="scores_directory" type="directory">
+			<description lang="us" text="Path to high-score images"/>
+			<description lang="de" text="Pfad zu High-Score Screenshots"/>
+		</option>
+		<option default="select" name="select_directory" type="directory">
+			<description lang="us" text="Path to select images"/>
+			<description lang="de" text="Pfad zu Auswahl Screenshots"/>
+		</option>
+		<option default="titles" name="titles_directory" type="directory">
+			<description lang="us" text="Path to Title images"/>
+			<description lang="de" text="Pfad zu Titel Screenshots"/>
+		</option>
+		<option default="versus" name="versus_directory" type="directory">
+			<description lang="us" text="Path to versus images"/>
+			<description lang="de" text="Pfad zu Versus Screenshots"/>
+		</option>
+		<option default="ui" name="ui_path" type="directory">
+			<description lang="us" text="Path to UI files"/>
+			<description lang="de" text="Pfad zu UI Dateien"/>
+		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="us" text="Output directories"/>
@@ -143,7 +211,7 @@
 			<description lang="pt" text="Diretório para salvar comentários do debugger"/>
 			<description lang="es" text="Directorio para guardar comentarios del depurador"/>
 		</option>
-	</section>
+        </section>
 	<section name="state_playback">
 		<description lang="us" text="State / playback"/>
 		<description lang="de" text="Status / Wiedergabe"/>
@@ -835,6 +903,14 @@
 			<description lang="pt" text="Pular tela de informações ao iniciar"/>
 			<description lang="es" text="Saltarse la pantalla de información al inicio"/>
 		</option>
+		<option default="false" name="skip_biosmenu" type="bool">
+			<description lang="us" text="Skip BIOS sub-menu, start with configured or default BIOS"/>
+			<description lang="de" text="BIOS-Untermenü überspringen, starte mit dem konfigurierten BIOS oder dem Standard BIOS"/>
+		</option>
+		<option default="false" name="skip_partsmenu" type="bool">
+			<description lang="us" text="Skip parts sub-menu, start with first part"/>
+			<description lang="de" text="Teil-Untermenü überspringen, starte mit dem ersten Teil"/>
+		</option>
 		<option default="default" name="uifont" type="combo">
 			<description lang="us" text="Specify a font to use"/>
 			<description lang="de" text="Zu verwendende Schriftart angeben"/>
@@ -867,7 +943,7 @@
 			<description lang="pt" text="Mostrar confirmação ao sair"/>
 			<description lang="es" text="Mostrar confirmación al salir"/>
 		</option>
-		<option default="false" name="ui_mouse" type="bool">
+		<option default="true" name="ui_mouse" type="bool">
 			<description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
 			<description lang="us" text="Display UI mouse cursor"/>
 			<description lang="de" text="UI Mousecurcor anzeigen"/>
