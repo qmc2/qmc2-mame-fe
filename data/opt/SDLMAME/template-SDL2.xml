@@ -79,82 +79,6 @@
 			<description lang="fr" text="Répertoire pour les viseurs"/>
 			<description lang="pt" text="Caminho para os arquivos de cruzes"/>
 		</option>
-		<option default="artwork preview" name="artwork_preview_directory" type="directory">
-			<description lang="us" text="Path to artwork preview images"/>
-			<description lang="de" text="Pfad zu Artwork Vorschau Screenshots"/>
-		</option>
-		<option default="bosses" name="bosses_directory" type="directory">
-			<description lang="us" text="Path to boss images"/>
-			<description lang="de" text="Pfad zu Boss Screenshots"/>
-		</option>
-		<option default="cabinets;cabdevs" name="cabinets_directory" type="directory">
-			<description lang="us" text="Path to cabinet images"/>
-			<description lang="de" text="Pfad zu Gehäuse Screenshots"/>
-		</option>
-		<option default="cpanel" name="cpanels_directory" type="directory">
-			<description lang="us" text="Path to control panel images"/>
-			<description lang="de" text="Pfad zu Bildern der Steuerungselemente"/>
-		</option>
-		<option default="ends" name="ends_directory" type="directory">
-			<description lang="us" text="Path to end images"/>
-			<description lang="de" text="Pfad zu Ende Screenshots"/>
-		</option>
-		<option default="flyers" name="flyers_directory" type="directory">
-			<description lang="us" text="Path to flyer images"/>
-			<description lang="de" text="Pfad zu Flyer Bildern"/>
-		</option>
-		<option default="gameover" name="gameover_directory" type="directory">
-			<description lang="us" text="Path to game over images"/>
-			<description lang="de" text="Pfad zu Game Over Screenshots"/>
-		</option>
-		<option default="howto" name="howto_directory" type="directory">
-			<description lang="us" text="Path to how to images"/>
-			<description lang="de" text="Pfad zu How-To Screenshots"/>
-		</option>
-		<option default="icons" name="icons_directory" type="directory">
-			<description lang="us" text="Path to icon images"/>
-			<description lang="de" text="Pfad zu Icons"/>
-		</option>
-		<option default="logo" name="logos_directory" type="directory">
-			<description lang="us" text="Path to logo images"/>
-			<description lang="de" text="Pfad zu Logo Bildern"/>
-		</option>
-		<option default="marquees" name="marquees_directory" type="directory">
-			<description lang="us" text="Path to marquee images"/>
-			<description lang="de" text="Pfad zu Marquee Bildern"/>
-		</option>
-		<option default="pcb" name="pcbs_directory" type="directory">
-			<description lang="us" text="Path to PCB images"/>
-			<description lang="de" text="Pfad zu PCB Bildern"/>
-		</option>
-		<option default="scores" name="scores_directory" type="directory">
-			<description lang="us" text="Path to high-score images"/>
-			<description lang="de" text="Pfad zu High-Score Screenshots"/>
-		</option>
-		<option default="select" name="select_directory" type="directory">
-			<description lang="us" text="Path to select images"/>
-			<description lang="de" text="Pfad zu Auswahl Screenshots"/>
-		</option>
-		<option default="titles" name="titles_directory" type="directory">
-			<description lang="us" text="Path to Title images"/>
-			<description lang="de" text="Pfad zu Titel Screenshots"/>
-		</option>
-		<option default="versus" name="versus_directory" type="directory">
-			<description lang="us" text="Path to versus images"/>
-			<description lang="de" text="Pfad zu Versus Screenshots"/>
-		</option>
-		<option default="ui" name="ui_path" type="directory">
-			<description lang="us" text="Path to UI files"/>
-			<description lang="de" text="Pfad zu UI Dateien"/>
-		</option>
-		<option default="folders" name="extrainipath" type="directory">
-			<description lang="us" text="Path to extra ini files"/>
-			<description lang="de" text="Pfad zu weiteren INI Dateien"/>
-		</option>
-		<option default="history;dats;." name="historypath" type="directory">
-			<description lang="us" text="Path to history files"/>
-			<description lang="de" text="Pfad zu History Dateien"/>
-		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="es" text="Directorios de salida"/>
@@ -861,22 +785,11 @@
 			<description lang="fr" text="Autorise l'utilisation de cheat.dat"/>
 			<description lang="pt" text="Habilitar trapaças"/>
 		</option>
-		<option default="false" name="skip_gameinfo" type="bool">
-			<description lang="es" text="Saltarse la pantalla de información al inicio"/>
-			<description lang="us" text="Skip displaying the information screen at startup"/>
-			<description lang="de" text="Anzeige des Gameinfo-Screens beim Start ausschalten"/>
-			<description lang="pl" text="Pomiń wyświetlanie ekranu informacyjnego przy uruchomieniu"/>
-			<description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>
-			<description lang="pt" text="Pular tela de informações ao iniciar"/>
-		</option>
-		<option default="default" name="uifont" type="combo">
-			<description lang="es" text="Especificar tipografía a utilizar"/>
-			<description lang="us" text="Specify a font to use"/>
-			<description lang="de" text="Zu verwendende Schriftart angeben"/>
-			<description lang="pl" text="Wskaż używaną czcionkę"/>
-			<description lang="fr" text="Spécifier une police à utiliser"/>
-			<description lang="pt" text="Especificar a fonte a ser usada"/>
-			<choice name="default"/>
+		<option default="cabinet" name="ui" type="combo">
+			<description lang="us" text="Type of UI ('simple' or 'cabinet')"/>
+			<description lang="de" text="UI Typ ('simple' oder 'cabinet')"/>
+			<choice name="cabinet"/>
+			<choice name="simple"/>
 		</option>
 		<option default="auto" name="uifontprovider" type="combo">
 			<description lang="us" text="Provider for ui font: 'auto', 'sdl' or 'none'"/>
@@ -892,21 +805,6 @@
 			<description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
 			<description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
 			<description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
-		</option>
-		<option default="false" name="confirm_quit" type="bool">
-			<description lang="es" text="Mostrar confirmación al salir"/>
-			<description lang="us" text="Display quit confirmation box on exit"/>
-			<description lang="de" text="Beim Beenden Bestätigungs-Box anzeigen"/>
-			<description lang="pl" text="Wyświetl okienko potwierdzenia zakończenia"/>
-			<description lang="fr" text="Affiche le dialogue de confirmation à la sortie"/>
-			<description lang="pt" text="Mostrar confirmação ao sair"/>
-		</option>
-		<option default="true" name="ui_mouse" type="bool">
-			<description lang="us" text="Display UI mouse cursor"/>
-			<description lang="de" text="UI Mousecurcor anzeigen"/>
-			<description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
-			<description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
-			<description lang="es" text="Mostrar el cursor del ratón en la interfaz gráfica"/>
 		</option>
 		<option default="" name="autoboot_command" type="string">
 			<description lang="us" text="Command to execute after machine boot"/>
@@ -2117,132 +2015,6 @@
 			<description lang="pl" text="Nazwa pistoletu, który będzie mapowany jako pistolet #8"/>
 			<description lang="es" text="Nombre de pistola óptica mapeada a lightgun #8"/>
 			<choice name="auto"/>
-		</option>
-	</section>
-	<section name="ui_options">
-		<description lang="us" text="UI options"/>
-		<description lang="de" text="UI Optionen"/>
-		<option default="false" name="skip_biosmenu" type="bool">
-			<description lang="us" text="Skip BIOS sub-menu, start with configured or default BIOS"/>
-			<description lang="de" text="BIOS-Untermenü überspringen, starte mit dem konfigurierten BIOS oder dem Standard BIOS"/>
-		</option>
-		<option default="false" name="skip_partsmenu" type="bool">
-			<description lang="us" text="Skip parts sub-menu, start with first part"/>
-			<description lang="de" text="Teil-Untermenü überspringen, starte mit dem ersten Teil"/>
-		</option>
-		<option default="true" name="dats_enabled" type="bool">
-			<description lang="us" text="Enable DATs support"/>
-			<description lang="de" text="Unterstützung für DAT Dateien aktivieren"/>
-		</option>
-		<option default="true" name="enlarge_snaps" type="bool">
-			<description lang="us" text="Enlarge arts (snapshot, title, etc.) in right panel, keeping the aspect ratio"/>
-			<description lang="de" text="Bilder in rechtem Panel skalieren (unter Beibehaltung des Seitenverhältnisses)"/>
-		</option>
-		<option default="30" name="font_rows" type="int">
-			<description lang="us" text="UI font text size (25 - 40)"/>
-			<description lang="de" text="UI Schriftart Größe (25 - 40)"/>
-		</option>
-		<option default="true" name="forced4x3" type="bool">
-			<description lang="us" text="Force the appearance of the snapshot in the list software to 4:3"/>
-			<description lang="de" text="Seitenverhältnis 4:3 für Snapshots in der Software-Liste festlegen"/>
-		</option>
-		<option default="false" name="hide_main_panel" type="bool">
-			<description lang="us" text="UI hide left/right panel in main view (0 = show all, 1 = hide left, 2 = hide right, 3 = hide both)"/>
-			<description lang="de" text="Linkes / rechtes Panel in Hauptansicht verstecken (0 = beide anzeigen, 1 = linkes Panel verstecken, 2 = rechtes Panel verstecken, 3 = beide verstecken)"/>
-		</option>
-		<option default="false" name="info_audit_enabled" type="bool">
-			<description lang="us" text="Enable automatic audit in the general info panel"/>
-			<description lang="de" text="Automatischen Audit im allgemeinen Info Panel aktivieren"/>
-		</option>
-		<option default="0.75" name="infos_text_size" type="float">
-			<description lang="us" text="UI right panel info text size (0.05 - 1.00)"/>
-			<description lang="de" text="UI Info Text Größe im rechten Panel (0.05 - 1.00)"/>
-		</option>
-		<option default="" name="last_used_filter" type="string">
-			<description lang="us" text="Latest used filter"/>
-			<description lang="de" text="Zuletzt verwendeter Filter"/>
-		</option>
-		<option default="" name="last_used_machine" type="string">
-			<description lang="us" text="Latest used machine"/>
-			<description lang="de" text="Zuletzt verwendete Maschine"/>
-		</option>
-		<option default="true" name="remember_last" type="bool">
-			<description lang="us" text="Reselect the last played machine in the main menu"/>
-			<description lang="de" text="Zuletzt verwendete Maschine im Hauptmenü auswählen"/>
-		</option>
-		<option default="true" name="use_background" type="bool">
-			<description lang="us" text="Enable background image in main view"/>
-			<description lang="de" text="Hintergrund in Hauptansicht anzeigen"/>
-		</option>
-		<option default="cabinet" name="ui" type="combo">
-			<description lang="us" text="Type of UI ('simple' or 'cabinet')"/>
-			<description lang="de" text="UI Typ ('simple' oder 'cabinet')"/>
-			<choice name="cabinet"/>
-			<choice name="simple"/>
-		</option>
-		<option default="ef101030" name="ui_bg_color" type="color">
-			<description lang="us" text="UI background color"/>
-			<description lang="de" text="UI Hintergrund Farbe"/>
-		</option>
-		<option default="ffffffff" name="ui_border_color" type="color">
-			<description lang="us" text="UI border color"/>
-			<description lang="de" text="UI Rahmen Farbe"/>
-		</option>
-		<option default="ff808080" name="ui_clone_color" type="color">
-			<description lang="us" text="UI clone color"/>
-			<description lang="de" text="UI Klon Farbe"/>
-		</option>
-		<option default="ffffff00" name="ui_dipsw_color" type="color">
-			<description lang="us" text="UI dipswitch color"/>
-			<description lang="de" text="UI DIP Switch Farbe"/>
-		</option>
-		<option default="ef101030" name="ui_gfxviewer_color" type="color">
-			<description lang="us" text="UI gfx viewer color"/>
-			<description lang="de" text="UI GFX Viewer Farbe"/>
-		</option>
-		<option default="b0606000" name="ui_mousedown_bg_color" type="color">
-			<description lang="us" text="UI mouse down background color"/>
-			<description lang="de" text="UI Mouse Down Hintergrund Farbe"/>
-		</option>
-		<option default="ffffff80" name="ui_mousedown_color" type="color">
-			<description lang="us" text="UI mouse down color"/>
-			<description lang="de" text="UI Mouse Down Farbe"/>
-		</option>
-		<option default="70404000" name="ui_mouseover_bg_color" type="color">
-			<description lang="us" text="UI mouse over background color"/>
-			<description lang="de" text="UI Mouse Over Hintergrund Farbe"/>
-		</option>
-		<option default="ffffff80" name="ui_mouseover_color" type="color">
-			<description lang="us" text="UI mouse over color"/>
-			<description lang="de" text="UI Mouse Over Farbe"/>
-		</option>
-		<option default="ef808000" name="ui_selected_bg_color" type="color">
-			<description lang="us" text="UI selected background color"/>
-			<description lang="de" text="UI Auswahl Hintergrund Farbe"/>
-		</option>
-		<option default="ffffff00" name="ui_selected_color" type="color">
-			<description lang="us" text="UI selected color"/>
-			<description lang="de" text="UI Auswahl Farbe"/>
-		</option>
-		<option default="ffffffff" name="ui_slider_color" type="color">
-			<description lang="us" text="UI slider color"/>
-			<description lang="de" text="UI Slider Farbe"/>
-		</option>
-		<option default="ffffffff" name="ui_subitem_color" type="color">
-			<description lang="us" text="UI sub item color"/>
-			<description lang="de" text="UI Unter Item Farbe"/>
-		</option>
-		<option default="ef000000" name="ui_text_bg_color" type="color">
-			<description lang="us" text="UI text background color"/>
-			<description lang="de" text="UI Text Hintergrund Farbe"/>
-		</option>
-		<option default="ffffffff" name="ui_text_color" type="color">
-			<description lang="us" text="UI text color"/>
-			<description lang="de" text="UI Text Farbe"/>
-		</option>
-		<option default="ff404040" name="ui_unavail_color" type="color">
-			<description lang="us" text="UI unavailable color"/>
-			<description lang="de" text="UI Farbe für 'nicht verfügbar'"/>
 		</option>
 	</section>
 </template>
