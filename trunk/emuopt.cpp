@@ -43,6 +43,7 @@ QMap<QString, QList<EmulatorOption> > EmulatorOptions::templateMap;
 QMap<QString, bool> EmulatorOptions::optionExpansionMap;
 QMap<QString, bool> EmulatorOptions::sectionExpansionMap;
 QMap<QString, QTreeWidgetItem *> EmulatorOptions::sectionItemMap;
+QHash<QString, int> EmulatorOptions::typeNameToIndexHash;
 int EmulatorOptions::horizontalScrollPosition = 0;
 int EmulatorOptions::verticalScrollPosition = 0;
 
@@ -91,7 +92,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(checkBoxEditor, SIGNAL(toggled(bool)), this, SLOT(dataChanged()));
 			return checkBoxEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_INT: {
 			QSpinBox *spinBoxEditor = new QSpinBox(parent);
 			spinBoxEditor->setRange(_MIN, _MAX);
@@ -103,7 +103,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(spinBoxEditor, SIGNAL(valueChanged(int)), this, SLOT(dataChanged()));
 			return spinBoxEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_FLOAT: {
 			QDoubleSpinBox *doubleSpinBoxEditor = new QDoubleSpinBox(parent);
 			doubleSpinBoxEditor->setRange(_MIN, _MAX);
@@ -116,7 +115,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(doubleSpinBoxEditor, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
 			return doubleSpinBoxEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_FLOAT2: {
 			FloatEditWidget *float2Editor = new FloatEditWidget(2, ",", parent);
 			float2Editor->doubleSpinBox0->setRange(_MIN, _MAX);
@@ -132,7 +130,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(float2Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
 			return float2Editor;
 		}
-
 		case QMC2_EMUOPT_TYPE_FLOAT3: {
 			FloatEditWidget *float3Editor = new FloatEditWidget(3, ",", parent);
 			float3Editor->doubleSpinBox0->setRange(_MIN, _MAX);
@@ -151,7 +148,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(float3Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
 			return float3Editor;
 		}
-
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), optionPart, parent, false, optionRelativeTo, mTreeWidget);
 			fileEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
@@ -163,7 +159,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(fileEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
 			return fileEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = new DirectoryEditWidget("", parent, mTreeWidget);
 			directoryEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
@@ -175,7 +170,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(directoryEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
 			return directoryEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = new ComboBoxEditWidget(optionChoices, "", parent);
 			comboEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
@@ -185,7 +179,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(comboEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
 			return comboEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_COLOR: {
 			ColorWidget *colorEditor = new ColorWidget(QString(), QString(), QPalette::Active, QPalette::NoRole, QColor(), QBrush(), parent, false, true);
 			colorEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
@@ -195,7 +188,6 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(colorEditor, SIGNAL(dataChanged()), this, SLOT(dataChanged()));
 			return colorEditor;
 		}
-
 		case QMC2_EMUOPT_TYPE_STRING:
 		default: {
 			QLineEdit *lineEditEditor = new QLineEdit(parent);
@@ -211,183 +203,218 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 
 void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-	if ( editor->whatsThis() == "checkBoxEditor" ) {
-		bool value = index.model()->data(index, Qt::EditRole).toBool();
-		QCheckBox *checkBoxEditor = static_cast<QCheckBox *>(editor);
-		checkBoxEditor->setChecked(value);
-		if ( value )
-			checkBoxEditor->setText("(" + tr("enabled") + ")");
-		else
-			checkBoxEditor->setText("(" + tr("disabled") + ")");
-	} else if ( editor->whatsThis() == "spinBoxEditor" ) {
-		int value = index.model()->data(index, Qt::EditRole).toInt();
-		QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
-		int cPos = 0;
-		QLineEdit *lineEdit = spinBox->findChild<QLineEdit *>();
-		if ( lineEdit )
-			cPos = lineEdit->cursorPosition();
-		spinBox->setValue(value);
-		if ( lineEdit )
+	switch ( EmulatorOptions::typeNameToIndexHash.value(editor->whatsThis()) ) {
+		case QMC2_EMUOPT_TYPE_BOOL: {
+			bool value = index.model()->data(index, Qt::EditRole).toBool();
+			QCheckBox *checkBoxEditor = static_cast<QCheckBox *>(editor);
+			checkBoxEditor->setChecked(value);
+			if ( value )
+				checkBoxEditor->setText("(" + tr("enabled") + ")");
+			else
+				checkBoxEditor->setText("(" + tr("disabled") + ")");
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_INT: {
+			int value = index.model()->data(index, Qt::EditRole).toInt();
+			QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
+			int cPos = 0;
+			QLineEdit *lineEdit = spinBox->findChild<QLineEdit *>();
+			if ( lineEdit )
+				cPos = lineEdit->cursorPosition();
+			spinBox->setValue(value);
+			if ( lineEdit )
+				lineEdit->setCursorPosition(cPos);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FLOAT: {
+			double value = index.model()->data(index, Qt::EditRole).toDouble();
+			QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox *>(editor);
+			int cPos = 0;
+			QLineEdit *lineEdit = doubleSpinBox->findChild<QLineEdit *>();
+			if ( lineEdit )
+				cPos = lineEdit->cursorPosition();
+			doubleSpinBox->setValue(value);
+			if ( lineEdit )
+				lineEdit->setCursorPosition(cPos);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FLOAT2: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			FloatEditWidget *float2Editor = static_cast<FloatEditWidget *>(editor);
+			QStringList subValues = value.split(",");
+			int cPos = 0;
+			if ( subValues.count() > 0 ) {
+				QLineEdit *lineEdit = float2Editor->doubleSpinBox0->findChild<QLineEdit *>();
+				if ( lineEdit )
+					cPos = lineEdit->cursorPosition();
+				float2Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
+				if ( lineEdit )
+					lineEdit->setCursorPosition(cPos);
+			}
+			if ( subValues.count() > 1 ) {
+				QLineEdit *lineEdit = float2Editor->doubleSpinBox1->findChild<QLineEdit *>();
+				if ( lineEdit )
+					cPos = lineEdit->cursorPosition();
+				float2Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
+				if ( lineEdit )
+					lineEdit->setCursorPosition(cPos);
+			}
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FLOAT3: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			FloatEditWidget *float3Editor = static_cast<FloatEditWidget *>(editor);
+			QStringList subValues = value.split(",");
+			int cPos = 0;
+			if ( subValues.count() > 0 ) {
+				QLineEdit *lineEdit = float3Editor->doubleSpinBox0->findChild<QLineEdit *>();
+				if ( lineEdit )
+					cPos = lineEdit->cursorPosition();
+				float3Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
+				if ( lineEdit )
+					lineEdit->setCursorPosition(cPos);
+			}
+			if ( subValues.count() > 1 ) {
+				QLineEdit *lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
+				if ( lineEdit )
+					cPos = lineEdit->cursorPosition();
+				float3Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
+				if ( lineEdit )
+					lineEdit->setCursorPosition(cPos);
+			}
+			if ( subValues.count() > 2 ) {
+				QLineEdit *lineEdit = float3Editor->doubleSpinBox2->findChild<QLineEdit *>();
+				if ( lineEdit )
+					cPos = lineEdit->cursorPosition();
+				float3Editor->doubleSpinBox2->setValue(subValues[2].toDouble());
+				if ( lineEdit )
+					lineEdit->setCursorPosition(cPos);
+			}
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FILE: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			FileEditWidget *fileEditor = static_cast<FileEditWidget *>(editor);
+			int cPos = fileEditor->lineEditFile->cursorPosition();
+			fileEditor->lineEditFile->setText(value);
+			fileEditor->lineEditFile->setCursorPosition(cPos);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_DIRECTORY: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
+			int cPos = directoryEditor->lineEditDirectory->cursorPosition();
+			directoryEditor->lineEditDirectory->setText(value);
+			directoryEditor->lineEditDirectory->setCursorPosition(cPos);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_COMBO: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget *>(editor);
+			int cPos = comboEditor->comboBoxValue->lineEdit()->cursorPosition();
+			comboEditor->comboBoxValue->lineEdit()->setText(value);
+			comboEditor->comboBoxValue->lineEdit()->setCursorPosition(cPos);
+			int itemIndex = comboEditor->comboBoxValue->findText(value);
+			if ( itemIndex >= 0 )
+				comboEditor->comboBoxValue->setCurrentIndex(itemIndex);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_COLOR: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			ColorWidget *colorEditor = static_cast<ColorWidget *>(editor);
+			colorEditor->setArgb(value);
+			colorEditor->updateColor();
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_STRING:
+		default: {
+			QString value = index.model()->data(index, Qt::EditRole).toString();
+			QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
+			int cPos = lineEdit->cursorPosition();
+			lineEdit->setText(value);
 			lineEdit->setCursorPosition(cPos);
-	} else if ( editor->whatsThis() == "doubleSpinBoxEditor" ) {
-		double value = index.model()->data(index, Qt::EditRole).toDouble();
-		QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox *>(editor);
-		int cPos = 0;
-		QLineEdit *lineEdit = doubleSpinBox->findChild<QLineEdit *>();
-		if ( lineEdit )
-			cPos = lineEdit->cursorPosition();
-		doubleSpinBox->setValue(value);
-		if ( lineEdit )
-			lineEdit->setCursorPosition(cPos);
-	} else if ( editor->whatsThis() == "float2Editor" ) {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		FloatEditWidget *float2Editor = static_cast<FloatEditWidget *>(editor);
-		QStringList subValues = value.split(",");
-		int cPos = 0;
-		if ( subValues.count() > 0 ) {
-			QLineEdit *lineEdit = float2Editor->doubleSpinBox0->findChild<QLineEdit *>();
-			if ( lineEdit )
-				cPos = lineEdit->cursorPosition();
-			float2Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
-			if ( lineEdit )
-				lineEdit->setCursorPosition(cPos);
+			break;
 		}
-		if ( subValues.count() > 1 ) {
-			QLineEdit *lineEdit = float2Editor->doubleSpinBox1->findChild<QLineEdit *>();
-			if ( lineEdit )
-				cPos = lineEdit->cursorPosition();
-			float2Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
-			if ( lineEdit )
-				lineEdit->setCursorPosition(cPos);
-		}
-	} else if ( editor->whatsThis() == "float3Editor" ) {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		FloatEditWidget *float3Editor = static_cast<FloatEditWidget *>(editor);
-		QStringList subValues = value.split(",");
-		int cPos = 0;
-		if ( subValues.count() > 0 ) {
-			QLineEdit *lineEdit = float3Editor->doubleSpinBox0->findChild<QLineEdit *>();
-			if ( lineEdit )
-				cPos = lineEdit->cursorPosition();
-			float3Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
-			if ( lineEdit )
-				lineEdit->setCursorPosition(cPos);
-		}
-		if ( subValues.count() > 1 ) {
-			QLineEdit *lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
-			if ( lineEdit )
-				cPos = lineEdit->cursorPosition();
-			float3Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
-			if ( lineEdit )
-				lineEdit->setCursorPosition(cPos);
-		}
-		if ( subValues.count() > 2 ) {
-			QLineEdit *lineEdit = float3Editor->doubleSpinBox2->findChild<QLineEdit *>();
-			if ( lineEdit )
-				cPos = lineEdit->cursorPosition();
-			float3Editor->doubleSpinBox2->setValue(subValues[2].toDouble());
-			if ( lineEdit )
-				lineEdit->setCursorPosition(cPos);
-		}
-	} else if ( editor->whatsThis() == "fileEditor" ) {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		FileEditWidget *fileEditor = static_cast<FileEditWidget *>(editor);
-		int cPos = fileEditor->lineEditFile->cursorPosition();
-		fileEditor->lineEditFile->setText(value);
-		fileEditor->lineEditFile->setCursorPosition(cPos);
-	} else if ( editor->whatsThis() == "directoryEditor" ) {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
-		int cPos = directoryEditor->lineEditDirectory->cursorPosition();
-		directoryEditor->lineEditDirectory->setText(value);
-		directoryEditor->lineEditDirectory->setCursorPosition(cPos);
-	} else if ( editor->whatsThis() == "comboEditor" ) {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget *>(editor);
-		int cPos = comboEditor->comboBoxValue->lineEdit()->cursorPosition();
-		comboEditor->comboBoxValue->lineEdit()->setText(value);
-		comboEditor->comboBoxValue->lineEdit()->setCursorPosition(cPos);
-		int itemIndex = comboEditor->comboBoxValue->findText(value);
-		if ( itemIndex >= 0 )
-			comboEditor->comboBoxValue->setCurrentIndex(itemIndex);
-	} else if ( editor->whatsThis() == "colorEditor" ) {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		ColorWidget *colorEditor = static_cast<ColorWidget *>(editor);
-		colorEditor->setArgb(value);
-		colorEditor->updateColor();
-	} else {
-		QString value = index.model()->data(index, Qt::EditRole).toString();
-		QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
-		int cPos = lineEdit->cursorPosition();
-		lineEdit->setText(value);
-		lineEdit->setCursorPosition(cPos);
 	}
 	emit editorDataChanged(editor, ((EmulatorOptions*)mTreeWidget)->index2item(index));
 }
 
 void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-	if ( editor->whatsThis() == "checkBoxEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_BOOL;
-		QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
-		bool v = checkBoxEditor->isChecked();
-		model->setData(index, QColor(0, 0, 0, 0), Qt::ForegroundRole);
-		model->setData(index, QFont("Helvetica", 1), Qt::FontRole);
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "spinBoxEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_INT;
-		QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
-		spinBox->interpretText();
-		int v = spinBox->value();
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "doubleSpinBoxEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_FLOAT;
-		QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
-		doubleSpinBox->interpretText();
-		double v = doubleSpinBox->value();
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "float2Editor" ) {
-		optionType = QMC2_EMUOPT_TYPE_FLOAT2;
-		FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
-		float2Editor->doubleSpinBox0->interpretText();
-		float2Editor->doubleSpinBox1->interpretText();
-		QLocale cLoc(QLocale::C);
-		QString v = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "float3Editor" ) {
-		optionType = QMC2_EMUOPT_TYPE_FLOAT3;
-		FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
-		float3Editor->doubleSpinBox0->interpretText();
-		float3Editor->doubleSpinBox1->interpretText();
-		float3Editor->doubleSpinBox2->interpretText();
-		QLocale cLoc(QLocale::C);
-		QString v = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "fileEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_FILE;
-		FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
-		QString v = fileEditor->lineEditFile->text();
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "directoryEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_DIRECTORY;
-		DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
-		QString v = directoryEditor->lineEditDirectory->text();
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "comboEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_COMBO;
-		ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
-		QString v = comboEditor->comboBoxValue->lineEdit()->text();
-		model->setData(index, v);
-	} else if ( editor->whatsThis() == "colorEditor" ) {
-		optionType = QMC2_EMUOPT_TYPE_COLOR;
-		ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
-		QString v = colorEditor->argbValue();
-		model->setData(index, v);
-	} else {
-		optionType = QMC2_EMUOPT_TYPE_STRING;
-		QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-		QString v = lineEdit->text();
-		model->setData(index, v);
+	optionType = EmulatorOptions::typeNameToIndexHash.value(editor->whatsThis());
+	switch ( optionType ) {
+		case QMC2_EMUOPT_TYPE_BOOL: {
+			QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
+			bool v = checkBoxEditor->isChecked();
+			model->setData(index, QColor(0, 0, 0, 0), Qt::ForegroundRole);
+			model->setData(index, QFont("Helvetica", 1), Qt::FontRole);
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_INT: {
+			QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+			spinBox->interpretText();
+			int v = spinBox->value();
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FLOAT: {
+			QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
+			doubleSpinBox->interpretText();
+			double v = doubleSpinBox->value();
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FLOAT2: {
+			FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
+			float2Editor->doubleSpinBox0->interpretText();
+			float2Editor->doubleSpinBox1->interpretText();
+			QLocale cLoc(QLocale::C);
+			QString v = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FLOAT3: {
+			FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
+			float3Editor->doubleSpinBox0->interpretText();
+			float3Editor->doubleSpinBox1->interpretText();
+			float3Editor->doubleSpinBox2->interpretText();
+			QLocale cLoc(QLocale::C);
+			QString v = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_FILE: {
+			FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
+			QString v = fileEditor->lineEditFile->text();
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_DIRECTORY: {
+			DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
+			QString v = directoryEditor->lineEditDirectory->text();
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_COMBO: {
+			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
+			QString v = comboEditor->comboBoxValue->lineEdit()->text();
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_COLOR: {
+			ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
+			QString v = colorEditor->argbValue();
+			model->setData(index, v);
+			break;
+		}
+		case QMC2_EMUOPT_TYPE_STRING:
+		default: {
+			QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+			QString v = lineEdit->text();
+			model->setData(index, v);
+			break;
+		}
 	}
 }
 
@@ -426,6 +453,18 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
 	: QTreeWidget(parent)
 {
+	if ( typeNameToIndexHash.isEmpty() ) {
+		typeNameToIndexHash.insert("checkBoxEditor", QMC2_EMUOPT_TYPE_BOOL);
+		typeNameToIndexHash.insert("spinBoxEditor", QMC2_EMUOPT_TYPE_INT);
+		typeNameToIndexHash.insert("doubleSpinBoxEditor", QMC2_EMUOPT_TYPE_FLOAT);
+		typeNameToIndexHash.insert("float2Editor", QMC2_EMUOPT_TYPE_FLOAT2);
+		typeNameToIndexHash.insert("float3Editor", QMC2_EMUOPT_TYPE_FLOAT3);
+		typeNameToIndexHash.insert("fileEditor", QMC2_EMUOPT_TYPE_FILE);
+		typeNameToIndexHash.insert("directoryEditor", QMC2_EMUOPT_TYPE_DIRECTORY);
+		typeNameToIndexHash.insert("comboEditor", QMC2_EMUOPT_TYPE_COMBO);
+		typeNameToIndexHash.insert("colorEditor", QMC2_EMUOPT_TYPE_COLOR);
+		typeNameToIndexHash.insert("lineEditEditor", QMC2_EMUOPT_TYPE_STRING);
+	}
 	templateVersion = tr("unknown");
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
 	lineEditSearch = NULL;
@@ -457,21 +496,17 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
 #endif
 	header()->setStretchLastSection(true);
 	restoreHeaderState();
-
 	setColumnHidden(0, false);
 	setColumnHidden(1, false);
 	setColumnHidden(2, false);
-
 	if ( templateMap.isEmpty() )
 		createTemplateMap();
-
 	createMap();
 }
 
 EmulatorOptions::~EmulatorOptions()
 {
 	saveHeaderState();
-
 	if ( delegate )
 		delete delegate;
 }
@@ -527,42 +562,63 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				storedValue = tr("<EMPTY>");
 		} else
 			storedValue = "<UNSET>";
-
 		QLocale cLoc(QLocale::C);
-		if ( editor->whatsThis() == "checkBoxEditor" ) {
-			QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
-			if ( checkBoxEditor->isChecked() )
-				currentValue = "true";
-			else
-				currentValue = "false";
-		} else if ( editor->whatsThis() == "spinBoxEditor" ) {
-			QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
-			currentValue = QString::number(spinBox->value());
-		} else if ( editor->whatsThis() == "doubleSpinBoxEditor" ) {
-			QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
-			currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
-			defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
-		} else if ( editor->whatsThis() == "float2Editor" ) {
-			FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
-			currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
-		} else if ( editor->whatsThis() == "float3Editor" ) {
-			FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
-			currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
-		} else if ( editor->whatsThis() == "fileEditor" ) {
-			FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
-			currentValue = fileEditor->lineEditFile->text();
-		} else if ( editor->whatsThis() == "directoryEditor" ) {
-			DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
-			currentValue = directoryEditor->lineEditDirectory->text();
-		} else if ( editor->whatsThis() == "comboEditor" ) {
-			ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
-			currentValue = comboEditor->comboBoxValue->lineEdit()->text();
-		} else if ( editor->whatsThis() == "colorEditor" ) {
-			ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
-			currentValue = colorEditor->argbValue();
-		} else {
-			QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-			currentValue = lineEdit->text();
+		switch ( typeNameToIndexHash.value(editor->whatsThis()) ) {
+			case QMC2_EMUOPT_TYPE_BOOL: {
+				QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
+				if ( checkBoxEditor->isChecked() )
+					currentValue = "true";
+				else
+					currentValue = "false";
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_INT: {
+				QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+				currentValue = QString::number(spinBox->value());
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_FLOAT: {
+				QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
+				currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
+				defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_FLOAT2: {
+				FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
+				currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_FLOAT3: {
+				FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
+				currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_FILE: {
+				FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
+				currentValue = fileEditor->lineEditFile->text();
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_DIRECTORY: {
+				DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
+				currentValue = directoryEditor->lineEditDirectory->text();
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_COMBO: {
+				ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
+				currentValue = comboEditor->comboBoxValue->lineEdit()->text();
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_COLOR: {
+				ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
+				currentValue = colorEditor->argbValue();
+				break;
+			}
+			case QMC2_EMUOPT_TYPE_STRING:
+			default: {
+				QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+				currentValue = lineEdit->text();
+				break;
+			}
 		}
 		if ( currentValue.isEmpty() )
 			currentValue = tr("<EMPTY>");
@@ -674,7 +730,6 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					}
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_FLOAT: {
 					optionType = QMC2_EMUOPT_TYPE_FLOAT;
 					optionDecimals = option.decimals;
@@ -696,7 +751,6 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					}
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
 					optionType = QMC2_EMUOPT_TYPE_FLOAT2;
 					optionDecimals = option.decimals;
@@ -716,7 +770,6 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].valid = true;
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					optionType = QMC2_EMUOPT_TYPE_FLOAT3;
 					optionDecimals = option.decimals;
@@ -736,7 +789,6 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].valid = true;
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_BOOL: {
 					optionType = QMC2_EMUOPT_TYPE_BOOL;
 					optionChoices.clear();
@@ -757,7 +809,6 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].valid = true;
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_COMBO:
 				case QMC2_EMUOPT_TYPE_COLOR:
 				case QMC2_EMUOPT_TYPE_FILE:
@@ -790,9 +841,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 			}
 		}
 	}
-
 	qmc2Config->endGroup();
-
 	loadActive = changed = false;
 }
 
@@ -800,16 +849,13 @@ void EmulatorOptions::save(QString optName)
 {
 	if ( loadActive )
 		return;
-
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
-
 	if ( qmc2GlobalEmulatorOptions != this ) {
 		horizontalScrollPosition = horizontalScrollBar()->sliderPosition();
 		verticalScrollPosition = verticalScrollBar()->sliderPosition();
 	}
-
 	qmc2Config->beginGroup(settingsGroup);
 	QString sectionTitle;
 	foreach (sectionTitle, optionsMap.keys()) {
@@ -822,11 +868,9 @@ void EmulatorOptions::save(QString optName)
 		for (int i = 0; i < optionsMap[sectionTitle].count(); i++) {
 			if ( qmc2GlobalEmulatorOptions != this )
 				optionExpansionMap[optionsMap[sectionTitle][i].name] = optionsMap[sectionTitle][i].item->isExpanded();
-
 			if ( !optName.isEmpty() )
 				if ( optName != optionsMap[sectionTitle][i].name )
 					continue;
-
 			switch ( optionsMap[sectionTitle][i].type ) {
 				case QMC2_EMUOPT_TYPE_INT: {
 					int v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toInt();
@@ -845,7 +889,6 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_FLOAT: {
 					double v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
 					double gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
@@ -863,7 +906,6 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_FLOAT2:
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
@@ -881,7 +923,6 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_BOOL: {
 					bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
 					bool gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
@@ -898,7 +939,6 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
 					break;
 				}
-
 				case QMC2_EMUOPT_TYPE_COMBO:
 				case QMC2_EMUOPT_TYPE_COLOR:
 				case QMC2_EMUOPT_TYPE_FILE:
@@ -1066,9 +1106,7 @@ void EmulatorOptions::createMap()
 QString EmulatorOptions::readDescription(QXmlStreamReader *xmlReader, QString lang, bool *readNext)
 {
 	static QString translatedDescription;
-
 	QMap<QString, QString> translations;
-
 	while ( !xmlReader->atEnd() && *readNext ) {
 		xmlReader->readNext();
 		if ( !xmlReader->hasError() ) {
@@ -1085,24 +1123,20 @@ QString EmulatorOptions::readDescription(QXmlStreamReader *xmlReader, QString la
 		} else
 			*readNext = false;
 	}
-
 	if ( translations.contains(lang) )
 		translatedDescription = translations[lang];
 	else if ( translations.contains("us") )
 		translatedDescription = translations["us"];
 	else
 		translatedDescription = tr("unknown");
-
 	return translatedDescription;
 }
 
 QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 {
 	static QStringList validChoices;
-
 	validChoices.clear();
 	bool readNext = true;
-
 	while ( !xmlReader->atEnd() && readNext ) {
 		if ( !xmlReader->hasError() ) {
 			if ( xmlReader->isStartElement() ) {
@@ -1122,12 +1156,10 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 		if ( readNext )
 			xmlReader->readNext();
 	}
-
 	if ( !validChoices.isEmpty() ) {
 		validChoices.removeDuplicates();
 		std::sort(validChoices.begin(), validChoices.end(), MainWindow::qStringListLessThan);
 	}
-
 	return validChoices;
 }
 
@@ -1233,7 +1265,6 @@ void EmulatorOptions::createTemplateMap()
 		qmc2TemplateFile.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open options template file"));
-
 	if ( templateEmulator == tr("unknown") )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator type of template"));
 	if ( templateVersion == tr("unknown") )
@@ -1248,18 +1279,14 @@ void EmulatorOptions::checkTemplateMap()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 		return;
 	}
-
 	QString userScopePath = Options::configPath();
-
 	int diffCount = 0;
 	QMap <QString, QString> emuOptions;
-
 	if ( qmc2TemplateCheck ) {
 		printf("%s\n", tr("checking template configuration map against selected emulator").toUtf8().constData());
 		fflush(stdout);
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking template configuration map against selected emulator"));
-
 	QFileInfo fi(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	if ( !fi.exists() ) {
 		if ( qmc2TemplateCheck ) {
@@ -1277,7 +1304,6 @@ void EmulatorOptions::checkTemplateMap()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: '%1' isn't executable").arg(fi.filePath()));
 		return;
 	}
-
 	QStringList args;
 	QProcess commandProc;
 #if defined(QMC2_SDLMAME)
@@ -1314,7 +1340,6 @@ void EmulatorOptions::checkTemplateMap()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 		return;
 	}
-
 #if defined(QMC2_SDLMAME)
 	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 #elif defined(QMC2_MAME)
@@ -1368,7 +1393,6 @@ void EmulatorOptions::checkTemplateMap()
 		fflush(stdout);
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
-
 	QStringList templateOptions;
 	foreach (QString sectionTitle, optionsMap.keys()) {
 		EmulatorOption option;
@@ -1392,7 +1416,6 @@ void EmulatorOptions::checkTemplateMap()
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toInt()).arg(option.dvalue.toInt()).arg(assumedType));
 						}
 						break;
-
 					case QMC2_EMUOPT_TYPE_FLOAT:
 						assumedType = "float";
 						if ( option.dvalue.toDouble() != emuOptions[option.name].toDouble() ) {
@@ -1404,7 +1427,6 @@ void EmulatorOptions::checkTemplateMap()
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name].toDouble()).arg(option.dvalue.toDouble()).arg(assumedType));
 						}
 						break;
-
 					case QMC2_EMUOPT_TYPE_FLOAT2:
 						assumedType = "float2";
 						floatParts = emuOptions[option.name].split(",", QString::SkipEmptyParts);
@@ -1422,7 +1444,6 @@ void EmulatorOptions::checkTemplateMap()
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
 						}
 						break;
-
 					case QMC2_EMUOPT_TYPE_FLOAT3:
 						assumedType = "float3";
 						floatParts = emuOptions[option.name].split(",", QString::SkipEmptyParts);
@@ -1440,7 +1461,6 @@ void EmulatorOptions::checkTemplateMap()
 								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'").arg(option.name).arg(emuOptions[option.name]).arg(option.dvalue).arg(assumedType));
 						}
 						break;
-
 					case QMC2_EMUOPT_TYPE_BOOL: {
 						assumedType = "bool";
 						QString emuOpt(emuOptions[option.name] == "0" ? "false" : "true");
@@ -1454,7 +1474,6 @@ void EmulatorOptions::checkTemplateMap()
 						}
 						break;
 					}
-
 					case QMC2_EMUOPT_TYPE_COMBO:
 						assumedType = "combo";
 					case QMC2_EMUOPT_TYPE_COLOR:
@@ -1490,7 +1509,6 @@ void EmulatorOptions::checkTemplateMap()
 			}
 		}
 	}
-
 	QMapIterator<QString, QString> it(emuOptions);
 	while ( it.hasNext() ) {
 		it.next();
@@ -1504,7 +1522,6 @@ void EmulatorOptions::checkTemplateMap()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator option '%1' with default value '%2' is unknown to the template").arg(optName).arg(it.value()));
 		}
 	}
-
 	if ( qmc2TemplateCheck ) {
 		printf("%s\n", tr("done (checking template configuration map against selected emulator)").toUtf8().constData());
 		printf("%s\n", tr("check results: %n difference(s)", "", diffCount).toUtf8().constData());
@@ -1527,13 +1544,11 @@ void EmulatorOptions::keyPressEvent(QKeyEvent *e)
 			QAbstractItemView::keyPressEvent(e);
 		return;
 	}
-
 	if ( !e->text().isEmpty() ) {
 		if ( !lineEditSearch ) {
 			lineEditSearch = new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, this);
 			lineEditSearch->setPlaceholderText(tr("Enter search string"));
 		}
-
 		lineEditSearch->move(4, 4);
 		if ( verticalScrollBar()->isVisible() )
 			lineEditSearch->resize(width() - verticalScrollBar()->width() - 8, lineEditSearch->height());
@@ -1579,7 +1594,6 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 {
 	static QBrush redBrush(QColor(255, 0, 0));
 	static QBrush greenBrush(QColor(0, 255, 0));
-
 	// lookup default value for inipath
 	QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
 	if ( iniPaths.isEmpty() ) {
@@ -1590,7 +1604,6 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 			}
 		}
 	}
-
 	// determine list of writable ini-paths
 	QStringList writableIniPaths;
 	QStringList fileNames;
@@ -1600,7 +1613,6 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 		if ( dirInfo.isWritable() && dirInfo.isExecutable() )
 			writableIniPaths << path;
 	}
-
 	// get correct filename(s) for ini-export
 	QString fileName;
 	if ( useFileName.isEmpty() ) {
@@ -1651,7 +1663,6 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 		}
 	} else
 		fileNames << useFileName;
-
 	foreach (fileName, fileNames) {
 		QFile iniFile(fileName);
 		if ( !iniFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
@@ -1673,26 +1684,22 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 						ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
 						break;
 					}
-
 					case QMC2_EMUOPT_TYPE_FLOAT: {
 						double v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
 						ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
 						break;
 					}
-
 					case QMC2_EMUOPT_TYPE_FLOAT2:
 					case QMC2_EMUOPT_TYPE_FLOAT3: {
 						QString v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
 						ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
 						break;
 					}
-
 					case QMC2_EMUOPT_TYPE_BOOL: {
 						bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
 						ts << optionsMap[sectionTitle][i].name << " " << (v ? "1" : "0") << "\n";
 						break;
 					}
-
 					case QMC2_EMUOPT_TYPE_COMBO:
 					case QMC2_EMUOPT_TYPE_COLOR:
 					case QMC2_EMUOPT_TYPE_FILE:
@@ -1717,7 +1724,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 {
 	static QBrush redBrush(QColor(255, 0, 0));
 	static QBrush greenBrush(QColor(0, 255, 0));
-
 	// lookup default value for inipath
 	QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
 	if ( iniPaths.isEmpty() ) {
@@ -1728,7 +1734,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 			}
 		}
 	}
-
 	// determine list of readable ini-paths
 	QStringList readableIniPaths;
 	QStringList fileNames;
@@ -1738,7 +1743,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		if ( dirInfo.isReadable() && dirInfo.isExecutable() )
 			readableIniPaths << path;
 	}
-
 	// get correct filename for ini-import
 	QString fileName;
 	if ( useFileName.isEmpty() ) {
@@ -1789,7 +1793,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		}
 	} else
 		fileNames << useFileName;
-
 	foreach (fileName, fileNames) {
 		QFile iniFile(fileName);
 		if ( !iniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -1800,7 +1803,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		miscTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MAME configuration from %2").arg(global ? tr("global") : tr("machine-specific")). arg(fileName));
 		QTextStream ts(&iniFile);
-
 		// read ini-file and set corresponding emulator options to their values
 		int lineCounter = 0;
 		while ( !ts.atEnd() ) {
@@ -1811,7 +1813,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 				QStringList words = lineTrimmed.split(QRegExp("\\s+"));
 				if ( words.count() > 0 ) {
 					QString option = words[0];
-
 					// lookup option in map
 					QString sectionTitle, sectionTitleFound = "";
 					int optionPosFound = -1;
@@ -1825,7 +1826,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 						if ( optionPosFound != -1 )
 							break;
 					}
-
 					if ( optionPosFound != -1 && words.count() > 1 ) {
 						QString value = lineTrimmed.mid(lineTrimmed.indexOf(words[1], words[0].length()));
 						switch ( optionsMap[sectionTitleFound][optionPosFound].type ) {
@@ -1836,7 +1836,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toInt());
 								break;
 							}
-
 							case QMC2_EMUOPT_TYPE_FLOAT: {
 								if ( qmc2GlobalEmulatorOptions == this )
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toDouble());
@@ -1844,7 +1843,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toDouble());
 								break;
 							}
-
 							case QMC2_EMUOPT_TYPE_FLOAT2:
 							case QMC2_EMUOPT_TYPE_FLOAT3: {
 								if ( qmc2GlobalEmulatorOptions == this )
@@ -1853,7 +1851,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value);
 								break;
 							}
-
 							case QMC2_EMUOPT_TYPE_BOOL: {
 								if ( qmc2GlobalEmulatorOptions == this ) {
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
@@ -1872,7 +1869,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 								}
 								break;
 							}
-
 							case QMC2_EMUOPT_TYPE_COMBO:
 							case QMC2_EMUOPT_TYPE_COLOR:
 							case QMC2_EMUOPT_TYPE_FILE:

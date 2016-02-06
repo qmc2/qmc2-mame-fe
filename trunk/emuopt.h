@@ -6,6 +6,7 @@
 #include <QCheckBox>
 #include <QTreeWidget>
 #include <QMap>
+#include <QHash>
 #include <QTimer>
 #include <QTime>
 #include <QKeyEvent>
@@ -121,6 +122,7 @@ class EmulatorOptions : public QTreeWidget
 		static QMap<QString, bool> sectionExpansionMap;
 		static QMap<QString, QTreeWidgetItem *> sectionItemMap;
 		static QMap<QString, bool> optionExpansionMap;
+		static QHash<QString, int> typeNameToIndexHash;
 		static int horizontalScrollPosition;
 		static int verticalScrollPosition;
 		bool loadActive;
