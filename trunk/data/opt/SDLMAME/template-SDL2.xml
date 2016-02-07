@@ -936,7 +936,7 @@
 			<description lang="pt" text="Forçar o programa a terminar se não houver atualizações dentro de um número especificado de segundos"/>
 		</option>
 	</section>
-	<section name="video">
+	<section name="video_options">
 		<description lang="es" text="Vídeo"/>
 		<description lang="us" text="Video"/>
 		<description lang="de" text="Video"/>
@@ -955,6 +955,7 @@
 			<choice name="soft"/>
 			<choice name="accel"/>
 			<choice name="opengl"/>
+			<choice name="bgfx"/>
 		</option>
 		<option default="1" name="numscreens" type="int">
 			<description lang="es" text="Número de pantallas a crear"/>
