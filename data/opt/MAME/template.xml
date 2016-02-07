@@ -977,7 +977,7 @@
 			<description lang="es" text="Fuerza el programa a terminar si no se actualiza en un número concreto de segundos"/>
 		</option>
 	</section>
-	<section name="video">
+	<section name="video_options">
 		<description lang="us" text="Video"/>
 		<description lang="de" text="Video"/>
 		<description lang="pl" text="Obraz"/>
@@ -997,6 +997,7 @@
 			<choice name="ddraw"/>
 			<choice name="d3d"/>
 			<choice name="opengl"/>
+			<choice name="bgfx"/>
 		</option>
 		<option default="1" name="numscreens" type="int">
 			<description lang="us" text="Number of screens to create; usually, you want just one"/>
