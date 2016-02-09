@@ -180,6 +180,10 @@
 			<description lang="pt" text="Carregar um arquivo de entrada"/>
 			<description lang="es" text="Reproducir un fichero de entrada"/>
 		</option>
+		<option default="false" name="exit_after_playback" type="bool">
+			<description lang="us" text="Close the program at the end of playback"/>
+			<description lang="de" text="Nach der Wiedergabe Programm beenden"/>
+		</option>
 		<option default="" name="record" type="file" relativeTo="input_directory">
 			<description lang="us" text="Record an input file"/>
 			<description lang="de" text="Aufnahme einer Eingabe-Datei"/>
@@ -187,6 +191,10 @@
 			<description lang="fr" text="Enregistrer un fichier input"/>
 			<description lang="pt" text="Gravar um arquivo de entrada"/>
 			<description lang="es" text="Grabar un fichero de entrada"/>
+		</option>
+		<option default="false" name="record_timecode" type="bool">
+			<description lang="us" text="Record an input timecode file (requires -record option)"/>
+			<description lang="de" text="Eingabe Timecode Datei aufnehmen (erfordert die -record Option)"/>
 		</option>
 		<option default="" name="mngwrite" type="file" relativeTo="snapshot_directory">
 			<description lang="us" text="Optional filename to write an MNG movie of the current session"/>
