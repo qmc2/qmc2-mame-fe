@@ -79,6 +79,10 @@
 			<description lang="fr" text="Répertoire pour les viseurs"/>
 			<description lang="pt" text="Caminho para os arquivos de cruzes"/>
 		</option>
+		<option default="plugins" name="pluginspath" type="directory">
+			<description lang="us" text="Path to plugin files"/>
+			<description lang="de" text="Suchpfad für Plugin-Dateien"/>
+		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="es" text="Directorios de salida"/>
