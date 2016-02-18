@@ -1006,7 +1006,6 @@
 			<choice name="auto"/>
 			<choice name="none"/>
 			<choice name="gdi"/>
-			<choice name="ddraw"/>
 			<choice name="d3d"/>
 			<choice name="opengl"/>
 			<choice name="bgfx"/>
