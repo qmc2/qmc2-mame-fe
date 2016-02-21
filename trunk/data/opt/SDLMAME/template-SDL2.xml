@@ -83,6 +83,10 @@
 			<description lang="us" text="Path to plugin files"/>
 			<description lang="de" text="Suchpfad für Plugin-Dateien"/>
 		</option>
+		<option default="language" name="languagepath" type="directory">
+			<description lang="us" text="Path to language files"/>
+			<description lang="de" text="Suchpfad für Sprachdateien"/>
+		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="es" text="Directorios de salida"/>
@@ -833,6 +837,10 @@
 		<option default="false" name="console" type="bool">
 			<description lang="us" text="Enable emulator LUA console"/>
 			<description lang="de" text="Emulator LUA Konsole aktivieren"/>
+		</option>
+		<option default="English" name="language" type="string">
+			<description lang="us" text="Display language"/>
+			<description lang="de" text="Anzeigesprache"/>
 		</option>
 	</section>
 	<section name="configuration">
