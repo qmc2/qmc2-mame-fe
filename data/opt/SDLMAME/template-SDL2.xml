@@ -801,11 +801,28 @@
 			<description lang="fr" text="Autorise l'utilisation de cheat.dat"/>
 			<description lang="pt" text="Habilitar trapaças"/>
 		</option>
+		<option default="false" name="skip_gameinfo" type="bool">
+			<description lang="es" text="Saltarse la pantalla de información al inicio"/>
+			<description lang="us" text="Skip displaying the information screen at startup"/>
+			<description lang="de" text="Anzeige des Gameinfo-Screens beim Start ausschalten"/>
+			<description lang="pl" text="Pomiń wyświetlanie ekranu informacyjnego przy uruchomieniu"/>
+			<description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>
+			<description lang="pt" text="Pular tela de informações ao iniciar"/>
+		</option>
 		<option default="cabinet" name="ui" type="combo">
 			<description lang="us" text="Type of UI ('simple' or 'cabinet')"/>
 			<description lang="de" text="UI Typ ('simple' oder 'cabinet')"/>
 			<choice name="cabinet"/>
 			<choice name="simple"/>
+		</option>
+		<option default="default" name="uifont" type="combo">
+			<description lang="es" text="Especificar tipografía a utilizar"/>
+			<description lang="us" text="Specify a font to use"/>
+			<description lang="de" text="Zu verwendende Schriftart angeben"/>
+			<description lang="pl" text="Wskaż używaną czcionkę"/>
+			<description lang="fr" text="Spécifier une police à utiliser"/>
+			<description lang="pt" text="Especificar a fonte a ser usada"/>
+			<choice name="default"/>
 		</option>
 		<option default="auto" name="uifontprovider" type="combo">
 			<description lang="us" text="Provider for ui font: 'auto', 'sdl' or 'none'"/>
@@ -814,6 +831,13 @@
 			<choice name="sdl"/>
 			<choice name="none"/>
 		</option>
+		<option default="true" name="ui_mouse" type="bool">
+			<description lang="us" text="Display UI mouse cursor"/>
+			<description lang="de" text="UI Mousecurcor anzeigen"/>
+			<description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
+			<description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
+			<description lang="es" text="Mostrar el cursor del ratón en la interfaz gráfica"/>
+		</option>
 		<option default="" name="ramsize" type="combo">
 			<description lang="es" text="Tamaño de RAM (si lo soporta el driver)"/>
 			<description lang="us" text="Size of RAM (if supported by driver)"/>
@@ -821,6 +845,14 @@
 			<description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
 			<description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
 			<description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
+		</option>
+		<option default="false" name="confirm_quit" type="bool">
+			<description lang="es" text="Mostrar confirmación al salir"/>
+			<description lang="us" text="Display quit confirmation box on exit"/>
+			<description lang="de" text="Beim Beenden Bestätigungs-Box anzeigen"/>
+			<description lang="pl" text="Wyświetl okienko potwierdzenia zakończenia"/>
+			<description lang="fr" text="Affiche le dialogue de confirmation à la sortie"/>
+			<description lang="pt" text="Mostrar confirmação ao sair"/>
 		</option>
 		<option default="" name="autoboot_command" type="string">
 			<description lang="us" text="Command to execute after machine boot"/>

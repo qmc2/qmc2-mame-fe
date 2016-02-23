@@ -844,11 +844,28 @@
 			<description lang="pt" text="Habilitar trapaças"/>
 			<description lang="es" text="Habilitar el subsistema de trucos"/>
 		</option>
+		<option default="false" name="skip_gameinfo" type="bool">
+			<description lang="us" text="Skip displaying the information screen at startup"/>
+			<description lang="de" text="Anzeige des Gameinfo-Screens beim Start ausschalten"/>
+			<description lang="pl" text="Pomiń wyświetlanie ekranu informacyjnego przy uruchomieniu"/>
+			<description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>
+			<description lang="pt" text="Pular tela de informações ao iniciar"/>
+			<description lang="es" text="Saltarse la pantalla de información al inicio"/>
+		</option>
 		<option default="cabinet" name="ui" type="combo">
 			<description lang="us" text="Type of UI ('simple' or 'cabinet')"/>
 			<description lang="de" text="UI Typ ('simple' oder 'cabinet')"/>
 			<choice name="cabinet"/>
 			<choice name="simple"/>
+		</option>
+		<option default="default" name="uifont" type="combo">
+			<description lang="us" text="Specify a font to use"/>
+			<description lang="de" text="Zu verwendende Schriftart angeben"/>
+			<description lang="pl" text="Wskaż używaną czcionkę"/>
+			<description lang="fr" text="Spécifier une police à utiliser"/>
+			<description lang="pt" text="Especificar a fonte a ser usada"/>
+			<description lang="es" text="Especificar tipografía a utilizar"/>
+			<choice name="default"/>
 		</option>
 		<option default="auto" name="uifontprovider" type="combo">
 			<description lang="us" text="Provider for ui font: 'auto', 'win' or 'none'"/>
@@ -857,6 +874,13 @@
 			<choice name="win"/>
 			<choice name="none"/>
 		</option>
+		<option default="true" name="ui_mouse" type="bool">
+			<description lang="pl" text="Pokaż kursor myszy w intefejsie użytkownika"/>
+			<description lang="us" text="Display UI mouse cursor"/>
+			<description lang="de" text="UI Mousecurcor anzeigen"/>
+			<description lang="pt" text="Mostrar cursor do mouse na interface gráfica"/>
+			<description lang="es" text="Mostrar el cursor del ratón en la interfaz gráfica"/>
+		</option>
 		<option default="" name="ramsize" type="combo">
 			<description lang="us" text="Size of RAM (if supported by driver)"/>
 			<description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
@@ -864,6 +888,14 @@
 			<description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
 			<description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
 			<description lang="es" text="Tamaño de RAM (si lo soporta el driver)"/>
+		</option>
+		<option default="false" name="confirm_quit" type="bool">
+			<description lang="us" text="Display quit confirmation box on exit"/>
+			<description lang="de" text="Beim Beenden Bestätigungs-Box anzeigen"/>
+			<description lang="pl" text="Wyświetl okienko potwierdzenia zakończenia"/>
+			<description lang="fr" text="Affiche le dialogue de confirmation à la sortie"/>
+			<description lang="pt" text="Mostrar confirmação ao sair"/>
+			<description lang="es" text="Mostrar confirmación al salir"/>
 		</option>
 		<option default="" name="autoboot_command" type="string">
 			<description lang="us" text="Command to execute after machine boot"/>
