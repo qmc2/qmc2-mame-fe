@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.61, 01-FEB-2016</h3>
+<h3>TODO - v0.61, 24-FEB-2016</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
  	<li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -15,8 +15,7 @@
  	<li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either <i>north</i> or <i>south</i>.</li>
  	<li>X11: Embedded emulators that change their display sizes at runtime (usually during startup) may not always be centered correctly. Unfortunately, newer window-managers may cause additional problems with resizing. We hope that we can avoid all of this with our planned embedder port to Qt 5.</li>
  	<li>Windows: There's a known issue for <u>embedded</u> emulators running in <i>Direct 3D</i> mode ('-video d3d'): full-screen switching will lead to a crash of the emulator. To work around this, you have to <i>release</i> the emulator first; you can re-embed it later from the emulator control panel.</li>
- 	<li>Windows: MinGW builds: The GIF animation used when loading / filtering the machine list (or when <i>mass tagging</i> sets) isn't displayed in case of MinGW builds. We have no idea why, nor do we think it's our fault since in the official binaries built with VC++ this works fine (seems to be a MinGW-specific Qt bug). However, it's just a 'cosmetic' issue.</li>
-</ul>
+ 	<li>Windows: MinGW builds: The GIF animation used when loading / filtering the machine- or software-list, or when <i>mass tagging</i> sets, isn't displayed in case of MinGW builds. We have no idea why, nor do we think it's our fault since in the official binaries built with VC++ this works fine (seems to be a MinGW-specific Qt bug). However, it's just a 'cosmetic' issue.</li></ul>
 <p><b>Planned changes, new features and improvements</b></p>
 <ul>
  	<li>Fulfill the accepted/open <a href="http://tracker.batcom-it.net/search.php?project_id=1&category=Feature%20request&status_id=50&sticky_issues=off&sortby=last_updated&dir=DESC&hide_status_id=-2&match_type=0" target="_blank">feature requests from our bug-tracker</a> (see also our <a href="http://tracker.batcom-it.net/roadmap_page.php?project_id=1" target="_blank">current roadmap</a>)</li>
