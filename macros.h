@@ -391,7 +391,7 @@
 #define QMC2_ANIMATION_TIMEOUT			250
 
 // speed of the load animation
-#define QMC2_LOADANIM_SPEED			50
+#define QMC2_LOADANIM_SPEED			25
 
 // button animation timeout (similar to animateClick() w/o signal emission)
 #define QMC2_BUTTON_ANIMATION_TIMEOUT		50
