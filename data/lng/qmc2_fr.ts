@@ -4585,48 +4585,48 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../embedder.cpp" line="181"/>
         <location filename="../../embedder.cpp" line="199"/>
         <source>emulator #%1 released, window ID = %2</source>
-        <translation type="unfinished">émulateur #%1 relâché, ID de fenêtre = %2</translation>
+        <translation>émulateur #%1 déchargé, ID de fenêtre = %2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="444"/>
         <source>WARNING: invalid window ID %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : ID de fenêtre %1 invalide</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="448"/>
         <source>WARNING: unknown error, window ID = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : erreur inconnue, ID de fenêtre = %1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="469"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
-        <translation type="unfinished">ID de fenêtre pour l&apos;émulateur #%1 perdue, cherche un remplacement</translation>
+        <translation>perte ID de fenêtre pour l&apos;émulateur #%1, recherche en cours d&apos;un remplacement</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="489"/>
         <source>using replacement window ID %1 for emulator #%2</source>
-        <translation type="unfinished">utilise la fenêtre de remplacement ID %1 pour l&apos;émulateur #%2</translation>
+        <translation>utilisant en remplacement l&apos;ID %1 de la fenêtre pour l&apos;émulateur #%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="497"/>
         <source>no replacement window ID found for emulator #%1, closing embedder</source>
-        <translation type="unfinished">pas de fenêtre de remplacement ID trouvé pour l&apos;émulateur #%1, fermeture</translation>
+        <translation>pas d&apos;ID de fenêtre de remplacement trouvé pour l&apos;émulateur #%1, fermeture</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="507"/>
         <source>embedded emulator #%1 is returning from full-screen</source>
-        <translation type="unfinished">l&apos;émulateur embarqué #%1 revient du mode plein écran</translation>
+        <translation>l&apos;émulateur embarqué #%1 revient du mode plein écran</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="517"/>
         <source>embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3</source>
-        <translation type="unfinished">l&apos;émulateur embarqué #%1 passe en plein écran, utilisa la résolution du bureau %2x%3</translation>
+        <translation>l&apos;émulateur embarqué #%1 passe en plein écran, utilisant la résolution du bureau %2x%3</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="164"/>
         <location filename="../../embedder.cpp" line="422"/>
         <source>emulator #%1 embedded, window ID = %2</source>
-        <translation type="unfinished">émulateur #%1 embarqué, ID de fenêtre = %2</translation>
+        <translation>émulateur #%1 embarqué, ID de fenêtre = %2</translation>
     </message>
 </context>
 <context>
