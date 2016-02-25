@@ -77,8 +77,6 @@ typedef struct
     uLong       external_fa;    /* external file attributes        4 bytes */
 } zip_fileinfo;
 
-typedef const char* zipcharpc;
-
 #define APPEND_STATUS_CREATE        (0)
 #define APPEND_STATUS_CREATEAFTER   (1)
 #define APPEND_STATUS_ADDINZIP      (2)
@@ -105,18 +103,18 @@ extern zipFile ZEXPORT zipOpen64 OF((const void *pathname, int append));
    you must open a zipfile, and create another. Of course, you can use RAW reading and writing to copy
    the file you did not want delete. */
 
-extern zipFile ZEXPORT zipOpen2 OF((const char *pathname, int append, zipcharpc* globalcomment, 
+extern zipFile ZEXPORT zipOpen2 OF((const char *pathname, int append, const char ** globalcomment, 
     zlib_filefunc_def* pzlib_filefunc_def));
 
-extern zipFile ZEXPORT zipOpen2_64 OF((const void *pathname, int append, zipcharpc* globalcomment, 
+extern zipFile ZEXPORT zipOpen2_64 OF((const void *pathname, int append, const char ** globalcomment, 
     zlib_filefunc64_def* pzlib_filefunc_def));
 
 extern zipFile ZEXPORT zipOpen3 OF((const char *pathname, int append, ZPOS64_T disk_size, 
-    zipcharpc* globalcomment, zlib_filefunc_def* pzlib_filefunc_def));
+    const char ** globalcomment, zlib_filefunc_def* pzlib_filefunc_def));
 /* Same as zipOpen2 but allows specification of spanned zip size */
 
 extern zipFile ZEXPORT zipOpen3_64 OF((const void *pathname, int append, ZPOS64_T disk_size, 
-    zipcharpc* globalcomment, zlib_filefunc64_def* pzlib_filefunc_def));
+    const char ** globalcomment, zlib_filefunc64_def* pzlib_filefunc_def));
 
 extern int ZEXPORT zipOpenNewFileInZip OF((zipFile file, const char* filename, const zip_fileinfo* zipfi,
     const void* extrafield_local, uInt size_extrafield_local, const void* extrafield_global, 
@@ -190,6 +188,11 @@ extern int ZEXPORT zipCloseFileInZipRaw64 OF((zipFile file, ZPOS64_T uncompresse
 
 extern int ZEXPORT zipClose OF((zipFile file, const char* global_comment));
 /* Close the zipfile */
+
+extern int ZEXPORT zipClose_64 OF((zipFile file, const char* global_comment));
+
+extern int ZEXPORT zipClose2_64 OF((zipFile file, const char* global_comment, uLong versionMadeBy));
+/* Same as zipClose_64 except versionMadeBy field */
 
 /***************************************************************************/
 
