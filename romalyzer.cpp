@@ -4185,6 +4185,8 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 	lineCollectionRebuilderSpecific->setEnabled(false);
 	checkBoxCollectionRebuilderHashCache->setEnabled(false);
 	checkBoxCollectionRebuilderDryRun->setEnabled(false);
+	lineEditCheckSumDbDatabasePath->setEnabled(false);
+	toolButtonBrowseCheckSumDbDatabasePath->setEnabled(false);
 	qApp->processEvents();
 	QTimer::singleShot(0, this, SLOT(updateCheckSumDbStatus()));
 }
@@ -4204,6 +4206,8 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 	lineCollectionRebuilderSpecific->setEnabled(enable);
 	checkBoxCollectionRebuilderHashCache->setEnabled(enable);
 	checkBoxCollectionRebuilderDryRun->setEnabled(enable);
+	lineEditCheckSumDbDatabasePath->setEnabled(enable);
+	toolButtonBrowseCheckSumDbDatabasePath->setEnabled(enable);
 	qApp->processEvents();
 	updateCheckSumDbStatus();
 	QTimer::singleShot(50, this, SLOT(updateCheckSumDbStatus()));
