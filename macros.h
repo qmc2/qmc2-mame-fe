@@ -14,10 +14,6 @@
 #warning "Target OS is not supported -- QMC2 currently supports Linux/UNIX, Windows and Mac OS X!"
 #endif
 
-#define QMC2_OS_NAME				XSTR(BUILD_OS_NAME)
-#define QMC2_OS_RELEASE				XSTR(BUILD_OS_RELEASE)
-#define QMC2_MACHINE_ARCHITECTURE		XSTR(BUILD_MACHINE)
-
 #if !defined(Q_OS_WIN)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -876,5 +872,11 @@
 // ROMAlyzer modes
 #define QMC2_ROMALYZER_MODE_SYSTEM		0
 #define QMC2_ROMALYZER_MODE_SOFTWARE		1
+
+// OS name, release and machine architecture
+#define QMC2_OS_NAME				XSTR(BUILD_OS_NAME)
+#define QMC2_OS_RELEASE				XSTR(BUILD_OS_RELEASE)
+#define QMC2_MACHINE_ARCHITECTURE		XSTR(BUILD_MACHINE)
+
 
 #endif
