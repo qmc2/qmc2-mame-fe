@@ -1279,9 +1279,10 @@ void MachineList::parse()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading ROM state from cache"));
 		tsRomCache.setDevice(&romStateCache);
 		tsRomCache.reset();
-		tsRomCache.readLine(); // ignore first line
+		tsRomCache.readLine(); // ignore the first line
+		QChar splitChar(' ');
 		while ( !tsRomCache.atEnd() ) {
-			QStringList words(tsRomCache.readLine().split(" "));
+			QStringList words(tsRomCache.readLine().split(splitChar, QString::SkipEmptyParts));
 			if ( words.count() > 1 )
 				machineStatusHash.insert(words[0], words[1].at(0).toLatin1());
 		}
