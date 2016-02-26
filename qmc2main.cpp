@@ -29,6 +29,7 @@
 #include <QDir>
 #include <QTest>
 #include <QColorDialog>
+#include <QChar>
 #if QT_VERSION >= 0x050000
 #include <QInputDialog>
 #include <QDesktopWidget>
@@ -7073,10 +7074,11 @@ void MainWindow::processFifoData()
 	if ( data.isEmpty() )
 		return;
 	QStringList sl = data.split("\n", QString::SkipEmptyParts);
+	QChar splitChar(' ');
 	for (int i = 0; i < sl.count(); i++) { 
 		if ( !sl[i].isEmpty() ) {
 			QString msgClass, msgPid, msgWhat, msgState;
-			QStringList words = sl[i].trimmed().split(" ");
+			QStringList words = sl[i].trimmed().split(splitChar);
 			if ( words.count() > 0 )
 				msgClass = words[0];
 			if ( words.count() > 1 )

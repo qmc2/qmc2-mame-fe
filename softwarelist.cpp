@@ -12,6 +12,7 @@
 #include <QAbstractButton>
 #include <QHash>
 #include <QLabel>
+#include <QChar>
 
 #include <algorithm> // std::sort()
 
@@ -3495,8 +3496,9 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",", QString::SkipEmptyParts);
 			successfulLookups.clear();
 			/*
+			QChar splitChar(' ');
 			foreach (QString requirement, item->whatsThis(QMC2_SWLIST_COLUMN_PART).split("\t", QString::SkipEmptyParts))
-				foreach (QString subarg, requirement.split(" ", QString::SkipEmptyParts))
+				foreach (QString subarg, requirement.split(splitChar, QString::SkipEmptyParts))
 					swlArgs << QString("%1").arg(subarg);
 			*/
 			for (int i = 0; i < parts.count(); i++) {
@@ -4097,8 +4099,9 @@ void SoftwareListXmlHandler::loadSoftwareStates(QString listName)
 		numTotal = numCorrect = numMostlyCorrect = numIncorrect = numNotFound = numUnknown = 0;
 		QTextStream ts(&stateCacheFile);
 		ts.readLine(); // comment line
+		QChar splitChar(' ');
 		while ( !ts.atEnd() && !qmc2SoftwareList->interruptLoad ) {
-			QStringList words = ts.readLine().trimmed().split(" ", QString::SkipEmptyParts);
+			QStringList words = ts.readLine().trimmed().split(splitChar, QString::SkipEmptyParts);
 			if ( words.count() > 1 ) {
 				switch ( words[1][0].toLatin1() ) {
 					case 'C':
