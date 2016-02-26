@@ -10274,7 +10274,7 @@ int main(int argc, char *argv[])
 #if QMC2_SVN_REV > 0
 			   ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
-			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString() + ")";
+			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + QMC2_OS_NAME + " " + QMC2_MACHINE_ARCHITECTURE + ")";
 	qmc2StartupTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
 

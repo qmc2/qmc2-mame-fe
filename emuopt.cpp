@@ -1145,7 +1145,7 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 					QXmlStreamAttributes attributes = xmlReader->attributes();
 					QString choiceName = attributes.value("name").toString();
 					bool ignore = (attributes.value("ignore").toString() == "true");
-					bool ignoreOnThisPlatform = (attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))).toString() == "true");
+					bool ignoreOnThisPlatform = (attributes.value(QString("ignore.%1").arg(QMC2_OS_NAME)).toString() == "true");
 					if ( !choiceName.isEmpty() && !ignore && !ignoreOnThisPlatform )
 						validChoices << choiceName;
 				} else
@@ -1204,8 +1204,8 @@ void EmulatorOptions::createTemplateMap()
 						bool ignore = false;
 						if ( attributes.hasAttribute("ignore") )
 							ignore = attributes.value("ignore") == "true";
-						if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) )
-							ignore = attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) == "true";
+						if ( attributes.hasAttribute(QString("ignore.%1").arg(QMC2_OS_NAME)) )
+							ignore = attributes.value(QString("ignore.%1").arg(QMC2_OS_NAME)) == "true";
 						if ( !ignore ) {
 							sectionTitle = readDescription(&xmlReader, lang, &readNext);
 							templateMap[sectionTitle].clear();
@@ -1223,13 +1223,13 @@ void EmulatorOptions::createTemplateMap()
 							visible = attributes.value("visible") == "true";
 						if ( attributes.hasAttribute("decimals") )
 							decimals = attributes.value("decimals").toString().toInt();
-						if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) )
-							ignore = attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) == "true";
+						if ( attributes.hasAttribute(QString("ignore.%1").arg(QMC2_OS_NAME)) )
+							ignore = attributes.value(QString("ignore.%1").arg(QMC2_OS_NAME)) == "true";
 						if ( !ignore ) {
 							QString type = attributes.value("type").toString();
 							QString defaultValue;
-							if ( attributes.hasAttribute(QString("default.%1").arg(XSTR(BUILD_OS_NAME))) )
-								defaultValue = attributes.value(QString("default.%1").arg(XSTR(BUILD_OS_NAME))).toString();
+							if ( attributes.hasAttribute(QString("default.%1").arg(QMC2_OS_NAME)) )
+								defaultValue = attributes.value(QString("default.%1").arg(QMC2_OS_NAME)).toString();
 							else
 								defaultValue = attributes.value("default").toString();
 							QString optionDescription = readDescription(&xmlReader, lang, &readNext);
