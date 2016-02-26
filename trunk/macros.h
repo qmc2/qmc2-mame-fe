@@ -14,6 +14,10 @@
 #warning "Target OS is not supported -- QMC2 currently supports Linux/UNIX, Windows and Mac OS X!"
 #endif
 
+#define QMC2_OS_NAME				XSTR(BUILD_OS_NAME)
+#define QMC2_OS_RELEASE				XSTR(BUILD_OS_RELEASE)
+#define QMC2_MACHINE_ARCHITECTURE		XSTR(BUILD_MACHINE)
+
 #if !defined(Q_OS_WIN)
 #include <sys/types.h>
 #include <sys/stat.h>
