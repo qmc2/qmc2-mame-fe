@@ -7026,8 +7026,11 @@ void MainWindow::createFifo(bool logFifoCreation)
 #if defined(QMC2_OS_WIN)
 	// FIXME: implement Windows specific notifier FIFO support
 #elif defined(QMC2_SDLMAME)
-	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) )
-		::mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
+	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) ) {
+		mode_t oum = ::umask(0000);
+		::mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+		::umask(oum);
+	}
 	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) ) {
 		log(QMC2_LOG_FRONTEND, tr("WARNING: can't create SDLMAME output notifier FIFO, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
 	} else {
