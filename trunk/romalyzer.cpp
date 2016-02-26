@@ -17,6 +17,7 @@
 #include <QXmlQuery>
 #include <QPalette>
 #include <QRegExp>
+#include <QChar>
 #if defined(QMC2_OS_WIN)
 #include <windows.h>
 #endif
@@ -800,10 +801,11 @@ void ROMAlyzer::analyze()
 				if ( setsInMemory >= reportLimit ) {
 					int setsToBeRemoved = setsInMemory - reportLimit + 1;
 					log(tr("report limit reached, removing %n set(s) from the report", "", setsToBeRemoved));
+					QChar splitChar(' ');
 					for (int j = 0; j < setsToBeRemoved; j++) {
 						QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
 						if ( ti ) {
-							analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_SET).split(" ", QString::SkipEmptyParts)[0]);
+							analyzerBadSets.removeAll(ti->text(QMC2_ROMALYZER_COLUMN_SET).split(splitChar, QString::SkipEmptyParts)[0]);
 							if ( ti->isSelected() )
 								treeWidgetChecksums->selectionModel()->clear();
 							delete treeWidgetChecksums->takeTopLevelItem(0);

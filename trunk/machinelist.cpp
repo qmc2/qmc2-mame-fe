@@ -20,6 +20,7 @@
 #include <QByteArray>
 #include <QCryptographicHash>
 #include <QApplication>
+#include <QChar>
 
 #include "machinelist.h"
 #include "imagewidget.h"
@@ -2795,9 +2796,10 @@ void MachineList::verifyReadyReadStandardOutput()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("ROM check - %p%"));
 	}
 	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
+	QChar splitChar(' ');
 	for (int i = 0; i < lines.count(); i++) {
 		if ( lines[i].startsWith("romset ") ) {
-			QStringList words = lines[i].split(" ");
+			QStringList words = lines[i].split(splitChar);
 			numVerifyRoms++;
 			if ( words.count() > 2 ) {
 				romName = words[1].remove("\"");

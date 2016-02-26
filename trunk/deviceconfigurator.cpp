@@ -4,6 +4,7 @@
 #include <QInputDialog>
 #include <QMap>
 #include <QProcess>
+#include <QChar>
 
 #include <algorithm> // std::sort()
 
@@ -584,6 +585,7 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 		insertChildItems(item, allSlotItems);
 	}
 
+	QChar splitChar(' ');
 	foreach (QTreeWidgetItem *item, allSlotItems) {
 		if ( forceQuit )
 			break;
@@ -609,11 +611,11 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 #endif
 				if ( addArg ) {
 					if ( cb->currentIndex() > 0 && defaultIndex == 0 )
-						args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+						args << QString("-%1").arg(slotName) << cb->currentText().split(splitChar)[0];
 					else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
 						args << QString("-%1").arg(slotName) << "\"\"";
 					else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
-						args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+						args << QString("-%1").arg(slotName) << cb->currentText().split(splitChar)[0];
 				}
 			}
 		}
@@ -1680,6 +1682,7 @@ void DeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 			insertChildItems(item, allSlotItems);
 		}
 		QStringList slotNames, slotOptions, slotBIOSs;
+		QChar splitChar(' ');
 		foreach (QTreeWidgetItem *item, allSlotItems) {
 			QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 			if ( !slotName.isEmpty() ) {
@@ -1693,7 +1696,7 @@ void DeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 					QComboBox *cbBIOS = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
 					if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
 						slotNames << slotName;
-						slotOptions << cb->currentText().split(" ")[0];
+						slotOptions << cb->currentText().split(splitChar)[0];
 						if ( cbBIOS ) {
 							QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];
 							if ( biosChoice == tr("N/A") )
@@ -1707,7 +1710,7 @@ void DeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 						slotBIOSs << QString();
 					} else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex ) {
 						slotNames << slotName;
-						slotOptions << cb->currentText().split(" ")[0];
+						slotOptions << cb->currentText().split(splitChar)[0];
 						if ( cbBIOS ) {
 							QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];
 							if ( biosChoice == tr("N/A") )
@@ -1724,7 +1727,7 @@ void DeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 								biosChoice.clear();
 							slotBIOSs << biosChoice;
 							if ( !biosChoice.isEmpty() && !isDefaultBiosChoice )
-								slotOptions << cb->currentText().split(" ")[0];
+								slotOptions << cb->currentText().split(splitChar)[0];
 							else
 								slotOptions << QString();
 						} else  {
@@ -2607,6 +2610,7 @@ void DeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 						insertChildItems(item, allSlotItems);
 					}
 					QStringList slotNames, slotOptions, slotBIOSs;
+					QChar splitChar(' ');
 					foreach (QTreeWidgetItem *item, allSlotItems) {
 						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
 						if ( !slotName.isEmpty() ) {
@@ -2626,13 +2630,13 @@ void DeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 								}
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
 									slotNames << slotName;
-									slotOptions << cb->currentText().split(" ")[0];
+									slotOptions << cb->currentText().split(splitChar)[0];
 								} else if (cb->currentIndex() == 0 && defaultIndex > 0 ) {
 									slotNames << slotName;
 									slotOptions << "\"\"";
 								} else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex ) {
 									slotNames << slotName;
-									slotOptions << cb->currentText().split(" ")[0];
+									slotOptions << cb->currentText().split(splitChar)[0];
 								}
 							}
 						}

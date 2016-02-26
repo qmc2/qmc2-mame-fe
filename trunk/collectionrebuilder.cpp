@@ -10,6 +10,7 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include <QScrollBar>
+#include <QChar>
 
 #include "collectionrebuilder.h"
 #include "settings.h"
