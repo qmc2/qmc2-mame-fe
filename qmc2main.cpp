@@ -2496,6 +2496,11 @@ void MainWindow::on_actionClearIconCache_triggered(bool)
 {
 	qmc2IconHash.clear();
 	qmc2IconsPreloaded = false;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+	if ( QMC2_ICON_FILETYPE_ARCHIVE )
+		foreach (ArchiveFile *archiveFile, qmc2IconArchiveMap)
+			archiveFile->reopen();
+#endif
 	log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
 

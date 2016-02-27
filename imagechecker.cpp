@@ -163,7 +163,7 @@ void ImageCheckerThread::runSystemArtworkCheck()
 				emit log(tr("Thread[%1]: processing work unit with %n entries", "", workUnit.count()).arg(threadNumber));
 				foundList.clear();
 				missingList.clear();
-				foreach (QString gameName, workUnit) {
+				foreach (QString machineName, workUnit) {
 					if ( exitThread || qmc2StopParser )
 						break;
 					QString fileName;
@@ -178,30 +178,30 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							QString zipFilePath = zipMap.key(zip);
 							readerError.clear();
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-							bool ok = imageWidget->checkImage(gameName, zip, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+							bool ok = imageWidget->checkImage(machineName, zip, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
 #else
-							bool ok = imageWidget->checkImage(gameName, zip, NULL, &imageSize, &byteCount, &fileName, &readerError);
+							bool ok = imageWidget->checkImage(machineName, zip, NULL, &imageSize, &byteCount, &fileName, &readerError);
 #endif
 							if ( ok ) {
-								foundList << gameName;
-								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+								foundList << machineName;
+								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(machineName).arg(zipFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 								foundCount++;
 								break;
 							} else {
 								if ( zlCount < zipMap.count() ) {
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(readerError));
-										badList << gameName;
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(zipFilePath + ": " + fileName).arg(readerError));
+										badList << machineName;
 										badFileList << zipFilePath + ": " + fileName;
 									}
 								} else {
-									missingList << gameName;
+									missingList << machineName;
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(zipFilePath + ": " + fileName).arg(readerError));
-										badList << gameName;
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(zipFilePath + ": " + fileName).arg(readerError));
+										badList << machineName;
 										badFileList << zipFilePath + ": " + fileName;
 									} else
-										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(machineName));
 									missingCount++;
 								}
 							}
@@ -218,16 +218,16 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							int waitCounter = 0;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 							if ( !m_isFillingDictionary )
-								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #else
 							if ( !m_isFillingDictionary )
-								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #endif
 							else while ( m_async && m_isFillingDictionary && !exitThread ) {
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #else
-								checkReturn = imageWidget->checkImage(gameName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #endif
 								if ( checkReturn && m_isFillingDictionary && m_async ) {
 									if ( waitCounter++ % 100 == 0 )
@@ -237,25 +237,25 @@ void ImageCheckerThread::runSystemArtworkCheck()
 									break;
 							}
 							if ( checkReturn ) {
-								foundList << gameName;
-								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(sevenZipFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+								foundList << machineName;
+								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(machineName).arg(sevenZipFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 								foundCount++;
 								break;
 							} else {
 								if ( szlCount < sevenZipMap.count() ) {
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(sevenZipFilePath + ": " + fileName).arg(readerError));
-										badList << gameName;
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(sevenZipFilePath + ": " + fileName).arg(readerError));
+										badList << machineName;
 										badFileList << sevenZipFilePath + ": " + fileName;
 									}
 								} else {
-									missingList << gameName;
+									missingList << machineName;
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(sevenZipFilePath + ": " + fileName).arg(readerError));
-										badList << gameName;
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(sevenZipFilePath + ": " + fileName).arg(readerError));
+										badList << machineName;
 										badFileList << sevenZipFilePath + ": " + fileName;
 									} else
-										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(machineName));
 									missingCount++;
 								}
 							}
@@ -269,26 +269,26 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							alCount++;
 							QString archiveFilePath = archiveMap.key(archiveFile);
 							readerError.clear();
-							if ( imageWidget->checkImage(gameName, NULL, NULL, archiveFile, &imageSize, &byteCount, &fileName, &readerError) ) {
-								foundList << gameName;
-								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(archiveFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+							if ( imageWidget->checkImage(machineName, NULL, NULL, archiveFile, &imageSize, &byteCount, &fileName, &readerError) ) {
+								foundList << machineName;
+								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(machineName).arg(archiveFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 								foundCount++;
 								break;
 							} else {
 								if ( alCount < archiveMap.count() ) {
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(archiveFilePath + ": " + fileName).arg(readerError));
-										badList << gameName;
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(archiveFilePath + ": " + fileName).arg(readerError));
+										badList << machineName;
 										badFileList << archiveFilePath + ": " + fileName;
 									}
 								} else {
-									missingList << gameName;
+									missingList << machineName;
 									if ( !readerError.isEmpty() ) {
-										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(archiveFilePath + ": " + fileName).arg(readerError));
-										badList << gameName;
+										emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(archiveFilePath + ": " + fileName).arg(readerError));
+										badList << machineName;
 										badFileList << archiveFilePath + ": " + fileName;
 									} else
-										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+										emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(machineName));
 									missingCount++;
 								}
 							}
@@ -298,22 +298,22 @@ void ImageCheckerThread::runSystemArtworkCheck()
 					else {
 						// unzipped images
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-						bool ok = imageWidget->checkImage(gameName, NULL, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+						bool ok = imageWidget->checkImage(machineName, NULL, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
 #else
-						bool ok = imageWidget->checkImage(gameName, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+						bool ok = imageWidget->checkImage(machineName, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
 #endif
 						if ( ok ) {
-							foundList << gameName;
-							emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(gameName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
+							foundList << machineName;
+							emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(machineName).arg(fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 							foundCount++;
 						} else {
-							missingList << gameName;
+							missingList << machineName;
 							if ( !readerError.isEmpty() ) {
-								emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(gameName).arg(fileName).arg(readerError));
-								badList << gameName;
+								emit log(tr("Thread[%1]: image for '%2' loaded from '%3' is bad, error = '%4'").arg(threadNumber).arg(machineName).arg(fileName).arg(readerError));
+								badList << machineName;
 								badFileList << fileName;
 							} else
-								emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(gameName));
+								emit log(tr("Thread[%1]: image for '%2' is missing").arg(threadNumber).arg(machineName));
 							missingCount++;
 						}
 					}
@@ -868,22 +868,27 @@ void ImageChecker::feedWorkerThreads()
 			// icons
 			qmc2IconHash.clear();
 			qmc2IconsPreloaded = false;
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+			if ( QMC2_ICON_FILETYPE_ARCHIVE )
+				foreach (ArchiveFile *archiveFile, qmc2IconArchiveMap)
+					archiveFile->reopen();
+#endif
 			int itemCount = 0;
 			bool firstCheck = true;
 			qmc2MainWindow->progressBarMachineList->setRange(0, qmc2MachineListItemHash.count());
 			qmc2MainWindow->progressBarMachineList->setFormat(QString());
 			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
 				it.next();
-				QString gameName = it.key();
-				if ( !qmc2MachineListItemHash.contains(gameName) )
+				QString machineName(it.key());
+				if ( !qmc2MachineListItemHash.contains(machineName) )
 					continue;
-				if ( qmc2MachineList->loadIcon(gameName, NULL, true, NULL) ) {
-					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(gameName));
-					bufferedFoundList << gameName;
+				if ( qmc2MachineList->loadIcon(machineName, NULL, true, NULL) ) {
+					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(machineName));
+					bufferedFoundList << machineName;
 					foundCount++;
 				} else {
-					log(tr("Thread[%1]: Icon for '%2' is missing").arg(0).arg(gameName));
-					bufferedMissingList << gameName;
+					log(tr("Thread[%1]: Icon for '%2' is missing").arg(0).arg(machineName));
+					bufferedMissingList << machineName;
 					missingCount++;
 				}
 				if ( firstCheck ) {
