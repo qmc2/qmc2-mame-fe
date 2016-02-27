@@ -49,6 +49,7 @@ class ArchiveFile : public QObject
 		QList<ArchiveEntryMetaData> &entryList() { return m_entryList; }
 		bool isOpen() { return m_archive != 0; }
 		bool open(QIODevice::OpenMode openMode = QIODevice::ReadOnly, QString fileName = QString());
+		void reopen();
 		void close();
 		bool readMode() { return m_openMode == QIODevice::ReadOnly; }
 		bool writeMode() { return m_openMode == QIODevice::WriteOnly; }
