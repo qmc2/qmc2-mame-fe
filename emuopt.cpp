@@ -594,9 +594,7 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				if ( defaultSubValues.count() > 1 )
 					dv2 = defaultSubValues[1].toDouble();
 				defaultValue = cLoc.toString(dv1, 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(dv2, 'f', float2Editor->doubleSpinBox1->decimals());
-				if ( storedValue == "<UNSET>" )
-					storedValue = currentValue;
-				else {
+				if ( storedValue != "<UNSET>" ) {
 					double sv1, sv2;
 					sv1 = sv2 = 0;
 					QStringList storedSubValues = storedValue.split(",");
@@ -621,9 +619,7 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				if ( defaultSubValues.count() > 2 )
 					dv3 = defaultSubValues[2].toDouble();
 				defaultValue = cLoc.toString(dv1, 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(dv2, 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(dv3, 'f', float3Editor->doubleSpinBox2->decimals());
-				if ( storedValue == "<UNSET>" )
-					storedValue = currentValue;
-				else {
+				if ( storedValue != "<UNSET>" ) {
 					double sv1, sv2, sv3;
 					sv1 = sv2 = sv3 = 0;
 					QStringList storedSubValues = storedValue.split(",");
