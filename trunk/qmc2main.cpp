@@ -1689,6 +1689,45 @@ void MainWindow::on_actionPlay_triggered(bool)
 					break;
 				}
 
+				case QMC2_EMUOPT_TYPE_FLOAT2: {
+					QStringList subValues = option.value.split(",");
+					QStringList defaultSubValues = option.value.split(",");
+					double v1, v2, dv1, dv2;
+					v1 = v2 = dv1 = dv2 = 0;
+					if ( subValues.count() > 0 )
+						v1 = subValues[0].toDouble();
+					if ( subValues.count() > 1 )
+						v2 = subValues[1].toDouble();
+					if ( defaultSubValues.count() > 0 )
+						dv1 = defaultSubValues[0].toDouble();
+					if ( defaultSubValues.count() > 1 )
+						dv2 = defaultSubValues[1].toDouble();
+					if ( v1 != dv1 || v2 != dv2 )
+						args << QString("-%1").arg(option.name) << QString("%1,%2").arg(v1).arg(v2);
+
+				}
+
+				case QMC2_EMUOPT_TYPE_FLOAT3: {
+					QStringList subValues = option.value.split(",");
+					QStringList defaultSubValues = option.value.split(",");
+					double v1, v2, v3, dv1, dv2, dv3;
+					v1 = v2 = v3 = dv1 = dv2 = dv3 = 0;
+					if ( subValues.count() > 0 )
+						v1 = subValues[0].toDouble();
+					if ( subValues.count() > 1 )
+						v2 = subValues[1].toDouble();
+					if ( subValues.count() > 2 )
+						v3 = subValues[2].toDouble();
+					if ( defaultSubValues.count() > 0 )
+						dv1 = defaultSubValues[0].toDouble();
+					if ( defaultSubValues.count() > 1 )
+						dv2 = defaultSubValues[1].toDouble();
+					if ( defaultSubValues.count() > 2 )
+						dv3 = defaultSubValues[2].toDouble();
+					if ( v1 != dv1 || v2 != dv2 || v3 != dv3 )
+						args << QString("-%1").arg(option.name) << QString("%1,%2,%3").arg(v1).arg(v2).arg(v3);
+				}
+
 				case QMC2_EMUOPT_TYPE_BOOL: {
 					bool dv = EmulatorOptionDelegate::stringToBool(option.dvalue);
 					bool v = EmulatorOptionDelegate::stringToBool(option.value);
