@@ -514,7 +514,7 @@
 #define QMC2_IMGFMT_SETUP_COLUMN_ACT		3
 
 // default decimals for float values of emulator options
-#define QMC2_EMUOPT_DFLT_DECIMALS		6
+#define QMC2_EMUOPT_DFLT_DECIMALS		8
 
 // MiniWebBrowser: hide status bar after how many milliseconds (if no longer required)
 #define QMC2_BROWSER_STATUS_TIMEOUT		250

@@ -1572,7 +1572,7 @@
 			<description lang="us" text="Shadow mask tile mode (0 for screen based, 1 for source based)"/>
 			<description lang="de" text="'Shadow Mask Tile Mode' (0 für Bildschirm-basiert, 1 für Quellen-basiert)"/>
 		</option>
-		<option default="0" name="shadow_mask_alpha" type="float" decimals="8">
+		<option default="0" name="shadow_mask_alpha" type="float">
 			<description lang="us" text="Shadow mask alpha-blend value (1.0 is fully blended, 0.0 is no mask)"/>
 			<description lang="de" text="Wert für 'Shadow Mask Alpha Blending' (1.0 = volle Überlagerung, 0.0 = keine Maske)"/>
 			<description lang="fr" text="Valeur du masque Alpha d'ombrage (1.0 pour mix total, 0.0 sans masque)"/>
@@ -1600,36 +1600,36 @@
 			<description lang="pt" text="Altura da máscara de sombras, em pontos de fósforo"/>
 			<description lang="es" text="Alto de shadow mask, en 'phosphor dots'"/>
 		</option>
-		<option default="0.1875" name="shadow_mask_usize" type="float" decimals="8">
+		<option default="0.1875" name="shadow_mask_usize" type="float">
 			<description lang="us" text="Shadow mask texture size in U direction"/>
 			<description lang="de" text="Größe der Shadow Mask Textur in U-Richtung"/>
 			<description lang="fr" text="Taille de la texture du masque d'ombrage en direction U"/>
 			<description lang="pt" text="Tamanho da textura da máscara de sombras na direção U"/>
 			<description lang="es" text="Tamaño de textura de shadow mask en dirección U"/>
 		</option>
-		<option default="0.25" name="shadow_mask_vsize" type="float" decimals="8">
+		<option default="0.25" name="shadow_mask_vsize" type="float">
 			<description lang="us" text="Shadow mask texture size in V direction"/>
 			<description lang="de" text="Größe der Shadow Mask Textur in V-Richtung"/>
 			<description lang="fr" text="Taille de la texture du masque d'ombrage en direction V"/>
 			<description lang="pt" text="Tamanho da textura da máscara de sombras na direção V"/>
 			<description lang="es" text="Tamaño de textura de shadow mask en dirección V"/>
 		</option>
-		<option default="0.0" name="shadow_mask_uoffset" type="float" decimals="8">
+		<option default="0.0" name="shadow_mask_uoffset" type="float">
 			<description lang="us" text="Shadow mask texture offset in U direction"/>
 			<description lang="de" text="Textur-Offset der Shadow Mask in U Richtung"/>
 		</option>
-		<option default="0.0" name="shadow_mask_voffset" type="float" decimals="8">
+		<option default="0.0" name="shadow_mask_voffset" type="float">
 			<description lang="us" text="Shadow mask texture offset in V direction"/>
 			<description lang="de" text="Textur-Offset der Shadow Mask in V Richtung"/>
 		</option>
-		<option default="0" name="curvature" type="float" decimals="8">
+		<option default="0" name="curvature" type="float">
 			<description lang="us" text="Screen curvature amount"/>
 			<description lang="de" text="Betrag der Bildschirmkrümmung"/>
 			<description lang="fr" text="Taux de courbure de l'écran"/>
 			<description lang="pt" text="Quantidade de curvatura da tela"/>
 			<description lang="es" text="Cantidad de curvatura de la pantalla"/>
 		</option>
-		<option default="0" name="reflection" type="float" decimals="8">
+		<option default="0" name="reflection" type="float">
 			<description lang="us" text="Screen reflection amount"/>
 			<description lang="de" text="Betrag der Bildschirmreflexion"/>
 		</option>
@@ -1637,15 +1637,15 @@
 			<description lang="us" text="Screen round corner amount"/>
 			<description lang="de" text="Betrag der Bildschirmabrundung"/>
 		</option>
-		<option default="0" name="smooth_border" type="float" decimals="8">
+		<option default="0" name="smooth_border" type="float">
 			<description lang="us" text="Screen smooth border amount"/>
 			<description lang="de" text="Betrag der Bildkantenglättung"/>
 		</option>
-		<option default="0" name="vignetting" type="float" decimals="8">
+		<option default="0" name="vignetting" type="float">
 			<description lang="us" text="Image vignetting amount"/>
 			<description lang="de" text="Betrag der Bildvignettierung"/>
 		</option>
-		<option default="0" name="scanline_alpha" type="float" decimals="8">
+		<option default="0" name="scanline_alpha" type="float">
 			<description lang="us" text="Overall alpha scaling value for scanlines"/>
 			<description lang="de" text="Allgemeiner Alpha-Skalierungs-Wert für Abtastzeilen"/>
 			<description lang="fr" text="Valeur globale d'étirement alpha pour les scanlines"/>
@@ -1743,7 +1743,7 @@
 			<description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada"/>
 			<description lang="es" text="Señal de salida azul generada por la señal de entrada"/>
 		</option>
-		<option default="1.4" name="saturation" type="float" decimals="8">
+		<option default="1.4" name="saturation" type="float">
 			<description lang="us" text="Saturation scaling value"/>
 			<description lang="de" text="Wert der Sättigungs-Skalierung"/>
 			<description lang="fr" text="Valeur d'étirement de saturation"/>
@@ -1792,70 +1792,70 @@
 			<description lang="pt" text="Habilitar pós processamento HLSL do espaço YIQ"/>
 			<description lang="es" text="Activar post-procesado HLSL YIQ-space"/>
 		</option>
-		<option default="3.57954545" name="yiq_cc" type="float" decimals="8">
+		<option default="3.57954545" name="yiq_cc" type="float">
 			<description lang="us" text="Color carrier frequency for NTSC signal processing"/>
 			<description lang="de" text="Farbträger-Frequenz für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Fréquence de couleurs pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Frequência da portadora de cor para o processamento de sinal NTSC"/>
 			<description lang="es" text="Frecuencia de colores para el procesado de señal NTSC"/>
 		</option>
-		<option default="0.5" name="yiq_a" type="float" decimals="8">
+		<option default="0.5" name="yiq_a" type="float">
 			<description lang="us" text="A value for NTSC signal processing"/>
 			<description lang="de" text="A-Wert für NTSC Signalbearbeitung"/>
 			<description lang="fr" text="Valeur A pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Valor A para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor A para procesado de señal NTSC"/>
 		</option>
-		<option default="0.5" name="yiq_b" type="float" decimals="8">
+		<option default="0.5" name="yiq_b" type="float">
 			<description lang="us" text="B value for NTSC signal processing"/>
 			<description lang="de" text="B-Wert für NTSC Signalbearbeitung"/>
 			<description lang="fr" text="Valeur B pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor B para procesado de señal NTSC"/>
 		</option>
-		<option default="0" name="yiq_o" type="float" decimals="8">
+		<option default="0" name="yiq_o" type="float">
 			<description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
 			<description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Phase offset de sortie pour la fréquence de couleurs pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Deslocamento de saída de fase da portadora de cor para o processamento de sinal NTSC"/>
 			<description lang="es" text="Compensación de fase de color de salida para procesado de señal NTSC"/>
 		</option>
-		<option default="1" name="yiq_p" type="float" decimals="8">
+		<option default="1" name="yiq_p" type="float">
 			<description lang="us" text="Incoming pixel clock scaling value for NTSC signal processing"/>
 			<description lang="de" text="Eingehender Pixel-Clock Skalierungswert für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Valeur d'étirement de pixels entrants pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Valor de escala do clock do pixel de entrada para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor de escalado de píxeles de entrada para procesado de señal NTSC"/>
 		</option>
-		<option default="1" name="yiq_n" type="float" decimals="8">
+		<option default="1" name="yiq_n" type="float">
 			<description lang="us" text="Y filter notch width for NTSC signal processing"/>
 			<description lang="de" text="Y Filter-Aussparung für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Largeur de filtre Y pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Tamanho do notch do filtro Y para o processamento de sinal NTSC"/>
 			<description lang="es" text="Anchura de filtro Y para procesado de señal NTSC"/>
 		</option>
-		<option default="6" name="yiq_y" type="float" decimals="8">
+		<option default="6" name="yiq_y" type="float">
 			<description lang="us" text="Y filter cutoff frequency for NTSC signal processing"/>
 			<description lang="de" text="Y-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Fréquence de coupure du filtre Y pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Frequência de corte do filtro Y para o processamento de sinal NTSC"/>
 			<description lang="es" text="Frecuencia de corte de filtro Y para procesado de señal NTSC"/>
 		</option>
-		<option default="1.2" name="yiq_i" type="float" decimals="8">
+		<option default="1.2" name="yiq_i" type="float">
 			<description lang="us" text="I filter cutoff frequency for NTSC signal processing"/>
 			<description lang="de" text="I-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Fréquence de coupure du filtre I pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Frequência de corte do filtro I para o processamento de sinal NTSC"/>
 			<description lang="es" text="Frecuencia de corte de filtro I para procesado de señal NTSC"/>
 		</option>
-		<option default="0.6" name="yiq_q" type="float" decimals="8">
+		<option default="0.6" name="yiq_q" type="float">
 			<description lang="us" text="Q filter cutoff frequency for NTSC signal processing"/>
 			<description lang="de" text="Q-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Fréquence de coupure du filtre Q pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Frequência de corte do filtro Q para o processamento de sinal NTSC"/>
 			<description lang="es" text="Frecuencia de corte de filtro Q para procesado de señal NTSC"/>
 		</option>
-		<option default="52.6" name="yiq_scan_time" type="float" decimals="8">
+		<option default="52.6" name="yiq_scan_time" type="float">
 			<description lang="us" text="Horizontal scanline duration for NTSC signal processing (in usec)"/>
 			<description lang="de" text="Horizontale Verweildauer pro Abtastzeile (in Mikrosekunden) für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Durée des scanlines horizontales pour le traitement du signal NTSC (en msec)"/>
@@ -1869,19 +1869,19 @@
 			<description lang="pt" text="Valor de contagem de fase para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor de fase para procesado de señal NTSC"/>
 		</option>
-		<option default="0.5" name="vector_length_scale" type="float" decimals="8">
+		<option default="0.5" name="vector_length_scale" type="float">
 			<description lang="us" text="How much length affects vector fade"/>
 			<description lang="de" text="Einfluss der Länge auf den Vektor-Fade"/>
 		</option>
-		<option default="500.0" name="vector_length_ratio" type="float" decimals="8">
+		<option default="500.0" name="vector_length_ratio" type="float">
 			<description lang="us" text="Vector fade length (4.0 means vectors fade the most at and above 4 pixels, etc.)"/>
 			<description lang="de" text="Vektor-Fade Länge (4.0 bedeutet, dass Vektoren am Meisten bei und oberhald von 4 Pixeln ein-/ausgeblendet werden)"/>
 		</option>
-		<option default="0.0" name="hum_bar_alpha" type="float" decimals="8">
+		<option default="0.0" name="hum_bar_alpha" type="float">
 			<description lang="us" text="Overall alpha scaling value for hum bar"/>
 			<description lang="de" text="Gesamter Alpha Skalierungswert für 'Hum Bar' (was soll das sein?)"/>
 		</option>
-		<option default="0.0" name="yiq_jitter" type="float" decimals="8">
+		<option default="0.0" name="yiq_jitter" type="float">
 			<description lang="us" text="Jitter for the NTSC signal processing"/>
 			<description lang="de" text="Schwankung für die NTSC Signalverarbeitung"/>
 		</option>
@@ -1889,7 +1889,7 @@
 			<description lang="us" text="Bloom blend mode (0 for addition, 1 for darken)"/>
 			<description lang="de" text="Glanz Blendmodus (0 für Addition, 1 zum Abdunkeln)"/>
 		</option>
-		<option default="0.25" name="bloom_scale" type="float" decimals="8">
+		<option default="0.25" name="bloom_scale" type="float">
 			<description lang="us" text="Intensity factor for bloom"/>
 			<description lang="de" text="Intensitätsfaktor für Glanz"/>
 		</option>
@@ -1897,47 +1897,47 @@
 			<description lang="us" text="Overdrive factor for bloom"/>
 			<description lang="de" text="Übersteuerungsfaktor für Glanz"/>
 		</option>
-		<option default="1.0" name="bloom_lvl0_weight" type="float" decimals="8">
+		<option default="1.0" name="bloom_lvl0_weight" type="float">
 			<description lang="us" text="Bloom level 0 (full-size target) weight"/>
 			<description lang="de" text="Glanz-Level 0 Gewichtung (Maßstab 1:1)"/>
 		</option>
-		<option default="0.64" name="bloom_lvl1_weight" type="float" decimals="8">
+		<option default="0.64" name="bloom_lvl1_weight" type="float">
 			<description lang="us" text="Bloom level 1 (half-size target) weight"/>
 			<description lang="de" text="Glanz-Level 1 Gewichtung (Maßstab 1:2)"/>
 		</option>
-		<option default="0.32" name="bloom_lvl2_weight" type="float" decimals="8">
+		<option default="0.32" name="bloom_lvl2_weight" type="float">
 			<description lang="us" text="Bloom level 2 (quarter-size target) weight"/>
 			<description lang="de" text="Glanz-Level 2 Gewichtung (Maßstab 1:4)"/>
 		</option>
-		<option default="0.16" name="bloom_lvl3_weight" type="float" decimals="8">
+		<option default="0.16" name="bloom_lvl3_weight" type="float">
 			<description lang="us" text="Bloom level 3 (.) weight"/>
 			<description lang="de" text="Glanz-Level 3 Gewichtung"/>
 		</option>
-		<option default="0.08" name="bloom_lvl4_weight" type="float" decimals="8">
+		<option default="0.08" name="bloom_lvl4_weight" type="float">
 			<description lang="us" text="Bloom level 4 (.) weight"/>
 			<description lang="de" text="Glanz-Level 4 Gewichtung"/>
 		</option>
-		<option default="0.04" name="bloom_lvl5_weight" type="float" decimals="8">
+		<option default="0.04" name="bloom_lvl5_weight" type="float">
 			<description lang="us" text="Bloom level 5 (.) weight"/>
 			<description lang="de" text="Glanz-Level 5 Gewichtung"/>
 		</option>
-		<option default="0.04" name="bloom_lvl6_weight" type="float" decimals="8">
+		<option default="0.04" name="bloom_lvl6_weight" type="float">
 			<description lang="us" text="Bloom level 6 (.) weight"/>
 			<description lang="de" text="Glanz-Level 6 Gewichtung"/>
 		</option>
-		<option default="0.02" name="bloom_lvl7_weight" type="float" decimals="8">
+		<option default="0.02" name="bloom_lvl7_weight" type="float">
 			<description lang="us" text="Bloom level 7 (.) weight"/>
 			<description lang="de" text="Glanz-Level 7 Gewichtung"/>
 		</option>
-		<option default="0.02" name="bloom_lvl8_weight" type="float" decimals="8">
+		<option default="0.02" name="bloom_lvl8_weight" type="float">
 			<description lang="us" text="Bloom level 8 (.) weight"/>
 			<description lang="de" text="Glanz-Level 8 Gewichtung"/>
 		</option>
-		<option default="0.01" name="bloom_lvl9_weight" type="float" decimals="8">
+		<option default="0.01" name="bloom_lvl9_weight" type="float">
 			<description lang="us" text="Bloom level 9 (.) weight"/>
 			<description lang="de" text="Glanz-Level 9 Gewichtung"/>
 		</option>
-		<option default="0.01" name="bloom_lvl10_weight" type="float" decimals="8">
+		<option default="0.01" name="bloom_lvl10_weight" type="float">
 			<description lang="us" text="Bloom level 10 (1x1 target) weight"/>
 			<description lang="de" text="Glanz-Level 10 Gewichtung"/>
 		</option>
