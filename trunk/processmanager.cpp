@@ -172,6 +172,9 @@ void ProcessManager::readyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
 	QString s = proc->readAllStandardOutput();
+#if defined(QMC2_OS_WIN)
+	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#endif
 	QStringList sl = s.split("\n");
 	int i;
 	for (i = 0; i < sl.count(); i++) {
@@ -185,6 +188,9 @@ void ProcessManager::readyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
 	QString s = proc->readAllStandardError();
+#if defined(QMC2_OS_WIN)
+	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#endif
 	QStringList sl = s.split("\n");
 	int i;
 	for (i = 0; i < sl.count(); i++) {
