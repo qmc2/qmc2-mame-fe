@@ -171,33 +171,45 @@ void ProcessManager::kill(ushort index)
 void ProcessManager::readyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
-	QString s = proc->readAllStandardOutput();
+	QString s = stdoutBuffer[proc] + proc->readAllStandardOutput();
 #if defined(QMC2_OS_WIN)
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
+	bool endsWithNewLine = s.endsWith("\n");
 	QStringList sl = s.split("\n");
+	int lc = endsWithNewLine ? sl.count() : sl.count() - 1;
 	int i;
-	for (i = 0; i < sl.count(); i++) {
+	for (i = 0; i < lc; i++) {
 		s = sl[i];
 		if ( !s.isEmpty() )
 			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stdout[#%1]:").arg(procMap[proc]) + " " + s);
 	}
+	if ( endsWithNewLine )
+		stdoutBuffer[proc].clear();
+	else
+		stdoutBuffer[proc] = sl.last();
 }
 
 void ProcessManager::readyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
-	QString s = proc->readAllStandardError();
+	QString s = stderrBuffer[proc] + proc->readAllStandardError();
 #if defined(QMC2_OS_WIN)
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
+	bool endsWithNewLine = s.endsWith("\n");
 	QStringList sl = s.split("\n");
+	int lc = endsWithNewLine ? sl.count() : sl.count() - 1;
 	int i;
-	for (i = 0; i < sl.count(); i++) {
+	for (i = 0; i < lc; i++) {
 		s = sl[i];
 		if ( !s.isEmpty() )
 			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stderr[#%1]:").arg(procMap[proc]) + " " + s);
 	}
+	if ( endsWithNewLine )
+		stderrBuffer[proc].clear();
+	else
+		stderrBuffer[proc] = sl.last();
 }
 
 void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -223,6 +235,8 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
 	procMap.remove(proc);
+	stdoutBuffer.remove(proc);
+	stderrBuffer.remove(proc);
 	softwareListsMap.remove(proc);
 	softwareNamesMap.remove(proc);
 
@@ -339,6 +353,8 @@ void ProcessManager::error(QProcess::ProcessError processError)
 		case QProcess::FailedToStart:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: failed to start emulator #%1").arg(procMap[proc]));
 			procMap.remove(proc);
+			stdoutBuffer.remove(proc);
+			stderrBuffer.remove(proc);
 			softwareListsMap.remove(proc);
 			softwareNamesMap.remove(proc);
 			break;

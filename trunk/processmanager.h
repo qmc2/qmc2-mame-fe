@@ -15,6 +15,8 @@ class ProcessManager : public QObject
 		QMap<QProcess *, ushort> procMap;
 		QMap<QProcess *, QStringList> softwareListsMap;
 		QMap<QProcess *, QStringList> softwareNamesMap;
+		QMap<QProcess *, QString> stdoutBuffer;
+		QMap<QProcess *, QString> stderrBuffer;
 		ushort procCount;
 		QString loggedCommandLine;
 		QString exitString;
