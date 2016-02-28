@@ -540,7 +540,7 @@
 			<description lang="fr" text="Active l'anti-alias pour le dessin des vecteurs"/>
 			<description lang="pt" text="Usar antialiasing quando desenhar vetores"/>
 		</option>
-		<option default="0" name="beam_intensity_weight" type="float">
+		<option default="0.0" name="beam_intensity_weight" type="float">
 			<description lang="us" text="Set vector beam intensity weight"/>
 			<description lang="de" text="Gewichtung der Strahlen-Intensität"/>
 		</option>
