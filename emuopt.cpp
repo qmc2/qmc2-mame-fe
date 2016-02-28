@@ -963,7 +963,8 @@ void EmulatorOptions::save(QString optName)
 						if ( defaultSubValues.count() > 1 )
 							dv2 = defaultSubValues[1].toDouble();
 						if ( v1 != dv1 || v2 != dv2 ) {
-							vs = QString("%1,%2").arg(v1).arg(v2);
+							QLocale cLoc(QLocale::C);
+							vs = cLoc.toString(v1, 'f', QMC2_EMUOPT_DFLT_DECIMALS) + "," + cLoc.toString(v2, 'f', QMC2_EMUOPT_DFLT_DECIMALS);
 							optionsMap[sectionTitle][i].value = vs;
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 						} else
@@ -996,7 +997,8 @@ void EmulatorOptions::save(QString optName)
 						if ( defaultSubValues.count() > 2 )
 							dv3 = defaultSubValues[2].toDouble();
 						if ( v1 != dv1 || v2 != dv2 || v3 != dv3 ) {
-							vs = QString("%1,%2,%3").arg(v1).arg(v2).arg(v3);
+							QLocale cLoc(QLocale::C);
+							vs = cLoc.toString(v1, 'f', QMC2_EMUOPT_DFLT_DECIMALS) + "," + cLoc.toString(v2, 'f', QMC2_EMUOPT_DFLT_DECIMALS)+ "," + cLoc.toString(v3, 'f', QMC2_EMUOPT_DFLT_DECIMALS);
 							optionsMap[sectionTitle][i].value = vs;
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 						} else
