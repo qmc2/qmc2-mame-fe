@@ -549,7 +549,7 @@
 			<description lang="pt" text="Usar antialiasing quando desenhar vetores"/>
 			<description lang="es" text="Usar suavizado al dibujar vectores"/>
 		</option>
-		<option default="0" name="beam_intensity_weight" type="float">
+		<option default="0.0" name="beam_intensity_weight" type="float">
 			<description lang="us" text="Set vector beam intensity weight"/>
 			<description lang="de" text="Gewichtung der Strahlen-Intensität"/>
 		</option>
@@ -1572,7 +1572,7 @@
 			<description lang="us" text="Shadow mask tile mode (0 for screen based, 1 for source based)"/>
 			<description lang="de" text="'Shadow Mask Tile Mode' (0 für Bildschirm-basiert, 1 für Quellen-basiert)"/>
 		</option>
-		<option default="0" name="shadow_mask_alpha" type="float">
+		<option default="0.0" name="shadow_mask_alpha" type="float">
 			<description lang="us" text="Shadow mask alpha-blend value (1.0 is fully blended, 0.0 is no mask)"/>
 			<description lang="de" text="Wert für 'Shadow Mask Alpha Blending' (1.0 = volle Überlagerung, 0.0 = keine Maske)"/>
 			<description lang="fr" text="Valeur du masque Alpha d'ombrage (1.0 pour mix total, 0.0 sans masque)"/>
@@ -1622,65 +1622,65 @@
 			<description lang="us" text="Shadow mask texture offset in V direction"/>
 			<description lang="de" text="Textur-Offset der Shadow Mask in V Richtung"/>
 		</option>
-		<option default="0" name="curvature" type="float">
+		<option default="0.0" name="curvature" type="float">
 			<description lang="us" text="Screen curvature amount"/>
 			<description lang="de" text="Betrag der Bildschirmkrümmung"/>
 			<description lang="fr" text="Taux de courbure de l'écran"/>
 			<description lang="pt" text="Quantidade de curvatura da tela"/>
 			<description lang="es" text="Cantidad de curvatura de la pantalla"/>
 		</option>
-		<option default="0" name="reflection" type="float">
+		<option default="0.0" name="reflection" type="float">
 			<description lang="us" text="Screen reflection amount"/>
 			<description lang="de" text="Betrag der Bildschirmreflexion"/>
 		</option>
-		<option default="0" name="round_corner" type="float">
+		<option default="0.0" name="round_corner" type="float">
 			<description lang="us" text="Screen round corner amount"/>
 			<description lang="de" text="Betrag der Bildschirmabrundung"/>
 		</option>
-		<option default="0" name="smooth_border" type="float">
+		<option default="0.0" name="smooth_border" type="float">
 			<description lang="us" text="Screen smooth border amount"/>
 			<description lang="de" text="Betrag der Bildkantenglättung"/>
 		</option>
-		<option default="0" name="vignetting" type="float">
+		<option default="0.0" name="vignetting" type="float">
 			<description lang="us" text="Image vignetting amount"/>
 			<description lang="de" text="Betrag der Bildvignettierung"/>
 		</option>
-		<option default="0" name="scanline_alpha" type="float">
+		<option default="0.0" name="scanline_alpha" type="float">
 			<description lang="us" text="Overall alpha scaling value for scanlines"/>
 			<description lang="de" text="Allgemeiner Alpha-Skalierungs-Wert für Abtastzeilen"/>
 			<description lang="fr" text="Valeur globale d'étirement alpha pour les scanlines"/>
 			<description lang="pt" text="Valor da escala de alpha geral para scanlines"/>
 			<description lang="es" text="Valor global de escalado alpha de scanlines"/>
 		</option>
-		<option default="1" name="scanline_size" type="float">
+		<option default="1.0" name="scanline_size" type="float">
 			<description lang="us" text="Overall height scaling value for scanlines"/>
 			<description lang="de" text="Allgemeiner Höhen-Skalierungs-Wert für Abtastzeilen"/>
 			<description lang="fr" text="Valeur globale d'étirement vertical alpha pour les scanlines"/>
 			<description lang="pt" text="Valor da escala de altura geral para scanlines"/>
 			<description lang="es" text="Valor global de altura de escalado de scanlines"/>
 		</option>
-		<option default="1" name="scanline_height" type="float">
+		<option default="1.0" name="scanline_height" type="float">
 			<description lang="us" text="Individual height scaling value for scanlines"/>
 			<description lang="de" text="Individueller Höhen-Skalierungs-Wert für Abtastzeilen"/>
 			<description lang="fr" text="Valeur individuelle d'étirement alpha pour les scanlines"/>
 			<description lang="pt" text="Valor da escala de altura individual para scanlines"/>
 			<description lang="es" text="Valor individual  de altura de escalado de scanlines"/>
 		</option>
-		<option default="1" name="scanline_bright_scale" type="float">
+		<option default="1.0" name="scanline_bright_scale" type="float">
 			<description lang="us" text="Brightness scaling value for scanlines (multiplicative)"/>
 			<description lang="de" text="Wert der Helligkeits-Skalierung für Abtastzeilen (multiplikativ)"/>
 			<description lang="fr" text="Valeur d'étirement de luminosité pour les scanlines (multiplicatif)"/>
 			<description lang="pt" text="Valor da escala de brilho para scanlines (multiplicativo)"/>
 			<description lang="es" text="Valor de escala de brillo de scanlines (multiplicador)"/>
 		</option>
-		<option default="0" name="scanline_bright_offset" type="float">
+		<option default="0.0" name="scanline_bright_offset" type="float">
 			<description lang="us" text="Brightness offset value for scanlines (additive)"/>
 			<description lang="de" text="Wert des Helligkeits-Offsets für Abtastzeilen (additiv)"/>
 			<description lang="fr" text="Décalage de luminosité pour les scanlines (cumulatif)"/>
 			<description lang="pt" text="Valor do deslocamento de brilho para scanlines (aditivo)"/>
 			<description lang="es" text="Valor de compensación de brillo de scanlines (aditivo)"/>
 		</option>
-		<option default="0" name="scanline_jitter" type="float">
+		<option default="0.0" name="scanline_jitter" type="float">
 			<description lang="us" text="Overall interlace jitter scaling value for scanlines"/>
 			<description lang="de" text="Allgemeiner Wert der Bildinstabilität beim Zeilensprung"/>
 			<description lang="fr" text="Valeur globale d'étirement 'jitter' pour les scanlines"/>
@@ -1813,28 +1813,28 @@
 			<description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor B para procesado de señal NTSC"/>
 		</option>
-		<option default="0" name="yiq_o" type="float">
+		<option default="0.0" name="yiq_o" type="float">
 			<description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
 			<description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Phase offset de sortie pour la fréquence de couleurs pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Deslocamento de saída de fase da portadora de cor para o processamento de sinal NTSC"/>
 			<description lang="es" text="Compensación de fase de color de salida para procesado de señal NTSC"/>
 		</option>
-		<option default="1" name="yiq_p" type="float">
+		<option default="1.0" name="yiq_p" type="float">
 			<description lang="us" text="Incoming pixel clock scaling value for NTSC signal processing"/>
 			<description lang="de" text="Eingehender Pixel-Clock Skalierungswert für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Valeur d'étirement de pixels entrants pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Valor de escala do clock do pixel de entrada para o processamento de sinal NTSC"/>
 			<description lang="es" text="Valor de escalado de píxeles de entrada para procesado de señal NTSC"/>
 		</option>
-		<option default="1" name="yiq_n" type="float">
+		<option default="1.0" name="yiq_n" type="float">
 			<description lang="us" text="Y filter notch width for NTSC signal processing"/>
 			<description lang="de" text="Y Filter-Aussparung für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Largeur de filtre Y pour le traitement du signal NTSC"/>
 			<description lang="pt" text="Tamanho do notch do filtro Y para o processamento de sinal NTSC"/>
 			<description lang="es" text="Anchura de filtro Y para procesado de señal NTSC"/>
 		</option>
-		<option default="6" name="yiq_y" type="float">
+		<option default="6.0" name="yiq_y" type="float">
 			<description lang="us" text="Y filter cutoff frequency for NTSC signal processing"/>
 			<description lang="de" text="Y-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
 			<description lang="fr" text="Fréquence de coupure du filtre Y pour le traitement du signal NTSC"/>
