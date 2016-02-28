@@ -1704,7 +1704,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						dv2 = defaultSubValues[1].toDouble();
 					if ( v1 != dv1 || v2 != dv2 )
 						args << QString("-%1").arg(option.name) << QString("%1,%2").arg(v1).arg(v2);
-
+					break;
 				}
 
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
@@ -1726,6 +1726,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						dv3 = defaultSubValues[2].toDouble();
 					if ( v1 != dv1 || v2 != dv2 || v3 != dv3 )
 						args << QString("-%1").arg(option.name) << QString("%1,%2,%3").arg(v1).arg(v2).arg(v3);
+					break;
 				}
 
 				case QMC2_EMUOPT_TYPE_BOOL: {
