@@ -594,6 +594,14 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				if ( defaultSubValues.count() > 1 )
 					dv2 = defaultSubValues[1].toDouble();
 				defaultValue = cLoc.toString(dv1, 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(dv2, 'f', float2Editor->doubleSpinBox1->decimals());
+				QStringList storedSubValues = storedValue.split(",");
+				double sv1, sv2;
+				sv1 = sv2 = 0;
+				if ( storedSubValues.count() > 0 )
+					sv1 = storedSubValues[0].toDouble();
+				if ( storedSubValues.count() > 1 )
+					sv2 = storedSubValues[1].toDouble();
+				storedValue = cLoc.toString(sv1, 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(sv2, 'f', float2Editor->doubleSpinBox1->decimals());
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_FLOAT3: {
@@ -609,6 +617,16 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				if ( defaultSubValues.count() > 2 )
 					dv3 = defaultSubValues[2].toDouble();
 				defaultValue = cLoc.toString(dv1, 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(dv2, 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(dv3, 'f', float3Editor->doubleSpinBox2->decimals());
+				QStringList storedSubValues = storedValue.split(",");
+				double sv1, sv2, sv3;
+				sv1 = sv2 = sv3 = 0;
+				if ( storedSubValues.count() > 0 )
+					sv1 = storedSubValues[0].toDouble();
+				if ( storedSubValues.count() > 1 )
+					sv2 = storedSubValues[1].toDouble();
+				if ( storedSubValues.count() > 2 )
+					sv3 = storedSubValues[2].toDouble();
+				storedValue = cLoc.toString(sv1, 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(sv2, 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(sv3, 'f', float3Editor->doubleSpinBox2->decimals());
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_FILE: {
