@@ -1691,7 +1691,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
 					QStringList subValues = option.value.split(",");
-					QStringList defaultSubValues = option.value.split(",");
+					QStringList defaultSubValues = option.dvalue.split(",");
 					double v1, v2, dv1, dv2;
 					v1 = v2 = dv1 = dv2 = 0;
 					if ( subValues.count() > 0 )
@@ -1709,7 +1709,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					QStringList subValues = option.value.split(",");
-					QStringList defaultSubValues = option.value.split(",");
+					QStringList defaultSubValues = option.dvalue.split(",");
 					double v1, v2, v3, dv1, dv2, dv3;
 					v1 = v2 = v3 = dv1 = dv2 = dv3 = 0;
 					if ( subValues.count() > 0 )
