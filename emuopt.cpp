@@ -924,12 +924,57 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
 					break;
 				}
-				case QMC2_EMUOPT_TYPE_FLOAT2:
+				case QMC2_EMUOPT_TYPE_FLOAT2: {
+					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
+					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
+					if ( qmc2GlobalEmulatorOptions == this ) {
+						QStringList subValues = vs.split(",");
+						QStringList defaultSubValues = optionsMap[sectionTitle][i].dvalue.split(",");
+						double v1, v2, dv1, dv2;
+						v1 = v2 = dv1 = dv2 = 0;
+						if ( subValues.count() > 0 )
+							v1 = subValues[0].toDouble();
+						if ( subValues.count() > 1 )
+							v2 = subValues[1].toDouble();
+						if ( defaultSubValues.count() > 0 )
+							dv1 = defaultSubValues[0].toDouble();
+						if ( defaultSubValues.count() > 1 )
+							dv2 = defaultSubValues[1].toDouble();
+						if ( v1 != dv1 || v2 != dv2 ) {
+							vs = QString("%1,%2").arg(v1).arg(v2);
+							optionsMap[sectionTitle][i].value = vs;
+							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
+						} else
+							qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					} else if ( vs != gv && optionsMap[sectionTitle][i].valid ) {
+						optionsMap[sectionTitle][i].value = vs;
+						qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
+					} else
+						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					break;
+				}
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
 					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
 					if ( qmc2GlobalEmulatorOptions == this ) {
-						if ( vs != optionsMap[sectionTitle][i].dvalue ) {
+						QStringList subValues = vs.split(",");
+						QStringList defaultSubValues = optionsMap[sectionTitle][i].dvalue.split(",");
+						double v1, v2, v3, dv1, dv2, dv3;
+						v1 = v2 = v3 = dv1 = dv2 = dv3 = 0;
+						if ( subValues.count() > 0 )
+							v1 = subValues[0].toDouble();
+						if ( subValues.count() > 1 )
+							v2 = subValues[1].toDouble();
+						if ( subValues.count() > 2 )
+							v3 = subValues[2].toDouble();
+						if ( defaultSubValues.count() > 0 )
+							dv1 = defaultSubValues[0].toDouble();
+						if ( defaultSubValues.count() > 1 )
+							dv2 = defaultSubValues[1].toDouble();
+						if ( defaultSubValues.count() > 2 )
+							dv3 = defaultSubValues[2].toDouble();
+						if ( v1 != dv1 || v2 != dv2 || v3 != dv3 ) {
+							vs = QString("%1,%2,%3").arg(v1).arg(v2).arg(v3);
 							optionsMap[sectionTitle][i].value = vs;
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 						} else
