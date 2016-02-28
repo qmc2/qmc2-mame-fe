@@ -587,16 +587,14 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
 				currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
 				QStringList defaultSubValues = defaultValue.split(",");
-				double dv1, dv2;
-				dv1 = dv2 = 0;
+				double dv1, dv2, sv1, sv2;
+				dv1 = dv2 = sv1 = sv2 = 0;
 				if ( defaultSubValues.count() > 0 )
 					dv1 = defaultSubValues[0].toDouble();
 				if ( defaultSubValues.count() > 1 )
 					dv2 = defaultSubValues[1].toDouble();
 				defaultValue = cLoc.toString(dv1, 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(dv2, 'f', float2Editor->doubleSpinBox1->decimals());
 				QStringList storedSubValues = storedValue.split(",");
-				double sv1, sv2;
-				sv1 = sv2 = 0;
 				if ( storedSubValues.count() > 0 )
 					sv1 = storedSubValues[0].toDouble();
 				if ( storedSubValues.count() > 1 )
@@ -608,8 +606,8 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
 				currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
 				QStringList defaultSubValues = defaultValue.split(",");
-				double dv1, dv2, dv3;
-				dv1 = dv2 = dv3 = 0;
+				double dv1, dv2, dv3, sv1, sv2, sv3;
+				dv1 = dv2 = dv3 = sv1 = sv2 = sv3 = 0;
 				if ( defaultSubValues.count() > 0 )
 					dv1 = defaultSubValues[0].toDouble();
 				if ( defaultSubValues.count() > 1 )
@@ -618,8 +616,6 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 					dv3 = defaultSubValues[2].toDouble();
 				defaultValue = cLoc.toString(dv1, 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(dv2, 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(dv3, 'f', float3Editor->doubleSpinBox2->decimals());
 				QStringList storedSubValues = storedValue.split(",");
-				double sv1, sv2, sv3;
-				sv1 = sv2 = sv3 = 0;
 				if ( storedSubValues.count() > 0 )
 					sv1 = storedSubValues[0].toDouble();
 				if ( storedSubValues.count() > 1 )
