@@ -18,6 +18,7 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
+extern int consoleMode;
 
 ProcessManager::ProcessManager(QObject *parent) :
 	QObject(parent)

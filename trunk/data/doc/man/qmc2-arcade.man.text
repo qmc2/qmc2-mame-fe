@@ -29,7 +29,7 @@ OPTIONS
   -theme qml_theme  Select the QML theme used for scene graphics, animations and/or shader effects. Available values for qml_theme are 'ToxicWaste'
                     (default) and 'darkone'.
 
-  -console type  Choose the type of console to use. Available values for type are 'terminal' (default), 'window' and 'window-minimized'.
+  -console type  Choose the type of console to use. Available values for type are 'terminal' (default), 'window', 'window-minimized' and 'none'.
 
   -graphicssystem engine  Select the graphics sub-system engine instead of the currently set default one. Available values for engine are 'raster'
                           (default), 'opengl', 'opengl1', 'openvg' and 'native'. Note that this option only exists when QMC2 Arcade has been built
