@@ -49,161 +49,161 @@ void qtMessageHandler(QtMsgType type, const char *msg)
 void qtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
 #endif
 {
-    if ( !runApp )
-        return;
+	if ( !runApp )
+		return;
 
-    QString msgString;
+	QString msgString;
 
-    switch ( type ) {
-    case QtDebugMsg:
-        msgString = "QtDebugMsg: " + QString(msg);
-        break;
-    case QtWarningMsg:
-        msgString = "QtWarningMsg: " + QString(msg);
-        break;
-    case QtCriticalMsg:
-        msgString = "QtCriticalMsg: " + QString(msg);
-        break;
-    case QtFatalMsg:
-        msgString = "QtFatalMsg: " + QString(msg);
-        break;
-    default:
-        return;
-    }
+	switch ( type ) {
+	case QtDebugMsg:
+		msgString = "QtDebugMsg: " + QString(msg);
+		break;
+	case QtWarningMsg:
+		msgString = "QtWarningMsg: " + QString(msg);
+		break;
+	case QtCriticalMsg:
+		msgString = "QtCriticalMsg: " + QString(msg);
+		break;
+	case QtFatalMsg:
+		msgString = "QtFatalMsg: " + QString(msg);
+		break;
+	default:
+		return;
+	}
 
-    QMC2_ARCADE_LOG_STR(msgString);
+	QMC2_ARCADE_LOG_STR(msgString);
 }
 
 void showHelp()
 {
 #if defined(QMC2_ARCADE_OS_WIN)
-    if ( !consoleWindow )
-        winAllocConsole();
+	if ( !consoleWindow )
+		winAllocConsole();
 #endif
 
-    QString defTheme = globalConfig->defaultTheme();
-    QString defConsole = globalConfig->defaultConsoleType();
+	QString defTheme = globalConfig->defaultTheme();
+	QString defConsole = globalConfig->defaultConsoleType();
 #if QT_VERSION < 0x050000
-    QString defGSys = globalConfig->defaultGraphicsSystem();
+	QString defGSys = globalConfig->defaultGraphicsSystem();
 #endif
-    QString defLang = globalConfig->defaultLanguage();
-    QString defVideo = globalConfig->defaultVideo();
+	QString defLang = globalConfig->defaultLanguage();
+	QString defVideo = globalConfig->defaultVideo();
 
-    QStringList themeList;
-    foreach (QString theme, arcadeThemes) {
-        if ( defTheme == theme )
-            themeList << "[" + theme + "]";
-        else
-            themeList << theme;
-    }
-    QString availableThemes = themeList.join(", ");
+	QStringList themeList;
+	foreach (QString theme, arcadeThemes) {
+		if ( defTheme == theme )
+			themeList << "[" + theme + "]";
+		else
+			themeList << theme;
+	}
+	QString availableThemes = themeList.join(", ");
 
-    QStringList consoleList;
-    foreach (QString console, consoleModes) {
-        if ( defConsole == console )
-            consoleList << "[" + console + "]";
-        else
-            consoleList << console;
-    }
-    QString availableConsoles = consoleList.join(", ");
+	QStringList consoleList;
+	foreach (QString console, consoleModes) {
+		if ( defConsole == console )
+			consoleList << "[" + console + "]";
+		else
+			consoleList << console;
+	}
+	QString availableConsoles = consoleList.join(", ");
 
 #if QT_VERSION < 0x050000
-    QStringList gSysList;
-    foreach (QString gSys, graphicsSystems) {
-        if ( defGSys == gSys )
-            gSysList << "[" + gSys + "]";
-        else
-            gSysList << gSys;
-    }
-    QString availableGraphicsSystems = gSysList.join(", ");
+	QStringList gSysList;
+	foreach (QString gSys, graphicsSystems) {
+		if ( defGSys == gSys )
+			gSysList << "[" + gSys + "]";
+		else
+			gSysList << gSys;
+	}
+	QString availableGraphicsSystems = gSysList.join(", ");
 #endif
 
-    QStringList langList;
-    foreach (QString lang, globalConfig->languageMap.keys()) {
-        if ( defLang == lang )
-            langList << "[" + lang + "]";
-        else
-            langList << lang;
-    }
-    QString availableLanguages = langList.join(", ");
+	QStringList langList;
+	foreach (QString lang, globalConfig->languageMap.keys()) {
+		if ( defLang == lang )
+			langList << "[" + lang + "]";
+		else
+			langList << lang;
+	}
+	QString availableLanguages = langList.join(", ");
 
-    QStringList videoList;
-    foreach (QString v, QStringList() << "on" << "off") {
-        if ( defVideo == v )
-            videoList << "[" + v + "]";
-        else
-            videoList << v;
-    }
-    QString availableVideoSettings = videoList.join(", ");
+	QStringList videoList;
+	foreach (QString v, QStringList() << "on" << "off") {
+		if ( defVideo == v )
+			videoList << "[" + v + "]";
+		else
+			videoList << v;
+	}
+	QString availableVideoSettings = videoList.join(", ");
 
-    QString helpMessage;
+	QString helpMessage;
 #if QT_VERSION < 0x050000
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
+	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #else
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
+	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-nojoy] [-joy <index>] [-debugjoy] [-h|-?|-help]\n\n";
 #else
-    helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
+	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-h|-?|-help]\n\n";
 #endif
 #endif
-    helpMessage += "Option           Meaning              Possible values ([..] = default)\n"
-                   "---------------  -------------------  -----------------------------------------\n";
-    helpMessage += "-theme           Theme selection      " + availableThemes + "\n";
-    helpMessage += "-console         Console type         " + availableConsoles + "\n";
+	helpMessage += "Option           Meaning              Possible values ([..] = default)\n"
+		       "---------------  -------------------  -----------------------------------------\n";
+	helpMessage += "-theme           Theme selection      " + availableThemes + "\n";
+	helpMessage += "-console         Console type         " + availableConsoles + "\n";
 #if QT_VERSION < 0x050000
-    helpMessage += "-graphicssystem  Graphics engine      " + availableGraphicsSystems + "\n";
+	helpMessage += "-graphicssystem  Graphics engine      " + availableGraphicsSystems + "\n";
 #endif
-    helpMessage += "-language        Language selection   " + availableLanguages + "\n";
-    helpMessage += "-video           Video snap support   " + availableVideoSettings + "\n";
-    helpMessage += QString("-config_path     Configuration path   [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
-    helpMessage += "-fullscreen      Full screen display  N/A\n";
-    helpMessage += "-windowed        Windowed display     N/A\n";
-    helpMessage += "-debugkeys       Debug key-mapping    N/A\n";
+	helpMessage += "-language        Language selection   " + availableLanguages + "\n";
+	helpMessage += "-video           Video snap support   " + availableVideoSettings + "\n";
+	helpMessage += QString("-config_path     Configuration path   [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
+	helpMessage += "-fullscreen      Full screen display  N/A\n";
+	helpMessage += "-windowed        Windowed display     N/A\n";
+	helpMessage += "-debugkeys       Debug key-mapping    N/A\n";
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    helpMessage += "-nojoy           Disable joystick     N/A\n";
-    helpMessage += QString("-joy             Use given joystick   SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
-    helpMessage += "-debugjoy        Debug joy-mapping    N/A\n";
+	helpMessage += "-nojoy           Disable joystick     N/A\n";
+	helpMessage += QString("-joy             Use given joystick   SDL joystick index number [%1]\n").arg(globalConfig->joystickIndex());
+	helpMessage += "-debugjoy        Debug joy-mapping    N/A\n";
 #endif
 
 #if defined(QMC2_ARCADE_OS_WIN)
-    if ( !consoleWindow )
-        helpMessage.remove(helpMessage.length() - 1, 1);
+	if ( !consoleWindow )
+		helpMessage.remove(helpMessage.length() - 1, 1);
 #endif
 
-    QMC2_ARCADE_LOG_STR_NT(helpMessage);
+	QMC2_ARCADE_LOG_STR_NT(helpMessage);
 }
 
 void upgradeSettings()
 {
-    QStringList verList = globalConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
-    if ( verList.count() > 1 ) {
-        int omv = verList[1].toInt();
-        int osr = globalConfig->value("SVN_Revision").toInt();
-        if ( QMC2_ARCADE_TEST_VERSION(omv, 57, osr, 6989) ) {
-            QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
-                                                << "/MAME/DatInfoDatabase/GameInfoImportDates";
-            QStringList newKeys = QStringList() << "/MAME/DatInfoDatabase/MachineInfoImportFiles"
-                                                << "/MAME/DatInfoDatabase/MachineInfoImportDates";
-            for (int i = 0; i < oldKeys.count(); i++) {
-                QString oldKey = oldKeys[i];
-                QString newKey = newKeys[i];
-                if ( globalConfig->contains(oldKey) ) {
-                    globalConfig->setValue(newKey, globalConfig->value(oldKey));
-                    globalConfig->remove(oldKey);
-                }
-            }
-        }
-    }
+	QStringList verList = globalConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
+	if ( verList.count() > 1 ) {
+		int omv = verList[1].toInt();
+		int osr = globalConfig->value("SVN_Revision").toInt();
+		if ( QMC2_ARCADE_TEST_VERSION(omv, 57, osr, 6989) ) {
+			QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
+							    << "/MAME/DatInfoDatabase/GameInfoImportDates";
+			QStringList newKeys = QStringList() << "/MAME/DatInfoDatabase/MachineInfoImportFiles"
+							    << "/MAME/DatInfoDatabase/MachineInfoImportDates";
+			for (int i = 0; i < oldKeys.count(); i++) {
+				QString oldKey = oldKeys[i];
+				QString newKey = newKeys[i];
+				if ( globalConfig->contains(oldKey) ) {
+					globalConfig->setValue(newKey, globalConfig->value(oldKey));
+					globalConfig->remove(oldKey);
+				}
+			}
+		}
+	}
 }
 
 #if defined(QMC2_ARCADE_OS_WIN)
 #if defined(TCOD_VISUAL_STUDIO)
 int SDL_main(int argc, char *argv[]) {
-    return main(argc, argv);
+	return main(argc, argv);
 }
 #endif
 #if defined(QMC2_ARCADE_MINGW)
@@ -214,298 +214,298 @@ int SDL_main(int argc, char *argv[]) {
 int main(int argc, char *argv[])
 {
 #if defined(QMC2_ARCADE_OS_MAC)
-    // this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation
-    char exec_path[4096];
-    uint32_t exec_path_size = sizeof(exec_path);
-    if ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
-        QFileInfo fi(exec_path);
-        QCoreApplication::addLibraryPath(fi.absoluteDir().absolutePath() + "/../PlugIns");
-    }
+	// this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation
+	char exec_path[4096];
+	uint32_t exec_path_size = sizeof(exec_path);
+	if ( _NSGetExecutablePath(exec_path, &exec_path_size) == 0 ) {
+		QFileInfo fi(exec_path);
+		QCoreApplication::addLibraryPath(fi.absoluteDir().absolutePath() + "/../PlugIns");
+	}
 #endif
 
-    qsrand(QDateTime::currentDateTime().toTime_t());
+	qsrand(QDateTime::currentDateTime().toTime_t());
 #if QT_VERSION < 0x050000
-    qInstallMsgHandler(qtMessageHandler);
+	qInstallMsgHandler(qtMessageHandler);
 #else
-    qInstallMessageHandler(qtMessageHandler);
+	qInstallMessageHandler(qtMessageHandler);
 #endif
 
-    // available emulator-modes, themes, console-modes and graphics-systems
-    emulatorModes << "mame";
-    arcadeThemes << "ToxicWaste" << "darkone";
-    mameThemes << "ToxicWaste" << "darkone";
-    consoleModes << "terminal" << "window" << "window-minimized";
+	// available emulator-modes, themes, console-modes and graphics-systems
+	emulatorModes << "mame";
+	arcadeThemes << "ToxicWaste" << "darkone";
+	mameThemes << "ToxicWaste" << "darkone";
+	consoleModes << "terminal" << "window" << "window-minimized";
 #if QT_VERSION < 0x050000
-    graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "opengl2" << "openvg";
+	graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "opengl2" << "openvg";
 #endif
 
-    // we have to make a copy of the command line arguments since QApplication's constructor "eats"
-    // -graphicssystem and its value (and we *really* need to know if it has been set or not!)
-    for (int i = 0; i < argc; i++)
-        argumentList << argv[i];
+	// we have to make a copy of the command line arguments since QApplication's constructor "eats"
+	// -graphicssystem and its value (and we *really* need to know if it has been set or not!)
+	for (int i = 0; i < argc; i++)
+		argumentList << argv[i];
 
 #if QT_VERSION < 0x050000 && !defined(QMC2_ARCADE_OS_MAC)
-    // work-around for a weird style-related issue with GTK (we actually don't need to set a GUI style, but
-    // somehow Qt and/or GTK do this implicitly, which may cause crashes when the automatically chosen style
-    // isn't bug-free, so we try to fall back to a safe built-in style to avoid this)
-    QStringList wantedStyles = QStringList() << "Plastique" << "Cleanlooks" << "Fusion" << "CDE" << "Motif" << "Windows";
-    QStringList availableStyles = QStyleFactory::keys();
-    int styleIndex = -1;
-    foreach (QString style, wantedStyles) {
-        styleIndex = availableStyles.indexOf(style);
-        if ( styleIndex >= 0 )
-            break;
-    }
-    if ( styleIndex >= 0 )
-        QApplication::setStyle(availableStyles[styleIndex]);
-    QApplication *tempApp = new QApplication(argc, argv);
+	// work-around for a weird style-related issue with GTK (we actually don't need to set a GUI style, but
+	// somehow Qt and/or GTK do this implicitly, which may cause crashes when the automatically chosen style
+	// isn't bug-free, so we try to fall back to a safe built-in style to avoid this)
+	QStringList wantedStyles = QStringList() << "Plastique" << "Cleanlooks" << "Fusion" << "CDE" << "Motif" << "Windows";
+	QStringList availableStyles = QStyleFactory::keys();
+	int styleIndex = -1;
+	foreach (QString style, wantedStyles) {
+		styleIndex = availableStyles.indexOf(style);
+		if ( styleIndex >= 0 )
+			break;
+	}
+	if ( styleIndex >= 0 )
+		QApplication::setStyle(availableStyles[styleIndex]);
+	QApplication *tempApp = new QApplication(argc, argv);
 #endif
 
-    QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
-    QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
-    QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
-    QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, ArcadeSettings::configPath());
+	QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
+	QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
+	QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
+	QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, ArcadeSettings::configPath());
 
 #if QT_VERSION < 0x050000
-    globalConfig = new ArcadeSettings;
+	globalConfig = new ArcadeSettings;
 
-    QString gSys = globalConfig->defaultGraphicsSystem();
-    if ( QMC2_ARCADE_CLI_GSYS_VAL )
-        gSys = QMC2_ARCADE_CLI_GSYS;
+	QString gSys = globalConfig->defaultGraphicsSystem();
+	if ( QMC2_ARCADE_CLI_GSYS_VAL )
+		gSys = QMC2_ARCADE_CLI_GSYS;
 
-    delete globalConfig;
-    globalConfig = NULL;
+	delete globalConfig;
+	globalConfig = NULL;
 
 #if !defined(QMC2_ARCADE_OS_MAC)
-    delete tempApp;
+	delete tempApp;
 #endif
 
-    if ( !graphicsSystems.contains(gSys) ) {
-        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid graphics-system - available graphics-systems: %2").arg(gSys).arg(graphicsSystems.join(", ")));
-        return 1;
-    }
+	if ( !graphicsSystems.contains(gSys) ) {
+		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid graphics-system - available graphics-systems: %2").arg(gSys).arg(graphicsSystems.join(", ")));
+		return 1;
+	}
 
-    QApplication::setGraphicsSystem(gSys);
+	QApplication::setGraphicsSystem(gSys);
 
-    // create the actual application instance
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
+	// create the actual application instance
+	QScopedPointer<QApplication> app(createApplication(argc, argv));
 #else
-    // create the actual application instance
-    QGuiApplication *app = new QGuiApplication(argc, argv);
+	// create the actual application instance
+	QGuiApplication *app = new QGuiApplication(argc, argv);
 #endif
 
-    if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
-        emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
-    } else if ( !emulatorModes.contains(QMC2_ARCADE_CLI_EMU) ) {
-        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid emulator-mode - available emulator-modes: %2").arg(QMC2_ARCADE_CLI_EMU).arg(emulatorModes.join(", ")));
-        return 1;
-    }
+	if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
+		emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
+	} else if ( !emulatorModes.contains(QMC2_ARCADE_CLI_EMU) ) {
+		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid emulator-mode - available emulator-modes: %2").arg(QMC2_ARCADE_CLI_EMU).arg(emulatorModes.join(", ")));
+		return 1;
+	}
 
-    globalConfig = new ArcadeSettings;
+	globalConfig = new ArcadeSettings;
 
-    QString console = globalConfig->defaultConsoleType();
-    if ( QMC2_ARCADE_CLI_CONS_VAL )
-        console = QMC2_ARCADE_CLI_CONS;
+	QString console = globalConfig->defaultConsoleType();
+	if ( QMC2_ARCADE_CLI_CONS_VAL )
+		console = QMC2_ARCADE_CLI_CONS;
 
-    if ( console == "window" || console == "window-minimized" ) {
-        consoleMode = console == "window" ? QMC2_ARCADE_CONSOLE_WIN : QMC2_ARCADE_CONSOLE_WINMIN;
-        consoleWindow = new ConsoleWindow(0);
-        if ( consoleMode == QMC2_ARCADE_CONSOLE_WINMIN )
-            consoleWindow->showMinimized();
-        else
-            consoleWindow->show();
-    } else if ( !consoleModes.contains(console) ) {
-        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid console-mode - available console-modes: %2").arg(console).arg(consoleModes.join(", ")));
-        return 1;
-    }
+	if ( console == "window" || console == "window-minimized" ) {
+		consoleMode = console == "window" ? QMC2_ARCADE_CONSOLE_WIN : QMC2_ARCADE_CONSOLE_WINMIN;
+		consoleWindow = new ConsoleWindow(0);
+		if ( consoleMode == QMC2_ARCADE_CONSOLE_WINMIN )
+			consoleWindow->showMinimized();
+		else
+			consoleWindow->show();
+	} else if ( !consoleModes.contains(console) ) {
+		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid console-mode - available console-modes: %2").arg(console).arg(consoleModes.join(", ")));
+		return 1;
+	}
 
-    if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
-        showHelp();
-        if ( !consoleWindow ) {
-            delete globalConfig;
-            return 1;
-        } else
-            runApp = false;
-    }
+	if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
+		showHelp();
+		if ( !consoleWindow ) {
+			delete globalConfig;
+			return 1;
+		} else
+			runApp = false;
+	}
 
 #if defined(QMC2_ARCADE_OS_WIN)
-    if ( console == "terminal" )
-        winAllocConsole();
+	if ( console == "terminal" )
+		winAllocConsole();
 #endif
 
-    QString theme = globalConfig->defaultTheme();
-    if ( QMC2_ARCADE_CLI_THEME_VAL )
-        theme = QMC2_ARCADE_CLI_THEME;
+	QString theme = globalConfig->defaultTheme();
+	if ( QMC2_ARCADE_CLI_THEME_VAL )
+		theme = QMC2_ARCADE_CLI_THEME;
 
-    if ( !arcadeThemes.contains(theme) && runApp ) {
-        QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
-        if ( !consoleWindow ) {
-            delete globalConfig;
-            return 1;
-        } else
-            runApp = false;
-    }
+	if ( !arcadeThemes.contains(theme) && runApp ) {
+		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not valid theme - available themes: %2").arg(theme).arg(arcadeThemes.join(", ")));
+		if ( !consoleWindow ) {
+			delete globalConfig;
+			return 1;
+		} else
+			runApp = false;
+	}
 
-    delete globalConfig;
-    globalConfig = NULL;
+	delete globalConfig;
+	globalConfig = NULL;
 
-    switch ( emulatorMode ) {
-    case QMC2_ARCADE_EMUMODE_MAME:
-    default:
-        if ( !mameThemes.contains(theme) && runApp ) {
-            QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
-            if ( !consoleWindow )
-                return 1;
-            else
-                runApp = false;
-        }
-        break;
-    }
+	switch ( emulatorMode ) {
+	case QMC2_ARCADE_EMUMODE_MAME:
+	default:
+		if ( !mameThemes.contains(theme) && runApp ) {
+			QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid %2 theme - available %2 themes: %3").arg(theme).arg(emulatorModes[QMC2_ARCADE_EMUMODE_MAME]).arg(mameThemes.isEmpty() ? QObject::tr("(none)") : mameThemes.join(", ")));
+			if ( !consoleWindow )
+				return 1;
+			else
+				runApp = false;
+		}
+		break;
+	}
 
-    // create final instance of the global settings object
-    globalConfig = new ArcadeSettings(theme);
-    upgradeSettings();
-    globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
+	// create final instance of the global settings object
+	globalConfig = new ArcadeSettings(theme);
+	upgradeSettings();
+	globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
-    // set default font
-    QString font = globalConfig->defaultFont();
-    if ( !font.isEmpty() ) {
-      QFont f;
-      f.fromString(font);
-      app->setFont(f); 
-    }
+	// set default font
+	QString font = globalConfig->defaultFont();
+	if ( !font.isEmpty() ) {
+		QFont f;
+		f.fromString(font);
+		app->setFont(f);
+	}
 
-    // set language
-    QString language = globalConfig->defaultLanguage();
-    if ( QMC2_ARCADE_CLI_LANG_VAL )
-        language = QMC2_ARCADE_CLI_LANG;
-    if ( !globalConfig->languageMap.contains(language) ) {
-        if ( QMC2_ARCADE_CLI_LANG_VAL ) {
-            QMC2_ARCADE_LOG_STR_NT(QString("%1 is not a valid language - available languages: %2").arg(language).arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
-            delete globalConfig;
-            return 1;
-        } else
-            language = "us";
-    }
+	// set language
+	QString language = globalConfig->defaultLanguage();
+	if ( QMC2_ARCADE_CLI_LANG_VAL )
+		language = QMC2_ARCADE_CLI_LANG;
+	if ( !globalConfig->languageMap.contains(language) ) {
+		if ( QMC2_ARCADE_CLI_LANG_VAL ) {
+			QMC2_ARCADE_LOG_STR_NT(QString("%1 is not a valid language - available languages: %2").arg(language).arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
+			delete globalConfig;
+			return 1;
+		} else
+			language = "us";
+	}
 
-    // load translator
-    QTranslator qmc2ArcadeTranslator;
-    if ( qmc2ArcadeTranslator.load(QString("qmc2-arcade_%1").arg(language), ":/translations") )
-        app->installTranslator(&qmc2ArcadeTranslator);
+	// load translator
+	QTranslator qmc2ArcadeTranslator;
+	if ( qmc2ArcadeTranslator.load(QString("qmc2-arcade_%1").arg(language), ":/translations") )
+		app->installTranslator(&qmc2ArcadeTranslator);
 
-    int returnCode;
+	int returnCode;
 
-    if ( runApp ) {
-        // log banner message
-        QString bannerMessage = QString("%1 %2 (%3)").
-                                arg(QMC2_ARCADE_APP_TITLE).
-#if defined(QMC2_ARCADE_SVN_REV)
-        #if QMC2_ARCADE_SVN_REV > 0
-                                arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
-        #else
-                                arg(QMC2_ARCADE_APP_VERSION).
-        #endif
-#else
-                                arg(QMC2_ARCADE_APP_VERSION).
-#endif
-                                arg(QString("Qt") + " " + qVersion() + ", " +
-                                    QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
-                                    QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]) + ", " +
-#if QT_VERSION < 0x050000
-                                    QObject::tr("graphics-system: %1").arg(gSys) + ", " +
-#endif
-                                    QObject::tr("language: %1").arg(language) + ", " +
-                                    QObject::tr("theme: %1").arg(theme));
+	if ( runApp ) {
+		// log banner message
+		QString bannerMessage = QString("%1 %2 (%3)").
+				arg(QMC2_ARCADE_APP_TITLE).
+		#if defined(QMC2_ARCADE_SVN_REV)
+		#if QMC2_ARCADE_SVN_REV > 0
+				arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
+		#else
+				arg(QMC2_ARCADE_APP_VERSION).
+		#endif
+		#else
+				arg(QMC2_ARCADE_APP_VERSION).
+		#endif
+				arg(QString("Qt") + " " + qVersion() + ", " +
+				    QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
+				    QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]) + ", " +
+		    #if QT_VERSION < 0x050000
+				    QObject::tr("graphics-system: %1").arg(gSys) + ", " +
+		    #endif
+				    QObject::tr("language: %1").arg(language) + ", " +
+				    QObject::tr("theme: %1").arg(theme));
 
-        QMC2_ARCADE_LOG_STR(bannerMessage);
+		QMC2_ARCADE_LOG_STR(bannerMessage);
 
-        if ( consoleWindow )
-            consoleWindow->loadSettings();
+		if ( consoleWindow )
+			consoleWindow->loadSettings();
 
-        // debug options
-        debugKeys = QMC2_ARCADE_CLI_DEBUG_KEYS;
+		// debug options
+		debugKeys = QMC2_ARCADE_CLI_DEBUG_KEYS;
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-        debugJoy = QMC2_ARCADE_CLI_DEBUG_JOY;
+		debugJoy = QMC2_ARCADE_CLI_DEBUG_JOY;
 #endif
 
-        // set up the main QML app viewer window
-        TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
+		// set up the main QML app viewer window
+		TweakedQmlApplicationViewer *viewer = new TweakedQmlApplicationViewer();
 
-        // install our key-event filter to remap key-sequences, if applicable
-        KeyEventFilter keyEventFilter(viewer->keySequenceMap);
-        app->installEventFilter(&keyEventFilter);
+		// install our key-event filter to remap key-sequences, if applicable
+		KeyEventFilter keyEventFilter(viewer->keySequenceMap);
+		app->installEventFilter(&keyEventFilter);
 
 #if QT_VERSION < 0x050000
-        viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
-        viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
-        viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-        viewer->setStyleSheet("background-color: black");
+		viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
+		viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
+		viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+		viewer->setStyleSheet("background-color: black");
 #else
-        viewer->setTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
-        viewer->winId(); // see QTBUG-33370 QQuickView does not set icon correctly
-        viewer->setIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
-        viewer->setColor(QColor(0,0,0,255));
+		viewer->setTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
+		viewer->winId(); // see QTBUG-33370 QQuickView does not set icon correctly
+		viewer->setIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
+		viewer->setColor(QColor(0,0,0,255));
 #endif
 
-        QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
+		QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
-        bool initialFullScreen = globalConfig->fullScreen();
-        if ( QMC2_ARCADE_CLI_FULLSCREEN )
-            initialFullScreen = true;
-        else if ( QMC2_ARCADE_CLI_WINDOWED )
-            initialFullScreen = false;
+		bool initialFullScreen = globalConfig->fullScreen();
+		if ( QMC2_ARCADE_CLI_FULLSCREEN )
+			initialFullScreen = true;
+		else if ( QMC2_ARCADE_CLI_WINDOWED )
+			initialFullScreen = false;
 
-        // setup viewer params
-        viewer->setInitialFullScreen(initialFullScreen);
-        viewer->setVideoEnabled(globalConfig->defaultVideo() == "on");
-        if ( QMC2_ARCADE_CLI_VIDEO_VAL )
-            viewer->setVideoEnabled(QMC2_ARCADE_CLI_VIDEO == "on");
+		// setup viewer params
+		viewer->setInitialFullScreen(initialFullScreen);
+		viewer->setVideoEnabled(globalConfig->defaultVideo() == "on");
+		if ( QMC2_ARCADE_CLI_VIDEO_VAL )
+			viewer->setVideoEnabled(QMC2_ARCADE_CLI_VIDEO == "on");
 
-        // load theme
-        QString themeUrl;
+		// load theme
+		QString themeUrl;
 #if QT_VERSION < 0x050000
-        if ( viewer->videoEnabled() )
-            themeUrl = QString("qrc:/qml/%1/1.1/%1-video.qml").arg(theme);
-        else
-            themeUrl = QString("qrc:/qml/%1/1.1/%1.qml").arg(theme);
+		if ( viewer->videoEnabled() )
+			themeUrl = QString("qrc:/qml/%1/1.1/%1-video.qml").arg(theme);
+		else
+			themeUrl = QString("qrc:/qml/%1/1.1/%1.qml").arg(theme);
 #else
-        if ( viewer->videoEnabled() )
-            themeUrl = QString("qrc:/qml/%1/2.0/%1-video.qml").arg(theme);
-        else
-            themeUrl = QString("qrc:/qml/%1/2.0/%1.qml").arg(theme);
+		if ( viewer->videoEnabled() )
+			themeUrl = QString("qrc:/qml/%1/2.0/%1-video.qml").arg(theme);
+		else
+			themeUrl = QString("qrc:/qml/%1/2.0/%1.qml").arg(theme);
 #endif
-        viewer->setSource(QUrl(themeUrl));
+		viewer->setSource(QUrl(themeUrl));
 
-        // delayed setup of the initial display mode
-        QTimer::singleShot(100, viewer, SLOT(displayInit()));
+		// delayed setup of the initial display mode
+		QTimer::singleShot(100, viewer, SLOT(displayInit()));
 
-        // run the event loop
-        returnCode = app->exec();
+		// run the event loop
+		returnCode = app->exec();
 
-        // remove the key-event filter before destroying the viewer, otherwise there's a small possibility
-        // for an exit-crash because the event-filter uses the key-sequence-map instance from the viewer
-        app->removeEventFilter(&keyEventFilter);
-        delete viewer;
-    } else {
-        if ( consoleWindow ) {
-            consoleWindow->loadSettings();
-            QString consoleMessage(QObject::tr("QML viewer not started - please close the console window to exit"));
-            QMC2_ARCADE_LOG_STR_NT(QString("-").repeated(consoleMessage.length()));
-            QMC2_ARCADE_LOG_STR_NT(consoleMessage);
-            QMC2_ARCADE_LOG_STR_NT(QString("-").repeated(consoleMessage.length()));
-            consoleWindow->showNormal();
-            consoleWindow->raise();
-            app->exec();
-        }
-        returnCode = 1;
-    }
+		// remove the key-event filter before destroying the viewer, otherwise there's a small possibility
+		// for an exit-crash because the event-filter uses the key-sequence-map instance from the viewer
+		app->removeEventFilter(&keyEventFilter);
+		delete viewer;
+	} else {
+		if ( consoleWindow ) {
+			consoleWindow->loadSettings();
+			QString consoleMessage(QObject::tr("QML viewer not started - please close the console window to exit"));
+			QMC2_ARCADE_LOG_STR_NT(QString("-").repeated(consoleMessage.length()));
+			QMC2_ARCADE_LOG_STR_NT(consoleMessage);
+			QMC2_ARCADE_LOG_STR_NT(QString("-").repeated(consoleMessage.length()));
+			consoleWindow->showNormal();
+			consoleWindow->raise();
+			app->exec();
+		}
+		returnCode = 1;
+	}
 
-    if ( consoleWindow ) {
-        consoleWindow->saveSettings();
-        delete consoleWindow;
-    }
+	if ( consoleWindow ) {
+		consoleWindow->saveSettings();
+		delete consoleWindow;
+	}
 
-    delete globalConfig;
+	delete globalConfig;
 
-    return returnCode;
+	return returnCode;
 }

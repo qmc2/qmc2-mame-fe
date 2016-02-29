@@ -35,48 +35,48 @@ class ImageProvider : public QObject, public QDeclarativeImageProvider
 {
 	Q_OBJECT
 
-	public:
-		explicit ImageProvider(QDeclarativeImageProvider::ImageType, QObject *parent = 0);
-		virtual ~ImageProvider();
+public:
+	explicit ImageProvider(QDeclarativeImageProvider::ImageType, QObject *parent = 0);
+	virtual ~ImageProvider();
 
-		QImage requestImage(const QString &, QSize *, const QSize &);
-		QPixmap requestPixmap(const QString &, QSize *, const QSize &);
-		QString loadImage(const QString &);
-		bool isZippedImageType(QString);
-		bool isSevenZippedImageType(QString);
-		bool isArchivedImageType(QString);
-		QString customCachePrefix(QString);
+	QImage requestImage(const QString &, QSize *, const QSize &);
+	QPixmap requestPixmap(const QString &, QSize *, const QSize &);
+	QString loadImage(const QString &);
+	bool isZippedImageType(QString);
+	bool isSevenZippedImageType(QString);
+	bool isArchivedImageType(QString);
+	QString customCachePrefix(QString);
 
-		enum CacheClass { CacheClassImage, CacheClassPixmap };
+	enum CacheClass { CacheClassImage, CacheClassPixmap };
 
-	public slots:
-		void sevenZipDataReady();
+public slots:
+	void sevenZipDataReady();
 
-	signals:
-		void imageDataUpdated(QString);
+signals:
+	void imageDataUpdated(QString);
 
-	private:
-		QString loadImage(const QString &id, const enum CacheClass cacheClass);
-		QString imageTypeToFile(QString);
-		QString imageTypeToLongName(QString);
-		QString imageFolder(QString);
-		bool isAsync(QString);
+private:
+	QString loadImage(const QString &id, const enum CacheClass cacheClass);
+	QString imageTypeToFile(QString);
+	QString imageTypeToLongName(QString);
+	QString imageFolder(QString);
+	bool isAsync(QString);
 
-		QStringList mImageTypes;
-		QStringList mCustomImageTypes;
-		QMap<QString, QString> mCustomCachePrefixes;
-		QMap<QString, QString> mFileTypeMap;
-		QMap<QString, unzFile> mFileMapZip;
-		QMap<QString, SevenZipFile *> mFileMap7z;
+	QStringList mImageTypes;
+	QStringList mCustomImageTypes;
+	QMap<QString, QString> mCustomCachePrefixes;
+	QMap<QString, QString> mFileTypeMap;
+	QMap<QString, unzFile> mFileMapZip;
+	QMap<QString, SevenZipFile *> mFileMap7z;
 #if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
-		QMap<QString, ArchiveFile *> mArchiveMap;
+	QMap<QString, ArchiveFile *> mArchiveMap;
 #endif
-		QCache<QString, QImage> mImageCache;
-		QCache<QString, QPixmap> mPixmapCache;
-		QMap<QString, QList<int> > mActiveFormatsMap;
-		QStringList mFormatExtensions;
-		QStringList mFormatNames;
-		QMap<QString, bool> mAsyncMap;
+	QCache<QString, QImage> mImageCache;
+	QCache<QString, QPixmap> mPixmapCache;
+	QMap<QString, QList<int> > mActiveFormatsMap;
+	QStringList mFormatExtensions;
+	QStringList mFormatNames;
+	QMap<QString, bool> mAsyncMap;
 };
 #else
 #include <QQuickImageProvider>
@@ -85,48 +85,48 @@ class ImageProvider : public QObject, public QQuickImageProvider
 {
 	Q_OBJECT
 
-	public:
-		explicit ImageProvider(QQuickImageProvider::ImageType, QObject *parent = 0);
-		virtual ~ImageProvider();
+public:
+	explicit ImageProvider(QQuickImageProvider::ImageType, QObject *parent = 0);
+	virtual ~ImageProvider();
 
-		QImage requestImage(const QString &, QSize *, const QSize &);
-		QPixmap requestPixmap(const QString &, QSize *, const QSize &);
-		QString loadImage(const QString &);
-		bool isZippedImageType(QString);
-		bool isSevenZippedImageType(QString);
-		bool isArchivedImageType(QString);
-		QString customCachePrefix(QString);
+	QImage requestImage(const QString &, QSize *, const QSize &);
+	QPixmap requestPixmap(const QString &, QSize *, const QSize &);
+	QString loadImage(const QString &);
+	bool isZippedImageType(QString);
+	bool isSevenZippedImageType(QString);
+	bool isArchivedImageType(QString);
+	QString customCachePrefix(QString);
 
-		enum CacheClass { CacheClassImage, CacheClassPixmap };
+	enum CacheClass { CacheClassImage, CacheClassPixmap };
 
-	public slots:
-		void sevenZipDataReady();
+public slots:
+	void sevenZipDataReady();
 
-	signals:
-		void imageDataUpdated(QString);
+signals:
+	void imageDataUpdated(QString);
 
-	private:
-		QString loadImage(const QString &id, const enum CacheClass cacheClass);
-		QString imageTypeToFile(QString);
-		QString imageTypeToLongName(QString);
-		QString imageFolder(QString);
-		bool isAsync(QString);
+private:
+	QString loadImage(const QString &id, const enum CacheClass cacheClass);
+	QString imageTypeToFile(QString);
+	QString imageTypeToLongName(QString);
+	QString imageFolder(QString);
+	bool isAsync(QString);
 
-		QStringList mImageTypes;
-		QStringList mCustomImageTypes;
-		QMap<QString, QString> mCustomCachePrefixes;
-		QMap<QString, QString> mFileTypeMap;
-		QMap<QString, unzFile> mFileMapZip;
-		QMap<QString, SevenZipFile *> mFileMap7z;
-	#if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
-		QMap<QString, ArchiveFile *> mArchiveMap;
-	#endif
-		QCache<QString, QImage> mImageCache;
-		QCache<QString, QPixmap> mPixmapCache;
-		QMap<QString, QList<int> > mActiveFormatsMap;
-		QStringList mFormatExtensions;
-		QStringList mFormatNames;
-		QMap<QString, bool> mAsyncMap;
+	QStringList mImageTypes;
+	QStringList mCustomImageTypes;
+	QMap<QString, QString> mCustomCachePrefixes;
+	QMap<QString, QString> mFileTypeMap;
+	QMap<QString, unzFile> mFileMapZip;
+	QMap<QString, SevenZipFile *> mFileMap7z;
+#if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
+	QMap<QString, ArchiveFile *> mArchiveMap;
+#endif
+	QCache<QString, QImage> mImageCache;
+	QCache<QString, QPixmap> mPixmapCache;
+	QMap<QString, QList<int> > mActiveFormatsMap;
+	QStringList mFormatExtensions;
+	QStringList mFormatNames;
+	QMap<QString, bool> mAsyncMap;
 };
 #endif
 

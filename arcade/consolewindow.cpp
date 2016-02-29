@@ -5,12 +5,12 @@
 extern ArcadeSettings *globalConfig;
 
 ConsoleWindow::ConsoleWindow(QWidget *parent) :
-    QPlainTextEdit(parent)
+	QPlainTextEdit(parent)
 {
-    setLineWrapMode(QPlainTextEdit::NoWrap);
-    setReadOnly(true);
-    setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + tr("Console"));
-    setFont(QFont("Courier", 10));
+	setLineWrapMode(QPlainTextEdit::NoWrap);
+	setReadOnly(true);
+	setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + tr("Console"));
+	setFont(QFont("Courier", 10));
 }
 
 ConsoleWindow::~ConsoleWindow()
@@ -19,10 +19,10 @@ ConsoleWindow::~ConsoleWindow()
 
 void ConsoleWindow::loadSettings()
 {
-    restoreGeometry(globalConfig->consoleGeometry());
+	restoreGeometry(globalConfig->consoleGeometry());
 }
 
 void ConsoleWindow::saveSettings()
 {
-    globalConfig->setConsoleGeometry(saveGeometry());
+	globalConfig->setConsoleGeometry(saveGeometry());
 }

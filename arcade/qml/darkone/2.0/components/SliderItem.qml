@@ -12,7 +12,7 @@ Item {
     property string textSuffix: ""
     property string textColour: "white"
     property int textSize: 10
-    property int sliderWidth 
+    property int sliderWidth
     property int textPrefixWidth
     property int textSuffixWidth
     property alias activeColour: slider.activeColour
@@ -74,7 +74,7 @@ Item {
         smooth: true
 
         Component.onCompleted: { if (parent.textPrefixWidth)
-                                     parent.textPrefixWidth; }
+                parent.textPrefixWidth; }
 
         MouseArea { id: textPrefixMouseArea }
     }
@@ -102,7 +102,7 @@ Item {
         smooth: true
 
         Component.onCompleted: { if (parent.textSuffixWidth)
-                                     parent.textSuffixWidth; }
+                parent.textSuffixWidth; }
 
         MouseArea { id: textSuffixMouseArea }
     }

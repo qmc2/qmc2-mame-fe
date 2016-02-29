@@ -9,18 +9,18 @@
 
 class JoyFunctionMap : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit JoyFunctionMap(QStringList keySequences, QObject *parent = 0);
+	explicit JoyFunctionMap(QStringList keySequences, QObject *parent = 0);
 
 public slots:
-    void setKeySequences(QStringList keySequences);
-    void loadJoyFunctionMap();
-    QString mapJoyFunction(QString joyFunction);
+	void setKeySequences(QStringList keySequences);
+	void loadJoyFunctionMap();
+	QString mapJoyFunction(QString joyFunction);
 
 private:
-    QStringList mNativeKeySequences;
-    QMap<QString, QString> mJoyFunctionMap;
+	QStringList mNativeKeySequences;
+	QMap<QString, QString> mJoyFunctionMap;
 };
 
 #endif

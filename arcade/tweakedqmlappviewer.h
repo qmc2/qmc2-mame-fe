@@ -38,124 +38,124 @@
 
 #if QT_VERSION < 0x050000
 class TweakedQmlApplicationViewer : public QmlApplicationViewer
-#else
+		#else
 class TweakedQmlApplicationViewer : public QQuickView
-#endif
+		#endif
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    int numFrames;
-    QTimer frameCheckTimer;
-    QByteArray savedGeometry;
-    bool savedMaximized;
-    QList<QObject *> gameList;
-    ProcessManager *processManager;
-    ImageProvider *imageProvider;
-    InfoProvider *infoProvider;
-    bool windowModeSwitching;
-    QMap<QString, QStringList> cliAllowedParameterValues;
-    QMap<QString, QString> cliParameterDescriptions;
-    QStringList cliParams;
-    QStringList infoClasses;
-    QStringList videoSnapAllowedFormatExtensions;
-    KeySequenceMap *keySequenceMap;
+	int numFrames;
+	QTimer frameCheckTimer;
+	QByteArray savedGeometry;
+	bool savedMaximized;
+	QList<QObject *> gameList;
+	ProcessManager *processManager;
+	ImageProvider *imageProvider;
+	InfoProvider *infoProvider;
+	bool windowModeSwitching;
+	QMap<QString, QStringList> cliAllowedParameterValues;
+	QMap<QString, QString> cliParameterDescriptions;
+	QStringList cliParams;
+	QStringList infoClasses;
+	QStringList videoSnapAllowedFormatExtensions;
+	KeySequenceMap *keySequenceMap;
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-    JoyFunctionMap *joyFunctionMap;
-    JoystickManager *joystickManager;
+	JoyFunctionMap *joyFunctionMap;
+	JoystickManager *joystickManager;
 #endif
 
 #if QT_VERSION < 0x050000
-    explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
+	explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
 #else
-    explicit TweakedQmlApplicationViewer(QWindow *parent = 0);
+	explicit TweakedQmlApplicationViewer(QWindow *parent = 0);
 #endif
-    virtual ~TweakedQmlApplicationViewer();
+	virtual ~TweakedQmlApplicationViewer();
 
 #if QT_VERSION >= 0x050000
-    bool isFullScreen()
-    {
-        return windowState() & Qt::WindowFullScreen;
-    }
-    bool isMaximized()
-    {
-        return windowState() & Qt::WindowMaximized;
-    }
-    QByteArray saveGeometry()
-    {
-        // FIXME
-        return QByteArray();
-    }
-    void restoreGeometry(const QByteArray &geom)
-    {
-        // FIXME
-    }
+	bool isFullScreen()
+	{
+		return windowState() & Qt::WindowFullScreen;
+	}
+	bool isMaximized()
+	{
+		return windowState() & Qt::WindowMaximized;
+	}
+	QByteArray saveGeometry()
+	{
+		// FIXME
+		return QByteArray();
+	}
+	void restoreGeometry(const QByteArray &geom)
+	{
+		// FIXME
+	}
 #endif
 
-    int themeIndex();
-    void setVideoEnabled(bool enable) { m_videoEnabled = enable; }
-    bool videoEnabled() { return m_videoEnabled; }
-    void setInitialFullScreen(bool enable) { m_initialFullScreen = enable; }
-    bool initialFullScreen() { return m_initialFullScreen; }
+	int themeIndex();
+	void setVideoEnabled(bool enable) { m_videoEnabled = enable; }
+	bool videoEnabled() { return m_videoEnabled; }
+	void setInitialFullScreen(bool enable) { m_initialFullScreen = enable; }
+	bool initialFullScreen() { return m_initialFullScreen; }
 
 signals:
-    void emulatorStarted(int);
-    void emulatorFinished(int);
-    void imageDataUpdated(QString cachePrefix);
+	void emulatorStarted(int);
+	void emulatorFinished(int);
+	void imageDataUpdated(QString cachePrefix);
 
 public slots:
-    void displayInit();
-    void fpsReady();
-    void loadSettings();
-    void saveSettings();
-    void switchToFullScreen(bool initially = false);
-    void switchToWindowed(bool initially = false);
-    QString romStateText(int);
-    int romStateCharToInt(char);
-    void loadMachineList();
-    void launchEmulator(QString);
-    QString loadImage(const QString &);
-    QString requestInfo(const QString &, const QString &);
-    QString videoSnapUrl(const QString &);
-    int findIndex(QString, int startIndex = 0);
-    void log(QString);
-    QStringList cliParamNames();
-    QString cliParamDescription(QString);
-    QString cliParamValue(QString);
-    QStringList cliParamAllowedValues(QString);
-    void setCliParamValue(QString, QString);
-    void linkActivated(QString);
-    QString emuMode();
+	void displayInit();
+	void fpsReady();
+	void loadSettings();
+	void saveSettings();
+	void switchToFullScreen(bool initially = false);
+	void switchToWindowed(bool initially = false);
+	QString romStateText(int);
+	int romStateCharToInt(char);
+	void loadMachineList();
+	void launchEmulator(QString);
+	QString loadImage(const QString &);
+	QString requestInfo(const QString &, const QString &);
+	QString videoSnapUrl(const QString &);
+	int findIndex(QString, int startIndex = 0);
+	void log(QString);
+	QStringList cliParamNames();
+	QString cliParamDescription(QString);
+	QString cliParamValue(QString);
+	QStringList cliParamAllowedValues(QString);
+	void setCliParamValue(QString, QString);
+	void linkActivated(QString);
+	QString emuMode();
 #if QT_VERSION >= 0x050000
-    void frameBufferSwapped() { numFrames++; }
-    void handleQuit();
+	void frameBufferSwapped() { numFrames++; }
+	void handleQuit();
 #endif
-    int runningEmulators() { return processManager->runningProcesses(); }
-    void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); }
-    bool isSevenZippedImageType(QString type) { return imageProvider->isSevenZippedImageType(type); }
-    bool isZippedImageType(QString type) { return imageProvider->isZippedImageType(type); }
-    QString parentId(QString id);
-    QStringList customSystemArtwork();
-    QStringList customSoftwareArtwork();
-    QString nextCustomSytemArtwork();
-    QString previousCustomSytemArtwork();
-    QString nextCustomSoftwareArtwork();
-    QString previousCustomSoftwareArtwork();
-    QString customCachePrefix(QString name) { return imageProvider->customCachePrefix(name); }
+	int runningEmulators() { return processManager->runningProcesses(); }
+	void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); }
+	bool isSevenZippedImageType(QString type) { return imageProvider->isSevenZippedImageType(type); }
+	bool isZippedImageType(QString type) { return imageProvider->isZippedImageType(type); }
+	QString parentId(QString id);
+	QStringList customSystemArtwork();
+	QStringList customSoftwareArtwork();
+	QString nextCustomSytemArtwork();
+	QString previousCustomSytemArtwork();
+	QString nextCustomSoftwareArtwork();
+	QString previousCustomSoftwareArtwork();
+	QString customCachePrefix(QString name) { return imageProvider->customCachePrefix(name); }
 
 private:
-    bool m_initialized;
-    bool m_videoEnabled;
-    bool m_initialFullScreen;
-    QHash<QString, QString> m_parentHash;
-    QHash<QString, QString> m_videoSnapUrlCache;
-    int m_currentSystemArtworkIndex;
-    int m_currentSoftwareArtworkIndex;
+	bool m_initialized;
+	bool m_videoEnabled;
+	bool m_initialFullScreen;
+	QHash<QString, QString> m_parentHash;
+	QHash<QString, QString> m_videoSnapUrlCache;
+	int m_currentSystemArtworkIndex;
+	int m_currentSoftwareArtworkIndex;
 
 #if QT_VERSION < 0x050000
 protected:
-    void paintEvent(QPaintEvent *);
-    void closeEvent(QCloseEvent *);
+	void paintEvent(QPaintEvent *);
+	void closeEvent(QCloseEvent *);
 #endif
 };
 

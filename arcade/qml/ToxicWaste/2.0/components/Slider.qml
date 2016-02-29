@@ -186,17 +186,17 @@ Item {
     }
 
     Keys.onPressed: {
-       switch ( event.key ) {
-           case Qt.Key_Left: {
-               slide(-slidePercentage)
-               event.accepted = true;
-               break;
-           }
-           case Qt.Key_Right: {
-               slide(slidePercentage)
-               event.accepted = true;
-               break;
-           }
-       }
+        switch ( event.key ) {
+        case Qt.Key_Left: {
+            slide(-slidePercentage)
+            event.accepted = true;
+            break;
+        }
+        case Qt.Key_Right: {
+            slide(slidePercentage)
+            event.accepted = true;
+            break;
+        }
+        }
     }
 }

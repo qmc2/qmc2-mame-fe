@@ -5,17 +5,17 @@
 
 class ConsoleWindow : public QPlainTextEdit
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit ConsoleWindow(QWidget *parent = 0);
-    virtual ~ConsoleWindow();
+	explicit ConsoleWindow(QWidget *parent = 0);
+	virtual ~ConsoleWindow();
 
 signals:
-    
+
 public slots:
-    void loadSettings();
-    void saveSettings();
+	void loadSettings();
+	void saveSettings();
 };
 
 #endif // CONSOLEWINDOW_H

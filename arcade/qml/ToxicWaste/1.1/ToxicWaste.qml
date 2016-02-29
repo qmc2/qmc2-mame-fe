@@ -95,12 +95,12 @@ Rectangle {
     height: ToxicWaste.baseHeight
     z: 0
     Image {
-       id: backgroundImage
-       anchors.fill: parent
-       fillMode: Image.PreserveAspectFit
-       source: "images/shadereffectsource.png"
-       smooth: true
-       z: 0
+        id: backgroundImage
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectFit
+        source: "images/shadereffectsource.png"
+        smooth: true
+        z: 0
     }
     Image {
         id: toxicImage

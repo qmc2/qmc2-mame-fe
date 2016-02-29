@@ -7,19 +7,19 @@
 
 class KeySequenceMap : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit KeySequenceMap(QStringList keySequences, QObject *parent = 0);
+	explicit KeySequenceMap(QStringList keySequences, QObject *parent = 0);
 
 public slots:
-    void setKeySequences(QStringList keySequences);
-    void loadKeySequenceMap();
-    QString mapKeySequence(QString keySeq);
+	void setKeySequences(QStringList keySequences);
+	void loadKeySequenceMap();
+	QString mapKeySequence(QString keySeq);
 
 private:
-    QStringList mNativeKeySequences;
-    QMap<QString, QString> mKeySequenceMap;
+	QStringList mNativeKeySequences;
+	QMap<QString, QString> mKeySequenceMap;
 };
 
 #endif // KEYMAP_H

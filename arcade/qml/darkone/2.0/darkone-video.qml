@@ -121,22 +121,22 @@ FocusScope {
         onColourSchemeChanged: { DarkoneJS.colourScheme(colourScheme); }
         onStateChanged: { state == "off" ? lightOffAnimation.start() : lightOnAnimation.start(); }
         onLightOutChanged: { debug && console.log("[darkone] darkone.lightOut: '" + darkone.lightOut + ", " +
-                                                            "state before: '" + darkone.state + "'");
-                             darkone.lightOut ? darkone.state = "off" : darkone.state = "on"; }
+                                                  "state before: '" + darkone.state + "'");
+            darkone.lightOut ? darkone.state = "off" : darkone.state = "on"; }
         onLightOutScreenChanged: { debug && console.log("[darkone] darkone.lightOutScreen: '" + darkone.lightOutScreen + ", " +
-                                                                  "overlayScreen.state orig: '" + overlayScreen.state + "', " +
-                                                                  "screenLightOpacity: '" + darkone.screenLightOpacity + "'");
-                                  if (darkone.lightOutScreen) {
-                                      overlayScreenLight.visible = false;
-                                      overlayBackLight.visible = false;
-                                      overlayScreen.state = "off"
-                                   } else {
-                                      if (screenLight)
-                                         overlayScreenLight.visible = true;
-                                      if (backLight)
-                                         overlayBackLight.visible = true;
-                                      overlayScreen.state = "on";
-                                   } }
+                                                        "overlayScreen.state orig: '" + overlayScreen.state + "', " +
+                                                        "screenLightOpacity: '" + darkone.screenLightOpacity + "'");
+            if (darkone.lightOutScreen) {
+                overlayScreenLight.visible = false;
+                overlayBackLight.visible = false;
+                overlayScreen.state = "off"
+            } else {
+                if (screenLight)
+                    overlayScreenLight.visible = true;
+                if (backLight)
+                    overlayBackLight.visible = true;
+                overlayScreen.state = "on";
+            } }
         onListHiddenChanged: { darkone.listHidden ? machineListView.state = "hidden" : machineListView.state = "shown"; }
         onToolbarHiddenChanged: { darkone.toolbarHidden ? toolbar.state = "hidden" : toolbar.state = "shown"; }
         onDataHiddenChanged: { darkone.dataHidden ? overlayData.state = "hidden" : overlayData.state = "shown"; }
@@ -207,134 +207,134 @@ FocusScope {
 
             if ( event.modifiers & Qt.AltModifier) {
                 switch ( event.key ) {
-                    case Qt.Key_Enter:
-                    case Qt.Key_Return: {
-                        DarkoneJS.fullScreenToggle()
-                        event.accepted = true;
-                        break;
-                    }
+                case Qt.Key_Enter:
+                case Qt.Key_Return: {
+                    DarkoneJS.fullScreenToggle()
+                    event.accepted = true;
+                    break;
+                }
                 }
             } else if ( event.modifiers & Qt.ControlModifier) {
                 if ( event.modifiers & Qt.ShiftModifier ) {
                 } else {
                     switch ( event.key ) {
-                        case Qt.Key_B: {
-                            darkone.activeBorders = !darkone.activeBorders;
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_1: {
-                            debug = !debug;
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_2: {
-                            debug2 = !debug2;
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_3: {
-                            debug3 = !debug3;
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_L: {
-                            if (preferences.state == "hidden")
-                                DarkoneJS.listToggle();
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_Q: {
-                            Qt.quit();
-                            break;
-                        }
-                        case Qt.Key_P: {
-                            !darkone.ignoreLaunch && DarkoneJS.launch();
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_O: {
-                            preferences.state = preferences.state == "shown" ? "hidden" : "shown";
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_T: {
-                            DarkoneJS.toolbarToggle();
-                            event.accepted = true;
-                            break;
-                        }
-                        case Qt.Key_S: {
-                            if ( darkone.toolbarHidden )
-                                DarkoneJS.toolbarToggle(1);
-                            searchTextInput.focus = true;
-                            searchTextInput.forceActiveFocus();
-                            event.accepted = true;
-                            break;
-                        }
+                    case Qt.Key_B: {
+                        darkone.activeBorders = !darkone.activeBorders;
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_1: {
+                        debug = !debug;
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_2: {
+                        debug2 = !debug2;
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_3: {
+                        debug3 = !debug3;
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_L: {
+                        if (preferences.state == "hidden")
+                            DarkoneJS.listToggle();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_Q: {
+                        Qt.quit();
+                        break;
+                    }
+                    case Qt.Key_P: {
+                        !darkone.ignoreLaunch && DarkoneJS.launch();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_O: {
+                        preferences.state = preferences.state == "shown" ? "hidden" : "shown";
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_T: {
+                        DarkoneJS.toolbarToggle();
+                        event.accepted = true;
+                        break;
+                    }
+                    case Qt.Key_S: {
+                        if ( darkone.toolbarHidden )
+                            DarkoneJS.toolbarToggle(1);
+                        searchTextInput.focus = true;
+                        searchTextInput.forceActiveFocus();
+                        event.accepted = true;
+                        break;
+                    }
                     }
                 }
             } else {
                 switch ( event.key ) {
-                    case Qt.Key_Backtab:
-                    case Qt.Key_Tab: {
-                        debug2 && console.log("[keys] tab: \"let me fall through your cracks again\"");
-                        overlay.focus = true;
-                        event.accepted = true;
-                        break;
+                case Qt.Key_Backtab:
+                case Qt.Key_Tab: {
+                    debug2 && console.log("[keys] tab: \"let me fall through your cracks again\"");
+                    overlay.focus = true;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Left: {
+                    if (!darkone.listHidden)
+                        DarkoneJS.listToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Right: {
+                    if (darkone.listHidden && preferences.state == "hidden")
+                        DarkoneJS.listToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Up: {
+                    if (!darkone.toolbarHidden)
+                        DarkoneJS.toolbarToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Down: {
+                    if (darkone.toolbarHidden)
+                        DarkoneJS.toolbarToggle();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Escape: {
+                    if ( preferences.state == "shown" )
+                        preferences.state = "hidden";
+                    else if ( launchFlashTimer.running ) {
+                        launchFlashTimer.stop();
+                        DarkoneJS.flashCounter = 0;
+                        DarkoneJS.inGame = true; // fake game over
+                        DarkoneJS.gameOver();
                     }
-                    case Qt.Key_Left: {
-                        if (!darkone.listHidden)
-                            DarkoneJS.listToggle();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Right: {
-                        if (darkone.listHidden && preferences.state == "hidden")
-                            DarkoneJS.listToggle();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Up: {
-                        if (!darkone.toolbarHidden)
-                            DarkoneJS.toolbarToggle();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Down: {
-                        if (darkone.toolbarHidden)
-                            DarkoneJS.toolbarToggle();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Escape: {
-                        if ( preferences.state == "shown" )
-                            preferences.state = "hidden";
-                        else if ( launchFlashTimer.running ) {
-                            launchFlashTimer.stop();
-                            DarkoneJS.flashCounter = 0;
-                            DarkoneJS.inGame = true; // fake game over
-                            DarkoneJS.gameOver();
-                        }
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_F1:
-                        break;
-                    case Qt.Key_F11: {
-                        DarkoneJS.fullScreenToggle()
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Plus: {
-                        DarkoneJS.zoom(1.1);
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Minus: {
-                        DarkoneJS.zoom(0.9);
-                        event.accepted = true;
-                        break;
-                    }
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_F1:
+                    break;
+                case Qt.Key_F11: {
+                    DarkoneJS.fullScreenToggle()
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Plus: {
+                    DarkoneJS.zoom(1.1);
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Minus: {
+                    DarkoneJS.zoom(0.9);
+                    event.accepted = true;
+                    break;
+                }
                 }
             }
         }
@@ -372,9 +372,9 @@ FocusScope {
             running: false
             repeat: true
             onTriggered: { if (!overlayScreenScaleAnimation.running) {
-                              launchTimer.stop();
-                              viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
-                           } } }
+                    launchTimer.stop();
+                    viewer.launchEmulator(machineListModel[machineListView.currentIndex].id);
+                } } }
         Timer {
             id: hideToolbarTimer
             interval: 4000
@@ -395,11 +395,11 @@ FocusScope {
             running: false
             repeat: true
             onTriggered: { darkone.lightOutScreen = true;
-                           lightOutScreenTimer.stop(); }
+                lightOutScreenTimer.stop(); }
         }
 
 
-/***
+        /***
  * overlay
  */
         Rectangle {
@@ -446,9 +446,9 @@ FocusScope {
                     overlay.focus = true;
                 }
                 onWheel: {
-                           DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
-                           debug && console.log("[overlay] wheel event: darkone.overlayScale: '" + darkone.overlayScale + "', " +
-                                                                       "zoom: '" + (1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y))) + "'");
+                    DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
+                    debug && console.log("[overlay] wheel event: darkone.overlayScale: '" + darkone.overlayScale + "', " +
+                                         "zoom: '" + (1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y))) + "'");
                 }
             }
             // overlay key events
@@ -459,183 +459,183 @@ FocusScope {
                 darkone.lights();
 
                 switch( event.key ) {
-                    case Qt.Key_1: {
-                        if ( ! darkone.dataHidden )
-                            darkone.dataTypePrimary = darkone.dataTypeCurrent
+                case Qt.Key_1: {
+                    if ( ! darkone.dataHidden )
+                        darkone.dataTypePrimary = darkone.dataTypeCurrent
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_2: {
+                    if ( ! darkone.dataHidden )
+                        darkone.dataTypeSecondary = darkone.dataTypeCurrent
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_F: {
+                    if ( event.modifiers & Qt.AltModifier ) {
+                        DarkoneJS.fullScreenToggle()
                         event.accepted = true;
-                        break;
                     }
-                    case Qt.Key_2: {
-                        if ( ! darkone.dataHidden )
-                            darkone.dataTypeSecondary = darkone.dataTypeCurrent
+                    break;
+                }
+                case Qt.Key_Enter:
+                case Qt.Key_Return: {
+                    darkone.dataHidden = !darkone.dataHidden
+                    if ( ! darkone.dataHidden )
+                        overlayDataTypeCycleItem.focus = true;
+                    else
+                        overlay.focus = true;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_P: {
+                    !darkone.ignoreLaunch && DarkoneJS.launch();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Backtab: {
+                    if ( !darkone.toolbarHidden ) {
+                        toolbarFocusScope.focus = true;
                         event.accepted = true;
-                        break;
+                    } else if ( !darkone.listHidden ) {
+                        machineListView.focus = true;
+                        event.accepted = true;
                     }
-                    case Qt.Key_F: {
-                        if ( event.modifiers & Qt.AltModifier ) {
-                            DarkoneJS.fullScreenToggle()
+                    break;
+                }
+                case Qt.Key_Tab: {
+                    if ( !darkone.listHidden ) {
+                        machineListView.focus = true;
+                        event.accepted = true;
+                    } else if ( !darkone.toolbarHidden ) {
+                        toolbarFocusScope.focus = true;
+                        event.accepted = true;
+                    }
+                    break;
+                }
+                case Qt.Key_PageUp: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( overlayText.text != "" ) {
+                            // scroll page
+                            overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
+                            overlayTextFlick.returnToBounds();
                             event.accepted = true;
                         }
-                        break;
                     }
-                    case Qt.Key_Enter:
-                    case Qt.Key_Return: {
-                        darkone.dataHidden = !darkone.dataHidden
-                        if ( ! darkone.dataHidden )
-                           overlayDataTypeCycleItem.focus = true;
-                        else
-                           overlay.focus = true;
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_P: {
-                        !darkone.ignoreLaunch && DarkoneJS.launch();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Backtab: {
-                        if ( !darkone.toolbarHidden ) {
-                            toolbarFocusScope.focus = true;
-                            event.accepted = true;
-                        } else if ( !darkone.listHidden ) {
-                            machineListView.focus = true;
+                    break;
+                }
+                case Qt.Key_PageDown: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( overlayText.text != "" ) {
+                            // scroll page
+                            overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
+                            overlayTextFlick.returnToBounds();
                             event.accepted = true;
                         }
-                        break;
                     }
-                    case Qt.Key_Tab: {
-                        if ( !darkone.listHidden ) {
-                            machineListView.focus = true;
+                    break;
+                }
+                case Qt.Key_Up: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            DarkoneJS.zoom(1.1);
                             event.accepted = true;
-                        } else if ( !darkone.toolbarHidden ) {
-                            toolbarFocusScope.focus = true;
-                            event.accepted = true;
-                        }
-                        break;
-                    }
-                    case Qt.Key_PageUp: {
-                        if ( event.modifiers & Qt.ControlModifier) {
+                            break;
+                        } else {
                             if ( overlayText.text != "" ) {
                                 // scroll page
                                 overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
                                 overlayTextFlick.returnToBounds();
                                 event.accepted = true;
+                            } else {
+                                if ( !darkone.toolbarHidden ) {
+                                    toolbarFocusScope.focus = true;
+                                    event.accepted = true;
+                                } else if ( !darkone.listHidden ) {
+                                    machineListView.focus = true;
+                                    event.accepted = true;
+                                }
                             }
+                            break;
+                        }
+                    } else {
+                        if ( overlayText.text != "" ) {
+                            // scroll line
+                            overlayTextFlick.contentY += overlayTextFlick.height / 10
+                            overlayTextFlick.returnToBounds();
+                            event.accepted = true;
                         }
                         break;
                     }
-                    case Qt.Key_PageDown: {
-                        if ( event.modifiers & Qt.ControlModifier) {
+                }
+                case Qt.Key_Down: {
+                    if ( event.modifiers & Qt.ControlModifier) {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            DarkoneJS.zoom(0.9);
+                            event.accepted = true;
+                            break;
+                        } else {
                             if ( overlayText.text != "" ) {
                                 // scroll page
                                 overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
                                 overlayTextFlick.returnToBounds();
                                 event.accepted = true;
-                            }
-                        }
-                        break;
-                    }
-                    case Qt.Key_Up: {
-                        if ( event.modifiers & Qt.ControlModifier) {
-                            if ( event.modifiers & Qt.ShiftModifier ) {
-                                DarkoneJS.zoom(1.1);
-                                event.accepted = true;
-                                break;
                             } else {
-                                if ( overlayText.text != "" ) {
-                                    // scroll page
-                                    overlayTextFlick.contentY += overlayTextFlick.height / 10 * 9
-                                    overlayTextFlick.returnToBounds();
+                                if ( !darkone.listHidden ) {
+                                    machineListView.focus = true;
                                     event.accepted = true;
-                                } else {
-                                    if ( !darkone.toolbarHidden ) {
-                                        toolbarFocusScope.focus = true;
-                                        event.accepted = true;
-                                    } else if ( !darkone.listHidden ) {
-                                        machineListView.focus = true;
-                                        event.accepted = true;
-                                    }
+                                } else if ( !darkone.toolbarHidden ) {
+                                    toolbarFocusScope.focus = true;
+                                    event.accepted = true;
                                 }
-                                break;
-                            }
-                        } else {
-                            if ( overlayText.text != "" ) {
-                                // scroll line
-                                overlayTextFlick.contentY += overlayTextFlick.height / 10
-                                overlayTextFlick.returnToBounds();
-                                event.accepted = true;
                             }
                             break;
                         }
-                    }
-                    case Qt.Key_Down: {
-                        if ( event.modifiers & Qt.ControlModifier) {
-                            if ( event.modifiers & Qt.ShiftModifier ) {
-                                DarkoneJS.zoom(0.9);
-                                event.accepted = true;
-                                break;
-                            } else {
-                                if ( overlayText.text != "" ) {
-                                    // scroll page
-                                    overlayTextFlick.contentY -= overlayTextFlick.height / 10 * 9
-                                    overlayTextFlick.returnToBounds();
-                                    event.accepted = true;
-                                } else {
-                                    if ( !darkone.listHidden ) {
-                                        machineListView.focus = true;
-                                        event.accepted = true;
-                                    } else if ( !darkone.toolbarHidden ) {
-                                        toolbarFocusScope.focus = true;
-                                        event.accepted = true;
-                                    }
-                                }
-                                break;
-                            }
-                        } else {
-                            if ( overlayText.text != "" ) {
-                                // scroll line
-                                overlayTextFlick.contentY -= overlayTextFlick.height / 10
-                                overlayTextFlick.returnToBounds();
-                                event.accepted = true;
-                            }
-                            break;
-                        }
-                    }
-                    case Qt.Key_Left:
-                        if ( event.modifiers & Qt.ControlModifier ) {
-                            if ( !darkone.toolbarHidden ) {
-                                toolbarFocusScope.focus = true;
-                                event.accepted = true
-                            } else if ( !darkone.listHidden ) {
-                                machineListView.focus = true;
-                                event.accepted = true
-                            }
-                        } else {
-                            if ( ! darkone.dataHidden )
-                                event.accepted = true
-                        }
-                        break;
-                    case Qt.Key_Right: {
-                        if ( event.modifiers & Qt.ControlModifier ) {
-                            if ( !darkone.listHidden ) {
-                                machineListView.focus = true;
-                                event.accepted = true
-                            } else if ( !darkone.toolbarHidden ) {
-                                toolbarFocusScope.focus = true;
-                                event.accepted = true
-                            }
-                        } else {
-                            if ( ! darkone.dataHidden )
-                                event.accepted = true
+                    } else {
+                        if ( overlayText.text != "" ) {
+                            // scroll line
+                            overlayTextFlick.contentY -= overlayTextFlick.height / 10
+                            overlayTextFlick.returnToBounds();
+                            event.accepted = true;
                         }
                         break;
                     }
-                    default: {
+                }
+                case Qt.Key_Left:
+                    if ( event.modifiers & Qt.ControlModifier ) {
+                        if ( !darkone.toolbarHidden ) {
+                            toolbarFocusScope.focus = true;
+                            event.accepted = true
+                        } else if ( !darkone.listHidden ) {
+                            machineListView.focus = true;
+                            event.accepted = true
+                        }
+                    } else {
+                        if ( ! darkone.dataHidden )
+                            event.accepted = true
                     }
+                    break;
+                case Qt.Key_Right: {
+                    if ( event.modifiers & Qt.ControlModifier ) {
+                        if ( !darkone.listHidden ) {
+                            machineListView.focus = true;
+                            event.accepted = true
+                        } else if ( !darkone.toolbarHidden ) {
+                            toolbarFocusScope.focus = true;
+                            event.accepted = true
+                        }
+                    } else {
+                        if ( ! darkone.dataHidden )
+                            event.accepted = true
+                    }
+                    break;
+                }
+                default: {
+                }
                 }
             }
 
-/***
+            /***
  * screen
  */
             Rectangle {
@@ -697,7 +697,7 @@ FocusScope {
                         overlayDataTypeCycleItem.focus = true;
                 }
                 onStateChanged: { debug && console.log("[overlayScreen] state changed, state: '" + state + "', " +
-                                                                       "screenLightOpacity: '" + darkone.screenLightOpacity + "'"); }
+                                                       "screenLightOpacity: '" + darkone.screenLightOpacity + "'"); }
 
                 MouseArea {
                     anchors.fill: parent
@@ -746,7 +746,7 @@ FocusScope {
                     color: darkone.textColour2
                 }
 
-/***
+                /***
  * display
  */
                 Rectangle {
@@ -768,7 +768,7 @@ FocusScope {
                         anchors.fill: parent
                         cursorShape: Qt.CrossCursor
                         onDoubleClicked: { debug && console.log("[overlayDisplay] double-clicked");
-                                           darkone.dataHidden = !darkone.dataHidden; }
+                            darkone.dataHidden = !darkone.dataHidden; }
                     }
 
                     Image {
@@ -786,7 +786,7 @@ FocusScope {
                         MouseArea {
                             anchors.fill: parent
                             onDoubleClicked: { debug && console.log("[overlayImage] double-clicked");
-                                               darkone.dataHidden = !darkone.dataHidden; }
+                                darkone.dataHidden = !darkone.dataHidden; }
                             onWheel: {
                                 DarkoneJS.zoom(1 + (0.1) * (wheel.angleDelta.y / Math.abs(wheel.angleDelta.y)));
                             }
@@ -935,24 +935,24 @@ FocusScope {
                         }
 
                         Text {
-                              id: overlayDataTitle
-                              text: DarkoneJS.gameCardHeader()
-                              textFormat: Text.RichText
-                              font.pixelSize: 10
-                              anchors.top: parent.top
-                              anchors.topMargin: 5
-                              anchors.horizontalCenter: parent.horizontalCenter
-                              width: parent.width - 20
-                              horizontalAlignment: Text.AlignHCenter
-                              verticalAlignment: Text.AlignVCenter
-                              color: "white"
-                              wrapMode: Text.WordWrap
+                            id: overlayDataTitle
+                            text: DarkoneJS.gameCardHeader()
+                            textFormat: Text.RichText
+                            font.pixelSize: 10
+                            anchors.top: parent.top
+                            anchors.topMargin: 5
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: parent.width - 20
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            color: "white"
+                            wrapMode: Text.WordWrap
 
-                              onTextChanged: { debug &&  console.log("[overlayDataHeader] changed");
-                                               parent.height = paintedHeight + 5;  // force update
-                                               if (!darkone.dataHidden)
-                                                   overlayDisplay.anchors.topMargin = paintedHeight + 5
-                                             } // force update
+                            onTextChanged: { debug &&  console.log("[overlayDataHeader] changed");
+                                parent.height = paintedHeight + 5;  // force update
+                                if (!darkone.dataHidden)
+                                    overlayDisplay.anchors.topMargin = paintedHeight + 5
+                            } // force update
                         }
                     }
                     Rectangle {
@@ -998,7 +998,7 @@ FocusScope {
                                 anchors.fill: parent
                                 cursorShape: Qt.CrossCursor
                                 onClicked: { darkone.dataTypePrimary = darkone.dataTypeCurrent;
-                                             debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
+                                    debug && console.log("[overlayDataTypeSetPrimaryButton clicked]"); }
                             }
 
                             Text {
@@ -1031,7 +1031,7 @@ FocusScope {
                                 anchors.fill: parent
                                 cursorShape: Qt.CrossCursor
                                 onClicked: { darkone.dataTypeSecondary = darkone.dataTypeCurrent;
-                                             debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
+                                    debug && console.log("[overlayDataTypeSetSecondaryButton clicked]"); }
                             }
 
                             Text {
@@ -1093,7 +1093,7 @@ FocusScope {
                 } // overlayData
             } // overlayScreen
 
-/***
+            /***
  * cabinet
  */
             Image {
@@ -1115,8 +1115,8 @@ FocusScope {
                 opacity: 1.0
 
                 Behavior on scale { ParallelAnimation {
-                                      PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear }
-                                      PropertyAnimation { target: overlayBackLight; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } } }
+                        PropertyAnimation { properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear }
+                        PropertyAnimation { target: overlayBackLight; properties: "scale"; duration: darkone.zoomDuration; easing.type: Easing.Linear } } }
             }
             Image {
                 z: 5
@@ -1187,8 +1187,8 @@ FocusScope {
                     onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0; }
                     onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5; }
                     onClicked: { if (!darkone.ignoreLaunch) {
-                                     machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
-                                     DarkoneJS.launch(); }
+                            machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                            DarkoneJS.launch(); }
                     }
                 }
             }
@@ -1212,15 +1212,15 @@ FocusScope {
                     onEntered: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0; }
                     onExited: { overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5; }
                     onClicked: { if (!darkone.ignoreLaunch) {
-                                     machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
-                                     DarkoneJS.launch(); }
+                            machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                            DarkoneJS.launch(); }
                     }
                 }
             }
         } // overlay
 
 
-/***
+        /***
  * list
  */
         Rectangle {
@@ -1313,7 +1313,7 @@ FocusScope {
                         // hide list / search box
                         PropertyAnimation { target: machineListView; property: "opacity"; from: 1.0; to: 0; duration: 0; }
                         PropertyAnimation { target: searchBox; property: "opacity"; from: 1.0; to: 0; duration: 0; }
-                } }
+                    } }
             ]
 
             function firstVisibleItem() { return - Math.floor(((height / 2) / (machineListView.itemHeight + 10))); } // relatives 'work'
@@ -1323,7 +1323,7 @@ FocusScope {
                                                            "firstVisibleItem: '" + firstVisibleItem() + "', " +
                                                            "lastVisibleItem: '" + lastVisibleItem() + "', " +
                                                            "itemsPerPage: '" + height / (machineListView.itemHeight + 10) + "'");
-                                          return lastVisibleItem() - firstVisibleItem() + 1 }
+                return lastVisibleItem() - firstVisibleItem() + 1 }
             function listUp() {
                 if ( currentIndex - (itemsPerPage() - 1) > 0 ) {
                     currentIndex -= (itemsPerPage() - 1)
@@ -1347,10 +1347,10 @@ FocusScope {
                 if (state == "hidden") {
                     if (DarkoneJS.resetFocused == "" && !darkone.toolbarHidden) {
                         if (toolbar.activeItem.parent == searchBox ||
-                            toolbar.activeItem.parent.parent == searchBox)
+                                toolbar.activeItem.parent.parent == searchBox)
                             showListButton.focus = true;
                     }
-                } 
+                }
             }
             onFocusChanged: {
                 (debug2 || debug3) && console.log("[focus] machineListView: '" + focus + "'" );
@@ -1382,95 +1382,95 @@ FocusScope {
                 darkone.lights();
 
                 switch ( event.key ) {
-                    case Qt.Key_Backtab: {
+                case Qt.Key_Backtab: {
+                    overlay.focus = true;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Tab: {
+                    if ( !darkone.toolbarHidden )
+                        toolbarFocusScope.focus = true;
+                    else
                         overlay.focus = true;
-                        event.accepted = true;
-                        break;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_PageUp: {
+                    listUp();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_PageDown: {
+                    listDown();
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Home: {
+                    positionViewAtBeginning();
+                    currentIndex = 0;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_End: {
+                    positionViewAtEnd();
+                    currentIndex = machineListModelCount - 1;
+                    event.accepted = true;
+                    break;
+                }
+                case Qt.Key_Enter:
+                case Qt.Key_Return: {
+                    if ( !(event.modifiers & Qt.AltModifier) && !darkone.ignoreLaunch ) {
+                        machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                        DarkoneJS.launch();
                     }
-                    case Qt.Key_Tab: {
-                        if ( !darkone.toolbarHidden )
-                            toolbarFocusScope.focus = true;
-                        else
-                            overlay.focus = true;
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_PageUp: {
-                        listUp();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_PageDown: {
-                        listDown();
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Home: {
-                        positionViewAtBeginning();
-                        currentIndex = 0;
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_End: {
-                        positionViewAtEnd();
-                        currentIndex = machineListModelCount - 1;
-                        event.accepted = true;
-                        break;
-                    }
-                    case Qt.Key_Enter:
-                    case Qt.Key_Return: {
-                        if ( !(event.modifiers & Qt.AltModifier) && !darkone.ignoreLaunch ) {
-                            machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
-                            DarkoneJS.launch();
-                        }
-                        break;
-                    }
-                    default: {
-                        if ( event.modifiers & Qt.ControlModifier ) {
-                            if ( event.modifiers & Qt.ShiftModifier ) {
-                                switch ( event.key ) {
-                                    case Qt.Key_Up: {
-                                        positionViewAtBeginning();
-                                        currentIndex = 0;
-                                        event.accepted = true;
-                                        break;
-                                    }
-                                    case Qt.Key_Down: {
-                                        positionViewAtEnd();
-                                        currentIndex = machineListModelCount - 1;
-                                        event.accepted = true;
-                                        break;
-                                    }
-                                }
-                            } else {
-                                switch ( event.key ) {
-                                    case Qt.Key_Up: {
-                                        listUp();
-                                        event.accepted = true;
-                                        break;
-                                    }
-                                    case Qt.Key_Down: {
-                                        listDown();
-                                        event.accepted = true;
-                                        break;
-                                    }
-                                    case Qt.Key_Left: {
-                                        overlay.focus = true;
-                                        event.accepted = true;
-                                        break;
-                                    }
-                                    case Qt.Key_Right: {
-                                        if ( !darkone.toolbarHidden )
-                                            toolbarFocusScope.focus = true;
-                                        else
-                                            overlay.focus = true;
-                                        event.accepted = true;
-                                        break;
-                                    }
-                                }
+                    break;
+                }
+                default: {
+                    if ( event.modifiers & Qt.ControlModifier ) {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            switch ( event.key ) {
+                            case Qt.Key_Up: {
+                                positionViewAtBeginning();
+                                currentIndex = 0;
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Down: {
+                                positionViewAtEnd();
+                                currentIndex = machineListModelCount - 1;
+                                event.accepted = true;
+                                break;
+                            }
+                            }
+                        } else {
+                            switch ( event.key ) {
+                            case Qt.Key_Up: {
+                                listUp();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Down: {
+                                listDown();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Left: {
+                                overlay.focus = true;
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Right: {
+                                if ( !darkone.toolbarHidden )
+                                    toolbarFocusScope.focus = true;
+                                else
+                                    overlay.focus = true;
+                                event.accepted = true;
+                                break;
+                            }
                             }
                         }
                     }
+                }
                 }
             }
 
@@ -1485,10 +1485,10 @@ FocusScope {
                     border.color: "#333333"
                     border.width: 1
                     gradient: Gradient {
-                                  GradientStop { position: 0.0; color: darkone.colour1 }
-                                  GradientStop { position: 0.2; color: darkone.colour2 }
-                                  GradientStop { position: 0.7; color: darkone.colour3 }
-                                  GradientStop { position: 1.0; color: darkone.colour4 } }
+                        GradientStop { position: 0.0; color: darkone.colour1 }
+                        GradientStop { position: 0.2; color: darkone.colour2 }
+                        GradientStop { position: 0.7; color: darkone.colour3 }
+                        GradientStop { position: 1.0; color: darkone.colour4 } }
                     opacity: 0.75
 
                     MouseArea {
@@ -1505,9 +1505,9 @@ FocusScope {
                             }
                         }
                         onDoubleClicked: { if (!darkone.ignoreLaunch) {
-                                              machineListView.currentIndex = index;
-                                              machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center) ;
-                                              DarkoneJS.launch(); }
+                                machineListView.currentIndex = index;
+                                machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center) ;
+                                DarkoneJS.launch(); }
                         }
                         onClicked: {
                             machineListView.currentIndex = index;
@@ -1536,7 +1536,7 @@ FocusScope {
         }
 
 
-/***
+        /***
  * preferences menu
  */
         FocusScope {
@@ -1612,7 +1612,7 @@ FocusScope {
                         debug && console.log("[preferences onClick 1] focus: '" + focus + "'");
                         preferencesFocusScope.focus = true;
                         debug && console.log("[preferences onClick 2] focus: '" + focus + "'");
-                   }
+                    }
                 }
                 // preferences key events
                 Keys.onPressed: {
@@ -1622,17 +1622,17 @@ FocusScope {
                     darkone.lights();
 
                     switch( event.key ) {
-                        case Qt.Key_Tab: {
-                            if ( event.modifiers & Qt.ShiftModifier ) {
-                                backendParamValuesCycleItem.focus = true;
-                                backendParamValuesCycleItem.forceActiveFocus()
-                            } else {
-                                sortByNameCheckBox.focus = true;
-                                sortByNameCheckBox.forceActiveFocus();
-                            }
-                            event.accepted = true;
-                            break;
+                    case Qt.Key_Tab: {
+                        if ( event.modifiers & Qt.ShiftModifier ) {
+                            backendParamValuesCycleItem.focus = true;
+                            backendParamValuesCycleItem.forceActiveFocus()
+                        } else {
+                            sortByNameCheckBox.focus = true;
+                            sortByNameCheckBox.forceActiveFocus();
                         }
+                        event.accepted = true;
+                        break;
+                    }
                     }
                 }
 
@@ -1791,7 +1791,7 @@ FocusScope {
                     onAccepted: {
                         text = text.replace(/([^0-9.])/g, '');
                         var valid = text.match(/^(|\d+|\d+\.*\d+)$/g) &&
-                                      parseFloat(text) >= 5 ? true : false
+                                parseFloat(text) >= 5 ? true : false
                         if (valid) {
                             inputColour = "black"
                             darkone.lightTimeout = parseFloat(text);
@@ -1809,7 +1809,7 @@ FocusScope {
                             inputColour = "red"
                     }
                     onFocusChanged: { if (focus)
-                                          text = text.replace(/([^0-9.])/g, ''); }
+                            text = text.replace(/([^0-9.])/g, ''); }
 
                     KeyNavigation.up: KeyNavigation.backtab
                     KeyNavigation.down: KeyNavigation.tab
@@ -2170,20 +2170,20 @@ FocusScope {
 
                     onValueChanged: {
                         debug && console.log("[preferences params names 1] param " +
-                                                 "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
-                                                 "values set: '" + backendParamValuesCycleItem.items + "', " +
-                                                 "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "', " +
-                                                 "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
+                                             "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
+                                             "values set: '" + backendParamValuesCycleItem.items + "', " +
+                                             "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "', " +
+                                             "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
 
                         backendParamValuesCycleItem.items = viewer.cliParamAllowedValues(value)
                         backendParamValuesCycleItem.selectedItem = viewer.cliParamValue(backendParamNamesCycleItem.value)
                         backendParamValuesCycleItem.value = viewer.cliParamValue(backendParamNamesCycleItem.value)
 
                         debug && console.log("[preferences param names 2] param " +
-                                                 "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
-                                                 "values set: '" + backendParamValuesCycleItem.items + "', " +
-                                                 "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "', " +
-                                                 "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
+                                             "values: '" + viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
+                                             "values set: '" + backendParamValuesCycleItem.items + "', " +
+                                             "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "', " +
+                                             "default set: '" + backendParamValuesCycleItem.selectedItem + "'");
 
                     }
 
@@ -2248,11 +2248,11 @@ FocusScope {
 
                     onSelect: {
                         debug && console.log("[preferences] param values: '" +
-                                                  viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
-                                                 "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "'");
+                                             viewer.cliParamAllowedValues(backendParamNamesCycleItem.value) + "', " +
+                                             "default: '" + viewer.cliParamValue(backendParamNamesCycleItem.value) + "'");
                         if (value != "" && selectedItem != value) {
                             debug && console.log("[preferences] setting param: '" + backendParamNamesCycleItem.value + ", " +
-                                                                       "value: '" + selectedItem + "' -> '" + value + "'");
+                                                 "value: '" + selectedItem + "' -> '" + value + "'");
                             selectedItem = value;
                             viewer.setCliParamValue(backendParamNamesCycleItem.value, value);
                         }
@@ -2267,7 +2267,7 @@ FocusScope {
         } // focusScope
 
 
-/***
+        /***
  * toolbar
  */
         Rectangle {
@@ -2388,7 +2388,7 @@ FocusScope {
                 onActiveFocusChanged: {
                     debug2 && console.log("[activeFocus] toolbar: '" + activeFocus + "'" );
                     debug2 && activeFocus && DarkoneJS.inFocus();
-                    if (activeFocus) 
+                    if (activeFocus)
                         toolbar.activeItemBorders = false;
                 }
 
@@ -2412,7 +2412,7 @@ FocusScope {
 
                     // lights
                     darkone.lights();
-                    // hide timer  
+                    // hide timer
                     hideToolbarTimer.stop();
                     // searchTextInput hack
                     searchTextInput.Keys.forwardTo = [];
@@ -2422,64 +2422,64 @@ FocusScope {
                     else {
                         if ( event.modifiers & Qt.ControlModifier ) {
                             switch ( event.key ) {
-                                case Qt.Key_Left:
-                                case Qt.Key_Up: {
+                            case Qt.Key_Left:
+                            case Qt.Key_Up: {
+                                if ( !darkone.listHidden )
+                                    machineListView.forceActiveFocus();
+                                else
+                                    overlay.forceActiveFocus();
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Right:
+                            case Qt.Key_Down: {
+                                overlay.forceActiveFocus();
+                                event.accepted = true;
+                                break;
+                            }
+                            }
+                        } else {
+                            switch ( event.key ) {
+                            case Qt.Key_Backtab: {
+                                if ( toolbar.cycling ) {
+                                    toolbar.cycling = false;
                                     if ( !darkone.listHidden )
                                         machineListView.forceActiveFocus();
                                     else
                                         overlay.forceActiveFocus();
-                                    event.accepted = true;
-                                    break;
+                                } else {
+                                    exitButton.focus = true;
                                 }
-                                case Qt.Key_Right:
-                                case Qt.Key_Down: {
+                                event.accepted = true;
+                                break;
+                            }
+                            case Qt.Key_Tab: {
+                                if ( toolbar.cycling ) {
+                                    toolbar.cycling = false;
                                     overlay.forceActiveFocus();
-                                    event.accepted = true;
-                                    break;
+                                } else {
+                                    if ( !darkone.listHidden )
+                                        searchButton.focus = true;
+                                    else
+                                        showListButton.focus = true;
+                                }
+                                event.accepted = true;
+                                break;
+                            }
+                            default: {
+                                if ( !darkone.listHidden ) {
+                                    switch ( event.key ) {
+                                    case Qt.Key_Left:
+                                    case Qt.Key_Up:
+                                    case Qt.Key_Right:
+                                    case Qt.Key_Down: {
+                                        event.accepted = true;
+                                        break;
+                                    }
+                                    }
                                 }
                             }
-                        } else {
-                            switch ( event.key ) {
-                                case Qt.Key_Backtab: {
-                                    if ( toolbar.cycling ) {
-                                        toolbar.cycling = false;
-                                        if ( !darkone.listHidden )
-                                            machineListView.forceActiveFocus();
-                                        else
-                                            overlay.forceActiveFocus();
-                                    } else {
-                                        exitButton.focus = true;
-                                    }
-                                    event.accepted = true;
-                                    break;
-                                }
-                                case Qt.Key_Tab: {
-                                    if ( toolbar.cycling ) {
-                                        toolbar.cycling = false;
-                                        overlay.forceActiveFocus();
-                                    } else {
-                                        if ( !darkone.listHidden )
-                                            searchButton.focus = true;
-                                        else
-                                            showListButton.focus = true;
-                                    }
-                                    event.accepted = true;
-                                    break;
-                                }
-                                default: {
-                                    if ( !darkone.listHidden ) {
-                                        switch ( event.key ) {
-                                            case Qt.Key_Left:
-                                            case Qt.Key_Up:
-                                            case Qt.Key_Right:
-                                            case Qt.Key_Down: {
-                                                event.accepted = true;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                break;
+                            break;
                             } // switch
                         }
                     }
@@ -2513,7 +2513,7 @@ FocusScope {
                             if (activeFocus) {
                                 toolbar.activeItem = searchButton;
                                 toolbar.activeItemBorders = true;
-                            } 
+                            }
                         }
 
                         MouseArea {
@@ -2541,15 +2541,15 @@ FocusScope {
                         Keys.onPressed: {
                             darkone.lights();
                             switch ( event.key ) {
-                                case Qt.Key_Space:
-                                case Qt.Key_Enter:
-                                case Qt.Key_Return: {
-                                    machineListView.currentIndex = viewer.findIndex(searchTextInput.text, machineListView.currentIndex)
-                                    machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
-                                    focus = true;
-                                    event.accepted = true;
-                                    break;
-                                }
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                machineListView.currentIndex = viewer.findIndex(searchTextInput.text, machineListView.currentIndex)
+                                machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
+                                focus = true;
+                                event.accepted = true;
+                                break;
+                            }
                             }
                         }
                     }
@@ -2593,7 +2593,7 @@ FocusScope {
                             }
 
                             onAccepted: { machineListView.currentIndex = viewer.findIndex(searchTextInput.text, machineListView.currentIndex)
-                                          machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
+                                machineListView.positionViewAtIndex(machineListView.currentIndex, ListView.Center);
                             }
                             onFocusChanged: {
                                 if ( darkone.initialised ) {
@@ -2676,14 +2676,14 @@ FocusScope {
                         Keys.onPressed: {
                             darkone.lights();
                             switch ( event.key ) {
-                                case Qt.Key_Space:
-                                case Qt.Key_Enter:
-                                case Qt.Key_Return: {
-                                    searchTextInput.text = "";
-                                    searchTextInput.focus = true;
-                                    event.accepted = true;
-                                    break;
-                                }
+                            case Qt.Key_Space:
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return: {
+                                searchTextInput.text = "";
+                                searchTextInput.focus = true;
+                                event.accepted = true;
+                                break;
+                            }
                             }
                         }
                     }
@@ -2746,14 +2746,14 @@ FocusScope {
                     Keys.onPressed: {
                         darkone.lights();
                         switch ( event.key ) {
-                            case Qt.Key_Space:
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return: {
-                                DarkoneJS.listToggle();
-                                toolbarFocusScope.focus = true;
-                                event.accepted = true;
-                                break;
-                            }
+                        case Qt.Key_Space:
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return: {
+                            DarkoneJS.listToggle();
+                            toolbarFocusScope.focus = true;
+                            event.accepted = true;
+                            break;
+                        }
                         }
                     }
                 }
@@ -2801,16 +2801,16 @@ FocusScope {
                     Keys.onPressed: {
                         darkone.lights();
                         switch ( event.key ) {
-                            case Qt.Key_Space:
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return: {
-                                if (preferences.state == "shown")
-                                    preferences.state = "hidden";
-                                else
-                                    preferences.state = "shown";
-                                event.accepted = true;
-                                break;
-                            }
+                        case Qt.Key_Space:
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return: {
+                            if (preferences.state == "shown")
+                                preferences.state = "hidden";
+                            else
+                                preferences.state = "shown";
+                            event.accepted = true;
+                            break;
+                        }
                         }
                     }
                 }
@@ -2865,13 +2865,13 @@ FocusScope {
                     Keys.onPressed: {
                         darkone.lights();
                         switch ( event.key ) {
-                            case Qt.Key_Space:
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return: {
-                                DarkoneJS.fullScreenToggle();
-                                event.accepted = true;
-                                break;
-                            }
+                        case Qt.Key_Space:
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return: {
+                            DarkoneJS.fullScreenToggle();
+                            event.accepted = true;
+                            break;
+                        }
                         }
                     }
                 }
@@ -2909,16 +2909,16 @@ FocusScope {
                     Keys.onPressed: {
                         darkone.lights();
                         switch ( event.key ) {
-                            case Qt.Key_Space:
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return: {
-                                if (!darkone.ignoreLaunch) {
-                                    machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
-                                    DarkoneJS.launch();
-                                }
-                                event.accepted = true;
-                                break;
+                        case Qt.Key_Space:
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return: {
+                            if (!darkone.ignoreLaunch) {
+                                machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                DarkoneJS.launch();
                             }
+                            event.accepted = true;
+                            break;
+                        }
                         }
                     }
 
@@ -2946,16 +2946,16 @@ FocusScope {
                             cursorShape: Qt.CrossCursor
                             hoverEnabled: true
                             onEntered: { parent.opacity = 1.0
-                                         parent.parent.opacity = 1.0
-                                         overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0;
+                                parent.parent.opacity = 1.0
+                                overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 1.0;
                             }
                             onExited: { parent.opacity = 0.75
-                                        parent.parent.opacity = 0.5
-                                        overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5;
+                                parent.parent.opacity = 0.5
+                                overlayStateBlock.opacity = (lightOnAnimation.running || darkone.lightOut) ? 0 : 0.5;
                             }
                             onClicked: { if (!darkone.ignoreLaunch) {
-                                             machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
-                                             DarkoneJS.launch(); }
+                                    machineListView.positionViewAtIndex(darkone.lastIndex, ListView.Center);
+                                    DarkoneJS.launch(); }
                             }
                         }
                     }
@@ -3006,13 +3006,13 @@ FocusScope {
                     Keys.onPressed: {
                         darkone.lights();
                         switch ( event.key ) {
-                            case Qt.Key_Space:
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return: {
-                                darkone.ignoreLaunch = true;
-                                Qt.quit();
-                                break;
-                            }
+                        case Qt.Key_Space:
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return: {
+                            darkone.ignoreLaunch = true;
+                            Qt.quit();
+                            break;
+                        }
                         }
                     }
                 }
