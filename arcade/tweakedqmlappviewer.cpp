@@ -35,7 +35,6 @@
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
 extern int emulatorMode;
-extern int consoleMode;
 extern QStringList emulatorModeNames;
 extern QStringList mameThemes;
 extern QStringList arcadeThemes;
@@ -43,6 +42,8 @@ extern QStringList consoleModes;
 #if QT_VERSION < 0x050000
 extern QStringList graphicsSystems;
 #endif
+
+int TweakedQmlApplicationViewer::consoleMode = QMC2_ARCADE_CONSOLE_TERM;
 
 #if QT_VERSION < 0x050000
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
@@ -161,6 +162,50 @@ TweakedQmlApplicationViewer::~TweakedQmlApplicationViewer()
 int TweakedQmlApplicationViewer::themeIndex()
 {
 	return arcadeThemes.indexOf(globalConfig->arcadeTheme);
+}
+
+void TweakedQmlApplicationViewer::logString(const QString &s)
+{
+	if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) {
+		if ( !consoleWindow ) {
+			printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8().constData(), s.toUtf8().constData());
+			fflush(stdout);
+		} else
+			consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s);
+	}
+}
+
+void TweakedQmlApplicationViewer::logStringNoTime(const QString &s)
+{
+	if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) {
+		if ( !consoleWindow ) {
+			printf("%s\n", s.toUtf8().constData());
+			fflush(stdout);
+		} else
+			consoleWindow->appendPlainText(s);
+	}
+}
+
+void TweakedQmlApplicationViewer::logCString(const char *s)
+{
+	if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) {
+		if ( !consoleWindow ) {
+			printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8(), (const char *)s);
+			fflush(stdout);
+		} else
+			consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s));
+	}
+}
+
+void TweakedQmlApplicationViewer::logCStringNoTime(const char *s)
+{
+	if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) {
+		if ( !consoleWindow ) {
+			printf("%s\n", (const char *)s);
+			fflush(stdout);
+		} else
+			consoleWindow->appendPlainText(QString(s));
+	}
 }
 
 void TweakedQmlApplicationViewer::displayInit()

@@ -4,12 +4,10 @@
 
 #include "joystick.h"
 #include "arcadesettings.h"
-#include "consolewindow.h"
+#include "tweakedqmlappviewer.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
-extern ConsoleWindow *consoleWindow;
-extern int consoleMode;
 
 Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay)
 	: QObject(parent)

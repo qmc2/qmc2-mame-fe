@@ -10,11 +10,9 @@
 
 #include "infoprovider.h"
 #include "arcadesettings.h"
-#include "consolewindow.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
-extern ConsoleWindow *consoleWindow;
 extern int emulatorMode;
 
 InfoProvider::InfoProvider()
