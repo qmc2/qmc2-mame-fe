@@ -19,6 +19,7 @@ extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
 extern bool debugJoy;
 extern QStringList argumentList;
+extern int consoleMode;
 
 JoystickManager::JoystickManager(JoyFunctionMap *joyFuncMap, int joyIndex, QObject *parent) :
 	QObject(parent)

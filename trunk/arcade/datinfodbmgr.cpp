@@ -24,6 +24,7 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
+extern int consoleMode;
 
 DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 	: QObject(parent)

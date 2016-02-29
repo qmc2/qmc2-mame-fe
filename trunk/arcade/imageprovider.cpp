@@ -18,6 +18,7 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
+extern int consoleMode;
 
 #if QT_VERSION < 0x050000
 ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type, QObject *parent)

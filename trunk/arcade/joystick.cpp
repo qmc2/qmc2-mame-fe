@@ -9,6 +9,7 @@
 
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
+extern int consoleMode;
 
 Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay)
 	: QObject(parent)

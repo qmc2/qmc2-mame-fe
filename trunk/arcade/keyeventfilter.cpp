@@ -16,6 +16,7 @@
 extern ArcadeSettings *globalConfig;
 extern ConsoleWindow *consoleWindow;
 extern bool debugKeys;
+extern int consoleMode;
 
 KeyEventFilter::KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent) :
 	QObject(parent)
