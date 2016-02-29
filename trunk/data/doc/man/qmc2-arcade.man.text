@@ -30,10 +30,11 @@ OPTIONS
                     (default) and 'darkone'.
 
   -console type  Choose the type of console to use. Available values for type are 'terminal' (default), 'window', 'window-minimized' and 'none'.
+                 Console type 'none' will effectively suppress all log messages.
 
   -graphicssystem engine  Select the graphics sub-system engine instead of the currently set default one. Available values for engine are 'raster'
-                          (default), 'opengl', 'opengl1', 'openvg' and 'native'. Note that this option only exists when QMC2 Arcade has been built
-                          with Qt 4 (which is recommended). Qt 5 builds do not include it!
+                          (default), 'opengl', 'opengl1', 'opengl2', 'openvg' and 'native'. Note that this option only exists when QMC2 Arcade has
+			  been built with Qt 4 (which is recommended). Qt 5 builds do not include it!
 
   -language lang  Choose translation to load. Run 'qmc2-arcade -h' for a list of available values for lang. Note that the default value for -language
                   is shared with the main GUI's language setting!
