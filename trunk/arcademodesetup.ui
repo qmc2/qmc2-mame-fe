@@ -148,6 +148,11 @@
            <string notr="true">window-minimized</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string notr="true">none</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="8" column="0" colspan="2">
