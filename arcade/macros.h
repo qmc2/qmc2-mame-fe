@@ -81,6 +81,7 @@
 #define QMC2_ARCADE_CONSOLE_TERM		0
 #define QMC2_ARCADE_CONSOLE_WIN			1
 #define QMC2_ARCADE_CONSOLE_WINMIN		2
+#define QMC2_ARCADE_CONSOLE_NONE		3
 
 // emulator option types
 #define QMC2_ARCADE_EMUOPT_UNKNOWN		0
@@ -163,10 +164,10 @@
 #define QMC2_ARCADE_CLI_INVALID			(QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV || QMC2_ARCADE_CLI_VIDEO_INV || QMC2_ARCADE_CLI_JOY_INV)
 
 // console logging macros
-#define QMC2_ARCADE_LOG_STR(s)			if ( !consoleWindow ) { printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8().constData(), s.toUtf8().constData()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); }
-#define QMC2_ARCADE_LOG_STR_NT(s)		if ( !consoleWindow ) { printf("%s\n", s.toUtf8().constData()); fflush(stdout); } else { consoleWindow->appendPlainText(s); }
-#define QMC2_ARCADE_LOG_CSTR(s)			if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8(), (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s)); }
-#define QMC2_ARCADE_LOG_CSTR_NT(s)		if ( !consoleWindow ) { printf("%s\n", (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QString(s)); }
+#define QMC2_ARCADE_LOG_STR(s)			if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) { if ( !consoleWindow ) { printf("%s: %s\n", QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8().constData(), s.toUtf8().constData()); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + s); } }
+#define QMC2_ARCADE_LOG_STR_NT(s)		if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) { if ( !consoleWindow ) { printf("%s\n", s.toUtf8().constData()); fflush(stdout); } else { consoleWindow->appendPlainText(s); } }
+#define QMC2_ARCADE_LOG_CSTR(s)			if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) { if ( !consoleWindow ) { printf("%s: %s\n", (const char *)QTime::currentTime().toString("hh:mm:ss.zzz").toUtf8(), (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + QString(s)); } }
+#define QMC2_ARCADE_LOG_CSTR_NT(s)		if ( consoleMode != QMC2_ARCADE_CONSOLE_NONE ) { if ( !consoleWindow ) { printf("%s\n", (const char *)s); fflush(stdout); } else { consoleWindow->appendPlainText(QString(s)); } }
 
 // exchangable (de)compression routines
 #define QMC2_ARCADE_COMPRESS(data)		qCompress((data))

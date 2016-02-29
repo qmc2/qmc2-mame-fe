@@ -151,7 +151,7 @@ void showHelp()
 #endif
 #endif
 	helpMessage += "Option           Meaning              Possible values ([..] = default)\n"
-		       "---------------  -------------------  -----------------------------------------\n";
+		       "---------------  -------------------  --------------------------------------------------\n";
 	helpMessage += "-theme           Theme selection      " + availableThemes + "\n";
 	helpMessage += "-console         Console type         " + availableConsoles + "\n";
 #if QT_VERSION < 0x050000
@@ -234,7 +234,7 @@ int main(int argc, char *argv[])
 	emulatorModes << "mame";
 	arcadeThemes << "ToxicWaste" << "darkone";
 	mameThemes << "ToxicWaste" << "darkone";
-	consoleModes << "terminal" << "window" << "window-minimized";
+	consoleModes << "terminal" << "window" << "window-minimized" << "none";
 #if QT_VERSION < 0x050000
 	graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "opengl2" << "openvg";
 #endif
@@ -317,7 +317,8 @@ int main(int argc, char *argv[])
 	} else if ( !consoleModes.contains(console) ) {
 		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid console-mode - available console-modes: %2").arg(console).arg(consoleModes.join(", ")));
 		return 1;
-	}
+	} else
+		consoleMode = console == "terminal" ? QMC2_ARCADE_CONSOLE_TERM : QMC2_ARCADE_CONSOLE_NONE;
 
 	if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
 		showHelp();
