@@ -94,6 +94,7 @@ class ImageProvider : public QObject, public QQuickImageProvider
 		QString loadImage(const QString &);
 		bool isZippedImageType(QString);
 		bool isSevenZippedImageType(QString);
+		bool isArchivedImageType(QString);
 		QString customCachePrefix(QString);
 
 		enum CacheClass { CacheClassImage, CacheClassPixmap };
