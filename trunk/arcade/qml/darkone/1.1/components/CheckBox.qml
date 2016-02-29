@@ -42,10 +42,10 @@ Rectangle {
         }
         onExited: {
             debug && console.log("[checkbox exited 1] checkboxText.opacity: '" + checkboxText.opacity + "', " +
-                                                     "resetOpacity: '" + resetOpacity + "'");
+                                 "resetOpacity: '" + resetOpacity + "'");
             checkboxText.opacity = resetOpacity
             debug && console.log("[checkbox exited 2] checkboxText.opacity: '" + checkboxText.opacity + "', " +
-                                                     "resetOpacity: '" + resetOpacity + "'");
+                                 "resetOpacity: '" + resetOpacity + "'");
         }
         onClicked: {
             root.checked = !root.checked;
@@ -54,15 +54,15 @@ Rectangle {
     }
     Keys.onPressed: {
         switch ( event.key ) {
-            case Qt.Key_Enter:
-            case Qt.Key_Return:
-            case Qt.Key_Space: {
-                if ( !(event.modifiers & Qt.AltModifier) ) {
-                    root.checked = !root.checked;
-                    event.accepted = true;
-                }
-                break;
+        case Qt.Key_Enter:
+        case Qt.Key_Return:
+        case Qt.Key_Space: {
+            if ( !(event.modifiers & Qt.AltModifier) ) {
+                root.checked = !root.checked;
+                event.accepted = true;
             }
+            break;
+        }
         }
     }
 

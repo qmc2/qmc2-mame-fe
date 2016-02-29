@@ -8,19 +8,19 @@
 
 class CursorShapeArea : public QDeclarativeItem
 {
-    Q_OBJECT
-    Q_PROPERTY(Qt::CursorShape cursorShape READ cursorShape WRITE setCursorShape NOTIFY cursorShapeChanged)
+	Q_OBJECT
+	Q_PROPERTY(Qt::CursorShape cursorShape READ cursorShape WRITE setCursorShape NOTIFY cursorShapeChanged)
 
 public:
-    explicit CursorShapeArea(QDeclarativeItem *parent = 0);
-    Q_INVOKABLE Qt::CursorShape cursorShape() const;
-    Q_INVOKABLE void setCursorShape(Qt::CursorShape cursorShape);
+	explicit CursorShapeArea(QDeclarativeItem *parent = 0);
+	Q_INVOKABLE Qt::CursorShape cursorShape() const;
+	Q_INVOKABLE void setCursorShape(Qt::CursorShape cursorShape);
 
 private:
-    int m_currentShape;
+	int m_currentShape;
 
 signals:
-    void cursorShapeChanged();
+	void cursorShapeChanged();
 };
 #else
 #include <QQuickItem>
@@ -28,19 +28,19 @@ signals:
 
 class CursorShapeArea : public QQuickItem
 {
-    Q_OBJECT
-    Q_PROPERTY(Qt::CursorShape cursorShape READ cursorShape WRITE setCursorShape NOTIFY cursorShapeChanged)
+	Q_OBJECT
+	Q_PROPERTY(Qt::CursorShape cursorShape READ cursorShape WRITE setCursorShape NOTIFY cursorShapeChanged)
 
 public:
-    explicit CursorShapeArea(QQuickItem *parent = 0);
-    Q_INVOKABLE Qt::CursorShape cursorShape() const;
-    Q_INVOKABLE void setCursorShape(Qt::CursorShape cursorShape);
+	explicit CursorShapeArea(QQuickItem *parent = 0);
+	Q_INVOKABLE Qt::CursorShape cursorShape() const;
+	Q_INVOKABLE void setCursorShape(Qt::CursorShape cursorShape);
 
 private:
-    int m_currentShape;
+	int m_currentShape;
 
 signals:
-    void cursorShapeChanged();
+	void cursorShapeChanged();
 };
 #endif
 

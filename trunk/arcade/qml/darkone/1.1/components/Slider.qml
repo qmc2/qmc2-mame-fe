@@ -73,8 +73,8 @@ Item {
     onMinimumChanged: updatePos();
     onActiveFocusChanged: {
         debug && console.log("[slider] root.activeFocus: '" + root.activeFocus + "'," +
-                                      "root.height: '" + root.height + "'," +
-                                      "root.heightReset: '" + root.heightReset + "'");
+                             "root.height: '" + root.height + "'," +
+                             "root.heightReset: '" + root.heightReset + "'");
         updatePos();
     }
 
@@ -134,16 +134,16 @@ Item {
     }
     Keys.onPressed: {
         switch ( event.key ) {
-            case Qt.Key_Left: {
-                slide(-slidePercentage)
-                event.accepted = true;
-                break;
-            }
-            case Qt.Key_Right: {
-                slide(slidePercentage)
-                event.accepted = true;
-                break;
-            }
+        case Qt.Key_Left: {
+            slide(-slidePercentage)
+            event.accepted = true;
+            break;
+        }
+        case Qt.Key_Right: {
+            slide(slidePercentage)
+            event.accepted = true;
+            break;
+        }
         }
     }
 }

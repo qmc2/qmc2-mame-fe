@@ -140,8 +140,8 @@ FocusScope {
                     target = current
             }
             debug && console.log("[cycle] value: '" + value + "', " +
-                                         "offset: '" + offset + "', " +
-                                         "target: '" + target + "'");
+                                 "offset: '" + offset + "', " +
+                                 "target: '" + target + "'");
             return target;
         }
 
@@ -190,16 +190,16 @@ FocusScope {
                 }
                 Keys.onPressed: {
                     if ( ! (event.modifiers & Qt.ControlModifier) &&
-                         ! (event.modifiers & Qt.ShiftModifier) &&
-                         ! (event.modifiers & Qt.AltModifier) ) {
+                            ! (event.modifiers & Qt.ShiftModifier) &&
+                            ! (event.modifiers & Qt.AltModifier) ) {
                         switch ( event.key ) {
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return:
-                            case Qt.Key_Space: {
-                                value = root.cycle(-1);
-                                event.accepted = !passKeyEvents;
-                                break;
-                            }
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return:
+                        case Qt.Key_Space: {
+                            value = root.cycle(-1);
+                            event.accepted = !passKeyEvents;
+                            break;
+                        }
                         }
                     }
                 }
@@ -242,26 +242,26 @@ FocusScope {
                     MouseArea { id: textMouseArea }
                     Keys.onPressed: {
                         if ( ! (event.modifiers & Qt.ControlModifier) &&
-                             ! (event.modifiers & Qt.ShiftModifier) &&
-                             ! (event.modifiers & Qt.AltModifier) ) {
+                                ! (event.modifiers & Qt.ShiftModifier) &&
+                                ! (event.modifiers & Qt.AltModifier) ) {
                             switch ( event.key ) {
-                                case Qt.Key_Left: {
-                                    value = root.cycle(-1);
-                                    event.accepted = !passKeyEvents;
-                                    break;
-                                }
-                                case Qt.Key_Right: {
-                                    value = root.cycle(1);
-                                    event.accepted = !passKeyEvents;
-                                    break;
-                                }
-                                case Qt.Key_Enter:
-                                case Qt.Key_Return:
-                                case Qt.Key_Space: {
-                                    root.select();
-                                    event.accepted = !passKeyEvents;
-                                    break;
-                                }
+                            case Qt.Key_Left: {
+                                value = root.cycle(-1);
+                                event.accepted = !passKeyEvents;
+                                break;
+                            }
+                            case Qt.Key_Right: {
+                                value = root.cycle(1);
+                                event.accepted = !passKeyEvents;
+                                break;
+                            }
+                            case Qt.Key_Enter:
+                            case Qt.Key_Return:
+                            case Qt.Key_Space: {
+                                root.select();
+                                event.accepted = !passKeyEvents;
+                                break;
+                            }
                             }
                         }
                     }
@@ -299,16 +299,16 @@ FocusScope {
                 }
                 Keys.onPressed: {
                     if ( ! (event.modifiers & Qt.ControlModifier) &&
-                         ! (event.modifiers & Qt.ShiftModifier) &&
-                         ! (event.modifiers & Qt.AltModifier) ) {
+                            ! (event.modifiers & Qt.ShiftModifier) &&
+                            ! (event.modifiers & Qt.AltModifier) ) {
                         switch ( event.key ) {
-                            case Qt.Key_Enter:
-                            case Qt.Key_Return:
-                            case Qt.Key_Space: {
-                                value = root.cycle(1);
-                                event.accepted = !passKeyEvents;
-                                break;
-                            }
+                        case Qt.Key_Enter:
+                        case Qt.Key_Return:
+                        case Qt.Key_Space: {
+                            value = root.cycle(1);
+                            event.accepted = !passKeyEvents;
+                            break;
+                        }
                         }
                     }
                 }

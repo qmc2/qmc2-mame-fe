@@ -10,19 +10,19 @@
 
 class WheelArea : public QDeclarativeItem
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit WheelArea(QDeclarativeItem *parent = 0) : QDeclarativeItem(parent) {}
+	explicit WheelArea(QDeclarativeItem *parent = 0) : QDeclarativeItem(parent) {}
 
 protected:
-    void wheelEvent(QGraphicsSceneWheelEvent *event)
-    {
-        emit wheel(event->delta());        
-    }
+	void wheelEvent(QGraphicsSceneWheelEvent *event)
+	{
+		emit wheel(event->delta());
+	}
 
 signals:
-    void wheel(int delta);
+	void wheel(int delta);
 };
 
 #endif

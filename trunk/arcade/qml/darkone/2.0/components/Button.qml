@@ -16,7 +16,7 @@ Item {
     }
 
     onActiveFocusChanged: {
-         activeFocus ? border.width = 2 : border.width = 1
+        activeFocus ? border.width = 2 : border.width = 1
     }
     MouseArea {
         id: mouseArea

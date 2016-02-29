@@ -46,15 +46,15 @@ Item {
             textOpacity = opacityReset;
         }
         onClicked: { root.checked = true;
-                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," +
-                                                      "checkOuter.focus: '" + checkOuter.focus + "'," +
-                                                      "checkInner.focus: '" + checkInner.focus + "'," +
-                                                      "textText.focus: '" + textText.focus + "'");
-                     root.focus = true;
-                     debug && console.log("[checkItem] root.focus: '" + root.focus + "'," +
-                                                      "checkOuter.focus: '" + checkOuter.focus + "'," +
-                                                      "checkInner.focus: '" + checkInner.focus + "'," +
-                                                      "textText.focus: '" + textText.focus + "'"); }
+            debug && console.log("[checkItem] root.focus: '" + root.focus + "'," +
+                                 "checkOuter.focus: '" + checkOuter.focus + "'," +
+                                 "checkInner.focus: '" + checkInner.focus + "'," +
+                                 "textText.focus: '" + textText.focus + "'");
+            root.focus = true;
+            debug && console.log("[checkItem] root.focus: '" + root.focus + "'," +
+                                 "checkOuter.focus: '" + checkOuter.focus + "'," +
+                                 "checkInner.focus: '" + checkInner.focus + "'," +
+                                 "textText.focus: '" + textText.focus + "'"); }
 
     }
     onActiveFocusChanged: {
@@ -65,13 +65,13 @@ Item {
     }
     Keys.onPressed: {
         switch ( event.key ) {
-            case Qt.Key_Enter:
-            case Qt.Key_Return:
-            case Qt.Key_Space: {
-                checked = true;
-                event.accepted = true;
-                break;
-            }
+        case Qt.Key_Enter:
+        case Qt.Key_Return:
+        case Qt.Key_Space: {
+            checked = true;
+            event.accepted = true;
+            break;
+        }
         }
     }
 

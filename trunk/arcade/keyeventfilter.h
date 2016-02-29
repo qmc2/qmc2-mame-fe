@@ -6,16 +6,16 @@
 
 class KeyEventFilter : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent = 0);
+	explicit KeyEventFilter(KeySequenceMap *keySequenceMap, QObject *parent = 0);
 
 protected:
-    bool eventFilter(QObject *object, QEvent *event);
+	bool eventFilter(QObject *object, QEvent *event);
 
 private:
-    KeySequenceMap *mKeySequenceMap;
+	KeySequenceMap *mKeySequenceMap;
 };
 
 #endif // KEYPRESSFILTER_H
