@@ -742,6 +742,38 @@
 			<description lang="pt" text="Definir tempo de impulso da moeda (n &lt; 0: desabilitar; n == 0: obedecer driver; n &gt; 0: definir tempo)"/>
 		</option>
 	</section>
+	<section name="input_options">
+		<description lang="us" text="Input options"/>
+		<description lang="de" text="Eingabeoptionen"/>
+		<option default="auto" name="keyboardprovider" type="combo">
+			<description lang="us" text="Provider for keyboard input: 'auto', 'sdl' or 'none'"/>
+			<description lang="de" text="Provider für Tastatureingabe: 'auto', 'sdl' oder 'none'"/>
+			<choice name="auto"/>
+			<choice name="sdl"/>
+			<choice name="none"/>
+		</option>
+		<option default="auto" name="mouseprovider" type="combo">
+			<description lang="us" text="Provider for mouse input: 'auto', 'sdl' or 'none'"/>
+			<description lang="de" text="Provider für Mauseingabe: 'auto', 'sdl' oder 'none'"/>
+			<choice name="auto"/>
+			<choice name="sdl"/>
+			<choice name="none"/>
+		</option>
+		<option default="auto" name="lightgunprovider" type="combo">
+			<description lang="us" text="Provider for lightgun input: 'auto', 'sdl' or 'none'"/>
+			<description lang="de" text="Provider für Lightgun-Eingabe: 'auto', 'sdl' oder 'none'"/>
+			<choice name="auto"/>
+			<choice name="sdl"/>
+			<choice name="none"/>
+		</option>
+		<option default="auto" name="joystickprovider" type="combo">
+			<description lang="us" text="Provider for joystick input: 'auto', 'sdl' or 'none'"/>
+			<description lang="de" text="Provider für Joystick-Eingabe: 'auto', 'sdl' oder 'none'"/>
+			<choice name="auto"/>
+			<choice name="sdl"/>
+			<choice name="none"/>
+		</option>
+	</section>
 	<section name="comm">
 		<description lang="us" text="Communication"/>
 		<description lang="de" text="Kommunikation"/>
