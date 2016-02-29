@@ -13,12 +13,10 @@
 
 #include "imageprovider.h"
 #include "arcadesettings.h"
-#include "consolewindow.h"
+#include "tweakedqmlappviewer.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
-extern ConsoleWindow *consoleWindow;
-extern int consoleMode;
 
 #if QT_VERSION < 0x050000
 ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type, QObject *parent)

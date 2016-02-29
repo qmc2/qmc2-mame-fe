@@ -28,7 +28,6 @@
 ArcadeSettings *globalConfig = NULL;
 ConsoleWindow *consoleWindow = NULL;
 int emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
-int consoleMode = QMC2_ARCADE_CONSOLE_TERM;
 QStringList emulatorModes;
 QStringList arcadeThemes;
 QStringList mameThemes;
@@ -308,9 +307,9 @@ int main(int argc, char *argv[])
 		console = QMC2_ARCADE_CLI_CONS;
 
 	if ( console == "window" || console == "window-minimized" ) {
-		consoleMode = console == "window" ? QMC2_ARCADE_CONSOLE_WIN : QMC2_ARCADE_CONSOLE_WINMIN;
+		TweakedQmlApplicationViewer::consoleMode = console == "window" ? QMC2_ARCADE_CONSOLE_WIN : QMC2_ARCADE_CONSOLE_WINMIN;
 		consoleWindow = new ConsoleWindow(0);
-		if ( consoleMode == QMC2_ARCADE_CONSOLE_WINMIN )
+		if ( TweakedQmlApplicationViewer::consoleMode == QMC2_ARCADE_CONSOLE_WINMIN )
 			consoleWindow->showMinimized();
 		else
 			consoleWindow->show();
@@ -318,7 +317,7 @@ int main(int argc, char *argv[])
 		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid console-mode - available console-modes: %2").arg(console).arg(consoleModes.join(", ")));
 		return 1;
 	} else
-		consoleMode = console == "terminal" ? QMC2_ARCADE_CONSOLE_TERM : QMC2_ARCADE_CONSOLE_NONE;
+		TweakedQmlApplicationViewer::consoleMode = console == "terminal" ? QMC2_ARCADE_CONSOLE_TERM : QMC2_ARCADE_CONSOLE_NONE;
 
 	if ( QMC2_ARCADE_CLI_HELP || QMC2_ARCADE_CLI_INVALID ) {
 		showHelp();
@@ -411,7 +410,7 @@ int main(int argc, char *argv[])
 		#endif
 				arg(QString("Qt") + " " + qVersion() + ", " +
 				    QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
-				    QObject::tr("console-mode: %1").arg(consoleModes[consoleMode]) + ", " +
+				    QObject::tr("console-mode: %1").arg(consoleModes[TweakedQmlApplicationViewer::consoleMode]) + ", " +
 		    #if QT_VERSION < 0x050000
 				    QObject::tr("graphics-system: %1").arg(gSys) + ", " +
 		    #endif

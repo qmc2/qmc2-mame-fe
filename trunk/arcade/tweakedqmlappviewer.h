@@ -64,6 +64,7 @@ public:
 	JoyFunctionMap *joyFunctionMap;
 	JoystickManager *joystickManager;
 #endif
+	static int consoleMode;
 
 #if QT_VERSION < 0x050000
 	explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
@@ -97,6 +98,12 @@ public:
 	bool videoEnabled() { return m_videoEnabled; }
 	void setInitialFullScreen(bool enable) { m_initialFullScreen = enable; }
 	bool initialFullScreen() { return m_initialFullScreen; }
+
+	// logging functions
+	static void logString(const QString &s);
+	static void logStringNoTime(const QString &s);
+	static void logCString(const char *s);
+	static void logCStringNoTime(const char *s);
 
 signals:
 	void emulatorStarted(int);

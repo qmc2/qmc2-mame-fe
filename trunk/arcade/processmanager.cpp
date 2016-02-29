@@ -13,12 +13,10 @@
 
 #include "processmanager.h"
 #include "arcadesettings.h"
-#include "consolewindow.h"
+#include "tweakedqmlappviewer.h"
 #include "macros.h"
 
 extern ArcadeSettings *globalConfig;
-extern ConsoleWindow *consoleWindow;
-extern int consoleMode;
 
 ProcessManager::ProcessManager(QObject *parent) :
 	QObject(parent)

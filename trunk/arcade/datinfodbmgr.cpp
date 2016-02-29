@@ -19,12 +19,10 @@
 
 #include "macros.h"
 #include "arcadesettings.h"
-#include "consolewindow.h"
+#include "tweakedqmlappviewer.h"
 #include "datinfodbmgr.h"
 
 extern ArcadeSettings *globalConfig;
-extern ConsoleWindow *consoleWindow;
-extern int consoleMode;
 
 DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 	: QObject(parent)
@@ -48,9 +46,8 @@ DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 		}
 		if ( tables.count() != 4 || !tables.contains(m_metaDataTableName) || !tables.contains(m_softwareInfoTableName) || !tables.contains(m_emuInfoTableName) || !tables.contains(m_machineInfoTableName) )
 			recreateDatabase();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to open DAT-info database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
-	}
 }
 
 DatInfoDatabaseManager::~DatInfoDatabaseManager()
@@ -68,9 +65,8 @@ QString DatInfoDatabaseManager::qmc2Version()
 		if ( query.first() )
 			qmc2_version = query.value(0).toString();
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 	return qmc2_version;
 }
 
@@ -83,21 +79,18 @@ void DatInfoDatabaseManager::setQmc2Version(QString qmc2_version)
 			query.finish();
 			query.prepare(QString("INSERT INTO %1 (qmc2_version, row) VALUES (:qmc2_version, 0)").arg(m_metaDataTableName));
 			query.bindValue(":qmc2_version", qmc2_version);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET qmc2_version=:qmc2_version WHERE row=0").arg(m_metaDataTableName));
 			query.bindValue(":qmc2_version", qmc2_version);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		}
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 int DatInfoDatabaseManager::datInfoVersion()
@@ -109,9 +102,8 @@ int DatInfoDatabaseManager::datInfoVersion()
 		if ( query.first() )
 			datinfo_version = query.value(0).toInt();
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 	return datinfo_version;
 }
 
@@ -124,21 +116,18 @@ void DatInfoDatabaseManager::setDatInfoVersion(int datinfo_version)
 			query.finish();
 			query.prepare(QString("INSERT INTO %1 (datinfo_version, row) VALUES (:datinfo_version, 0)").arg(m_metaDataTableName));
 			query.bindValue(":datinfo_version", datinfo_version);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET datinfo_version=:datinfo_version WHERE row=0").arg(m_metaDataTableName));
 			query.bindValue(":datinfo_version", datinfo_version);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		}
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("datinfo_version").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 QString DatInfoDatabaseManager::softwareInfo(QString list, QString id)
@@ -152,9 +141,8 @@ QString DatInfoDatabaseManager::softwareInfo(QString list, QString id)
 		if ( query.first() )
 			infotext = query.value(0).toString();
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 	return infotext;
 }
 
@@ -171,23 +159,20 @@ void DatInfoDatabaseManager::setSoftwareInfo(QString list, QString id, QString i
 			query.bindValue(":list", list);
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET infotext=:infotext WHERE list=:list AND id=:id").arg(m_softwareInfoTableName));
 			query.bindValue(":list", list);
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		}
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 bool DatInfoDatabaseManager::existsSoftwareInfo(QString list, QString id)
@@ -228,9 +213,8 @@ QString DatInfoDatabaseManager::emuInfo(QString id)
 		if ( query.first() )
 			infotext = query.value(0).toString();
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 	return infotext;
 }
 
@@ -245,22 +229,19 @@ void DatInfoDatabaseManager::setEmuInfo(QString id, QString infotext)
 			query.prepare(QString("INSERT INTO %1 (id, infotext) VALUES (:id, :infotext)").arg(m_emuInfoTableName));
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET infotext=:infotext WHERE id=:id").arg(m_emuInfoTableName));
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		}
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 bool DatInfoDatabaseManager::existsEmuInfo(QString id)
@@ -300,9 +281,8 @@ QString DatInfoDatabaseManager::machineInfo(QString id)
 		if ( query.first() )
 			infotext = query.value(0).toString();
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 	return infotext;
 }
 
@@ -316,9 +296,8 @@ QString DatInfoDatabaseManager::machineInfoEmulator(QString id)
 		if ( query.first() )
 			emulator = query.value(0).toString();
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 	return emulator;
 }
 
@@ -334,23 +313,20 @@ void DatInfoDatabaseManager::setMachineInfo(QString id, QString infotext, QStrin
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
 			query.bindValue(":emulator", emulator);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to add '%1' to DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1 SET infotext=:infotext, emulator=:emulator WHERE id=:id").arg(m_machineInfoTableName));
 			query.bindValue(":id", id);
 			query.bindValue(":infotext", infotext);
 			query.bindValue(":emulator", emulator);
-			if ( !query.exec() ) {
+			if ( !query.exec() )
 				QMC2_ARCADE_LOG_STR(tr("WARNING: failed to update '%1' in DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
-			}
 		}
 		query.finish();
-	} else {
+	} else
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to fetch '%1' from DAT-info database: query = '%2', error = '%3'").arg("infotext, emulator").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 bool DatInfoDatabaseManager::existsMachineInfo(QString id)
@@ -404,9 +380,8 @@ quint64 DatInfoDatabaseManager::databaseSize()
 void DatInfoDatabaseManager::setCacheSize(quint64 kiloBytes)
 {
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) ) {
+	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::setSyncMode(uint syncMode)
@@ -415,9 +390,8 @@ void DatInfoDatabaseManager::setSyncMode(uint syncMode)
 	if ( (int)syncMode > dbSyncModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) ) {
+	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes[syncMode])) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::setJournalMode(uint journalMode)
@@ -426,9 +400,8 @@ void DatInfoDatabaseManager::setJournalMode(uint journalMode)
 	if ( (int)journalMode > dbJournalModes.count() - 1 )
 		return;
 	QSqlQuery query(m_db);
-	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) ) {
+	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes[journalMode])) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to change the '%1' setting for the DAT-info database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::recreateSoftwareInfoTable()
@@ -451,9 +424,8 @@ void DatInfoDatabaseManager::recreateSoftwareInfoTable()
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (list, id)").arg(m_softwareInfoTableName)) ) {
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (list, id)").arg(m_softwareInfoTableName)) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("software-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::recreateEmuInfoTable()
@@ -476,9 +448,8 @@ void DatInfoDatabaseManager::recreateEmuInfoTable()
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_emuInfoTableName)) ) {
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_emuInfoTableName)) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("emu-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::recreateMachineInfoTable()
@@ -501,9 +472,8 @@ void DatInfoDatabaseManager::recreateMachineInfoTable()
 		return;
 	}
 	query.finish();
-	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_machineInfoTableName)) ) {
+	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_machineInfoTableName)) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("machine-info")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::recreateMetaDataTable()
@@ -516,9 +486,8 @@ void DatInfoDatabaseManager::recreateMetaDataTable()
 	query.finish();
 	query.exec("VACUUM");
 	query.finish();
-	if ( !query.exec(QString("CREATE TABLE %1 (row INTEGER PRIMARY KEY, qmc2_version TEXT, datinfo_version INTEGER)").arg(m_metaDataTableName)) ) {
+	if ( !query.exec(QString("CREATE TABLE %1 (row INTEGER PRIMARY KEY, qmc2_version TEXT, datinfo_version INTEGER)").arg(m_metaDataTableName)) )
 		QMC2_ARCADE_LOG_STR(tr("WARNING: failed to create %1 table: query = '%2', error = '%3'").arg(tr("meta-data")).arg(query.lastQuery()).arg(m_db.lastError().text()));
-	}
 }
 
 void DatInfoDatabaseManager::recreateDatabase()
@@ -653,9 +622,8 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			swInfoDB.close();
-		} else {
+		} else
 			QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open software info file '%1'").arg(QDir::toNativeSeparators(path))));
-		}
 	}
 
 	QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n software info record(s) imported", "", softwareInfoRowCount())));
@@ -773,24 +741,20 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 								pendingUpdates = 0;
 								beginTransaction();
 							}
-						} else {
+						} else
 							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
-						}
-					} else if ( !ts.atEnd() ) {
+					} else if ( !ts.atEnd() )
 						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$mame' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
-					} else if ( !ts.atEnd() ) {
-						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
-					}
-				}
+				} else if ( !ts.atEnd() )
+					QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in emulator info file %1").arg(QDir::toNativeSeparators(path))));
 			}
 			commitTransaction();
 			QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path))));
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			emuInfoDB.close();
-		} else {
+		} else
 			QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path))));
-		}
 	}
 
 	QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n emulator info record(s) imported", "", emuInfoRowCount())));
@@ -919,24 +883,20 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 								pendingUpdates = 0;
 								beginTransaction();
 							}
-						} else {
+						} else
 							QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path))));
-						}
-					} else {
+					} else
 						QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path))));
-					}
-				} else if ( !ts.atEnd() ) {
+				} else if ( !ts.atEnd() )
 					QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path))));
-				}
 			}
 			commitTransaction();
 			QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("done (importing %1 from '%2')").arg(tr("system info-texts")).arg(QDir::toNativeSeparators(path))));
 			importPaths << path;
 			importDates << QString::number(QFileInfo(path).lastModified().toTime_t());
 			machineInfoDB.close();
-		} else {
+		} else
 			QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path))));
-		}
 	}
 
 	QMC2_ARCADE_LOG_STR(QString(tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", machineInfoRowCount())));
