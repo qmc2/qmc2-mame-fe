@@ -1065,7 +1065,7 @@ void EmulatorOptions::addChoices(QString optionName, QStringList choices, QStrin
 			if ( emuOpt.name == optionName ) {
 				ComboBoxEditWidget *comboWidget = (ComboBoxEditWidget *)itemWidget(emuOpt.item, QMC2_EMUOPT_COLUMN_VALUE);
 				if ( comboWidget ) {
-					QString value = comboWidget->comboBoxValue->lineEdit()->text();
+					QString value(comboWidget->comboBoxValue->lineEdit()->text());
 					for (int i = 0; i < choices.count(); i++) {
 						int insertIndex = comboWidget->comboBoxValue->count();
 						comboWidget->comboBoxValue->insertItem(insertIndex, displayChoices[i]);
