@@ -2,4 +2,4 @@ This is a subset of the QtFtp add-on for Qt 5, included for compatibility
 with the QFtp / QUrlInfo classes which were available in Qt 4.
 
 Copyright (C) 2012 - 2013 Digia Plc
-Source: http://qt.gitorious.org/qt/qtftp/source/src/qftp
+http://code.qt.io/cgit/qt/qtftp.git/

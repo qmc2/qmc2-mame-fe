@@ -43,10 +43,10 @@
 #define QFTP_H
 
 #include <QtCore/qstring.h>
-#include "qurlinfo.h"
 #include <QtCore/qobject.h>
+#include "qurlinfo.h"
 
-QT_BEGIN_HEADER
+QT_BEGIN_NAMESPACE
 
 class QFtpPrivate;
 
@@ -156,6 +156,6 @@ private:
     Q_PRIVATE_SLOT(d, void _q_piFtpReply(int, const QString&))
 };
 
-QT_END_HEADER
+QT_END_NAMESPACE
 
 #endif // QFTP_H
