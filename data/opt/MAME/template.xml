@@ -773,28 +773,34 @@
 			<description lang="us" text="Provider for keyboard input: 'auto', 'win' or 'none'"/>
 			<description lang="de" text="Provider für Tastatureingabe: 'auto', 'win' oder 'none'"/>
 			<choice name="auto"/>
-			<choice name="win"/>
+			<choice name="rawinput"/>
+			<choice name="dinput"/>
+			<choice name="win32"/>
 			<choice name="none"/>
 		</option>
 		<option default="auto" name="mouseprovider" type="combo">
 			<description lang="us" text="Provider for mouse input: 'auto', 'win' or 'none'"/>
 			<description lang="de" text="Provider für Mauseingabe: 'auto', 'win' oder 'none'"/>
 			<choice name="auto"/>
-			<choice name="win"/>
+			<choice name="rawinput"/>
+			<choice name="dinput"/>
+			<choice name="win32"/>
 			<choice name="none"/>
 		</option>
 		<option default="auto" name="lightgunprovider" type="combo">
 			<description lang="us" text="Provider for lightgun input: 'auto', 'win' or 'none'"/>
 			<description lang="de" text="Provider für Lightgun-Eingabe: 'auto', 'win' oder 'none'"/>
 			<choice name="auto"/>
-			<choice name="win"/>
+			<choice name="win32"/>
 			<choice name="none"/>
 		</option>
 		<option default="auto" name="joystickprovider" type="combo">
 			<description lang="us" text="Provider for joystick input: 'auto', 'win' or 'none'"/>
 			<description lang="de" text="Provider für Joystick-Eingabe: 'auto', 'win' oder 'none'"/>
 			<choice name="auto"/>
-			<choice name="win"/>
+			<choice name="rawinput"/>
+			<choice name="dinput"/>
+			<choice name="win32"/>
 			<choice name="none"/>
 		</option>
 	</section>
