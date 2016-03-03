@@ -28,7 +28,7 @@ ${DOS2UNIX} ${TMPCAT}
 sed 's/\s*$//g' ${TMPCAT} > ${TMPCATNEW}
 replaceCat
 emuVersion=$(${SQLITE3} ${XMLDB} "select emu_version from mame_xml_cache_metadata")
-dateString="'Updated $(date "+%d-%b-%Y" | tr "[a-z]" "[A-Z]") (MAME ${emuVersion})'"
+dateString="'Updated $(LC_TIME=C date "+%d-%b-%Y" | tr "[a-z]" "[A-Z]") (MAME ${emuVersion})'"
 sed "1s/^.*$/${dateString}/g" ${TMPCAT} > ${TMPCATNEW}
 replaceCat
 for i in $(cat /tmp/category.ini | grep -v "^\\[" | grep -v "^tr\\[" | grep "^[0-9a-z]"); do
