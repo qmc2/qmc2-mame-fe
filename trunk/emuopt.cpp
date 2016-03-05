@@ -1393,11 +1393,6 @@ void EmulatorOptions::checkTemplateMap()
 	}
 	QStringList args;
 	QProcess commandProc;
-#if defined(QMC2_SDLMAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
@@ -1425,16 +1420,8 @@ void EmulatorOptions::checkTemplateMap()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 		return;
 	}
-#if defined(QMC2_SDLMAME)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-	if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
-		QTextStream ts(&qmc2Temp);
-		QString s = ts.readAll();
-		qmc2Temp.close();
-		qmc2Temp.remove();
+	if ( commandProcStarted ) {
+		QString s(commandProc.readAllStandardOutput());
 #if !defined(QMC2_OS_WIN)
 		QStringList sl = s.split("\n");
 #else
