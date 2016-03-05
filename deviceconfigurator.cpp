@@ -565,11 +565,6 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 
 	QString userScopePath = Options::configPath();
 	QProcess commandProc;
-#if defined(QMC2_SDLMAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
@@ -653,43 +648,8 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 		return slotXmlBuffer;
 	}
 
-#if defined(QMC2_SDLMAME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-
-	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
-		QTextStream ts(&qmc2TempXml);
-		slotXmlBuffer = ts.readAll();
-		qmc2TempXml.close();
-		qmc2TempXml.remove();
-		/*
-		if ( !slotXmlBuffer.isEmpty() ) {
-			QStringList xmlLines = slotXmlBuffer.split("\n");
-			qApp->processEvents();
-			slotXmlBuffer.clear();
-			if ( !xmlLines.isEmpty() ) {
-				int i = 0;
-				QString s = "<machine name=\"" + machineName + "\"";
-				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
-				slotXmlBuffer = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-				if ( i < xmlLines.count() ) {
-					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
-						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
-					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
-						slotXmlBuffer.clear();
-					} else
-						slotXmlBuffer += "</machine>\n";
-				} else {
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
-					slotXmlBuffer.clear();
-				}
-			}
-		}
-		*/
-	}
+	if ( commandProcStarted )
+		slotXmlBuffer = commandProc.readAllStandardOutput();
 
 	qmc2CriticalSection = false;
 	return slotXmlBuffer;
