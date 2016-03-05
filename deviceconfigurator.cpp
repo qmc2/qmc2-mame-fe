@@ -149,11 +149,6 @@ void DeviceItemDelegate::loadMidiInterfaces()
 
 	QString userScopePath = Options::configPath();
 	QProcess commandProc;
-#if defined(QMC2_SDLMAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
 #endif
@@ -174,20 +169,11 @@ void DeviceItemDelegate::loadMidiInterfaces()
 			qApp->processEvents();
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
-#if defined(QMC2_SDLMAME)
-		QFile qmc2TempFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-		QFile qmc2TempFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-		if ( commandProcStarted && qmc2TempFile.open(QFile::ReadOnly) ) {
-			QTextStream ts(&qmc2TempFile);
-			ts.setCodec(QTextCodec::codecForName("UTF-8"));
-			QString buffer = ts.readAll();
+		if ( commandProcStarted ) {
+			QString buffer(commandProc.readAllStandardOutput());
 #if defined(QMC2_OS_WIN)
 			buffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-			qmc2TempFile.close();
-			qmc2TempFile.remove();
 			if ( !buffer.isEmpty() ) {
 				QStringList lines = buffer.split("\n", QString::SkipEmptyParts);
 				QStringList midiInOutMarks = QStringList() << "MIDI input ports:" << "MIDI output ports:";
