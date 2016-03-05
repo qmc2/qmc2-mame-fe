@@ -1020,7 +1020,6 @@ bool DeviceConfigurator::refreshDeviceMap()
 	if ( !xmlReader.parse(xmlInputSource) ) {
 		refreshRunning = false;
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for '%1'").arg(currentMachineName));
-		tabSlotOptions->setUpdatesEnabled(true);
 		return false;
 	}
 	treeWidgetDeviceSetup->sortItems(QMC2_DEVCONFIG_COLUMN_NAME, Qt::AscendingOrder);
@@ -1081,7 +1080,6 @@ bool DeviceConfigurator::refreshDeviceMap()
 	checkRemovedSlots();
 	updateSlotBiosSelections();
 	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
-	tabSlotOptions->setUpdatesEnabled(true);
 
 	// update file-chooser's device instance selector
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
@@ -1331,7 +1329,6 @@ bool DeviceConfigurator::load()
 	isLoading = true;
 
 	setEnabled(qmc2UseDefaultEmulator);
-	tabSlotOptions->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
 	listWidgetDeviceConfigurations->clear();
@@ -1466,7 +1463,7 @@ bool DeviceConfigurator::load()
 	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
 	currentConfigName = qmc2Config->value(group + "/SelectedConfiguration").toString();
 	qmc2Config->beginGroup(group);
-	QStringList configurationList = qmc2Config->childGroups();
+	QStringList configurationList(qmc2Config->childGroups());
 	qmc2Config->endGroup();
 
 	QListWidgetItem *selectedItem = NULL;
@@ -1486,9 +1483,7 @@ bool DeviceConfigurator::load()
 	listWidgetDeviceConfigurations->setSortingEnabled(true);
 	listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
 	listWidgetDeviceConfigurations->setUpdatesEnabled(true);
-
 	qmc2FileEditStartPath = qmc2Config->value(group + "/DefaultDeviceDirectory").toString();
-
 	// use the 'general software folder' as fall-back, if applicable
 	if ( qmc2FileEditStartPath.isEmpty() ) {
 		qmc2FileEditStartPath = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
@@ -1496,7 +1491,6 @@ bool DeviceConfigurator::load()
 		if ( machineSoftwareFolder.exists() )
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
 	}
-
 	updateSlots = dontIgnoreNameChange = true;
 	refreshRunning = false;
 	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("Default configuration"), listWidgetDeviceConfigurations);
@@ -1506,14 +1500,9 @@ bool DeviceConfigurator::load()
 		listWidgetDeviceConfigurations->setCurrentItem(selectedItem);
 	QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
 	updateSlots = dontIgnoreNameChange = isLoading = false;
-
 	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
 		treeWidgetSlotOptions->setEnabled(false);
-
 	fullyLoaded = true;
-
-	tabSlotOptions->setUpdatesEnabled(true);
-
 	return true;
 }
 
