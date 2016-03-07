@@ -155,40 +155,32 @@ MachineList::MachineList(QObject *parent)
 	qmc2NotFoundBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey_bios.png"));
 	qmc2NotFoundDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey_device.png"));
 
-	if ( phraseTranslatorList.isEmpty() ) {
-		phraseTranslatorList << tr("good") << tr("bad") << tr("preliminary") << tr("supported") << tr("unsupported")
-			<< tr("imperfect") << tr("yes") << tr("no") << tr("baddump") << tr("nodump")
-			<< tr("vertical") << tr("horizontal") << tr("raster") << tr("unknown") << tr("Unknown") 
-			<< tr("On") << tr("Off") << tr("audio") << tr("unused") << tr("Unused") << tr("cpu")
-			<< tr("vector") << tr("lcd") << tr("joy4way") << tr("joy8way") << tr("trackball")
-			<< tr("joy2way") << tr("doublejoy8way") << tr("dial") << tr("paddle") << tr("pedal")
-			<< tr("stick") << tr("vjoy2way") << tr("lightgun") << tr("doublejoy4way") << tr("vdoublejoy2way")
-			<< tr("doublejoy2way") << tr("printer") << tr("cdrom") << tr("cartridge") << tr("cassette")
-			<< tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot") << tr("original")
-			<< tr("compatible") << tr("N/A");
-		reverseTranslation[tr("good")] = "good";
-		reverseTranslation[tr("bad")] = "bad";
-		reverseTranslation[tr("preliminary")] = "preliminary";
-		reverseTranslation[tr("supported")] = "supported";
-		reverseTranslation[tr("unsupported")] = "unsupported";
-		reverseTranslation[tr("imperfect")] = "imperfect";
-		reverseTranslation[QObject::tr("yes")] = "yes";
-		reverseTranslation[QObject::tr("no")] = "no";
-		reverseTranslation[QObject::tr("partially")] = "partially";
-	}
-
+	// translation look-up hashes/maps
+	phraseTranslatorList << tr("good") << tr("bad") << tr("preliminary") << tr("supported") << tr("unsupported")
+		<< tr("imperfect") << tr("yes") << tr("no") << tr("baddump") << tr("nodump")
+		<< tr("vertical") << tr("horizontal") << tr("raster") << tr("unknown") << tr("Unknown") 
+		<< tr("On") << tr("Off") << tr("audio") << tr("unused") << tr("Unused") << tr("cpu")
+		<< tr("vector") << tr("lcd") << tr("joy4way") << tr("joy8way") << tr("trackball")
+		<< tr("joy2way") << tr("doublejoy8way") << tr("dial") << tr("paddle") << tr("pedal")
+		<< tr("stick") << tr("vjoy2way") << tr("lightgun") << tr("doublejoy4way") << tr("vdoublejoy2way")
+		<< tr("doublejoy2way") << tr("printer") << tr("cdrom") << tr("cartridge") << tr("cassette")
+		<< tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot") << tr("original")
+		<< tr("compatible") << tr("N/A");
+	reverseTranslation[tr("good")] = "good";
+	reverseTranslation[tr("bad")] = "bad";
+	reverseTranslation[tr("preliminary")] = "preliminary";
+	reverseTranslation[tr("supported")] = "supported";
+	reverseTranslation[tr("unsupported")] = "unsupported";
+	reverseTranslation[tr("imperfect")] = "imperfect";
+	reverseTranslation[QObject::tr("yes")] = "yes";
+	reverseTranslation[QObject::tr("no")] = "no";
+	reverseTranslation[QObject::tr("partially")] = "partially";
 	trQuestionMark = tr("?");
-
-	if ( machineStateTranslations.isEmpty() ) {
-		machineStateTranslations["good"] = tr("good");
-		machineStateTranslations["preliminary"] = tr("preliminary");
-		machineStateTranslations["imperfect"] = tr("imperfect");
-		machineStateTranslations["N/A"] = tr("N/A");
-	}
-
-	if ( romTypeNames.isEmpty() )
-		romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
-
+	machineStateTranslations["good"] = tr("good");
+	machineStateTranslations["preliminary"] = tr("preliminary");
+	machineStateTranslations["imperfect"] = tr("imperfect");
+	machineStateTranslations["N/A"] = tr("N/A");
+	romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
 	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 
 	if ( QMC2_ICON_FILETYPE_ZIP ) {
@@ -237,7 +229,6 @@ MachineList::~MachineList()
 {
 	if ( loadProc )
 		loadProc->kill();
-
 	if ( verifyProc )
 		verifyProc->kill();
 
@@ -248,7 +239,6 @@ MachineList::~MachineList()
 
 	foreach (unzFile iconFile, qmc2IconFileMap)
 		unzClose(iconFile);
-
 	foreach (SevenZipFile *iconFile, qmc2IconFileMap7z) {
 		iconFile->close();
 		delete iconFile;
@@ -462,8 +452,8 @@ void MachineList::load()
 {
 	QString userScopePath(Options::configPath());
 	QString machineName;
-	if ( qmc2CurrentItem && qmc2CurrentItem->child(0) )
-		machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+	if ( qmc2CurrentItem )
+		machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
 	qmc2ReloadActive = qmc2EarlyReloadActive = true;
@@ -756,7 +746,7 @@ void MachineList::load()
 			qmc2MainWindow->loadAnimMovie->start();
 		qApp->processEvents();
 	}
-	if ( (emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0) ) {
+	if ( emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0 ) {
 		parse();
 		loadFavorites();
 		loadPlayHistory();
@@ -806,7 +796,6 @@ void MachineList::load()
 					break;
 			}
 		}
-		qApp->processEvents();
 	} else {
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML data and recreating cache"));
@@ -1978,12 +1967,12 @@ void MachineList::parse()
 			f.remove();
 		}
 	}
-	QString sL = numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark;
-	QString sC = numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark;
-	QString sM = numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark;
-	QString sI = numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark;
-	QString sN = numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark;
-	QString sU = numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark;
+	QString sL(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark);
+	QString sC(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark);
+	QString sM(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark);
+	QString sI(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark);
+	QString sN(numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark);
+	QString sU(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
 	qmc2ReloadActive = qmc2StartingUp = false;
@@ -2710,12 +2699,12 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(elapsedTime.toString("mm:ss.zzz")));
 	else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-	QString sL = numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark;
-	QString sC = numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark;
-	QString sM = numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark;
-	QString sI = numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark;
-	QString sN = numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark;
-	QString sU = numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark;
+	QString sL(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark);
+	QString sC(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark);
+	QString sM(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark);
+	QString sI(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark);
+	QString sN(numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark);
+	QString sU(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
 	if ( verifyProc )
