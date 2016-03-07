@@ -613,7 +613,7 @@ void MachineList::load()
 		if ( started ) {
 			commandProcStarted = true;
 			bool commandProcRunning = (commandProc.state() == QProcess::Running);
-			while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+			while ( commandProcRunning && !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) ) {
 				qApp->processEvents();
 				commandProcRunning = (commandProc.state() == QProcess::Running);
 			}
@@ -636,8 +636,8 @@ void MachineList::load()
 #if defined(QMC2_OS_WIN)
 		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-		QStringList versionLines(s.split("\n"));
-		QStringList versionWords(versionLines.first().split(" "));
+		QStringList versionLines(s.split('\n'));
+		QStringList versionWords(versionLines.first().split(' '));
 		if ( versionWords.count() > 1 ) {
 			emulatorVersion = versionWords[1].remove('v');
 			if ( emulatorIdentifiers.contains(versionWords.at(0)) )
@@ -669,7 +669,7 @@ void MachineList::load()
 	if ( started ) {
 		commandProcStarted = true;
 		bool commandProcRunning = (commandProc.state() == QProcess::Running);
-		while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+		while ( commandProcRunning && !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) ) {
 			qApp->processEvents();
 			commandProcRunning = (commandProc.state() == QProcess::Running);
 		}
@@ -683,7 +683,7 @@ void MachineList::load()
 	if ( commandProcStarted ) {
 		QCryptographicHash sha1(QCryptographicHash::Sha1);
 		QString lfOutput(commandProc.readAllStandardOutput());
-		numTotalMachines = lfOutput.count("\n") - 1;
+		numTotalMachines = lfOutput.count('\n') - 1;
 		sha1.addData(lfOutput.toUtf8().constData());
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
@@ -1272,8 +1272,7 @@ void MachineList::parse()
 		QChar splitChar(' ');
 		while ( !tsRomCache.atEnd() ) {
 			QStringList words(tsRomCache.readLine().split(splitChar, QString::SkipEmptyParts));
-			if ( words.count() > 1 )
-				machineStatusHash.insert(words.at(0), words[1].at(0).toLatin1());
+			machineStatusHash.insert(words.at(QMC2_RSC_INDEX_NAME), words.at(QMC2_RSC_INDEX_STATE).at(0).toLatin1());
 		}
 		numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numNotFoundMachines = 0;
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
@@ -1305,7 +1304,7 @@ void MachineList::parse()
 			line = tsMachineListCache.readLine();
 			while ( line.startsWith("#") && !tsMachineListCache.atEnd() )
 				line = tsMachineListCache.readLine();
-			QStringList words = line.split("\t");
+			QStringList words(line.split('\t'));
 			if ( words.count() >= 2 ) {
 				if ( words.at(0).compare("MAME_VERSION") == 0 )
 					romStateCacheUpdate = reparseMachineList = (words.at(1).compare(emulatorVersion) != 0);
@@ -2208,17 +2207,15 @@ void MachineList::savePlayHistory()
 
 QString &MachineList::status()
 {
-	QLocale locale;
-	statusString = "<b>";
-	statusString += "<font color=\"black\">" + tr("L:") + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"chocolate\">" + tr("S:") + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark) + "</font> ";
-	statusString += "<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark) + "</font>";
-	statusString += "</b>";
+	static QLocale locale;
+	statusString = "<b><font color=\"black\">" + tr("L:") + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"chocolate\">" + tr("S:") + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark) + "</font></b>";
 	return statusString;
 }
 

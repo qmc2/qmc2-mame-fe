@@ -513,6 +513,10 @@
 #define QMC2_IMGFMT_SETUP_COLUMN_EXT		2
 #define QMC2_IMGFMT_SETUP_COLUMN_ACT		3
 
+// ROM state cache indexes
+#define QMC2_RSC_INDEX_NAME			0
+#define QMC2_RSC_INDEX_STATE			1
+
 // default decimals for float values of emulator options
 #define QMC2_EMUOPT_DFLT_DECIMALS		8
 
@@ -712,7 +716,7 @@
 #define QMC2_SWINFO_USEROFFSET_PAGE		4
 
 // size-threshold for displaying an alternate label when loading software-lists
-#define QMC2_SWLIST_SIZE_THRESHOLD		QMC2_512K
+#define QMC2_SWLIST_SIZE_THRESHOLD		QMC2_1M
 
 // when loading software-lists, be 'responsive' on every n'th start of an XML element
 #define QMC2_SWLIST_LOAD_RESPONSE		1000

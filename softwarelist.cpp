@@ -3937,27 +3937,27 @@ QString SoftwareList::softwareStatus(QString listName, QString softwareName, boo
 
 QString &SoftwareList::status(SoftwareListXmlHandler *handler)
 {
-	QLocale locale;
+	static QLocale locale;
 	statusString = "<b>";
 	if ( handler ) {
-		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal + handler->numTotal) + "</font> ";
+		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal + handler->numTotal) + "</font>&nbsp;";
 		if ( toolButtonSoftwareStates->isChecked() ) {
-			statusString += "<font color=\"#00cc00\">" + tr("C:") + locale.toString(numSoftwareCorrect + handler->numCorrect) + "</font> ";
-			statusString += "<font color=\"#799632\">" + tr("M:") + locale.toString(numSoftwareMostlyCorrect + handler->numMostlyCorrect) + "</font> ";
-			statusString += "<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font> ";
-			statusString += "<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font> ";
-			statusString += "<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font> ";
-			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font>";
+			statusString += "<font color=\"#00cc00\">" + tr("C:") + locale.toString(numSoftwareCorrect + handler->numCorrect) + "</font>&nbsp;"
+				"<font color=\"#799632\">" + tr("M:") + locale.toString(numSoftwareMostlyCorrect + handler->numMostlyCorrect) + "</font>&nbsp;"
+				"<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font>&nbsp;"
+				"<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font>&nbsp;"
+				"<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font>&nbsp;"
+				"<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font>";
 		}
 	} else {
-		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal) + "</font> ";
+		statusString += "<font color=black>" + tr("L:") + locale.toString(numSoftwareTotal) + "</font>&nbsp;";
 		if ( toolButtonSoftwareStates->isChecked() ) {
-			statusString += "<font color=\"#00cc00\">" + tr("C:") + locale.toString(numSoftwareCorrect) + "</font> ";
-			statusString += "<font color=\"#799632\">" + tr("M:") + locale.toString(numSoftwareMostlyCorrect) + "</font> ";
-			statusString += "<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect) + "</font> ";
-			statusString += "<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound) + "</font> ";
-			statusString += "<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown) + "</font> ";
-			statusString += "<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font>";
+			statusString += "<font color=\"#00cc00\">" + tr("C:") + locale.toString(numSoftwareCorrect) + "</font>&nbsp;"
+				"<font color=\"#799632\">" + tr("M:") + locale.toString(numSoftwareMostlyCorrect) + "</font>&nbsp;"
+				"<font color=\"#f90000\">" + tr("I:") + locale.toString(numSoftwareIncorrect) + "</font>&nbsp;"
+				"<font color=\"#7f7f7f\">" + tr("N:") + locale.toString(numSoftwareNotFound) + "</font>&nbsp;"
+				"<font color=\"#0000f9\">" + tr("U:") + locale.toString(numSoftwareUnknown) + "</font>&nbsp;"
+				"<font color=\"chocolate\">" + tr("S:") + locale.toString(numSoftwareMatches) + "</font>";
 		}
 	}
 	statusString += "</b>";
