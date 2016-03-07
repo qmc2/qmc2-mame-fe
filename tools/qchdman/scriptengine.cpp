@@ -29,8 +29,8 @@ ScriptEngine::ScriptEngine(ScriptWidget *parent) :
 	mScriptWidget = parent;
 	externalStop = mInputOk = false;
 	mErrorStates << QCHDMAN_PRJSTAT_CRASHED << QCHDMAN_PRJSTAT_ERROR;
-	mEntryListIterator = NULL;
-	mEngineDebugger = NULL;
+	mEntryListIterator = 0;
+	mEngineDebugger = 0;
 	mRunningProjects = 0;
 }
 
@@ -42,7 +42,7 @@ ScriptEngine::~ScriptEngine()
 		qApp->processEvents();
 		mEngineDebugger->detach();
 		delete mEngineDebugger;
-		mEngineDebugger = NULL;
+		mEngineDebugger = 0;
 	}
 	if ( !mProjectMap.isEmpty() )
 		destroyProjects();
@@ -62,7 +62,7 @@ void ScriptEngine::runScript(QString script)
 		qApp->processEvents();
 		mEngineDebugger->detach();
 		delete mEngineDebugger;
-		mEngineDebugger = NULL;
+		mEngineDebugger = 0;
 	}
 	disconnectScriptSignals();
 	mEngineDebugger = new QScriptEngineDebugger(this);
@@ -87,7 +87,7 @@ void ScriptEngine::stopScript()
 		qApp->processEvents();
 		mEngineDebugger->detach();
 		delete mEngineDebugger;
-		mEngineDebugger = NULL;
+		mEngineDebugger = 0;
 	}
 }
 

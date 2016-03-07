@@ -19,7 +19,7 @@ SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
-	m_listIterationQuery = NULL;
+	m_listIterationQuery = 0;
 	m_connectionName = QString("swl-cache-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", QString(userScopePath + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
@@ -277,7 +277,7 @@ QString SoftwareListXmlDatabaseManager::list(int rowid)
 
 QString SoftwareListXmlDatabaseManager::nextXml(QString list, QString *id, bool start)
 {
-	if ( start || m_listIterationQuery == NULL ) {
+	if ( start || m_listIterationQuery == 0 ) {
 		if ( m_listIterationQuery )
 			delete m_listIterationQuery;
 		m_listIterationQuery = new QSqlQuery(m_db);
@@ -297,7 +297,7 @@ QString SoftwareListXmlDatabaseManager::nextXml(QString list, QString *id, bool 
 			return m_listIterationQuery->value(1).toString();
 		} else {
 			delete m_listIterationQuery;
-			m_listIterationQuery = NULL;
+			m_listIterationQuery = 0;
 			if ( id )
 				id->clear();
 			return QString();

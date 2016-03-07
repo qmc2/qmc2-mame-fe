@@ -30,7 +30,7 @@ ProjectWidget::ProjectWidget(QWidget *parent, bool scriptElement, int type, QStr
 	scriptId = sId;
 	scriptEngine = sEngine;
 	status = QCHDMAN_PRJSTAT_IDLE;
-	chdmanProc = NULL;
+	chdmanProc = 0;
 	terminatedOnDemand = askFileName = false;
 	needsTabbedUiAdjustment = needsWindowedUiAdjustment = true;
 	lastRc = -1;
@@ -1452,7 +1452,7 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
 {
 	QString projectName = fileName;
 
-	if ( buffer == NULL && projectName.isEmpty() ) {
+	if ( buffer == 0 && projectName.isEmpty() ) {
 		projectName = QFileDialog::getOpenFileName(this, tr("Choose project file"), QString(), tr("Project files (*.prj)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 		if ( projectName.isNull() )
 			return;
@@ -1460,10 +1460,10 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
 
 	QFile loadFile(projectName);
 	QTextStream ts;
-	QByteArray ba(buffer != NULL ? buffer->toUtf8().constData() : "");
+	QByteArray ba(buffer != 0 ? buffer->toUtf8().constData() : "");
 	QBuffer baBuffer(&ba);
 
-	if ( buffer != NULL ) {
+	if ( buffer != 0 ) {
 		baBuffer.open(QBuffer::ReadOnly);
 		ts.setDevice(&baBuffer);
 	} else if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) )
@@ -1807,7 +1807,7 @@ void ProjectWidget::load(const QString &fileName, QString *buffer)
 			on_comboBoxProjectType_currentIndexChanged(projectType);
 		}
 
-		if ( buffer != NULL )
+		if ( buffer != 0 )
 			baBuffer.close();
 		else
 			loadFile.close();
@@ -1840,7 +1840,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
 {
 	QString projectName = fileName;
 
-	if ( buffer == NULL && (projectName.isEmpty() || askFileName) ) {
+	if ( buffer == 0 && (projectName.isEmpty() || askFileName) ) {
 		if ( !isScriptElement )
 			projectName = ((ProjectWindow *)parentWidget())->projectName;
 		if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
@@ -1857,7 +1857,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
 	QByteArray ba;
 	QBuffer baBuffer(&ba);
 
-	if ( buffer != NULL ) {
+	if ( buffer != 0 ) {
 		baBuffer.open(QBuffer::WriteOnly);
 		ts.setDevice(&baBuffer);
 	} else if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) )
@@ -2036,7 +2036,7 @@ void ProjectWidget::saveAs(const QString &fileName, QString *buffer)
 			break;
 		}
 
-		if ( buffer != NULL ) {
+		if ( buffer != 0 ) {
 			baBuffer.close();
 			*buffer = QString(ba);
 		} else

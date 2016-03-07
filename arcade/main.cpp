@@ -25,8 +25,8 @@
 #include <QDir>
 #endif
 
-ArcadeSettings *globalConfig = NULL;
-ConsoleWindow *consoleWindow = NULL;
+ArcadeSettings *globalConfig = 0;
+ConsoleWindow *consoleWindow = 0;
 int emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
 QStringList emulatorModes;
 QStringList arcadeThemes;
@@ -273,7 +273,7 @@ int main(int argc, char *argv[])
 		gSys = QMC2_ARCADE_CLI_GSYS;
 
 	delete globalConfig;
-	globalConfig = NULL;
+	globalConfig = 0;
 
 #if !defined(QMC2_ARCADE_OS_MAC)
 	delete tempApp;
@@ -347,7 +347,7 @@ int main(int argc, char *argv[])
 	}
 
 	delete globalConfig;
-	globalConfig = NULL;
+	globalConfig = 0;
 
 	switch ( emulatorMode ) {
 	case QMC2_ARCADE_EMUMODE_MAME:

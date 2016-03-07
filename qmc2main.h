@@ -41,7 +41,7 @@ class MainEventFilter : public QObject
 	Q_OBJECT
 
 	public:
-		MainEventFilter(QObject *parent = NULL) : QObject(parent) { ; }
+		MainEventFilter(QObject *parent = 0) : QObject(parent) { ; }
 
 	protected:
 		bool eventFilter(QObject *, QEvent *);
@@ -151,7 +151,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		int sortCriteriaLogicalIndex();
 		QPoint adjustedWidgetPosition(QPoint, QWidget *);
-		QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString(), QString *defaultChoice = NULL);
+		QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString(), QString *defaultChoice = 0);
 		static bool qStringListLessThan(const QString &, const QString &);
 		SoftwareListXmlDatabaseManager *swlDb;
 		RomStateFilter *romStateFilter;

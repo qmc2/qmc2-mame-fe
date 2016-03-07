@@ -26,7 +26,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 {
 	setupUi(this);
 	demoModeRunning = false;
-	emuProcess = NULL;
+	emuProcess = 0;
 #if !defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)
 	checkBoxEmbedded->setVisible(false);
 #endif
@@ -153,7 +153,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		seqNum = -1;
 		if ( emuProcess ) {
 			emuProcess->kill(); // terminate() doesn't work with SDL2-MAME/MESS, so we have to use kill() :(
-			emuProcess = NULL;
+			emuProcess = 0;
 		}
 		qmc2MainWindow->actionCheckROMs->setEnabled(true);
 		qmc2MainWindow->actionPlay->setEnabled(true);
@@ -289,7 +289,7 @@ void DemoModeDialog::emuFinished(int /*exitCode*/, QProcess::ExitStatus /*exitSt
 
 	qmc2DemoArgs.clear();
 	qmc2DemoGame.clear();
-	emuProcess = NULL;
+	emuProcess = 0;
 
 	if ( demoModeRunning ) {
 		clearStatus();
@@ -303,7 +303,7 @@ void DemoModeDialog::startNextEmu()
 		return;
 
 	qmc2DemoArgs.clear();
-	emuProcess = NULL;
+	emuProcess = 0;
 	if ( checkBoxFullScreen->isChecked() )
 		qmc2DemoArgs << "disable-window";
 	else {

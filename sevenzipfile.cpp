@@ -294,12 +294,12 @@ void SevenZipFile::createItemList()
 		const CSzFileItem *fileItem = db()->db.Files + i;
 		if ( fileItem->IsDir )
 			continue;
-		int fileItemLength = SzArEx_GetFileNameUtf16(db(), i, NULL);
-		UInt16 *tempFileName = (UInt16 *)SzAlloc(NULL, fileItemLength * sizeof(UInt16));
+		int fileItemLength = SzArEx_GetFileNameUtf16(db(), i, 0);
+		UInt16 *tempFileName = (UInt16 *)SzAlloc(0, fileItemLength * sizeof(UInt16));
 		SzArEx_GetFileNameUtf16(db(), i, tempFileName);
 		QString fileItemName = QString::fromUtf16(tempFileName, fileItemLength - 1);
 		m_nameToIndexCache[fileItemName] = i;
-		SzFree(NULL, tempFileName);
+		SzFree(0, tempFileName);
 		QDateTime dateTime;
 		if ( fileItem->MTimeDefined )
 			dateTime = convertFileTime(&fileItem->MTime);

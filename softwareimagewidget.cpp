@@ -100,7 +100,7 @@ void SoftwareImageWidget::openSource()
 	if ( useZip() ) {
 		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
 			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
-			if ( imageFile == NULL )
+			if ( imageFile == 0 )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else
 				imageFileMap[filePath] = imageFile;
@@ -418,7 +418,7 @@ void SoftwareImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
 	p->eraseRect(rect());
 
-	if ( pm == NULL ) {
+	if ( pm == 0 ) {
 		p->end();
 		return;
 	}
@@ -460,7 +460,7 @@ void SoftwareImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 void SoftwareImageWidget::drawScaledImage(QPixmap *pm, QPainter *p)
 {
-	if ( pm == NULL ) {
+	if ( pm == 0 ) {
 		p->eraseRect(rect());
 		p->end();
 		return;

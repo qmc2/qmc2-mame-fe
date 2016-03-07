@@ -40,7 +40,7 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 	hide();
 	setupUi(this);
 
-	snapshotViewer = NULL;
+	snapshotViewer = 0;
 	showSnapshotViewer = true;
 
 	// restore settings
@@ -157,7 +157,7 @@ void EmbedderOptions::on_listWidgetSnapshots_itemSelectionChanged()
 		QTimer::singleShot(0, snapshotViewer, SLOT(updateUseAsMenu()));
 	} else {
 		toolButtonUseAs->setEnabled(false);
-		toolButtonUseAs->setMenu(NULL);
+		toolButtonUseAs->setMenu(0);
 	}
 }
 
@@ -302,8 +302,8 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
 		it.next();
 		QAction *action = it.value();
 		QString cachePrefix = it.key();
-		ImageWidget *iw = NULL;
-		SoftwareSnap *sws = NULL;
+		ImageWidget *iw = 0;
+		SoftwareSnap *sws = 0;
 		QString actionText;
 		switch ( cachePrefixes.indexOf(cachePrefix) ) {
 			case QMC2_EMBEDDER_SNAP_IMGTYPE_PREVIEW:

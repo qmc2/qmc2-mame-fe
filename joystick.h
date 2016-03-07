@@ -40,7 +40,7 @@ class Joystick : public QObject
 
 		bool open(int);
 		void close();
-		bool isOpen() { return joystick != NULL; }
+		bool isOpen() { return joystick != 0; }
 		int getAxisValue(int);
 		Sint16 normalizeAxisValue(Sint16, int);
 

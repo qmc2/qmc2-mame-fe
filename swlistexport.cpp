@@ -130,7 +130,7 @@ void SoftwareListExporter::closeEvent(QCloseEvent *e)
 
 void SoftwareListExporter::exportToASCII()
 {
-	QTreeWidget *treeWidget = NULL;
+	QTreeWidget *treeWidget = 0;
 	switch ( softwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			treeWidget = softwareList->treeWidgetKnownSoftware;
@@ -261,7 +261,7 @@ void SoftwareListExporter::exportToASCII()
 
 void SoftwareListExporter::exportToCSV()
 {
-	QTreeWidget *treeWidget = NULL;
+	QTreeWidget *treeWidget = 0;
 	switch ( softwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			treeWidget = softwareList->treeWidgetKnownSoftware;

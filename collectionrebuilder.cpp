@@ -115,7 +115,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	connect(rebuilderThread(), SIGNAL(statusUpdated(quint64, quint64, quint64)), this, SLOT(rebuilderThread_statusUpdated(quint64, quint64, quint64)));
 	connect(rebuilderThread(), SIGNAL(newMissing(QString, QString, QString, QString, QString, QString, QString)), this, SLOT(rebuilderThread_newMissing(QString, QString, QString, QString, QString, QString, QString)));
 
-	m_missingDumpsViewer = NULL;
+	m_missingDumpsViewer = 0;
 	setDefaultEmulator(true);
 
 	m_iconCheckpoint = QIcon(QString::fromUtf8(":/data/img/checkpoint.png"));
@@ -843,7 +843,7 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	includeStateC = includeStateM = includeStateI = includeStateN = includeStateU = true;
 	exactMatch = exactMatchSoftware = useHashCache = dryRun = false;
 	m_rebuilderDialog = (CollectionRebuilder *)parent;
-	m_checkSumDb = NULL;
+	m_checkSumDb = 0;
 	m_xmlIndex = m_xmlIndexCount = m_checkpoint = -1;
 	m_hashCacheUpdateTime = 0;
 	setListEntityStartPattern("<softwarelist name=\"");
@@ -860,12 +860,12 @@ CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE:
 			m_swlDb = new SoftwareListXmlDatabaseManager(this);
-			m_xmlDb = NULL;
+			m_xmlDb = 0;
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_xmlDb = new XmlDatabaseManager(this);
-			m_swlDb = NULL;
+			m_swlDb = 0;
 			break;
 	}
 	start();

@@ -59,7 +59,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
   #include <zlib.h>
   ...
   QByteArray ba("This is a test -- 123 :)!");
-  ulong crc = crc32(0, NULL, 0);
+  ulong crc = crc32(0, 0, 0);
   crc = crc32(crc, (const Bytef *)ba.data(), ba.size());
   printf("CRC-32 = %x\n", crc);
 */
@@ -220,7 +220,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	connect(&m_checkSumTextChangedTimer, SIGNAL(timeout()), this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
 
 	// we create the collection rebuilder on demand
-	m_collectionRebuilder = NULL;
+	m_collectionRebuilder = 0;
 
 	currentFilesSize = 0;
 	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
@@ -472,7 +472,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 
 void ROMAlyzer::hideEvent(QHideEvent *e)
 {
-	closeEvent(NULL);
+	closeEvent(0);
 	if ( e )
 		e->accept();
 }
@@ -927,7 +927,7 @@ void ROMAlyzer::analyze()
 					bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ", QString::SkipEmptyParts)[0] == QObject::tr("CHD");
 					bool isROM = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM"));
 					bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
-					QTreeWidgetItem *fileItem = NULL;
+					QTreeWidgetItem *fileItem = 0;
 
 					if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
 						QIcon icon;
@@ -1070,7 +1070,7 @@ void ROMAlyzer::analyze()
 							if ( fromCheckSumDb )
 								crcItemStr = crcStr;
 							else {
-								ulong crc = crc32(0, NULL, 0);
+								ulong crc = crc32(0, 0, 0);
 								crc = crc32(crc, (const Bytef *)data.data(), data.size());
 								crcItemStr = crcToString(crc);
 							}
@@ -1427,7 +1427,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 	}
 	foreach (QString romPath, actualRomPaths) {
 		romPathCount++;
-		progressWidget = NULL;
+		progressWidget = 0;
 		needProgressWidget = false;
 		QString filePath(romPath + "/" + gameName + "/" + fileName);
 		if ( isCHD ) {
@@ -1857,7 +1857,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 							qApp->processEvents();
 						}
 
-						ulong crc = crc32(0, NULL, 0);
+						ulong crc = crc32(0, 0, 0);
 						crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
 						QFileInfo fi(filePath);
 						QStringList sl;
@@ -1940,7 +1940,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 								log(tr("ERROR") + ": " + sevenZipFile.lastError());
 							if ( readLength != metaData.size() )
 								log(tr("WARNING") + ": " + tr("actual bytes read != file size in header") + " - " + tr("check archive integrity"));
-							ulong crc = crc32(0, NULL, 0);
+							ulong crc = crc32(0, 0, 0);
 							crc = crc32(crc, (const Bytef *)data.data(), data.size());
 							QString crcString = crcToString(crc);
 							if ( crcString != wantedCRC )
@@ -2091,7 +2091,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 									sl << fromName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_SET) << "zip";
 									setRewriterFileMap.insert(wantedCRC, sl); 
 								} else {
-									ulong crc = crc32(0, NULL, 0);
+									ulong crc = crc32(0, 0, 0);
 									crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
 									QString fallbackCRC = crcToString(crc);
 									if ( !fallbackCRC.isEmpty() ) {
@@ -2635,7 +2635,7 @@ void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 	if ( !enable ) {
 		if ( collectionRebuilder() ) {
 			delete collectionRebuilder();
-			m_collectionRebuilder = NULL;
+			m_collectionRebuilder = 0;
 		}
 	}
 }
@@ -2662,7 +2662,7 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 	else {
 		if ( collectionRebuilder() ) {
 			delete collectionRebuilder();
-			m_collectionRebuilder = NULL;
+			m_collectionRebuilder = 0;
 		}
 	}
 }
@@ -2841,12 +2841,12 @@ void ROMAlyzer::runChecksumWizard()
 void ROMAlyzer::runSetRewriter()
 {
 	// when called through the context menu and multiple sets are in the report, rerun the analyzer on the respective set (to make sure that pre-check data is current)
-	if ( setRewriterItem == NULL ) {
+	if ( setRewriterItem == 0 ) {
 		QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
 		if ( il.count() > 0 ) {
 			QTreeWidgetItem *item = il[0];
-			while ( item->parent() != NULL ) item = item->parent();
-			if ( item != NULL ) {
+			while ( item->parent() != 0 ) item = item->parent();
+			if ( item != 0 ) {
 				if ( treeWidgetChecksums->topLevelItemCount() > 1 || qmc2StopParser ) {
 					groupBoxSetRewriter->setEnabled(false);
 					bool savedSRWA = checkBoxSetRewriterWhileAnalyzing->isChecked();
@@ -2867,7 +2867,7 @@ void ROMAlyzer::runSetRewriter()
 					checkBoxSetRewriterWhileAnalyzing->setChecked(savedSRWA);
 					groupBoxSetRewriter->setEnabled(true);
 					setRewriterItem = treeWidgetChecksums->topLevelItem(0);
-					if ( setRewriterItem == NULL ) return;
+					if ( setRewriterItem == 0 ) return;
 				} else
 					setRewriterItem = item;
 			} else
@@ -3402,7 +3402,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 // reads all files in the ZIP 'fileName' and maps the data:
 // - CRC codes are mapped to their data in 'dataMap'
 // - CRC codes are mapped to their file names in 'fileMap'
-// - existing filenames will be appended to fileList (if != NULL)
+// - existing filenames will be appended to fileList (if != 0)
 // - will also read files with incorrect CRCs (compared to their header CRCs)
 bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap, QStringList *fileList)
 {
@@ -3465,7 +3465,7 @@ bool ROMAlyzer::readFileData(QString fileName, QString crc, QByteArray *data)
 		}
 		romFile.close();
 		progressBarFileIO->reset();
-		ulong calculatedCrc = crc32(0, NULL, 0);
+		ulong calculatedCrc = crc32(0, 0, 0);
 		calculatedCrc = crc32(calculatedCrc, (const Bytef *)data->data(), data->size());
 		return ( crcToString(calculatedCrc) == crc );
 	} else
@@ -3487,7 +3487,7 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 				return false;
 			if ( readLength != metaData.size() )
 				return false;
-			ulong ulCrc = crc32(0, NULL, 0);
+			ulong ulCrc = crc32(0, 0, 0);
 			ulCrc = crc32(ulCrc, (const Bytef *)data->data(), data->size());
 			if ( crcToString(ulCrc) != crc )
 				return false;
@@ -3610,7 +3610,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 	QFile f(fileName);
 	if ( f.exists() )
 		success = createBackup(fileName) && f.remove();
-	zipFile zip = NULL;
+	zipFile zip = 0;
 	if ( success )
 		zip = zipOpen(fileName.toUtf8().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
@@ -3747,19 +3747,19 @@ bool ROMAlyzer::writeAllArchiveData(QString fileName, QMap<QString, QByteArray> 
 void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 {
 	QList<QTreeWidgetItem *> badList;
-	QTreeWidgetItem *goodItem = NULL;
+	QTreeWidgetItem *goodItem = 0;
 	foreach (QTreeWidgetItem *item, treeWidgetChecksumWizardSearchResult->selectedItems()) {
 		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) {
 			badList << item;
 			if ( !item->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() )
 				goodItem = item;
-		} else if ( goodItem == NULL && item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
+		} else if ( goodItem == 0 && item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
 			goodItem = item;
 	}
 	int numBadSets = badList.count();
 
 	// this shouldn't happen, but you never know :)
-	if ( numBadSets <= 0  || goodItem == NULL)
+	if ( numBadSets <= 0  || goodItem == 0)
 		return;
 
 	// only one repair at a time!
@@ -3768,7 +3768,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
 
 	log(tr("check-sum wizard: repairing %n bad set(s)", "", numBadSets));
-	if ( goodItem != NULL ) {
+	if ( goodItem != 0 ) {
 		QString sourceType = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
 		QString sourceFile = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
 		QString sourceCRC  = goodItem->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME); // we need the CRC for file identification in ZIPs
@@ -3899,7 +3899,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 							log(tr("check-sum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file"));
 						}
 
-						zipFile zip = NULL;
+						zipFile zip = 0;
 					        if ( saveOkay )
 							zip = zipOpen(targetPath.toUtf8().constData(), appendType);
 
@@ -4005,7 +4005,7 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 
 	QTreeWidgetItem *item = treeWidgetChecksums->itemAt(p);
 	if ( item ) {
-		if ( item->parent() != NULL ) {
+		if ( item->parent() != 0 ) {
 			currentFilesSHA1Checksum = item->text(QMC2_ROMALYZER_COLUMN_SHA1);
 			currentFilesCrcChecksum = item->text(QMC2_ROMALYZER_COLUMN_CRC);
 			currentFilesSize = item->text(QMC2_ROMALYZER_COLUMN_SIZE).toULongLong();
@@ -4026,7 +4026,7 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 			actionAnalyzeDeviceRefs->setVisible(!deviceRefs.isEmpty());
 			actionAnalyzeDeviceRefs->setEnabled(!deviceRefs.isEmpty());
 			treeWidgetChecksums->setItemSelected(item, true);
-			setRewriterItem = NULL;
+			setRewriterItem = 0;
 			romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
 			romSetContextMenu->show();
 		}
@@ -4172,7 +4172,7 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 {
 	if ( collectionRebuilder() ) {
 		delete collectionRebuilder();
-		m_collectionRebuilder = NULL;
+		m_collectionRebuilder = 0;
 	}
 	pushButtonCheckSumDbScan->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
 	pushButtonCheckSumDbScan->setText(tr("Stop scanner"));
@@ -4477,7 +4477,7 @@ CheckSumScannerThread::CheckSumScannerThread(CheckSumScannerLog *scannerLog, QSt
 	useLibArchive = false;
 #endif
 	m_preparingIncrementalScan = false;
-	m_checkSumDb = NULL;
+	m_checkSumDb = 0;
 	m_scannerLog = scannerLog;
 	m_settingsKey = settingsKey;
 	m_pendingUpdates = 0;
@@ -5000,12 +5000,12 @@ bool CheckSumScannerThread::scanZip(QString fileName, QStringList *memberList, Q
 						quint64 memberSize = 0;
 						qint64 len;
 						QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-						ulong crc1 = crc32(0, NULL, 0);
+						ulong crc1 = crc32(0, 0, 0);
 						while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
 							QByteArray fileData((const char *)ioBuffer, len);
 							sha1Hash.addData(fileData);
 							if ( crc1 > 0 ) {
-								ulong crc2 = crc32(0, NULL, 0);
+								ulong crc2 = crc32(0, 0, 0);
 								crc2 = crc32(crc2, (const Bytef *)fileData.data(), fileData.size());
 								crc1 = crc32_combine(crc1, crc2, fileData.size());
 							} else
@@ -5057,7 +5057,7 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 					QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 					sha1Hash.addData(fileData);
 					sha1List->append(sha1Hash.result().toHex());
-					ulong crc = crc32(0, NULL, 0);
+					ulong crc = crc32(0, 0, 0);
 					crc = crc32(crc, (const Bytef *)fileData.data(), fileData.size());
 					crcList->append(crcToString(crc));
 					emitlog(tr("7Z scan") + ": " + tr("member '%1' from archive '%2' has SHA-1 '%3' and CRC '%4'").arg(metaData.name()).arg(fileName).arg(sha1List->last()).arg(crcList->last()));
@@ -5090,7 +5090,7 @@ bool CheckSumScannerThread::scanArchive(QString fileName, QStringList *memberLis
 			if ( archiveFile.readEntry(ba) > 0 ) {
 				QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
 				sha1Hash.addData(ba);
-				ulong crc = crc32(0, NULL, 0);
+				ulong crc = crc32(0, 0, 0);
 				crc = crc32(crc, (const Bytef *)ba.data(), ba.size());
 				memberList->append(metaData.name());
 				sizeList->append(metaData.size());
@@ -5166,13 +5166,13 @@ bool CheckSumScannerThread::scanRegularFile(QString fileName, quint64 *size, QSt
 	if ( file.open(QIODevice::ReadOnly) ) {
   		char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
 		QCryptographicHash sha1Hash(QCryptographicHash::Sha1);
-		ulong crc1 = crc32(0, NULL, 0);
+		ulong crc1 = crc32(0, 0, 0);
 		int len = 0;
 		while ( (len = file.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
 			QByteArray fileData((const char *)ioBuffer, len);
 			sha1Hash.addData(fileData);
 			if ( crc1 > 0 ) {
-				ulong crc2 = crc32(0, NULL, 0);
+				ulong crc2 = crc32(0, 0, 0);
 				crc2 = crc32(crc2, (const Bytef *)fileData.data(), fileData.size());
 				crc1 = crc32_combine(crc1, crc2, fileData.size());
 			} else

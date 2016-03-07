@@ -347,7 +347,7 @@ void PaletteEditor::on_checkBoxCalculateDetails_toggled(bool checked)
 		}
 	}
 
-	resizeEvent(NULL);
+	resizeEvent(0);
 
 	if ( toolButtonPreview->isChecked() ) {
 		qApp->setPalette(customPalette);

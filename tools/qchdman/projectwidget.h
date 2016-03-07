@@ -82,7 +82,7 @@ public:
 	ScriptEngine *scriptEngine;
 	int lastRc;
 
-	explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false, int type = QCHDMAN_PRJ_UNKNOWN, QString sId = QString(), ScriptEngine *sEngine = NULL);
+	explicit ProjectWidget(QWidget *parent = 0, bool scriptElement = false, int type = QCHDMAN_PRJ_UNKNOWN, QString sId = QString(), ScriptEngine *sEngine = 0);
 	virtual ~ProjectWidget();
 
 public slots:
@@ -168,9 +168,9 @@ public slots:
 	void copyStderrToClipboard();
 	void copyCommandToClipboard();
 	void updateCompression(QComboBox *, QStringList *, int);
-	void load(const QString &fileName = QString(), QString *buffer = NULL);
-	void save(QString *buffer = NULL);
-	void saveAs(const QString &fileName = QString(), QString *buffer = NULL);
+	void load(const QString &fileName = QString(), QString *buffer = 0);
+	void save(QString *buffer = 0);
+	void saveAs(const QString &fileName = QString(), QString *buffer = 0);
 	QString toString();
 	void fromString(QString);
 	void triggerSaveAs();

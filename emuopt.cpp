@@ -467,7 +467,7 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
 	}
 	templateVersion = tr("unknown");
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
-	lineEditSearch = NULL;
+	lineEditSearch = 0;
 	if ( !group.contains("Global") ) {
 		isGlobal = false;
 		setStatusTip(tr("Machine specific emulator configuration"));
@@ -1337,7 +1337,7 @@ void EmulatorOptions::createTemplateMap()
 										optionDescription.append(" (" + tr("relative to the path specified in '%1'").arg(optionRelativeTo) + ")");
 								}
 							}
-							templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible, optionRelativeTo));
+							templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, 0, false, decimals, optionChoices, visible, optionRelativeTo));
 						} else
 							ignoredOptions << name;
 					} else if ( elementType == "template" ) {
@@ -1657,7 +1657,7 @@ void EmulatorOptions::searchTimeout()
 	lineEditSearch->hide();
 	lineEditSearch->close();
 	delete lineEditSearch;
-	lineEditSearch = NULL;
+	lineEditSearch = 0;
 }
 
 void EmulatorOptions::exportToIni(bool global, QString useFileName)

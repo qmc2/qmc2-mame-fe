@@ -44,9 +44,9 @@ public slots:
 	// Other
 	void adjustFonts();
 	void log(QString);
-	void load(const QString &fileName = QString(), QString *buffer = NULL);
-	void save(QString *buffer = NULL);
-	void saveAs(const QString &fileName = QString(), QString *buffer = NULL);
+	void load(const QString &fileName = QString(), QString *buffer = 0);
+	void save(QString *buffer = 0);
+	void saveAs(const QString &fileName = QString(), QString *buffer = 0);
 	QString toString();
 	void fromString(QString);
 	void triggerSaveAs();

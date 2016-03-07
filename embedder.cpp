@@ -129,7 +129,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	nativeResolution = QRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top).size();
 #endif
 
-	embedderOptions = NULL;
+	embedderOptions = 0;
 	optionsShown = false;
 }
 
@@ -190,7 +190,7 @@ void Embedder::release()
 		QTimer::singleShot(10, this, SLOT(release()));
 		return;
 	}
-	SetParent(windowHandle, NULL);
+	SetParent(windowHandle, 0);
 	SetWindowLong(windowHandle, GWL_STYLE, QMC2_RELEASED_STYLE);
 	SetWindowPos(windowHandle, HWND_NOTOPMOST, originalRect.x(), originalRect.y(), originalRect.width(), originalRect.height(), SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_DRAWFRAME);
 	UpdateWindow(windowHandle);
@@ -468,7 +468,7 @@ void Embedder::checkWindow()
 	if ( currentStyle == 0 ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("window ID for emulator #%1 lost, looking for replacement").arg(machineId));
 		qApp->processEvents();
-		HWND hwnd = NULL;
+		HWND hwnd = 0;
 		int retries = 0;
 		Q_PID gamePid = qmc2ProcessManager->getPid(machineId.toInt());
 		while ( gamePid && !hwnd && retries++ < QMC2_MAX_WININFO_RETRIES ) {
@@ -516,7 +516,7 @@ void Embedder::checkWindow()
 				desktopHeight = qApp->desktop()->height();
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3").arg(machineId).arg(desktopWidth).arg(desktopHeight));
   				SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, desktopWidth, desktopHeight, SWP_HIDEWINDOW);
-				SetParent(windowHandle, NULL);
+				SetParent(windowHandle, 0);
 				SetWindowLong(windowHandle, GWL_STYLE, currentStyle | WS_POPUP);
   				SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, desktopWidth, desktopHeight, SWP_SHOWWINDOW);
 				EnableWindow(windowHandle, true);

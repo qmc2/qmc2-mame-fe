@@ -178,9 +178,9 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							QString zipFilePath = zipMap.key(zip);
 							readerError.clear();
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-							bool ok = imageWidget->checkImage(machineName, zip, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+							bool ok = imageWidget->checkImage(machineName, zip, 0, 0, &imageSize, &byteCount, &fileName, &readerError);
 #else
-							bool ok = imageWidget->checkImage(machineName, zip, NULL, &imageSize, &byteCount, &fileName, &readerError);
+							bool ok = imageWidget->checkImage(machineName, zip, 0, &imageSize, &byteCount, &fileName, &readerError);
 #endif
 							if ( ok ) {
 								foundList << machineName;
@@ -218,16 +218,16 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							int waitCounter = 0;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 							if ( !m_isFillingDictionary )
-								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, 0, sevenZipFile, 0, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #else
 							if ( !m_isFillingDictionary )
-								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, 0, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #endif
 							else while ( m_async && m_isFillingDictionary && !exitThread ) {
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, NULL, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, 0, sevenZipFile, 0, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #else
-								checkReturn = imageWidget->checkImage(machineName, NULL, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
+								checkReturn = imageWidget->checkImage(machineName, 0, sevenZipFile, &imageSize, &byteCount, &fileName, &readerError, &m_async, &m_isFillingDictionary);
 #endif
 								if ( checkReturn && m_isFillingDictionary && m_async ) {
 									if ( waitCounter++ % 100 == 0 )
@@ -269,7 +269,7 @@ void ImageCheckerThread::runSystemArtworkCheck()
 							alCount++;
 							QString archiveFilePath = archiveMap.key(archiveFile);
 							readerError.clear();
-							if ( imageWidget->checkImage(machineName, NULL, NULL, archiveFile, &imageSize, &byteCount, &fileName, &readerError) ) {
+							if ( imageWidget->checkImage(machineName, 0, 0, archiveFile, &imageSize, &byteCount, &fileName, &readerError) ) {
 								foundList << machineName;
 								emit log(tr("Thread[%1]: image for '%2' found, loaded from '%3', size = %4x%5, bytes = %6").arg(threadNumber).arg(machineName).arg(archiveFilePath + ": " + fileName).arg(imageSize.width()).arg(imageSize.height()).arg(humanReadable(byteCount)));
 								foundCount++;
@@ -298,9 +298,9 @@ void ImageCheckerThread::runSystemArtworkCheck()
 					else {
 						// unzipped images
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-						bool ok = imageWidget->checkImage(machineName, NULL, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+						bool ok = imageWidget->checkImage(machineName, 0, 0, 0, &imageSize, &byteCount, &fileName, &readerError);
 #else
-						bool ok = imageWidget->checkImage(machineName, NULL, NULL, &imageSize, &byteCount, &fileName, &readerError);
+						bool ok = imageWidget->checkImage(machineName, 0, 0, &imageSize, &byteCount, &fileName, &readerError);
 #endif
 						if ( ok ) {
 							foundList << machineName;
@@ -882,7 +882,7 @@ void ImageChecker::feedWorkerThreads()
 				QString machineName(it.key());
 				if ( !qmc2MachineListItemHash.contains(machineName) )
 					continue;
-				if ( qmc2MachineList->loadIcon(machineName, NULL, true, NULL) ) {
+				if ( qmc2MachineList->loadIcon(machineName, 0, true, 0) ) {
 					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(machineName));
 					bufferedFoundList << machineName;
 					foundCount++;
@@ -1927,7 +1927,7 @@ void ImageChecker::closeEvent(QCloseEvent *e)
 
 void ImageChecker::hideEvent(QHideEvent *e)
 {
-	closeEvent(NULL);
+	closeEvent(0);
 	QDialog::hideEvent(e);
 }
 
@@ -1972,8 +1972,8 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList *fileNames, QString
 					if ( i % 25 == 0 )
 						qApp->processEvents();
 					unz_file_info unzFileInfo;
-					if ( unzGetCurrentFileInfo(zip, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
-						if ( unzFileName != NULL )
+					if ( unzGetCurrentFileInfo(zip, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, 0, 0, 0, 0) == UNZ_OK )
+						if ( unzFileName != 0 )
 							fileNames->append(prependString + unzFileName);
 					i++;
 				} while ( unzGoToNextFile(zip) != UNZ_END_OF_LIST_OF_FILE );

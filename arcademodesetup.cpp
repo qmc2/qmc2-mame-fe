@@ -244,7 +244,7 @@ void ArcadeModeSetup::loadKeySequenceMaps()
 		QStringList keySequenceDescriptions;
 		QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
 		QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(keySequenceDescriptions);
-		QTreeWidget *treeWidget = NULL;
+		QTreeWidget *treeWidget = 0;
 		switch ( i ) {
 			case QMC2_ARCADE_THEME_TOXICWASTE:
 				treeWidget = treeWidgetKeyMapToxicWaste;
@@ -284,7 +284,7 @@ void ArcadeModeSetup::loadKeySequenceMaps()
 void ArcadeModeSetup::saveKeySequenceMaps()
 {
 	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
-		QTreeWidget *treeWidget = NULL;
+		QTreeWidget *treeWidget = 0;
 		switch ( i ) {
 			case QMC2_ARCADE_THEME_TOXICWASTE:
 				treeWidget = treeWidgetKeyMapToxicWaste;
@@ -309,7 +309,7 @@ void ArcadeModeSetup::saveKeySequenceMaps()
 void ArcadeModeSetup::checkKeySequenceMaps()
 {
 	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
-		QTreeWidget *treeWidget = NULL;
+		QTreeWidget *treeWidget = 0;
 		switch ( i ) {
 			case QMC2_ARCADE_THEME_TOXICWASTE:
 				treeWidget = treeWidgetKeyMapToxicWaste;
@@ -370,7 +370,7 @@ void ArcadeModeSetup::checkKeySequenceMaps()
 #if QMC2_JOYSTICK == 1
 void ArcadeModeSetup::scanCustomJoyFunction(QTreeWidgetItem *item, int /*column*/)
 {
-	if ( !item->parent() || qmc2Options->joystick == NULL )
+	if ( !item->parent() || qmc2Options->joystick == 0 )
 		return;
 
 	bool saveSQM = qmc2SuppressQtMessages;
@@ -400,7 +400,7 @@ void ArcadeModeSetup::loadJoyFunctionMaps()
 		QStringList keySequenceDescriptions;
 		QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(keySequences);
 		QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(keySequenceDescriptions);
-		QTreeWidget *treeWidget = NULL;
+		QTreeWidget *treeWidget = 0;
 		switch ( i ) {
 			case QMC2_ARCADE_THEME_TOXICWASTE:
 				treeWidget = treeWidgetJoyMapToxicWaste;
@@ -438,7 +438,7 @@ void ArcadeModeSetup::loadJoyFunctionMaps()
 void ArcadeModeSetup::saveJoyFunctionMaps()
 {
 	for (int i = 0; i < QMC2_ARCADE_THEME_COUNT; i++) {
-		QTreeWidget *treeWidget = NULL;
+		QTreeWidget *treeWidget = 0;
 		switch ( i ) {
 			case QMC2_ARCADE_THEME_TOXICWASTE:
 				treeWidget = treeWidgetJoyMapToxicWaste;

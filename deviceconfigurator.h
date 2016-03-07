@@ -136,10 +136,10 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 
 		QString &getXmlData(QString);
 		QString &getXmlDataWithEnabledSlots(QString);
-		QComboBox *comboBoxByName(QString, QTreeWidgetItem **returnItem = NULL);
+		QComboBox *comboBoxByName(QString, QTreeWidgetItem **returnItem = 0);
 		void addNestedSlot(QString, QStringList, QStringList, QString);
 		void insertChildItems(QTreeWidgetItem *, QList<QTreeWidgetItem *> &);
-		void checkRemovedSlots(QTreeWidgetItem *parentItem = NULL);
+		void checkRemovedSlots(QTreeWidgetItem *parentItem = 0);
 		bool checkParentSlot(QTreeWidgetItem *, QString &);
 		void updateSlotBiosSelections();
 

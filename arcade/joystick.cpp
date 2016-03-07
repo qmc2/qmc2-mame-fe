@@ -29,7 +29,7 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 	} else
 		QMC2_ARCADE_LOG_STR(tr("ERROR: couldn't initialize SDL joystick support"));
 
-	joystick = NULL;
+	joystick = 0;
 	jsIndex = -1;
 	numAxes = numButtons = numHats = numTrackballs = 0;
 	autoRepeat = doAutoRepeat;
@@ -79,7 +79,7 @@ void Joystick::close()
 		SDL_JoystickClose(joystick);
 		QMC2_ARCADE_LOG_STR(tr("SDL joystick #%1 closed").arg(jsIndex));
 	}
-	joystick = NULL;
+	joystick = 0;
 	jsIndex = -1;
 	numAxes = numButtons = numHats = numTrackballs = 0;
 }

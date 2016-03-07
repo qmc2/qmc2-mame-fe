@@ -68,7 +68,7 @@ void SampleChecker::closeEvent(QCloseEvent *e)
 
 void SampleChecker::hideEvent(QHideEvent *e)
 {
-	closeEvent(NULL);
+	closeEvent(0);
 	e->accept();
 }
 
