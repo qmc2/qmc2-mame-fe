@@ -639,12 +639,12 @@ void MachineList::load()
 		QStringList versionLines(s.split("\n"));
 		QStringList versionWords(versionLines.first().split(" "));
 		if ( versionWords.count() > 1 ) {
-			emulatorVersion = versionWords[1].remove("v");
-			if ( emulatorIdentifiers.contains(versionWords[0]) )
+			emulatorVersion = versionWords[1].remove('v');
+			if ( emulatorIdentifiers.contains(versionWords.at(0)) )
 				emulatorType = "MAME";
 			else {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
-				emulatorType = versionWords[0];
+				emulatorType = versionWords.at(0);
 			}
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
@@ -655,7 +655,7 @@ void MachineList::load()
 		emulatorVersion = tr("unknown");
 		emulatorType = tr("unknown");
 	}
-	// supported machines
+	// supported (non-device) sets
 	args.clear();
 	args << "-listfull";
 	commandProcStarted = false;
@@ -688,7 +688,6 @@ void MachineList::load()
 		listfullSha1 = sha1.result().toHex();
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-		qApp->processEvents();
 	}
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	if ( emulatorVersion != tr("unknown") )
@@ -1274,7 +1273,7 @@ void MachineList::parse()
 		while ( !tsRomCache.atEnd() ) {
 			QStringList words(tsRomCache.readLine().split(splitChar, QString::SkipEmptyParts));
 			if ( words.count() > 1 )
-				machineStatusHash.insert(words[0], words[1].at(0).toLatin1());
+				machineStatusHash.insert(words.at(0), words[1].at(0).toLatin1());
 		}
 		numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numNotFoundMachines = 0;
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
@@ -1308,15 +1307,15 @@ void MachineList::parse()
 				line = tsMachineListCache.readLine();
 			QStringList words = line.split("\t");
 			if ( words.count() >= 2 ) {
-				if ( words[0] == "MAME_VERSION" )
-					romStateCacheUpdate = reparseMachineList = (words[1] != emulatorVersion);
+				if ( words.at(0).compare("MAME_VERSION") == 0 )
+					romStateCacheUpdate = reparseMachineList = (words.at(1).compare(emulatorVersion) != 0);
 				else
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of machine list cache"));
 				if ( words.count() < 4 ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
 					reparseMachineList = true;
 				} else {
-					if ( words[3].toInt() < QMC2_MLC_VERSION ) {
+					if ( words.at(3).toInt() < QMC2_MLC_VERSION ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
 						reparseMachineList = true;
 					}
@@ -1337,18 +1336,20 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
 			QString one("1");
+			QChar columnSplitChar('\t');
+			QChar lineSplitChar('\n');
 			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
 				readBuffer.append(tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE));
-				bool endsWithNewLine = readBuffer.endsWith("\n");
-				QStringList lines(readBuffer.split("\n", QString::SkipEmptyParts));
+				bool endsWithNewLine = readBuffer.endsWith(lineSplitChar);
+				QStringList lines(readBuffer.split(lineSplitChar, QString::SkipEmptyParts));
 				int lc = endsWithNewLine ? lines.count() : lines.count() - 1;
 				for (int l = 0; l < lc; l++) {
-					QStringList machineData(lines[l].split("\t"));
-					QString machineName(machineData[QMC2_MLC_INDEX_NAME]);
-					QString machineCloneOf(machineData[QMC2_MLC_INDEX_CLONEOF]);
-					QString machinePlayers(machineData[QMC2_MLC_INDEX_PLAYERS]);
-					QString machineDrvStat(machineData[QMC2_MLC_INDEX_DRVSTAT]);
-					int machineType = int(one.compare(machineData[QMC2_MLC_INDEX_IS_BIOS]) == 0) + int(one.compare(machineData[QMC2_MLC_INDEX_IS_DEVICE]) == 0) * 2; // 0: normal, 1: BIOS, 2: device
+					QStringList machineData(lines.at(l).split(columnSplitChar));
+					QString machineName(machineData.at(QMC2_MLC_INDEX_NAME));
+					QString machineCloneOf(machineData.at(QMC2_MLC_INDEX_CLONEOF));
+					QString machinePlayers(machineData.at(QMC2_MLC_INDEX_PLAYERS));
+					QString machineDrvStat(machineData.at(QMC2_MLC_INDEX_DRVSTAT));
+					int machineType = int(one.compare(machineData.at(QMC2_MLC_INDEX_IS_BIOS)) == 0) + int(one.compare(machineData.at(QMC2_MLC_INDEX_IS_DEVICE)) == 0) * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(MachineListItem::defaultItemFlags);
@@ -1358,12 +1359,12 @@ void MachineList::parse()
 							hierarchyHash.insert(machineName, QStringList());
 					} else
 						hierarchyHash[machineCloneOf].append(machineName);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData[QMC2_MLC_INDEX_MACHINE]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData[QMC2_MLC_INDEX_YEAR]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData[QMC2_MLC_INDEX_MANU]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineData.at(QMC2_MLC_INDEX_MACHINE));
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineData.at(QMC2_MLC_INDEX_YEAR));
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData.at(QMC2_MLC_INDEX_MANU));
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData[QMC2_MLC_INDEX_SRCFILE]);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(one.compare(machineData[QMC2_MLC_INDEX_HAS_ROM]) == 0) + int(one.compare(machineData[QMC2_MLC_INDEX_HAS_CHD]) == 0) * 2]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData.at(QMC2_MLC_INDEX_SRCFILE));
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames.at(int(one.compare(machineData.at(QMC2_MLC_INDEX_HAS_ROM)) == 0) + int(one.compare(machineData.at(QMC2_MLC_INDEX_HAS_CHD)) == 0) * 2));
 					if ( useCatverIni ) {
 						QString *versionString = versionHash.value(machineName);
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
@@ -1643,7 +1644,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineManufacturer);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineSource);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames[int(hasROMs) + int(hasCHDs) * 2]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames.at(int(hasROMs) + int(hasCHDs) * 2));
 					if ( isDev ) {
 						if ( machinePlayers.compare(trQuestionMark) != 0 )
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
