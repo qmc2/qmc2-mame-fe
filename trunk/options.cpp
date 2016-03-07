@@ -247,107 +247,107 @@ Options::Options(QWidget *parent)
 	comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 
 	// shortcuts
-	qmc2ShortcutHash["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), NULL);
-	qmc2ShortcutHash["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
-	qmc2ShortcutHash["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), NULL);
-	qmc2ShortcutHash["Ctrl+B"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
-	qmc2ShortcutHash["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current machine"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
-	qmc2ShortcutHash["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
-	qmc2ShortcutHash["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+J"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
-	qmc2ShortcutHash["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
-	qmc2ShortcutHash["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
-	qmc2ShortcutHash["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), NULL);
-	qmc2ShortcutHash["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
+	qmc2ShortcutHash["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), 0);
+	qmc2ShortcutHash["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), 0);
+	qmc2ShortcutHash["Ctrl+3"] = QPair<QString, QAction *>(tr("Check images and icons"), 0);
+	qmc2ShortcutHash["Ctrl+B"] = QPair<QString, QAction *>(tr("About QMC2"), 0);
+	qmc2ShortcutHash["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current machine"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), 0);
+	qmc2ShortcutHash["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), 0);
+	qmc2ShortcutHash["Ctrl+J"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+J"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), 0);
+	qmc2ShortcutHash["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), 0);
+	qmc2ShortcutHash["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), 0);
+	qmc2ShortcutHash["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear ProjectMESS cache"), 0);
+	qmc2ShortcutHash["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), 0);
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+,"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
+	qmc2ShortcutHash["Ctrl+,"] = QPair<QString, QAction *>(tr("Open options dialog"), 0);
 #else
-	qmc2ShortcutHash["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
+	qmc2ShortcutHash["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), 0);
 #endif
-	qmc2ShortcutHash["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
+	qmc2ShortcutHash["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), 0);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	qmc2ShortcutHash["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
+	qmc2ShortcutHash["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), 0);
 #endif
 #if !defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
+	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), 0);
 #endif
-	qmc2ShortcutHash["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload machine list"), NULL);
-	qmc2ShortcutHash["Ctrl+S"] = QPair<QString, QAction *>(tr("Check machine's ROM state"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
-	qmc2ShortcutHash["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
+	qmc2ShortcutHash["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload machine list"), 0);
+	qmc2ShortcutHash["Ctrl+S"] = QPair<QString, QAction *>(tr("Check machine's ROM state"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), 0);
+	qmc2ShortcutHash["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), 0);
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
+	qmc2ShortcutHash["Ctrl+Q"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), 0);
 #else
-	qmc2ShortcutHash["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
+	qmc2ShortcutHash["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), 0);
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
-	qmc2ShortcutHash["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
+	qmc2ShortcutHash["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), 0);
 #endif
-	qmc2ShortcutHash["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (system mode)"), NULL);
-	qmc2ShortcutHash["Ctrl+W"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (software mode)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+I"] = QPair<QString, QAction *>(tr("Toggle ROM state I"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+N"] = QPair<QString, QAction *>(tr("Toggle ROM state N"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+U"] = QPair<QString, QAction *>(tr("Toggle ROM state U"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+U"] = QPair<QString, QAction *>(tr("Untag current set"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+G"] = QPair<QString, QAction *>(tr("Toggle tag mark"), NULL);
-	qmc2ShortcutHash["Shift+Down"] = QPair<QString, QAction *>(tr("Toggle tag / cursor down"), NULL);
-	qmc2ShortcutHash["Shift+Up"] = QPair<QString, QAction *>(tr("Toggle tag / cursor up"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Tag visible sets"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+Y"] = QPair<QString, QAction *>(tr("Untag visible sets"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), NULL);
-	qmc2ShortcutHash["F2"] = QPair<QString, QAction *>(tr("Rebuild current machine"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+F2"] = QPair<QString, QAction *>(tr("Rebuild tagged machines"), NULL);
-	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Full detail view"), NULL);
-	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Hierarchical view"), NULL);
-	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("Category view"), NULL);
-	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("Version view"), NULL);
-	qmc2ShortcutHash["Shift+F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
-	qmc2ShortcutHash["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
-	qmc2ShortcutHash["F10"] = QPair<QString, QAction *>(tr("Check software-states"), NULL);
-	qmc2ShortcutHash["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
-	qmc2ShortcutHash["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), NULL);
-	qmc2ShortcutHash["Shift+F5"] = QPair<QString, QAction *>(tr("Software-list view-mode flat"), NULL);
-	qmc2ShortcutHash["Shift+F6"] = QPair<QString, QAction *>(tr("Software-list view-mode tree"), NULL);
+	qmc2ShortcutHash["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (system mode)"), 0);
+	qmc2ShortcutHash["Ctrl+W"] = QPair<QString, QAction *>(tr("Open ROMAlyzer (software mode)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+I"] = QPair<QString, QAction *>(tr("Toggle ROM state I"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+N"] = QPair<QString, QAction *>(tr("Toggle ROM state N"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+U"] = QPair<QString, QAction *>(tr("Toggle ROM state U"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+U"] = QPair<QString, QAction *>(tr("Untag current set"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+G"] = QPair<QString, QAction *>(tr("Toggle tag mark"), 0);
+	qmc2ShortcutHash["Shift+Down"] = QPair<QString, QAction *>(tr("Toggle tag / cursor down"), 0);
+	qmc2ShortcutHash["Shift+Up"] = QPair<QString, QAction *>(tr("Toggle tag / cursor up"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+X"] = QPair<QString, QAction *>(tr("Tag visible sets"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+Y"] = QPair<QString, QAction *>(tr("Untag visible sets"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+Z"] = QPair<QString, QAction *>(tr("Invert visible tags"), 0);
+	qmc2ShortcutHash["F2"] = QPair<QString, QAction *>(tr("Rebuild current machine"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+F2"] = QPair<QString, QAction *>(tr("Rebuild tagged machines"), 0);
+	qmc2ShortcutHash["F5"] = QPair<QString, QAction *>(tr("Full detail view"), 0);
+	qmc2ShortcutHash["F6"] = QPair<QString, QAction *>(tr("Hierarchical view"), 0);
+	qmc2ShortcutHash["F7"] = QPair<QString, QAction *>(tr("Category view"), 0);
+	qmc2ShortcutHash["F8"] = QPair<QString, QAction *>(tr("Version view"), 0);
+	qmc2ShortcutHash["Shift+F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), 0);
+	qmc2ShortcutHash["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), 0);
+	qmc2ShortcutHash["F10"] = QPair<QString, QAction *>(tr("Check software-states"), 0);
+	qmc2ShortcutHash["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), 0);
+	qmc2ShortcutHash["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), 0);
+	qmc2ShortcutHash["Shift+F5"] = QPair<QString, QAction *>(tr("Software-list view-mode flat"), 0);
+	qmc2ShortcutHash["Shift+F6"] = QPair<QString, QAction *>(tr("Software-list view-mode tree"), 0);
 #if QMC2_USE_PHONON_API
-	qmc2ShortcutHash["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+B"] = QPair<QString, QAction *>(tr("Fast backward (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+F"] = QPair<QString, QAction *>(tr("Fast forward (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+S"] = QPair<QString, QAction *>(tr("Stop track (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+#"] = QPair<QString, QAction *>(tr("Pause track (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+P"] = QPair<QString, QAction *>(tr("Play track (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+PgUp"] = QPair<QString, QAction *>(tr("Raise volume (audio player)"), NULL);
-	qmc2ShortcutHash["Ctrl+Alt+PgDown"] = QPair<QString, QAction *>(tr("Lower volume (audio player)"), NULL);
+	qmc2ShortcutHash["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+B"] = QPair<QString, QAction *>(tr("Fast backward (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+F"] = QPair<QString, QAction *>(tr("Fast forward (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+S"] = QPair<QString, QAction *>(tr("Stop track (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+#"] = QPair<QString, QAction *>(tr("Pause track (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+P"] = QPair<QString, QAction *>(tr("Play track (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+PgUp"] = QPair<QString, QAction *>(tr("Raise volume (audio player)"), 0);
+	qmc2ShortcutHash["Ctrl+Alt+PgDown"] = QPair<QString, QAction *>(tr("Lower volume (audio player)"), 0);
 #endif
-	qmc2ShortcutHash["Alt+PgUp"] = QPair<QString, QAction *>(tr("Increase rank"), NULL);
-	qmc2ShortcutHash["Alt+PgDown"] = QPair<QString, QAction *>(tr("Decrease rank"), NULL);
+	qmc2ShortcutHash["Alt+PgUp"] = QPair<QString, QAction *>(tr("Increase rank"), 0);
+	qmc2ShortcutHash["Alt+PgDown"] = QPair<QString, QAction *>(tr("Decrease rank"), 0);
 
 	// special keys
-	qmc2ShortcutHash["+"] = QPair<QString, QAction *>(tr("Plus (+)"), NULL);
-	qmc2ShortcutHash["-"] = QPair<QString, QAction *>(tr("Minus (-)"), NULL);
-	qmc2ShortcutHash["Down"] = QPair<QString, QAction *>(tr("Cursor down"), NULL);
-	qmc2ShortcutHash["End"] = QPair<QString, QAction *>(tr("End"), NULL);
-	qmc2ShortcutHash["Enter"] = QPair<QString, QAction *>(tr("Enter key"), NULL);
-	qmc2ShortcutHash["Esc"] = QPair<QString, QAction *>(tr("Escape"), NULL);
-	qmc2ShortcutHash["Left"] = QPair<QString, QAction *>(tr("Cursor left"), NULL);
-	qmc2ShortcutHash["Home"] = QPair<QString, QAction *>(tr("Home"), NULL);
-	qmc2ShortcutHash["PgDown"] = QPair<QString, QAction *>(tr("Page down"), NULL);
-	qmc2ShortcutHash["PgUp"] = QPair<QString, QAction *>(tr("Page up"), NULL);
-	qmc2ShortcutHash["Return"] = QPair<QString, QAction *>(tr("Return key"), NULL);
-	qmc2ShortcutHash["Right"] = QPair<QString, QAction *>(tr("Cursor right"), NULL);
-	qmc2ShortcutHash["Tab"] = QPair<QString, QAction *>(tr("Tabulator"), NULL);
-	qmc2ShortcutHash["Up"] = QPair<QString, QAction *>(tr("Cursor up"), NULL);
+	qmc2ShortcutHash["+"] = QPair<QString, QAction *>(tr("Plus (+)"), 0);
+	qmc2ShortcutHash["-"] = QPair<QString, QAction *>(tr("Minus (-)"), 0);
+	qmc2ShortcutHash["Down"] = QPair<QString, QAction *>(tr("Cursor down"), 0);
+	qmc2ShortcutHash["End"] = QPair<QString, QAction *>(tr("End"), 0);
+	qmc2ShortcutHash["Enter"] = QPair<QString, QAction *>(tr("Enter key"), 0);
+	qmc2ShortcutHash["Esc"] = QPair<QString, QAction *>(tr("Escape"), 0);
+	qmc2ShortcutHash["Left"] = QPair<QString, QAction *>(tr("Cursor left"), 0);
+	qmc2ShortcutHash["Home"] = QPair<QString, QAction *>(tr("Home"), 0);
+	qmc2ShortcutHash["PgDown"] = QPair<QString, QAction *>(tr("Page down"), 0);
+	qmc2ShortcutHash["PgUp"] = QPair<QString, QAction *>(tr("Page up"), 0);
+	qmc2ShortcutHash["Return"] = QPair<QString, QAction *>(tr("Return key"), 0);
+	qmc2ShortcutHash["Right"] = QPair<QString, QAction *>(tr("Cursor right"), 0);
+	qmc2ShortcutHash["Tab"] = QPair<QString, QAction *>(tr("Tabulator"), 0);
+	qmc2ShortcutHash["Up"] = QPair<QString, QAction *>(tr("Cursor up"), 0);
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+O"] = QPair<QString, QAction *>(tr("Activate item"), NULL);
+	qmc2ShortcutHash["Ctrl+O"] = QPair<QString, QAction *>(tr("Activate item"), 0);
 #endif
 
 	if ( !config->isWritable() )
@@ -383,9 +383,9 @@ Options::Options(QWidget *parent)
 #if QMC2_JOYSTICK != 1
 	tabWidgetFrontendSettings->removeTab(tabWidgetFrontendSettings->indexOf(tabFrontendJoystick));
 #else
-	joystick = NULL;
-	joystickCalibrationWidget = NULL;
-	joystickTestWidget = NULL;
+	joystick = 0;
+	joystickCalibrationWidget = 0;
+	joystickTestWidget = 0;
 	scrollArea = new QScrollArea(frameCalibrationAndTest);
 	scrollArea->hide();
 	scrollArea->setWidgetResizable(true);
@@ -1226,7 +1226,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
 	// Network / Tools
-	CookieJar *cj = NULL;
+	CookieJar *cj = 0;
 	bool restoreCookies = config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", true).toBool();
 	config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/RestoreCookies", checkBoxRestoreCookies->isChecked());
 	needChangeCookieJar = restoreCookies != checkBoxRestoreCookies->isChecked();
@@ -1685,7 +1685,7 @@ void Options::on_pushButtonApply_clicked()
 		if ( QMC2_ICON_FILETYPE_ZIP ) {
 			foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 				unzFile iconFile = unzOpen(filePath.toUtf8().constData());
-				if ( iconFile == NULL )
+				if ( iconFile == 0 )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 				else
 					qmc2IconFileMap[filePath] = iconFile;
@@ -3828,13 +3828,13 @@ void Options::on_toolButtonCalibrateAxes_clicked()
 				scrollArea->takeWidget();
 				scrollArea->hide();
 				delete joystickTestWidget;
-				joystickTestWidget = NULL;
+				joystickTestWidget = 0;
 			} else if ( joystickCalibrationWidget ) {
 				myLayout->removeWidget(scrollArea);
 				scrollArea->takeWidget();
 				scrollArea->hide();
 				delete joystickCalibrationWidget;
-				joystickCalibrationWidget = NULL;
+				joystickCalibrationWidget = 0;
 			} else {
 				myLayout->removeWidget(pushButtonRemapJoystickFunction);
 				myLayout->removeWidget(pushButtonRemoveJoystickMapping);
@@ -3880,13 +3880,13 @@ void Options::on_toolButtonTestJoystick_clicked()
 				scrollArea->takeWidget();
 				scrollArea->hide();
 				delete joystickTestWidget;
-				joystickTestWidget = NULL;
+				joystickTestWidget = 0;
 			} else if ( joystickCalibrationWidget ) {
 				myLayout->removeWidget(scrollArea);
 				scrollArea->takeWidget();
 				scrollArea->hide();
 				delete joystickCalibrationWidget;
-				joystickCalibrationWidget = NULL;
+				joystickCalibrationWidget = 0;
 			} else {
 				myLayout->removeWidget(pushButtonRemapJoystickFunction);
 				myLayout->removeWidget(pushButtonRemoveJoystickMapping);
@@ -3921,14 +3921,14 @@ void Options::on_toolButtonMapJoystick_clicked()
 		scrollArea->takeWidget();
 		scrollArea->hide();
 		delete joystickCalibrationWidget;
-		joystickCalibrationWidget = NULL;
+		joystickCalibrationWidget = 0;
 	}
 	if ( joystickTestWidget ) {
 		frameCalibrationAndTest->layout()->removeWidget(scrollArea);
 		scrollArea->takeWidget();
 		scrollArea->hide();
 		delete joystickTestWidget;
-		joystickTestWidget = NULL;
+		joystickTestWidget = 0;
 	}
 
 	if ( relayout ) {
