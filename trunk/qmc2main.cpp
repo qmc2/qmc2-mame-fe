@@ -6097,9 +6097,6 @@ void MainWindow::init()
 
 	if ( qmc2SplashScreen ) {
 		qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
-		qmc2SplashScreen->show();
-		qmc2SplashScreen->raise();
-		qmc2SplashScreen->repaint();
 		QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
 	}
 
@@ -10287,13 +10284,8 @@ int main(int argc, char *argv[])
 		qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
 		qmc2SplashScreen->setMask(splashPixmap.mask());
 		qmc2SplashScreen->setWindowOpacity(0.8);
-#if defined(QMC2_OS_UNIX)
 		qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait..."), Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 		qmc2SplashScreen->show();
-		qmc2SplashScreen->raise();
-		qmc2SplashScreen->repaint();
-		qApp->processEvents();
-#endif
 	}
 
 	// setup event filter
