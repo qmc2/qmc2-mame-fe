@@ -1296,12 +1296,11 @@ void MachineList::parse()
 	QList<QTreeWidgetItem *> itemList;
 	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
 	if ( machineListCache.isOpen() ) {
-		QString line;
 		tsMachineListCache.setDevice(&machineListCache);
 		tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 		tsMachineListCache.seek(0);
 		if ( !tsMachineListCache.atEnd() ) {
-			line = tsMachineListCache.readLine();
+			QString line(tsMachineListCache.readLine());
 			while ( line.startsWith("#") && !tsMachineListCache.atEnd() )
 				line = tsMachineListCache.readLine();
 			QStringList words(line.split('\t'));
@@ -1495,7 +1494,7 @@ void MachineList::parse()
 							break;
 						default:
 							numUnknownMachines++;
-							machineStatusHash[machineName] = 'U';
+							machineStatusHash.insert(machineName, 'U');
 							switch ( machineType ) {
 								case QMC2_MACHINETYPE_NORMAL:
 									if ( useCategories ) {
@@ -3210,7 +3209,7 @@ void MachineList::loadCategoryIni()
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
 		QRegExp rxCategoryName("^\\[.*\\]$");
-		QHash <QString, QString> translations;
+		QHash<QString, QString> translations;
 		QString guiLanguage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 		bool trFound = false;
 		while ( !tsCategoryIni.atEnd() ) {
@@ -3480,7 +3479,6 @@ void MachineList::loadCatverIni()
 		}
 		catverIniFile.close();
 		qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->maximum());
-		qApp->processEvents();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString()));
 	qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
