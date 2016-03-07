@@ -10086,6 +10086,37 @@ void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QStrin
 	}
 }
 
+void MainWindow::processGlobalEmuConfig()
+{
+	log(QMC2_LOG_FRONTEND, tr("processing global emulator configuration"));
+	int left, top, right, bottom;
+	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+	QVBoxLayout *layout = new QVBoxLayout;
+	qmc2GlobalEmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/Global", qmc2Options->tabGlobalConfiguration);
+	qmc2GlobalEmulatorOptions->load();
+	layout->addWidget(qmc2GlobalEmulatorOptions);
+	layout->setContentsMargins(left, top, right, bottom);
+	QHBoxLayout *buttonLayout = new QHBoxLayout();
+	pushButtonGlobalEmulatorOptionsExportToFile = new QPushButton(tr("Export to..."), qmc2Options);
+	pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(tr("Export global MAME configuration"));
+	pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(tr("Export global MAME configuration"));
+	pushButtonGlobalEmulatorOptionsImportFromFile = new QPushButton(tr("Import from..."), qmc2Options);
+	pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(tr("Import global MAME configuration"));
+	pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(tr("Import global MAME configuration"));
+	buttonLayout->addWidget(pushButtonGlobalEmulatorOptionsExportToFile);
+	buttonLayout->addWidget(pushButtonGlobalEmulatorOptionsImportFromFile);
+	layout->addLayout(buttonLayout);
+	qmc2Options->tabGlobalConfiguration->setLayout(layout);
+	selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(pushButtonGlobalEmulatorOptionsExportToFile);
+	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
+	pushButtonGlobalEmulatorOptionsExportToFile->setMenu(selectMenuGlobalEmulatorOptionsExportToFile);
+	selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(pushButtonGlobalEmulatorOptionsImportFromFile);
+	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
+	pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(selectMenuGlobalEmulatorOptionsImportFromFile);
+}
+
 void prepareShortcuts()
 {
 	// shortcuts
@@ -10336,34 +10367,7 @@ int main(int argc, char *argv[])
 #endif
 
 	// process global emulator configuration and create import/export popup menus
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("processing global emulator configuration"));
-	int left, top, right, bottom;
-	qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-	QVBoxLayout *layout = new QVBoxLayout;
-	qmc2GlobalEmulatorOptions = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/Global", qmc2Options->tabGlobalConfiguration);
-	qmc2GlobalEmulatorOptions->load();
-	layout->addWidget(qmc2GlobalEmulatorOptions);
-	layout->setContentsMargins(left, top, right, bottom);
-	QHBoxLayout *buttonLayout = new QHBoxLayout();
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile = new QPushButton(QObject::tr("Export to..."), qmc2Options);
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile = new QPushButton(QObject::tr("Import from..."), qmc2Options);
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MAME configuration"));
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MAME configuration"));
-	buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
-	buttonLayout->addWidget(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
-	layout->addLayout(buttonLayout);
-	qmc2Options->tabGlobalConfiguration->setLayout(layout);
-	// export/import menus
-	qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
-	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
-	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile);
-	qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
-	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
-	QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
-	qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile);
+	qmc2MainWindow->processGlobalEmuConfig();
 
 	int retCode = 0;
 	if ( qmc2TemplateCheck ) {
