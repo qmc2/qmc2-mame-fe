@@ -19,7 +19,7 @@ CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 {
 	setupUi(this);
 
-	copyIDsMenu = NULL;
+	copyIDsMenu = 0;
 	adjustFontAndIconSizes();
 	foreignEmulator = foreignEmulatorName;
 	setWindowTitle(tr("Setup custom IDs for '%1'").arg(foreignEmulator));

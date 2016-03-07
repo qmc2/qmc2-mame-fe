@@ -33,9 +33,9 @@ class SoftwareItem : public QTreeWidgetItem
 	protected:
 		bool operator<(const QTreeWidgetItem &other) const
 		{
-			if ( parent() != NULL )
+			if ( parent() != 0 )
 				return false;
-			if ( other.parent() != NULL )
+			if ( other.parent() != 0 )
 				return false;
 			int col = treeWidget()->sortColumn();
 			return ( text(col) < other.text(col) );
@@ -263,10 +263,10 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void getXmlData();
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlDataWithEnabledSlots(QStringList);
-		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
-		QStringList &arguments(QStringList *softwareLists = NULL, QStringList *softwareNames = NULL);
+		QString &lookupMountDevice(QString, QString, QStringList *mountList = 0);
+		QStringList &arguments(QStringList *softwareLists = 0, QStringList *softwareNames = 0);
 		QString softwareStatus(QString, QString, bool translated = false);
-		QString &status(SoftwareListXmlHandler *handler = NULL);
+		QString &status(SoftwareListXmlHandler *handler = 0);
 
 		bool viewTree() { return m_viewTree; }
 		void setViewTree(bool viewTree) { m_viewTree = viewTree; }
@@ -281,7 +281,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool save();
 		void updateMountDevices();
 		void checkSoftwareStates();
-		void updateStats(SoftwareListXmlHandler *handler = NULL);
+		void updateStats(SoftwareListXmlHandler *handler = 0);
 		void loadTree();
 
 		// auto-connected callback functions

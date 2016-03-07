@@ -34,7 +34,7 @@ void DirectoryEditWidget::on_toolButtonBrowse_clicked()
 	QString startPath = lineEditDirectory->text();
 	if ( startPath.isEmpty() )
 		startPath = qmc2DirectoryEditStartPath;
-	if ( myTreeWidget != NULL ) {
+	if ( myTreeWidget != 0 ) {
 		QDir startDir(startPath);
 		if ( startDir.isRelative() ) {
 			if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") ) {

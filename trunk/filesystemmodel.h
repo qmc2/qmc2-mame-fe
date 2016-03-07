@@ -695,7 +695,7 @@ class FileSystemModel : public QAbstractItemModel
 							mZipEntryList << zipFileName;
 							mZipEntrySizes << zipInfo.uncompressed_size;
 							struct tm *t;
-							time_t clock = time(NULL);
+							time_t clock = time(0);
 							t = localtime(&clock);
 							t->tm_isdst = -1;
 							t->tm_sec  = (((int)zipInfo.dosDate) << 1) & 0x3e;

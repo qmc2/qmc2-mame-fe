@@ -57,7 +57,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
 	connect(videoPlayer(), SIGNAL(finished()), this, SLOT(videoFinished()));
 #else
-	mFullscreenVideoWidget = NULL;
+	mFullscreenVideoWidget = 0;
 	mVideoWidget = new QVideoWidget(this);
 	mVideoPlayer = new QMediaPlayer(this, (QMediaPlayer::Flags)(QMediaPlayer::VideoSurface | QMediaPlayer::StreamPlayback));
 	videoWidget()->setAspectRatioMode(Qt::KeepAspectRatio);
@@ -117,8 +117,8 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		<< tr("MP4 3072P");
 
 	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = vimgError = vimgFinished = fullyLoaded = false;
-	videoInfoReply = videoImageReply = searchRequestReply = NULL;
-	videoInfoManager = videoImageManager = searchRequestManager = NULL;
+	videoInfoReply = videoImageReply = searchRequestReply = 0;
+	videoInfoManager = videoImageManager = searchRequestManager = 0;
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
 	videoSeqNum = 0;
 
@@ -767,7 +767,7 @@ void YouTubeVideoPlayer::switchToWindowed()
 		mFullscreenVideoWidget->hide();
 		videoPlayer()->setVideoOutput(mVideoWidget);
 		delete mFullscreenVideoWidget;
-		mFullscreenVideoWidget = NULL;
+		mFullscreenVideoWidget = 0;
 		videoOverlayWidget->setVideoWidget(videoWidget());
 	}
 #endif
@@ -797,7 +797,7 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author, 
 	}
 
 	ImagePixmap *imagePixmap = qmc2ImagePixmapCache.object("yt_" + id);
-	bool pixmapFound = (imagePixmap != NULL);
+	bool pixmapFound = (imagePixmap != 0);
 	if ( !pixmapFound ) {
 		QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 		if ( youTubeCacheDir.exists() ) {
@@ -1140,7 +1140,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
 		delete videoInfoReply;
-		videoInfoReply = NULL;
+		videoInfoReply = 0;
 	}
 	videoInfoBuffer.clear();
 	viError = viFinished = false;
@@ -1150,7 +1150,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	if ( videoInfoManager ) {
 		disconnect(videoInfoManager);
 		delete videoInfoManager;
-		videoInfoManager = NULL;
+		videoInfoManager = 0;
 	}
 	videoInfoManager = new QNetworkAccessManager(this);
 	videoInfoReply = videoInfoManager->get(videoInfoRequest);
@@ -1650,7 +1650,7 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	if ( searchRequestManager ) {
 		disconnect(searchRequestManager);
 		delete searchRequestManager;
-		searchRequestManager = NULL;
+		searchRequestManager = 0;
 	}
 	searchRequestManager = new QNetworkAccessManager(this);
 	searchRequestReply = searchRequestManager->get(searchRequest);
@@ -1689,7 +1689,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 			continue;
 
 		ImagePixmap *imagePixmap = qmc2ImagePixmapCache.object("yt_" + viw->videoID);
-		bool pixmapFound = (imagePixmap != NULL);
+		bool pixmapFound = (imagePixmap != 0);
 		if ( !pixmapFound ) {
 			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 			if ( youTubeCacheDir.exists() ) {
@@ -1712,7 +1712,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		if ( videoImageReply ) {
 			disconnect(videoImageReply);
 			delete videoImageReply;
-			videoImageReply = NULL;
+			videoImageReply = 0;
 		}
 		videoImageBuffer.clear();
 		vimgError = vimgFinished = false;
@@ -1722,7 +1722,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		if ( videoImageManager ) {
 			disconnect(videoImageManager);
 			delete videoImageManager;
-			videoImageManager = NULL;
+			videoImageManager = 0;
 		}
 		videoImageManager = new QNetworkAccessManager(this);
 		videoImageReply = videoImageManager->get(videoImageRequest);

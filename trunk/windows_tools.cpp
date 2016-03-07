@@ -17,13 +17,13 @@ HWND winFoundHandle;
 
 HANDLE winFindProcessHandle(QString procName)
 {
-	HANDLE processHandle = NULL;
+	HANDLE processHandle = 0;
 	DWORD procs[QMC2_WIN_MAX_PROCS], bytesNeeded;
 	if ( EnumProcesses(procs, sizeof(procs), &bytesNeeded) ) {
 		DWORD numProcesses = bytesNeeded / sizeof(DWORD);
 		for (uint i = 0; i < numProcesses; i++) {
 			HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, procs[i]);
-			if ( hProcess != NULL ) {
+			if ( hProcess != 0 ) {
 				HMODULE hMod;
 				DWORD bN;
 				if ( EnumProcessModules(hProcess, &hMod, sizeof(hMod), &bN) ) {
@@ -63,7 +63,7 @@ BOOL CALLBACK winFindWindowHandleCallbackProc(HWND hwnd, LPARAM lParam)
 
 HWND winFindWindowHandle(QString windowTitle)
 {
-	winFoundHandle = NULL;
+	winFoundHandle = 0;
 	winSearchText = windowTitle;
 	winWindowMap.clear();
 	EnumWindows((WNDENUMPROC)winFindWindowHandleCallbackProc, 0);
@@ -95,7 +95,7 @@ HWND winFindWindowHandleOfProcess(Q_PID processInfo, QString subString)
 		if ( !handleFound )
          		windowHandle = GetNextWindow(windowHandle, GW_HWNDNEXT);
 	}
-	return handleFound ? windowHandle : NULL;
+	return handleFound ? windowHandle : 0;
 }
 
 void winAllocConsole(bool parentOnly)
@@ -112,13 +112,13 @@ void winAllocConsole(bool parentOnly)
 	HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);
 	int hCrt = _open_osfhandle((intptr_t) handle_out, _O_TEXT);
 	FILE *hf_out = _fdopen(hCrt, "w");
-	setvbuf(hf_out, NULL, _IONBF, 1);
+	setvbuf(hf_out, 0, _IONBF, 1);
 	*stdout = *hf_out;
 
 	HANDLE handle_in = GetStdHandle(STD_INPUT_HANDLE);
 	hCrt = _open_osfhandle((intptr_t) handle_in, _O_TEXT);
 	FILE *hf_in = _fdopen(hCrt, "r");
-	setvbuf(hf_in, NULL, _IONBF, 128);
+	setvbuf(hf_in, 0, _IONBF, 128);
 	*stdin = *hf_in;
 
 	if ( parentConsoleAttached ) {

@@ -25,7 +25,7 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 	QIcon *cachedIcon = m_iconCache.object(fileInfo.suffix());
 	QIcon icon;
 	if ( !cachedIcon ) {
-		static HRESULT comInit = CoInitialize(NULL);
+		static HRESULT comInit = CoInitialize(0);
 		Q_UNUSED(comInit);
 		SHFILEINFO shFileInfo;
 		unsigned long val = SHGetFileInfo((const wchar_t *)("dummy." + fileInfo.suffix()).utf16(), 0, &shFileInfo, sizeof(SHFILEINFO), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);

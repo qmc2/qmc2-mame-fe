@@ -197,7 +197,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 
 MiniWebBrowser::~MiniWebBrowser()
 {
-	hideEvent(NULL);
+	hideEvent(0);
 }
 
 void MiniWebBrowser::adjustIconSizes()

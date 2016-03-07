@@ -31,7 +31,7 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 		connect(&joystickTimer, SIGNAL(timeout()), this, SLOT(processEvents()));
 	}
 
-	joystick = NULL;
+	joystick = 0;
 	jsIndex = -1;
 	numAxes = numButtons = numHats = numTrackballs = 0;
 	autoRepeat = doAutoRepeat;
@@ -86,7 +86,7 @@ void Joystick::close()
 		if ( doLog )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("SDL joystick #%1 closed").arg(jsIndex));
 	}
-	joystick = NULL;
+	joystick = 0;
 	jsIndex = -1;
 	numAxes = numButtons = numHats = numTrackballs = 0;
 }

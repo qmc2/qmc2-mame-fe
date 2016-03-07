@@ -114,7 +114,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	// replace the standard QWebView with the MiniWebBrowser's tweaked one
 	ui->verticalLayoutWYSIWYG->removeWidget(ui->webView);
 	delete ui->webView;
-	ui->webView = new BrowserWidget(ui->tabWYSIWYG, NULL);
+	ui->webView = new BrowserWidget(ui->tabWYSIWYG, 0);
 	ui->verticalLayoutWYSIWYG->addWidget(ui->webView);
 
 	myEditorName = editorName;
@@ -129,8 +129,8 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 
 	loadActive = false;
 	loadSuccess = true;
-	xmlQueryBuffer = NULL;
-	xmlDocument = NULL;
+	xmlQueryBuffer = 0;
+	xmlDocument = 0;
 
 	// hide new-from-template and file-revert actions initially
 	ui->actionFileNewFromTemplate->setVisible(false);
@@ -1122,7 +1122,7 @@ bool HtmlEditor::isZippedImage(QString imageType)
 	if ( !qmc2CurrentItem )
 		return false;
 
-	ImageWidget *imageWidget = NULL;
+	ImageWidget *imageWidget = 0;
 	switch ( imageTypes.indexOf(imageType) ) {
 		case QMC2_IMGTYPE_PREVIEW: imageWidget = qmc2Preview; break;
 		case QMC2_IMGTYPE_FLYER: imageWidget = qmc2Flyer; break;
@@ -1148,7 +1148,7 @@ QString HtmlEditor::getImageData(QString imageType)
 	if ( !qmc2CurrentItem )
 		return QString();
 
-	ImageWidget *imageWidget = NULL;
+	ImageWidget *imageWidget = 0;
 	switch ( imageTypes.indexOf(imageType) ) {
 		case QMC2_IMGTYPE_PREVIEW: imageWidget = qmc2Preview; break;
 		case QMC2_IMGTYPE_FLYER: imageWidget = qmc2Flyer; break;
@@ -1180,7 +1180,7 @@ QString HtmlEditor::getImageData(QString imageType)
 		QString cacheKey = imageType + "_" + gameName;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
-			imageWidget->loadImage(gameName, gameName, false, NULL, false);
+			imageWidget->loadImage(gameName, gameName, false, 0, false);
 		else
 			imageWidget->currentPixmap = *cpm;
 		return imageWidget->toBase64();
@@ -1409,7 +1409,7 @@ QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
 		QString cacheKey = imw->cachePrefix() + "_" + id;
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
-			imw->loadImage(id, id, true, NULL, false);
+			imw->loadImage(id, id, true, 0, false);
 		return imw->toBase64();
 	} else
 		return QString();
@@ -1476,8 +1476,8 @@ void HtmlEditor::closeXmlBuffer()
 		xmlQueryBuffer->close();
 		delete xmlQueryBuffer;
 		delete xmlDocument;
-		xmlQueryBuffer = NULL;
-		xmlDocument = NULL;
+		xmlQueryBuffer = 0;
+		xmlDocument = 0;
 	}
 }
 

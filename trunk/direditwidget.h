@@ -11,7 +11,7 @@ class DirectoryEditWidget : public QWidget, public Ui::DirectoryEditWidget
 	public:
 		QTreeWidget *myTreeWidget;
 
-		DirectoryEditWidget(QString, QWidget *parent = 0, QTreeWidget *treeWidget = NULL);
+		DirectoryEditWidget(QString, QWidget *parent = 0, QTreeWidget *treeWidget = 0);
 		~DirectoryEditWidget();
 
 	public slots:

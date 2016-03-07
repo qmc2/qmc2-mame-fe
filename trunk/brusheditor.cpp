@@ -244,7 +244,7 @@ void BrushEditor::updateGradientPreview()
 
 void  BrushEditor::updateGradientStopActions()
 {
-	QTreeWidgetItem *lastItem = NULL;
+	QTreeWidgetItem *lastItem = 0;
 	for (int i = 0; i < treeWidgetColorStops->topLevelItemCount(); i++) {
 		QTreeWidgetItem *thisItem = treeWidgetColorStops->topLevelItem(i);
 		GradientStopActions *gsa = (GradientStopActions *)treeWidgetColorStops->itemWidget(thisItem, QMC2_BRUSHEDITOR_GRADIENT_COLIDX_ACTIONS);

@@ -132,12 +132,12 @@ class ImageWidget : public QWidget
 		void init();
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
-		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = NULL, bool loadImages = true);
+		bool loadImage(QString, QString, bool checkOnly = false, QString *fileName = 0, bool loadImages = true);
 		bool replaceImage(QString, QPixmap &);
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-		bool checkImage(QString, unzFile zip = NULL, SevenZipFile *sevenZip = NULL, ArchiveFile *archiveFile = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL, bool *async = NULL, bool *isFillingDict = NULL);
+		bool checkImage(QString, unzFile zip = 0, SevenZipFile *sevenZip = 0, ArchiveFile *archiveFile = 0, QSize *sizeReturn = 0, int *bytesUsed = 0, QString *fileName = 0, QString *readerError = 0, bool *async = 0, bool *isFillingDict = 0);
 #else
-		bool checkImage(QString, unzFile zip = NULL, SevenZipFile *sevenZip = NULL, QSize *sizeReturn = NULL, int *bytesUsed = NULL, QString *fileName = NULL, QString *readerError = NULL, bool *async = NULL, bool *isFillingDict = NULL);
+		bool checkImage(QString, unzFile zip = 0, SevenZipFile *sevenZip = 0, QSize *sizeReturn = 0, int *bytesUsed = 0, QString *fileName = 0, QString *readerError = 0, bool *async = 0, bool *isFillingDict = 0);
 #endif
 		void copyToClipboard();
 		void copyPathToClipboard();

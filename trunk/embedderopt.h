@@ -48,7 +48,7 @@ class SnapshotViewer : public QWidget
 		void zoomIn();
 		void zoomOut();
 		void resetZoom();
-		void updateUseAsMenu() { contextMenuEvent(NULL); };
+		void updateUseAsMenu() { contextMenuEvent(0); };
 
 	protected:
 		void leaveEvent(QEvent *);

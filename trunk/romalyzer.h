@@ -308,16 +308,16 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		ROMAlyzer(QWidget *, int romalyzerMode = QMC2_ROMALYZER_MODE_SYSTEM);
 		~ROMAlyzer();
 
-		void saveState() { closeEvent(NULL); }
-		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = NULL);
+		void saveState() { closeEvent(0); }
+		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = 0);
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
 		bool readFileData(QString, QString, QByteArray *);
-		bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+		bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = 0);
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-		bool writeAllArchiveData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+		bool writeAllArchiveData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = 0);
 #endif
-		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
+		bool writeAllFileData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = 0);
 		static QString humanReadable(quint64, int digits = 2);
 		static QString &getXmlData(QString, bool includeDTD = false);
 		static QString &getSoftwareXmlData(QString, QString, bool includeDTD = false);

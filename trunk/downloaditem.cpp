@@ -18,8 +18,8 @@ extern Settings *qmc2Config;
 DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *parent)
 	: QTreeWidgetItem(parent)
 {
-	progressWidget = NULL;
-	itemDownloader = NULL;
+	progressWidget = 0;
+	itemDownloader = 0;
 	treeWidget = parent;
 
 	progressWidget = new QProgressBar(0);

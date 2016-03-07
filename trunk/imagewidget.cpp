@@ -118,7 +118,7 @@ void ImageWidget::openSource()
 	if ( useZip() ) {
 		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
 			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
-			if ( imageFile == NULL )
+			if ( imageFile == 0 )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else
 				imageFileMap[filePath] = imageFile;
@@ -644,7 +644,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 				QString gameFile = gameName + "." + extension;
 				if ( fileName )
 					*fileName = gameFile;
-				if ( zip == NULL ) {
+				if ( zip == 0 ) {
 					foreach (unzFile imageFile, imageFileMap) {
 						if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
 							if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
@@ -682,7 +682,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							*sizeReturn = image.size();
 						if ( bytesUsed )
 							*bytesUsed = image.byteCount();
-					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+					} else if ( readerError != 0 && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
 				}
 				if ( fileOk )
@@ -702,7 +702,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 					*fileName = gameFile;
 				if ( isFillingDict )
 					*isFillingDict = false;
-				if ( sevenZip == NULL ) {
+				if ( sevenZip == 0 ) {
 					foreach (SevenZipFile *imageFile, imageFileMap7z) {
 						int index = imageFile->indexOfName(gameFile);
 						if ( index >= 0 ) {
@@ -748,7 +748,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							*sizeReturn = image.size();
 						if ( bytesUsed )
 							*bytesUsed = image.byteCount();
-					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+					} else if ( readerError != 0 && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
 				}
 				if ( fileOk )
@@ -768,7 +768,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 				QString gameFile = gameName + "." + extension;
 				if ( fileName )
 					*fileName = gameFile;
-				if ( archiveFile == NULL ) {
+				if ( archiveFile == 0 ) {
 					foreach (ArchiveFile *imageFile, imageArchiveMap) {
 						if ( imageFile->seekEntry(gameFile) )
 							fileOk = imageFile->readEntry(imageData) > 0;
@@ -792,7 +792,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							*sizeReturn = image.size();
 						if ( bytesUsed )
 							*bytesUsed = image.byteCount();
-					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+					} else if ( readerError != 0 && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
 				}
 				if ( fileOk )
@@ -821,7 +821,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 						if ( bytesUsed )
 							*bytesUsed = image.byteCount();
 						break;
-					} else if ( readerError != NULL && imageReader.error() != QImageReader::FileNotFoundError )
+					} else if ( readerError != 0 && imageReader.error() != QImageReader::FileNotFoundError )
 						*readerError = imageReader.errorString();
 					if ( fileOk )
 						break;
@@ -840,7 +840,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
 	p->eraseRect(rect());
 
-	if ( pm == NULL ) {
+	if ( pm == 0 ) {
 		p->end();
 		return;
 	}
@@ -895,7 +895,7 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 void ImageWidget::drawScaledImage(QPixmap *pm, QPainter *p)
 {
-	if ( pm == NULL ) {
+	if ( pm == 0 ) {
 		p->eraseRect(rect());
 		p->end();
 		return;

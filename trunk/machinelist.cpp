@@ -133,8 +133,8 @@ MachineList::MachineList(QObject *parent)
 {
 	numMachines = numTotalMachines = numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numUnknownMachines = numNotFoundMachines = -1;
 	uncommittedXmlDbRows = numTaggedSets = numMatchedMachines = numVerifyRoms = 0;
-	loadProc = verifyProc = NULL;
-	checkedItem = NULL;
+	loadProc = verifyProc = 0;
+	checkedItem = 0;
 	emulatorVersion = tr("unknown");
 	mergeCategories = autoRomCheck = verifyCurrentOnly = dtdBufferReady = false;
 	initialLoad = true;
@@ -194,7 +194,7 @@ MachineList::MachineList(QObject *parent)
 	if ( QMC2_ICON_FILETYPE_ZIP ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
 			unzFile iconFile = unzOpen(filePath.toUtf8().constData());
-			if ( iconFile == NULL )
+			if ( iconFile == 0 )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 			else
 				qmc2IconFileMap[filePath] = iconFile;
@@ -492,7 +492,7 @@ void MachineList::load()
 	qmc2MainWindow->textBrowserGameInfo->clear();
 	qmc2MainWindow->textBrowserEmuInfo->clear();
 	qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
-	qmc2CurrentItem = NULL;
+	qmc2CurrentItem = 0;
 	if ( qmc2DeviceConfigurator ) {
 		qmc2DeviceConfigurator->save();
 		qmc2DeviceConfigurator->saveSetup();
@@ -501,9 +501,9 @@ void MachineList::load()
 		if ( vbl )
 			delete vbl;
 		delete qmc2DeviceConfigurator;
-		qmc2DeviceConfigurator = NULL;
+		qmc2DeviceConfigurator = 0;
 	}
-	qmc2LastDeviceConfigItem = NULL;
+	qmc2LastDeviceConfigItem = 0;
 	DeviceConfigurator::systemSlotHash.clear();
 	DeviceConfigurator::slotNameHash.clear();
 	if ( qmc2SystemNotesEditor ) {
@@ -519,7 +519,7 @@ void MachineList::load()
 	if ( qmc2SoftwareList ) {
 		if ( qmc2SoftwareList->isLoading ) {
 			qmc2SoftwareList->interruptLoad = true;
-			qmc2LastSoftwareListItem = NULL;
+			qmc2LastSoftwareListItem = 0;
 			QTimer::singleShot(0, this, SLOT(load()));
 			return;
 		}
@@ -529,32 +529,32 @@ void MachineList::load()
 		if ( vbl )
 			delete vbl;
 		delete qmc2SoftwareList;
-		qmc2SoftwareList = NULL;
+		qmc2SoftwareList = 0;
 	}
-	qmc2LastSoftwareListItem = NULL;
+	qmc2LastSoftwareListItem = 0;
 	SoftwareList::swlSupported = true;
 	systemSoftwareListHash.clear();
 	systemSoftwareFilterHash.clear();
-	qmc2LastGameInfoItem = NULL;
-	qmc2LastEmuInfoItem = NULL;
+	qmc2LastGameInfoItem = 0;
+	qmc2LastEmuInfoItem = 0;
 	if ( qmc2ProjectMESSLookup ) {
 		qmc2ProjectMESSLookup->setVisible(false);
 		QLayout *vbl = qmc2MainWindow->tabProjectMESS->layout();
 		if ( vbl )
 			delete vbl;
 		delete qmc2ProjectMESSLookup;
-		qmc2ProjectMESSLookup = NULL;
+		qmc2ProjectMESSLookup = 0;
 	}
-	qmc2LastProjectMESSItem = NULL;
+	qmc2LastProjectMESSItem = 0;
 #if defined(QMC2_YOUTUBE_ENABLED)
-	qmc2LastYouTubeItem = NULL;
+	qmc2LastYouTubeItem = 0;
 	if ( qmc2YouTubeWidget ) {
 		qmc2YouTubeWidget->setVisible(false);
 		QLayout *vbl = qmc2MainWindow->tabYouTube->layout();
 		if ( vbl )
 			delete vbl;
 		delete qmc2YouTubeWidget;
-		qmc2YouTubeWidget = NULL;
+		qmc2YouTubeWidget = 0;
 	}
 #endif
 	if ( qmc2EmulatorOptions ) {
@@ -571,11 +571,11 @@ void MachineList::load()
 				qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(machineName), selectedEmulator);
 		}
 		delete qmc2MainWindow->comboBoxEmuSelector;
-		qmc2MainWindow->comboBoxEmuSelector = NULL;
+		qmc2MainWindow->comboBoxEmuSelector = 0;
 		delete qmc2EmulatorOptions;
 		delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile;
 		delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
-		qmc2EmulatorOptions = NULL;
+		qmc2EmulatorOptions = 0;
 	}
 	ImageWidget::updateArtwork();
 	QTreeWidgetItem *dummyItem;
@@ -894,7 +894,7 @@ void MachineList::verify(bool currentOnly)
 				break;
 		}
 	} else {
-		checkedItem = NULL;
+		checkedItem = 0;
 		romStateCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
 		romStateCache.open(QIODevice::WriteOnly | QIODevice::Text);
 		if ( !romStateCache.isOpen() ) {
@@ -992,7 +992,7 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 	qApp->processEvents();
 	QString element, content;
 	QStringList attributes, descriptions;
-	QTreeWidgetItem *childItem = NULL;
+	QTreeWidgetItem *childItem = 0;
 	QList<QTreeWidgetItem *> itemList;
 
 	attributes << "name" << "sourcefile" << "isbios" << "isdevice" << "runnable" << "cloneof" << "romof" << "sampleof";
@@ -1002,7 +1002,7 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 	QString endMark("</machine>");
 
 	while ( !xmlLines[gamePos].contains(endMark) ) {
-		childItem = NULL;
+		childItem = 0;
 		element = xmlLines[gamePos].simplified();
 		if ( element.contains("<year>") ) {
 			content = element.remove("<year>").remove("</year>");
@@ -2253,7 +2253,7 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qmc2EarlyReloadActive = false;
 	if ( loadProc )
 		delete loadProc;
-	loadProc = NULL;
+	loadProc = 0;
 	if ( romStateCache.isOpen() )
 		romStateCache.close();
 	xmlDb()->commitTransaction();
@@ -2720,7 +2720,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qmc2MainWindow->progressBarMachineList->reset();
 	if ( verifyProc )
 		delete verifyProc;
-	verifyProc = NULL;
+	verifyProc = 0;
 	qmc2VerifyActive = false;
 	if ( romStateCache.isOpen() ) {
 		tsRomCache.flush();
@@ -3031,7 +3031,7 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 							char unzFileName[QMC2_MAX_PATH_LENGTH];
 							unz_file_info unzFileInfo;
 							do {
-								if ( unzGetCurrentFileInfo(iconFile, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
+								if ( unzGetCurrentFileInfo(iconFile, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, 0, 0, 0, 0) == UNZ_OK ) {
 									QFileInfo fi(unzFileName);
 									imageData.clear();
 									if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {

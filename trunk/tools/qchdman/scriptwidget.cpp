@@ -172,7 +172,7 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
 {
 	QString scriptName = fileName;
 
-	if ( buffer == NULL && scriptName.isEmpty() ) {
+	if ( buffer == 0 && scriptName.isEmpty() ) {
 		scriptName = QFileDialog::getOpenFileName(this, tr("Choose script file"), QString(), tr("Script files (*.scr)")  + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 		if ( scriptName.isNull() )
 			return;
@@ -180,10 +180,10 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
 
 	QFile loadFile(scriptName);
 	QTextStream ts;
-	QByteArray ba(buffer != NULL ? buffer->toUtf8().constData() : "");
+	QByteArray ba(buffer != 0 ? buffer->toUtf8().constData() : "");
 	QBuffer baBuffer(&ba);
 
-	if ( buffer != NULL ) {
+	if ( buffer != 0 ) {
 		baBuffer.open(QBuffer::ReadOnly);
 		ts.setDevice(&baBuffer);
 	} else if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) )
@@ -208,7 +208,7 @@ void ScriptWidget::load(const QString &fileName, QString *buffer)
 			ui->plainTextEditScript->setPlainText(ecmaScript);
 		}
 
-		if ( buffer != NULL ) {
+		if ( buffer != 0 ) {
 			baBuffer.close();
 		} else
 			loadFile.close();
@@ -237,7 +237,7 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
 {
 	QString scriptName = fileName;
 
-	if ( buffer == NULL && (scriptName.isEmpty() || askFileName) ) {
+	if ( buffer == 0 && (scriptName.isEmpty() || askFileName) ) {
 		scriptName = ((ProjectWindow *)parentWidget())->projectName;
 		if ( scriptName.startsWith(tr("Noname-%1").arg("")) || scriptName.isEmpty() || askFileName ) {
 			QString s = QFileDialog::getSaveFileName(this, tr("Choose script file"), scriptName, tr("Script files (*.scr)") + ";;" + tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
@@ -253,7 +253,7 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
 	QByteArray ba;
 	QBuffer baBuffer(&ba);
 
-	if ( buffer != NULL ) {
+	if ( buffer != 0 ) {
 		baBuffer.open(QBuffer::WriteOnly);
 		ts.setDevice(&baBuffer);
 	} else if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) )
@@ -267,7 +267,7 @@ void ScriptWidget::saveAs(const QString &fileName, QString *buffer)
 		ts << ui->plainTextEditScript->toPlainText() << "\n";
 		ts << "]\n";
 
-		if ( buffer != NULL ) {
+		if ( buffer != 0 ) {
 			baBuffer.close();
 			*buffer = QString(ba);
 		} else

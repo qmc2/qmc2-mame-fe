@@ -220,9 +220,9 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
 	comboBoxChooserFilterPattern->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxChooserFilterPattern));
 	comboBoxChooserFilterPatternHadFocus = false;
-	dirModel = NULL;
-	fileModel = NULL;
-	configurationRenameItem = NULL;
+	dirModel = 0;
+	fileModel = 0;
+	configurationRenameItem = 0;
 	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = fullyLoaded = forceQuit = false;
 	updateSlots = true;
 
@@ -583,7 +583,7 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 					defaultIndex = nestedSlotPreselectionMap[cb];
 				if ( isNestedSlot ) {
 					// there must be a "parent" slot, otherwise ignore this argument
-					if ( item->parent() != NULL )
+					if ( item->parent() != 0 )
 						addArg = checkParentSlot(item->parent(), slotName);
 				} else
 					addArg = true;
@@ -882,7 +882,7 @@ void DeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOptionN
 	}
 
 	// find parent slot
-	QTreeWidgetItem *parentItem = NULL;
+	QTreeWidgetItem *parentItem = 0;
 	QList<QTreeWidgetItem *> allSlotItems;
 	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
 		QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
@@ -898,7 +898,7 @@ void DeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOptionN
 			}
 		}
 	}
-	if ( parentItem == NULL ) {
+	if ( parentItem == 0 ) {
 		foreach (QTreeWidgetItem *item, allSlotItems) {
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 			if ( cb ) {
@@ -937,7 +937,7 @@ void DeviceConfigurator::insertChildItems(QTreeWidgetItem *parentItem, QList<QTr
 
 void DeviceConfigurator::checkRemovedSlots(QTreeWidgetItem *parentItem)
 {
-	if ( parentItem == NULL ) {
+	if ( parentItem == 0 ) {
 		for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++)
 			checkRemovedSlots(treeWidgetSlotOptions->topLevelItem(i));
 	} else {
@@ -982,8 +982,8 @@ QComboBox *DeviceConfigurator::comboBoxByName(QString slotName, QTreeWidgetItem 
 		return (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 	} else {
 		if ( returnItem )
-			*returnItem = NULL;
-		return NULL;
+			*returnItem = 0;
+		return 0;
 	}
 }
 
@@ -1154,7 +1154,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 		QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
 	else {
 		// adjust tab orders for device-maps and slot-options
-		QTreeWidgetItem *lastItem = NULL;
+		QTreeWidgetItem *lastItem = 0;
 		for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
 			QTreeWidgetItem *thisItem = treeWidgetDeviceSetup->topLevelItem(i);
 			if ( lastItem ) {
@@ -1172,7 +1172,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 			}
 			lastItem = thisItem;
 		}
-		lastItem = NULL;
+		lastItem = 0;
 		QTreeWidgetItemIterator it(treeWidgetSlotOptions);
 		while ( *it ) {
 			if ( lastItem ) {
@@ -1203,7 +1203,7 @@ void DeviceConfigurator::updateSlotBiosSelections()
 			QString slotDeviceName = slotDeviceNames[slotOption];
 			QString defaultChoice;
 			QStringList biosChoices = qmc2MainWindow->getXmlChoices(slotDeviceName, "rom", "bios", &defaultChoice);
-			QComboBox *cbBIOS = NULL;
+			QComboBox *cbBIOS = 0;
 			bool isNewCB = false;
 			if ( item )
 				cbBIOS = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
@@ -1466,7 +1466,7 @@ bool DeviceConfigurator::load()
 	QStringList configurationList(qmc2Config->childGroups());
 	qmc2Config->endGroup();
 
-	QListWidgetItem *selectedItem = NULL;
+	QListWidgetItem *selectedItem = 0;
 	foreach (QString configName, configurationList) {
 		if ( configName == tr("Default configuration") )
 			continue;
@@ -1494,7 +1494,7 @@ bool DeviceConfigurator::load()
 	updateSlots = dontIgnoreNameChange = true;
 	refreshRunning = false;
 	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("Default configuration"), listWidgetDeviceConfigurations);
-	if ( selectedItem == NULL )
+	if ( selectedItem == 0 )
 		listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
 	else
 		listWidgetDeviceConfigurations->setCurrentItem(selectedItem);
@@ -1541,7 +1541,7 @@ bool DeviceConfigurator::save()
 		qmc2Config->setValue(group + "/DefaultDeviceDirectory", devDir);
 
 	QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
-	if ( curItem != NULL ) {
+	if ( curItem != 0 ) {
 		if ( curItem->text() == tr("Default configuration") )
 			qmc2Config->remove(group + "/SelectedConfiguration");
 		else
@@ -1714,7 +1714,7 @@ void DeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
 		slotMap.remove(cfgName);
 		slotBiosMap.remove(cfgName);
 		int row = listWidgetDeviceConfigurations->row(matchedItemList[0]);
-		QListWidgetItem *prevItem = NULL;
+		QListWidgetItem *prevItem = 0;
 		if ( row > 0 )
 			prevItem = listWidgetDeviceConfigurations->item(row - 1);
 		QListWidgetItem *item = listWidgetDeviceConfigurations->takeItem(row);
@@ -1726,7 +1726,7 @@ void DeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
 
 void DeviceConfigurator::actionRenameConfiguration_activated()
 {
-	configurationRenameItem = NULL;
+	configurationRenameItem = 0;
 	QList<QListWidgetItem *> sl = listWidgetDeviceConfigurations->selectedItems();
 	if ( sl.count() > 0 ) {
 		configurationRenameItem = sl[0];
@@ -1751,7 +1751,7 @@ void DeviceConfigurator::configurationItemChanged(QListWidgetItem *item)
 		}
 		lineEditConfigurationName->setText(item->text());
 	}
-	configurationRenameItem = NULL;
+	configurationRenameItem = 0;
 	oldConfigurationName.clear();
 }
 
@@ -1765,7 +1765,7 @@ void DeviceConfigurator::actionRemoveConfiguration_activated()
 		slotMap.remove(item->text());
 		slotBiosMap.remove(item->text());
 		int row = listWidgetDeviceConfigurations->row(item);
-		QListWidgetItem *prevItem = NULL;
+		QListWidgetItem *prevItem = 0;
 		if ( row > 0 )
 			prevItem = listWidgetDeviceConfigurations->item(row - 1);
 		item = listWidgetDeviceConfigurations->takeItem(row);

@@ -24,7 +24,7 @@ JoystickManager::JoystickManager(JoyFunctionMap *joyFuncMap, int joyIndex, QObje
 	QObject(parent)
 {
 	mJoyIndex = joyIndex;
-	mJoystick = NULL;
+	mJoystick = 0;
 	mJoyFunctionMap = joyFuncMap;
 
 	if ( !QMC2_ARCADE_CLI_NO_JOY ) {
@@ -132,7 +132,7 @@ void JoystickManager::closeJoystick()
 		mJoystick->disconnect();
 		mJoystick->close();
 		delete mJoystick;
-		mJoystick = NULL;
+		mJoystick = 0;
 	}
 }
 

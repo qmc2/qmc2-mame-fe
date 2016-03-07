@@ -218,7 +218,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		VideoOverlayWidget *videoOverlayWidget;
 		VideoEventFilter *videoEventFilter;
 
-		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = NULL, bool videoInfoOnly = false);
+		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = 0, bool videoInfoOnly = false);
 		QString indexToFormat(int);
 
 #if QT_VERSION < 0x050000

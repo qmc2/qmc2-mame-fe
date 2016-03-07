@@ -32,7 +32,7 @@ class SoftwareListExporter : public QDialog, public Ui::SoftwareListExporter
 
 	public slots:
 		void adjustIconSizes();
-		void saveSettings() { closeEvent(NULL); }
+		void saveSettings() { closeEvent(0); }
 
 		// automatically connected slots
 		void on_toolButtonBrowseASCIIFile_clicked();
