@@ -161,6 +161,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		void commonWebSearch(QString, QTreeWidgetItem *);
 		void processGlobalEmuConfig();
+		void prepareShortcuts();
 
 	public slots:
 		// machine menu

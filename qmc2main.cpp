@@ -108,43 +108,43 @@
 #endif
 
 // global variables
-MainWindow *qmc2MainWindow = NULL;
-MachineList *qmc2MachineList = NULL;
-Options *qmc2Options = NULL;
-Settings *qmc2Config = NULL;
-EmulatorOptions *qmc2GlobalEmulatorOptions = NULL;
-EmulatorOptions *qmc2EmulatorOptions = NULL;
-ProcessManager *qmc2ProcessManager = NULL;
-Preview *qmc2Preview = NULL;
-Flyer *qmc2Flyer = NULL;
-Cabinet *qmc2Cabinet = NULL;
-Controller *qmc2Controller = NULL;
-Marquee *qmc2Marquee = NULL;
-Title *qmc2Title = NULL;
-PCB *qmc2PCB = NULL;
-About *qmc2About = NULL;
-DocBrowser *qmc2DocBrowser = NULL;
-Welcome *qmc2Welcome = NULL;
-ImageChecker *qmc2ImageChecker = NULL;
-SampleChecker *qmc2SampleChecker = NULL;
-ROMAlyzer *qmc2SystemROMAlyzer = NULL;
-ROMAlyzer *qmc2SoftwareROMAlyzer = NULL;
-ROMStatusExporter *qmc2ROMStatusExporter = NULL;
-ComponentSetup *qmc2ComponentSetup = NULL;
-ToolBarCustomizer *qmc2ToolBarCustomizer = NULL;
-PaletteEditor *qmc2PaletteEditor = NULL;
-SoftwareList *qmc2SoftwareList = NULL;
-SoftwareSnap *qmc2SoftwareSnap = NULL;
-SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
+MainWindow *qmc2MainWindow = 0;
+MachineList *qmc2MachineList = 0;
+Options *qmc2Options = 0;
+Settings *qmc2Config = 0;
+EmulatorOptions *qmc2GlobalEmulatorOptions = 0;
+EmulatorOptions *qmc2EmulatorOptions = 0;
+ProcessManager *qmc2ProcessManager = 0;
+Preview *qmc2Preview = 0;
+Flyer *qmc2Flyer = 0;
+Cabinet *qmc2Cabinet = 0;
+Controller *qmc2Controller = 0;
+Marquee *qmc2Marquee = 0;
+Title *qmc2Title = 0;
+PCB *qmc2PCB = 0;
+About *qmc2About = 0;
+DocBrowser *qmc2DocBrowser = 0;
+Welcome *qmc2Welcome = 0;
+ImageChecker *qmc2ImageChecker = 0;
+SampleChecker *qmc2SampleChecker = 0;
+ROMAlyzer *qmc2SystemROMAlyzer = 0;
+ROMAlyzer *qmc2SoftwareROMAlyzer = 0;
+ROMStatusExporter *qmc2ROMStatusExporter = 0;
+ComponentSetup *qmc2ComponentSetup = 0;
+ToolBarCustomizer *qmc2ToolBarCustomizer = 0;
+PaletteEditor *qmc2PaletteEditor = 0;
+SoftwareList *qmc2SoftwareList = 0;
+SoftwareSnap *qmc2SoftwareSnap = 0;
+SoftwareSnapshot *qmc2SoftwareSnapshot = 0;
 QString qmc2DriverName;
-DeviceConfigurator *qmc2DeviceConfigurator = NULL;
-QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
-QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
+DeviceConfigurator *qmc2DeviceConfigurator = 0;
+QTreeWidgetItem *qmc2LastDeviceConfigItem = 0;
+QTreeWidgetItem *qmc2LastSoftwareListItem = 0;
 #if QMC2_USE_PHONON_API
-AudioEffectDialog *qmc2AudioEffectDialog = NULL;
+AudioEffectDialog *qmc2AudioEffectDialog = 0;
 QString qmc2AudioLastIndividualTrack;
 #endif
-DemoModeDialog *qmc2DemoModeDialog = NULL;
+DemoModeDialog *qmc2DemoModeDialog = 0;
 bool qmc2ReloadActive = false;
 bool qmc2ImageCheckActive = false;
 bool qmc2SampleCheckActive = false;
@@ -192,50 +192,50 @@ bool qmc2UseDefaultEmulator = true;
 bool qmc2ForceCacheRefresh = false;
 int qmc2MachineListResponsiveness = 100;
 int qmc2UpdateDelay = 10;
-QFile *qmc2FrontendLogFile = NULL;
-QFile *qmc2EmulatorLogFile = NULL;
-QFile *qmc2FifoFile = NULL;
+QFile *qmc2FrontendLogFile = 0;
+QFile *qmc2EmulatorLogFile = 0;
+QFile *qmc2FifoFile = 0;
 QTextStream qmc2FrontendLogStream;
 QTextStream qmc2EmulatorLogStream;
-QTranslator *qmc2Translator = NULL;
-QTranslator *qmc2QtTranslator = NULL;
+QTranslator *qmc2Translator = 0;
+QTranslator *qmc2QtTranslator = 0;
 QString qmc2LastFrontendLogMessage;
 quint64 qmc2FrontendLogMessageRepeatCount = 0;
 QString qmc2LastEmulatorLogMessage;
 quint64 qmc2EmulatorLogMessageRepeatCount = 0;
 bool qmc2StopParser = false;
-QTreeWidgetItem *qmc2CurrentItem = NULL;
-QTreeWidgetItem *qmc2LastConfigItem = NULL;
-QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
+QTreeWidgetItem *qmc2CurrentItem = 0;
+QTreeWidgetItem *qmc2LastConfigItem = 0;
+QTreeWidgetItem *qmc2LastGameInfoItem = 0;
 bool qmc2LoadingEmuInfoDB = false;
-QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
+QTreeWidgetItem *qmc2LastEmuInfoItem = 0;
 bool qmc2LoadingSoftwareInfoDB = false;
-QTreeWidgetItem *qmc2LastSoftwareInfoItem = NULL;
-MiniWebBrowser *qmc2ProjectMESSLookup = NULL;
-QTreeWidgetItem *qmc2LastProjectMESSItem = NULL;
+QTreeWidgetItem *qmc2LastSoftwareInfoItem = 0;
+MiniWebBrowser *qmc2ProjectMESSLookup = 0;
+QTreeWidgetItem *qmc2LastProjectMESSItem = 0;
 QCache<QString, QByteArray> qmc2ProjectMESSCache;
 QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
-QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
+QTreeWidgetItem *qmc2CategoryViewSelectedItem = 0;
 QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
-QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
-MiniWebBrowser *qmc2ProjectMESS = NULL;
-QTreeWidgetItem *qmc2LastSoftwareNotesItem = NULL;
-QTreeWidgetItem *qmc2LastSystemNotesItem = NULL;
-HtmlEditor *qmc2SystemNotesEditor = NULL;
-HtmlEditor *qmc2SoftwareNotesEditor = NULL;
+QTreeWidgetItem *qmc2VersionViewSelectedItem = 0;
+MiniWebBrowser *qmc2ProjectMESS = 0;
+QTreeWidgetItem *qmc2LastSoftwareNotesItem = 0;
+QTreeWidgetItem *qmc2LastSystemNotesItem = 0;
+HtmlEditor *qmc2SystemNotesEditor = 0;
+HtmlEditor *qmc2SoftwareNotesEditor = 0;
 #if defined(QMC2_YOUTUBE_ENABLED)
-YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
-QTreeWidgetItem *qmc2LastYouTubeItem = NULL;
+YouTubeVideoPlayer *qmc2YouTubeWidget = 0;
+QTreeWidgetItem *qmc2LastYouTubeItem = 0;
 QHash<QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoHash;
 bool qmc2YouTubeVideoInfoHashChanged = false;
 #endif
-QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
-QMenu *qmc2EmulatorMenu = NULL,
-      *qmc2GameMenu = NULL,
-      *qmc2FavoritesMenu = NULL,
-      *qmc2PlayedMenu = NULL,
-      *qmc2SearchMenu = NULL,
-      *qmc2ForeignIDsMenu = NULL;
+QTreeWidgetItem *qmc2HierarchySelectedItem = 0;
+QMenu *qmc2EmulatorMenu = 0,
+      *qmc2GameMenu = 0,
+      *qmc2FavoritesMenu = 0,
+      *qmc2PlayedMenu = 0,
+      *qmc2SearchMenu = 0,
+      *qmc2ForeignIDsMenu = 0;
 QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 QHash<QString, QString> qmc2ParentHash;
@@ -254,25 +254,25 @@ QMap<QString, SevenZipFile *> qmc2IconFileMap7z;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 QMap<QString, ArchiveFile *> qmc2IconArchiveMap;
 #endif
-MainEventFilter *qmc2MainEventFilter = NULL;
+MainEventFilter *qmc2MainEventFilter = 0;
 QHash<QString, QKeySequence> qmc2QtKeyHash;
 #if QMC2_JOYSTICK == 1
 QHash<QString, QString> qmc2JoystickFunctionHash;
 bool qmc2JoystickIsCalibrating = false;
 #endif
-QSocketNotifier *qmc2FifoNotifier = NULL;
+QSocketNotifier *qmc2FifoNotifier = 0;
 bool qmc2ShowGameName = false;
 bool qmc2ShowGameNameOnlyWhenRequired = true;
 QMutex qmc2LogFrontendMutex;
 QMutex qmc2LogEmulatorMutex;
 QString qmc2FileEditStartPath;
 QString qmc2DirectoryEditStartPath;
-NetworkAccessManager *qmc2NetworkAccessManager = NULL;
+NetworkAccessManager *qmc2NetworkAccessManager = 0;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
-QFont *qmc2StartupDefaultFont = NULL;
+QFont *qmc2StartupDefaultFont = 0;
 int qmc2SoftwareSnapPosition = 0;
-QSplashScreen *qmc2SplashScreen = NULL;
+QSplashScreen *qmc2SplashScreen = 0;
 int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
 QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 QList<QTreeWidgetItem *> qmc2ExpandedMachineListItems;
@@ -350,7 +350,7 @@ void MainWindow::log(char logTarget, QString message)
 #elif defined(QMC2_MAME)
 				QString defaultFrontendLogPath = QString(Options::configPath()) + "/qmc2-mame.log";
 #endif
-				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
+				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == 0 ) {
 					qmc2LogFrontendMutex.unlock();
 					return;
 				}
@@ -371,7 +371,7 @@ void MainWindow::log(char logTarget, QString message)
 			textBrowserEmulatorLog->appendPlainText(message);
 			if ( !qmc2EmulatorLogFile ) {
 				QString defaultEmuLogPath = QString(Options::configPath()) + "/mame.log";
-				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
+				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == 0 ) {
 					qmc2LogEmulatorMutex.unlock();
 					return;
 				}
@@ -418,9 +418,9 @@ MainWindow::MainWindow(QWidget *parent)
 	qmc2StartupDefaultFont = new QFont(qApp->font());
 	desktopGeometry = qApp->desktop()->geometry();
 	isActiveState = launchForeignID = negatedMatch = isCreatingSoftList = searchActive = stopSearch = lastPageSoftware = false;
-	comboBoxEmuSelector = NULL;
-	proxyStyle = NULL;
-	swlDb = NULL;
+	comboBoxEmuSelector = 0;
+	proxyStyle = 0;
+	swlDb = 0;
 	videoSnapAllowedFormatExtensions
 		<< ".mp4"
 		<< ".avi";
@@ -1563,7 +1563,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 		return;
 
 	if ( qmc2DemoGame.isEmpty() ) {
-		qmc2LastConfigItem = NULL;
+		qmc2LastConfigItem = 0;
 		on_tabWidgetMachineDetail_currentChanged(componentInfo->appliedFeatureList().indexOf(QMC2_CONFIG_INDEX));
 	}
 
@@ -1651,7 +1651,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	QString sectionTitle;
 	EmulatorOptions *emuOptions = qmc2EmulatorOptions;
 
-	EmulatorOptions *demoOpts = NULL;
+	EmulatorOptions *demoOpts = 0;
 	if ( !qmc2DemoGame.isEmpty() ) {
 		demoOpts = new EmulatorOptions("MAME/Configuration/" + gameName, 0);
 		demoOpts->load();
@@ -2681,7 +2681,7 @@ void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
 
 void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
 {
-	if ( qmc2GlobalEmulatorOptions != NULL ) {
+	if ( qmc2GlobalEmulatorOptions != 0 ) {
 		qmc2GlobalEmulatorOptions->createTemplateMap();
 		qmc2GlobalEmulatorOptions->clear();
 		qmc2GlobalEmulatorOptions->createMap();
@@ -2691,7 +2691,7 @@ void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
 
 void MainWindow::on_actionCheckTemplateMap_triggered(bool)
 {
-	if ( qmc2GlobalEmulatorOptions != NULL )
+	if ( qmc2GlobalEmulatorOptions != 0 )
 		qmc2GlobalEmulatorOptions->checkTemplateMap();
 }
 
@@ -3036,7 +3036,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 	QList<QTreeWidgetItem *> matches;
 	QList<QListWidgetItem *> itemList;
-	QListWidgetItem *currentItemPendant = NULL;
+	QListWidgetItem *currentItemPendant = 0;
 
 	for (int i = 0; i < treeWidgetMachineList->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetMachineList->topLevelItem(i);
@@ -3128,19 +3128,19 @@ void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current
 
 void MainWindow::on_listWidgetSearch_itemPressed(QListWidgetItem *current)
 {
-	on_listWidgetSearch_currentItemChanged(current, NULL);
+	on_listWidgetSearch_currentItemChanged(current, 0);
 }
 
 void MainWindow::on_listWidgetSearch_itemSelectionChanged()
 {
 	QList<QListWidgetItem *> selected = listWidgetSearch->selectedItems();
 	if ( selected.count() > 0 )
-		on_listWidgetSearch_currentItemChanged(selected[0], NULL);
+		on_listWidgetSearch_currentItemChanged(selected[0], 0);
 }
 
 void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 {
-	if ( item == NULL )
+	if ( item == 0 )
 		return;
 
 	QList<QTreeWidgetItem *> matchItemList = treeWidgetMachineList->findItems(item->text(), Qt::MatchExactly);
@@ -3179,7 +3179,7 @@ void MainWindow::on_listWidgetFavorites_itemSelectionChanged()
 {
 	QList<QListWidgetItem *> selected = listWidgetFavorites->selectedItems();
 	if ( selected.count() > 0 )
-		on_listWidgetSearch_currentItemChanged(selected[0], NULL);
+		on_listWidgetSearch_currentItemChanged(selected[0], 0);
 }
 
 void MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item)
@@ -3191,7 +3191,7 @@ void MainWindow::on_listWidgetPlayed_itemSelectionChanged()
 {
 	QList<QListWidgetItem *> selected = listWidgetPlayed->selectedItems();
 	if ( selected.count() > 0 )
-		on_listWidgetSearch_currentItemChanged(selected[0], NULL);
+		on_listWidgetSearch_currentItemChanged(selected[0], 0);
 }
 
 void MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item)
@@ -3584,7 +3584,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 void MainWindow::scrollToCurrentItem()
 {
-	QTreeWidgetItem *ci = NULL;
+	QTreeWidgetItem *ci = 0;
 	if ( qmc2CurrentItem )
 		ci = qmc2CurrentItem;
 	else
@@ -3643,7 +3643,7 @@ void MainWindow::checkCurrentSearchSelection()
 	QList<QListWidgetItem *> searchMatches = listWidgetSearch->findItems(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 	if ( searchMatches.count() > 0 ) {
 		QListWidgetItem *matchedItem = searchMatches[0];
-		if ( matchedItem != NULL ) {
+		if ( matchedItem != 0 ) {
 			listWidgetSearch->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(matchedItem, qmc2CursorPositioningMode);
 			qApp->processEvents();
@@ -3664,7 +3664,7 @@ void MainWindow::checkCurrentFavoritesSelection()
 	QList<QListWidgetItem *> favoritesMatches = listWidgetFavorites->findItems(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 	if ( favoritesMatches.count() > 0 ) {
 		QListWidgetItem *matchedItem = favoritesMatches[0];
-		if ( matchedItem != NULL ) {
+		if ( matchedItem != 0 ) {
 			listWidgetFavorites->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
 			listWidgetFavorites->scrollToItem(matchedItem, qmc2CursorPositioningMode);
 			qApp->processEvents();
@@ -3686,7 +3686,7 @@ void MainWindow::checkCurrentPlayedSelection()
 	QList<QListWidgetItem *> playedMatches = listWidgetPlayed->findItems(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 	if ( playedMatches.count() > 0 ) {
 		QListWidgetItem *matchedItem = playedMatches[0];
-		if ( matchedItem != NULL ) {
+		if ( matchedItem != 0 ) {
 			listWidgetPlayed->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
 			listWidgetPlayed->scrollToItem(matchedItem, qmc2CursorPositioningMode);
 			qApp->processEvents();
@@ -3717,7 +3717,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 		return;
 
 	if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
-		qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastSoftwareInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
+		qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastSoftwareInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = 0;
 		return;
 	}
 
@@ -3805,8 +3805,8 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				delete vbl;
 			qmc2YouTubeWidget->close();
 			delete qmc2YouTubeWidget;
-			qmc2YouTubeWidget = NULL;
-			qmc2LastYouTubeItem = NULL;
+			qmc2YouTubeWidget = 0;
+			qmc2LastYouTubeItem = 0;
 		}
 	}
 #endif
@@ -3842,7 +3842,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 						delete vbl;
 					qmc2YouTubeWidget->close();
 					qmc2YouTubeWidget->deleteLater();
-					qmc2YouTubeWidget = NULL;
+					qmc2YouTubeWidget = 0;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
@@ -3870,7 +3870,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				}
 				if ( qmc2SoftwareList->isLoading || isCreatingSoftList ) {
 					qmc2SoftwareList->interruptLoad = true;
-					qmc2LastSoftwareListItem = NULL;
+					qmc2LastSoftwareListItem = 0;
 					QTimer::singleShot(0, this, SLOT(softwareLoadInterrupted()));
 					return;
 				}
@@ -3881,13 +3881,13 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				isCreatingSoftList = true;
 				tabSoftwareList->setUpdatesEnabled(false);
 				if ( qmc2SoftwareList ) {
-					qmc2ShortcutHash["F10"].second = NULL;
+					qmc2ShortcutHash["F10"].second = 0;
 					qmc2SoftwareList->save();
 					QLayout *vbl = tabSoftwareList->layout();
 					if ( vbl )
 						delete vbl;
 					delete qmc2SoftwareList;
-					qmc2SoftwareList = NULL;
+					qmc2SoftwareList = 0;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
@@ -3924,7 +3924,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 					if ( vbl )
 						delete vbl;
 					qmc2DeviceConfigurator->deleteLater();
-					qmc2DeviceConfigurator = NULL;
+					qmc2DeviceConfigurator = 0;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
@@ -3954,7 +3954,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 						delete vbl;
 					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ProjectMESS/Zoom", qmc2ProjectMESSLookup->spinBoxZoom->value());
 					delete qmc2ProjectMESSLookup;
-					qmc2ProjectMESSLookup = NULL;
+					qmc2ProjectMESSLookup = 0;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
@@ -4011,11 +4011,11 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 						delete vbl;
 					delete labelEmuSelector;
 					delete comboBoxEmuSelector;
-					comboBoxEmuSelector = NULL;
+					comboBoxEmuSelector = 0;
 					delete qmc2EmulatorOptions;
 					delete pushButtonCurrentEmulatorOptionsExportToFile;
 					delete pushButtonCurrentEmulatorOptionsImportFromFile;
-					qmc2EmulatorOptions = NULL;
+					qmc2EmulatorOptions = 0;
 				}
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
@@ -4458,13 +4458,13 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 					delete vbl;
 				delete labelEmuSelector;
 				delete comboBoxEmuSelector;
-				comboBoxEmuSelector = NULL;
+				comboBoxEmuSelector = 0;
 				delete qmc2EmulatorOptions;
 				delete pushButtonCurrentEmulatorOptionsExportToFile;
 				delete pushButtonCurrentEmulatorOptionsImportFromFile;
-				qmc2EmulatorOptions = NULL;
+				qmc2EmulatorOptions = 0;
 			}
-			qmc2LastConfigItem = NULL;
+			qmc2LastConfigItem = 0;
 			break;
 	}
 }
@@ -4711,7 +4711,7 @@ void MainWindow::on_treeWidgetMachineList_currentItemChanged(QTreeWidgetItem *cu
 				if ( i >= 0 ) {
 					while ( current->isHidden() && i < treeWidgetMachineList->topLevelItemCount() ) {
 						current = treeWidgetMachineList->topLevelItem(++i);
-						if ( current == NULL ) 
+						if ( current == 0 ) 
 							break;
 					}
 					if ( current )
@@ -4749,7 +4749,7 @@ void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 {
 	updateTimer.stop();
 	QList<QTreeWidgetItem *>selected;
-	if ( qmc2HierarchySelectedItem != NULL )
+	if ( qmc2HierarchySelectedItem != 0 )
 		selected.append(qmc2HierarchySelectedItem);
 	else
 		selected = treeWidgetMachineList->selectedItems();
@@ -4766,13 +4766,13 @@ void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 			on_tabWidgetMachineDetail_currentChanged(tabWidgetMachineDetail->currentIndex());
 		}
 	} else
-		qmc2CurrentItem = NULL;
-	qmc2HierarchySelectedItem = NULL;
+		qmc2CurrentItem = 0;
+	qmc2HierarchySelectedItem = 0;
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
 {
-	qmc2HierarchySelectedItem = NULL;
+	qmc2HierarchySelectedItem = 0;
 	QList<QTreeWidgetItem *>selected = treeWidgetHierarchy->selectedItems();
 	if ( selected.count() > 0 ) {
 		if ( selected.at(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
@@ -5034,7 +5034,7 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 {
 	tabWidgetMachineList->setUpdatesEnabled(false);
 
-	QWidget *widget = NULL;
+	QWidget *widget = 0;
 
 	if ( index >= 0 ) {
 		widget = tabWidgetEmbeddedEmulators->widget(index);
@@ -5707,7 +5707,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 			qmc2YouTubeWidget->stop();
 		qmc2YouTubeWidget->close();
 		qmc2YouTubeWidget->deleteLater();
-		qmc2YouTubeWidget = NULL;
+		qmc2YouTubeWidget = 0;
 	}
 #endif
 
@@ -5832,7 +5832,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2SystemNotesEditor->save();
 		qmc2SystemNotesEditor->close();
 		delete qmc2SystemNotesEditor;
-		qmc2SystemNotesEditor = NULL;
+		qmc2SystemNotesEditor = 0;
 	}
 
 	if ( qmc2SoftwareList ) {
@@ -6588,7 +6588,7 @@ void MainWindow::on_actionAudioPreviousTrack_triggered(bool /*checked*/)
 
 	if ( listWidgetAudioPlaylist->count() > 0 ) {
 		QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
-		QListWidgetItem *ci = NULL;
+		QListWidgetItem *ci = 0;
 		if ( sl.count() > 0 )
 			ci = sl[0];
 		if ( !ci )
@@ -6629,7 +6629,7 @@ void MainWindow::on_actionAudioNextTrack_triggered(bool /*checked*/)
 
 	if ( listWidgetAudioPlaylist->count() > 0 ) {
 		QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
-		QListWidgetItem *ci = NULL;
+		QListWidgetItem *ci = 0;
 		if ( sl.count() > 0 )
 			ci = sl[0];  
 		if ( !ci )
@@ -6761,7 +6761,7 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool /*checked*/)
 		audioState = Phonon::PlayingState;
 	} else if ( listWidgetAudioPlaylist->count() > 0 ) {
 		QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
-		QListWidgetItem *ci = NULL;
+		QListWidgetItem *ci = 0;
 		if ( sl.count() > 0 )
 			ci = sl[0];
 		if ( !ci ) {
@@ -7092,7 +7092,7 @@ void MainWindow::createFifo(bool logFifoCreation)
 					log(QMC2_LOG_FRONTEND, tr("SDLMAME output notifier FIFO created"));
 			} else {
 				delete qmc2FifoFile;
-				qmc2FifoFile = NULL;
+				qmc2FifoFile = 0;
 				log(QMC2_LOG_FRONTEND, tr("WARNING: can't open SDLMAME output notifier FIFO for reading, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
 			}
 		}
@@ -7136,9 +7136,9 @@ void MainWindow::processFifoData()
 						if ( msgWhat == "START" ) {
 							il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
 #if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
-							Embedder *embedder = NULL;
+							Embedder *embedder = 0;
 							int embedderIndex = -1;
-							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
 								if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
 									embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
 									embedderIndex = j;
@@ -7152,9 +7152,9 @@ void MainWindow::processFifoData()
 						} else if ( msgWhat == "STOP" ) {
 							il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("stopped"));
 #if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
-							Embedder *embedder = NULL;
+							Embedder *embedder = 0;
 							int embedderIndex = -1;
-							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
 								if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
 									embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
 									embedderIndex = j;
@@ -7186,9 +7186,9 @@ void MainWindow::processFifoData()
 								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
 						} else if ( msgWhat == "pause" ) {
 #if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
-							Embedder *embedder = NULL;
+							Embedder *embedder = 0;
 							int embedderIndex = -1;
-							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
 								if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
 									embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
 									embedderIndex = j;
@@ -7215,14 +7215,14 @@ void MainWindow::processFifoData()
 #endif
 						} else {
 							// add or refresh dynamic output notifiers
-							QTreeWidgetItem *itemFound = NULL;
+							QTreeWidgetItem *itemFound = 0;
 							int i;
-							for (i = 0; i < il[0]->childCount() && itemFound == NULL; i++) {
+							for (i = 0; i < il[0]->childCount() && itemFound == 0; i++) {
 								QTreeWidgetItem *item = il[0]->child(i);
 								if ( item->text(QMC2_EMUCONTROL_COLUMN_GAME) == msgWhat )
 									itemFound = item;
 							}
-							if ( itemFound != NULL )
+							if ( itemFound != 0 )
 								itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, msgState);
 							else {
 								itemFound = new QTreeWidgetItem(il[0]);
@@ -7620,7 +7620,7 @@ void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *c
 
 void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 {
-	qmc2CategoryViewSelectedItem = NULL;
+	qmc2CategoryViewSelectedItem = 0;
 	QList<QTreeWidgetItem *>selected = treeWidgetCategoryView->selectedItems();
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *item = selected.at(0);
@@ -7700,7 +7700,7 @@ void MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *cu
 
 void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 {
-	qmc2VersionViewSelectedItem = NULL;
+	qmc2VersionViewSelectedItem = 0;
 	QList<QTreeWidgetItem *>selected = treeWidgetVersionView->selectedItems();
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *item = selected.at(0);
@@ -8076,7 +8076,7 @@ void MainWindow::actionHierarchyHeader_triggered()
 
 void MainWindow::on_treeWidgetMachineList_itemEntered(QTreeWidgetItem *item, int column)
 {
-	if ( column == QMC2_MACHINELIST_COLUMN_TAG && item->parent() == NULL ) {
+	if ( column == QMC2_MACHINELIST_COLUMN_TAG && item->parent() == 0 ) {
 		if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
 			QPoint cPos = treeWidgetMachineList->viewport()->mapFromGlobal(QCursor::pos());
 			if ( treeWidgetMachineList->itemAt(cPos) == item ) {
@@ -10108,133 +10108,133 @@ void MainWindow::processGlobalEmuConfig()
 	layout->addLayout(buttonLayout);
 	qmc2Options->tabGlobalConfiguration->setLayout(layout);
 	selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(pushButtonGlobalEmulatorOptionsExportToFile);
-	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
-	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
+	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
 	pushButtonGlobalEmulatorOptionsExportToFile->setMenu(selectMenuGlobalEmulatorOptionsExportToFile);
 	selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(pushButtonGlobalEmulatorOptionsImportFromFile);
-	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
-	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
+	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
 	pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(selectMenuGlobalEmulatorOptionsImportFromFile);
 }
 
-void prepareShortcuts()
+void MainWindow::prepareShortcuts()
 {
 	// shortcuts
-	qmc2ShortcutHash["Ctrl+1"].second = qmc2MainWindow->actionCheckROMs;
-	qmc2ShortcutHash["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
-	qmc2ShortcutHash["Ctrl+3"].second = qmc2MainWindow->actionCheckImagesAndIcons;
-	qmc2ShortcutHash["Ctrl+B"].second = qmc2MainWindow->actionAbout;
-	qmc2ShortcutHash["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
-	qmc2ShortcutHash["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
-	qmc2ShortcutHash["Ctrl+E"].second = qmc2MainWindow->actionExportROMStatus;
-	qmc2ShortcutHash["Ctrl+J"].second = qmc2MainWindow->actionToFavorites;
-	qmc2ShortcutHash["Ctrl+Shift+J"].second = qmc2MainWindow->actionToFavoritesTagged;
-	qmc2ShortcutHash["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
-	qmc2ShortcutHash["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
-	qmc2ShortcutHash["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
-	qmc2ShortcutHash["Ctrl+M"].second = qmc2MainWindow->actionClearProjectMESSCache;
-	qmc2ShortcutHash["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
+	qmc2ShortcutHash["Ctrl+1"].second = actionCheckROMs;
+	qmc2ShortcutHash["Ctrl+2"].second = actionCheckSamples;
+	qmc2ShortcutHash["Ctrl+3"].second = actionCheckImagesAndIcons;
+	qmc2ShortcutHash["Ctrl+B"].second = actionAbout;
+	qmc2ShortcutHash["Ctrl+D"].second = actionAnalyseCurrentROM;
+	qmc2ShortcutHash["Ctrl+Shift+D"].second = actionAnalyseROMTagged;
+	qmc2ShortcutHash["Ctrl+E"].second = actionExportROMStatus;
+	qmc2ShortcutHash["Ctrl+J"].second = actionToFavorites;
+	qmc2ShortcutHash["Ctrl+Shift+J"].second = actionToFavoritesTagged;
+	qmc2ShortcutHash["Ctrl+H"].second = actionDocumentation;
+	qmc2ShortcutHash["Ctrl+I"].second = actionClearImageCache;
+	qmc2ShortcutHash["Ctrl+Shift+A"].second = actionArcadeSetup;
+	qmc2ShortcutHash["Ctrl+M"].second = actionClearProjectMESSCache;
+	qmc2ShortcutHash["Ctrl+N"].second = actionClearIconCache;
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+,"].second = qmc2MainWindow->actionOptions;
+	qmc2ShortcutHash["Ctrl+,"].second = actionOptions;
 #else
-	qmc2ShortcutHash["Ctrl+O"].second = qmc2MainWindow->actionOptions;
+	qmc2ShortcutHash["Ctrl+O"].second = actionOptions;
 #endif
-	qmc2ShortcutHash["Ctrl+P"].second = qmc2MainWindow->actionPlay;
+	qmc2ShortcutHash["Ctrl+P"].second = actionPlay;
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	qmc2ShortcutHash["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
+	qmc2ShortcutHash["Ctrl+Shift+P"].second = actionPlayEmbedded;
 #endif
 #if !defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
+	qmc2ShortcutHash["Ctrl+Q"].second = actionAboutQt;
 #endif
-	qmc2ShortcutHash["Ctrl+R"].second = qmc2MainWindow->actionReload;
-	qmc2ShortcutHash["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
-	qmc2ShortcutHash["Ctrl+Shift+S"].second = qmc2MainWindow->actionCheckROMStateTagged;
-	qmc2ShortcutHash["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
-	qmc2ShortcutHash["Ctrl+Shift+C"].second = qmc2MainWindow->actionCheckTemplateMap;
+	qmc2ShortcutHash["Ctrl+R"].second = actionReload;
+	qmc2ShortcutHash["Ctrl+S"].second = actionCheckCurrentROM;
+	qmc2ShortcutHash["Ctrl+Shift+S"].second = actionCheckROMStateTagged;
+	qmc2ShortcutHash["Ctrl+T"].second = actionRecreateTemplateMap;
+	qmc2ShortcutHash["Ctrl+Shift+C"].second = actionCheckTemplateMap;
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+Q"].second = qmc2MainWindow->actionExitStop;
+	qmc2ShortcutHash["Ctrl+Q"].second = actionExitStop;
 #else
-	qmc2ShortcutHash["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
+	qmc2ShortcutHash["Ctrl+X"].second = actionExitStop;
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
-	qmc2ShortcutHash["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
+	qmc2ShortcutHash["Ctrl+Y"].second = actionClearYouTubeCache;
 #endif
-	qmc2ShortcutHash["Ctrl+Z"].second = qmc2MainWindow->actionSystemROMAlyzer;
-	qmc2ShortcutHash["Ctrl+W"].second = qmc2MainWindow->actionSoftwareROMAlyzer;
-	qmc2ShortcutHash["Ctrl+Alt+C"].second = qmc2MainWindow->romStateFilter->actionShowCorrect;
-	qmc2ShortcutHash["Ctrl+Alt+M"].second = qmc2MainWindow->romStateFilter->actionShowMostlyCorrect;
-	qmc2ShortcutHash["Ctrl+Alt+I"].second = qmc2MainWindow->romStateFilter->actionShowIncorrect;
-	qmc2ShortcutHash["Ctrl+Alt+N"].second = qmc2MainWindow->romStateFilter->actionShowNotFound;
-	qmc2ShortcutHash["Ctrl+Alt+U"].second = qmc2MainWindow->romStateFilter->actionShowUnknown;
-	qmc2ShortcutHash["Ctrl+Shift+T"].second = qmc2MainWindow->actionSetTag;
-	qmc2ShortcutHash["Ctrl+Shift+U"].second = qmc2MainWindow->actionUnsetTag;
-	qmc2ShortcutHash["Ctrl+Shift+G"].second = qmc2MainWindow->actionToggleTag;
-	qmc2ShortcutHash["Shift+Down"].second = qmc2MainWindow->actionToggleTagCursorDown;
-	qmc2ShortcutHash["Shift+Up"].second = qmc2MainWindow->actionToggleTagCursorUp;
-	qmc2ShortcutHash["Ctrl+Shift+L"].second = qmc2MainWindow->actionTagAll;
-	qmc2ShortcutHash["Ctrl+Shift+N"].second = qmc2MainWindow->actionUntagAll;
-	qmc2ShortcutHash["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
-	qmc2ShortcutHash["Ctrl+Shift+X"].second = qmc2MainWindow->actionTagVisible;
-	qmc2ShortcutHash["Ctrl+Shift+Y"].second = qmc2MainWindow->actionUntagVisible;
-	qmc2ShortcutHash["Ctrl+Shift+Z"].second = qmc2MainWindow->actionInvertVisibleTags;
-	qmc2ShortcutHash["F2"].second = qmc2MainWindow->actionRebuildROM;
-	qmc2ShortcutHash["Ctrl+Shift+F2"].second = qmc2MainWindow->actionRebuildROMTagged;
-	qmc2ShortcutHash["F5"].second = qmc2MainWindow->actionViewFullDetail;
-	qmc2ShortcutHash["F6"].second = qmc2MainWindow->actionViewParentClones;
-	qmc2ShortcutHash["F7"].second = qmc2MainWindow->actionViewByCategory;
-	qmc2ShortcutHash["F8"].second = qmc2MainWindow->actionViewByVersion;
-	qmc2ShortcutHash["Shift+F9"].second = qmc2MainWindow->actionRunRomTool;
-	qmc2ShortcutHash["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
-	qmc2ShortcutHash["F10"].second = NULL; // for "check software-states"
-	qmc2ShortcutHash["F11"].second = qmc2MainWindow->actionFullscreenToggle;
-	qmc2ShortcutHash["F12"].second = qmc2MainWindow->actionLaunchArcade;
-	qmc2ShortcutHash["Shift+F5"].second = NULL; // for "software-list view flat"
-	qmc2ShortcutHash["Shift+F6"].second = NULL; // for "software-list view tree"
+	qmc2ShortcutHash["Ctrl+Z"].second = actionSystemROMAlyzer;
+	qmc2ShortcutHash["Ctrl+W"].second = actionSoftwareROMAlyzer;
+	qmc2ShortcutHash["Ctrl+Alt+C"].second = romStateFilter->actionShowCorrect;
+	qmc2ShortcutHash["Ctrl+Alt+M"].second = romStateFilter->actionShowMostlyCorrect;
+	qmc2ShortcutHash["Ctrl+Alt+I"].second = romStateFilter->actionShowIncorrect;
+	qmc2ShortcutHash["Ctrl+Alt+N"].second = romStateFilter->actionShowNotFound;
+	qmc2ShortcutHash["Ctrl+Alt+U"].second = romStateFilter->actionShowUnknown;
+	qmc2ShortcutHash["Ctrl+Shift+T"].second = actionSetTag;
+	qmc2ShortcutHash["Ctrl+Shift+U"].second = actionUnsetTag;
+	qmc2ShortcutHash["Ctrl+Shift+G"].second = actionToggleTag;
+	qmc2ShortcutHash["Shift+Down"].second = actionToggleTagCursorDown;
+	qmc2ShortcutHash["Shift+Up"].second = actionToggleTagCursorUp;
+	qmc2ShortcutHash["Ctrl+Shift+L"].second = actionTagAll;
+	qmc2ShortcutHash["Ctrl+Shift+N"].second = actionUntagAll;
+	qmc2ShortcutHash["Ctrl+Shift+I"].second = actionInvertTags;
+	qmc2ShortcutHash["Ctrl+Shift+X"].second = actionTagVisible;
+	qmc2ShortcutHash["Ctrl+Shift+Y"].second = actionUntagVisible;
+	qmc2ShortcutHash["Ctrl+Shift+Z"].second = actionInvertVisibleTags;
+	qmc2ShortcutHash["F2"].second = actionRebuildROM;
+	qmc2ShortcutHash["Ctrl+Shift+F2"].second = actionRebuildROMTagged;
+	qmc2ShortcutHash["F5"].second = actionViewFullDetail;
+	qmc2ShortcutHash["F6"].second = actionViewParentClones;
+	qmc2ShortcutHash["F7"].second = actionViewByCategory;
+	qmc2ShortcutHash["F8"].second = actionViewByVersion;
+	qmc2ShortcutHash["Shift+F9"].second = actionRunRomTool;
+	qmc2ShortcutHash["Ctrl+Shift+F9"].second = actionRunRomToolTagged;
+	qmc2ShortcutHash["F10"].second = 0; // for "check software-states"
+	qmc2ShortcutHash["F11"].second = actionFullscreenToggle;
+	qmc2ShortcutHash["F12"].second = actionLaunchArcade;
+	qmc2ShortcutHash["Shift+F5"].second = 0; // for "software-list view flat"
+	qmc2ShortcutHash["Shift+F6"].second = 0; // for "software-list view tree"
 #if QMC2_USE_PHONON_API
-	qmc2ShortcutHash["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
-	qmc2ShortcutHash["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;
-	qmc2ShortcutHash["Ctrl+Alt+B"].second = qmc2MainWindow->actionAudioFastBackward;
-	qmc2ShortcutHash["Ctrl+Alt+F"].second = qmc2MainWindow->actionAudioFastForward;
-	qmc2ShortcutHash["Ctrl+Alt+S"].second = qmc2MainWindow->actionAudioStopTrack;
-	qmc2ShortcutHash["Ctrl+Alt+#"].second = qmc2MainWindow->actionAudioPauseTrack;
-	qmc2ShortcutHash["Ctrl+Alt+P"].second = qmc2MainWindow->actionAudioPlayTrack;
-	qmc2ShortcutHash["Ctrl+Alt+PgUp"].second = qmc2MainWindow->actionAudioRaiseVolume;
-	qmc2ShortcutHash["Ctrl+Alt+PgDown"].second = qmc2MainWindow->actionAudioLowerVolume;
+	qmc2ShortcutHash["Ctrl+Alt+Left"].second = actionAudioPreviousTrack;
+	qmc2ShortcutHash["Ctrl+Alt+Right"].second = actionAudioNextTrack;
+	qmc2ShortcutHash["Ctrl+Alt+B"].second = actionAudioFastBackward;
+	qmc2ShortcutHash["Ctrl+Alt+F"].second = actionAudioFastForward;
+	qmc2ShortcutHash["Ctrl+Alt+S"].second = actionAudioStopTrack;
+	qmc2ShortcutHash["Ctrl+Alt+#"].second = actionAudioPauseTrack;
+	qmc2ShortcutHash["Ctrl+Alt+P"].second = actionAudioPlayTrack;
+	qmc2ShortcutHash["Ctrl+Alt+PgUp"].second = actionAudioRaiseVolume;
+	qmc2ShortcutHash["Ctrl+Alt+PgDown"].second = actionAudioLowerVolume;
 #endif
-	qmc2ShortcutHash["Alt+PgUp"].second = qmc2MainWindow->actionIncreaseRank;
-	qmc2ShortcutHash["Alt+PgDown"].second = qmc2MainWindow->actionDecreaseRank;
+	qmc2ShortcutHash["Alt+PgUp"].second = actionIncreaseRank;
+	qmc2ShortcutHash["Alt+PgDown"].second = actionDecreaseRank;
 
 	// special keys
-	qmc2ShortcutHash["+"].second = NULL;
+	qmc2ShortcutHash["+"].second = 0;
 	qmc2QtKeyHash["+"] = QKeySequence("+", QKeySequence::PortableText);
-	qmc2ShortcutHash["-"].second = NULL;
+	qmc2ShortcutHash["-"].second = 0;
 	qmc2QtKeyHash["-"] = QKeySequence("-", QKeySequence::PortableText);
-	qmc2ShortcutHash["Down"].second = NULL;
+	qmc2ShortcutHash["Down"].second = 0;
 	qmc2QtKeyHash["Down"] = QKeySequence("Down", QKeySequence::PortableText);
-	qmc2ShortcutHash["End"].second = NULL;
+	qmc2ShortcutHash["End"].second = 0;
 	qmc2QtKeyHash["End"] = QKeySequence("End", QKeySequence::PortableText);
-	qmc2ShortcutHash["Esc"].second = NULL;
+	qmc2ShortcutHash["Esc"].second = 0;
 	qmc2QtKeyHash["Esc"] = QKeySequence("Esc", QKeySequence::PortableText);
-	qmc2ShortcutHash["Left"].second = NULL;
+	qmc2ShortcutHash["Left"].second = 0;
 	qmc2QtKeyHash["Left"] = QKeySequence("Left", QKeySequence::PortableText);
-	qmc2ShortcutHash["Home"].second = NULL;
+	qmc2ShortcutHash["Home"].second = 0;
 	qmc2QtKeyHash["Home"] = QKeySequence("Home", QKeySequence::PortableText);
-	qmc2ShortcutHash["PgDown"].second = NULL;
+	qmc2ShortcutHash["PgDown"].second = 0;
 	qmc2QtKeyHash["PgDown"] = QKeySequence("PgDown", QKeySequence::PortableText);
-	qmc2ShortcutHash["PgUp"].second = NULL;
+	qmc2ShortcutHash["PgUp"].second = 0;
 	qmc2QtKeyHash["PgUp"] = QKeySequence("PgUp", QKeySequence::PortableText);
-	qmc2ShortcutHash["Return"].second = NULL;
+	qmc2ShortcutHash["Return"].second = 0;
 	qmc2QtKeyHash["Return"] = QKeySequence("Return", QKeySequence::PortableText);
-	qmc2ShortcutHash["Enter"].second = NULL;
+	qmc2ShortcutHash["Enter"].second = 0;
 	qmc2QtKeyHash["Enter"] = QKeySequence("Enter", QKeySequence::PortableText);
-	qmc2ShortcutHash["Right"].second = NULL;
+	qmc2ShortcutHash["Right"].second = 0;
 	qmc2QtKeyHash["Right"] = QKeySequence("Right", QKeySequence::PortableText);
-	qmc2ShortcutHash["Tab"].second = NULL;
+	qmc2ShortcutHash["Tab"].second = 0;
 	qmc2QtKeyHash["Tab"] = QKeySequence("Tab", QKeySequence::PortableText);
-	qmc2ShortcutHash["Up"].second = NULL;
+	qmc2ShortcutHash["Up"].second = 0;
 	qmc2QtKeyHash["Up"] = QKeySequence("Up", QKeySequence::PortableText);
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+O"].second = NULL;
+	qmc2ShortcutHash["Ctrl+O"].second = 0;
 	qmc2QtKeyHash["Ctrl+O"] = QKeySequence("Ctrl+O", QKeySequence::PortableText);
 #endif
 
@@ -10333,7 +10333,7 @@ int main(int argc, char *argv[])
 	// finalize initial setup
 	qmc2Options->apply();
 	qmc2GuiReady = true;
-	prepareShortcuts();
+	qmc2MainWindow->prepareShortcuts();
 
 #if QT_VERSION < 0x050000
 	// this effectively enables support for unicode characters in C strings
