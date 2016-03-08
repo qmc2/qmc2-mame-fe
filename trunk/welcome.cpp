@@ -184,7 +184,7 @@ void Welcome::reject()
 
 void Welcome::setupLanguage()
 {
-	QString lang = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
+	QString lang(startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString());
 	if ( lang.isEmpty() || !availableLanguages.contains(lang) ) {
 		// try to use default system locale - use "us" if a translation is not available for the system locale
 		switch ( QLocale::system().language() ) {
@@ -221,7 +221,6 @@ void Welcome::setupLanguage()
 		}
 		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);
 	}
-	QString directory = startupConfig->value("FilesAndDirectories/DataDirectory", "data/").toString() + "lng/";
 	if ( qmc2QtTranslator ) {
 		qApp->removeTranslator(qmc2QtTranslator);
 		delete qmc2QtTranslator;
@@ -257,8 +256,6 @@ bool Welcome::checkConfig()
 	variant = "qmc2-sdlmame";
 #elif defined(QMC2_MAME)
 	variant = "qmc2-mame";
-#else
-	variant = "qmc2-???";
 #endif
 
 	setupLanguage();
@@ -286,9 +283,9 @@ bool Welcome::checkConfig()
 	}
 	startupConfig->endGroup();
 
-	QStringList verList = startupConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
+	QStringList verList(startupConfig->value("Version").toString().split(".", QString::SkipEmptyParts));
 	if ( verList.count() > 1 ) {
-		int omv = verList[1].toInt();
+		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
 		if ( QMC2_TEST_VERSION(omv, 59, osr, 7219) ) {
 			// system mode
@@ -349,7 +346,7 @@ bool Welcome::checkConfig()
 		}
 	}
 
-	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString().isEmpty();
+	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();
 	configOkay &= !QMC2_CLI_OPT_RECONFIGURE;
 
 	return configOkay;
