@@ -3736,8 +3736,6 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 		return;
 	if ( qmc2CurrentItem->childCount() <= 0 )
 		return;
-	if ( qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON) == tr("Waiting for data...") )
-		return;
  
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
