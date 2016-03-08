@@ -13,20 +13,31 @@
  * limitations under the License.
  */
 /* jshint globalstrict: false */
-/* globals PDFJS, global */
+/* umdutils ignore */
 
-// Initializing PDFJS global object (if still undefined)
-if (typeof PDFJS === 'undefined') {
-  (typeof window !== 'undefined' ? window :
-   typeof global !== 'undefined' ? global : this).PDFJS = {};
-}
-
-PDFJS.version = '1.3.146';
-PDFJS.build = '8ed3692';
-
-(function pdfjsWrapper() {
+(function (root, factory) {
+  'use strict';
+  if (typeof define === 'function' && define.amd) {
+define('pdfjs-dist/build/pdf', ['exports'], factory);
+  } else if (typeof exports !== 'undefined') {
+    factory(exports);
+  } else {
+factory((root.pdfjsDistBuildPdf = {}));
+  }
+}(this, function (exports) {
   // Use strict in our context only - users might not want it
   'use strict';
+
+var pdfjsVersion = '1.4.129';
+var pdfjsBuild = '4065a21';
+
+  var pdfjsFilePath =
+    typeof document !== 'undefined' && document.currentScript ?
+      document.currentScript.src : null;
+
+  var pdfjsLibs = {};
+
+  (function pdfjsWrapper() {
 
 
 
@@ -47,6 +58,13 @@ PDFJS.build = '8ed3692';
   // In development, it will be declared here
   if (!globalScope.PDFJS) {
     globalScope.PDFJS = {};
+  }
+
+  if (typeof pdfjsVersion !== 'undefined') {
+    globalScope.PDFJS.version = pdfjsVersion;
+  }
+  if (typeof pdfjsVersion !== 'undefined') {
+    globalScope.PDFJS.build = pdfjsBuild;
   }
 
   globalScope.PDFJS.pdfBug = false;
@@ -76,7 +94,7 @@ var CustomStyle = (function CustomStyleClosure() {
   // in some versions of IE9 it is critical that ms appear in this list
   // before Moz
   var prefixes = ['ms', 'Moz', 'Webkit', 'O'];
-  var _cache = {};
+  var _cache = Object.create(null);
 
   function CustomStyle() {}
 
@@ -351,9 +369,9 @@ function warn(msg) {
   }
 }
 
-// Deprecated API function -- treated as warnings.
+// Deprecated API function -- display regardless of the PDFJS.verbosity setting.
 function deprecated(details) {
-  warn('Deprecated API usage: ' + details);
+  console.log('Deprecated API usage: ' + details);
 }
 
 // Fatal errors that should trigger the fallback UI and halt execution by
@@ -389,35 +407,39 @@ var UNSUPPORTED_FEATURES = PDFJS.UNSUPPORTED_FEATURES = {
   font: 'font'
 };
 
+// Gets the file name from a given URL.
+function getFilenameFromUrl(url) {
+  var anchor = url.indexOf('#');
+  var query = url.indexOf('?');
+  var end = Math.min(
+    anchor > 0 ? anchor : url.length,
+    query > 0 ? query : url.length);
+  return url.substring(url.lastIndexOf('/', end) + 1, end);
+}
+PDFJS.getFilenameFromUrl = getFilenameFromUrl;
+
 // Combines two URLs. The baseUrl shall be absolute URL. If the url is an
 // absolute URL, it will be returned as is.
 function combineUrl(baseUrl, url) {
   if (!url) {
     return baseUrl;
   }
-  if (/^[a-z][a-z0-9+\-.]*:/i.test(url)) {
-    return url;
-  }
-  var i;
-  if (url.charAt(0) === '/') {
-    // absolute path
-    i = baseUrl.indexOf('://');
-    if (url.charAt(1) === '/') {
-      ++i;
-    } else {
-      i = baseUrl.indexOf('/', i + 3);
+  return new URL(url, baseUrl).href;
+}
+
+// Checks if URLs have the same origin. For non-HTTP based URLs, returns false.
+function isSameOrigin(baseUrl, otherUrl) {
+  try {
+    var base = new URL(baseUrl);
+    if (!base.origin || base.origin === 'null') {
+      return false; // non-HTTP url
     }
-    return baseUrl.substring(0, i) + url;
-  } else {
-    // relative path
-    var pathLength = baseUrl.length;
-    i = baseUrl.lastIndexOf('#');
-    pathLength = i >= 0 ? i : pathLength;
-    i = baseUrl.lastIndexOf('?', pathLength);
-    pathLength = i >= 0 ? i : pathLength;
-    var prefixLength = baseUrl.lastIndexOf('/', pathLength);
-    return baseUrl.substring(0, prefixLength + 1) + url;
+  } catch (e) {
+    return false;
   }
+
+  var other = new URL(otherUrl, base);
+  return base.origin === other.origin;
 }
 
 // Validates if URL is safe and allowed, e.g. to avoid XSS.
@@ -445,6 +467,26 @@ function isValidUrl(url, allowRelative) {
 }
 PDFJS.isValidUrl = isValidUrl;
 
+/**
+ * Adds various attributes (href, title, target, rel) to hyperlinks.
+ * @param {HTMLLinkElement} link - The link element.
+ * @param {Object} params - An object with the properties:
+ * @param {string} params.url - An absolute URL.
+ */
+function addLinkAttributes(link, params) {
+  var url = params && params.url;
+  link.href = link.title = (url ? removeNullCharacters(url) : '');
+
+  if (url) {
+    if (isExternalLinkTargetSet()) {
+      link.target = LinkTargetStringMap[PDFJS.externalLinkTarget];
+    }
+    // Strip referrer from the URL.
+    link.rel = PDFJS.externalLinkRel;
+  }
+}
+PDFJS.addLinkAttributes = addLinkAttributes;
+
 function shadow(obj, prop, value) {
   Object.defineProperty(obj, prop, { value: value,
                                      enumerable: true,
@@ -453,6 +495,18 @@ function shadow(obj, prop, value) {
   return value;
 }
 PDFJS.shadow = shadow;
+
+function getLookupTableFactory(initializer) {
+  var lookup;
+  return function () {
+    if (initializer) {
+      lookup = Object.create(null);
+      initializer(lookup);
+      initializer = null;
+    }
+    return lookup;
+  };
+}
 
 var LinkTarget = PDFJS.LinkTarget = {
   NONE: 0, // Default value.
@@ -607,6 +661,16 @@ var XRefParseException = (function XRefParseExceptionClosure() {
   return XRefParseException;
 })();
 
+var NullCharactersRegExp = /\x00/g;
+
+function removeNullCharacters(str) {
+  if (typeof str !== 'string') {
+    warn('The argument for removeNullCharacters must be a string.');
+    return str;
+  }
+  return str.replace(NullCharactersRegExp, '');
+}
+PDFJS.removeNullCharacters = removeNullCharacters;
 
 function bytesToString(bytes) {
   assert(bytes !== null && typeof bytes === 'object' &&
@@ -633,6 +697,55 @@ function stringToBytes(str) {
     bytes[i] = str.charCodeAt(i) & 0xFF;
   }
   return bytes;
+}
+
+/**
+ * Gets length of the array (Array, Uint8Array, or string) in bytes.
+ * @param {Array|Uint8Array|string} arr
+ * @returns {number}
+ */
+function arrayByteLength(arr) {
+  if (arr.length !== undefined) {
+    return arr.length;
+  }
+  assert(arr.byteLength !== undefined);
+  return arr.byteLength;
+}
+
+/**
+ * Combines array items (arrays) into single Uint8Array object.
+ * @param {Array} arr - the array of the arrays (Array, Uint8Array, or string).
+ * @returns {Uint8Array}
+ */
+function arraysToBytes(arr) {
+  // Shortcut: if first and only item is Uint8Array, return it.
+  if (arr.length === 1 && (arr[0] instanceof Uint8Array)) {
+    return arr[0];
+  }
+  var resultLength = 0;
+  var i, ii = arr.length;
+  var item, itemLength ;
+  for (i = 0; i < ii; i++) {
+    item = arr[i];
+    itemLength = arrayByteLength(item);
+    resultLength += itemLength;
+  }
+  var pos = 0;
+  var data = new Uint8Array(resultLength);
+  for (i = 0; i < ii; i++) {
+    item = arr[i];
+    if (!(item instanceof Uint8Array)) {
+      if (typeof item === 'string') {
+        item = stringToBytes(item);
+      } else {
+        item = new Uint8Array(item);
+      }
+    }
+    itemLength = item.byteLength;
+    data.set(item, pos);
+    pos += itemLength;
+  }
+  return data;
 }
 
 function string32(value) {
@@ -897,6 +1010,42 @@ var Util = PDFJS.Util = (function UtilClosure() {
 
   Util.sign = function Util_sign(num) {
     return num < 0 ? -1 : 1;
+  };
+
+  var ROMAN_NUMBER_MAP = [
+    '', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
+    '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',
+    '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'
+  ];
+  /**
+   * Converts positive integers to (upper case) Roman numerals.
+   * @param {integer} number - The number that should be converted.
+   * @param {boolean} lowerCase - Indicates if the result should be converted
+   *   to lower case letters. The default is false.
+   * @return {string} The resulting Roman number.
+   */
+  Util.toRoman = function Util_toRoman(number, lowerCase) {
+    assert(isInt(number) && number > 0,
+           'The number should be a positive integer.');
+    var pos, romanBuf = [];
+    // Thousands
+    while (number >= 1000) {
+      number -= 1000;
+      romanBuf.push('M');
+    }
+    // Hundreds
+    pos = (number / 100) | 0;
+    number %= 100;
+    romanBuf.push(ROMAN_NUMBER_MAP[pos]);
+    // Tens
+    pos = (number / 10) | 0;
+    number %= 10;
+    romanBuf.push(ROMAN_NUMBER_MAP[10 + pos]);
+    // Ones
+    romanBuf.push(ROMAN_NUMBER_MAP[20 + number]);
+
+    var romanStr = romanBuf.join('');
+    return (lowerCase ? romanStr.toLowerCase() : romanStr);
   };
 
   Util.appendToArray = function Util_appendToArray(arr1, arr2) {
@@ -1505,7 +1654,7 @@ var StatTimer = (function StatTimerClosure() {
     return str;
   }
   function StatTimer() {
-    this.started = {};
+    this.started = Object.create(null);
     this.times = [];
     this.enabled = true;
   }
@@ -1599,8 +1748,8 @@ function MessageHandler(sourceName, targetName, comObj) {
   this.comObj = comObj;
   this.callbackIndex = 1;
   this.postMessageTransfers = true;
-  var callbacksCapabilities = this.callbacksCapabilities = {};
-  var ah = this.actionHandler = {};
+  var callbacksCapabilities = this.callbacksCapabilities = Object.create(null);
+  var ah = this.actionHandler = Object.create(null);
 
   this._onComObjOnMessage = function messageHandlerComObjOnMessage(event) {
     var data = event.data;
@@ -1739,6 +1888,625 @@ function loadJpegStream(id, imageUrl, objs) {
   img.src = imageUrl;
 }
 
+  // Polyfill from https://github.com/Polymer/URL
+/* Any copyright is dedicated to the Public Domain.
+ * http://creativecommons.org/publicdomain/zero/1.0/ */
+(function checkURLConstructor(scope) {
+  /* jshint ignore:start */
+
+  // feature detect for URL constructor
+  var hasWorkingUrl = false;
+  try {
+    if (typeof URL === 'function' &&
+        typeof URL.prototype === 'object' &&
+        ('origin' in URL.prototype)) {
+      var u = new URL('b', 'http://a');
+      u.pathname = 'c%20d';
+      hasWorkingUrl = u.href === 'http://a/c%20d';
+    }
+  } catch(e) { }
+
+  if (hasWorkingUrl)
+    return;
+
+  var relative = Object.create(null);
+  relative['ftp'] = 21;
+  relative['file'] = 0;
+  relative['gopher'] = 70;
+  relative['http'] = 80;
+  relative['https'] = 443;
+  relative['ws'] = 80;
+  relative['wss'] = 443;
+
+  var relativePathDotMapping = Object.create(null);
+  relativePathDotMapping['%2e'] = '.';
+  relativePathDotMapping['.%2e'] = '..';
+  relativePathDotMapping['%2e.'] = '..';
+  relativePathDotMapping['%2e%2e'] = '..';
+
+  function isRelativeScheme(scheme) {
+    return relative[scheme] !== undefined;
+  }
+
+  function invalid() {
+    clear.call(this);
+    this._isInvalid = true;
+  }
+
+  function IDNAToASCII(h) {
+    if ('' == h) {
+      invalid.call(this)
+    }
+    // XXX
+    return h.toLowerCase()
+  }
+
+  function percentEscape(c) {
+    var unicode = c.charCodeAt(0);
+    if (unicode > 0x20 &&
+       unicode < 0x7F &&
+       // " # < > ? `
+       [0x22, 0x23, 0x3C, 0x3E, 0x3F, 0x60].indexOf(unicode) == -1
+      ) {
+      return c;
+    }
+    return encodeURIComponent(c);
+  }
+
+  function percentEscapeQuery(c) {
+    // XXX This actually needs to encode c using encoding and then
+    // convert the bytes one-by-one.
+
+    var unicode = c.charCodeAt(0);
+    if (unicode > 0x20 &&
+       unicode < 0x7F &&
+       // " # < > ` (do not escape '?')
+       [0x22, 0x23, 0x3C, 0x3E, 0x60].indexOf(unicode) == -1
+      ) {
+      return c;
+    }
+    return encodeURIComponent(c);
+  }
+
+  var EOF = undefined,
+      ALPHA = /[a-zA-Z]/,
+      ALPHANUMERIC = /[a-zA-Z0-9\+\-\.]/;
+
+  function parse(input, stateOverride, base) {
+    function err(message) {
+      errors.push(message)
+    }
+
+    var state = stateOverride || 'scheme start',
+        cursor = 0,
+        buffer = '',
+        seenAt = false,
+        seenBracket = false,
+        errors = [];
+
+    loop: while ((input[cursor - 1] != EOF || cursor == 0) && !this._isInvalid) {
+      var c = input[cursor];
+      switch (state) {
+        case 'scheme start':
+          if (c && ALPHA.test(c)) {
+            buffer += c.toLowerCase(); // ASCII-safe
+            state = 'scheme';
+          } else if (!stateOverride) {
+            buffer = '';
+            state = 'no scheme';
+            continue;
+          } else {
+            err('Invalid scheme.');
+            break loop;
+          }
+          break;
+
+        case 'scheme':
+          if (c && ALPHANUMERIC.test(c)) {
+            buffer += c.toLowerCase(); // ASCII-safe
+          } else if (':' == c) {
+            this._scheme = buffer;
+            buffer = '';
+            if (stateOverride) {
+              break loop;
+            }
+            if (isRelativeScheme(this._scheme)) {
+              this._isRelative = true;
+            }
+            if ('file' == this._scheme) {
+              state = 'relative';
+            } else if (this._isRelative && base && base._scheme == this._scheme) {
+              state = 'relative or authority';
+            } else if (this._isRelative) {
+              state = 'authority first slash';
+            } else {
+              state = 'scheme data';
+            }
+          } else if (!stateOverride) {
+            buffer = '';
+            cursor = 0;
+            state = 'no scheme';
+            continue;
+          } else if (EOF == c) {
+            break loop;
+          } else {
+            err('Code point not allowed in scheme: ' + c)
+            break loop;
+          }
+          break;
+
+        case 'scheme data':
+          if ('?' == c) {
+            this._query = '?';
+            state = 'query';
+          } else if ('#' == c) {
+            this._fragment = '#';
+            state = 'fragment';
+          } else {
+            // XXX error handling
+            if (EOF != c && '\t' != c && '\n' != c && '\r' != c) {
+              this._schemeData += percentEscape(c);
+            }
+          }
+          break;
+
+        case 'no scheme':
+          if (!base || !(isRelativeScheme(base._scheme))) {
+            err('Missing scheme.');
+            invalid.call(this);
+          } else {
+            state = 'relative';
+            continue;
+          }
+          break;
+
+        case 'relative or authority':
+          if ('/' == c && '/' == input[cursor+1]) {
+            state = 'authority ignore slashes';
+          } else {
+            err('Expected /, got: ' + c);
+            state = 'relative';
+            continue
+          }
+          break;
+
+        case 'relative':
+          this._isRelative = true;
+          if ('file' != this._scheme)
+            this._scheme = base._scheme;
+          if (EOF == c) {
+            this._host = base._host;
+            this._port = base._port;
+            this._path = base._path.slice();
+            this._query = base._query;
+            this._username = base._username;
+            this._password = base._password;
+            break loop;
+          } else if ('/' == c || '\\' == c) {
+            if ('\\' == c)
+              err('\\ is an invalid code point.');
+            state = 'relative slash';
+          } else if ('?' == c) {
+            this._host = base._host;
+            this._port = base._port;
+            this._path = base._path.slice();
+            this._query = '?';
+            this._username = base._username;
+            this._password = base._password;
+            state = 'query';
+          } else if ('#' == c) {
+            this._host = base._host;
+            this._port = base._port;
+            this._path = base._path.slice();
+            this._query = base._query;
+            this._fragment = '#';
+            this._username = base._username;
+            this._password = base._password;
+            state = 'fragment';
+          } else {
+            var nextC = input[cursor+1]
+            var nextNextC = input[cursor+2]
+            if (
+              'file' != this._scheme || !ALPHA.test(c) ||
+              (nextC != ':' && nextC != '|') ||
+              (EOF != nextNextC && '/' != nextNextC && '\\' != nextNextC && '?' != nextNextC && '#' != nextNextC)) {
+              this._host = base._host;
+              this._port = base._port;
+              this._username = base._username;
+              this._password = base._password;
+              this._path = base._path.slice();
+              this._path.pop();
+            }
+            state = 'relative path';
+            continue;
+          }
+          break;
+
+        case 'relative slash':
+          if ('/' == c || '\\' == c) {
+            if ('\\' == c) {
+              err('\\ is an invalid code point.');
+            }
+            if ('file' == this._scheme) {
+              state = 'file host';
+            } else {
+              state = 'authority ignore slashes';
+            }
+          } else {
+            if ('file' != this._scheme) {
+              this._host = base._host;
+              this._port = base._port;
+              this._username = base._username;
+              this._password = base._password;
+            }
+            state = 'relative path';
+            continue;
+          }
+          break;
+
+        case 'authority first slash':
+          if ('/' == c) {
+            state = 'authority second slash';
+          } else {
+            err("Expected '/', got: " + c);
+            state = 'authority ignore slashes';
+            continue;
+          }
+          break;
+
+        case 'authority second slash':
+          state = 'authority ignore slashes';
+          if ('/' != c) {
+            err("Expected '/', got: " + c);
+            continue;
+          }
+          break;
+
+        case 'authority ignore slashes':
+          if ('/' != c && '\\' != c) {
+            state = 'authority';
+            continue;
+          } else {
+            err('Expected authority, got: ' + c);
+          }
+          break;
+
+        case 'authority':
+          if ('@' == c) {
+            if (seenAt) {
+              err('@ already seen.');
+              buffer += '%40';
+            }
+            seenAt = true;
+            for (var i = 0; i < buffer.length; i++) {
+              var cp = buffer[i];
+              if ('\t' == cp || '\n' == cp || '\r' == cp) {
+                err('Invalid whitespace in authority.');
+                continue;
+              }
+              // XXX check URL code points
+              if (':' == cp && null === this._password) {
+                this._password = '';
+                continue;
+              }
+              var tempC = percentEscape(cp);
+              (null !== this._password) ? this._password += tempC : this._username += tempC;
+            }
+            buffer = '';
+          } else if (EOF == c || '/' == c || '\\' == c || '?' == c || '#' == c) {
+            cursor -= buffer.length;
+            buffer = '';
+            state = 'host';
+            continue;
+          } else {
+            buffer += c;
+          }
+          break;
+
+        case 'file host':
+          if (EOF == c || '/' == c || '\\' == c || '?' == c || '#' == c) {
+            if (buffer.length == 2 && ALPHA.test(buffer[0]) && (buffer[1] == ':' || buffer[1] == '|')) {
+              state = 'relative path';
+            } else if (buffer.length == 0) {
+              state = 'relative path start';
+            } else {
+              this._host = IDNAToASCII.call(this, buffer);
+              buffer = '';
+              state = 'relative path start';
+            }
+            continue;
+          } else if ('\t' == c || '\n' == c || '\r' == c) {
+            err('Invalid whitespace in file host.');
+          } else {
+            buffer += c;
+          }
+          break;
+
+        case 'host':
+        case 'hostname':
+          if (':' == c && !seenBracket) {
+            // XXX host parsing
+            this._host = IDNAToASCII.call(this, buffer);
+            buffer = '';
+            state = 'port';
+            if ('hostname' == stateOverride) {
+              break loop;
+            }
+          } else if (EOF == c || '/' == c || '\\' == c || '?' == c || '#' == c) {
+            this._host = IDNAToASCII.call(this, buffer);
+            buffer = '';
+            state = 'relative path start';
+            if (stateOverride) {
+              break loop;
+            }
+            continue;
+          } else if ('\t' != c && '\n' != c && '\r' != c) {
+            if ('[' == c) {
+              seenBracket = true;
+            } else if (']' == c) {
+              seenBracket = false;
+            }
+            buffer += c;
+          } else {
+            err('Invalid code point in host/hostname: ' + c);
+          }
+          break;
+
+        case 'port':
+          if (/[0-9]/.test(c)) {
+            buffer += c;
+          } else if (EOF == c || '/' == c || '\\' == c || '?' == c || '#' == c || stateOverride) {
+            if ('' != buffer) {
+              var temp = parseInt(buffer, 10);
+              if (temp != relative[this._scheme]) {
+                this._port = temp + '';
+              }
+              buffer = '';
+            }
+            if (stateOverride) {
+              break loop;
+            }
+            state = 'relative path start';
+            continue;
+          } else if ('\t' == c || '\n' == c || '\r' == c) {
+            err('Invalid code point in port: ' + c);
+          } else {
+            invalid.call(this);
+          }
+          break;
+
+        case 'relative path start':
+          if ('\\' == c)
+            err("'\\' not allowed in path.");
+          state = 'relative path';
+          if ('/' != c && '\\' != c) {
+            continue;
+          }
+          break;
+
+        case 'relative path':
+          if (EOF == c || '/' == c || '\\' == c || (!stateOverride && ('?' == c || '#' == c))) {
+            if ('\\' == c) {
+              err('\\ not allowed in relative path.');
+            }
+            var tmp;
+            if (tmp = relativePathDotMapping[buffer.toLowerCase()]) {
+              buffer = tmp;
+            }
+            if ('..' == buffer) {
+              this._path.pop();
+              if ('/' != c && '\\' != c) {
+                this._path.push('');
+              }
+            } else if ('.' == buffer && '/' != c && '\\' != c) {
+              this._path.push('');
+            } else if ('.' != buffer) {
+              if ('file' == this._scheme && this._path.length == 0 && buffer.length == 2 && ALPHA.test(buffer[0]) && buffer[1] == '|') {
+                buffer = buffer[0] + ':';
+              }
+              this._path.push(buffer);
+            }
+            buffer = '';
+            if ('?' == c) {
+              this._query = '?';
+              state = 'query';
+            } else if ('#' == c) {
+              this._fragment = '#';
+              state = 'fragment';
+            }
+          } else if ('\t' != c && '\n' != c && '\r' != c) {
+            buffer += percentEscape(c);
+          }
+          break;
+
+        case 'query':
+          if (!stateOverride && '#' == c) {
+            this._fragment = '#';
+            state = 'fragment';
+          } else if (EOF != c && '\t' != c && '\n' != c && '\r' != c) {
+            this._query += percentEscapeQuery(c);
+          }
+          break;
+
+        case 'fragment':
+          if (EOF != c && '\t' != c && '\n' != c && '\r' != c) {
+            this._fragment += c;
+          }
+          break;
+      }
+
+      cursor++;
+    }
+  }
+
+  function clear() {
+    this._scheme = '';
+    this._schemeData = '';
+    this._username = '';
+    this._password = null;
+    this._host = '';
+    this._port = '';
+    this._path = [];
+    this._query = '';
+    this._fragment = '';
+    this._isInvalid = false;
+    this._isRelative = false;
+  }
+
+  // Does not process domain names or IP addresses.
+  // Does not handle encoding for the query parameter.
+  function jURL(url, base /* , encoding */) {
+    if (base !== undefined && !(base instanceof jURL))
+      base = new jURL(String(base));
+
+    this._url = url;
+    clear.call(this);
+
+    var input = url.replace(/^[ \t\r\n\f]+|[ \t\r\n\f]+$/g, '');
+    // encoding = encoding || 'utf-8'
+
+    parse.call(this, input, null, base);
+  }
+
+  jURL.prototype = {
+    toString: function() {
+      return this.href;
+    },
+    get href() {
+      if (this._isInvalid)
+        return this._url;
+
+      var authority = '';
+      if ('' != this._username || null != this._password) {
+        authority = this._username +
+            (null != this._password ? ':' + this._password : '') + '@';
+      }
+
+      return this.protocol +
+          (this._isRelative ? '//' + authority + this.host : '') +
+          this.pathname + this._query + this._fragment;
+    },
+    set href(href) {
+      clear.call(this);
+      parse.call(this, href);
+    },
+
+    get protocol() {
+      return this._scheme + ':';
+    },
+    set protocol(protocol) {
+      if (this._isInvalid)
+        return;
+      parse.call(this, protocol + ':', 'scheme start');
+    },
+
+    get host() {
+      return this._isInvalid ? '' : this._port ?
+          this._host + ':' + this._port : this._host;
+    },
+    set host(host) {
+      if (this._isInvalid || !this._isRelative)
+        return;
+      parse.call(this, host, 'host');
+    },
+
+    get hostname() {
+      return this._host;
+    },
+    set hostname(hostname) {
+      if (this._isInvalid || !this._isRelative)
+        return;
+      parse.call(this, hostname, 'hostname');
+    },
+
+    get port() {
+      return this._port;
+    },
+    set port(port) {
+      if (this._isInvalid || !this._isRelative)
+        return;
+      parse.call(this, port, 'port');
+    },
+
+    get pathname() {
+      return this._isInvalid ? '' : this._isRelative ?
+          '/' + this._path.join('/') : this._schemeData;
+    },
+    set pathname(pathname) {
+      if (this._isInvalid || !this._isRelative)
+        return;
+      this._path = [];
+      parse.call(this, pathname, 'relative path start');
+    },
+
+    get search() {
+      return this._isInvalid || !this._query || '?' == this._query ?
+          '' : this._query;
+    },
+    set search(search) {
+      if (this._isInvalid || !this._isRelative)
+        return;
+      this._query = '?';
+      if ('?' == search[0])
+        search = search.slice(1);
+      parse.call(this, search, 'query');
+    },
+
+    get hash() {
+      return this._isInvalid || !this._fragment || '#' == this._fragment ?
+          '' : this._fragment;
+    },
+    set hash(hash) {
+      if (this._isInvalid)
+        return;
+      this._fragment = '#';
+      if ('#' == hash[0])
+        hash = hash.slice(1);
+      parse.call(this, hash, 'fragment');
+    },
+
+    get origin() {
+      var host;
+      if (this._isInvalid || !this._scheme) {
+        return '';
+      }
+      // javascript: Gecko returns String(""), WebKit/Blink String("null")
+      // Gecko throws error for "data://"
+      // data: Gecko returns "", Blink returns "data://", WebKit returns "null"
+      // Gecko returns String("") for file: mailto:
+      // WebKit/Blink returns String("SCHEME://") for file: mailto:
+      switch (this._scheme) {
+        case 'data':
+        case 'file':
+        case 'javascript':
+        case 'mailto':
+          return 'null';
+      }
+      host = this.host;
+      if (!host) {
+        return '';
+      }
+      return this._scheme + '://' + host;
+    }
+  };
+
+  // Copy over the static methods
+  var OriginalURL = scope.URL;
+  if (OriginalURL) {
+    jURL.createObjectURL = function(blob) {
+      // IE extension allows a second optional options argument.
+      // http://msdn.microsoft.com/en-us/library/ie/hh772302(v=vs.85).aspx
+      return OriginalURL.createObjectURL.apply(OriginalURL, arguments);
+    };
+    jURL.revokeObjectURL = function(url) {
+      OriginalURL.revokeObjectURL(url);
+    };
+  }
+
+  scope.URL = jURL;
+  /* jshint ignore:end */
+})(globalScope);
+
 exports.FONT_IDENTITY_MATRIX = FONT_IDENTITY_MATRIX;
 exports.IDENTITY_MATRIX = IDENTITY_MATRIX;
 exports.OPS = OPS;
@@ -1764,12 +2532,16 @@ exports.UnexpectedResponseException = UnexpectedResponseException;
 exports.UnknownErrorException = UnknownErrorException;
 exports.Util = Util;
 exports.XRefParseException = XRefParseException;
+exports.arrayByteLength = arrayByteLength;
+exports.arraysToBytes = arraysToBytes;
 exports.assert = assert;
 exports.bytesToString = bytesToString;
 exports.combineUrl = combineUrl;
 exports.createPromiseCapability = createPromiseCapability;
 exports.deprecated = deprecated;
 exports.error = error;
+exports.getFilenameFromUrl = getFilenameFromUrl;
+exports.getLookupTableFactory = getLookupTableFactory;
 exports.info = info;
 exports.isArray = isArray;
 exports.isArrayBuffer = isArrayBuffer;
@@ -1779,12 +2551,15 @@ exports.isExternalLinkTargetSet = isExternalLinkTargetSet;
 exports.isInt = isInt;
 exports.isNum = isNum;
 exports.isString = isString;
+exports.isSameOrigin = isSameOrigin;
 exports.isValidUrl = isValidUrl;
+exports.addLinkAttributes = addLinkAttributes;
 exports.loadJpegStream = loadJpegStream;
 exports.log2 = log2;
 exports.readInt8 = readInt8;
 exports.readUint16 = readUint16;
 exports.readUint32 = readUint32;
+exports.removeNullCharacters = removeNullCharacters;
 exports.shadow = shadow;
 exports.string32 = string32;
 exports.stringToBytes = stringToBytes;
@@ -1805,8 +2580,8 @@ exports.warn = warn;
 var AnnotationBorderStyleType = sharedUtil.AnnotationBorderStyleType;
 var AnnotationType = sharedUtil.AnnotationType;
 var Util = sharedUtil.Util;
-var isExternalLinkTargetSet = sharedUtil.isExternalLinkTargetSet;
-var LinkTargetStringMap = sharedUtil.LinkTargetStringMap;
+var addLinkAttributes = sharedUtil.addLinkAttributes;
+var getFilenameFromUrl = sharedUtil.getFilenameFromUrl;
 var warn = sharedUtil.warn;
 var CustomStyle = displayDOMUtils.CustomStyle;
 
@@ -1817,6 +2592,7 @@ var CustomStyle = displayDOMUtils.CustomStyle;
  * @property {PDFPage} page
  * @property {PageViewport} viewport
  * @property {IPDFLinkService} linkService
+ * @property {DownloadManager} downloadManager
  */
 
 /**
@@ -1846,6 +2622,9 @@ AnnotationElementFactory.prototype =
       case AnnotationType.POPUP:
         return new PopupAnnotationElement(parameters);
 
+      case AnnotationType.HIGHLIGHT:
+        return new HighlightAnnotationElement(parameters);
+
       case AnnotationType.UNDERLINE:
         return new UnderlineAnnotationElement(parameters);
 
@@ -1855,8 +2634,11 @@ AnnotationElementFactory.prototype =
       case AnnotationType.STRIKEOUT:
         return new StrikeOutAnnotationElement(parameters);
 
+      case AnnotationType.FILEATTACHMENT:
+        return new FileAttachmentAnnotationElement(parameters);
+
       default:
-        throw new Error('Unimplemented annotation type "' + subtype + '"');
+        return new AnnotationElement(parameters);
     }
   }
 };
@@ -1866,14 +2648,18 @@ AnnotationElementFactory.prototype =
  * @alias AnnotationElement
  */
 var AnnotationElement = (function AnnotationElementClosure() {
-  function AnnotationElement(parameters) {
+  function AnnotationElement(parameters, isRenderable) {
+    this.isRenderable = isRenderable || false;
     this.data = parameters.data;
     this.layer = parameters.layer;
     this.page = parameters.page;
     this.viewport = parameters.viewport;
     this.linkService = parameters.linkService;
+    this.downloadManager = parameters.downloadManager;
 
-    this.container = this._createContainer();
+    if (isRenderable) {
+      this.container = this._createContainer();
+    }
   }
 
   AnnotationElement.prototype = /** @lends AnnotationElement.prototype */ {
@@ -1969,6 +2755,43 @@ var AnnotationElement = (function AnnotationElementClosure() {
     },
 
     /**
+     * Create a popup for the annotation's HTML element. This is used for
+     * annotations that do not have a Popup entry in the dictionary, but
+     * are of a type that works with popups (such as Highlight annotations).
+     *
+     * @private
+     * @param {HTMLSectionElement} container
+     * @param {HTMLDivElement|HTMLImageElement|null} trigger
+     * @param {Object} data
+     * @memberof AnnotationElement
+     */
+    _createPopup:
+        function AnnotationElement_createPopup(container, trigger, data) {
+      // If no trigger element is specified, create it.
+      if (!trigger) {
+        trigger = document.createElement('div');
+        trigger.style.height = container.style.height;
+        trigger.style.width = container.style.width;
+        container.appendChild(trigger);
+      }
+
+      var popupElement = new PopupElement({
+        container: container,
+        trigger: trigger,
+        color: data.color,
+        title: data.title,
+        contents: data.contents,
+        hideWrapper: true
+      });
+      var popup = popupElement.render();
+
+      // Position the popup next to the annotation's container.
+      popup.style.left = container.style.width;
+
+      container.appendChild(popup);
+    },
+
+    /**
      * Render the annotation's HTML element in the empty container.
      *
      * @public
@@ -1988,7 +2811,7 @@ var AnnotationElement = (function AnnotationElementClosure() {
  */
 var LinkAnnotationElement = (function LinkAnnotationElementClosure() {
   function LinkAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    AnnotationElement.call(this, parameters, true);
   }
 
   Util.inherit(LinkAnnotationElement, AnnotationElement, {
@@ -2003,16 +2826,7 @@ var LinkAnnotationElement = (function LinkAnnotationElementClosure() {
       this.container.className = 'linkAnnotation';
 
       var link = document.createElement('a');
-      link.href = link.title = this.data.url || '';
-
-      if (this.data.url && isExternalLinkTargetSet()) {
-        link.target = LinkTargetStringMap[PDFJS.externalLinkTarget];
-      }
-
-      // Strip referrer from the URL.
-      if (this.data.url) {
-        link.rel = PDFJS.externalLinkRel;
-      }
+      addLinkAttributes(link, { url: this.data.url });
 
       if (!this.data.url) {
         if (this.data.action) {
@@ -2079,7 +2893,9 @@ var LinkAnnotationElement = (function LinkAnnotationElementClosure() {
  */
 var TextAnnotationElement = (function TextAnnotationElementClosure() {
   function TextAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    var isRenderable = !!(parameters.data.hasPopup ||
+                          parameters.data.title || parameters.data.contents);
+    AnnotationElement.call(this, parameters, isRenderable);
   }
 
   Util.inherit(TextAnnotationElement, AnnotationElement, {
@@ -2103,20 +2919,7 @@ var TextAnnotationElement = (function TextAnnotationElementClosure() {
       image.dataset.l10nArgs = JSON.stringify({type: this.data.name});
 
       if (!this.data.hasPopup) {
-        var popupElement = new PopupElement({
-          container: this.container,
-          trigger: image,
-          color: this.data.color,
-          title: this.data.title,
-          contents: this.data.contents,
-          hideWrapper: true
-        });
-        var popup = popupElement.render();
-
-        // Position the popup next to the Text annotation's container.
-        popup.style.left = image.style.width;
-
-        this.container.appendChild(popup);
+        this._createPopup(this.container, image, this.data);
       }
 
       this.container.appendChild(image);
@@ -2133,7 +2936,9 @@ var TextAnnotationElement = (function TextAnnotationElementClosure() {
  */
 var WidgetAnnotationElement = (function WidgetAnnotationElementClosure() {
   function WidgetAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    var isRenderable = !parameters.data.hasAppearance &&
+                       !!parameters.data.fieldValue;
+    AnnotationElement.call(this, parameters, isRenderable);
   }
 
   Util.inherit(WidgetAnnotationElement, AnnotationElement, {
@@ -2200,7 +3005,8 @@ var WidgetAnnotationElement = (function WidgetAnnotationElementClosure() {
  */
 var PopupAnnotationElement = (function PopupAnnotationElementClosure() {
   function PopupAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    var isRenderable = !!(parameters.data.title || parameters.data.contents);
+    AnnotationElement.call(this, parameters, isRenderable);
   }
 
   Util.inherit(PopupAnnotationElement, AnnotationElement, {
@@ -2385,12 +3191,48 @@ var PopupElement = (function PopupElementClosure() {
 
 /**
  * @class
+ * @alias HighlightAnnotationElement
+ */
+var HighlightAnnotationElement = (
+    function HighlightAnnotationElementClosure() {
+  function HighlightAnnotationElement(parameters) {
+    var isRenderable = !!(parameters.data.hasPopup ||
+                          parameters.data.title || parameters.data.contents);
+    AnnotationElement.call(this, parameters, isRenderable);
+  }
+
+  Util.inherit(HighlightAnnotationElement, AnnotationElement, {
+    /**
+     * Render the highlight annotation's HTML element in the empty container.
+     *
+     * @public
+     * @memberof HighlightAnnotationElement
+     * @returns {HTMLSectionElement}
+     */
+    render: function HighlightAnnotationElement_render() {
+      this.container.className = 'highlightAnnotation';
+
+      if (!this.data.hasPopup) {
+        this._createPopup(this.container, null, this.data);
+      }
+
+      return this.container;
+    }
+  });
+
+  return HighlightAnnotationElement;
+})();
+
+/**
+ * @class
  * @alias UnderlineAnnotationElement
  */
 var UnderlineAnnotationElement = (
     function UnderlineAnnotationElementClosure() {
   function UnderlineAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    var isRenderable = !!(parameters.data.hasPopup ||
+                          parameters.data.title || parameters.data.contents);
+    AnnotationElement.call(this, parameters, isRenderable);
   }
 
   Util.inherit(UnderlineAnnotationElement, AnnotationElement, {
@@ -2403,6 +3245,11 @@ var UnderlineAnnotationElement = (
      */
     render: function UnderlineAnnotationElement_render() {
       this.container.className = 'underlineAnnotation';
+
+      if (!this.data.hasPopup) {
+        this._createPopup(this.container, null, this.data);
+      }
+
       return this.container;
     }
   });
@@ -2416,7 +3263,9 @@ var UnderlineAnnotationElement = (
  */
 var SquigglyAnnotationElement = (function SquigglyAnnotationElementClosure() {
   function SquigglyAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    var isRenderable = !!(parameters.data.hasPopup ||
+                          parameters.data.title || parameters.data.contents);
+    AnnotationElement.call(this, parameters, isRenderable);
   }
 
   Util.inherit(SquigglyAnnotationElement, AnnotationElement, {
@@ -2429,6 +3278,11 @@ var SquigglyAnnotationElement = (function SquigglyAnnotationElementClosure() {
      */
     render: function SquigglyAnnotationElement_render() {
       this.container.className = 'squigglyAnnotation';
+
+      if (!this.data.hasPopup) {
+        this._createPopup(this.container, null, this.data);
+      }
+
       return this.container;
     }
   });
@@ -2443,7 +3297,9 @@ var SquigglyAnnotationElement = (function SquigglyAnnotationElementClosure() {
 var StrikeOutAnnotationElement = (
     function StrikeOutAnnotationElementClosure() {
   function StrikeOutAnnotationElement(parameters) {
-    AnnotationElement.call(this, parameters);
+    var isRenderable = !!(parameters.data.hasPopup ||
+                          parameters.data.title || parameters.data.contents);
+    AnnotationElement.call(this, parameters, isRenderable);
   }
 
   Util.inherit(StrikeOutAnnotationElement, AnnotationElement, {
@@ -2456,11 +3312,72 @@ var StrikeOutAnnotationElement = (
      */
     render: function StrikeOutAnnotationElement_render() {
       this.container.className = 'strikeoutAnnotation';
+
+      if (!this.data.hasPopup) {
+        this._createPopup(this.container, null, this.data);
+      }
+
       return this.container;
     }
   });
 
   return StrikeOutAnnotationElement;
+})();
+
+/**
+ * @class
+ * @alias FileAttachmentAnnotationElement
+ */
+var FileAttachmentAnnotationElement = (
+    function FileAttachmentAnnotationElementClosure() {
+  function FileAttachmentAnnotationElement(parameters) {
+    AnnotationElement.call(this, parameters, true);
+
+    this.filename = getFilenameFromUrl(parameters.data.file.filename);
+    this.content = parameters.data.file.content;
+  }
+
+  Util.inherit(FileAttachmentAnnotationElement, AnnotationElement, {
+    /**
+     * Render the file attachment annotation's HTML element in the empty
+     * container.
+     *
+     * @public
+     * @memberof FileAttachmentAnnotationElement
+     * @returns {HTMLSectionElement}
+     */
+    render: function FileAttachmentAnnotationElement_render() {
+      this.container.className = 'fileAttachmentAnnotation';
+
+      var trigger = document.createElement('div');
+      trigger.style.height = this.container.style.height;
+      trigger.style.width = this.container.style.width;
+      trigger.addEventListener('dblclick', this._download.bind(this));
+
+      if (!this.data.hasPopup && (this.data.title || this.data.contents)) {
+        this._createPopup(this.container, trigger, this.data);
+      }
+
+      this.container.appendChild(trigger);
+      return this.container;
+    },
+
+    /**
+     * Download the file attachment associated with this annotation.
+     *
+     * @private
+     * @memberof FileAttachmentAnnotationElement
+     */
+    _download: function FileAttachmentAnnotationElement_download() {
+      if (!this.downloadManager) {
+        warn('Download cannot be started due to unavailable download manager');
+        return;
+      }
+      this.downloadManager.downloadData(this.content, this.filename, '');
+    }
+  });
+
+  return FileAttachmentAnnotationElement;
 })();
 
 /**
@@ -2490,7 +3407,7 @@ var AnnotationLayer = (function AnnotationLayerClosure() {
 
       for (var i = 0, ii = parameters.annotations.length; i < ii; i++) {
         var data = parameters.annotations[i];
-        if (!data || !data.hasHtml) {
+        if (!data) {
           continue;
         }
 
@@ -2499,10 +3416,13 @@ var AnnotationLayer = (function AnnotationLayerClosure() {
           layer: parameters.div,
           page: parameters.page,
           viewport: parameters.viewport,
-          linkService: parameters.linkService
+          linkService: parameters.linkService,
+          downloadManager: parameters.downloadManager
         };
         var element = annotationElementFactory.create(properties);
-        parameters.div.appendChild(element.render());
+        if (element.isRenderable) {
+          parameters.div.appendChild(element.render());
+        }
       }
     },
 
@@ -2823,7 +3743,7 @@ Object.defineProperty(FontLoader, 'isSyncFontLoadingSupported', {
 
 var FontFaceObject = (function FontFaceObjectClosure() {
   function FontFaceObject(translatedData) {
-    this.compiledGlyphs = {};
+    this.compiledGlyphs = Object.create(null);
     // importing translated data
     for (var i in translatedData) {
       this[i] = translatedData[i];
@@ -2977,7 +3897,7 @@ var Metadata = PDFJS.Metadata = (function MetadataClosure() {
     }
 
     this.metaDocument = meta;
-    this.metadata = {};
+    this.metadata = Object.create(null);
     this.parse();
   }
 
@@ -3395,7 +4315,7 @@ var SVGGraphics = (function SVGGraphicsClosure() {
     this.pendingEOFill = false;
 
     this.embedFonts = false;
-    this.embeddedFonts = {};
+    this.embeddedFonts = Object.create(null);
     this.cssStyle = null;
   }
 
@@ -6707,6 +7627,12 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       ctx.transform.apply(ctx, current.textMatrix);
       ctx.translate(current.x, current.y + current.textRise);
 
+      if (current.patternFill) {
+        // TODO: Some shading patterns are not applied correctly to text,
+        //       e.g. issues 3988 and 5432, and ShowText-ShadingPattern.pdf.
+        ctx.fillStyle = current.fillColor.getPattern(ctx, this);
+      }
+
       if (fontDirection > 0) {
         ctx.scale(textHScale, -1);
       } else {
@@ -6781,15 +7707,19 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           }
         }
 
-        if (simpleFillText && !accent) {
-          // common case
-          ctx.fillText(character, scaledX, scaledY);
-        } else {
-          this.paintChar(character, scaledX, scaledY);
-          if (accent) {
-            scaledAccentX = scaledX + accent.offset.x / fontSizeScale;
-            scaledAccentY = scaledY - accent.offset.y / fontSizeScale;
-            this.paintChar(accent.fontChar, scaledAccentX, scaledAccentY);
+        // Only attempt to draw the glyph if it is actually in the embedded font
+        // file or if there isn't a font file so the fallback font is shown.
+        if (glyph.isInFont || font.missingFile) {
+          if (simpleFillText && !accent) {
+            // common case
+            ctx.fillText(character, scaledX, scaledY);
+          } else {
+            this.paintChar(character, scaledX, scaledY);
+            if (accent) {
+              scaledAccentX = scaledX + accent.offset.x / fontSizeScale;
+              scaledAccentY = scaledY - accent.offset.y / fontSizeScale;
+              this.paintChar(accent.fontChar, scaledAccentX, scaledAccentY);
+            }
           }
         }
 
@@ -7515,10 +8445,10 @@ exports.createScratchCanvas = createScratchCanvas;
   {
     factory((root.pdfjsDisplayAPI = {}), root.pdfjsSharedUtil,
       root.pdfjsDisplayFontLoader, root.pdfjsDisplayCanvas,
-      root.pdfjsSharedGlobal);
+      root.pdfjsDisplayMetadata, root.pdfjsSharedGlobal);
   }
 }(this, function (exports, sharedUtil, displayFontLoader, displayCanvas,
-                  sharedGlobal, amdRequire) {
+                  displayMetadata, sharedGlobal, amdRequire) {
 
 var InvalidPDFException = sharedUtil.InvalidPDFException;
 var MessageHandler = sharedUtil.MessageHandler;
@@ -7535,6 +8465,7 @@ var error = sharedUtil.error;
 var deprecated = sharedUtil.deprecated;
 var info = sharedUtil.info;
 var isArrayBuffer = sharedUtil.isArrayBuffer;
+var isSameOrigin = sharedUtil.isSameOrigin;
 var loadJpegStream = sharedUtil.loadJpegStream;
 var stringToBytes = sharedUtil.stringToBytes;
 var warn = sharedUtil.warn;
@@ -7542,6 +8473,7 @@ var FontFaceObject = displayFontLoader.FontFaceObject;
 var FontLoader = displayFontLoader.FontLoader;
 var CanvasGraphics = displayCanvas.CanvasGraphics;
 var createScratchCanvas = displayCanvas.createScratchCanvas;
+var Metadata = displayMetadata.Metadata;
 var PDFJS = sharedGlobal.PDFJS;
 var globalScope = sharedGlobal.globalScope;
 
@@ -7562,12 +8494,19 @@ if (typeof __webpack_require__ !== 'undefined') {
   PDFJS.workerSrc = require('entry?name=[hash]-worker.js!./pdf.worker.js');
   useRequireEnsure = true;
 }
-var fakeWorkerFilesLoader = useRequireEnsure && function (callback) {
+if (typeof requirejs !== 'undefined' && requirejs.toUrl) {
+  PDFJS.workerSrc = requirejs.toUrl('pdfjs-dist/build/pdf.worker.js');
+}
+var fakeWorkerFilesLoader = useRequireEnsure ? (function (callback) {
   require.ensure([], function () {
     require('./pdf.worker.js');
     callback();
   });
-};
+}) : (typeof requirejs !== 'undefined') ? (function (callback) {
+  requirejs(['pdfjs-dist/build/pdf.worker'], function (worker) {
+    callback();
+  });
+}) : null;
 
 
 /**
@@ -7914,9 +8853,9 @@ PDFJS.getDocument = function getDocument(src,
         throw new Error('Loading aborted');
       }
       var messageHandler = new MessageHandler(docId, workerId, worker.port);
-      messageHandler.send('Ready', null);
       var transport = new WorkerTransport(messageHandler, task, rangeTransport);
       task._transport = transport;
+      messageHandler.send('Ready', null);
     });
   }).catch(task._capability.reject);
 
@@ -8192,6 +9131,14 @@ var PDFDocumentProxy = (function PDFDocumentProxyClosure() {
       return this.transport.getDestination(id);
     },
     /**
+     * @return {Promise} A promise that is resolved with:
+     *   an Array containing the pageLabels that correspond to the pageIndexes,
+     *   or `null` when no pageLabels are present in the PDF file.
+     */
+    getPageLabels: function PDFDocumentProxy_getPageLabels() {
+      return this.transport.getPageLabels();
+    },
+    /**
      * @return {Promise} A promise that is resolved with a lookup table for
      * mapping named attachments to their content.
      */
@@ -8213,8 +9160,9 @@ var PDFDocumentProxy = (function PDFDocumentProxyClosure() {
      *   title: string,
      *   bold: boolean,
      *   italic: boolean,
-     *   color: rgb array,
+     *   color: rgb Uint8Array,
      *   dest: dest obj,
+     *   url: string,
      *   items: array of more items like this
      *  },
      *  ...
@@ -8363,7 +9311,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
     this.objs = new PDFObjects();
     this.cleanupAfterRender = false;
     this.pendingCleanup = false;
-    this.intentStates = {};
+    this.intentStates = Object.create(null);
     this.destroyed = false;
   }
   PDFPageProxy.prototype = /** @lends PDFPageProxy.prototype */ {
@@ -8438,7 +9386,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       var renderingIntent = (params.intent === 'print' ? 'print' : 'display');
 
       if (!this.intentStates[renderingIntent]) {
-        this.intentStates[renderingIntent] = {};
+        this.intentStates[renderingIntent] = Object.create(null);
       }
       var intentState = this.intentStates[renderingIntent];
 
@@ -8525,17 +9473,23 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       function operatorListChanged() {
         if (intentState.operatorList.lastChunk) {
           intentState.opListReadCapability.resolve(intentState.operatorList);
+
+          var i = intentState.renderTasks.indexOf(opListTask);
+          if (i >= 0) {
+            intentState.renderTasks.splice(i, 1);
+          }
         }
       }
 
       var renderingIntent = 'oplist';
       if (!this.intentStates[renderingIntent]) {
-        this.intentStates[renderingIntent] = {};
+        this.intentStates[renderingIntent] = Object.create(null);
       }
       var intentState = this.intentStates[renderingIntent];
+      var opListTask;
 
       if (!intentState.opListReadCapability) {
-        var opListTask = {};
+        opListTask = {};
         opListTask.operatorListChanged = operatorListChanged;
         intentState.receivingOperatorList = true;
         intentState.opListReadCapability = createPromiseCapability();
@@ -8578,6 +9532,10 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
 
       var waitOn = [];
       Object.keys(this.intentStates).forEach(function(intent) {
+        if (intent === 'oplist') {
+          // Avoid errors below, since the renderTasks are just stubs.
+          return;
+        }
         var intentState = this.intentStates[intent];
         intentState.renderTasks.forEach(function(renderTask) {
           var renderCompleted = renderTask.capability.promise.
@@ -8681,6 +9639,16 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
 var PDFWorker = (function PDFWorkerClosure() {
   var nextFakeWorkerId = 0;
 
+  function getWorkerSrc() {
+    if (PDFJS.workerSrc) {
+      return PDFJS.workerSrc;
+    }
+    if (pdfjsFilePath) {
+      return pdfjsFilePath.replace(/\.js$/i, '.worker.js');
+    }
+    error('No PDFJS.workerSrc specified');
+  }
+
   // Loads worker code into main thread.
   function setupFakeWorkerGlobal() {
     if (!PDFJS.fakeWorkerFilesLoadedCapability) {
@@ -8689,13 +9657,21 @@ var PDFWorker = (function PDFWorkerClosure() {
       // other files and resolves the promise. In production only the
       // pdf.worker.js file is needed.
       var loader = fakeWorkerFilesLoader || function (callback) {
-        Util.loadScript(PDFJS.workerSrc, callback);
+        Util.loadScript(getWorkerSrc(), callback);
       };
       loader(function () {
         PDFJS.fakeWorkerFilesLoadedCapability.resolve();
       });
     }
     return PDFJS.fakeWorkerFilesLoadedCapability.promise;
+  }
+
+  function createCDNWrapper(url) {
+    // We will rely on blob URL's property to specify origin.
+    // We want this function to fail in case if createObjectURL or Blob do not
+    // exist or fail for some reason -- our Worker creation will fail anyway.
+    var wrapper = 'importScripts(\'' + url + '\');';
+    return URL.createObjectURL(new Blob([wrapper]));
   }
 
   function PDFWorker(name) {
@@ -8724,17 +9700,20 @@ var PDFWorker = (function PDFWorkerClosure() {
 
     _initialize: function PDFWorker_initialize() {
       // If worker support isn't disabled explicit and the browser has worker
-      // support, create a new web worker and test if it/the browser fullfills
+      // support, create a new web worker and test if it/the browser fulfills
       // all requirements to run parts of pdf.js in a web worker.
       // Right now, the requirement is, that an Uint8Array is still an
       // Uint8Array as it arrives on the worker. (Chrome added this with v.15.)
       if (!globalScope.PDFJS.disableWorker && typeof Worker !== 'undefined') {
-        var workerSrc = PDFJS.workerSrc;
-        if (!workerSrc) {
-          error('No PDFJS.workerSrc specified');
-        }
+        var workerSrc = getWorkerSrc();
 
         try {
+          // Wraps workerSrc path into blob URL, if the former does not belong
+          // to the same origin.
+          if (!isSameOrigin(window.location.href, workerSrc)) {
+            workerSrc = createCDNWrapper(
+              combineUrl(window.location.href, workerSrc));
+          }
           // Some versions of FF can't create a worker on localhost, see:
           // https://bugzilla.mozilla.org/show_bug.cgi?id=683280
           var worker = new Worker(workerSrc);
@@ -9267,6 +10246,10 @@ var WorkerTransport = (function WorkerTransportClosure() {
       return this.messageHandler.sendWithPromise('GetDestination', { id: id });
     },
 
+    getPageLabels: function WorkerTransport_getPageLabels() {
+      return this.messageHandler.sendWithPromise('GetPageLabels', null);
+    },
+
     getAttachments: function WorkerTransport_getAttachments() {
       return this.messageHandler.sendWithPromise('GetAttachments', null);
     },
@@ -9284,7 +10267,7 @@ var WorkerTransport = (function WorkerTransportClosure() {
         then(function transportMetadata(results) {
         return {
           info: results[0],
-          metadata: (results[1] ? new PDFJS.Metadata(results[1]) : null)
+          metadata: (results[1] ? new Metadata(results[1]) : null)
         };
       });
     },
@@ -9320,7 +10303,7 @@ var WorkerTransport = (function WorkerTransportClosure() {
  */
 var PDFObjects = (function PDFObjectsClosure() {
   function PDFObjects() {
-    this.objs = {};
+    this.objs = Object.create(null);
   }
 
   PDFObjects.prototype = {
@@ -9411,7 +10394,7 @@ var PDFObjects = (function PDFObjectsClosure() {
     },
 
     clear: function PDFObjects_clear() {
-      this.objs = {};
+      this.objs = Object.create(null);
     }
   };
   return PDFObjects;
@@ -9617,15 +10600,22 @@ exports.PDFPageProxy = PDFPageProxy;
 }));
 
 
-}).call((typeof window === 'undefined') ? this : window);
+  }).call(pdfjsLibs);
 
-if (!PDFJS.workerSrc && typeof document !== 'undefined') {
-  // workerSrc is not set -- using last script url to define default location
-  PDFJS.workerSrc = (function () {
-    'use strict';
-    var pdfJsSrc = document.currentScript.src;
-    return pdfJsSrc && pdfJsSrc.replace(/\.js$/i, '.worker.js');
-  })();
-}
+  exports.PDFJS = pdfjsLibs.pdfjsSharedGlobal.PDFJS;
+
+  exports.getDocument = pdfjsLibs.pdfjsDisplayAPI.getDocument;
+  exports.PDFDataRangeTransport =
+    pdfjsLibs.pdfjsDisplayAPI.PDFDataRangeTransport;
+  exports.renderTextLayer = pdfjsLibs.pdfjsDisplayTextLayer.renderTextLayer;
+  exports.AnnotationLayer =
+    pdfjsLibs.pdfjsDisplayAnnotationLayer.AnnotationLayer;
+  exports.CustomStyle = pdfjsLibs.pdfjsDisplayDOMUtils.CustomStyle;
+  exports.PasswordResponses = pdfjsLibs.pdfjsSharedUtil.PasswordResponses;
+  exports.InvalidPDFException = pdfjsLibs.pdfjsSharedUtil.InvalidPDFException;
+  exports.MissingPDFException = pdfjsLibs.pdfjsSharedUtil.MissingPDFException;
+  exports.UnexpectedResponseException =
+    pdfjsLibs.pdfjsSharedUtil.UnexpectedResponseException;
+}));
 
 
