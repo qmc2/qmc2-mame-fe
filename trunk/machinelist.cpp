@@ -1301,7 +1301,7 @@ void MachineList::parse()
 		tsMachineListCache.seek(0);
 		if ( !tsMachineListCache.atEnd() ) {
 			QString line(tsMachineListCache.readLine());
-			while ( line.startsWith("#") && !tsMachineListCache.atEnd() )
+			while ( line.startsWith('#') && !tsMachineListCache.atEnd() )
 				line = tsMachineListCache.readLine();
 			QStringList words(line.split('\t'));
 			if ( words.count() >= 2 ) {
@@ -1529,7 +1529,6 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations[machineDrvStat]);
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, machineName);
 					loadIcon(machineName, machineItem);
 					numMachines++;
 					itemList << machineItem;
@@ -1741,7 +1740,6 @@ void MachineList::parse()
 					}
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, machineName);
 					loadIcon(machineName, machineItem);
 					if ( machineListCache.isOpen() )
 						tsMachineListCache << machineName << "\t" << machineDescription << "\t" << machineManufacturer << "\t"
