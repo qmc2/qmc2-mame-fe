@@ -1295,6 +1295,9 @@ void MachineList::parse()
 	QTime machineListCacheElapsedTime(0, 0, 0, 0);
 	QList<QTreeWidgetItem *> itemList;
 	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
+	QString trWaitingForData(tr("Waiting for data..."));
+	QChar columnSplitChar('\t');
+	QChar lineSplitChar('\n');
 	if ( machineListCache.isOpen() ) {
 		tsMachineListCache.setDevice(&machineListCache);
 		tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -1334,8 +1337,6 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
 			QString one("1");
-			QChar columnSplitChar('\t');
-			QChar lineSplitChar('\n');
 			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
 				readBuffer.append(tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE));
 				bool endsWithNewLine = readBuffer.endsWith(lineSplitChar);
@@ -1528,7 +1529,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations[machineDrvStat]);
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 					loadIcon(machineName, machineItem);
 					numMachines++;
 					itemList << machineItem;
@@ -1739,14 +1740,14 @@ void MachineList::parse()
 							break;
 					}
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 					loadIcon(machineName, machineItem);
 					if ( machineListCache.isOpen() )
-						tsMachineListCache << machineName << "\t" << machineDescription << "\t" << machineManufacturer << "\t"
-							<< machineYear << "\t" << machineCloneOf << "\t" << (isBIOS ? "1": "0") << "\t"
-							<< (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
-							<< machinePlayers << "\t" << machineDrvStat << "\t" << (isDev ? "1": "0") << "\t"
-							<< machineSource <<"\n";
+						tsMachineListCache << machineName << columnSplitChar << machineDescription << columnSplitChar << machineManufacturer << columnSplitChar
+							<< machineYear << columnSplitChar << machineCloneOf << columnSplitChar << (isBIOS ? '1': '0') << columnSplitChar
+							<< (hasROMs ? '1' : '0') << columnSplitChar << (hasCHDs ? '1': '0') << columnSplitChar
+							<< machinePlayers << columnSplitChar << machineDrvStat << columnSplitChar << (isDev ? '1': '0') << columnSplitChar
+							<< machineSource << lineSplitChar;
 					numMachines++;
 					itemList << machineItem;
 				}
