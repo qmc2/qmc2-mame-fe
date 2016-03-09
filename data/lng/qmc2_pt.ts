@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1396,7 +1396,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -4927,7 +4927,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../emuopt.cpp" line="1143"/>
         <source>color</source>
-        <translation type="unfinished"></translation>
+        <translation>cor</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1179"/>
@@ -9670,7 +9670,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="6132"/>
         <location filename="../../qmc2main.cpp" line="6135"/>
         <source>Loading, please wait...</source>
-        <translation type="unfinished">Carregando, por favor espere...</translation>
+        <translation>Carregando, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6196"/>
@@ -9893,30 +9893,30 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.cpp" line="10089"/>
         <source>processing global emulator configuration</source>
-        <translation type="unfinished">processando configuração global do emulador</translation>
+        <translation>processando configuração global do emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10099"/>
         <location filename="../../qmc2main.cpp" line="10100"/>
         <source>Export global MAME configuration</source>
-        <translation type="unfinished">Exportar configuração global do MAME</translation>
+        <translation>Exportar configuração global do MAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10101"/>
         <source>Import from...</source>
-        <translation type="unfinished">Importar de...</translation>
+        <translation>Importar de...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10102"/>
         <location filename="../../qmc2main.cpp" line="10103"/>
         <source>Import global MAME configuration</source>
-        <translation type="unfinished">Importar configuração global do MAME</translation>
+        <translation>Importar configuração global do MAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10109"/>
         <location filename="../../qmc2main.cpp" line="10113"/>
         <source>&lt;inipath&gt;/mame.ini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4906"/>
