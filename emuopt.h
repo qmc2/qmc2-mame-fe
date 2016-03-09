@@ -132,7 +132,7 @@ class EmulatorOptions : public QTreeWidget
 		EmulatorOptions(QString, QWidget *parent = 0);
 		~EmulatorOptions();
 
-		QString readDescription(QXmlStreamReader *, QString, bool *);
+		QString readDescription(QXmlStreamReader *, QString &, bool *);
 		QStringList readChoices(QXmlStreamReader *);
 
 		QTreeWidgetItem *index2item(const QModelIndex &index) const { return itemFromIndex(index); }
