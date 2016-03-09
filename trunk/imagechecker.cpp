@@ -882,7 +882,7 @@ void ImageChecker::feedWorkerThreads()
 				QString machineName(it.key());
 				if ( !qmc2MachineListItemHash.contains(machineName) )
 					continue;
-				if ( qmc2MachineList->loadIcon(machineName, 0, true, 0) ) {
+				if ( qmc2MachineList->loadIcon(machineName, 0) ) {
 					log(tr("Thread[%1]: Icon for '%2' found").arg(0).arg(machineName));
 					bufferedFoundList << machineName;
 					foundCount++;

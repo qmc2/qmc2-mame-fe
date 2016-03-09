@@ -2966,30 +2966,28 @@ void MachineList::verifyReadyReadStandardOutput()
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 }
 
-bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool checkOnly, QString *fileName)
+bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item)
 {
-	if ( fileName )
-		*fileName = machineName;
 	QIcon cachedIcon(qmc2IconHash.value(machineName));
 	if ( !cachedIcon.isNull() ) {
-		// use cached icon
-		if ( checkOnly )
-			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-		else
+		// use the cached icon
+		if ( item )
 			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, cachedIcon);
-		return true;
-	} else if ( qmc2IconsPreloaded ) {
-		// icon wasn't found
-		if ( checkOnly )
+		else
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-		else {
+		return true;
+	}
+	if ( qmc2IconsPreloaded ) {
+		// an icon wasn't found
+		if ( item ) {
 			qmc2IconHash.insert(machineName, QIcon());
 			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, QIcon());
-		}
+		} else
+			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return false;
 	}
 	if ( qmc2UseIconFile ) {
-		// use icon file
+		// read icons from an archive
 		if ( !qmc2IconsPreloaded ) {
 			QByteArray imageData;
 			QTime preloadTimer, elapsedTime(0, 0, 0, 0);
@@ -3118,12 +3116,12 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 #endif
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", qmc2IconHash.count()));
 			qmc2IconsPreloaded = true;
-			if ( checkOnly )
+			if ( !item )
 				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-			return loadIcon(machineName, item, checkOnly);
+			return loadIcon(machineName, item);
 		}
 	} else {
-		// use icon directory
+		// load icons from a directory
 		if ( !qmc2IconsPreloaded ) {
 			QTime preloadTimer, elapsedTime(0, 0, 0, 0);
 			preloadTimer.start();
@@ -3164,14 +3162,12 @@ bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item, bool chec
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from directory, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", qmc2IconHash.count()));
 			qmc2IconsPreloaded = true;
-
-			if ( checkOnly )
+			if ( !item )
 				qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
-
-			return loadIcon(machineName, item, checkOnly);
+			return loadIcon(machineName, item);
 		}
 	}
-	if ( checkOnly )
+	if ( !item )
 		qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	return false;
 }
