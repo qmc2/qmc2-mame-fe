@@ -1275,8 +1275,6 @@ void EmulatorOptions::createTemplateMap()
 #endif
 	QFile qmc2TemplateFile(templateFile);
 	QString lang(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString());
-	if ( lang.isEmpty() )
-		lang = "us";
 	if ( qmc2TemplateFile.open(QFile::ReadOnly) ) {
 		QXmlStreamReader xmlReader(&qmc2TemplateFile);
 		QString sectionTitle;
