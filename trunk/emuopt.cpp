@@ -1109,7 +1109,7 @@ void EmulatorOptions::createMap()
 		optionsMap.insert(sectionTitle, it.value());
 		int optionsMapCount = optionsMap.value(sectionTitle).count();
 		for (int i = 0; i < optionsMapCount; i++ ) {
-			optionsMap[sectionTitle][i].value = optionsMap[sectionTitle][i].dvalue;
+			optionsMap[sectionTitle][i].value = optionsMap.value(sectionTitle).at(i).dvalue;
 			EmulatorOption emulatorOption = optionsMap.value(sectionTitle).at(i);
 			QTreeWidgetItem *optionItem = new QTreeWidgetItem(sectionItem);
 			optionItem->setHidden(!emulatorOption.visible);
@@ -1189,7 +1189,7 @@ void EmulatorOptions::createMap()
 			QString sysName;
 			if ( !isGlobal )
 				sysName = settingsGroup.split('/').last();
-			EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, isGlobal, sysName, this);
+			EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, isGlobal, sysName);
 			setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, emuOptActions);
 		}
 	}
