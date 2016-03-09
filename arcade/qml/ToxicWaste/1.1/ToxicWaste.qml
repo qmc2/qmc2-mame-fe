@@ -422,7 +422,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(machineListModel[machineListView.currentIndex].id, "gameinfo");
+                            displayText: viewer.requestInfo(machineListModel[machineListView.currentIndex].id, "sysinfo");
                         }
                     }
                 }

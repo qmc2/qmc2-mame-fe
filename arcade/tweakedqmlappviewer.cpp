@@ -73,7 +73,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 	joystickManager = new JoystickManager(joyFunctionMap);
 #endif
 
-	infoClasses << "gameinfo" << "emuinfo" << "softinfo";
+	infoClasses << "sysinfo" << "emuinfo" << "softinfo";
 	videoSnapAllowedFormatExtensions << ".mp4" << ".avi";
 
 #if QT_VERSION < 0x050000
@@ -518,7 +518,7 @@ QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QStrin
 	QString infoText;
 
 	switch ( infoClasses.indexOf(infoClass) ) {
-	case QMC2_ARCADE_INFO_CLASS_GAME:
+	case QMC2_ARCADE_INFO_CLASS_MACHINE:
 		infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
 		break;
 	case QMC2_ARCADE_INFO_CLASS_EMU:
@@ -536,7 +536,7 @@ QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QStrin
 		QString pI = parentId(id);
 		if ( !pI.isEmpty() ) {
 			switch ( infoClasses.indexOf(infoClass) ) {
-			case QMC2_ARCADE_INFO_CLASS_GAME:
+			case QMC2_ARCADE_INFO_CLASS_MACHINE:
 				infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassGame);
 				break;
 			case QMC2_ARCADE_INFO_CLASS_EMU:
