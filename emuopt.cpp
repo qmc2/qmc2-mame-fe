@@ -1098,12 +1098,11 @@ void EmulatorOptions::createMap()
 	optionsMap.clear();
 	sectionItemMap.clear();
 	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
-	QList<QTreeWidgetItem *> itemList;
+	setUpdatesEnabled(false);
 	while ( it.hasNext() ) {
 		it.next();
 		QString sectionTitle(it.key());
-		QTreeWidgetItem *sectionItem = new QTreeWidgetItem();
-		itemList << sectionItem;
+		QTreeWidgetItem *sectionItem = new QTreeWidgetItem(this);
 		sectionItemMap.insert(sectionTitle, sectionItem);
 		sectionItem->setText(0, sectionTitle);
 		optionsMap.insert(sectionTitle, it.value());
@@ -1193,7 +1192,7 @@ void EmulatorOptions::createMap()
 			setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, emuOptActions);
 		}
 	}
-	insertTopLevelItems(0, itemList);
+	setUpdatesEnabled(true);
 }
 
 QString EmulatorOptions::readDescription(QXmlStreamReader *xmlReader, QString &lang, bool *readNext)
