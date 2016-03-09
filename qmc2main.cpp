@@ -602,7 +602,7 @@ MainWindow::MainWindow(QWidget *parent)
 	tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
 
 #if defined(QMC2_OS_WIN)
-	treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Machine"));
+	treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
 #endif
 	comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
 	setWindowTitle(windowTitle() + " [Qt " + qVersion() + "]");
@@ -4115,7 +4115,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 			}
 			break;
 
-		case QMC2_GAMEINFO_INDEX:
+		case QMC2_MACHINEINFO_INDEX:
 #if defined(QMC2_YOUTUBE_ENABLED)
 			if ( qmc2YouTubeWidget )
 				qmc2YouTubeWidget->clearMessage();
@@ -4809,7 +4809,7 @@ void MainWindow::action_embedEmulator_triggered()
 		QTreeWidgetItem *item = sl[i];
 		while ( item->parent() )
 			item = item->parent();
-		gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME).split(":")[0];
+		gameList << item->text(QMC2_EMUCONTROL_COLUMN_MACHINE).split(":")[0];
 		idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
 #if defined(QMC2_OS_UNIX)
 		statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
@@ -4821,7 +4821,7 @@ void MainWindow::action_embedEmulator_triggered()
 			QTreeWidgetItem *item = treeWidgetEmulators->currentItem();
 			while ( item->parent() )
 				item = item->parent();
-			gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME).split(":")[0];
+			gameList << item->text(QMC2_EMUCONTROL_COLUMN_MACHINE).split(":")[0];
 			idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
 #if defined(QMC2_OS_UNIX)
 			statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
@@ -7164,7 +7164,7 @@ void MainWindow::processFifoData()
 							}
 #endif
 						} else
-							log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_GAME)).arg(msgClass).arg(msgWhat).arg(msgState));
+							log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_MACHINE)).arg(msgClass).arg(msgWhat).arg(msgState));
 					} else if ( msgClass == "OUT" ) {
 						// refresh static output notifiers
 						if ( msgWhat == "led0" ) {
@@ -7217,14 +7217,14 @@ void MainWindow::processFifoData()
 							int i;
 							for (i = 0; i < il[0]->childCount() && itemFound == 0; i++) {
 								QTreeWidgetItem *item = il[0]->child(i);
-								if ( item->text(QMC2_EMUCONTROL_COLUMN_GAME) == msgWhat )
+								if ( item->text(QMC2_EMUCONTROL_COLUMN_MACHINE) == msgWhat )
 									itemFound = item;
 							}
 							if ( itemFound != 0 )
 								itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, msgState);
 							else {
 								itemFound = new QTreeWidgetItem(il[0]);
-								itemFound->setText(QMC2_EMUCONTROL_COLUMN_GAME, msgWhat);
+								itemFound->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, msgWhat);
 								itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, msgState);
 								if ( il[0]->childCount() == 1 ) {
 									// this is a workaround for a minor Qt bug: the root decoration
@@ -7235,7 +7235,7 @@ void MainWindow::processFifoData()
 							}
 						}
 					} else
-						log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_GAME)).arg(msgClass).arg(msgWhat).arg(msgState));
+						log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_MACHINE)).arg(msgClass).arg(msgWhat).arg(msgState));
 				}
 				treeWidgetEmulators->update();
 			}
@@ -7281,10 +7281,10 @@ void MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex)
 			break;
 
 		case QMC2_MACHINELIST_COLUMN_NAME:
-			if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_GAMENAME )
+			if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_MACHINENAME )
 				qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
 			else
-				qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_GAMENAME);
+				qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_MACHINENAME);
 			break;
 
 		case QMC2_MACHINELIST_COLUMN_RTYPES:

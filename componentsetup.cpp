@@ -108,9 +108,9 @@ ComponentInfo *ComponentSetup::initComponent2()
 	componentInfo->setShortTitle(QMC2_FLYER_INDEX, tr("Fl&yer"));
 	componentInfo->setLongTitle(QMC2_FLYER_INDEX, tr("Machine flyer image"));
 	componentInfo->setIcon(QMC2_FLYER_INDEX, QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
-	componentInfo->setShortTitle(QMC2_GAMEINFO_INDEX, tr("Machine &info"));
-	componentInfo->setLongTitle(QMC2_GAMEINFO_INDEX, tr("Machine information"));
-	componentInfo->setIcon(QMC2_GAMEINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
+	componentInfo->setShortTitle(QMC2_MACHINEINFO_INDEX, tr("Machine &info"));
+	componentInfo->setLongTitle(QMC2_MACHINEINFO_INDEX, tr("Machine information"));
+	componentInfo->setIcon(QMC2_MACHINEINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
 	componentInfo->setShortTitle(QMC2_EMUINFO_INDEX, tr("Em&ulator info"));
 	componentInfo->setLongTitle(QMC2_EMUINFO_INDEX, tr("Emulator information"));
 	componentInfo->setIcon(QMC2_EMUINFO_INDEX, QIcon(QString::fromUtf8(":/data/img/info.png")));
@@ -150,7 +150,7 @@ ComponentInfo *ComponentSetup::initComponent2()
 	componentInfo->setShortTitle(QMC2_SYSTEM_NOTES_INDEX, tr("&Notes"));
 	componentInfo->setLongTitle(QMC2_SYSTEM_NOTES_INDEX, tr("System notes"));
 	componentInfo->setIcon(QMC2_SYSTEM_NOTES_INDEX, QIcon(QString::fromUtf8(":/data/img/notes.png")));
-	componentInfo->availableFeatureList() << QMC2_PREVIEW_INDEX << QMC2_FLYER_INDEX << QMC2_GAMEINFO_INDEX << QMC2_EMUINFO_INDEX << QMC2_CONFIG_INDEX << QMC2_DEVICE_INDEX << QMC2_PROJECTMESS_INDEX << QMC2_CABINET_INDEX << QMC2_CONTROLLER_INDEX << QMC2_MARQUEE_INDEX << QMC2_TITLE_INDEX << QMC2_PCB_INDEX << QMC2_SOFTWARE_LIST_INDEX;
+	componentInfo->availableFeatureList() << QMC2_PREVIEW_INDEX << QMC2_FLYER_INDEX << QMC2_MACHINEINFO_INDEX << QMC2_EMUINFO_INDEX << QMC2_CONFIG_INDEX << QMC2_DEVICE_INDEX << QMC2_PROJECTMESS_INDEX << QMC2_CABINET_INDEX << QMC2_CONTROLLER_INDEX << QMC2_MARQUEE_INDEX << QMC2_TITLE_INDEX << QMC2_PCB_INDEX << QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
 	componentInfo->availableFeatureList() << QMC2_YOUTUBE_INDEX << QMC2_SYSTEM_NOTES_INDEX;
 #else
@@ -158,7 +158,7 @@ ComponentInfo *ComponentSetup::initComponent2()
 #endif
 	componentInfo->setWidget(QMC2_PREVIEW_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_PREVIEW_INDEX));
 	componentInfo->setWidget(QMC2_FLYER_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_FLYER_INDEX));
-	componentInfo->setWidget(QMC2_GAMEINFO_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_GAMEINFO_INDEX));
+	componentInfo->setWidget(QMC2_MACHINEINFO_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_MACHINEINFO_INDEX));
 	componentInfo->setWidget(QMC2_EMUINFO_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_EMUINFO_INDEX));
 	componentInfo->setWidget(QMC2_CONFIG_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_CONFIG_INDEX));
 	componentInfo->setWidget(QMC2_DEVICE_INDEX, qmc2MainWindow->tabWidgetMachineDetail->widget(QMC2_DEVICE_INDEX));
