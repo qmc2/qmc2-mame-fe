@@ -19,7 +19,7 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 		bool isGlobal;
 		QString systemName;
 
-		EmulatorOptionActions(QTreeWidgetItem *, bool, QString, QWidget *parent = 0);
+		EmulatorOptionActions(QTreeWidgetItem *, bool, QString &, QWidget *parent = 0);
 		~EmulatorOptionActions();
 
 	public slots:

@@ -13,7 +13,7 @@ extern Settings *qmc2Config;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 extern EmulatorOptions *qmc2EmulatorOptions;
 
-EmulatorOptionActions::EmulatorOptionActions(QTreeWidgetItem *item, bool global, QString sysName, QWidget *parent)
+EmulatorOptionActions::EmulatorOptionActions(QTreeWidgetItem *item, bool global, QString &sysName, QWidget *parent)
 	: QWidget(parent)
 {
 	setupUi(this);
