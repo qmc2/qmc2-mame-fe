@@ -18,7 +18,7 @@ var dataTypes = { "title": { key: "title", name: "title image", type: "image", p
     "controller": { key: "controller", name: "controller image", type: "image", path: "ctl" },
     "marquee": { key: "marquee", name: "marquee image", type: "image", path: "mrq" },
     "pcb": { key: "pcb", name: "pcb image", type: "image", path: "pcb" },
-    "gameinfo": { key: "gameinfo", name: "game info", type: "text", text: "[game info]" },
+    "sysinfo": { key: "sysinfo", name: "machine info", type: "text", text: "[machine info]" },
     "emuinfo": { key: "emuinfo", name: "emulator info", type: "text", text: "[emulator info]" } }
 var focused = [];
 var borders = false;
