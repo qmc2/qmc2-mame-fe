@@ -3183,7 +3183,6 @@ void MachineList::loadCategoryIni()
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading category.ini"));
-	qApp->processEvents();
 	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
 	QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -3191,7 +3190,6 @@ void MachineList::loadCategoryIni()
 	else
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 	qmc2MainWindow->progressBarMachineList->reset();
-	qApp->processEvents();
 	QFile categoryIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString());
 	int entryCounter = 0;
 	if ( categoryIniFile.open(QFile::ReadOnly) ) {
@@ -3199,7 +3197,6 @@ void MachineList::loadCategoryIni()
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
 		QRegExp rxCategoryName("^\\[.*\\]$");
-		QHash<QString, QString> translations;
 		QString guiLanguage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
 		bool trFound = false;
 		while ( !tsCategoryIni.atEnd() ) {
@@ -3209,13 +3206,13 @@ void MachineList::loadCategoryIni()
 				continue;
 			if ( categoryLine.indexOf(rxCategoryName) == 0 ) {
 				categoryName = categoryLine.mid(1, categoryLine.length() - 2);
-				translations.clear();
+				QHash<QString, QString> translations;
 				categoryLine = tsCategoryIni.readLine().simplified().trimmed();
 				trFound = false;
 				while ( !categoryLine.isEmpty() && categoryLine.startsWith("tr[") ) {
-					int endIndex = categoryLine.indexOf("]", 3);
+					int endIndex = categoryLine.indexOf(']', 3);
 					QString trLanguage(categoryLine.mid(3, endIndex - 3));
-					translations[trLanguage] = categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2);
+					translations.insert(trLanguage, categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2));
 					trFound = (trLanguage.compare(guiLanguage) == 0);
 					if ( trFound )
 						break;
@@ -3402,24 +3399,22 @@ void MachineList::loadCatverIni()
 	QTime loadTimer, elapsedTime(0, 0, 0, 0);
 	loadTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading catver.ini"));
-	qApp->processEvents();
 	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
-	QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
+	QString oldFormat(qmc2MainWindow->progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		qmc2MainWindow->progressBarMachineList->setFormat(tr("Catver.ini - %p%"));
 	else
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 	qmc2MainWindow->progressBarMachineList->reset();
-	qApp->processEvents();
 	QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
-	QString catStr("[Category]");
-	QString verStr("[VerAdded]");
 	if ( catverIniFile.open(QFile::ReadOnly) ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
 		bool categoryDone = false, versionDone = false;
 		int lineCounter = 0;
 		char catVerSwitch = 0;
+		QChar splitChar('='), dotChar('.'), zeroChar('0');
+		QString catStr("[Category]"), verStr("[VerAdded]");
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine(tsCatverIni.readLine());
 			if ( lineCounter++ % QMC2_CATVERINI_LOAD_RESPONSE == 0 ) {
@@ -3440,31 +3435,23 @@ void MachineList::loadCatverIni()
 					catVerSwitch = 2;
 				}
 			}
-			switch ( catVerSwitch ) {
-				case 1: {	// category
-						QStringList tokens(catverLine.split("="));
-						if ( tokens.count() > 1 ) {
-							QString token0(tokens[0].trimmed());
-							QString token1(tokens[1].trimmed());
-							if ( !categoryNames.contains(token1) )
-								categoryNames.insert(token1, new QString(token1));
-							categoryHash.insert(token0, categoryNames.value(token1));
-						}
-					}
-					break;
-				case 2: {	// version
-						QStringList tokens(catverLine.split("="));
-						if ( tokens.count() > 1 ) {
-							QString token0(tokens[0].trimmed());
-							QString token1(tokens[1].trimmed());
-							if ( token1.startsWith(".") )
-								token1.prepend("0");
-							if ( !versionNames.contains(token1) )
-								versionNames.insert(token1, new QString(token1));
-							versionHash.insert(token0, versionNames.value(token1));
-						}
-					}
-					break;
+			QStringList tokens(catverLine.split(splitChar, QString::SkipEmptyParts));
+			if ( tokens.count() > 1 ) {
+				QString token1(tokens.at(1).trimmed());
+				switch ( catVerSwitch ) {
+					case 1: // category
+						if ( !categoryNames.contains(token1) )
+							categoryNames.insert(token1, new QString(token1));
+						categoryHash.insert(tokens.at(0).trimmed(), categoryNames.value(token1));
+						break;
+					case 2: // version
+						if ( token1.startsWith(dotChar) )
+							token1.prepend(zeroChar);
+						if ( !versionNames.contains(token1) )
+							versionNames.insert(token1, new QString(token1));
+						versionHash.insert(tokens.at(0).trimmed(), versionNames.value(token1));
+						break;
+				}
 			}
 		}
 		catverIniFile.close();
