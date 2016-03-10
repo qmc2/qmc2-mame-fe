@@ -451,13 +451,8 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
 	templateVersion = tr("unknown");
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
 	lineEditSearch = 0;
-	if ( !group.contains("Global") ) {
-		isGlobal = false;
-		setStatusTip(tr("Machine specific emulator configuration"));
-	} else {
-		isGlobal = true;
-		setStatusTip(tr("Global emulator configuration"));
-	}
+	isGlobal = group.contains("Global");
+	setStatusTip(isGlobal ? tr("Global emulator configuration") : tr("Machine specific emulator configuration"));
 	loadActive = changed = false;
 	settingsGroup = group;
 	delegate = new EmulatorOptionDelegate(this, this);
@@ -1036,7 +1031,9 @@ void EmulatorOptions::addChoices(QString optionName, QStringList choices, QStrin
 	if ( displayChoices.isEmpty() )
 		displayChoices = choices;
 	foreach (QString section, optionsMap.keys()) {
-		foreach (EmulatorOption emuOpt, optionsMap[section]) {
+		int optCount = optionsMap.value(section).count();
+		for (int i = 0; i < optCount; i++) {
+			EmulatorOption emuOpt = optionsMap.value(section).at(i);
 			if ( emuOpt.name.compare(optionName) == 0 ) {
 				ComboBoxEditWidget *comboWidget = (ComboBoxEditWidget *)itemWidget(emuOpt.item, QMC2_EMUOPT_COLUMN_VALUE);
 				if ( comboWidget ) {
@@ -1305,17 +1302,17 @@ void EmulatorOptions::createTemplateMap()
 								defaultValue = attributes.value("default").toString();
 							QString optionDescription(readDescription(&xmlReader, lang, &readNext));
 							optionChoices.clear();
-							if ( type == "combo" && xmlReader.name().toString() == "choice" )
+							if ( type.compare("combo") == 0 && xmlReader.name().toString().compare("choice") == 0 )
 								optionChoices = readChoices(&xmlReader);
 							optionPart.clear();
 							optionRelativeTo.clear();
-							if ( type == "file" ) {
+							if ( type.compare("file") == 0 ) {
 								if ( attributes.hasAttribute("part") )
 									optionPart = attributes.value("part").toString();
 								if ( attributes.hasAttribute("relativeTo") )
 									optionRelativeTo = attributes.value("relativeTo").toString();
 								if ( !optionRelativeTo.isEmpty() ) {
-									if ( optionRelativeTo == "emulatorWorkingDirectory" )
+									if ( optionRelativeTo.compare("emulatorWorkingDirectory") == 0 )
 										optionDescription.append(" (" + tr("relative to the emulator's working directory") + ")");
 									else
 										optionDescription.append(" (" + tr("relative to the path specified in '%1'").arg(optionRelativeTo) + ")");
