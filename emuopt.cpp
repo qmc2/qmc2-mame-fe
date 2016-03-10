@@ -498,9 +498,8 @@ void EmulatorOptions::updateAllEmuOptActions()
 {
 	QTreeWidgetItemIterator it(this);
 	while ( *it ) {
-		EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(*it, QMC2_EMUOPT_COLUMN_ACTIONS);
 		QWidget *w = itemWidget(*it, QMC2_EMUOPT_COLUMN_VALUE);
-		if ( emuOptActions && w )
+		if ( w )
 			updateEmuOptActions(w, *it);
 		++it;
 	}
@@ -510,7 +509,7 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 {
 	EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(item, QMC2_EMUOPT_COLUMN_ACTIONS);
 	if ( emuOptActions ) {
-		QString optionName, optionType, defaultValue, globalValue, currentValue, storedValue;
+		QString optionName, optionType, defaultValue, globalValue, currentValue, storedValue, key;
 		optionName = item->text(0);
 		for (int i = 0; i < item->childCount(); i++) {
 			QTreeWidgetItem *subItem = item->child(i);
@@ -521,7 +520,6 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 		}
 		if ( optionType == "bool" )
 			defaultValue = defaultValue == tr("true") ? "true" : "false";
-		QString key;
 		if ( qmc2Config->group() == settingsGroup ) {
 			qmc2Config->endGroup();
 			if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + optionName) )
@@ -714,13 +712,11 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 {
 	loadActive = true;
 	qmc2Config->beginGroup(settingsGroup);
-	QString sectionTitle;
-	foreach (sectionTitle, optionsMap.keys()) {
-		if ( qmc2GlobalEmulatorOptions != this ) {
-			QTreeWidgetItem *item = sectionItemMap[sectionTitle];
-			if ( item )
-				if ( sectionExpansionMap[sectionTitle] )
-					expandItem(item);
+	foreach (QString sectionTitle, optionsMap.keys()) {
+		if ( !isGlobal ) {
+			if ( sectionItemMap.contains(sectionTitle) )
+				if ( sectionExpansionMap.value(sectionTitle) )
+					expandItem(sectionItemMap.value(sectionTitle));
 		}
 		int optCount = optionsMap[sectionTitle].count();
 		for (int i = 0; i < optCount; i++) {
@@ -728,18 +724,18 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 			if ( !optName.isEmpty() )
 				if ( option.name != optName )
 					continue;
-			if ( qmc2GlobalEmulatorOptions != this )
-				if ( optionExpansionMap[option.name] )
+			if ( !isGlobal )
+				if ( optionExpansionMap.value(option.name) )
 					expandItem(option.item);
-			switch ( option.type ) {
+			optionType = option.type;
+			switch ( optionType ) {
 				case QMC2_EMUOPT_TYPE_INT: {
-					optionType = QMC2_EMUOPT_TYPE_INT;
 					optionChoices.clear();
 					optionPart.clear();
 					optionRelativeTo.clear();
 					int v;
 					bool ok = true;
-					if ( qmc2GlobalEmulatorOptions != this ) {
+					if ( !isGlobal ) {
 						if ( overwrite )
 							v = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value.toInt();
 						else
@@ -754,14 +750,13 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_FLOAT: {
-					optionType = QMC2_EMUOPT_TYPE_FLOAT;
 					optionDecimals = option.decimals;
 					optionChoices.clear();
 					optionPart.clear();
 					optionRelativeTo.clear();
 					double v;
 					bool ok = true;
-					if ( qmc2GlobalEmulatorOptions != this ) {
+					if ( !isGlobal ) {
 						if ( overwrite )
 							v = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value.toDouble();
 						else
@@ -776,13 +771,12 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
-					optionType = QMC2_EMUOPT_TYPE_FLOAT2;
 					optionDecimals = option.decimals;
 					optionChoices.clear();
 					optionPart.clear();
 					optionRelativeTo.clear();
 					QString v;
-					if ( qmc2GlobalEmulatorOptions != this ) {
+					if ( !isGlobal ) {
 						if ( overwrite )
 							v = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value;
 						else
@@ -795,13 +789,12 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
-					optionType = QMC2_EMUOPT_TYPE_FLOAT3;
 					optionDecimals = option.decimals;
 					optionChoices.clear();
 					optionPart.clear();
 					optionRelativeTo.clear();
 					QString v;
-					if ( qmc2GlobalEmulatorOptions != this ) {
+					if ( !isGlobal ) {
 						if ( overwrite )
 							v = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value;
 						else
@@ -814,12 +807,11 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_BOOL: {
-					optionType = QMC2_EMUOPT_TYPE_BOOL;
 					optionChoices.clear();
 					optionPart.clear();
 					optionRelativeTo.clear();
 					bool v;
-					if ( qmc2GlobalEmulatorOptions != this ) {
+					if ( !isGlobal ) {
 						if ( overwrite )
 							v = EmulatorOptionDelegate::stringToBool(qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value);
 						else
@@ -839,7 +831,6 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 				case QMC2_EMUOPT_TYPE_DIRECTORY:
 				case QMC2_EMUOPT_TYPE_STRING:
 				default: {
-					optionType = option.type;
 					if ( optionType == QMC2_EMUOPT_TYPE_COMBO )
 						optionChoices = option.choices;
 					else
@@ -850,7 +841,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					} else
 						optionPart.clear();
 					QString v;
-					if ( qmc2GlobalEmulatorOptions != this ) {
+					if ( !isGlobal ) {
 						if ( overwrite )
 							v = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value;
 						else
@@ -876,7 +867,7 @@ void EmulatorOptions::save(QString optName)
 	if ( qmc2DemoModeDialog )
 		if ( qmc2DemoModeDialog->demoModeRunning )
 			return;
-	if ( qmc2GlobalEmulatorOptions != this ) {
+	if ( !isGlobal ) {
 		horizontalScrollPosition = horizontalScrollBar()->sliderPosition();
 		verticalScrollPosition = verticalScrollBar()->sliderPosition();
 	}
@@ -884,13 +875,13 @@ void EmulatorOptions::save(QString optName)
 	QString sectionTitle;
 	foreach (sectionTitle, optionsMap.keys()) {
 		QString vs;
-		if ( qmc2GlobalEmulatorOptions != this ) {
+		if ( !isGlobal ) {
 			QTreeWidgetItem *item = sectionItemMap[sectionTitle];
 			if ( item )
 				sectionExpansionMap[sectionTitle] = item->isExpanded();
 		}
 		for (int i = 0; i < optionsMap[sectionTitle].count(); i++) {
-			if ( qmc2GlobalEmulatorOptions != this )
+			if ( !isGlobal )
 				optionExpansionMap[optionsMap[sectionTitle][i].name] = optionsMap[sectionTitle][i].item->isExpanded();
 			if ( !optName.isEmpty() )
 				if ( optName != optionsMap[sectionTitle][i].name )
@@ -900,7 +891,7 @@ void EmulatorOptions::save(QString optName)
 					int v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toInt();
 					int gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toInt();
 					vs.sprintf("%d", v);
-					if ( qmc2GlobalEmulatorOptions == this ) {
+					if ( isGlobal ) {
 						if ( v != optionsMap[sectionTitle][i].dvalue.toInt() ) {
 							optionsMap[sectionTitle][i].value = vs;
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
@@ -917,7 +908,7 @@ void EmulatorOptions::save(QString optName)
 					double v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
 					double gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
 					vs.setNum(v, 'f', optionsMap[sectionTitle][i].decimals);
-					if ( qmc2GlobalEmulatorOptions == this ) {
+					if ( isGlobal ) {
 						if ( v != optionsMap[sectionTitle][i].dvalue.toDouble() ) {
 							optionsMap[sectionTitle][i].value = vs;
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
@@ -933,7 +924,7 @@ void EmulatorOptions::save(QString optName)
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
 					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-					if ( qmc2GlobalEmulatorOptions == this ) {
+					if ( isGlobal ) {
 						QStringList subValues = vs.split(",");
 						QStringList defaultSubValues = optionsMap[sectionTitle][i].dvalue.split(",");
 						double v1, v2, dv1, dv2;
@@ -963,7 +954,7 @@ void EmulatorOptions::save(QString optName)
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
 					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-					if ( qmc2GlobalEmulatorOptions == this ) {
+					if ( isGlobal ) {
 						QStringList subValues = vs.split(",");
 						QStringList defaultSubValues = optionsMap[sectionTitle][i].dvalue.split(",");
 						double v1, v2, v3, dv1, dv2, dv3;
@@ -997,7 +988,7 @@ void EmulatorOptions::save(QString optName)
 				case QMC2_EMUOPT_TYPE_BOOL: {
 					bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
 					bool gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
-					if ( qmc2GlobalEmulatorOptions == this ) {
+					if ( isGlobal ) {
 						if ( v != EmulatorOptionDelegate::stringToBool(optionsMap[sectionTitle][i].dvalue) ) {
 							optionsMap[sectionTitle][i].value = EmulatorOptionDelegate::boolToString(v);
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, EmulatorOptionDelegate::boolToString(v));
@@ -1018,7 +1009,7 @@ void EmulatorOptions::save(QString optName)
 				default: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
 					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-					if ( qmc2GlobalEmulatorOptions == this ) {
+					if ( isGlobal ) {
 						if ( vs != optionsMap[sectionTitle][i].dvalue ) {
 							optionsMap[sectionTitle][i].value = vs;
 							qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
@@ -1046,7 +1037,7 @@ void EmulatorOptions::addChoices(QString optionName, QStringList choices, QStrin
 		displayChoices = choices;
 	foreach (QString section, optionsMap.keys()) {
 		foreach (EmulatorOption emuOpt, optionsMap[section]) {
-			if ( emuOpt.name == optionName ) {
+			if ( emuOpt.name.compare(optionName) == 0 ) {
 				ComboBoxEditWidget *comboWidget = (ComboBoxEditWidget *)itemWidget(emuOpt.item, QMC2_EMUOPT_COLUMN_VALUE);
 				if ( comboWidget ) {
 					QString value(comboWidget->comboBoxValue->lineEdit()->text());
@@ -1713,7 +1704,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ini-export: no path selected (or invalid inipath)"));
 			return;
 		}
-		if ( qmc2GlobalEmulatorOptions == this )
+		if ( isGlobal )
 			fileName = "/mame.ini";
 		else {
 			if ( !qmc2CurrentItem )
@@ -1843,7 +1834,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ini-import: no path selected (or invalid inipath)"));
 			return;
 		}
-		if ( qmc2GlobalEmulatorOptions == this )
+		if ( isGlobal )
 			fileName = "/mame.ini";
 		else {
 			if ( !qmc2CurrentItem )
@@ -1896,14 +1887,14 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 						QString value = lineTrimmed.mid(lineTrimmed.indexOf(words[1], words[0].length()));
 						switch ( optionsMap[sectionTitleFound][optionPosFound].type ) {
 							case QMC2_EMUOPT_TYPE_INT: {
-								if ( qmc2GlobalEmulatorOptions == this )
+								if ( isGlobal )
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toInt());
 								else
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toInt());
 								break;
 							}
 							case QMC2_EMUOPT_TYPE_FLOAT: {
-								if ( qmc2GlobalEmulatorOptions == this )
+								if ( isGlobal )
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toDouble());
 								else
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toDouble());
@@ -1911,14 +1902,14 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 							}
 							case QMC2_EMUOPT_TYPE_FLOAT2:
 							case QMC2_EMUOPT_TYPE_FLOAT3: {
-								if ( qmc2GlobalEmulatorOptions == this )
+								if ( isGlobal )
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value);
 								else
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value);
 								break;
 							}
 							case QMC2_EMUOPT_TYPE_BOOL: {
-								if ( qmc2GlobalEmulatorOptions == this ) {
+								if ( isGlobal ) {
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetica", 1));
 									if ( value == "0" )
@@ -1941,7 +1932,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 							case QMC2_EMUOPT_TYPE_DIRECTORY:
 							case QMC2_EMUOPT_TYPE_STRING:
 							default: {
-								if ( qmc2GlobalEmulatorOptions == this )
+								if ( isGlobal )
 									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.replace("$HOME", "~"));
 								else
 									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.replace("$HOME", "~"));
