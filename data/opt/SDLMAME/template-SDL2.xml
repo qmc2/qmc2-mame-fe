@@ -524,6 +524,14 @@
 			<description lang="fr" text="Luminosité de l'écran en mode pause"/>
 			<description lang="pt" text="Brilho da tela quando pausado"/>
 		</option>
+		<option default="none" name="effect" type="file" relativeTo="artpath">
+			<description lang="es" text="Nombre de un archivo PNG a utilizar para los efectos visuales, o 'ninguno'"/>
+			<description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
+			<description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
+			<description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>
+			<description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
+			<description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
+		</option>
 	</section>
 	<section name="vector_rendering">
 		<description lang="es" text="Renderizado vectorial"/>
@@ -1079,14 +1087,6 @@
 			<description lang="fr" text="Autorise un rapport de valeur non-intègre"/>
 			<description lang="pt" text="Permitir fatores de esticamento não inteiros"/>
 			<description lang="es" text="Permitir valores de relación de aspecto no enteros"/>
-		</option>
-		<option default="none" name="effect" type="file" relativeTo="artpath">
-			<description lang="es" text="Nombre de un archivo PNG a utilizar para los efectos visuales, o 'ninguno'"/>
-			<description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
-			<description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
-			<description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>
-			<description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
-			<description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
 		</option>
 		<option default="true" name="centerh" type="bool">
 			<description lang="us" text="Center horizontally within the view area"/>
