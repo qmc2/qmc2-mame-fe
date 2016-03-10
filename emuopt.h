@@ -101,6 +101,9 @@ class EmulatorOption
 			decimals = dec;
 			relativeTo = relTo;
 		}
+		static bool lessThan(const EmulatorOption &a, const EmulatorOption &b) {
+			return a.name.compare(b.name) < 0;
+		}
 };
 
 class EmulatorOptions : public QTreeWidget
