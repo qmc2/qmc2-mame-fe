@@ -1254,6 +1254,8 @@ void EmulatorOptions::createTemplateMap()
 		QString sectionEntity("section");
 		QString optionEntity("option");
 		QString templateEntity("template");
+		QString ignoreOS(QString("ignore.%1").arg(QMC2_OS_NAME));
+		QString defaultOS(QString("default.%1").arg(QMC2_OS_NAME));
 		while ( !xmlReader.atEnd() ) {
 			if ( readNext )
 				xmlReader.readNext();
@@ -1269,9 +1271,9 @@ void EmulatorOptions::createTemplateMap()
 					if ( sectionEntity.compare(elementType) == 0 ) {
 						bool ignore = false;
 						if ( attributes.hasAttribute("ignore") )
-							ignore = attributes.value("ignore") == "true";
-						if ( attributes.hasAttribute(QString("ignore.%1").arg(QMC2_OS_NAME)) )
-							ignore = attributes.value(QString("ignore.%1").arg(QMC2_OS_NAME)) == "true";
+							ignore = attributes.value("ignore").compare("true") == 0;
+						if ( attributes.hasAttribute(ignoreOS) )
+							ignore = attributes.value(ignoreOS).compare("true") == 0;
 						if ( !ignore ) {
 							sectionTitle = readDescription(&xmlReader, lang, &readNext);
 							templateMap[sectionTitle].clear();
@@ -1286,18 +1288,18 @@ void EmulatorOptions::createTemplateMap()
 						if ( attributes.hasAttribute("shortname") )
 							shortName = attributes.value("shortname").toString();
 						if ( attributes.hasAttribute("ignore") )
-							ignore = attributes.value("ignore") == "true";
+							ignore = attributes.value("ignore").compare("true") == 0;
 						if ( attributes.hasAttribute("visible") )
-							visible = attributes.value("visible") == "true";
+							visible = attributes.value("visible").compare("true") == 0;
 						if ( attributes.hasAttribute("decimals") )
 							decimals = attributes.value("decimals").toString().toInt();
-						if ( attributes.hasAttribute(QString("ignore.%1").arg(QMC2_OS_NAME)) )
-							ignore = attributes.value(QString("ignore.%1").arg(QMC2_OS_NAME)) == "true";
+						if ( attributes.hasAttribute(ignoreOS) )
+							ignore = attributes.value(ignoreOS).compare("true") == 0;
 						if ( !ignore ) {
 							QString type(attributes.value("type").toString());
 							QString defaultValue;
-							if ( attributes.hasAttribute(QString("default.%1").arg(QMC2_OS_NAME)) )
-								defaultValue = attributes.value(QString("default.%1").arg(QMC2_OS_NAME)).toString();
+							if ( attributes.hasAttribute(defaultOS) )
+								defaultValue = attributes.value(defaultOS).toString();
 							else
 								defaultValue = attributes.value("default").toString();
 							QString optionDescription(readDescription(&xmlReader, lang, &readNext));
