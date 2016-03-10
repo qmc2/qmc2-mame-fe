@@ -8992,19 +8992,18 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 {
 	if ( !item )
 		return;
-
-	QString manu = item->text(QMC2_MACHINELIST_COLUMN_MANU);
+	QString manu(item->text(QMC2_MACHINELIST_COLUMN_MANU));
 	QString searchPattern;
-	if ( manu != MachineList::trQuestionMark )
+	if ( manu.compare(MachineList::trQuestionMark) != 0 )
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE) + " " + manu;
 	else
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
-	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("<.*>"), "").replace(QRegExp("[\\\\,\\.\\;\\:\\/\\(\\)\\[\\]\\{\\}]"), " ").replace("&", "\%26").replace(" - ", " ").simplified();
-	QStringList wordList = searchPattern.split(" ", QString::SkipEmptyParts);
+	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("[\\\\,\\.\\;\\:\\'\\/\\(\\)\\[\\]\\{\\}]"), " ").replace("&", "\%26").replace(" - ", " ").simplified().trimmed();
+	QStringList wordList(searchPattern.split(" ", QString::SkipEmptyParts));
+	wordList.removeAll("<unknown>");
 	wordList.removeDuplicates();
 	QString url(wordList.join("+"));
 	url.prepend(baseUrl);
-
 	if ( actionSearchInternalBrowser->isChecked() ) {
 		MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
 		webBrowser->homeUrl = QUrl::fromUserInput(url);
