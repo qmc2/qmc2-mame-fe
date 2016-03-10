@@ -1203,6 +1203,7 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 	validChoices.clear();
 	bool readNext = true;
 	QString choiceEntity("choice");
+	QString ignoreOS(QString("ignore.%1").arg(QMC2_OS_NAME));
 	while ( !xmlReader->atEnd() && readNext ) {
 		if ( !xmlReader->hasError() ) {
 			if ( xmlReader->isStartElement() ) {
@@ -1210,8 +1211,8 @@ QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 				if ( choiceEntity.compare(elementType) == 0 ) {
 					QXmlStreamAttributes attributes(xmlReader->attributes());
 					QString choiceName(attributes.value("name").toString());
-					bool ignore = (attributes.value("ignore").toString() == "true");
-					bool ignoreOnThisPlatform = (attributes.value(QString("ignore.%1").arg(QMC2_OS_NAME)).toString() == "true");
+					bool ignore = attributes.value("ignore").compare("true") == 0;
+					bool ignoreOnThisPlatform = attributes.value(ignoreOS).compare("true") == 0;
 					if ( !choiceName.isEmpty() && !ignore && !ignoreOnThisPlatform )
 						validChoices << choiceName;
 				} else
@@ -1273,7 +1274,7 @@ void EmulatorOptions::createTemplateMap()
 						if ( attributes.hasAttribute("ignore") )
 							ignore = attributes.value("ignore").compare("true") == 0;
 						if ( attributes.hasAttribute(ignoreOS) )
-							ignore = attributes.value(ignoreOS).compare("true") == 0;
+							ignore |= attributes.value(ignoreOS).compare("true") == 0;
 						if ( !ignore ) {
 							sectionTitle = readDescription(&xmlReader, lang, &readNext);
 							templateMap[sectionTitle].clear();
@@ -1285,17 +1286,17 @@ void EmulatorOptions::createTemplateMap()
 						bool visible = true;
 						int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
 						QString shortName;
-						if ( attributes.hasAttribute("shortname") )
-							shortName = attributes.value("shortname").toString();
 						if ( attributes.hasAttribute("ignore") )
 							ignore = attributes.value("ignore").compare("true") == 0;
-						if ( attributes.hasAttribute("visible") )
-							visible = attributes.value("visible").compare("true") == 0;
-						if ( attributes.hasAttribute("decimals") )
-							decimals = attributes.value("decimals").toString().toInt();
 						if ( attributes.hasAttribute(ignoreOS) )
-							ignore = attributes.value(ignoreOS).compare("true") == 0;
+							ignore |= attributes.value(ignoreOS).compare("true") == 0;
 						if ( !ignore ) {
+							if ( attributes.hasAttribute("shortname") )
+								shortName = attributes.value("shortname").toString();
+							if ( attributes.hasAttribute("visible") )
+								visible = attributes.value("visible").compare("true") == 0;
+							if ( attributes.hasAttribute("decimals") )
+								decimals = attributes.value("decimals").toString().toInt();
 							QString type(attributes.value("type").toString());
 							QString defaultValue;
 							if ( attributes.hasAttribute(defaultOS) )
