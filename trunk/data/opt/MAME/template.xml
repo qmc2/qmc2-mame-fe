@@ -533,6 +533,14 @@
 			<description lang="pt" text="Brilho da tela quando pausado"/>
 			<description lang="es" text="Cantidad a modificar el brillo de la pantalla en pausa"/>
 		</option>
+		<option default="none" name="effect" type="file" relativeTo="artpath">
+			<description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
+			<description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
+			<description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>
+			<description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
+			<description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
+			<description lang="es" text="Nombre de un archivo PNG a utilizar para los efectos visuales, o 'ninguno'"/>
+		</option>
 	</section>
 	<section name="vector_rendering">
 		<description lang="us" text="Vector rendering"/>
@@ -1135,14 +1143,6 @@
 			<description lang="fr" text="Agrandir l'affichage par ce rapport (en software)"/>
 			<description lang="pt" text="Esticar renderização de tela por esse valor (em software)"/>
 			<description lang="es" text="Escalar el renderizado de pantalla en software por esta cantidad"/>
-		</option>
-		<option default="none" name="effect" type="file" relativeTo="artpath">
-			<description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
-			<description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
-			<description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>
-			<description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
-			<description lang="pt" text="Nome de um arquivo PNG para usar em efeitos visuais, ou 'none'"/>
-			<description lang="es" text="Nombre de un archivo PNG a utilizar para los efectos visuales, o 'ninguno'"/>
 		</option>
 		<option default="false" name="waitvsync" type="bool">
 			<description lang="us" text="Wait for the start of VBLANK before flipping screens; reduces tearing effects"/>
