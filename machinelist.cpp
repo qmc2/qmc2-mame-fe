@@ -1326,6 +1326,7 @@ void MachineList::parse()
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
 		if ( !reparseMachineList && !qmc2StopParser ) {
+			loadIcon("005", 0);
 			qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines * 2);
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -1550,6 +1551,7 @@ void MachineList::parse()
 	if ( machineListCache.isOpen() )
 		machineListCache.close();
 	if ( reparseMachineList && !qmc2StopParser ) {
+		loadIcon("005", 0);
 		qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines * 2);
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and recreating machine list cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
