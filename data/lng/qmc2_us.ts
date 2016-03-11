@@ -7390,7 +7390,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="655"/>
         <location filename="../../machinelist.cpp" line="656"/>
         <location filename="../../machinelist.cpp" line="693"/>
-        <location filename="../../machinelist.cpp" line="3626"/>
+        <location filename="../../machinelist.cpp" line="3624"/>
         <source>unknown</source>
         <translation></translation>
     </message>
@@ -7519,7 +7519,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="577"/>
         <location filename="../../machinelist.cpp" line="579"/>
         <location filename="../../machinelist.cpp" line="1300"/>
-        <location filename="../../machinelist.cpp" line="2726"/>
+        <location filename="../../machinelist.cpp" line="2724"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
@@ -7553,7 +7553,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1919"/>
-        <location filename="../../machinelist.cpp" line="2717"/>
+        <location filename="../../machinelist.cpp" line="2715"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation></translation>
     </message>
@@ -7592,7 +7592,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2247"/>
+        <location filename="../../machinelist.cpp" line="2245"/>
         <source>WARNING: XML data cache is incomplete, invalidating XML data cache</source>
         <translation></translation>
     </message>
@@ -7796,22 +7796,22 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2402"/>
+        <location filename="../../machinelist.cpp" line="2400"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME developers</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2699"/>
+        <location filename="../../machinelist.cpp" line="2697"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3048"/>
+        <location filename="../../machinelist.cpp" line="3046"/>
         <source>pre-caching icons from 7z archive</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3081"/>
+        <location filename="../../machinelist.cpp" line="3079"/>
         <source>done (pre-caching icons from 7z archive, elapsed time = %1)</source>
         <translation></translation>
     </message>
@@ -7822,7 +7822,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1484"/>
         <location filename="../../machinelist.cpp" line="1516"/>
         <location filename="../../machinelist.cpp" line="1662"/>
-        <location filename="../../machinelist.cpp" line="3290"/>
+        <location filename="../../machinelist.cpp" line="3288"/>
         <source>System / BIOS</source>
         <translation></translation>
     </message>
@@ -7833,27 +7833,27 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1493"/>
         <location filename="../../machinelist.cpp" line="1525"/>
         <location filename="../../machinelist.cpp" line="1664"/>
-        <location filename="../../machinelist.cpp" line="3292"/>
+        <location filename="../../machinelist.cpp" line="3290"/>
         <source>System / Device</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3618"/>
+        <location filename="../../machinelist.cpp" line="3616"/>
         <source>correct</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3620"/>
+        <location filename="../../machinelist.cpp" line="3618"/>
         <source>mostly correct</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3622"/>
+        <location filename="../../machinelist.cpp" line="3620"/>
         <source>incorrect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3624"/>
+        <location filename="../../machinelist.cpp" line="3622"/>
         <source>not found</source>
         <translation></translation>
     </message>
@@ -7882,26 +7882,26 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="739"/>
         <location filename="../../machinelist.cpp" line="742"/>
-        <location filename="../../machinelist.cpp" line="3249"/>
-        <location filename="../../machinelist.cpp" line="3477"/>
+        <location filename="../../machinelist.cpp" line="3247"/>
+        <location filename="../../machinelist.cpp" line="3475"/>
         <source>Loading, please wait...</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="750"/>
-        <location filename="../../machinelist.cpp" line="2252"/>
+        <location filename="../../machinelist.cpp" line="2250"/>
         <source>loading favorites and play history</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="753"/>
-        <location filename="../../machinelist.cpp" line="2255"/>
+        <location filename="../../machinelist.cpp" line="2253"/>
         <source>done (loading favorites and play history)</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="757"/>
-        <location filename="../../machinelist.cpp" line="2259"/>
+        <location filename="../../machinelist.cpp" line="2257"/>
         <source>total start-up time: %1</source>
         <translation></translation>
     </message>
@@ -8109,7 +8109,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1978"/>
-        <location filename="../../machinelist.cpp" line="2706"/>
+        <location filename="../../machinelist.cpp" line="2704"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</translation>
     </message>
@@ -8155,13 +8155,13 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1919"/>
-        <location filename="../../machinelist.cpp" line="2717"/>
+        <location filename="../../machinelist.cpp" line="2715"/>
         <source>ascending</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1919"/>
-        <location filename="../../machinelist.cpp" line="2717"/>
+        <location filename="../../machinelist.cpp" line="2715"/>
         <source>descending</source>
         <translation></translation>
     </message>
@@ -8206,57 +8206,47 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation>FATAL: can&apos;t open favorites file for writing, path = %1</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2162"/>
-        <source>done (saving favorites)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../machinelist.cpp" line="2194"/>
+        <location filename="../../machinelist.cpp" line="2193"/>
         <source>saving play history</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2202"/>
+        <location filename="../../machinelist.cpp" line="2201"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
         <translation>FATAL: can&apos;t open play history file for writing, path = %1</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2203"/>
-        <source>done (saving play history)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../machinelist.cpp" line="2209"/>
+        <location filename="../../machinelist.cpp" line="2207"/>
         <source>L:</source>
         <translation>L:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2210"/>
+        <location filename="../../machinelist.cpp" line="2208"/>
         <source>C:</source>
         <translation>C:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2211"/>
+        <location filename="../../machinelist.cpp" line="2209"/>
         <source>M:</source>
         <translation>M:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2212"/>
+        <location filename="../../machinelist.cpp" line="2210"/>
         <source>I:</source>
         <translation>I:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2213"/>
+        <location filename="../../machinelist.cpp" line="2211"/>
         <source>N:</source>
         <translation>N:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2214"/>
+        <location filename="../../machinelist.cpp" line="2212"/>
         <source>U:</source>
         <translation>U:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2215"/>
+        <location filename="../../machinelist.cpp" line="2213"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
@@ -8268,114 +8258,114 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="904"/>
-        <location filename="../../machinelist.cpp" line="2439"/>
-        <location filename="../../machinelist.cpp" line="2783"/>
+        <location filename="../../machinelist.cpp" line="2437"/>
+        <location filename="../../machinelist.cpp" line="2781"/>
         <source>ROM check - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2216"/>
+        <location filename="../../machinelist.cpp" line="2214"/>
         <source>T:</source>
         <translation>T:</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2697"/>
+        <location filename="../../machinelist.cpp" line="2695"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2717"/>
+        <location filename="../../machinelist.cpp" line="2715"/>
         <source>ROM state</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2624"/>
-        <location filename="../../machinelist.cpp" line="2954"/>
+        <location filename="../../machinelist.cpp" line="2622"/>
+        <location filename="../../machinelist.cpp" line="2952"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>ROM status for &apos;%1&apos; is &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2998"/>
+        <location filename="../../machinelist.cpp" line="2996"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3046"/>
+        <location filename="../../machinelist.cpp" line="3044"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>done (pre-caching icons from ZIP archive, elapsed time = %1)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3085"/>
+        <location filename="../../machinelist.cpp" line="3083"/>
         <source>pre-caching icons from archive</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3116"/>
+        <location filename="../../machinelist.cpp" line="3114"/>
         <source>done (pre-caching icons from archive, elapsed time = %1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3130"/>
+        <location filename="../../machinelist.cpp" line="3128"/>
         <source>pre-caching icons from directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3164"/>
+        <location filename="../../machinelist.cpp" line="3162"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>done (pre-caching icons from directory, elapsed time = %1)</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3185"/>
+        <location filename="../../machinelist.cpp" line="3183"/>
         <source>loading category.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3189"/>
+        <location filename="../../machinelist.cpp" line="3187"/>
         <source>Category.ini - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3232"/>
+        <location filename="../../machinelist.cpp" line="3230"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3239"/>
+        <location filename="../../machinelist.cpp" line="3237"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3401"/>
+        <location filename="../../machinelist.cpp" line="3399"/>
         <source>loading catver.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3405"/>
+        <location filename="../../machinelist.cpp" line="3403"/>
         <source>Catver.ini - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3460"/>
+        <location filename="../../machinelist.cpp" line="3458"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3467"/>
+        <location filename="../../machinelist.cpp" line="3465"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3468"/>
+        <location filename="../../machinelist.cpp" line="3466"/>
         <source>%1 category / %2 version records loaded</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3266"/>
+        <location filename="../../machinelist.cpp" line="3264"/>
         <source>Category view - %p%</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="3240"/>
+        <location filename="../../machinelist.cpp" line="3238"/>
         <source>%n category record(s) loaded</source>
         <translation>
             <numerusform>%n category record loaded</numerusform>
@@ -8383,7 +8373,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3494"/>
+        <location filename="../../machinelist.cpp" line="3492"/>
         <source>Version view - %p%</source>
         <translation></translation>
     </message>
@@ -8396,8 +8386,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="3119"/>
-        <location filename="../../machinelist.cpp" line="3165"/>
+        <location filename="../../machinelist.cpp" line="3117"/>
+        <location filename="../../machinelist.cpp" line="3163"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n icon loaded</numerusform>
@@ -8405,10 +8395,10 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3005"/>
-        <location filename="../../machinelist.cpp" line="3053"/>
-        <location filename="../../machinelist.cpp" line="3090"/>
-        <location filename="../../machinelist.cpp" line="3138"/>
+        <location filename="../../machinelist.cpp" line="3003"/>
+        <location filename="../../machinelist.cpp" line="3051"/>
+        <location filename="../../machinelist.cpp" line="3088"/>
+        <location filename="../../machinelist.cpp" line="3136"/>
         <source>Icon cache - %p%</source>
         <translation>Icon cache - %p%</translation>
     </message>
@@ -8692,12 +8682,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2236"/>
+        <location filename="../../machinelist.cpp" line="2234"/>
         <source>done (loading XML data and recreating cache, elapsed time = %1)</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2497"/>
+        <location filename="../../machinelist.cpp" line="2495"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation>
             <numerusform>checking real status of %n set not mentioned during full audit</numerusform>
@@ -8705,7 +8695,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2612"/>
+        <location filename="../../machinelist.cpp" line="2610"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation>
             <numerusform>done (checking real status of %n set not mentioned during full audit)</numerusform>
@@ -8723,20 +8713,20 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2230"/>
-        <location filename="../../machinelist.cpp" line="2432"/>
+        <location filename="../../machinelist.cpp" line="2228"/>
+        <location filename="../../machinelist.cpp" line="2430"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2230"/>
-        <location filename="../../machinelist.cpp" line="2432"/>
+        <location filename="../../machinelist.cpp" line="2228"/>
+        <location filename="../../machinelist.cpp" line="2430"/>
         <source>normal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2230"/>
-        <location filename="../../machinelist.cpp" line="2432"/>
+        <location filename="../../machinelist.cpp" line="2228"/>
+        <location filename="../../machinelist.cpp" line="2430"/>
         <source>crashed</source>
         <translation></translation>
     </message>
@@ -16333,28 +16323,28 @@ Are you sure you want to do this?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2624"/>
-        <location filename="../../machinelist.cpp" line="2802"/>
+        <location filename="../../machinelist.cpp" line="2622"/>
+        <location filename="../../machinelist.cpp" line="2800"/>
         <source>correct</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2832"/>
+        <location filename="../../machinelist.cpp" line="2830"/>
         <source>incorrect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2862"/>
+        <location filename="../../machinelist.cpp" line="2860"/>
         <source>mostly correct</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2892"/>
+        <location filename="../../machinelist.cpp" line="2890"/>
         <source>not found</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2922"/>
+        <location filename="../../machinelist.cpp" line="2920"/>
         <location filename="../../romalyzer.cpp" line="4395"/>
         <location filename="../../romalyzer.cpp" line="4436"/>
         <location filename="../../romalyzer.cpp" line="4448"/>

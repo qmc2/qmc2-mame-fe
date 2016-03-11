@@ -2159,7 +2159,6 @@ void MachineList::saveFavorites()
 		f.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open favorites file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString()));
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving favorites)"));
 }
 
 void MachineList::loadPlayHistory()
@@ -2200,7 +2199,6 @@ void MachineList::savePlayHistory()
 		f.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open play history file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString()));
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving play history)"));
 }
 
 QString &MachineList::status()
