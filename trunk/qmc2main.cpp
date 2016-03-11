@@ -8993,6 +8993,7 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("[\\\\,\\.\\;\\:\\'\\/\\(\\)\\[\\]\\{\\}]"), " ").replace("&", "\%26").replace(" - ", " ").simplified().trimmed();
 	QStringList wordList(searchPattern.split(" ", QString::SkipEmptyParts));
 	wordList.removeAll("<unknown>");
+	wordList.removeAll("<generic>");
 	wordList.removeDuplicates();
 	QString url(wordList.join("+"));
 	url.prepend(baseUrl);
