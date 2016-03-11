@@ -2239,7 +2239,7 @@ void Options::applyDelayed()
 		tabWidgetFrontendSettings->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/FrontendTab", 0).toInt());
 		tabWidgetGlobalMAMESetup->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/MAMETab", 0).toInt());
 		tabWidgetOptions->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/OptionsTab", 0).toInt());
-		QStringList cl = config->allKeys();
+		QStringList cl(config->allKeys());
 		if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size") )
 			resize(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Size").toSize());
 		if ( cl.contains(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Position") )
@@ -2275,13 +2275,13 @@ void Options::applyDelayed()
 			// style
 			if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) )
 				qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
-			QString styleName = comboBoxStyle->currentText();
+			QString styleName(comboBoxStyle->currentText());
 			if ( styleName == tr("Default") )
 				styleName = "Default";
 			config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
 			qmc2MainWindow->signalStyleSetupRequested(styleName);
 			// style sheet
-			QString styleSheetName = lineEditStyleSheet->text();
+			QString styleSheetName(lineEditStyleSheet->text());
 			config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", styleSheetName);
 			qmc2MainWindow->signalStyleSheetSetupRequested(styleSheetName);
 			// palette
@@ -2306,9 +2306,9 @@ void Options::applyDelayed()
 		}
 		// (re)create foreign IDs tree-widget, if applicable
 		qmc2MainWindow->treeWidgetForeignIDs->clear();
-		QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
+		QString displayFormat(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString());
 		config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
-		QStringList registeredEmus = config->childGroups();
+		QStringList registeredEmus(config->childGroups());
 		config->endGroup();
 		if ( !registeredEmus.isEmpty() ) {
 			QList<QTreeWidgetItem *> itemList;
@@ -2327,20 +2327,20 @@ void Options::applyDelayed()
 				}
 				emuItem->setWhatsThis(0, emuName + "\t" + tr("N/A") + "\t" + tr("N/A"));
 				itemList << emuItem;
-				QStringList idList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/IDs").arg(emuName), QStringList()).toStringList();
+				QStringList idList(config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/IDs").arg(emuName), QStringList()).toStringList());
 				if ( !idList.isEmpty() ) {
-					QStringList descriptionList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Descriptions").arg(emuName), QStringList()).toStringList();
+					QStringList descriptionList(config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Descriptions").arg(emuName), QStringList()).toStringList());
 					while ( descriptionList.count() < idList.count() )
 						descriptionList << QString();
-					QStringList iconList = config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Icons").arg(emuName), QStringList()).toStringList();
+					QStringList iconList(config->value(QMC2_EMULATOR_PREFIX + QString("CustomIDs/%1/Icons").arg(emuName), QStringList()).toStringList());
 					while ( iconList.count() < idList.count() )
 						iconList << QString();
 					for (int i = 0; i < idList.count(); i++) {
-						QString id = idList[i];
+						QString id(idList.at(i));
 						if ( !id.isEmpty() ) {
-							QString description = descriptionList[i];
-							QString idIcon = iconList[i];
-							QString itemText = displayFormat;
+							QString description(descriptionList.at(i));
+							QString idIcon(iconList.at(i));
+							QString itemText(displayFormat);
 							itemText.replace("$ID$", id).replace("$DESCRIPTION$", description);
 							QTreeWidgetItem *idItem = new QTreeWidgetItem(emuItem);
 							idItem->setText(0, itemText);
@@ -2380,7 +2380,7 @@ void Options::applyDelayed()
 				qmc2MainWindow->tabWidgetMachineList->removeTab(index);
 		}
 		// restore foreign ID selection
-		QStringList foreignIdState = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList();
+		QStringList foreignIdState(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedForeignID", QStringList()).toStringList());
 		if ( !foreignIdState.isEmpty() ) {
 			int parentIndex = foreignIdState[0].toInt();
 			int childIndex = -1;
@@ -3514,7 +3514,6 @@ void Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()
 	raise();
 }
 
-
 void Options::on_toolButtonAddEmulator_clicked()
 {
 	tableWidgetRegisteredEmulators->setSortingEnabled(false);
@@ -3605,8 +3604,8 @@ void Options::on_toolButtonCustomIDs_clicked()
 
 void Options::checkPlaceholderStatus()
 {
-	QPalette pal = labelIDStatus->palette();
-	QString text = lineEditAdditionalEmulatorArguments->text();
+	QPalette pal(labelIDStatus->palette());
+	QString text(lineEditAdditionalEmulatorArguments->text());
 	if ( lineEditAdditionalEmulatorName->text().isEmpty() )
 		pal.setBrush(QPalette::Window, Options::lightgreyBrush);
 	else if ( text.isEmpty() )
