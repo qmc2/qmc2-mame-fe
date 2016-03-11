@@ -483,6 +483,17 @@ void MachineList::load()
 	qmc2MainWindow->textBrowserEmuInfo->clear();
 	qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 	qmc2CurrentItem = 0;
+	QTreeWidgetItem *dummyItem;
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	qmc2MainWindow->labelMachineListStatus->setText(status());
+	ImageWidget::updateArtwork();
 	if ( qmc2DeviceConfigurator ) {
 		qmc2DeviceConfigurator->save();
 		qmc2DeviceConfigurator->saveSetup();
@@ -567,17 +578,6 @@ void MachineList::load()
 		delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
 		qmc2EmulatorOptions = 0;
 	}
-	ImageWidget::updateArtwork();
-	QTreeWidgetItem *dummyItem;
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
-	qmc2MainWindow->labelMachineListStatus->setText(status());
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWCATEGORY_INDEX:

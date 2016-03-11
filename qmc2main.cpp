@@ -2130,51 +2130,44 @@ void MainWindow::on_actionToFavorites_triggered(bool)
 
 void MainWindow::on_actionReload_triggered(bool)
 {
-	if ( qmc2FilterActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
-		return;
+	if ( !qmc2StartingUp ) {
+		if ( qmc2FilterActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
+			return;
+		}
+		if ( qmc2VerifyActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
+			return;
+		}
+		if ( qmc2ImageCheckActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
+			return;
+		}
+		if ( qmc2SampleCheckActive ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
+			return;
+		}
+		if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
+			return;
+		}
+		if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
+			log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
+			return;
+		}
 	}
-
-	if ( qmc2VerifyActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
-		return;
-	}
-
-	if ( qmc2ImageCheckActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
-		return;
-	}
-
-	if ( qmc2SampleCheckActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-		return;
-	}
-
-	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
-		return;
-	}
-
-	if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
-		return;
-	}
-
 	if ( qmc2ReloadActive )
 		log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
 	else {
 		qmc2StopParser = false;
 		qmc2MachineList->enableWidgets(false);
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat").toBool() )
-			if ( !qmc2StopParser )
-				loadGameInfoDB();
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat").toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat").toBool() )
-			if ( !qmc2StopParser )
-				loadEmuInfoDB();
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB").toBool() )
-			if ( !qmc2StopParser )
-				loadSoftwareInfoDB();
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
+		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool() )
+			loadGameInfoDB();
+		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool() )
+			loadEmuInfoDB();
+		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB", false).toBool() )
+			loadSoftwareInfoDB();
+		if ( !qmc2StartingUp && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool() ) {
 			if ( qmc2CurrentItem ) {
 				log(QMC2_LOG_FRONTEND, tr("saving machine selection"));
 				qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "SelectedGame", qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
@@ -2186,7 +2179,6 @@ void MainWindow::on_actionReload_triggered(bool)
 		else
 			qmc2MachineList->enableWidgets(true);
 	}
-
 	static bool initialCall = true;
 	if ( initialCall )
 		QTimer::singleShot(0, this, SLOT(checkRomPath()));
