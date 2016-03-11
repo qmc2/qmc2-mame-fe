@@ -119,8 +119,10 @@ class EmulatorOptions : public QTreeWidget
 		QString templateEmulator;
 		QString templateVersion;
 		QString templateFormat;
+		QString translatedDescription;
 		QMap<QString, QList<EmulatorOption> > optionsMap;
 		QStringList ignoredOptions;
+		QStringList validChoices;
 		static QMap<QString, QList<EmulatorOption> > templateMap;
 		static QMap<QString, bool> sectionExpansionMap;
 		static QMap<QString, QTreeWidgetItem *> sectionItemMap;
@@ -135,8 +137,8 @@ class EmulatorOptions : public QTreeWidget
 		EmulatorOptions(QString, QWidget *parent = 0);
 		~EmulatorOptions();
 
-		QString readDescription(QXmlStreamReader *, QString &, bool *);
-		QStringList readChoices(QXmlStreamReader *);
+		QString &readDescription(QXmlStreamReader *, QString &, bool *);
+		QStringList &readChoices(QXmlStreamReader *);
 
 		QTreeWidgetItem *index2item(const QModelIndex &index) const { return itemFromIndex(index); }
 		QModelIndex item2index(QTreeWidgetItem *item, int column) const { return indexFromItem(item, column); }
