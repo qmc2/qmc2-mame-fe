@@ -4759,23 +4759,23 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>EmulatorOptionDelegate</name>
     <message>
-        <location filename="../../emuopt.cpp" line="152"/>
+        <location filename="../../emuopt.cpp" line="151"/>
         <source>All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="157"/>
-        <location filename="../../emuopt.cpp" line="168"/>
+        <location filename="../../emuopt.cpp" line="156"/>
+        <location filename="../../emuopt.cpp" line="167"/>
         <source>Browse: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="212"/>
+        <location filename="../../emuopt.cpp" line="211"/>
         <source>enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="214"/>
+        <location filename="../../emuopt.cpp" line="213"/>
         <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4783,258 +4783,251 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>EmulatorOptions</name>
     <message>
-        <location filename="../../emuopt.cpp" line="468"/>
-        <location filename="../../emuopt.cpp" line="1149"/>
-        <location filename="../../emuopt.cpp" line="1218"/>
-        <location filename="../../emuopt.cpp" line="1260"/>
-        <location filename="../../emuopt.cpp" line="1261"/>
-        <location filename="../../emuopt.cpp" line="1262"/>
-        <location filename="../../emuopt.cpp" line="1355"/>
-        <location filename="../../emuopt.cpp" line="1357"/>
-        <location filename="../../emuopt.cpp" line="1359"/>
+        <location filename="../../emuopt.cpp" line="451"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1226"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="476"/>
+        <location filename="../../emuopt.cpp" line="455"/>
         <source>Global emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="485"/>
+        <location filename="../../emuopt.cpp" line="463"/>
         <source>Option / Attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="486"/>
+        <location filename="../../emuopt.cpp" line="464"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="487"/>
+        <location filename="../../emuopt.cpp" line="465"/>
         <source>Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="536"/>
-        <location filename="../../emuopt.cpp" line="1116"/>
+        <location filename="../../emuopt.cpp" line="513"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1119"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>bool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1122"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>int</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1125"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>float</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1128"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>float2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1131"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>float3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1134"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1137"/>
+        <location filename="../../emuopt.cpp" line="1067"/>
         <source>directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1140"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
         <source>choice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1146"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
         <source>string</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1154"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
         <source>Short name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="534"/>
-        <location filename="../../emuopt.cpp" line="1159"/>
-        <location filename="../../emuopt.cpp" line="1169"/>
+        <location filename="../../emuopt.cpp" line="511"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="540"/>
-        <location filename="../../emuopt.cpp" line="1162"/>
+        <location filename="../../emuopt.cpp" line="517"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
         <source>true</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1164"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>false</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="558"/>
-        <location filename="../../emuopt.cpp" line="562"/>
-        <location filename="../../emuopt.cpp" line="664"/>
-        <location filename="../../emuopt.cpp" line="1170"/>
+        <location filename="../../emuopt.cpp" line="534"/>
+        <location filename="../../emuopt.cpp" line="538"/>
+        <location filename="../../emuopt.cpp" line="640"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>&lt;EMPTY&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="473"/>
+        <location filename="../../emuopt.cpp" line="455"/>
         <source>Machine specific emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1143"/>
+        <location filename="../../emuopt.cpp" line="1068"/>
         <source>color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1179"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1255"/>
+        <location filename="../../emuopt.cpp" line="1221"/>
         <source>creating template configuration map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1284"/>
+        <location filename="../../emuopt.cpp" line="1252"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1335"/>
+        <location filename="../../emuopt.cpp" line="1304"/>
         <source>relative to the emulator&apos;s working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1337"/>
+        <location filename="../../emuopt.cpp" line="1306"/>
         <source>relative to the path specified in &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1347"/>
+        <location filename="../../emuopt.cpp" line="1318"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1354"/>
+        <location filename="../../emuopt.cpp" line="1328"/>
         <source>FATAL: can&apos;t open options template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1356"/>
+        <location filename="../../emuopt.cpp" line="1330"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1358"/>
+        <location filename="../../emuopt.cpp" line="1332"/>
         <source>WARNING: couldn&apos;t determine template version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1360"/>
+        <location filename="../../emuopt.cpp" line="1334"/>
         <source>WARNING: couldn&apos;t determine template format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1366"/>
+        <location filename="../../emuopt.cpp" line="1340"/>
         <source>please wait for reload to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1373"/>
-        <location filename="../../emuopt.cpp" line="1376"/>
+        <location filename="../../emuopt.cpp" line="1347"/>
+        <location filename="../../emuopt.cpp" line="1350"/>
         <source>checking template configuration map against selected emulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1380"/>
-        <location filename="../../emuopt.cpp" line="1383"/>
+        <location filename="../../emuopt.cpp" line="1354"/>
+        <location filename="../../emuopt.cpp" line="1357"/>
         <source>FATAL: %1 executable file &apos;%2&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1388"/>
-        <location filename="../../emuopt.cpp" line="1391"/>
+        <location filename="../../emuopt.cpp" line="1362"/>
+        <location filename="../../emuopt.cpp" line="1365"/>
         <source>FATAL: &apos;%1&apos; isn&apos;t executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1417"/>
-        <location filename="../../emuopt.cpp" line="1420"/>
+        <location filename="../../emuopt.cpp" line="1391"/>
+        <location filename="../../emuopt.cpp" line="1394"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1417"/>
-        <location filename="../../emuopt.cpp" line="1420"/>
+        <location filename="../../emuopt.cpp" line="1391"/>
+        <location filename="../../emuopt.cpp" line="1394"/>
         <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1462"/>
-        <location filename="../../emuopt.cpp" line="1465"/>
+        <location filename="../../emuopt.cpp" line="1436"/>
+        <location filename="../../emuopt.cpp" line="1439"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1483"/>
-        <location filename="../../emuopt.cpp" line="1486"/>
-        <location filename="../../emuopt.cpp" line="1494"/>
-        <location filename="../../emuopt.cpp" line="1497"/>
-        <location filename="../../emuopt.cpp" line="1511"/>
+        <location filename="../../emuopt.cpp" line="1457"/>
+        <location filename="../../emuopt.cpp" line="1460"/>
+        <location filename="../../emuopt.cpp" line="1468"/>
+        <location filename="../../emuopt.cpp" line="1471"/>
+        <location filename="../../emuopt.cpp" line="1485"/>
+        <location filename="../../emuopt.cpp" line="1488"/>
+        <location filename="../../emuopt.cpp" line="1502"/>
+        <location filename="../../emuopt.cpp" line="1505"/>
         <location filename="../../emuopt.cpp" line="1514"/>
-        <location filename="../../emuopt.cpp" line="1528"/>
-        <location filename="../../emuopt.cpp" line="1531"/>
-        <location filename="../../emuopt.cpp" line="1540"/>
-        <location filename="../../emuopt.cpp" line="1543"/>
-        <location filename="../../emuopt.cpp" line="1565"/>
-        <location filename="../../emuopt.cpp" line="1568"/>
+        <location filename="../../emuopt.cpp" line="1517"/>
+        <location filename="../../emuopt.cpp" line="1539"/>
+        <location filename="../../emuopt.cpp" line="1542"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1575"/>
-        <location filename="../../emuopt.cpp" line="1578"/>
+        <location filename="../../emuopt.cpp" line="1549"/>
+        <location filename="../../emuopt.cpp" line="1552"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1589"/>
-        <location filename="../../emuopt.cpp" line="1592"/>
+        <location filename="../../emuopt.cpp" line="1563"/>
+        <location filename="../../emuopt.cpp" line="1566"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1596"/>
-        <location filename="../../emuopt.cpp" line="1600"/>
+        <location filename="../../emuopt.cpp" line="1570"/>
+        <location filename="../../emuopt.cpp" line="1574"/>
         <source>done (checking template configuration map against selected emulator)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../emuopt.cpp" line="1597"/>
-        <location filename="../../emuopt.cpp" line="1601"/>
+        <location filename="../../emuopt.cpp" line="1571"/>
+        <location filename="../../emuopt.cpp" line="1575"/>
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -5042,105 +5035,105 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1620"/>
+        <location filename="../../emuopt.cpp" line="1594"/>
         <source>Enter search string</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1692"/>
+        <location filename="../../emuopt.cpp" line="1666"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1696"/>
-        <location filename="../../emuopt.cpp" line="1826"/>
+        <location filename="../../emuopt.cpp" line="1670"/>
+        <location filename="../../emuopt.cpp" line="1800"/>
         <source>Path selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1697"/>
+        <location filename="../../emuopt.cpp" line="1671"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1717"/>
+        <location filename="../../emuopt.cpp" line="1691"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1725"/>
-        <location filename="../../emuopt.cpp" line="1855"/>
+        <location filename="../../emuopt.cpp" line="1699"/>
+        <location filename="../../emuopt.cpp" line="1829"/>
         <source>Waiting for data...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1739"/>
+        <location filename="../../emuopt.cpp" line="1713"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1744"/>
+        <location filename="../../emuopt.cpp" line="1718"/>
         <source>exporting %1 MAME configuration to %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1744"/>
-        <location filename="../../emuopt.cpp" line="1789"/>
-        <location filename="../../emuopt.cpp" line="1874"/>
-        <location filename="../../emuopt.cpp" line="1963"/>
+        <location filename="../../emuopt.cpp" line="1718"/>
+        <location filename="../../emuopt.cpp" line="1763"/>
+        <location filename="../../emuopt.cpp" line="1848"/>
+        <location filename="../../emuopt.cpp" line="1937"/>
         <source>global</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1744"/>
-        <location filename="../../emuopt.cpp" line="1789"/>
-        <location filename="../../emuopt.cpp" line="1874"/>
-        <location filename="../../emuopt.cpp" line="1963"/>
+        <location filename="../../emuopt.cpp" line="1718"/>
+        <location filename="../../emuopt.cpp" line="1763"/>
+        <location filename="../../emuopt.cpp" line="1848"/>
+        <location filename="../../emuopt.cpp" line="1937"/>
         <source>machine-specific</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1789"/>
+        <location filename="../../emuopt.cpp" line="1763"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1822"/>
+        <location filename="../../emuopt.cpp" line="1796"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1827"/>
+        <location filename="../../emuopt.cpp" line="1801"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1847"/>
+        <location filename="../../emuopt.cpp" line="1821"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1869"/>
+        <location filename="../../emuopt.cpp" line="1843"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1874"/>
+        <location filename="../../emuopt.cpp" line="1848"/>
         <source>importing %1 MAME configuration from %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1956"/>
+        <location filename="../../emuopt.cpp" line="1930"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1958"/>
+        <location filename="../../emuopt.cpp" line="1932"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1963"/>
+        <location filename="../../emuopt.cpp" line="1937"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7397,7 +7390,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="655"/>
         <location filename="../../machinelist.cpp" line="656"/>
         <location filename="../../machinelist.cpp" line="693"/>
-        <location filename="../../machinelist.cpp" line="3641"/>
+        <location filename="../../machinelist.cpp" line="3626"/>
         <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7660,8 +7653,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="575"/>
         <location filename="../../machinelist.cpp" line="577"/>
         <location filename="../../machinelist.cpp" line="579"/>
-        <location filename="../../machinelist.cpp" line="1298"/>
-        <location filename="../../machinelist.cpp" line="2724"/>
+        <location filename="../../machinelist.cpp" line="1300"/>
+        <location filename="../../machinelist.cpp" line="2726"/>
         <source>Waiting for data...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7704,103 +7697,115 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="739"/>
         <location filename="../../machinelist.cpp" line="742"/>
-        <location filename="../../machinelist.cpp" line="3254"/>
-        <location filename="../../machinelist.cpp" line="3492"/>
+        <location filename="../../machinelist.cpp" line="3249"/>
+        <location filename="../../machinelist.cpp" line="3477"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="755"/>
-        <location filename="../../machinelist.cpp" line="2257"/>
+        <location filename="../../machinelist.cpp" line="750"/>
+        <location filename="../../machinelist.cpp" line="2252"/>
+        <source>loading favorites and play history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelist.cpp" line="753"/>
+        <location filename="../../machinelist.cpp" line="2255"/>
+        <source>done (loading favorites and play history)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelist.cpp" line="757"/>
+        <location filename="../../machinelist.cpp" line="2259"/>
         <source>total start-up time: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="802"/>
+        <location filename="../../machinelist.cpp" line="804"/>
         <source>XML data - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="847"/>
-        <location filename="../../machinelist.cpp" line="889"/>
+        <location filename="../../machinelist.cpp" line="849"/>
+        <location filename="../../machinelist.cpp" line="891"/>
         <source>ERROR: can&apos;t open ROM state cache for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="856"/>
+        <location filename="../../machinelist.cpp" line="858"/>
         <source>verifying ROM status for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="902"/>
-        <location filename="../../machinelist.cpp" line="2437"/>
-        <location filename="../../machinelist.cpp" line="2781"/>
+        <location filename="../../machinelist.cpp" line="904"/>
+        <location filename="../../machinelist.cpp" line="2439"/>
+        <location filename="../../machinelist.cpp" line="2783"/>
         <source>ROM check - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="974"/>
+        <location filename="../../machinelist.cpp" line="976"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="978"/>
+        <location filename="../../machinelist.cpp" line="980"/>
         <source>Updating</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Source file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Is BIOS?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Is device?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Runnable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Clone of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>ROM of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="987"/>
+        <location filename="../../machinelist.cpp" line="989"/>
         <source>Sample of</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="998"/>
+        <location filename="../../machinelist.cpp" line="1000"/>
         <source>Year</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1005"/>
+        <location filename="../../machinelist.cpp" line="1007"/>
         <source>Manufacturer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="183"/>
-        <location filename="../../machinelist.cpp" line="1010"/>
+        <location filename="../../machinelist.cpp" line="1012"/>
         <source>ROM</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7817,248 +7822,248 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="800"/>
+        <location filename="../../machinelist.cpp" line="802"/>
         <source>loading XML data and recreating cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
         <source>BIOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
         <source>CRC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
-        <location filename="../../machinelist.cpp" line="1145"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
         <source>Merge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
-        <location filename="../../machinelist.cpp" line="1145"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
         <source>Region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
         <source>Offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
-        <location filename="../../machinelist.cpp" line="1120"/>
-        <location filename="../../machinelist.cpp" line="1145"/>
-        <location filename="../../machinelist.cpp" line="1165"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
+        <location filename="../../machinelist.cpp" line="1167"/>
         <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
-        <location filename="../../machinelist.cpp" line="1145"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
         <source>Optional</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1015"/>
-        <location filename="../../machinelist.cpp" line="1145"/>
+        <location filename="../../machinelist.cpp" line="1017"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
         <source>SHA-1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1020"/>
+        <location filename="../../machinelist.cpp" line="1022"/>
         <source>Device reference</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1025"/>
+        <location filename="../../machinelist.cpp" line="1027"/>
         <source>Chip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1030"/>
-        <location filename="../../machinelist.cpp" line="1098"/>
-        <location filename="../../machinelist.cpp" line="1193"/>
+        <location filename="../../machinelist.cpp" line="1032"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
+        <location filename="../../machinelist.cpp" line="1195"/>
         <source>Tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1030"/>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1032"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1030"/>
+        <location filename="../../machinelist.cpp" line="1032"/>
         <source>Clock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1035"/>
+        <location filename="../../machinelist.cpp" line="1037"/>
         <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Flip-X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Height</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>Pixel clock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>H-Total</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>H-Bend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>HB-Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>V-Total</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>V-Bend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1039"/>
+        <location filename="../../machinelist.cpp" line="1041"/>
         <source>VB-Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1044"/>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1046"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1048"/>
+        <location filename="../../machinelist.cpp" line="1050"/>
         <source>Channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1053"/>
+        <location filename="../../machinelist.cpp" line="1055"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1057"/>
+        <location filename="../../machinelist.cpp" line="1059"/>
         <source>Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1057"/>
+        <location filename="../../machinelist.cpp" line="1059"/>
         <source>Tilt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1057"/>
+        <location filename="../../machinelist.cpp" line="1059"/>
         <source>Players</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1057"/>
+        <location filename="../../machinelist.cpp" line="1059"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1057"/>
+        <location filename="../../machinelist.cpp" line="1059"/>
         <source>Coins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1063"/>
+        <location filename="../../machinelist.cpp" line="1065"/>
         <source>Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1068"/>
+        <location filename="../../machinelist.cpp" line="1070"/>
         <source>Minimum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1068"/>
+        <location filename="../../machinelist.cpp" line="1070"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1068"/>
+        <location filename="../../machinelist.cpp" line="1070"/>
         <source>Sensitivity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1068"/>
+        <location filename="../../machinelist.cpp" line="1070"/>
         <source>Key Delta</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1068"/>
+        <location filename="../../machinelist.cpp" line="1070"/>
         <source>Reverse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1075"/>
+        <location filename="../../machinelist.cpp" line="1077"/>
         <source>DIP switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1081"/>
+        <location filename="../../machinelist.cpp" line="1083"/>
         <source>DIP value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2066"/>
+        <location filename="../../machinelist.cpp" line="2070"/>
         <source>Filtering, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2400"/>
+        <location filename="../../machinelist.cpp" line="2402"/>
         <source>WARNING: XML bug: the name &apos;%1&apos; is used for multiple sets -- please inform MAME developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2697"/>
+        <location filename="../../machinelist.cpp" line="2699"/>
         <source>done (verifying ROM status for all sets, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8073,55 +8078,55 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1388"/>
-        <location filename="../../machinelist.cpp" line="1419"/>
-        <location filename="../../machinelist.cpp" line="1450"/>
-        <location filename="../../machinelist.cpp" line="1481"/>
-        <location filename="../../machinelist.cpp" line="1513"/>
-        <location filename="../../machinelist.cpp" line="1658"/>
-        <location filename="../../machinelist.cpp" line="3295"/>
+        <location filename="../../machinelist.cpp" line="1391"/>
+        <location filename="../../machinelist.cpp" line="1422"/>
+        <location filename="../../machinelist.cpp" line="1453"/>
+        <location filename="../../machinelist.cpp" line="1484"/>
+        <location filename="../../machinelist.cpp" line="1516"/>
+        <location filename="../../machinelist.cpp" line="1662"/>
+        <location filename="../../machinelist.cpp" line="3290"/>
         <source>System / BIOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1397"/>
-        <location filename="../../machinelist.cpp" line="1428"/>
-        <location filename="../../machinelist.cpp" line="1459"/>
-        <location filename="../../machinelist.cpp" line="1490"/>
-        <location filename="../../machinelist.cpp" line="1522"/>
-        <location filename="../../machinelist.cpp" line="1660"/>
-        <location filename="../../machinelist.cpp" line="3297"/>
+        <location filename="../../machinelist.cpp" line="1400"/>
+        <location filename="../../machinelist.cpp" line="1431"/>
+        <location filename="../../machinelist.cpp" line="1462"/>
+        <location filename="../../machinelist.cpp" line="1493"/>
+        <location filename="../../machinelist.cpp" line="1525"/>
+        <location filename="../../machinelist.cpp" line="1664"/>
+        <location filename="../../machinelist.cpp" line="3292"/>
         <source>System / Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3633"/>
+        <location filename="../../machinelist.cpp" line="3618"/>
         <source>correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3635"/>
+        <location filename="../../machinelist.cpp" line="3620"/>
         <source>mostly correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3637"/>
+        <location filename="../../machinelist.cpp" line="3622"/>
         <source>incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3639"/>
+        <location filename="../../machinelist.cpp" line="3624"/>
         <source>not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="558"/>
-        <location filename="../../machinelist.cpp" line="1086"/>
-        <location filename="../../machinelist.cpp" line="1109"/>
-        <location filename="../../machinelist.cpp" line="1130"/>
-        <location filename="../../machinelist.cpp" line="1155"/>
-        <location filename="../../machinelist.cpp" line="1181"/>
-        <location filename="../../machinelist.cpp" line="1231"/>
+        <location filename="../../machinelist.cpp" line="1088"/>
+        <location filename="../../machinelist.cpp" line="1111"/>
+        <location filename="../../machinelist.cpp" line="1132"/>
+        <location filename="../../machinelist.cpp" line="1157"/>
+        <location filename="../../machinelist.cpp" line="1183"/>
+        <location filename="../../machinelist.cpp" line="1233"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8134,172 +8139,172 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1093"/>
+        <location filename="../../machinelist.cpp" line="1095"/>
         <source>Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1098"/>
+        <location filename="../../machinelist.cpp" line="1100"/>
         <source>Mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1104"/>
+        <location filename="../../machinelist.cpp" line="1106"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1109"/>
+        <location filename="../../machinelist.cpp" line="1111"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1116"/>
+        <location filename="../../machinelist.cpp" line="1118"/>
         <source>Driver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Graphic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Cocktail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Protection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Save state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1120"/>
+        <location filename="../../machinelist.cpp" line="1122"/>
         <source>Palette size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1125"/>
+        <location filename="../../machinelist.cpp" line="1127"/>
         <source>BIOS set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1130"/>
+        <location filename="../../machinelist.cpp" line="1132"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1135"/>
+        <location filename="../../machinelist.cpp" line="1137"/>
         <source>Sample</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1140"/>
+        <location filename="../../machinelist.cpp" line="1142"/>
         <source>Disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1145"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
         <source>MD5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1145"/>
+        <location filename="../../machinelist.cpp" line="1147"/>
         <source>Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1150"/>
+        <location filename="../../machinelist.cpp" line="1152"/>
         <source>Adjuster</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1160"/>
+        <location filename="../../machinelist.cpp" line="1162"/>
         <source>Software list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1170"/>
+        <location filename="../../machinelist.cpp" line="1172"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1176"/>
+        <location filename="../../machinelist.cpp" line="1178"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1188"/>
+        <location filename="../../machinelist.cpp" line="1190"/>
         <source>Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1193"/>
+        <location filename="../../machinelist.cpp" line="1195"/>
         <source>Mandatory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1193"/>
+        <location filename="../../machinelist.cpp" line="1195"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1200"/>
+        <location filename="../../machinelist.cpp" line="1202"/>
         <source>Instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1205"/>
+        <location filename="../../machinelist.cpp" line="1207"/>
         <source>Brief name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1212"/>
+        <location filename="../../machinelist.cpp" line="1214"/>
         <source>Extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1219"/>
+        <location filename="../../machinelist.cpp" line="1221"/>
         <source>RAM options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1223"/>
+        <location filename="../../machinelist.cpp" line="1225"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1265"/>
+        <location filename="../../machinelist.cpp" line="1267"/>
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1268"/>
+        <location filename="../../machinelist.cpp" line="1270"/>
         <source>loading ROM state from cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1279"/>
+        <location filename="../../machinelist.cpp" line="1281"/>
         <source>done (loading ROM state from cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="1280"/>
+        <location filename="../../machinelist.cpp" line="1282"/>
         <source>%n cached ROM state(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8319,8 +8324,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelist.cpp" line="168"/>
         <location filename="../../machinelist.cpp" line="182"/>
-        <location filename="../../machinelist.cpp" line="1650"/>
-        <location filename="../../machinelist.cpp" line="1651"/>
+        <location filename="../../machinelist.cpp" line="1654"/>
+        <location filename="../../machinelist.cpp" line="1655"/>
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8335,7 +8340,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="898"/>
+        <location filename="../../machinelist.cpp" line="900"/>
         <source>verifying ROM status for all sets</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8345,24 +8350,24 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1589"/>
+        <location filename="../../machinelist.cpp" line="1593"/>
         <source>WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1915"/>
-        <location filename="../../machinelist.cpp" line="2715"/>
+        <location filename="../../machinelist.cpp" line="1919"/>
+        <location filename="../../machinelist.cpp" line="2717"/>
         <source>ascending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1915"/>
-        <location filename="../../machinelist.cpp" line="2715"/>
+        <location filename="../../machinelist.cpp" line="1919"/>
+        <location filename="../../machinelist.cpp" line="2717"/>
         <source>descending</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="1956"/>
+        <location filename="../../machinelist.cpp" line="1960"/>
         <source>, %n BIOS set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8370,7 +8375,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="1956"/>
+        <location filename="../../machinelist.cpp" line="1960"/>
         <source> and %n device(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8378,84 +8383,64 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1974"/>
-        <location filename="../../machinelist.cpp" line="2704"/>
+        <location filename="../../machinelist.cpp" line="1978"/>
+        <location filename="../../machinelist.cpp" line="2706"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1984"/>
+        <location filename="../../machinelist.cpp" line="1988"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1987"/>
+        <location filename="../../machinelist.cpp" line="1991"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2001"/>
+        <location filename="../../machinelist.cpp" line="2005"/>
         <source>ROM state filter already active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2005"/>
+        <location filename="../../machinelist.cpp" line="2009"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2009"/>
+        <location filename="../../machinelist.cpp" line="2013"/>
         <source>please wait for reload to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2028"/>
+        <location filename="../../machinelist.cpp" line="2032"/>
         <source>applying ROM state filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2031"/>
+        <location filename="../../machinelist.cpp" line="2035"/>
         <source>State filter - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2112"/>
+        <location filename="../../machinelist.cpp" line="2116"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2121"/>
-        <source>loading favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelist.cpp" line="2142"/>
-        <source>done (loading favorites)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelist.cpp" line="2151"/>
+        <location filename="../../machinelist.cpp" line="2153"/>
         <source>saving favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2159"/>
+        <location filename="../../machinelist.cpp" line="2161"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2160"/>
+        <location filename="../../machinelist.cpp" line="2162"/>
         <source>done (saving favorites)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelist.cpp" line="2165"/>
-        <source>loading play history</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelist.cpp" line="2185"/>
-        <source>done (loading play history)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8515,19 +8500,19 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2230"/>
-        <location filename="../../machinelist.cpp" line="2430"/>
+        <location filename="../../machinelist.cpp" line="2432"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2230"/>
-        <location filename="../../machinelist.cpp" line="2430"/>
+        <location filename="../../machinelist.cpp" line="2432"/>
         <source>normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2230"/>
-        <location filename="../../machinelist.cpp" line="2430"/>
+        <location filename="../../machinelist.cpp" line="2432"/>
         <source>crashed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8537,7 +8522,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2495"/>
+        <location filename="../../machinelist.cpp" line="2497"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8545,7 +8530,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="2610"/>
+        <location filename="../../machinelist.cpp" line="2612"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8553,82 +8538,82 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2695"/>
+        <location filename="../../machinelist.cpp" line="2697"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2715"/>
+        <location filename="../../machinelist.cpp" line="2717"/>
         <source>ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2622"/>
-        <location filename="../../machinelist.cpp" line="2952"/>
+        <location filename="../../machinelist.cpp" line="2624"/>
+        <location filename="../../machinelist.cpp" line="2954"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1285"/>
+        <location filename="../../machinelist.cpp" line="1287"/>
         <source>processing machine list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1314"/>
+        <location filename="../../machinelist.cpp" line="1316"/>
         <source>WARNING: couldn&apos;t determine emulator version of machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1316"/>
-        <location filename="../../machinelist.cpp" line="1320"/>
+        <location filename="../../machinelist.cpp" line="1318"/>
+        <location filename="../../machinelist.cpp" line="1322"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1330"/>
+        <location filename="../../machinelist.cpp" line="1333"/>
         <source>loading machine data from machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1332"/>
-        <location filename="../../machinelist.cpp" line="1556"/>
+        <location filename="../../machinelist.cpp" line="1335"/>
+        <location filename="../../machinelist.cpp" line="1560"/>
         <source>Machine data - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1871"/>
+        <location filename="../../machinelist.cpp" line="1875"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1554"/>
+        <location filename="../../machinelist.cpp" line="1558"/>
         <source>parsing machine data and recreating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1561"/>
+        <location filename="../../machinelist.cpp" line="1565"/>
         <source>ERROR: can&apos;t open machine list cache for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1915"/>
-        <location filename="../../machinelist.cpp" line="2715"/>
+        <location filename="../../machinelist.cpp" line="1919"/>
+        <location filename="../../machinelist.cpp" line="2717"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1930"/>
-        <location filename="../../machinelist.cpp" line="1943"/>
+        <location filename="../../machinelist.cpp" line="1934"/>
+        <location filename="../../machinelist.cpp" line="1947"/>
         <source>restoring machine selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1955"/>
+        <location filename="../../machinelist.cpp" line="1959"/>
         <source>done (processing machine list, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="1956"/>
+        <location filename="../../machinelist.cpp" line="1960"/>
         <source>%n machine(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8636,12 +8621,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1959"/>
+        <location filename="../../machinelist.cpp" line="1963"/>
         <source>WARNING: machine list not fully parsed, invalidating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1963"/>
+        <location filename="../../machinelist.cpp" line="1967"/>
         <source>WARNING: machine list cache is out of date, invalidating machine list cache</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8693,57 +8678,57 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3187"/>
+        <location filename="../../machinelist.cpp" line="3185"/>
         <source>loading category.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3192"/>
+        <location filename="../../machinelist.cpp" line="3189"/>
         <source>Category.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3237"/>
+        <location filename="../../machinelist.cpp" line="3232"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no category.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3244"/>
+        <location filename="../../machinelist.cpp" line="3239"/>
         <source>done (loading category.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3406"/>
+        <location filename="../../machinelist.cpp" line="3401"/>
         <source>loading catver.ini</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3411"/>
+        <location filename="../../machinelist.cpp" line="3405"/>
         <source>Catver.ini - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3475"/>
+        <location filename="../../machinelist.cpp" line="3460"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3482"/>
+        <location filename="../../machinelist.cpp" line="3467"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3483"/>
+        <location filename="../../machinelist.cpp" line="3468"/>
         <source>%1 category / %2 version records loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3271"/>
+        <location filename="../../machinelist.cpp" line="3266"/>
         <source>Category view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="3245"/>
+        <location filename="../../machinelist.cpp" line="3240"/>
         <source>%n category record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8751,7 +8736,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="3509"/>
+        <location filename="../../machinelist.cpp" line="3494"/>
         <source>Version view - %p%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8905,12 +8890,12 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="7638"/>
         <location filename="../../qmc2main.cpp" line="7705"/>
         <location filename="../../qmc2main.cpp" line="7718"/>
-        <location filename="../../qmc2main.cpp" line="9421"/>
-        <location filename="../../qmc2main.cpp" line="9476"/>
-        <location filename="../../qmc2main.cpp" line="9544"/>
-        <location filename="../../qmc2main.cpp" line="9616"/>
-        <location filename="../../qmc2main.cpp" line="9682"/>
-        <location filename="../../qmc2main.cpp" line="9691"/>
+        <location filename="../../qmc2main.cpp" line="9420"/>
+        <location filename="../../qmc2main.cpp" line="9475"/>
+        <location filename="../../qmc2main.cpp" line="9543"/>
+        <location filename="../../qmc2main.cpp" line="9615"/>
+        <location filename="../../qmc2main.cpp" line="9681"/>
+        <location filename="../../qmc2main.cpp" line="9690"/>
         <source>Waiting for data...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10624,7 +10609,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4278"/>
-        <location filename="../../qmc2main.cpp" line="9048"/>
+        <location filename="../../qmc2main.cpp" line="9047"/>
         <source>Internal browser</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10825,9 +10810,9 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../qmc2main.cpp" line="1291"/>
         <location filename="../../qmc2main.cpp" line="1292"/>
         <location filename="../../qmc2main.cpp" line="1293"/>
+        <location filename="../../qmc2main.cpp" line="9873"/>
         <location filename="../../qmc2main.cpp" line="9874"/>
         <location filename="../../qmc2main.cpp" line="9875"/>
-        <location filename="../../qmc2main.cpp" line="9876"/>
         <source>Lock ranks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11399,7 +11384,7 @@ Do you really want to check all ROM states now?</source>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4068"/>
-        <location filename="../../qmc2main.cpp" line="10098"/>
+        <location filename="../../qmc2main.cpp" line="10097"/>
         <source>Export to...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11412,8 +11397,8 @@ Do you really want to check all ROM states now?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="4081"/>
         <location filename="../../qmc2main.cpp" line="4085"/>
-        <location filename="../../qmc2main.cpp" line="10110"/>
-        <location filename="../../qmc2main.cpp" line="10114"/>
+        <location filename="../../qmc2main.cpp" line="10109"/>
+        <location filename="../../qmc2main.cpp" line="10113"/>
         <source>Select file...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11500,9 +11485,9 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="1286"/>
         <location filename="../../qmc2main.cpp" line="1287"/>
         <location filename="../../qmc2main.cpp" line="1288"/>
+        <location filename="../../qmc2main.cpp" line="9868"/>
         <location filename="../../qmc2main.cpp" line="9869"/>
         <location filename="../../qmc2main.cpp" line="9870"/>
-        <location filename="../../qmc2main.cpp" line="9871"/>
         <source>Unlock ranks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11529,7 +11514,7 @@ Do you really want to check all ROM states now?</source>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2482"/>
-        <location filename="../../qmc2main.cpp" line="9065"/>
+        <location filename="../../qmc2main.cpp" line="9064"/>
         <source>please wait for ROMAlyzer to finish the current rebuild and try again</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11952,7 +11937,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="8398"/>
         <location filename="../../qmc2main.cpp" line="8426"/>
         <location filename="../../qmc2main.cpp" line="8464"/>
-        <location filename="../../qmc2main.cpp" line="9060"/>
+        <location filename="../../qmc2main.cpp" line="9059"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11998,40 +11983,40 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9050"/>
+        <location filename="../../qmc2main.cpp" line="9049"/>
         <source>External browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9287"/>
-        <location filename="../../qmc2main.cpp" line="9365"/>
+        <location filename="../../qmc2main.cpp" line="9286"/>
+        <location filename="../../qmc2main.cpp" line="9364"/>
         <source>Software detail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9754"/>
+        <location filename="../../qmc2main.cpp" line="9753"/>
         <source>Choose overlay color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9980"/>
+        <location filename="../../qmc2main.cpp" line="9979"/>
         <source>WARNING: ROM path &apos;%1&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9984"/>
+        <location filename="../../qmc2main.cpp" line="9983"/>
         <source>WARNING: ROM path &apos;%1&apos; isn&apos;t accessible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9993"/>
+        <location filename="../../qmc2main.cpp" line="9992"/>
         <source>The ROM path &apos;%1&apos; doesn&apos;t exist or isn&apos;t accessible.
 
 Please check the &apos;rompath&apos; option in the global emulator configuration to fix this, otherwise ROMs will probably not be available to the emulator!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9996"/>
+        <location filename="../../qmc2main.cpp" line="9995"/>
         <source>The ROM paths
 
 %1
@@ -12042,35 +12027,35 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="9999"/>
+        <location filename="../../qmc2main.cpp" line="9998"/>
         <source>Check ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10089"/>
+        <location filename="../../qmc2main.cpp" line="10088"/>
         <source>processing global emulator configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="10098"/>
         <location filename="../../qmc2main.cpp" line="10099"/>
-        <location filename="../../qmc2main.cpp" line="10100"/>
         <source>Export global MAME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10101"/>
+        <location filename="../../qmc2main.cpp" line="10100"/>
         <source>Import from...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="10101"/>
         <location filename="../../qmc2main.cpp" line="10102"/>
-        <location filename="../../qmc2main.cpp" line="10103"/>
         <source>Import global MAME configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10109"/>
-        <location filename="../../qmc2main.cpp" line="10113"/>
+        <location filename="../../qmc2main.cpp" line="10108"/>
+        <location filename="../../qmc2main.cpp" line="10112"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation type="unfinished"></translation>
     </message>
@@ -16265,106 +16250,106 @@ Are you sure you want to do this?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../machinelist.cpp" line="1879"/>
+        <location filename="../../machinelist.cpp" line="1883"/>
         <location filename="../../options.cpp" line="1411"/>
         <source>ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1882"/>
+        <location filename="../../machinelist.cpp" line="1886"/>
         <location filename="../../options.cpp" line="1414"/>
         <source>tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1885"/>
+        <location filename="../../machinelist.cpp" line="1889"/>
         <location filename="../../options.cpp" line="1417"/>
         <source>year</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1888"/>
+        <location filename="../../machinelist.cpp" line="1892"/>
         <location filename="../../options.cpp" line="1420"/>
         <source>manufacturer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1876"/>
+        <location filename="../../machinelist.cpp" line="1880"/>
         <location filename="../../options.cpp" line="1408"/>
         <source>machine description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1891"/>
+        <location filename="../../machinelist.cpp" line="1895"/>
         <location filename="../../options.cpp" line="1423"/>
         <source>machine name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1894"/>
+        <location filename="../../machinelist.cpp" line="1898"/>
         <location filename="../../options.cpp" line="1426"/>
         <source>ROM types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1897"/>
+        <location filename="../../machinelist.cpp" line="1901"/>
         <location filename="../../options.cpp" line="1429"/>
         <source>players</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1900"/>
+        <location filename="../../machinelist.cpp" line="1904"/>
         <location filename="../../options.cpp" line="1432"/>
         <source>driver status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1903"/>
+        <location filename="../../machinelist.cpp" line="1907"/>
         <location filename="../../options.cpp" line="1435"/>
         <source>source file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1906"/>
+        <location filename="../../machinelist.cpp" line="1910"/>
         <location filename="../../options.cpp" line="1438"/>
         <source>rank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1909"/>
+        <location filename="../../machinelist.cpp" line="1913"/>
         <location filename="../../options.cpp" line="1441"/>
         <source>category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="1912"/>
+        <location filename="../../machinelist.cpp" line="1916"/>
         <location filename="../../options.cpp" line="1444"/>
         <source>version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2622"/>
-        <location filename="../../machinelist.cpp" line="2800"/>
+        <location filename="../../machinelist.cpp" line="2624"/>
+        <location filename="../../machinelist.cpp" line="2802"/>
         <source>correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2830"/>
+        <location filename="../../machinelist.cpp" line="2832"/>
         <source>incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2860"/>
+        <location filename="../../machinelist.cpp" line="2862"/>
         <source>mostly correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2890"/>
+        <location filename="../../machinelist.cpp" line="2892"/>
         <source>not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelist.cpp" line="2920"/>
+        <location filename="../../machinelist.cpp" line="2922"/>
         <location filename="../../romalyzer.cpp" line="4395"/>
         <location filename="../../romalyzer.cpp" line="4436"/>
         <location filename="../../romalyzer.cpp" line="4448"/>
@@ -16395,28 +16380,28 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10316"/>
+        <location filename="../../qmc2main.cpp" line="10315"/>
         <source>Setting up the GUI, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10343"/>
+        <location filename="../../qmc2main.cpp" line="10342"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10346"/>
+        <location filename="../../qmc2main.cpp" line="10345"/>
         <source>SVN r%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10353"/>
+        <location filename="../../qmc2main.cpp" line="10352"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10359"/>
-        <location filename="../../qmc2main.cpp" line="10363"/>
+        <location filename="../../qmc2main.cpp" line="10358"/>
+        <location filename="../../qmc2main.cpp" line="10362"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation type="unfinished"></translation>
     </message>

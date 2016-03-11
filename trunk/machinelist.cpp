@@ -747,8 +747,10 @@ void MachineList::load()
 	}
 	if ( emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0 ) {
 		parse();
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading favorites and play history"));
 		loadFavorites();
 		loadPlayHistory();
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites and play history)"));
 		if ( initialLoad ) {
 			QTime startupTime(0, 0, 0, 0);
 			startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
@@ -2120,7 +2122,6 @@ void MachineList::filter(bool initial)
 
 void MachineList::loadFavorites()
 {
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading favorites"));
 	qmc2MainWindow->listWidgetFavorites->clear();
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString());
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -2141,7 +2142,6 @@ void MachineList::loadFavorites()
 		f.close();
 	}
 	qmc2MainWindow->listWidgetFavorites->sortItems();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites)"));
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabFavorites) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentFavoritesSelection()));
 	else
@@ -2164,7 +2164,6 @@ void MachineList::saveFavorites()
 
 void MachineList::loadPlayHistory()
 {
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading play history"));
 	qmc2MainWindow->listWidgetPlayed->clear();
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString());
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -2184,7 +2183,6 @@ void MachineList::loadPlayHistory()
 		}
 		f.close();
 	}
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading play history)"));
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabPlayed) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentPlayedSelection()));
 	else
@@ -2251,8 +2249,10 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	}
 	parse();
   	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading favorites and play history"));
 	loadFavorites();
 	loadPlayHistory();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites and play history)"));
 	if ( initialLoad ) {
 		QTime startupTime(0, 0, 0, 0);
 		startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());

@@ -1065,7 +1065,7 @@ void EmulatorOptions::addChoices(QString optionName, QStringList choices, QStrin
 void EmulatorOptions::createMap()
 {
 	QString trType(tr("Type")), trBool(tr("bool")), trInt(tr("int")), trFloat(tr("float")), trFloat2(tr("float2")), trFloat3(tr("float3")), trFile(tr("file")), trDirectory(tr("directory")),
-		trChoice(tr("choice")), trColor(tr("color")), trString(tr("string")), trUnknown(tr("unkown")), trShortName(tr("Short name")), trDefault(tr("Default")), trTrue(tr("true")),
+		trChoice(tr("choice")), trColor(tr("color")), trString(tr("string")), trUnknown(tr("unknown")), trShortName(tr("Short name")), trDefault(tr("Default")), trTrue(tr("true")),
 		trFalse(tr("false")), trEmpty(tr("<EMPTY>")), trDescription(tr("Description")), utTrue("true");
 	optionsMap.clear();
 	sectionItemMap.clear();
