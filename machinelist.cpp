@@ -594,7 +594,6 @@ void MachineList::load()
 	QStringList args;
 	QTime elapsedTime(0, 0, 0, 0);
 	parseTimer.start();
-	QString command;
 	// emulator version
 	QProcess commandProc;
 	args << "-help";
@@ -804,7 +803,6 @@ void MachineList::load()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("XML data - %p%"));
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString();
 		args.clear();
 		args << "-listxml";
 		uncommittedXmlDbRows = 0;
@@ -821,7 +819,7 @@ void MachineList::load()
 		connect(loadProc, SIGNAL(readyReadStandardOutput()), this, SLOT(loadReadyReadStandardOutput()));
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
 		loadProc->setProcessChannelMode(QProcess::MergedChannels);
-		loadProc->start(command, args);
+		loadProc->start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
 	}
 	userDataDb()->setEmulatorVersion(emulatorVersion);
 	userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
@@ -863,22 +861,18 @@ void MachineList::verify(bool currentOnly)
 				numCorrectMachines--;
 				numUnknownMachines++;
 				break;
-
 			case 'M':
 				numMostlyCorrectMachines--;
 				numUnknownMachines++;
 				break;
-
 			case 'I':
 				numIncorrectMachines--;
 				numUnknownMachines++;
 				break;
-
 			case 'N':
 				numNotFoundMachines--;
 				numUnknownMachines++;
 				break;
-
 			case 'U':
 			default:
 				break;
@@ -1194,7 +1188,6 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 			descriptions.clear();
 			descriptions << tr("Tag") << tr("Mandatory") << tr("Interface");
 			insertAttributeItems(childItem, element, attributes, descriptions, false);
-
 			gamePos++;
 			while ( xmlLines[gamePos].contains("<instance ") ) {
 				QString subElement = xmlLines[gamePos].simplified();
@@ -1241,7 +1234,6 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 		if ( childItem )
 			itemList << childItem;
 	}
-
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 	delete item->takeChild(0);
 	item->addChildren(itemList);
@@ -1298,6 +1290,8 @@ void MachineList::parse()
 	QList<QTreeWidgetItem *> itemList;
 	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
 	QString trWaitingForData(tr("Waiting for data..."));
+	QString trSystemBios(tr("System / BIOS"));
+	QString trSystemDevice(tr("System / Device"));
 	QChar columnSplitChar('\t');
 	QChar lineSplitChar('\n');
 	if ( machineListCache.isOpen() ) {
@@ -1388,7 +1382,7 @@ void MachineList::parse()
 									if ( !showBiosSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
 									biosSets.insert(machineName, true);
 									break;
 								case QMC2_MACHINETYPE_DEVICE:
@@ -1397,7 +1391,7 @@ void MachineList::parse()
 									if ( !showDeviceSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
 									deviceSets.insert(machineName, true);
 									machinePlayers = machineDrvStat = "N/A";
 									break;
@@ -1419,7 +1413,7 @@ void MachineList::parse()
 									if ( !showBiosSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
 									biosSets.insert(machineName, true);
 									break;
 								case QMC2_MACHINETYPE_DEVICE:
@@ -1428,7 +1422,7 @@ void MachineList::parse()
 									if ( !showDeviceSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
 									deviceSets.insert(machineName, true);
 									machinePlayers = machineDrvStat = "N/A";
 									break;
@@ -1450,7 +1444,7 @@ void MachineList::parse()
 									if ( !showBiosSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
 									biosSets.insert(machineName, true);
 									break;
 								case QMC2_MACHINETYPE_DEVICE:
@@ -1459,7 +1453,7 @@ void MachineList::parse()
 									if ( !showDeviceSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
 									deviceSets.insert(machineName, true);
 									machinePlayers = machineDrvStat = "N/A";
 									break;
@@ -1481,7 +1475,7 @@ void MachineList::parse()
 									if ( !showBiosSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
 									biosSets.insert(machineName, true);
 									break;
 								case QMC2_MACHINETYPE_DEVICE:
@@ -1490,7 +1484,7 @@ void MachineList::parse()
 									if ( !showDeviceSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
 									deviceSets.insert(machineName, true);
 									machinePlayers = machineDrvStat = "N/A";
 									break;
@@ -1513,7 +1507,7 @@ void MachineList::parse()
 									if ( !showBiosSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
 									biosSets.insert(machineName, true);
 									break;
 								case QMC2_MACHINETYPE_DEVICE:
@@ -1522,7 +1516,7 @@ void MachineList::parse()
 									if ( !showDeviceSets )
 										hiddenItemHash.insert(machineItem, true);
 									if ( useCategories )
-										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
 									deviceSets.insert(machineName, true);
 									machinePlayers = machineDrvStat = "N/A";
 									break;
@@ -1605,9 +1599,9 @@ void MachineList::parse()
 					// find year & manufacturer and determine ROM/CHD requirements
 					bool endGame = false;
 					int i = lineCounter;
-					QString machineYear = trQuestionMark, machineManufacturer = trQuestionMark, machinePlayers = trQuestionMark, machineDrvStat = trQuestionMark;
+					QString machineYear(trQuestionMark), machineManufacturer(trQuestionMark), machinePlayers(trQuestionMark), machineDrvStat(trQuestionMark);
 					bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
-					QString endMark = "</machine>";
+					QString endMark("</machine>");
 					while ( !endGame ) {
 						QString xmlLine = xmlLines[i];
 						if ( xmlLine.contains("<year>") ) {
@@ -1659,9 +1653,9 @@ void MachineList::parse()
 					}
 					if ( useCategories ) {
 						if ( isBIOS )
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / BIOS"));
+							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
 						else if ( isDev )
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, tr("System / Device"));
+							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
 						else {
 							QString *categoryString = categoryHash.value(machineName);
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
@@ -3274,6 +3268,8 @@ void MachineList::createCategoryView()
 		if ( loadResponse == 0 )
 			loadResponse = 25;
 		QHash<QTreeWidgetItem *, int> childCountHash;
+		QString trSystemBios(tr("System / BIOS"));
+		QString trSystemDevice(tr("System / Device"));
 		for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
 			if ( i % loadResponse == 0 ) {
 				qmc2MainWindow->progressBarMachineList->setValue(i);
@@ -3285,9 +3281,9 @@ void MachineList::createCategoryView()
 			bool isBIOS = isBios(machineName);
 			bool isDev = isDevice(machineName);
 			if ( isBIOS )
-				category = tr("System / BIOS");
+				category = trSystemBios;
 			else if ( isDev )
-				category = tr("System / Device");
+				category = trSystemDevice;
 			else
 				category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
 			QTreeWidgetItem *categoryItem = itemHash[category];
