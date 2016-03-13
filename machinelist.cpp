@@ -1322,7 +1322,7 @@ void MachineList::parse()
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
 		if ( !reparseMachineList && !qmc2StopParser ) {
-			loadIcon("005", 0);
+			loadIcon(QString(), 0); // initiates icon pre-caching
 			qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines * 2);
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -1547,7 +1547,7 @@ void MachineList::parse()
 	if ( machineListCache.isOpen() )
 		machineListCache.close();
 	if ( reparseMachineList && !qmc2StopParser ) {
-		loadIcon("005", 0);
+		loadIcon(QString(), 0); // initiates icon pre-caching
 		qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines * 2);
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and recreating machine list cache"));
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -1988,36 +1988,38 @@ void MachineList::parse()
 	verifyCurrentOnly = false;
 	if ( autoRomCheck )
 		QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
-	else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() && !qmc2StopParser )
+	else if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() )
 		filter(true);
 	enableWidgets(true);
 }
 
 void MachineList::filter(bool initial)
 {
-	if ( qmc2FilterActive ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state filter already active"));
-		return;
-	}
-	if ( qmc2VerifyActive ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
-		return;
-	}
-	if ( qmc2ReloadActive ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-		return;
+	if ( !initial ) {
+		if ( qmc2FilterActive ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state filter already active"));
+			return;
+		}
+		if ( qmc2VerifyActive ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
+			return;
+		}
+		if ( qmc2ReloadActive ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+			return;
+		}
 	}
 	bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowCorrect", true).toBool();
 	bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowMostlyCorrect", true).toBool();
 	bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowIncorrect", true).toBool();
 	bool showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowNotFound", true).toBool();
 	bool showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", true).toBool();
-	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
-	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 	if ( initial && showC && showM && showI && showN && showU ) {
 		qmc2StatesTogglesEnabled = true;
 		return;
 	}
+	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
+	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 	QTime elapsedTime(0, 0, 0, 0);
 	qmc2StopParser = false;
 	parseTimer.start();
@@ -2068,7 +2070,7 @@ void MachineList::filter(bool initial)
 		int filterResponse = itemCount / QMC2_STATEFILTER_UPDATES;
 		for (int i = 0; i < itemCount && !qmc2StopParser; i++) {
 			QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
-			QString machineName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
+			QString machineName(item->text(QMC2_MACHINELIST_COLUMN_NAME));
 			if ( !showBiosSets && isBios(machineName) )
 				item->setHidden(true);
 			else if ( !showDeviceSets && isDevice(machineName) )
@@ -2960,7 +2962,7 @@ void MachineList::verifyReadyReadStandardOutput()
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 }
 
-bool MachineList::loadIcon(QString machineName, QTreeWidgetItem *item)
+bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 {
 	QIcon cachedIcon(qmc2IconHash.value(machineName));
 	if ( !cachedIcon.isNull() ) {
