@@ -232,10 +232,10 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>Reload current URL</string>
+         <string>Reload current page</string>
         </property>
         <property name="statusTip">
-         <string>Reload current URL</string>
+         <string>Reload current page</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
@@ -255,10 +255,10 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>Stop loading of current URL</string>
+         <string>Stop loading of current page</string>
         </property>
         <property name="statusTip">
-         <string>Stop loading of current URL</string>
+         <string>Stop loading of current page</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
