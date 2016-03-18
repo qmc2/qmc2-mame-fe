@@ -1591,6 +1591,10 @@
 			<description lang="pt" text="Altura do snapshot HLSL (upscale)"/>
 			<description lang="es" text="Altura de snapshot HLSL (upscale)"/>
 		</option>
+		<option default="1.0" name="scanline_variation" type="float">
+			<description lang="us" text="Individual height varying value for scanlines"/>
+			<description lang="de" text="Individuelle Höhen-Variierung für Scanlines"/>
+		</option>
 		<option default="0" name="shadow_mask_tile_mode" type="int">
 			<description lang="us" text="Shadow mask tile mode (0 for screen based, 1 for source based)"/>
 			<description lang="de" text="'Shadow Mask Tile Mode' (0 für Bildschirm-basiert, 1 für Quellen-basiert)"/>
