@@ -14,7 +14,7 @@
 #warning "Target OS is not supported -- QMC2 currently supports Linux/UNIX, Windows and Mac OS X!"
 #endif
 
-#if !defined(Q_OS_WIN)
+#if !defined(QMC2_OS_WIN)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
