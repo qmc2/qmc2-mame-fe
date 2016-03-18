@@ -1570,20 +1570,6 @@
 			<description lang="pt" text="Caminho para os arquivos hlsl"/>
 			<description lang="es" text="Ruta a archivos hlsl"/>
 		</option>
-		<option default="0" name="hlsl_prescale_x" type="int">
-			<description lang="us" text="HLSL pre-scale override factor for X (0 for auto)"/>
-			<description lang="de" text="HLSL Pre-Skalierungsfaktor für X (0 = automatisch)"/>
-			<description lang="fr" text="Facteur de substition pour la mise à l'échelle en X (0 pour automatique)"/>
-			<description lang="pt" text="Fator de substituição da pré-escala do HLSL para X (0 para automático)"/>
-			<description lang="es" text="Factor de sustitución de pre-escala HLSL para X (0 para auto)"/>
-		</option>
-		<option default="0" name="hlsl_prescale_y" type="int">
-			<description lang="us" text="HLSL pre-scale override factor for Y (0 for auto)"/>
-			<description lang="de" text="HLSL Pre-Skalierungsfaktor für Y (0 = automatisch)"/>
-			<description lang="fr" text="Facteur de substition pour la mise à l'échelle en Y (0 pour automatique)"/>
-			<description lang="pt" text="Fator de substituição da pré-escala do HLSL para Y (0 para automático)"/>
-			<description lang="es" text="Factor de sustitución de pre-escala HLSL para Y (0 para auto)"/>
-		</option>
 		<option default="" name="hlsl_write" ignore="true" type="file" relativeTo="snapshot_directory">
 			<description lang="es" text="Activar la escritura de AVI HLSL al especificar un archivo de salida (se recomienda un disco rápido)"/>
 			<description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
@@ -1724,21 +1710,21 @@
 			<description lang="pt" text="Valor da escala de variação de interlace geral para scanlines"/>
 			<description lang="es" text="Valor global de entrelazado 'jitter' de scanlines"/>
 		</option>
-		<option default="1.0,0.0" name="defocus" type="float2">
+		<option default="0.0,0.0" name="defocus" type="float2">
 			<description lang="us" text="Overall defocus scaling in screen-relative coordinates"/>
 			<description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Bildschirm-relativen Koordinaten"/>
 			<description lang="fr" text="Echelle globale d'étirement 'defocus' pour les coordonnées relatives à l'écran"/>
 			<description lang="pt" text="Escala de desfocagem geral nas coordenadas relativas à tela"/>
 			<description lang="es" text="Valor global de escalado 'defocus' en coordenadas relativas a la pantalla"/>
 		</option>
-		<option default="0.25,0.0,-0.25" name="converge_x" type="float3">
+		<option default="0.0,0.0,0.0" name="converge_x" type="float3">
 			<description lang="us" text="Convergence in screen-relative X direction"/>
 			<description lang="de" text="Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
 			<description lang="fr" text="Convergence en direction X relative à l'écran"/>
 			<description lang="pt" text="Convergência do vermelho na direção X relativa"/>
 			<description lang="es" text="Convergencia en dirección X relativa a la pantalla"/>
 		</option>
-		<option default="0.0,0.25,-0.25" name="converge_y" type="float3">
+		<option default="0.0,0.0,0.0" name="converge_y" type="float3">
 			<description lang="us" text="Convergence in screen-relative Y direction"/>
 			<description lang="de" text="Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
 			<description lang="fr" text="Convergence en direction Y relative à l'écran"/>
@@ -1780,7 +1766,7 @@
 			<description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada"/>
 			<description lang="es" text="Señal de salida azul generada por la señal de entrada"/>
 		</option>
-		<option default="1.4" name="saturation" type="float">
+		<option default="1.0" name="saturation" type="float">
 			<description lang="us" text="Saturation scaling value"/>
 			<description lang="de" text="Wert der Sättigungs-Skalierung"/>
 			<description lang="fr" text="Valeur d'étirement de saturation"/>
@@ -1794,28 +1780,28 @@
 			<description lang="pt" text="Valor de deslocamento do sinal (aditivo)"/>
 			<description lang="es" text="Valor de compensación de la señal (aditivo)"/>
 		</option>
-		<option default="0.95,0.95,0.95" name="scale" type="float3">
+		<option default="1.0,1.0,1.0" name="scale" type="float3">
 			<description lang="us" text="Signal scaling value (multiplicative)"/>
 			<description lang="de" text="Wert des Signal-Offsets (multiplikativ)"/>
 			<description lang="fr" text="Valeur d'étirement du signal (multiplicatif)"/>
 			<description lang="pt" text="Valor de escala do sinal (multiplicativo)"/>
 			<description lang="es" text="Valor de escalado de la señal (multiplicador)"/>
 		</option>
-		<option default="0.8,0.8,0.8" name="power" type="float3">
+		<option default="1.0,1.0,1.0" name="power" type="float3">
 			<description lang="us" text="Signal power value (exponential)"/>
 			<description lang="de" text="Wert der Signalstärke (exponentiell)"/>
 			<description lang="fr" text="Valeur de puissance du signal (exponentiel)"/>
 			<description lang="pt" text="Valor da potência do sinal (exponencial)"/>
 			<description lang="es" text="Valor de potencia de la señal (exponencial)"/>
 		</option>
-		<option default="0.05,0.05,0.05" name="floor" type="float3">
+		<option default="0.0,0.0,0.0" name="floor" type="float3">
 			<description lang="us" text="Signal floor level"/>
 			<description lang="de" text="Niedrigster Wert der Signalstärke"/>
 			<description lang="fr" text="Niveau plancher du signal"/>
 			<description lang="pt" text="Nível base de sinal"/>
 			<description lang="es" text="Nivel de suelo de la señal"/>
 		</option>
-		<option default="0.4,0.4,0.4" name="phosphor_life" type="float3">
+		<option default="0.0,0.0,0.0" name="phosphor_life" type="float3">
 			<description lang="us" text="Phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
 			<description lang="de" text="Rate der Nachleuchtdämpfung (0.0 = sofort, 1.0 = ewig)"/>
 			<description lang="fr" text="Taux de décroissance de la phosphorescence (0.0 instantané, 1.0 sans fin)"/>
@@ -1926,7 +1912,7 @@
 			<description lang="us" text="Bloom blend mode (0 for addition, 1 for darken)"/>
 			<description lang="de" text="Glanz Blendmodus (0 für Addition, 1 zum Abdunkeln)"/>
 		</option>
-		<option default="0.25" name="bloom_scale" type="float">
+		<option default="0.0" name="bloom_scale" type="float">
 			<description lang="us" text="Intensity factor for bloom"/>
 			<description lang="de" text="Intensitätsfaktor für Glanz"/>
 		</option>
