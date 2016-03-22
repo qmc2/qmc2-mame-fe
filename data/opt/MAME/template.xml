@@ -1136,6 +1136,18 @@
 			<description lang="pt" text="Permitir fatores de esticamento não inteiros"/>
 			<description lang="es" text="Permitir valores de relación de aspecto no enteros"/>
 		</option>
+		<option default="false" name="unevenstretchx" type="bool">
+			<description lang="us" text="Allow non-integer stretch factors only on horizontal axis"/>
+			<description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren nur für die horizontale Achse zulassen"/>
+		</option>
+		<option default="0" name="intscalex" type="int">
+			<description lang="us" text="Set horizontal integer scale factor"/>
+			<description lang="de" text="Horizontaler ganzzahliger Skalierungsfaktor"/>
+		</option>
+		<option default="0" name="intscaley" type="int">
+			<description lang="us" text="Set vertical integer scale factor"/>
+			<description lang="de" text="Vertikaler ganzzahliger Skalierungsfaktor"/>
+		</option>
 		<option default="1" name="prescale" type="int">
 			<description lang="us" text="Scale screen rendering by this amount in software"/>
 			<description lang="de" text="Bildschirm-Skalierung um diesen Betrag (in Software)"/>
