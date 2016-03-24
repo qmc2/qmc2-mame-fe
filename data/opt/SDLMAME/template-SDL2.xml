@@ -332,14 +332,6 @@
 			<description lang="fr" text="Ajuste automatiquement la vitesse de jeu pour conserver le taux de rafraichissement du jeu plus bas que celui de l'écran"/>
 			<description lang="pt" text="Automaticamente ajustar a velocidade do jogo para manter a taxa de refresh menor que a da tela"/>
 		</option>
-		<option default="false" name="multithreading" type="bool">
-			<description lang="es" text="Activar multitarea, esto permite el renderizado y blitting en procesos separados "/>
-			<description lang="us" text="Enable multithreading; this enables rendering and blitting on a separate thread"/>
-			<description lang="de" text="Multi-Threading aktivieren; Render- und Blit-Operationen werden in eigenen Threads ausgeführt"/>
-			<description lang="pl" text="Włącz wielowątkowość; ta opcja włącza renderowanie i rozmywanie w oddzielnym wątku"/>
-			<description lang="fr" text="Active le multi-tâche; ceci sépare le rendu et le blitting sur deux tâches séparées"/>
-			<description lang="pt" text="Habilitar multi-processamento; isso habilita renderização e blitting em threads separadas"/>
-		</option>
 		<option default="false" name="sdlvideofps" type="bool">
 			<description lang="us" text="Show SDL video performance"/>
 			<description lang="de" text="SDL Video Performance anzeigen"/>
@@ -1987,6 +1979,45 @@
 			<description lang="fr" text="libGL.so alernatif à utiliser; 'auto' pour réglage par défaut"/>
 			<description lang="pt" text="libGL.so alternativo à utilizar; 'auto' para usar o padrão do sistema"/>
 			<description lang="es" text="libGL.so alternativa a utilizar; 'auto' para predeterminado de sistema"/>
+		</option>
+	</section>
+	<section name="bgfx_post_processing_options">
+		<description lang="us" text="BGFX post-processing options"/>
+		<description lang="de" text="BGFX Post-Processing Optionen"/>
+		<option default="auto" name="bgfx_backend" type="combo">
+			<description lang="us" text="BGFX backend to use"/>
+			<description lang="de" text="Zu verwendendes BGFX Backend"/>
+			<choice name="auto"/>
+			<choice ignore.Linux="true" ignore.Darwin="true" name="d3d9"/>
+			<choice ignore.Linux="true" ignore.Darwin="true" name="d3d11"/>
+			<choice name="metal"/>
+			<choice name="opengl"/>
+			<choice name="gles"/>
+		</option>
+		<option default="false" name="bgfx_debug" type="bool">
+			<description lang="us" text="Enable BGFX debugging statistics"/>
+			<description lang="de" text="BGFX Debug Statistiken einschalten"/>
+		</option>
+		<option default="bgfx" name="bgfx_path" type="directory">
+			<description lang="us" text="Path to BGFX-related files"/>
+			<description lang="de" text="Pfad zu BGFX-bezogenen Dateien"/>
+		</option>
+		<option default="2.0" name="bgfx_prescale_x" type="float">
+			<description lang="us" text="X prescale"/>
+			<description lang="de" text="X Vorskalierung"/>
+		</option>
+		<option default="2.0" name="bgfx_prescale_y" type="float">
+			<description lang="us" text="Y prescale"/>
+			<description lang="de" text="Y Vorskalierung"/>
+		</option>
+		<option default="default" name="bgfx_screen_chains" type="combo">
+			<description lang="us" text="Comma-delimited list of screen chain JSON names, colon-delimited per-window"/>
+			<description lang="de" text="Komma-separierte Liste der Screen Chain JSON Namen, Doppelpunkt-separiert pro Fenster"/>
+			<choice name="default"/>
+		</option>
+		<option default="shadow-mask.png" name="bgfx_shadow_mask" type="string">
+			<description lang="us" text="Shadow mask texture name"/>
+			<description lang="de" text="Texturname der Lochmaske"/>
 		</option>
 	</section>
 	<section ignore.Linux="true" ignore.Windows="true" name="core_audio">
