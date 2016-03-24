@@ -1990,7 +1990,7 @@
 			<choice name="auto"/>
 			<choice ignore.Linux="true" ignore.Darwin="true" name="d3d9"/>
 			<choice ignore.Linux="true" ignore.Darwin="true" name="d3d11"/>
-			<choice name="metal"/>
+			<choice ignore.Linux="true" ignore.Windows="true" name="metal"/>
 			<choice name="opengl"/>
 			<choice name="gles"/>
 		</option>
