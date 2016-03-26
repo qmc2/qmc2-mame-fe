@@ -2230,14 +2230,6 @@
 			<description lang="us" text="Path to BGFX-related files"/>
 			<description lang="de" text="Pfad zu BGFX-bezogenen Dateien"/>
 		</option>
-		<option default="2.0" name="bgfx_prescale_x" type="float">
-			<description lang="us" text="X prescale"/>
-			<description lang="de" text="X Vorskalierung"/>
-		</option>
-		<option default="2.0" name="bgfx_prescale_y" type="float">
-			<description lang="us" text="Y prescale"/>
-			<description lang="de" text="Y Vorskalierung"/>
-		</option>
 		<option default="default" name="bgfx_screen_chains" type="combo">
 			<description lang="us" text="Comma-delimited list of screen chain JSON names, colon-delimited per-window"/>
 			<description lang="de" text="Komma-separierte Liste der Screen Chain JSON Namen, Doppelpunkt-separiert pro Fenster"/>
