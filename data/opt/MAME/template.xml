@@ -1173,22 +1173,6 @@
 			<description lang="es" text="Activar la barra de menús si está disponible en la UI"/>
 		</option>
 	</section>
-	<section name="directdraw">
-		<description lang="us" text="DirectDraw"/>
-		<description lang="de" text="DirectDraw"/>
-		<description lang="pl" text="DirectDraw"/>
-		<description lang="fr" text="DirectDraw"/>
-		<description lang="pt" text="DirectDraw"/>
-		<description lang="es" text="DirectDraw"/>
-		<option default="true" name="hwstretch" type="bool">
-			<description lang="us" text="Enable hardware stretching"/>
-			<description lang="de" text="Hardware-beschleunigte Streckung"/>
-			<description lang="pl" text="Włącz rozciąganie sprzętowe"/>
-			<description lang="fr" text="Active le redimensionnement matériel"/>
-			<description lang="pt" text="Habilitar esticamento por hardware"/>
-			<description lang="es" text="Activar el redimensionamiento por hardware"/>
-		</option>
-	</section>
 	<section name="direct3d">
 		<description lang="us" text="Direct3D"/>
 		<description lang="de" text="Direct3D"/>
@@ -1948,7 +1932,7 @@
 			<description lang="us" text="Bloom level 4 (.) weight"/>
 			<description lang="de" text="Glanz-Level 4 Gewichtung"/>
 		</option>
-		<option default="0.04" name="bloom_lvl5_weight" type="float">
+		<option default="0.06" name="bloom_lvl5_weight" type="float">
 			<description lang="us" text="Bloom level 5 (.) weight"/>
 			<description lang="de" text="Glanz-Level 5 Gewichtung"/>
 		</option>
@@ -1960,17 +1944,9 @@
 			<description lang="us" text="Bloom level 7 (.) weight"/>
 			<description lang="de" text="Glanz-Level 7 Gewichtung"/>
 		</option>
-		<option default="0.02" name="bloom_lvl8_weight" type="float">
+		<option default="0.01" name="bloom_lvl8_weight" type="float">
 			<description lang="us" text="Bloom level 8 (.) weight"/>
 			<description lang="de" text="Glanz-Level 8 Gewichtung"/>
-		</option>
-		<option default="0.01" name="bloom_lvl9_weight" type="float">
-			<description lang="us" text="Bloom level 9 (.) weight"/>
-			<description lang="de" text="Glanz-Level 9 Gewichtung"/>
-		</option>
-		<option default="0.01" name="bloom_lvl10_weight" type="float">
-			<description lang="us" text="Bloom level 10 (1x1 target) weight"/>
-			<description lang="de" text="Glanz-Level 10 Gewichtung"/>
 		</option>
 	</section>
 	<section name="opengl">
