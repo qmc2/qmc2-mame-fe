@@ -87,6 +87,18 @@
 			<description lang="us" text="Path to language files"/>
 			<description lang="de" text="Suchpfad für Sprachdateien"/>
 		</option>
+		<option default="true" name="plugins" type="bool">
+			<description lang="us" text="Enable LUA plugin support"/>
+			<description lang="de" text="LUA Plugin Support aktivieren"/>
+		</option>
+		<option default="" name="plugin" type="string">
+			<description lang="us" text="List of plugins to enable"/>
+			<description lang="de" text="Liste der Plugins, die aktiviert werden sollen"/>
+		</option>
+		<option default="" name="noplugin" type="string">
+			<description lang="us" text="List of plugins to disable"/>
+			<description lang="de" text="Liste der Plugins, die deaktiviert werden sollen"/>
+		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="es" text="Directorios de salida"/>
