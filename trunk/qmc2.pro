@@ -277,7 +277,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
-		PRECOMPILED_HEADER = qmc2_prefix.h
 		TRANSLATIONS += data/lng/qmc2_de.ts \
 			data/lng/qmc2_el.ts \
 			data/lng/qmc2_es.ts \
