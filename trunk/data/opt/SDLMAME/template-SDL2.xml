@@ -2007,7 +2007,7 @@
 			<description lang="de" text="Komma-separierte Liste der Screen Chain JSON Namen, Doppelpunkt-separiert pro Fenster"/>
 			<choice name="default"/>
 		</option>
-		<option default="shadow-mask.png" name="bgfx_shadow_mask" type="string">
+		<option default="slot-mask.png" name="bgfx_shadow_mask" type="string">
 			<description lang="us" text="Shadow mask texture name"/>
 			<description lang="de" text="Texturname der Lochmaske"/>
 		</option>
