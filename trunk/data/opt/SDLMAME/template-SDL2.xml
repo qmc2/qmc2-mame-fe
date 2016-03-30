@@ -47,7 +47,7 @@
 			<description lang="fr" text="Répertoire des paramètres des controleurs"/>
 			<description lang="pt" text="Caminho para as definições de controles"/>
 		</option>
-		<option default="~/.mame;.;ini" default.Windows=".;ini" default.Darwin="~/Library/Application Support/mame;~/.mame;.;ini" name="inipath" type="directory">
+		<option default="~/.mame;.;ini" default.Windows=".;ini;ini/presets" default.Darwin="~/Library/Application Support/mame;~/.mame;.;ini" name="inipath" type="directory">
 			<description lang="es" text="Ruta a archivos ini"/>
 			<description lang="us" text="Path to ini files"/>
 			<description lang="de" text="Suchpfad für INI-Dateien"/>
