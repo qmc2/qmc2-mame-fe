@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1396,7 +1396,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -7715,13 +7715,13 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="750"/>
         <location filename="../../machinelist.cpp" line="2250"/>
         <source>loading favorites and play history</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando favoritos e histórico</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="753"/>
         <location filename="../../machinelist.cpp" line="2253"/>
         <source>done (loading favorites and play history)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando favoritos e histórico)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="757"/>
@@ -12240,7 +12240,7 @@ Tentar novamente?</translation>
         <location filename="../../miniwebbrowser.ui" line="235"/>
         <location filename="../../miniwebbrowser.ui" line="238"/>
         <source>Reload current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar página atual</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="281"/>
@@ -12270,7 +12270,7 @@ Tentar novamente?</translation>
         <location filename="../../miniwebbrowser.ui" line="258"/>
         <location filename="../../miniwebbrowser.ui" line="261"/>
         <source>Stop loading of current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar carregamento da página atual</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="307"/>
