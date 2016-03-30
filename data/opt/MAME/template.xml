@@ -47,7 +47,7 @@
 			<description lang="pt" text="Caminho para as definições de controles"/>
 			<description lang="es" text="Ruta a definiciones de mandos"/>
 		</option>
-		<option default=".;ini" name="inipath" type="directory">
+		<option default=".;ini;ini/presets" name="inipath" type="directory">
 			<description lang="us" text="Path to ini files"/>
 			<description lang="de" text="Suchpfad für INI-Dateien"/>
 			<description lang="pl" text="Ścieżka do plików ini"/>
