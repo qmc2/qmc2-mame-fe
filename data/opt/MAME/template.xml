@@ -959,12 +959,12 @@
 			<description lang="de" text="LUA Plugin Support aktivieren"/>
 		</option>
 		<option default="" name="plugin" type="string">
-			<description lang="us" text="List of plugins to enable"/>
-			<description lang="de" text="Liste der Plugins, die aktiviert werden sollen"/>
+			<description lang="us" text="Comma-separated list of plugins to enable"/>
+			<description lang="de" text="Komma-separierte Liste der Plugins, die aktiviert werden sollen"/>
 		</option>
 		<option default="" name="noplugin" type="string">
-			<description lang="us" text="List of plugins to disable"/>
-			<description lang="de" text="Liste der Plugins, die deaktiviert werden sollen"/>
+			<description lang="us" text="Comma-separated list of plugins to disable"/>
+			<description lang="de" text="Komma-separierte Liste der Plugins, die deaktiviert werden sollen"/>
 		</option>
 	</section>
 	<section name="configuration">
