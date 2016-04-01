@@ -14,6 +14,11 @@
 
    This program is distributed under the terms of the same license as zlib.
    See the accompanying LICENSE file for the full text of the license.
+   
+   Mar 8th, 2016 - Lucio Cosmo 
+   Fixed support for 64bit builds for archives with "PKWARE" password.
+   Changed long, unsigned long, unsigned to unsigned int in 
+   access functions to crctables and pkeys
 */
 
 #include <stdio.h>
@@ -160,8 +165,8 @@ typedef struct
                                         /* structure about the current file if we are decompressing it */
     int isZip64;                        /* is the current file zip64 */
 #ifndef NOUNCRYPT
-    unsigned long keys[3];              /* keys defining the pseudo-random sequence */
-    const unsigned long* pcrc_32_tab;
+    unsigned int keys[3];               /* keys defining the pseudo-random sequence */
+    const unsigned int* pcrc_32_tab;
 #endif
 } unz64_s;
 
@@ -1232,9 +1237,10 @@ extern int ZEXPORT unzOpenCurrentFile3(unzFile file, int* method, int* level, in
     pfile_in_zip_read_info->stream.avail_in = (uInt)0;
 
     s->pfile_in_zip_read = pfile_in_zip_read_info;
-    s->pcrc_32_tab = NULL;
 
 #ifndef NOUNCRYPT
+    s->pcrc_32_tab = NULL;
+
     if ((password != NULL) && ((s->cur_file_info.flag & 1) != 0))
     {
         if (ZSEEK64(s->z_filefunc, s->filestream,
@@ -1271,7 +1277,7 @@ extern int ZEXPORT unzOpenCurrentFile3(unzFile file, int* method, int* level, in
 #endif
         {
             int i;
-            s->pcrc_32_tab = (const unsigned long*)get_crc_table();
+            s->pcrc_32_tab = (const unsigned int*)get_crc_table();
             init_keys(password, s->keys, s->pcrc_32_tab);
 
             if (ZREAD64(s->z_filefunc, s->filestream, source, 12) < 12)
