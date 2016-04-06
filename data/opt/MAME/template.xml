@@ -1144,6 +1144,10 @@
 			<description lang="us" text="Allow non-integer stretch factors only on horizontal axis"/>
 			<description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren nur für die horizontale Achse zulassen"/>
 		</option>
+		<option default="false" name="intoverscan" type="bool">
+			<description lang="us" text="Allow overscan on integer scaled targets"/>
+			<description lang="de" text="Übersteuerung bei ganzzahliger Skalierung zulassen"/>
+		</option>
 		<option default="0" name="intscalex" type="int">
 			<description lang="us" text="Set horizontal integer scale factor"/>
 			<description lang="de" text="Horizontaler ganzzahliger Skalierungsfaktor"/>
