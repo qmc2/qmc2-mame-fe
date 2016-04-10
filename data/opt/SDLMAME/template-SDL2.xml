@@ -773,6 +773,18 @@
 			<choice name="none"/>
 		</option>
 	</section>
+	<section name="output_options">
+		<description lang="us" text="Output options"/>
+		<description lang="de" text="Ausgabeoptionen"/>
+		<option default="auto" name="output" type="combo">
+			<description lang="us" text="Provider for output: 'auto', 'console', 'network' or 'none'"/>
+			<description lang="de" text="Provider für Ausgaben: 'auto', 'console', 'network' oder 'none'"/>
+			<choice name="auto"/>
+			<choice name="console"/>
+			<choice name="network"/>
+			<choice name="none"/>
+		</option>
+	</section>
 	<section name="comm">
 		<description lang="us" text="Communication"/>
 		<description lang="de" text="Kommunikation"/>
