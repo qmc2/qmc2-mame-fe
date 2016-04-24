@@ -287,45 +287,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 59, osr, 7219) ) {
-			// system mode
-			int index = -1;
-			QString key1("/Frontend/ROMAlyzer/SetRewriterZipArchives");
-			QString key2("/Frontend/ROMAlyzer/SetRewriterIndividualDirectories");
-			QString newkey("/Frontend/ROMAlyzer/SetRewriterReproductionType");
-			if ( startupConfig->contains(key1) ) {
-				if ( startupConfig->value(key1, true).toBool() )
-					index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
-				startupConfig->remove(key1);
-			}
-			if ( startupConfig->contains(key2) ) {
-				if ( index < 0 && startupConfig->value(key2, false).toBool() )
-					index = QMC2_ROMALYZER_RT_FOLDERS;
-				startupConfig->remove(key2);
-			}
-			if ( index < 0 )
-				index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
-			startupConfig->setValue(newkey, index);
-
-			// software mode
-			index = -1;
-			key1 = "/Frontend/SoftwareROMAlyzer/SetRewriterZipArchives";
-			key2 = "/Frontend/SoftwareROMAlyzer/SetRewriterIndividualDirectories";
-			newkey = "/Frontend/SoftwareROMAlyzer/SetRewriterReproductionType";
-			if ( startupConfig->contains(key1) ) {
-				if ( startupConfig->value(key1, true).toBool() )
-					index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
-				startupConfig->remove(key1);
-			}
-			if ( startupConfig->contains(key2) ) {
-				if ( index < 0 && startupConfig->value(key2, false).toBool() )
-					index = QMC2_ROMALYZER_RT_FOLDERS;
-				startupConfig->remove(key2);
-			}
-			if ( index < 0 )
-				index = QMC2_ROMALYZER_RT_ZIP_BUILTIN;
-			startupConfig->setValue(newkey, index);
-		}
 		if ( QMC2_TEST_VERSION(omv, 60, osr, 7285) ) {
 			QString oldMlcName = startupConfig->value("MAME/FilesAndDirectories/MachineListCacheFile", Options::configPath() + "/mame.glc").toString();
 			QString newMlcName = oldMlcName;
