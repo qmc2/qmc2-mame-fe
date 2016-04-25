@@ -4230,9 +4230,10 @@ void ROMAlyzer::checkSumScannerThread_scanResumed()
 void ROMAlyzer::updateCheckSumDbStatus()
 {
 	bool isScanning = checkSumScannerThread()->status() == tr("scanning");
+	bool isPreparing = isScanning ? false : checkSumScannerThread()->status() == tr("preparing");
 
 	QDateTime now = QDateTime::currentDateTime();
-	QString statusString = "<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">";
+	QString statusString("<center><table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">");
 	if ( isScanning ) {
 		qint64 currentRowCount = checkSumDb()->checkSumRowCount();
 		if ( currentRowCount >= 0 ) {
@@ -4273,8 +4274,10 @@ void ROMAlyzer::updateCheckSumDbStatus()
 	}
 	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Age of stored data") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + ageString + "</td></tr>";
 	statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Pending updates") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + QString::number(checkSumScannerThread()->pendingUpdates()) + "</td></tr>";
-	if ( checkSumScannerLog()->progress() > 0 && isScanning )
+	if ( checkSumScannerLog()->progress() >= 0 && isScanning )
 		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + " | " + checkSumScannerThread()->scanTime() + " | " + QString::number(checkSumScannerLog()->progress(), 'f', 1) + "%</td></tr>";
+	else if ( checkSumScannerLog()->progress() >= 0 && isPreparing )
+		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + " | " + checkSumScannerThread()->scanTime() + "</td></tr>";
 	else
 		statusString += "<tr><td nowrap width=\"50%\" valign=\"top\" align=\"right\"><b>" + tr("Scanner status") + "</b></td><td nowrap width=\"50%\" valign=\"top\">" + checkSumScannerThread()->status() + "</td></tr>";
 	statusString += "</table></center>";
