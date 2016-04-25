@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.63, 01-APR-2016</h3>
+<h3>TODO - v0.63, 25-APR-2016</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
  	<li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior).</li>
@@ -13,7 +13,7 @@
  	<li>The built-in <i>MiniWebBrowser</i> has a fairly restrictive set of features which is tailored to the uses of QMC2. It's not even <i>meant</i> to be a full-featured browser, even though it meanwhile supports most of the typical browser-functions.</li>
  	<li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it).</li>
  	<li>Due to a Qt restriction, a QTabWidget's corner-widget (if any) is only shown when the tab-position is either <i>north</i> or <i>south</i>.</li>
- 	<li>X11 and Windows: When emulators are <i>embedded</i>, switching to full-screen (i.e. by pressing <code>Alt+Enter</code>) may lead to a crash of the emulator. To work around this, you have to <b>release</b> the emulator first; you can re-embed it later from the emulator control panel (when back in <i>windowed</i> mode).</li>
+ 	<li>X11 and Windows: When emulators are <i>embedded</i>, switching to full-screen (i.e. by pressing <code>Alt+Enter</code>) may lead to a crash of the emulator. To work around this, you have to <b>release</b> the emulator first; you can re-embed it later from the emulator control panel (when back in <i>windowed</i> mode). Also, the emulator's window caption is expected to start with string "MAME:" in order to be found by the embedder (so only regular MAME builds will work here!).</li>
  	<li>Windows: MinGW builds: The GIF animation used when loading / filtering the machine- or software-list, or when <i>mass tagging</i> sets, isn't displayed in case of MinGW builds. We have no idea why, nor do we think it's our fault since in the official binaries built with VC++ this works fine (seems to be a MinGW-specific Qt bug). However, it's just a 'cosmetic' issue.</li>
 </ul>
 <p><b>Planned changes, new features and improvements</b></p>
