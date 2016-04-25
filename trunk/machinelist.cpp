@@ -181,7 +181,7 @@ MachineList::MachineList(QObject *parent)
 	machineStateTranslations["imperfect"] = tr("imperfect");
 	machineStateTranslations["N/A"] = tr("N/A");
 	romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
-	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
+	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HBMAME" << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 
 	if ( QMC2_ICON_FILETYPE_ZIP ) {
 		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
