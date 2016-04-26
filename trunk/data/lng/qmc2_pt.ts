@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1396,7 +1396,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -17943,7 +17943,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.cpp" line="4233"/>
         <source>preparing</source>
-        <translation type="unfinished">preparando</translation>
+        <translation>preparando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4241"/>
