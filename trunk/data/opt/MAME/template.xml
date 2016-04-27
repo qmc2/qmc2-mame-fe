@@ -1669,12 +1669,17 @@
 			<description lang="us" text="Shadow mask texture offset in V direction"/>
 			<description lang="de" text="Textur-Offset der Shadow Mask in V Richtung"/>
 		</option>
-		<option default="0.0" name="curvature" type="float">
-			<description lang="us" text="Screen curvature amount"/>
-			<description lang="de" text="Betrag der Bildschirmkrümmung"/>
-			<description lang="fr" text="Taux de courbure de l'écran"/>
-			<description lang="pt" text="Quantidade de curvatura da tela"/>
-			<description lang="es" text="Cantidad de curvatura de la pantalla"/>
+		<option default="0.0" name="cubic_distortion" type="float">
+			<description lang="us" text="Screen cubic distortion amount"/>
+			<description lang="de" text="Betrag der kubischen Verzerrung"/>
+		</option>
+		<option default="0.0" name="distortion" type="float">
+			<description lang="us" text="Screen distortion amount"/>
+			<description lang="de" text="Betrag der Verzerrung"/>
+		</option>
+		<option default="0.0" name="distort_corner" type="float">
+			<description lang="us" text="Screen distort corner amount"/>
+			<description lang="de" text="Betrag der Eck-Verzerrung"/>
 		</option>
 		<option default="0.0" name="reflection" type="float">
 			<description lang="us" text="Screen reflection amount"/>
