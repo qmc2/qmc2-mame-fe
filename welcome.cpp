@@ -283,6 +283,7 @@ bool Welcome::checkConfig()
 	}
 	startupConfig->endGroup();
 
+	/* *** There are currently no settings upgrades ***
 	QStringList verList(startupConfig->value("Version").toString().split(".", QString::SkipEmptyParts));
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
@@ -306,6 +307,7 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_ARCADE_PREFIX + "FilteredListFile");
 		}
 	}
+	*/
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();
 	configOkay &= !QMC2_CLI_OPT_RECONFIGURE;
