@@ -1,13 +1,15 @@
 #include "cryptedbytearray.h"
 
 CryptedByteArray::CryptedByteArray() :
-	QByteArray()
+	QByteArray(),
+	m_keyValue(0),
+	m_keyValueValid(false)
 {
-	setKey(QString());
+	setKey(QByteArray());
 	reset();
 }
 
-CryptedByteArray::CryptedByteArray(QByteArray ba, QString key) :
+CryptedByteArray::CryptedByteArray(const QByteArray &ba, const QByteArray &key) :
 	QByteArray(ba)
 {
 	setKey(key);
@@ -42,8 +44,10 @@ void CryptedByteArray::crypt()
 
 uint CryptedByteArray::keyToValue()
 {
-	uint keyValue = 0;
-	for (int i = 0; i < m_key.length(); i++)
-		keyValue += m_key[i].unicode() * m_key.length();
-	return keyValue;
+	if ( !m_keyValueValid ) {
+		m_keyValue = 0;
+		for (int i = 0; i < m_key.length(); i++)
+			m_keyValue += m_key.at(i) * m_key.length();
+	}
+	return m_keyValue;
 }
