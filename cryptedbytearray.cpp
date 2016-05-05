@@ -48,6 +48,7 @@ uint CryptedByteArray::keyToValue()
 		m_keyValue = 0;
 		for (int i = 0; i < m_key.length(); i++)
 			m_keyValue += m_key.at(i) * m_key.length();
+		m_keyValueValid = true;
 	}
 	return m_keyValue;
 }
