@@ -1250,6 +1250,8 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 #endif
 		case QMC2_ROMALYZER_RT_FOLDERS:
 			return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+		default:
+			return false;
 	}
 }
 
