@@ -2161,9 +2161,9 @@ void MainWindow::on_actionReload_triggered(bool)
 	else {
 		qmc2StopParser = false;
 		qmc2MachineList->enableWidgets(false);
-		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool() )
+		if ( !qmc2StopParser && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool()) )
 			loadGameInfoDB();
-		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool() )
+		if ( !qmc2StopParser && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool()) )
 			loadEmuInfoDB();
 		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB", false).toBool() )
 			loadSoftwareInfoDB();

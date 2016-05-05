@@ -289,7 +289,7 @@ void SevenZipFile::createItemList()
 	if ( !isOpen() )
 		return;
 
-	for (int i = 0; i < db()->db.NumFiles; i++)
+	for (uint i = 0; i < db()->db.NumFiles; i++)
 	{
 		const CSzFileItem *fileItem = db()->db.Files + i;
 		if ( fileItem->IsDir )
