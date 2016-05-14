@@ -259,7 +259,6 @@ MachineList::~MachineList()
 	connectionName = m_userDataDb->connectionName();
 	delete m_userDataDb;
 	QSqlDatabase::removeDatabase(connectionName);
-
 }
 
 void MachineList::enableWidgets(bool enable)
@@ -920,9 +919,9 @@ void MachineList::verify(bool currentOnly)
 
 QString MachineList::value(QString element, QString attribute, bool translate)
 {
-	QString attributePattern = " " + attribute + "=\"";
+	QString attributePattern(" " + attribute + "=\"");
 	if ( element.contains(attributePattern) ) {
-		QString valueString = element.remove(0, element.indexOf(attributePattern) + attributePattern.length());
+		QString valueString(element.remove(0, element.indexOf(attributePattern) + attributePattern.length()));
 		valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 		if ( valueString == ">" )
 			return QString::null;
@@ -1333,7 +1332,7 @@ void MachineList::parse()
 			numMachines = numUnknownMachines = 0;
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			QString readBuffer;
-			QString one("1");
+			QChar one('1');
 			while ( (!tsMachineListCache.atEnd() || !readBuffer.isEmpty()) && !qmc2StopParser ) {
 				readBuffer.append(tsMachineListCache.read(QMC2_FILE_BUFFER_SIZE));
 				bool endsWithNewLine = readBuffer.endsWith(lineSplitChar);
@@ -1345,7 +1344,7 @@ void MachineList::parse()
 					QString machineCloneOf(machineData.at(QMC2_MLC_INDEX_CLONEOF));
 					QString machinePlayers(machineData.at(QMC2_MLC_INDEX_PLAYERS));
 					QString machineDrvStat(machineData.at(QMC2_MLC_INDEX_DRVSTAT));
-					int machineType = int(one.compare(machineData.at(QMC2_MLC_INDEX_IS_BIOS)) == 0) + int(one.compare(machineData.at(QMC2_MLC_INDEX_IS_DEVICE)) == 0) * 2; // 0: normal, 1: BIOS, 2: device
+					int machineType = int(machineData.at(QMC2_MLC_INDEX_IS_BIOS).compare(one) == 0) + int(machineData.at(QMC2_MLC_INDEX_IS_DEVICE).compare(one) == 0) * 2; // 0: normal, 1: BIOS, 2: device
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(MachineListItem::defaultItemFlags);
@@ -1360,7 +1359,7 @@ void MachineList::parse()
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineData.at(QMC2_MLC_INDEX_MANU));
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineData.at(QMC2_MLC_INDEX_SRCFILE));
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames.at(int(one.compare(machineData.at(QMC2_MLC_INDEX_HAS_ROM)) == 0) + int(one.compare(machineData.at(QMC2_MLC_INDEX_HAS_CHD)) == 0) * 2));
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames.at(int(machineData.at(QMC2_MLC_INDEX_HAS_ROM).compare(one) == 0) + int(machineData.at(QMC2_MLC_INDEX_HAS_CHD).compare(one) == 0) * 2));
 					if ( useCatverIni ) {
 						QString *versionString = versionHash.value(machineName);
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
@@ -1528,9 +1527,8 @@ void MachineList::parse()
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 					loadIcon(machineName, machineItem);
-					numMachines++;
 					itemList << machineItem;
-					if ( numMachines % qmc2MachineListResponsiveness == 0 ) {
+					if ( numMachines++ % qmc2MachineListResponsiveness == 0 ) {
 						qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 						qmc2MainWindow->labelMachineListStatus->setText(status());
 					}
@@ -1575,21 +1573,21 @@ void MachineList::parse()
 				while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
 					lineCounter++;
 				if ( !qmc2StopParser && lineCounter < xmlLines.count() ) {
-					QString descriptionElement = xmlLines[lineCounter].simplified();
-					QString machineElement = xmlLines[lineCounter - 1].simplified();
+					QString machineElement(xmlLines.at(lineCounter - 1).simplified());
 					if ( !machineElement.contains(" name=\"") )
 						continue;
-					bool isBIOS = (value(machineElement, "isbios") == "yes");
-					bool isDev = (value(machineElement, "isdevice") == "yes");
-					QString machineName = value(machineElement, "name");
-					QString machineSource = value(machineElement, "sourcefile");
+					bool isBIOS = value(machineElement, "isbios").compare("yes") == 0;
+					bool isDev = value(machineElement, "isdevice").compare("yes") == 0;
+					QString machineName(value(machineElement, "name"));
 					if ( machineName.isEmpty() ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
 						qApp->processEvents();
 						continue;
 					}
-					QString machineCloneOf = value(machineElement, "cloneof");
-					QString machineDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+					QString machineSource(value(machineElement, "sourcefile"));
+					QString machineCloneOf(value(machineElement, "cloneof"));
+					QString descriptionElement(xmlLines.at(lineCounter).simplified());
+					QString machineDescription(descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
 					MachineListItem *machineItem = new MachineListItem();
 					qmc2MachineListItemHash.insert(machineName, machineItem);
 					machineItem->setFlags(MachineListItem::defaultItemFlags);
@@ -1603,7 +1601,7 @@ void MachineList::parse()
 					bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
 					QString endMark("</machine>");
 					while ( !endGame ) {
-						QString xmlLine = xmlLines[i];
+						QString xmlLine(xmlLines[i]);
 						if ( xmlLine.contains("<year>") ) {
 							machineYear = xmlLine.simplified().remove("<year>").remove("</year>");
 							yearFound = true;
