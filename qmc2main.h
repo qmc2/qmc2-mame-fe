@@ -20,6 +20,9 @@
 #if QMC2_USE_PHONON_API
 #include "qmc2_phonon.h"
 #endif
+#if QMC2_MULTIMEDIA_ENABLED
+#include <QMediaPlayer>
+#endif
 #include "imagewidget.h"
 #include "rankitemwidget.h"
 #include "swldbmgr.h"
@@ -100,6 +103,13 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		bool audioFastBackwarding;
 		bool audioSkippingTracks;
 		Phonon::State audioState;
+#endif
+#if QMC2_MULTIMEDIA_ENABLED
+		QMediaPlayer *mediaPlayer;
+		bool audioFastForwarding;
+		bool audioFastBackwarding;
+		bool audioSkippingTracks;
+		QMediaPlayer::State audioState;
 #endif
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		QWidget *widgetEmbeddedEmus;
@@ -299,6 +309,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionAudioRaiseVolume_triggered(bool checked = false);
 		void on_actionAudioLowerVolume_triggered(bool checked = false);
 		void audioFinished();
+#if QMC2_MULTIMEDIA_ENABLED
+		void audioStateChanged(QMediaPlayer::MediaStatus);
+#endif
 		void audioTick(qint64);
 		void audioTotalTimeChanged(qint64);
 		void audioFade(int);

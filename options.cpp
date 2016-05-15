@@ -317,7 +317,7 @@ Options::Options(QWidget *parent)
 	qmc2ShortcutHash["F12"] = QPair<QString, QAction *>(tr("Launch arcade mode"), 0);
 	qmc2ShortcutHash["Shift+F5"] = QPair<QString, QAction *>(tr("Software-list view-mode flat"), 0);
 	qmc2ShortcutHash["Shift+F6"] = QPair<QString, QAction *>(tr("Software-list view-mode tree"), 0);
-#if QMC2_USE_PHONON_API
+#if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2ShortcutHash["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), 0);
 	qmc2ShortcutHash["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), 0);
 	qmc2ShortcutHash["Ctrl+Alt+B"] = QPair<QString, QAction *>(tr("Fast backward (audio player)"), 0);
@@ -606,7 +606,7 @@ void Options::apply()
 		qmc2ImageChecker->adjustIconSizes();
 	if ( qmc2SampleChecker )
 		QTimer::singleShot(0, qmc2SampleChecker, SLOT(adjustIconSizes()));
-#if QMC2_USE_PHONON_API
+#if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2MainWindow->toolButtonAudioPreviousTrack->setIconSize(iconSize);
 	qmc2MainWindow->toolButtonAudioNextTrack->setIconSize(iconSize);
 	qmc2MainWindow->toolButtonAudioFastBackward->setIconSize(iconSize);
@@ -618,6 +618,8 @@ void Options::apply()
 	qmc2MainWindow->toolButtonAudioAddURL->setIconSize(iconSize);
 	qmc2MainWindow->toolButtonAudioRemoveTracks->setIconSize(iconSize);
 	qmc2MainWindow->toolButtonAudioSetupEffects->setIconSize(iconSize);
+#endif
+#if QMC2_USE_PHONON_API
 	if ( qmc2AudioEffectDialog )
 		QTimer::singleShot(0, qmc2AudioEffectDialog, SLOT(adjustIconSizes()));
 #endif
