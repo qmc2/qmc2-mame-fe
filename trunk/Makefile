@@ -213,24 +213,33 @@ ifndef WIP
 WIP = 0
 endif
 
-# >>> PHONON / FORCE_PHONON <<<
+# >>> PHONON / Qt 4 <<<
 #
-# Enable Phonon based features (1) or leave them out of the build (0).
+# Enable Qt 4 Phonon based features (1) or leave them out of the build (0).
 #
 # Requires libphonon and a working Phonon backend (such as gstreamer or xine on
-# Linux, DirectX 9+ on Windows and QuickTime 7+ on Mac OS X).
+# Linux, DirectX 9+ on Windows and QuickTime 7+ on Mac OS X). Codecs have to be
+# installed separately.
 #
 # Built-in Phonon features include the MP3 audio player and the YouTube video
 # widget.
 #
-# For Qt 5, this will be disabled automatically (Qt 5 has no Phonon module)
-# unless you set FORCE_PHONON = 1 to use an external Qt/Phonon module!
-#
 ifndef PHONON
 PHONON = 1
 endif
-ifndef FORCE_PHONON
-FORCE_PHONON = 0
+
+# >>> MULTIMEDIA / Qt 5 <<<
+#
+# Enable Qt 5 Multimedia based features (1) or leave them out of the build (0).
+#
+# As with Phonon for Qt 4, a working QtMultimedia backend is required. Codecs
+# have to be installed separately.
+#
+# Built-in QtMultimedia features include the MP3 audio player and the YouTube
+# video widget.
+#
+ifndef MULTIMEDIA
+MULTIMEDIA = 1
 endif
 
 # >>> CCACHE <<<
@@ -422,8 +431,11 @@ endif
 # Enable (1) or disable (0) support for game/machine 'attached' YouTube videos.
 #
 # With Qt 4 this feature requires Phonon and will thus be disabled automatically
-# when Phonon has been disabled globally (PHONON=0)! In case of Qt 5 we use the
-# QtMultimedia module where Phonon isn't required.
+# when Phonon has been disabled globally (PHONON=0)!
+# 
+# In case of Qt 5 we use the QtMultimedia module. When multi-media features have
+# been disabled globally (MULTIMEDIA=0) the YouTube feature will be disabled as
+# well.
 #
 # You'll also need a decent back-end that supports FLV and MP4 video formats
 # (codecs). Take a look at the README (section 2, software requirements) for
@@ -546,11 +558,9 @@ endif
 endif
 
 ifeq '$(QMAKEV)' '3'
-ifeq '$(FORCE_PHONON)' '1'
-PHONON = 1
-else
 PHONON = 0
-endif
+else
+MULTIMEDIA = 0
 endif
 
 ifneq '$(QMAKEV)' '1'
@@ -575,7 +585,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
+DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_MULTIMEDIA=$(MULTIMEDIA) QMC2_FADER_SPEED=$(FADER_SPEED)
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
@@ -610,7 +620,11 @@ ifeq '$(BROWSER_PREFETCH_DNS)' '1'
 DEFINES += QMC2_BROWSER_PREFETCH_DNS_ENABLED
 endif
 
-ifneq '$(QMAKEV)' '3'
+ifeq '$(QMAKEV)' '3'
+ifeq '$(MULTMEDIA)' '0'
+YOUTUBE = 0
+endif
+else
 ifeq '$(PHONON)' '0'
 YOUTUBE = 0
 endif
@@ -703,8 +717,10 @@ ifdef QT_CONF
 undef QT_CONF
 endif
 
+ifneq '$(QMAKEV)' '3'
 ifeq '$(PHONON)' '1'
 QT_CONF += QT+=phonon
+endif
 endif
 
 # setup use of CCACHE or DISTCC (if applicable)
@@ -1298,7 +1314,6 @@ config:
 ifeq '$(ARCH)' 'Windows'
 	@$(ECHO) "FORCE_MINGW            Force use of MinGW on Windows (0, 1)          $(FORCE_MINGW)"
 endif
-	@$(ECHO) "FORCE_PHONON           Force using Phonon even with Qt 5 (0, 1)      $(FORCE_PHONON)"
 	@$(ECHO) "GREP                   UNIX command grep                             $(GREP)"
 	@$(ECHO) "IMGSET                 Image set to be used                          $(IMGSET)"
 	@$(ECHO) "JOYSTICK               Compile with SDL joystick support (0, 1)      $(JOYSTICK)"
@@ -1324,6 +1339,7 @@ ifneq '$(ARCH)' 'Windows'
 endif
 	@$(ECHO) "MKDIR                  UNIX command mkdir                            $(MKDIR)"
 	@$(ECHO) "MKSPEC                 Qt mkspec to be used (empty = default)        $(MKSPEC)"
+	@$(ECHO) "MULTIMEDIA             Enabled Qt Multimedia features (0, 1)         $(MULTIMEDIA)"
 	@$(ECHO) "MV                     UNIX command mv                               $(MV)"
 	@$(ECHO) "OSCFG                  Use global OS configuration (0, 1)            $(OSCFG)"
 	@$(ECHO) "OSNAME                 Target system's OS name                       $(OSNAME)"

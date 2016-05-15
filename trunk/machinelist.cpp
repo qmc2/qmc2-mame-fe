@@ -395,7 +395,7 @@ void MachineList::enableWidgets(bool enable)
 		if ( w )
 			w->setEnabled(enable);
 	}
-#if QMC2_USE_PHONON_API
+#if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
 	qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
 #endif

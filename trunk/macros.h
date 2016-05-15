@@ -565,6 +565,7 @@
 
 // additional pre-compile checks
 #define QMC2_USE_PHONON_API			(QMC2_PHONON == 1)
+#define QMC2_MULTIMEDIA_ENABLED			(QMC2_MULTIMEDIA == 1)
 
 // number of milliseconds to wait before automatically resuming audio/video playback
 #define QMC2_AUDIOPLAYER_RESUME_DELAY		2000
