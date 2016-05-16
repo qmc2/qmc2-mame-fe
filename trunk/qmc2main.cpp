@@ -598,6 +598,11 @@ MainWindow::MainWindow(QWidget *parent)
 #if QMC2_MULTIMEDIA_ENABLED
 	toolButtonAudioSetupEffects->setVisible(false);
 #endif
+#if QT_VERSION < 0x050000
+	lcdNumberSearchResults->setNumDigits(5);
+#else
+	lcdNumberSearchResults->setDigitCount(5);
+#endif
 
 	qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECTMESS_CACHE_SIZE);
 	messDevCfgTimer.setSingleShot(true);
