@@ -428,7 +428,7 @@ endif
 
 # >>> YOUTUBE <<<
 #
-# Enable (1) or disable (0) support for game/machine 'attached' YouTube videos.
+# Enable (1) or disable (0) support for machine 'attached' YouTube videos.
 #
 # With Qt 4 this feature requires Phonon and will thus be disabled automatically
 # when Phonon has been disabled globally (PHONON=0)!
@@ -437,12 +437,15 @@ endif
 # been disabled globally (MULTIMEDIA=0) the YouTube feature will be disabled as
 # well.
 #
-# You'll also need a decent back-end that supports FLV and MP4 video formats
-# (codecs). Take a look at the README (section 2, software requirements) for
-# recommended codec-packages on certain platforms.
+# You'll also need a decent back-end and codecs that supports FLV / MP4 video
+# formats. The codecs have to be installed separately.
 #
 ifndef YOUTUBE
-YOUTUBE = 1
+ifeq '$(QMAKEV)' '3'
+YOUTUBE = $(MULTIMEDIA)
+else
+YOUTUBE = $(PHONON)
+endif
 endif
 
 # >>> LOCAL_QML_IMPORT_PATH <<<
@@ -618,16 +621,6 @@ endif
 
 ifeq '$(BROWSER_PREFETCH_DNS)' '1'
 DEFINES += QMC2_BROWSER_PREFETCH_DNS_ENABLED
-endif
-
-ifeq '$(QMAKEV)' '3'
-ifeq '$(MULTMEDIA)' '0'
-YOUTUBE = 0
-endif
-else
-ifeq '$(PHONON)' '0'
-YOUTUBE = 0
-endif
 endif
 
 ifeq '$(YOUTUBE)' '1'
