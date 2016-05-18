@@ -248,7 +248,7 @@ void AdditionalArtworkSetup::load()
 		treeWidget->setItemWidget(newItem, QMC2_AW_COLUMN_FORMAT, comboBoxFormat);
 		FileEditWidget *fewFolderOrArchive = new FileEditWidget(QString(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files (*)"), QString(), this, false);
 		fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
-		fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
+		fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)") + " - " + tr("use semicolon (;) to separate multiple archives"));
 		fewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image archive"));
 		fewFolderOrArchive->lineEditFile->setText(qmc2Config->value(QString("%1/Archive").arg(name), QString()).toString());
 		fewFolderOrArchive->setWhatsThis(QString::number(m_seq));
@@ -256,7 +256,7 @@ void AdditionalArtworkSetup::load()
 		connect(fewFolderOrArchive->lineEditFile, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 		DirectoryEditWidget *dewFolderOrArchive = new DirectoryEditWidget(QString(), this);
 		dewFolderOrArchive->lineEditDirectory->setPlaceholderText(tr("Image folder"));
-		dewFolderOrArchive->lineEditDirectory->setToolTip(tr("Image folder for this artwork class (required)"));
+		dewFolderOrArchive->lineEditDirectory->setToolTip(tr("Image folder for this artwork class (required)") + " - " + tr("use semicolon (;) to separate multiple folders"));
 		dewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image folder"));
 		dewFolderOrArchive->lineEditDirectory->setText(qmc2Config->value(QString("%1/Folder").arg(name), QString()).toString());
 		connect(dewFolderOrArchive->lineEditDirectory, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
@@ -332,14 +332,14 @@ void AdditionalArtworkSetup::on_toolButtonAdd_clicked()
 	treeWidget->setItemWidget(newItem, QMC2_AW_COLUMN_FORMAT, comboBoxFormat);
 	FileEditWidget *fewFolderOrArchive = new FileEditWidget(QString(), tr("Supported archives") + " (*.[zZ][iI][pP] *.7[zZ]);;" + tr("ZIP archives") + " (*.[zZ][iI][pP]);;" + tr("7z archives") + " (*.7[zZ]);;" + tr("All files (*)"), QString(), this, false);
 	fewFolderOrArchive->lineEditFile->setPlaceholderText(tr("Image archive"));
-	fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)"));
+	fewFolderOrArchive->lineEditFile->setToolTip(tr("Image archive for this artwork class (required)") + " - " + tr("use semicolon (;) to separate multiple archives"));
 	fewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image archive"));
 	fewFolderOrArchive->setWhatsThis(QString::number(m_seq));
 	connect(fewFolderOrArchive, SIGNAL(pathBrowsed(QString)), this, SLOT(pathBrowsed(QString)));
 	connect(fewFolderOrArchive->lineEditFile, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	DirectoryEditWidget *dewFolderOrArchive = new DirectoryEditWidget(QString(), this);
 	dewFolderOrArchive->lineEditDirectory->setPlaceholderText(tr("Image folder"));
-	dewFolderOrArchive->lineEditDirectory->setToolTip(tr("Image folder for this artwork class (required)"));
+	dewFolderOrArchive->lineEditDirectory->setToolTip(tr("Image folder for this artwork class (required)") + " - " + tr("use semicolon (;) to separate multiple folders"));
 	dewFolderOrArchive->toolButtonBrowse->setToolTip(tr("Browse image folder"));
 	connect(dewFolderOrArchive->lineEditDirectory, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged(const QString &)));
 	QStackedWidget *stackedWidgetFolderOrArchive = new QStackedWidget(this);
