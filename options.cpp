@@ -391,6 +391,26 @@ Options::Options(QWidget *parent)
 	scrollArea->setWidgetResizable(true);
 #endif
 
+	lineEditPreviewDirectory->setToolTip(lineEditPreviewDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditPreviewFile->setToolTip(lineEditPreviewFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditFlyerDirectory->setToolTip(lineEditFlyerDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditFlyerFile->setToolTip(lineEditFlyerFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditIconDirectory->setToolTip(lineEditIconDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditIconFile->setToolTip(lineEditIconFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditCabinetDirectory->setToolTip(lineEditCabinetDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditCabinetFile->setToolTip(lineEditCabinetFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditControllerDirectory->setToolTip(lineEditControllerDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditControllerFile->setToolTip(lineEditControllerFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditMarqueeDirectory->setToolTip(lineEditMarqueeDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditMarqueeFile->setToolTip(lineEditMarqueeFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditTitleDirectory->setToolTip(lineEditTitleDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditTitleFile->setToolTip(lineEditTitleFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditPCBDirectory->setToolTip(lineEditPCBDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditPCBFile->setToolTip(lineEditPCBFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditSoftwareSnapDirectory->setToolTip(lineEditSoftwareSnapDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditSoftwareSnapFile->setToolTip(lineEditSoftwareSnapFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
+	lineEditVideoSnapFolder->setToolTip(lineEditVideoSnapFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+
 	checkPlaceholderStatus();
 	restoreCurrentConfig();
 }
