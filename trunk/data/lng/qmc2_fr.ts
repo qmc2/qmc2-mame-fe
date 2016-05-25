@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>About</name>
     <message>
@@ -113,7 +113,7 @@
         <source>Project details</source>
         <translation>Informations sur le projet</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -560,7 +560,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="251"/>
         <location filename="../../additionalartworksetup.cpp" line="335"/>
         <source>use semicolon (;) to separate multiple archives</source>
-        <translation type="unfinished"></translation>
+        <translation>utiliser un point-virgule (;) pour séparer les archives multiples</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="252"/>
@@ -591,7 +591,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="259"/>
         <location filename="../../additionalartworksetup.cpp" line="342"/>
         <source>use semicolon (;) to separate multiple folders</source>
-        <translation type="unfinished"></translation>
+        <translation>utiliser un point-virgule (;) pour séparer les dossiers multiples</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="260"/>
@@ -1408,7 +1408,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Angle</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation>°</translation>
@@ -3359,120 +3359,120 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="14"/>
         <source>Setup custom IDs</source>
-        <translation type="unfinished">Configurer les IDs personnalisés</translation>
+        <translation>Configurer les IDs personnalisés</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="28"/>
         <source>Display format</source>
-        <translation type="unfinished">Format d&apos;affichage</translation>
+        <translation>Format d&apos;affichage</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="35"/>
         <source>Choose / edit the format used to display the IDs in menu items -- valid placeholder macros are $ID$ and $DESCRIPTION$</source>
-        <translation type="unfinished">Choisir / éditer le format utilisé pour afficher les IDs dans le objets de menu - les macros valides de remplacement sont $ID$ et $DESCRIPTION$</translation>
+        <translation>Choisir / éditer le format utilisé pour afficher les IDs dans les objets de menu -- les macros valides de remplacement sont $ID$ et $DESCRIPTION$</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="168"/>
         <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
-        <translation type="unfinished">Éditer les IDs personnalisés pour cet émulateur ( doucble-clic pour éditer )</translation>
+        <translation>Éditer les IDs personnalisés pour cet émulateur (double-clic pour éditer)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="199"/>
         <source>Icon</source>
-        <translation type="unfinished">Icône</translation>
+        <translation>Icône</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="204"/>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="209"/>
         <source>Description</source>
-        <translation type="unfinished">Description</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="236"/>
         <source>Cancel ID customization and close dialog</source>
-        <translation type="unfinished">Annuler la personnalisation et fermer la fenêtre</translation>
+        <translation>Annuler la personnalisation et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="239"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="134"/>
         <source>Remove the currently selected ID</source>
-        <translation type="unfinished">Enlever l&apos;ID actuellement sélectionné</translation>
+        <translation>Enlever l&apos;ID actuellement sélectionné</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="154"/>
         <source>Add a new ID</source>
-        <translation type="unfinished">Ajouter un nouvel ID</translation>
+        <translation>Ajouter un nouvel ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="256"/>
         <source>Accept customized IDs and close dialog</source>
-        <translation type="unfinished">Accepter la personnalisation et fermer la fenêtre</translation>
+        <translation>Appliquer la personnalisation et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="259"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="86"/>
         <source>Copy IDs from another foreign emulator (if any)</source>
-        <translation type="unfinished">Copier les IDs depuis un autre émulateur ( si il y a)</translation>
+        <translation>Copier les IDs depuis un autre émulateur (le cas échéant)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="89"/>
         <source>Copy IDs</source>
-        <translation type="unfinished">Copier IDs</translation>
+        <translation>Copier les IDs</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="108"/>
         <source>Enable / disable sorting</source>
-        <translation type="unfinished">Active / désactive le tri</translation>
+        <translation>Activee / désactiver le tri</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="25"/>
         <source>Setup custom IDs for &apos;%1&apos;</source>
-        <translation type="unfinished">Configurer la personnalisation IDs pour &apos;%1&apos;</translation>
+        <translation>Configurer la personnalisation des IDs pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="139"/>
         <location filename="../../customidsetup.cpp" line="231"/>
         <source>Choose icon for this foreign ID (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir l&apos;icône pour cet ID étranger (maintenir bas pour le menu)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="141"/>
         <location filename="../../customidsetup.cpp" line="233"/>
         <source>Default icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Icône par défaut</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="144"/>
         <location filename="../../customidsetup.cpp" line="236"/>
         <source>No icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas d&apos;icône</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="304"/>
         <source>Choose image file</source>
-        <translation type="unfinished">Choisir un fichier d&apos;image</translation>
+        <translation>Choisir un fichier d&apos;image</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="304"/>
         <source>Supported image files (%1)</source>
-        <translation type="unfinished">Fichiers d&apos;images reconnus (%1)</translation>
+        <translation>Fichiers d&apos;images reconnus (%1)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="304"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
 </context>
 <context>
@@ -4545,17 +4545,17 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../deviceconfigurator.cpp" line="58"/>
         <location filename="../../deviceconfigurator.cpp" line="60"/>
         <source>Valid device files</source>
-        <translation type="unfinished">Fichiers de périphériques valides</translation>
+        <translation>Fichiers de périphériques valides</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="201"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL : impossible de lancer l&apos;exécutable de l&apos;émulateur dans un délais raisonnable, abandon</translation>
+        <translation>FATAL : impossible de lancer l&apos;exécutable de l&apos;émulateur dans un délais raisonnable, abandon</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="201"/>
         <source>error text = %1</source>
-        <translation type="unfinished">Texte d&apos;erreur : %1</translation>
+        <translation>Texte d&apos;erreur : %1</translation>
     </message>
 </context>
 <context>
@@ -4730,63 +4730,63 @@ Voulez-vous choisir un nom différent?</translation>
     <message>
         <location filename="../../emuoptactions.ui" line="72"/>
         <source>Reset to default value</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la valeur par défaut</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="52"/>
         <source>Revert to stored value</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la valeur enregistrée</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.ui" line="32"/>
         <source>Store value</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer la valeur</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="24"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Défaut</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="26"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="38"/>
         <source>Reset to global value</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la valeur globale</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="113"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmer</translation>
+        <translation>Confirmer</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="114"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local value for option &apos;%1&apos;, overwrite with global value or don&apos;t apply?</source>
-        <translation type="unfinished"></translation>
+        <translation>Une configuration ouverte d&apos;émulateur spécifique à une machine a été détectée.\nUtiliser la valeur locale pour l&apos;option &apos;%1&apos;, écraser avec la valeur globale ou ne pas appliquer ?</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>&amp;Local</source>
-        <translation type="unfinished">Config. &amp;Locale</translation>
+        <translation>&amp;Local</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>&amp;Overwrite</source>
-        <translation type="unfinished">&amp;Ecraser</translation>
+        <translation>&amp;Ecraser</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="115"/>
         <source>Do&amp;n&apos;t apply</source>
-        <translation type="unfinished">&amp;Ne pas appliquer</translation>
+        <translation>&amp;Ne pas appliquer</translation>
     </message>
     <message>
         <location filename="../../emuoptactions.cpp" line="30"/>
         <source>&lt;EMPTY&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;VIDE&gt;</translation>
     </message>
 </context>
 <context>
@@ -16318,100 +16318,100 @@ Are you sure you want to do this?</source>
         <location filename="../../machinelist.cpp" line="1893"/>
         <location filename="../../options.cpp" line="1451"/>
         <source>players</source>
-        <translation type="unfinished">joueurs</translation>
+        <translation>joueurs</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1905"/>
         <location filename="../../options.cpp" line="1463"/>
         <source>category</source>
-        <translation type="unfinished">catégorie</translation>
+        <translation>catégorie</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1908"/>
         <location filename="../../options.cpp" line="1466"/>
         <source>version</source>
-        <translation type="unfinished">version</translation>
+        <translation>version</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1890"/>
         <location filename="../../options.cpp" line="1448"/>
         <source>ROM types</source>
-        <translation type="unfinished">type de ROM</translation>
+        <translation>types de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1872"/>
         <location filename="../../options.cpp" line="1430"/>
         <source>machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>description de la machine</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1875"/>
         <location filename="../../options.cpp" line="1433"/>
         <source>ROM state</source>
-        <translation type="unfinished">statut de ROM</translation>
+        <translation>état de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1878"/>
         <location filename="../../options.cpp" line="1436"/>
         <source>tag</source>
-        <translation type="unfinished">tag</translation>
+        <translation>étiquette</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1881"/>
         <location filename="../../options.cpp" line="1439"/>
         <source>year</source>
-        <translation type="unfinished">année</translation>
+        <translation>année</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1884"/>
         <location filename="../../options.cpp" line="1442"/>
         <source>manufacturer</source>
-        <translation type="unfinished">fabricant</translation>
+        <translation>fabricant</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1887"/>
         <location filename="../../options.cpp" line="1445"/>
         <source>machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>nom de la machine</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1896"/>
         <location filename="../../options.cpp" line="1454"/>
         <source>driver status</source>
-        <translation type="unfinished">statut du driver</translation>
+        <translation>état du pilote</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1899"/>
         <location filename="../../options.cpp" line="1457"/>
         <source>source file</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier source</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1902"/>
         <location filename="../../options.cpp" line="1460"/>
         <source>rank</source>
-        <translation type="unfinished"></translation>
+        <translation>rang</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2616"/>
         <location filename="../../machinelist.cpp" line="2794"/>
         <source>correct</source>
-        <translation type="unfinished">correct</translation>
+        <translation>correct</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2824"/>
         <source>incorrect</source>
-        <translation type="unfinished">incorrect</translation>
+        <translation>incorrect</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2854"/>
         <source>mostly correct</source>
-        <translation type="unfinished">à peu près correct</translation>
+        <translation>globalement correct</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2884"/>
         <source>not found</source>
-        <translation type="unfinished">non trouvé</translation>
+        <translation>introuvable</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="2914"/>
@@ -16419,97 +16419,97 @@ Are you sure you want to do this?</source>
         <location filename="../../romalyzer.cpp" line="4442"/>
         <location filename="../../romalyzer.cpp" line="4454"/>
         <source>unknown</source>
-        <translation type="unfinished">inconnu</translation>
+        <translation>inconnu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1814"/>
         <location filename="../../welcome.cpp" line="39"/>
         <source>Default</source>
-        <translation type="unfinished">Par défaut</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4076"/>
         <source>Import from...</source>
-        <translation type="unfinished">Importer depuis...</translation>
+        <translation>Importer depuis...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4074"/>
         <location filename="../../qmc2main.cpp" line="4075"/>
         <source>Export machine-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la configuration MAME spécifique à la machine</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4077"/>
         <location filename="../../qmc2main.cpp" line="4078"/>
         <source>Import machine-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer la configuration MAME spécifique à la machine</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10519"/>
         <source>Setting up the GUI, please wait...</source>
-        <translation type="unfinished">Configuration du GUI, patientez svp...</translation>
+        <translation>Configuration de l&apos;interface, veuillez patienter...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10546"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
-        <translation type="unfinished">M.A.M.E. Catalog / Launcher II v</translation>
+        <translation>M.A.M.E. Catalog / Launcher II v</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10549"/>
         <source>SVN r%1</source>
-        <translation type="unfinished">SVN r%1</translation>
+        <translation>SVN r%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4385"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="927"/>
         <location filename="../../romalyzer.cpp" line="4385"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4389"/>
         <location filename="../../romalyzer.cpp" line="4439"/>
         <location filename="../../romalyzer.cpp" line="4458"/>
         <source>good</source>
-        <translation type="unfinished">bon</translation>
+        <translation>bon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="929"/>
         <location filename="../../romalyzer.cpp" line="4393"/>
         <location filename="../../romalyzer.cpp" line="4448"/>
         <source>no dump</source>
-        <translation type="unfinished">pas de dump</translation>
+        <translation>pas de dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4397"/>
         <location filename="../../romalyzer.cpp" line="4451"/>
         <source>bad dump</source>
-        <translation type="unfinished">mauvais dump</translation>
+        <translation>mauvais dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="4445"/>
         <source>no / bad dump</source>
-        <translation type="unfinished">pas de / mauvais dump</translation>
+        <translation>pas de / mauvais dump</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10562"/>
         <location filename="../../qmc2main.cpp" line="10566"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
-        <translation type="unfinished">Support du joystick SDL activé - Utilise SDL v%1.%2.%3</translation>
+        <translation>Support SDL du joystick activé - utilise SDL v%1.%2.%3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10556"/>
         <source>Phonon features enabled - using Phonon v%1</source>
-        <translation type="unfinished">Phonon actif - Utilise Phonon v%1</translation>
+        <translation>Phonon actif - utilise Phonon v%1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1953"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
-        <translation type="unfinished">lecteur vidéo: erreur XML: erreur fatal ligne %1, colonne %2: %3</translation>
+        <translation>lecteur vidéo : erreur XML : erreur fatale ligne %1, colonne %2: %3</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1168"/>
@@ -16517,7 +16517,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3737"/>
         <location filename="../../softwarelist.cpp" line="5216"/>
         <source>Auto mount</source>
-        <translation type="unfinished">Monter automatiquement</translation>
+        <translation>Monter automatiquement</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1173"/>
@@ -16528,7 +16528,7 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="5221"/>
         <location filename="../../softwarelist.cpp" line="5225"/>
         <source>Not mounted</source>
-        <translation type="unfinished">Non monté</translation>
+        <translation>Non monté</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1175"/>
@@ -16536,14 +16536,14 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="3745"/>
         <location filename="../../softwarelist.cpp" line="5227"/>
         <source>Mounted on:</source>
-        <translation type="unfinished">Monté sur:</translation>
+        <translation>Monté sur :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1167"/>
         <location filename="../../softwarelist.cpp" line="3698"/>
         <location filename="../../softwarelist.cpp" line="5215"/>
         <source>Don&apos;t mount</source>
-        <translation type="unfinished">Ne pas monter</translation>
+        <translation>Ne pas monter</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1554"/>
@@ -16551,286 +16551,286 @@ Are you sure you want to do this?</source>
         <location filename="../../softwarelist.cpp" line="1601"/>
         <location filename="../../softwarelist.cpp" line="4173"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">En attente de données...</translation>
+        <translation>En attente des données...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5179"/>
         <location filename="../../softwarelist.cpp" line="5181"/>
         <source>Searching</source>
-        <translation type="unfinished">Recherche</translation>
+        <translation>Recherche en cours</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5193"/>
         <source>Updating</source>
-        <translation type="unfinished">Mise à jour</translation>
+        <translation>Mise à jour en cours</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5205"/>
         <source>Part:</source>
-        <translation type="unfinished">Partie:</translation>
+        <translation>Partie :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1177"/>
         <location filename="../../softwarelist.cpp" line="5232"/>
         <source>No mount device</source>
-        <translation type="unfinished">Pas de périphérique de montage</translation>
+        <translation>Pas de périphérique de montage</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1178"/>
         <location filename="../../softwarelist.cpp" line="5233"/>
         <source>Unmanaged</source>
-        <translation type="unfinished">Non géré</translation>
+        <translation>Non géré</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1347"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
-        <translation type="unfinished"></translation>
+        <translation>information d&apos;état pour la software-list &apos;%1&apos; : L :%2 C :%3 M :%4 I :%5 N :%6 U :%7</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4164"/>
         <source>yes</source>
-        <translation type="unfinished">oui</translation>
+        <translation>oui</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4166"/>
         <source>no</source>
-        <translation type="unfinished">non</translation>
+        <translation>non</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="4168"/>
         <source>partially</source>
-        <translation type="unfinished"></translation>
+        <translation>partiellement</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5253"/>
         <source>Requirement:</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration requise :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5259"/>
         <source>Compatibility:</source>
-        <translation type="unfinished"></translation>
+        <translation>Compatibilité :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5269"/>
         <source>Data area:</source>
-        <translation type="unfinished">Zone de données:</translation>
+        <translation>Zone de données :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5272"/>
         <location filename="../../softwarelist.cpp" line="5284"/>
         <location filename="../../softwarelist.cpp" line="5298"/>
         <source>Size:</source>
-        <translation type="unfinished">Taille:</translation>
+        <translation>Taille :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5281"/>
         <source>Disk area:</source>
-        <translation type="unfinished">Zone de disque:</translation>
+        <translation>Zone de disque :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5301"/>
         <source>CRC:</source>
-        <translation type="unfinished">CRC:</translation>
+        <translation>CRC :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5316"/>
         <source>SHA1:</source>
-        <translation type="unfinished">SHA1:</translation>
+        <translation>SHA1 :</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="5325"/>
         <source>Info:</source>
-        <translation type="unfinished"></translation>
+        <translation>Information :</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="82"/>
         <source>[context] Previous component / List page up / Info page up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Previous component / List page up / Info page up</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="83"/>
         <source>[context] Next component / List page down / Info page down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Next component / List page down / Info page down</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="84"/>
         <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Hide list / Previous item / Slide left / Cycle backwards</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="85"/>
         <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Show list / Next item / Slide right / Cycle forwards</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="86"/>
         <source>[context] Show toolbar / List up / Info up / Previous widget</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Show toolbar / List up / Info up / Previous widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="87"/>
         <source>[context] Hide toolbar / List down / Info down / Next widget</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Hide toolbar / List down / Info down / Next widget</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="88"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Select / Set / Toggle details / Start emulation</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="90"/>
         <source>[context] Zoom in / List top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Zoom in / List top</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="91"/>
         <source>[context] Zoom out / List bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Zoom out / List bottom</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="92"/>
         <source>[context] List page up / Flick page up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] List page up / Flick page up</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="93"/>
         <source>[context] List page down / Flick page down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] List page down / Flick page down</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="94"/>
         <source>[context] List top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] List top</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="95"/>
         <source>[context] List bottom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] List bottom</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="96"/>
         <source>[context] Set primary display data item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Set primary display data item</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="97"/>
         <source>[context] Set secondary display data item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Set secondary display data item</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="102"/>
         <source>[global] Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Zoom in</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="103"/>
         <source>[global] Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Zoom out</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="14"/>
         <location filename="../../arcade/keysequences.h" line="49"/>
         <location filename="../../arcade/keysequences.h" line="50"/>
         <source>[global] Start emulation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Start emulation</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="20"/>
         <source>[global] Toggle video playback</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Toggle video playback</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="53"/>
         <source>[global] Flip cabinet / machine-card</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Flip cabinet / machine-card</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="89"/>
         <source>[context] Abort machine launch / Hide preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[context] Abort machine launch / Hide preferences</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="104"/>
         <source>[global] Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Search</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="19"/>
         <source>[global] Toggle preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Toggle preferences</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="39"/>
         <source>[global] Cursor up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Cursor up</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="40"/>
         <source>[global] Cursor down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Cursor down</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="41"/>
         <source>[global] Cursor left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Cursor left</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="42"/>
         <source>[global] Cursor right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Cursor right</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="43"/>
         <source>[global] Page up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Page up</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="44"/>
         <source>[global] Page down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Page down</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="45"/>
         <source>[global] Start of list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Start of list</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="46"/>
         <source>[global] End of list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] End of list</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="47"/>
         <source>[global] Focus search box</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Focus search box</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="48"/>
         <source>[global] Toggle menu-bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Toggle menu-bar</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="98"/>
         <location filename="../../arcade/keysequences.h" line="99"/>
         <source>[global] Next component</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Next component</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="100"/>
         <location filename="../../arcade/keysequences.h" line="101"/>
         <source>[global] Previous component</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Previous component</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="105"/>
         <source>[global] Toggle list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Toggle list</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="106"/>
         <source>[global] Toggle toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Toggle toolbar</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="15"/>
@@ -16838,14 +16838,14 @@ Are you sure you want to do this?</source>
         <location filename="../../arcade/keysequences.h" line="17"/>
         <location filename="../../arcade/keysequences.h" line="18"/>
         <source>[global] Toggle full-screen / windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">[global] Toggle full-screen / windowed mode</translation>
     </message>
     <message>
         <location filename="../../arcade/keysequences.h" line="51"/>
         <location filename="../../arcade/keysequences.h" line="52"/>
         <location filename="../../arcade/keysequences.h" line="107"/>
         <source>[global] Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>[global] Sortie</translation>
     </message>
 </context>
 <context>
@@ -21500,7 +21500,7 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../swldbmgr.cpp" line="32"/>
         <source>WARNING: failed to open software-list XML cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;ouverture de la base de données du cache XML de la software-list &apos;%1&apos; : erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="51"/>
@@ -21521,7 +21521,7 @@ Are you sure you want to do this?</source>
         <location filename="../../swldbmgr.cpp" line="411"/>
         <location filename="../../swldbmgr.cpp" line="431"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction de &apos;%1&apos; depuis la base de données du cache XML de la software-list : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="65"/>
@@ -21530,7 +21530,7 @@ Are you sure you want to do this?</source>
         <location filename="../../swldbmgr.cpp" line="176"/>
         <location filename="../../swldbmgr.cpp" line="345"/>
         <source>WARNING: failed to add &apos;%1&apos; to software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;ajout de &apos;%1&apos; à la base de données du cache XML de la software-list : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="71"/>
@@ -21539,43 +21539,43 @@ Are you sure you want to do this?</source>
         <location filename="../../swldbmgr.cpp" line="182"/>
         <location filename="../../swldbmgr.cpp" line="353"/>
         <source>WARNING: failed to update &apos;%1&apos; in software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la mise à jour de &apos;%1&apos; dans la base de données du cache XML de la software-list : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="369"/>
         <source>WARNING: failed to fetch row count from software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction du nombre de rangées depuis la base de données du cache XML de la software-list : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="388"/>
         <source>WARNING: failed to fetch row IDs from software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de l&apos;extraction de l&apos;ID des rangs depuis la base de données du cache XML de la software-list : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="461"/>
         <location filename="../../swldbmgr.cpp" line="471"/>
         <location filename="../../swldbmgr.cpp" line="481"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the software-list XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la mise à jour du réglage &apos;%1&apos; pour la base de données du cache XML de la software-list : requête = &apos;%2&apos;, erreur = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="488"/>
         <location filename="../../swldbmgr.cpp" line="493"/>
         <location filename="../../swldbmgr.cpp" line="498"/>
         <source>WARNING: failed to remove software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la suppresion de la base de données du cache XML de la software-list : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="506"/>
         <location filename="../../swldbmgr.cpp" line="511"/>
         <location filename="../../swldbmgr.cpp" line="516"/>
         <source>WARNING: failed to create software-list XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION : échec de la création de la base de données du cache XML de la software-list : requête = &apos;%1&apos;, erreur = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../swldbmgr.cpp" line="523"/>
         <source>software-list XML cache database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de données du cache XML de la software-list &apos;%1&apos; initialisée</translation>
     </message>
 </context>
 <context>
@@ -21764,114 +21764,114 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="14"/>
         <source>Customize tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="26"/>
         <source>Available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Actions de la barre d&apos;outils disponibles</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="32"/>
         <source>List of available tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des actions de la barre d&apos;outils disponibles</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="54"/>
         <source>Activate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer les actions de la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="57"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="80"/>
         <source>Active tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Actions de la barre d&apos;outils activées</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="86"/>
         <source>List of active tool-bar actions and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste ordonnée des actions de la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="108"/>
         <source>Deactivate selected tool-bar actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver les actions de la barre d&apos;outils sélectionnées</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="131"/>
         <source>Move selected action up</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer l&apos;action sélectionnée vers le haut</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="157"/>
         <source>Move selected action down</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer l&apos;action sélectionnée vers le bas</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="183"/>
         <source>Insert a separator line</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer une ligne de séparation</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="186"/>
         <source>Separator</source>
-        <translation type="unfinished">Séparateur</translation>
+        <translation>Séparateur</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="206"/>
         <source>Reset tool-bar actions to default configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser la confguration des actions de la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="209"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Défaut</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="238"/>
         <source>Apply tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer la configuration de la barre d&apos;outils et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="241"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="255"/>
         <source>Apply tool-bar setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer la configuration de la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="258"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Appliquer</translation>
+        <translation>&amp;Appliquer</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="272"/>
         <source>Cancel tool-bar setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler la configuration de la barre d&apos;outils et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.ui" line="275"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="66"/>
         <location filename="../../toolbarcustomizer.cpp" line="90"/>
         <source>Tool-bar search box</source>
-        <translation type="unfinished"></translation>
+        <translation>Champ de recherche de la barre d&apos;outil</translation>
     </message>
     <message>
         <location filename="../../toolbarcustomizer.cpp" line="86"/>
         <location filename="../../toolbarcustomizer.cpp" line="230"/>
         <source>-- Separator --</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Séparateur --</translation>
     </message>
 </context>
 <context>
@@ -21880,72 +21880,72 @@ Are you sure you want to do this?</source>
         <location filename="../../toolexec.cpp" line="48"/>
         <location filename="../../toolexec.cpp" line="50"/>
         <source>### tool started, output below ###</source>
-        <translation type="unfinished">### outil démarré, sortie ci-dessous ###</translation>
+        <translation>### outil démarré, résultat ci-dessous ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="50"/>
         <location filename="../../toolexec.cpp" line="64"/>
         <location filename="../../toolexec.cpp" line="99"/>
         <source>tool control: </source>
-        <translation type="unfinished">contrôle de l&apos;outil:</translation>
+        <translation>contrôle de l&apos;outil :</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="62"/>
         <location filename="../../toolexec.cpp" line="64"/>
         <source>### tool finished, exit code = %1, exit status = %2 ###</source>
-        <translation type="unfinished">### outil terminé, code de sortie = %1, statut de sortie = %2 ###</translation>
+        <translation>### outil terminé, code de sortie = %1, statut de sortie = %2 ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="79"/>
         <location filename="../../toolexec.cpp" line="91"/>
         <source>tool output: </source>
-        <translation type="unfinished">sortie de l&apos;outil: </translation>
+        <translation>résultat de l&apos;outil : </translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="79"/>
         <source>stdout: %1</source>
-        <translation type="unfinished">stdout: %1</translation>
+        <translation>stdout : %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="91"/>
         <source>stderr: %1</source>
-        <translation type="unfinished">stderr: %1</translation>
+        <translation>stderr : %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="97"/>
         <location filename="../../toolexec.cpp" line="99"/>
         <source>### tool error, process error = %1 ###</source>
-        <translation type="unfinished">### erreur d&apos;outil, erreur de processus = %1 ###</translation>
+        <translation>### erreur d&apos;outil, erreur de processus = %1 ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="15"/>
         <source>Executing tool</source>
-        <translation type="unfinished">outil en exécution</translation>
+        <translation>Exécution de l&apos;outil</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="29"/>
         <source>Command</source>
-        <translation type="unfinished">Commande</translation>
+        <translation>Commande</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="42"/>
         <source>Executed command</source>
-        <translation type="unfinished">Commande exécutée</translation>
+        <translation>Commande exécutée</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="91"/>
         <source>Close tool execution dialog</source>
-        <translation type="unfinished">Fermer la fenêtre d&apos;exécution d&apos;outil</translation>
+        <translation>Fermer la fenêtre d&apos;exécution d&apos;outil</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="94"/>
         <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../../toolexec.ui" line="54"/>
         <source>Output from tool</source>
-        <translation type="unfinished">Sortie de l&apos;outil</translation>
+        <translation>Résultat de l&apos;outil</translation>
     </message>
 </context>
 <context>
@@ -22397,110 +22397,110 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
     <message>
         <location filename="../../youtubevideoplayer.ui" line="46"/>
         <source>Attached videos</source>
-        <translation type="unfinished">Vidéos attachées</translation>
+        <translation>Vidéos liées</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="74"/>
         <source>Start playing / select next video automatically</source>
-        <translation type="unfinished">Commencer à jouer / sélectionner la vidéo suivante automatiquement</translation>
+        <translation>Commencer à jouer / sélectionner la vidéo suivante automatiquement</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="77"/>
         <source>Play-O-Matic</source>
-        <translation type="unfinished">Play-O-Matic</translation>
+        <translation>Lecture automatique</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="87"/>
         <source>Mode:</source>
-        <translation type="unfinished">Mode:</translation>
+        <translation>Mode :</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="100"/>
         <source>Choose the video selection mode</source>
-        <translation type="unfinished">Choisir le mode de sélection de vidéo</translation>
+        <translation>Choisir le mode de sélection de vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="104"/>
         <source>sequential</source>
-        <translation type="unfinished">séquentiel</translation>
+        <translation>séquentiel</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="109"/>
         <source>random</source>
-        <translation type="unfinished">au hasard</translation>
+        <translation>aléatoire</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="120"/>
         <source>Allow videos to be repeated (otherwise stop after last video)</source>
-        <translation type="unfinished">Autorise les vidéos à être revisionnées (sinon stoppe la lecture à la dernière vidéo)</translation>
+        <translation>Autorise les vidéos à être répétées (sinon arrête la lecture à la dernière vidéo)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="123"/>
         <source>Allow repeat</source>
-        <translation type="unfinished">Autorise la répétition</translation>
+        <translation>Autorise la répétition</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="156"/>
         <source>Video player</source>
-        <translation type="unfinished">Lecteur vidéo</translation>
+        <translation>Lecteur vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="191"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
-        <translation type="unfinished">Choisir le format vidéo préfére (bascule automatiquement vers le format vidéo disponible suivant)</translation>
+        <translation>Choisir le format vidéo préféré (bascule automatiquement vers le format vidéo disponible suivant)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="201"/>
         <location filename="../../youtubevideoplayer.cpp" line="111"/>
         <source>FLV 240P</source>
-        <translation type="unfinished">FLV 240P</translation>
+        <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="210"/>
         <location filename="../../youtubevideoplayer.cpp" line="112"/>
         <source>FLV 360P</source>
-        <translation type="unfinished">FLV 360P</translation>
+        <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="219"/>
         <location filename="../../youtubevideoplayer.cpp" line="113"/>
         <source>MP4 360P</source>
-        <translation type="unfinished">MP4 360P</translation>
+        <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="228"/>
         <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <source>FLV 480P</source>
-        <translation type="unfinished">FLV 480P</translation>
+        <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="237"/>
         <location filename="../../youtubevideoplayer.cpp" line="115"/>
         <source>MP4 720P</source>
-        <translation type="unfinished">MP4 720P</translation>
+        <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="246"/>
         <location filename="../../youtubevideoplayer.cpp" line="116"/>
         <source>MP4 1080P</source>
-        <translation type="unfinished">MP4 1080P</translation>
+        <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="255"/>
         <location filename="../../youtubevideoplayer.cpp" line="117"/>
         <source>MP4 3072P</source>
-        <translation type="unfinished">MP4 3072P</translation>
+        <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="273"/>
         <location filename="../../youtubevideoplayer.cpp" line="192"/>
         <source>Start / pause / resume video playback</source>
-        <translation type="unfinished">Joue / pause / reprise de la lecture vidéo</translation>
+        <translation>Lecture / pause / reprise de la lecture vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="302"/>
         <source>Current buffer fill level</source>
-        <translation type="unfinished">Niveau de cache actuel</translation>
+        <translation>Niveau actuel de remplissage du cache</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="323"/>
@@ -22513,68 +22513,68 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
         <location filename="../../youtubevideoplayer.cpp" line="1041"/>
         <location filename="../../youtubevideoplayer.cpp" line="1083"/>
         <source>Remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>Restant</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="353"/>
         <location filename="../../youtubevideoplayer.cpp" line="1669"/>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="394"/>
         <source>Search videos</source>
-        <translation type="unfinished">Recherche de vidéos</translation>
+        <translation>Recherche de vidéos</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="409"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
-        <translation type="unfinished">Pattern de recherche - utilise le bouton &apos;hint&apos; pour des suggestions</translation>
+        <translation>Modèle de recherche - utiliser le bouton &apos;indice&apos; pour des suggestions</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="422"/>
         <source>Search YouTube videos using the specified search pattern</source>
-        <translation type="unfinished">Recherche dans les vidéos YouTube en utilisante le pattern spécifié</translation>
+        <translation>Recherche dans les vidéos YouTube en utilisant le modèle indiqué</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="466"/>
         <source>Maximum number of results per search request</source>
-        <translation type="unfinished">Nombre maximum de résultats par recherche</translation>
+        <translation>Nombre maximum de résultats par recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="497"/>
         <source>Start index for the search request</source>
-        <translation type="unfinished">Commencer l&apos;index pour la requête de recherche</translation>
+        <translation>Commencer l&apos;indexation pour la requête de recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="522"/>
         <source>SI:</source>
-        <translation type="unfinished">SI:</translation>
+        <translation>SI :</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="529"/>
         <source>R:</source>
-        <translation type="unfinished">R:</translation>
+        <translation>R :</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="449"/>
         <source>Suggest a search pattern (hold down for menu)</source>
-        <translation type="unfinished">Suggérer un pattern de recherche (laisser appuyé pour le menu)</translation>
+        <translation>Suggérer un modèle de recherche (laisser appuyé pour le menu)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="94"/>
         <source>Mute / unmute audio output</source>
-        <translation type="unfinished">Coupe / Ouvre la sortie audio</translation>
+        <translation>Ferme / Ouvre la sortie audio</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="131"/>
         <source>Volume level</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="132"/>
         <source>Video progress</source>
-        <translation type="unfinished">Progression de la vidéo</translation>
+        <translation>Progression de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="136"/>
@@ -22585,264 +22585,264 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
         <location filename="../../youtubevideoplayer.cpp" line="1044"/>
         <location filename="../../youtubevideoplayer.cpp" line="1086"/>
         <source>Current buffer fill level: %1%</source>
-        <translation type="unfinished">Niveau de cache actuel: %1%</translation>
+        <translation>Niveau de cache actuel : %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="143"/>
         <location filename="../../youtubevideoplayer.cpp" line="249"/>
         <source>Play this video</source>
-        <translation type="unfinished">Joue cette vidéo</translation>
+        <translation>Lire cette vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="150"/>
         <location filename="../../youtubevideoplayer.cpp" line="207"/>
         <location filename="../../youtubevideoplayer.cpp" line="260"/>
         <source>Copy video URL</source>
-        <translation type="unfinished">Copier l&apos;URL de la vidéo</translation>
+        <translation>Copier l&apos;URL de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="156"/>
         <location filename="../../youtubevideoplayer.cpp" line="213"/>
         <location filename="../../youtubevideoplayer.cpp" line="265"/>
         <source>Copy video URL (no country filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;URL de la vidéo (pas de filtre géographique)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="162"/>
         <location filename="../../youtubevideoplayer.cpp" line="219"/>
         <location filename="../../youtubevideoplayer.cpp" line="270"/>
         <source>Copy author URL</source>
-        <translation type="unfinished">Copier l&apos;URL de l&apos;auteur</translation>
+        <translation>Copier l&apos;URL de l&apos;auteur</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="171"/>
         <location filename="../../youtubevideoplayer.cpp" line="228"/>
         <source>Paste video URL</source>
-        <translation type="unfinished">Coller l&apos;URL de la vidéo</translation>
+        <translation>Coller l&apos;URL de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="178"/>
         <location filename="../../youtubevideoplayer.cpp" line="235"/>
         <source>Local movie file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier vidéo local...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="184"/>
         <source>Remove selected videos</source>
-        <translation type="unfinished">Enlever les vidéos sélectionnées</translation>
+        <translation>Enlever les vidéos sélectionnées</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="200"/>
         <location filename="../../youtubevideoplayer.cpp" line="1587"/>
         <location filename="../../youtubevideoplayer.cpp" line="1601"/>
         <source>Full screen (return with toggle-key)</source>
-        <translation type="unfinished">Plein écran (retour avec la touche de bascul)</translation>
+        <translation>Plein écran (retour avec la touche de bascule)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="241"/>
         <location filename="../../youtubevideoplayer.cpp" line="254"/>
         <source>Attach this video</source>
-        <translation type="unfinished">Attacher cette vidéo</translation>
+        <translation>Lier cette vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="277"/>
         <source>Auto-suggest a search pattern?</source>
-        <translation type="unfinished">Suggérer automatique un pattern de recherche?</translation>
+        <translation>Suggérer automatiquement un modèle de recherche ?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="278"/>
         <source>Auto-suggest</source>
-        <translation type="unfinished">Auto-suggestion</translation>
+        <translation>Suggestion automatique</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="283"/>
         <source>Enter string to be appended</source>
-        <translation type="unfinished">Entrer la chaîne qui sera ajoutée</translation>
+        <translation>Entrer la chaîne à ajouter</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="284"/>
         <source>Append...</source>
-        <translation type="unfinished">Ajouter...</translation>
+        <translation>Ajouter...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="292"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Entrer la chaîne de recherche</translation>
+        <translation>Entrer la chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="414"/>
         <source>Appended string</source>
-        <translation type="unfinished">Ajouter une chaîne</translation>
+        <translation>Ajouter une chaîne</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="415"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
-        <translation type="unfinished">Entrer la chaîne à ajouter quand un pattern est suggéré:</translation>
+        <translation>Entrer la chaîne à ajouter quand un modèle est suggéré:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="416"/>
         <source>Valid placeholder macros:</source>
-        <translation type="unfinished"></translation>
+        <translation>Macros de remplissage valides :</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="582"/>
         <location filename="../../youtubevideoplayer.cpp" line="590"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="583"/>
         <location filename="../../youtubevideoplayer.cpp" line="591"/>
         <source>Choose movie file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un fichier vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="738"/>
         <location filename="../../youtubevideoplayer.cpp" line="756"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
-        <translation type="unfinished">Mode plein écran - presser %1 pour retourner au mode fenêtré</translation>
+        <translation>Mode plein écran -- presser %1 pour retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="740"/>
         <location filename="../../youtubevideoplayer.cpp" line="758"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
-        <translation type="unfinished">Mode plein écran - presser la touche de bacul pour retourner au mode fenêtré</translation>
+        <translation>Mode plein écran -- presser la touche de bascule pour retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="791"/>
         <source>video player: the local movie file &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo : le fichier vidéo &apos;%1&apos; est déjà lié, ignoré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="795"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished">lecteur vidéo: une vidéo avec l&apos;ID &apos;%1&apos; est déjà attachée, ignoré</translation>
+        <translation>lecteur vidéo : une vidéo avec l&apos;ID &apos;%1&apos; est déjà liée, ignoré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="971"/>
         <source>Buffering: %1%</source>
-        <translation type="unfinished">Mise en cache: %1%</translation>
+        <translation>Mise en cache : %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="985"/>
         <source>Loading</source>
-        <translation type="unfinished">Chargement</translation>
+        <translation>Chargement</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1001"/>
         <location filename="../../youtubevideoplayer.cpp" line="1059"/>
         <source>Playing</source>
-        <translation type="unfinished">En lecture</translation>
+        <translation>Lecture en cours</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1012"/>
         <location filename="../../youtubevideoplayer.cpp" line="1070"/>
         <source>Paused</source>
-        <translation type="unfinished">En pause</translation>
+        <translation>En pause</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1015"/>
         <source>video player: playback error: %1</source>
-        <translation type="unfinished">lecteur vidéo: erreur de lecture: %1</translation>
+        <translation>lecteur vidéo : erreur de lecture : %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1016"/>
         <source>Video playback error: %1</source>
-        <translation type="unfinished">Erreur de lecture vidéo: %1</translation>
+        <translation>Erreur de lecture vidéo : %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1135"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
-        <translation type="unfinished">Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
+        <translation>Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1227"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
-        <translation type="unfinished">lecteur vidéo: info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
+        <translation>lecteur vidéo : info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1228"/>
         <location filename="../../youtubevideoplayer.cpp" line="1354"/>
         <location filename="../../youtubevideoplayer.cpp" line="1785"/>
         <source>Video info error: %1</source>
-        <translation type="unfinished">Info de l&apos;erreur vidéo: %1</translation>
+        <translation>Info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1323"/>
         <source>video player: video info error: timeout occurred</source>
-        <translation type="unfinished">lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
+        <translation>lecteur vidéo : info de l&apos;erreur vidéo : délai expiré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1324"/>
         <source>video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>erreur d&apos;information vidéo : dépassement de délais</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1328"/>
         <source>video info error: unknown reason</source>
-        <translation type="unfinished"></translation>
+        <translation>erreur d&apos;information vidéo : raison inconnue</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1353"/>
         <source>video player: video info error: %1</source>
-        <translation type="unfinished">lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
+        <translation>lecteur vidéo : info de l&apos;erreur vidéo : %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1578"/>
         <location filename="../../youtubevideoplayer.cpp" line="1592"/>
         <source>Return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1585"/>
         <location filename="../../youtubevideoplayer.cpp" line="1599"/>
         <source>Full screen (press %1 to return)</source>
-        <translation type="unfinished">Plein écran (presser %1 pour revenir)</translation>
+        <translation>Plein écran (presser %1 pour revenir)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1784"/>
         <source>video player: video image info error: %1</source>
-        <translation type="unfinished">lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
+        <translation>lecteur vidéo : info de l&apos;erreur d&apos;image vidéo : %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1804"/>
         <source>video player: search request error: %1</source>
-        <translation type="unfinished">lecteur vidéo: erreur de recherche: %1</translation>
+        <translation>lecteur vidéo : erreur de recherche : %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1829"/>
         <source>video player: search error: can&apos;t parse XML data</source>
-        <translation type="unfinished">lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
+        <translation>lecteur vidéo : erreur de recherche : n&apos;a pas pu parcourir les données XML</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1857"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished">lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
+        <translation>lecteur vidéo : impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; -- merci d&apos;informer les développeurs</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1863"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished">lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
+        <translation>lecteur vidéo : impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; -- merci d&apos;informer les développeurs</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1880"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
-        <translation type="unfinished">lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
+        <translation>lecteur vidéo : impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; -- vérifiez les permissions svp</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1882"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
-        <translation type="unfinished">lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
+        <translation>lecteur vidéo : impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas -- merci de corriger</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1884"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
-        <translation type="unfinished">lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
+        <translation>lecteur vidéo : le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçue n&apos;est pas valide</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1886"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
-        <translation type="unfinished">lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
+        <translation>lecteur vidéo : le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
     </message>
 </context>
 </TS>
