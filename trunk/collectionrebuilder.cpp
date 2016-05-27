@@ -25,6 +25,12 @@
 #include "macros.h"
 #include "softwarelist.h"
 
+#if defined(QMC2_OS_WIN)
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 extern MachineList *qmc2MachineList;
@@ -1241,32 +1247,48 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 		}
 	} else
 		set = *setKey;
+	bool rebuildOkay = false;
 	switch ( rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() ) {
 		case QMC2_ROMALYZER_RT_ZIP_BUILTIN:
-			return writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+			rebuildOkay = writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+			break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 		case QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE:
-			return writeAllArchiveData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+			rebuildOkay = writeAllArchiveData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+			break;
 #endif
 		case QMC2_ROMALYZER_RT_FOLDERS:
-			return writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+			rebuildOkay = writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+			break;
 		default:
-			return false;
+			break;
 	}
+	if ( rebuildOkay ) {
+		switch ( rebuilderDialog()->romAlyzer()->comboBoxCollectionRebuilderCHDHandling->currentIndex() ) {
+			case QMC2_COLLECTIONREBUILDER_CHD_HARDLINK:
+				rebuildOkay = hardlinkChds(baseDir, set, diskNameList, diskSha1List);
+				break;
+			case QMC2_COLLECTIONREBUILDER_CHD_SYMLINK:
+				rebuildOkay = symlinkChds(baseDir, set, diskNameList, diskSha1List);
+				break;
+			case QMC2_COLLECTIONREBUILDER_CHD_COPY:
+				rebuildOkay = copyChds(baseDir, set, diskNameList, diskSha1List);
+				break;
+			default:
+				break;
+		}
+	}
+	return rebuildOkay;
 }
 
 bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
 {
-	// FIXME: no support for disks
 	bool success = true;
 	QDir d(QDir::cleanPath(baseDir + "/" + id));
 	if ( !d.exists() )
 		success = d.mkdir(QDir::cleanPath(baseDir + "/" + id));
 	int reproducedDumps = 0;
 	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
-#if defined(QMC2_LIBARCHIVE_ENABLED)
-	bool useLibArchive = rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() == QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE;
-#endif
 	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
 		QString fileName = d.absoluteFilePath(romNameList->at(i));
 		if ( !createBackup(fileName) ) {
@@ -1289,9 +1311,6 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
 						success = readFileData(path, &data);
-						break;
-					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
-						// FIXME: add support for disks
 						break;
 					default:
 						success = false;
@@ -1343,7 +1362,6 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 
 bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
 {
-	// FIXME: no support for disks
 	QDir d(QDir::cleanPath(baseDir));
 	if ( !d.exists() )
 		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
@@ -1361,9 +1379,6 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 	bool uniqueCRCs = rebuilderDialog()->romAlyzer()->checkBoxSetRewriterUniqueCRCs->isChecked();
 	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
 	int zipLevel = rebuilderDialog()->romAlyzer()->spinBoxSetRewriterZipLevel->value();
-#if defined(QMC2_LIBARCHIVE_ENABLED)
-	bool useLibArchive = rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() == QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE;
-#endif
 	zipFile zip = zipOpen(fileName.toUtf8().constData(), APPEND_STATUS_CREATE);
 	if ( zip ) {
 		emit log(tr("creating new ZIP archive '%1'").arg(fileName));
@@ -1398,9 +1413,6 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
 						success = readFileData(path, &data);
-						break;
-					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
-						// FIXME: add support for disks
 						break;
 					default:
 						success = false;
@@ -1459,7 +1471,6 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id, QStringList *romNameList, QStringList *romSha1List, QStringList *romCrcList, QStringList *romSizeList, QStringList * /*diskNameList*/, QStringList * /*diskSha1List*/)
 {
-	// FIXME: no support for disks
 	QDir d(QDir::cleanPath(baseDir));
 	if ( !d.exists() )
 		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
@@ -1501,9 +1512,6 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
 						success = readFileData(path, &data);
-						break;
-					case QMC2_COLLECTIONREBUILDER_FILETYPE_CHD:
-						// FIXME: add support for disks
 						break;
 					default:
 						success = false;
@@ -1633,6 +1641,151 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 		emit log(tr("FATAL: failed reading from ZIP archive '%1'").arg(fileName));
 		success = false;
 	}
+	return success;
+}
+
+bool CollectionRebuilderThread::hardlinkChds(QString baseDir, QString id, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	QString targetPath(QDir::cleanPath(baseDir) + "/" + id);
+	QDir d(targetPath);
+	if ( !d.exists() )
+		if ( !d.mkdir(QDir::cleanPath(targetPath)) )
+			return false;
+	bool success = true;
+	QString errorReason = tr("file error");
+	int reproducedDumps = 0;
+	for (int i = 0; i < diskNameList->count() && !exitThread && success; i++) {
+		QString fileName(QDir::cleanPath(targetPath) + "/" + diskNameList->at(i) + ".chd");
+		quint64 size = 0;
+		QString path, member, type;
+		if ( checkSumDb()->getData(diskSha1List->at(i), QString(), &size, &path, &member, &type) ) {
+			if ( m_fileTypes.indexOf(type) == QMC2_COLLECTIONREBUILDER_FILETYPE_CHD ) {
+				if ( !createBackup(fileName) ) {
+					emit log(tr("FATAL: backup creation failed"));
+					return false;
+				}
+				emit log(tr("hard-linking CHD file '%1' to '%2'").arg(path).arg(fileName));
+				QFile f(fileName);
+				if ( f.exists() )
+					f.remove();
+#if defined(QMC2_OS_WIN)
+				success = CreateHardLink(fileName.toUtf8().constData(), path.toUtf8().constData(), NULL);
+#else
+				success = ::link(path.toUtf8().constData(), fileName.toUtf8().constData()) == 0;
+#endif
+				if ( success )
+					reproducedDumps++;
+				else
+					errorReason = tr("failed hard-linking '%1' to '%2'").arg(path).arg(fileName);
+			} else {
+				success = false;
+				errorReason = tr("invalid file type '%1'").arg(type);
+				break;
+			}
+		}
+	}
+	if ( reproducedDumps == 0 )
+		d.rmdir(d.absolutePath());
+	return success;
+}
+
+bool CollectionRebuilderThread::symlinkChds(QString baseDir, QString id, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	QString targetPath(QDir::cleanPath(baseDir) + "/" + id);
+	QDir d(targetPath);
+	if ( !d.exists() )
+		if ( !d.mkdir(QDir::cleanPath(targetPath)) )
+			return false;
+	bool success = true;
+	QString errorReason = tr("file error");
+	int reproducedDumps = 0;
+	for (int i = 0; i < diskNameList->count() && !exitThread && success; i++) {
+		QString fileName(QDir::cleanPath(targetPath) + "/" + diskNameList->at(i) + ".chd");
+		quint64 size = 0;
+		QString path, member, type;
+		if ( checkSumDb()->getData(diskSha1List->at(i), QString(), &size, &path, &member, &type) ) {
+			if ( m_fileTypes.indexOf(type) == QMC2_COLLECTIONREBUILDER_FILETYPE_CHD ) {
+				if ( !createBackup(fileName) ) {
+					emit log(tr("FATAL: backup creation failed"));
+					return false;
+				}
+				emit log(tr("sym-linking CHD file '%1' to '%2'").arg(path).arg(fileName));
+				QFile f(fileName);
+				if ( f.exists() )
+					f.remove();
+				QFile sourceChd(path);
+				success = sourceChd.link(fileName);
+				if ( success )
+					reproducedDumps++;
+				else
+					errorReason = tr("failed sym-linking '%1' to '%2'").arg(path).arg(fileName);
+			} else {
+				success = false;
+				errorReason = tr("invalid file type '%1'").arg(type);
+				break;
+			}
+		}
+	}
+	if ( reproducedDumps == 0 )
+		d.rmdir(d.absolutePath());
+	return success;
+}
+
+bool CollectionRebuilderThread::copyChds(QString baseDir, QString id, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	QString targetPath(QDir::cleanPath(baseDir) + "/" + id);
+	QDir d(targetPath);
+	if ( !d.exists() )
+		if ( !d.mkdir(QDir::cleanPath(targetPath)) )
+			return false;
+	bool success = true;
+	QString errorReason = tr("file error");
+	int reproducedDumps = 0;
+	for (int i = 0; i < diskNameList->count() && !exitThread && success; i++) {
+		QString fileName(QDir::cleanPath(targetPath) + "/" + diskNameList->at(i) + ".chd");
+		quint64 size = 0;
+		QString path, member, type;
+		if ( checkSumDb()->getData(diskSha1List->at(i), QString(), &size, &path, &member, &type) ) {
+			if ( m_fileTypes.indexOf(type) == QMC2_COLLECTIONREBUILDER_FILETYPE_CHD ) {
+				if ( !createBackup(fileName) ) {
+					emit log(tr("FATAL: backup creation failed"));
+					return false;
+				}
+				emit log(tr("copying CHD file '%1' to '%2'").arg(path).arg(fileName));
+				QFile targetChd(fileName);
+				if ( targetChd.exists() )
+					targetChd.remove();
+				QFile sourceChd(path);
+				if ( sourceChd.open(QIODevice::ReadOnly) ) {
+					if ( targetChd.open(QIODevice::WriteOnly) ) {
+						char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+						int count = 0;
+						int len = 0;
+						while ( success && (len = sourceChd.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+							if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+								qApp->processEvents();
+							if ( targetChd.write(ioBuffer, len) != len ) {
+								emit log(tr("FATAL: I/O error while writing to '%1'").arg(fileName));
+								success = false;
+							}
+						}
+					} else
+						success = false;
+				} else
+					success = false;
+				if ( success )
+					reproducedDumps++;
+				else
+					errorReason = tr("failed copying '%1' to '%2'").arg(path).arg(fileName);
+			} else {
+				success = false;
+				errorReason = tr("invalid file type '%1'").arg(type);
+				break;
+			}
+		}
+	}
+	if ( reproducedDumps == 0 )
+		d.rmdir(d.absolutePath());
 	return success;
 }
 

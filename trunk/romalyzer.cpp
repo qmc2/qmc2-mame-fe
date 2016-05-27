@@ -439,6 +439,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", lineEditSetRewriterAdditionalRomPath->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderHashCache", checkBoxCollectionRebuilderHashCache->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderDryRun", checkBoxCollectionRebuilderDryRun->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderCHDHandling", comboBoxCollectionRebuilderCHDHandling->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", groupBoxCheckSumDatabase->isChecked());
@@ -508,6 +509,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	lineEditSetRewriterAdditionalRomPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAdditionalRomPath", QString()).toString());
 	checkBoxCollectionRebuilderHashCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderHashCache", false).toBool());
 	checkBoxCollectionRebuilderDryRun->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderDryRun", false).toBool());
+	comboBoxCollectionRebuilderCHDHandling->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderCHDHandling", QMC2_COLLECTIONREBUILDER_CHD_IGNORE).toInt());
 	groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableSetRewriter", false).toBool());
 	checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterWhileAnalyzing", false).toBool());
 	checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterSelfContainedSets", false).toBool());
