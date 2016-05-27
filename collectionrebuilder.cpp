@@ -1669,7 +1669,7 @@ bool CollectionRebuilderThread::hardlinkChds(QString baseDir, QString id, QStrin
 				if ( f.exists() )
 					f.remove();
 #if defined(QMC2_OS_WIN)
-				success = CreateHardLink(fileName.toUtf8().constData(), path.toUtf8().constData(), NULL);
+				success = CreateHardLink(fileName.toUtf8().data(), path.toUtf8().data(), NULL);
 #else
 				success = ::link(path.toUtf8().constData(), fileName.toUtf8().constData()) == 0;
 #endif
