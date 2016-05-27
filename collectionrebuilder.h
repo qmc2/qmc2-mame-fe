@@ -27,6 +27,11 @@ class ROMAlyzer;
 #define QMC2_COLLECTIONREBUILDER_FILETYPE_CHD	2
 #define QMC2_COLLECTIONREBUILDER_FILETYPE_FILE	3
 
+#define QMC2_COLLECTIONREBUILDER_CHD_IGNORE	0
+#define QMC2_COLLECTIONREBUILDER_CHD_HARDLINK	1
+#define QMC2_COLLECTIONREBUILDER_CHD_SYMLINK	2
+#define QMC2_COLLECTIONREBUILDER_CHD_COPY	3
+
 class CollectionRebuilderThread : public QThread
 {
 	Q_OBJECT
@@ -84,6 +89,9 @@ class CollectionRebuilderThread : public QThread
 		bool readFileData(QString, QByteArray *);
 		bool readSevenZipFileData(QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QByteArray *);
+		bool hardlinkChds(QString, QString, QStringList *, QStringList *);
+		bool symlinkChds(QString, QString, QStringList *, QStringList *);
+		bool copyChds(QString, QString, QStringList *, QStringList *);
 		bool createBackup(QString filePath);
 		void setFilterExpression(QString, int, int, bool);
 		void setFilterExpressionSoftware(QString, int, int, bool);

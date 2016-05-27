@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>819</width>
-    <height>674</height>
+    <width>828</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -355,9 +355,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-421</y>
-            <width>779</width>
-            <height>980</height>
+            <y>-427</y>
+            <width>788</width>
+            <height>993</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayoutScrollAreeaSettings" rowstretch="0,0,0,1,0">
@@ -548,11 +548,45 @@
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>40</width>
+                      <width>0</width>
                       <height>20</height>
                      </size>
                     </property>
                    </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelCollectionRebuilderCHDs">
+                    <property name="text">
+                     <string>CHDs</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboBoxCollectionRebuilderCHDHandling">
+                    <property name="toolTip">
+                     <string>Select how CHDs are handled</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Don't reproduce</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Create hard links</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Create symbolic links</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Copy files</string>
+                     </property>
+                    </item>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -2122,6 +2156,7 @@
   <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>checkBoxCollectionRebuilderHashCache</tabstop>
   <tabstop>checkBoxCollectionRebuilderDryRun</tabstop>
+  <tabstop>comboBoxCollectionRebuilderCHDHandling</tabstop>
   <tabstop>groupBoxCheckSumDatabase</tabstop>
   <tabstop>toolButtonCheckSumDbAddPath</tabstop>
   <tabstop>toolButtonCheckSumDbRemovePath</tabstop>
