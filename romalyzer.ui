@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>828</width>
+    <width>877</width>
     <height>693</height>
    </rect>
   </property>
@@ -356,7 +356,7 @@
            <rect>
             <x>0</x>
             <y>-427</y>
-            <width>788</width>
+            <width>837</width>
             <height>993</height>
            </rect>
           </property>
@@ -542,22 +542,12 @@
                    </widget>
                   </item>
                   <item>
-                   <spacer name="horizontalSpacer_2">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>0</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="labelCollectionRebuilderCHDs">
+                   <widget class="QLabel" name="labelCollectionRebuilderCHDHandling">
                     <property name="text">
-                     <string>CHDs</string>
+                     <string>CHD handling</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>

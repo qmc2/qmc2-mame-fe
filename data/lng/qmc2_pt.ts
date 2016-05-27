@@ -17431,7 +17431,7 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>análise iniciada</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2044"/>
+        <location filename="../../romalyzer.ui" line="2041"/>
         <location filename="../../romalyzer.cpp" line="709"/>
         <location filename="../../romalyzer.cpp" line="751"/>
         <location filename="../../romalyzer.cpp" line="1347"/>
@@ -17670,7 +17670,7 @@ Tem certeza que deseja fazer isso?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1258"/>
+        <location filename="../../romalyzer.ui" line="1255"/>
         <location filename="../../romalyzer.cpp" line="132"/>
         <source>Verify CHDs through &apos;chdman verify&apos;</source>
         <translation>Verificar CHDs através do &apos;chdman verify&apos;</translation>
@@ -18130,7 +18130,7 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>CHD manager: verificando CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1349"/>
+        <location filename="../../romalyzer.ui" line="1346"/>
         <location filename="../../romalyzer.cpp" line="133"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman copy&apos;)</source>
         <translation>Tentar atualizar o CHD se seu cabeçalho indicar uma versão mais velha (&apos;chdman copy&apos;)</translation>
@@ -18238,7 +18238,7 @@ Tem certeza que deseja fazer isso?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="943"/>
+        <location filename="../../romalyzer.ui" line="940"/>
         <location filename="../../romalyzer.cpp" line="2400"/>
         <location filename="../../romalyzer.cpp" line="2414"/>
         <source> MB</source>
@@ -18429,7 +18429,7 @@ Tem certeza que deseja fazer isso?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="163"/>
-        <location filename="../../romalyzer.ui" line="1938"/>
+        <location filename="../../romalyzer.ui" line="1935"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
@@ -18458,7 +18458,7 @@ Tem certeza que deseja fazer isso?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="193"/>
-        <location filename="../../romalyzer.ui" line="927"/>
+        <location filename="../../romalyzer.ui" line="924"/>
         <location filename="../../romalyzer.cpp" line="1139"/>
         <source>MD5</source>
         <translation></translation>
@@ -18529,43 +18529,43 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Configurações</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1247"/>
+        <location filename="../../romalyzer.ui" line="1244"/>
         <source>Enable CHD manager (may be slow)</source>
         <translation>Habilitar CHD manager (pode ser lento)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1342"/>
+        <location filename="../../romalyzer.ui" line="1339"/>
         <source>CHD manager (chdman)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1274"/>
+        <location filename="../../romalyzer.ui" line="1271"/>
         <source>CHD manager executable file (read and execute)</source>
         <translation>Arquivo executável do gerenciador de CHD (ler e executar)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1317"/>
+        <location filename="../../romalyzer.ui" line="1314"/>
         <source>Browse CHD manager executable file</source>
         <translation>Procurar pelo arquivo executável do gerenciador de CHDs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1335"/>
+        <location filename="../../romalyzer.ui" line="1332"/>
         <source>Temporary working directory</source>
         <translation>Diretório temporário de trabalho</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1261"/>
+        <location filename="../../romalyzer.ui" line="1258"/>
         <source>Verify CHDs</source>
         <translation>Verificar CHDs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1352"/>
+        <location filename="../../romalyzer.ui" line="1349"/>
         <source>Update CHDs</source>
         <translation>Atualizar CHDs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="613"/>
-        <location filename="../../romalyzer.ui" line="1380"/>
+        <location filename="../../romalyzer.ui" line="610"/>
+        <location filename="../../romalyzer.ui" line="1377"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caminhos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -18575,17 +18575,17 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Somente dumps bons</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1082"/>
+        <location filename="../../romalyzer.ui" line="1079"/>
         <source>If set, analysis output is appended (otherwise the report is cleared before the analysis)</source>
         <translation>Se selecionado, a saída da análise será adicionada (senão o relatório será limpo antes da análise)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1102"/>
+        <location filename="../../romalyzer.ui" line="1099"/>
         <source>Calculate CRC-32 check-sum</source>
         <translation>Calcular some CRC-32</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1092"/>
+        <location filename="../../romalyzer.ui" line="1089"/>
         <source>Automatically expand file info</source>
         <translation>Automaticamente expandir as informações do arquivo</translation>
     </message>
@@ -18600,23 +18600,23 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Auto contido</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="727"/>
+        <location filename="../../romalyzer.ui" line="724"/>
         <source>Level </source>
         <translation>Nível</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="776"/>
-        <location filename="../../romalyzer.ui" line="830"/>
+        <location filename="../../romalyzer.ui" line="773"/>
+        <location filename="../../romalyzer.ui" line="827"/>
         <source>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</source>
         <translation>Quando um conjunto contém vários arquivos com o mesmo CRC, o ZIP produzido deve incluir todos os arquivos individualmente ou apenas o primeiro (o que é atualmente suficiente atualmente)?</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="670"/>
+        <location filename="../../romalyzer.ui" line="667"/>
         <source>Specify an additional (source) ROM path used when the set rewriter is active</source>
         <translation>Especifique um caminho de ROMs (fonte) adicional usado quando o reescritor de conjunto está ativo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="603"/>
+        <location filename="../../romalyzer.ui" line="600"/>
         <source>Use the following additional ROM path</source>
         <translation>Use os caminhos de ROM adicionais</translation>
     </message>
@@ -18626,100 +18626,100 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Procurar por caminho de ROM adicional</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1480"/>
+        <location filename="../../romalyzer.ui" line="1477"/>
         <source>Open / close the scanner log window</source>
         <translation>Abrir / fechar a janela de log do scanner</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1483"/>
+        <location filename="../../romalyzer.ui" line="1480"/>
         <location filename="../../romalyzer.cpp" line="4170"/>
         <source>Open log</source>
         <translation>Abrir log</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1875"/>
+        <location filename="../../romalyzer.ui" line="1872"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
         <translation>Reparar conjuntos &apos;ruins&apos; selecionados usando arquivos do primeiro conjunto &apos;bom&apos; selecionado (pelo menos 1 conjunto bom e 1 ruim deve ser selecionados)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1928"/>
+        <location filename="../../romalyzer.ui" line="1925"/>
         <source>File name</source>
         <translation>Nome do arquivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1778"/>
+        <location filename="../../romalyzer.ui" line="1775"/>
         <source>Select the check-sum type</source>
         <translation>Selecionar o tipo de código de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="924"/>
+        <location filename="../../romalyzer.ui" line="921"/>
         <source>Calculate MD5 hash</source>
         <translation>Calcular has MD5</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="940"/>
-        <location filename="../../romalyzer.ui" line="965"/>
-        <location filename="../../romalyzer.ui" line="1020"/>
+        <location filename="../../romalyzer.ui" line="937"/>
+        <location filename="../../romalyzer.ui" line="962"/>
+        <location filename="../../romalyzer.ui" line="1017"/>
         <source>unlimited</source>
         <translation>ilimitado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1017"/>
+        <location filename="../../romalyzer.ui" line="1014"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Tamanho máximo de linhas no log (0 = ilimitado)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1023"/>
+        <location filename="../../romalyzer.ui" line="1020"/>
         <source> lines</source>
         <translation>linhas</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1287"/>
+        <location filename="../../romalyzer.ui" line="1284"/>
         <source>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</source>
         <translation>Diretório temporário usado pelo CHD manager (garanta que tem espaço suficiente para guardar os CHDs maiores)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1300"/>
+        <location filename="../../romalyzer.ui" line="1297"/>
         <source>Browse temporary directory used by the CHD manager</source>
         <translation>Escolher diretório temporário que será usado pelo CHD manager</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="875"/>
+        <location filename="../../romalyzer.ui" line="872"/>
         <source>General analysis flags and limits</source>
         <translation>Flags e limites de análise geral</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="990"/>
+        <location filename="../../romalyzer.ui" line="987"/>
         <source>File size</source>
         <translation>Tamanho do arquivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="937"/>
+        <location filename="../../romalyzer.ui" line="934"/>
         <source>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</source>
         <translation>Tamanha máximo (em MB) dos arquivos a serem carregados, arquivos são pulados quando são maiores que o limite (0 = ilimitado)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="889"/>
+        <location filename="../../romalyzer.ui" line="886"/>
         <source>Log size</source>
         <translation>Tamanho do arquivo de log</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1155"/>
+        <location filename="../../romalyzer.ui" line="1152"/>
         <source>Reports</source>
         <translation>Relatórios</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="962"/>
+        <location filename="../../romalyzer.ui" line="959"/>
         <source>Maximum number of reported sets held in memory (0 = no limit)</source>
         <translation>Número máximo de conjuntos relatados em memória (0 = sem limite)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="627"/>
+        <location filename="../../romalyzer.ui" line="624"/>
         <source>Output directory</source>
         <translation>Diretório de destino</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="640"/>
+        <location filename="../../romalyzer.ui" line="637"/>
         <source>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</source>
         <translation>Caminho de saída para o reescritor de conjuntos (AVISO: arquivos existentes serão sobrescritos!) - você NUNCA deveria usar um de seus caminhos de ROMs aqui!!!</translation>
     </message>
@@ -18734,18 +18734,18 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Reescrever durante análise</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="721"/>
+        <location filename="../../romalyzer.ui" line="718"/>
         <source>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</source>
         <translation>Escolha o nível de compressão para os arquivos ZIP (0 = menor / mais rápido, 9 = melhor / mais lento)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="779"/>
-        <location filename="../../romalyzer.ui" line="833"/>
+        <location filename="../../romalyzer.ui" line="776"/>
+        <location filename="../../romalyzer.ui" line="830"/>
         <source>Unique CRCs</source>
         <translation>CRCs únicos</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="606"/>
+        <location filename="../../romalyzer.ui" line="603"/>
         <source>Addl. ROM path</source>
         <translation>Adicionar caminho de ROM</translation>
     </message>
@@ -18755,53 +18755,53 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Reprodução&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1065"/>
+        <location filename="../../romalyzer.ui" line="1062"/>
         <source>Automatically expand calculated check-sums</source>
         <translation>Expandir automaticamente códigos de verificação calculados</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1398"/>
+        <location filename="../../romalyzer.ui" line="1395"/>
         <source>Enable check-sum database</source>
         <translation>Habilitar base de dados de códigos de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1721"/>
+        <location filename="../../romalyzer.ui" line="1718"/>
         <source>List of scanned paths</source>
         <translation>Lista de caminhos escaneados</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1598"/>
+        <location filename="../../romalyzer.ui" line="1595"/>
         <source>Add a path</source>
         <translation>Adicionar um caminho</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1612"/>
+        <location filename="../../romalyzer.ui" line="1609"/>
         <source>Remove selected paths</source>
         <translation>Remover caminhos selecionados</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1591"/>
+        <location filename="../../romalyzer.ui" line="1588"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanned paths&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caminhos escaneados&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1470"/>
+        <location filename="../../romalyzer.ui" line="1467"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Scanner control&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Controle do scanner&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1427"/>
+        <location filename="../../romalyzer.ui" line="1424"/>
         <source>Start / stop scanner</source>
         <translation>Iniciar / parar scanner</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1430"/>
+        <location filename="../../romalyzer.ui" line="1427"/>
         <location filename="../../romalyzer.cpp" line="4201"/>
         <source>Start scanner</source>
         <translation>Iniciar scanner</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1506"/>
+        <location filename="../../romalyzer.ui" line="1503"/>
         <source>Database / scanner status</source>
         <translation>Estado da base de dados / scanner</translation>
     </message>
@@ -18811,27 +18811,27 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Reescreve conjuntos automaticamente somente quando todos seus dumps são &apos;bons&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1534"/>
+        <location filename="../../romalyzer.ui" line="1531"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Estado&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1549"/>
+        <location filename="../../romalyzer.ui" line="1546"/>
         <source>Path to the check-sum database file</source>
         <translation>Caminho para o arquivo da base de dados de códigos de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1562"/>
+        <location filename="../../romalyzer.ui" line="1559"/>
         <source>Browse path to the check-sum database file</source>
         <translation>Procurar caminho para o arquivo da base de dados de códigos de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1582"/>
+        <location filename="../../romalyzer.ui" line="1579"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Database path&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caminho da base de dados&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1444"/>
+        <location filename="../../romalyzer.ui" line="1441"/>
         <source>Pause / resume scanner</source>
         <translation>Pausar / reiniciar scanner</translation>
     </message>
@@ -18856,7 +18856,7 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Criar conjuntos que não precisam dos conjuntos pais (caso contrário, criar conjuntos menores que são mergeados ao carregar, recomendado)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="724"/>
+        <location filename="../../romalyzer.ui" line="721"/>
         <source>Default</source>
         <translation>Padrão</translation>
     </message>
@@ -18871,12 +18871,12 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags específicas para o reconstrutor de coleção&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="763"/>
+        <location filename="../../romalyzer.ui" line="760"/>
         <source>When enabled, QMC2 will add a comment to the ZIP containing its version and the archive creation- or fixing-date</source>
         <translation>When habilitado, QMC2 adicionará um comentário para o ZIP contendo a versão e a criação do arquivo - ou data fixa</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="766"/>
+        <location filename="../../romalyzer.ui" line="763"/>
         <source>Add ZIP comment</source>
         <translation>Adicionar comentário ao ZIP</translation>
     </message>
@@ -18901,270 +18901,265 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Modo de teste</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="560"/>
-        <source>CHDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.ui" line="567"/>
+        <location filename="../../romalyzer.ui" line="564"/>
         <source>Select how CHDs are handled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="571"/>
+        <location filename="../../romalyzer.ui" line="568"/>
         <source>Don&apos;t reproduce</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="576"/>
+        <location filename="../../romalyzer.ui" line="573"/>
         <source>Create hard links</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="581"/>
+        <location filename="../../romalyzer.ui" line="578"/>
         <source>Create symbolic links</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="586"/>
+        <location filename="../../romalyzer.ui" line="583"/>
         <source>Copy files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="677"/>
+        <location filename="../../romalyzer.ui" line="674"/>
         <source>Select the reproduction type</source>
         <translation>Selecionar tipo de reprodução</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="681"/>
+        <location filename="../../romalyzer.ui" line="678"/>
         <source>ZIPs (built-in)</source>
         <translation>ZIPs (nativo)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="690"/>
+        <location filename="../../romalyzer.ui" line="687"/>
         <source>ZIPs (libarchive)</source>
         <translation>ZIPs (libarchive)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="699"/>
+        <location filename="../../romalyzer.ui" line="696"/>
         <source>Sub-directories</source>
         <translation>Subdiretórios</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="756"/>
-        <location filename="../../romalyzer.ui" line="823"/>
+        <location filename="../../romalyzer.ui" line="753"/>
+        <location filename="../../romalyzer.ui" line="820"/>
         <source>Compression</source>
         <translation>Compressão</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="793"/>
+        <location filename="../../romalyzer.ui" line="790"/>
         <source>Enable / disable ZIP compression</source>
         <translation>Habiltar / desabilitar compressão ZIP</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="797"/>
+        <location filename="../../romalyzer.ui" line="794"/>
         <source>On</source>
         <translation>Ligado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="802"/>
+        <location filename="../../romalyzer.ui" line="799"/>
         <source>Off</source>
         <translation>Desligado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="847"/>
+        <location filename="../../romalyzer.ui" line="844"/>
         <source>&lt;b&gt;There are no options for this reproduction type&lt;/b&gt;</source>
         <translation>&lt;b&gt;Não existem opções para esse tipo de reprodução&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1004"/>
+        <location filename="../../romalyzer.ui" line="1001"/>
         <location filename="../../romalyzer.cpp" line="2299"/>
         <source>Select machine in machine list if selected in analysis report?</source>
         <translation>Selecionar máquina na lista de máquinas se selecionado na análise?</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1122"/>
+        <location filename="../../romalyzer.ui" line="1119"/>
         <location filename="../../romalyzer.cpp" line="2300"/>
         <source>Automatically scroll to the currently analyzed machine</source>
         <translation>Ir automaticamente para a máquina analisada atualmente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1171"/>
+        <location filename="../../romalyzer.ui" line="1168"/>
         <source>Create backups whenever modifying / overwriting files by copying them to the specified folder</source>
         <translation>Criar backups quando modificar / sobrescrever arquivos copiando-os para a pasta especificada</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1174"/>
+        <location filename="../../romalyzer.ui" line="1171"/>
         <source>Create backups in this folder</source>
         <translation>Criar backups nesta pasta</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1190"/>
+        <location filename="../../romalyzer.ui" line="1187"/>
         <source>Backup folder (write)</source>
         <translation>Pasta de backup (escrita)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1193"/>
+        <location filename="../../romalyzer.ui" line="1190"/>
         <source>Specify backup folder</source>
         <translation>Especificar pasta de backup</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1209"/>
+        <location filename="../../romalyzer.ui" line="1206"/>
         <source>Browse the backup folder</source>
         <translation>Procurar pela pasta de backup</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1222"/>
+        <location filename="../../romalyzer.ui" line="1219"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Backup settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Configurações de backup&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1447"/>
+        <location filename="../../romalyzer.ui" line="1444"/>
         <location filename="../../romalyzer.cpp" line="4181"/>
         <location filename="../../romalyzer.cpp" line="4228"/>
         <source>Pause</source>
         <translation>Pausar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1658"/>
+        <location filename="../../romalyzer.ui" line="1655"/>
         <source>If enabled, all scanned members of ZIP/7z archives will be uncompressed in order to recalculate their check-sums (recommended but slow) - otherwise it will be relied on the header check-sums (not recommended but fast)</source>
         <translation>Se habilitado, todos os membros escaneados dos arquivos ZIP/7z serão descomprimidos para recalcular seus códigos de verificação (recomendado, mas lento) - caso contrário o código de verificação no cabeçalho será utilizado (não recomendado, mas rápido)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1680"/>
+        <location filename="../../romalyzer.ui" line="1677"/>
         <source>If enabled, scanned hashes are cached during the scan which will improve scanning speed enormously but will consume additional memory (about 35 MB per 100K scanned objects)</source>
         <translation>Se habilitado, os hashes examinados serão armazenados em cache durante a verificação que vai aumentar muito a velocidade de verificação mas vai consumir um pouco mais de memória (35MB para cada 100K objetos examinados)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1683"/>
+        <location filename="../../romalyzer.ui" line="1680"/>
         <source>Cache</source>
         <translation>Cache</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1696"/>
+        <location filename="../../romalyzer.ui" line="1693"/>
         <source>Use libarchive instead of built-in decompressors</source>
         <translation>Usar libarchive ao invés dos descompressores embutidos</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1801"/>
+        <location filename="../../romalyzer.ui" line="1798"/>
         <source>Check-sum to be searched</source>
         <translation>Código de verificação a ser buscado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1804"/>
+        <location filename="../../romalyzer.ui" line="1801"/>
         <source>Enter check-sum</source>
         <translation>Insira o código de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1817"/>
+        <location filename="../../romalyzer.ui" line="1814"/>
         <source>Indicates if the check-sum is available in the database (green) or not (red)</source>
         <translation>Indica se o código de verificação está disponível na base de dados (verde) ou não (vermelho)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1833"/>
+        <location filename="../../romalyzer.ui" line="1830"/>
         <source>Search for the check-sum now</source>
         <translation>Buscar pelo código de verificação agora</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1836"/>
+        <location filename="../../romalyzer.ui" line="1833"/>
         <source>Search</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1898"/>
+        <location filename="../../romalyzer.ui" line="1895"/>
         <source>Search results for the current check-sum</source>
         <translation>Resultados da busca para o código de verificação atual</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1923"/>
+        <location filename="../../romalyzer.ui" line="1920"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1933"/>
+        <location filename="../../romalyzer.ui" line="1930"/>
         <source>Status</source>
         <translation>Estado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1943"/>
+        <location filename="../../romalyzer.ui" line="1940"/>
         <source>Path</source>
         <translation>Caminho</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2000"/>
+        <location filename="../../romalyzer.ui" line="1997"/>
         <location filename="../../romalyzer.cpp" line="2301"/>
         <source>ROM collection rebuilder</source>
         <translation>Reconstrutor de coleção de sfotware</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1878"/>
+        <location filename="../../romalyzer.ui" line="1875"/>
         <source>Repair bad sets</source>
         <translation>Reparar conjuntos ruins</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="620"/>
-        <location filename="../../romalyzer.ui" line="917"/>
-        <location filename="../../romalyzer.ui" line="1328"/>
+        <location filename="../../romalyzer.ui" line="617"/>
+        <location filename="../../romalyzer.ui" line="914"/>
+        <location filename="../../romalyzer.ui" line="1325"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Flags&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1055"/>
+        <location filename="../../romalyzer.ui" line="1052"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Expansion&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Expansão&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1075"/>
+        <location filename="../../romalyzer.ui" line="1072"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Hashes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="903"/>
+        <location filename="../../romalyzer.ui" line="900"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Limits&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Limites&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1085"/>
+        <location filename="../../romalyzer.ui" line="1082"/>
         <source>Append</source>
         <translation>Acrescentar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1095"/>
+        <location filename="../../romalyzer.ui" line="1092"/>
         <source>File info</source>
         <translation>Informação do arquivo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1042"/>
+        <location filename="../../romalyzer.ui" line="1039"/>
         <source>Calculate SHA-1 hash</source>
         <translation>Calcular soma SHA-1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="188"/>
-        <location filename="../../romalyzer.ui" line="1045"/>
-        <location filename="../../romalyzer.ui" line="1782"/>
+        <location filename="../../romalyzer.ui" line="1042"/>
+        <location filename="../../romalyzer.ui" line="1779"/>
         <location filename="../../romalyzer.cpp" line="1101"/>
         <location filename="../../romalyzer.cpp" line="1905"/>
         <source>SHA-1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1125"/>
+        <location filename="../../romalyzer.ui" line="1122"/>
         <source>Scroll</source>
         <translation>Rolar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1068"/>
+        <location filename="../../romalyzer.ui" line="1065"/>
         <source>Check-sums</source>
         <translation>Códigos de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1105"/>
-        <location filename="../../romalyzer.ui" line="1787"/>
+        <location filename="../../romalyzer.ui" line="1102"/>
+        <location filename="../../romalyzer.ui" line="1784"/>
         <source>CRC-32</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1007"/>
+        <location filename="../../romalyzer.ui" line="1004"/>
         <source>Select</source>
         <translation>Selecionar</translation>
     </message>
@@ -19179,87 +19174,92 @@ Tem certeza que deseja fazer isso?</translation>
         <translation>Abortar com erros</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1636"/>
+        <location filename="../../romalyzer.ui" line="554"/>
+        <source>CHD handling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="1633"/>
         <source>If enabled, only files that were changed since / ignored in the last scan will be scanned again, updating the database - otherwise the database will be reinitialized</source>
         <translation>Se habilitado, apenas arquivos que foram alterados / ignorados no último escaneamento serão escaneados novamente, atualizando a base de dados - a base será reinicializada caso contrário</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1639"/>
+        <location filename="../../romalyzer.ui" line="1636"/>
         <source>Incremental</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1661"/>
+        <location filename="../../romalyzer.ui" line="1658"/>
         <source>Deep</source>
         <translation>Profundo</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1764"/>
+        <location filename="../../romalyzer.ui" line="1761"/>
         <source>Check-sum wizard</source>
         <translation>Wizard de códigos de verificação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1855"/>
+        <location filename="../../romalyzer.ui" line="1852"/>
         <source>Analyze all selected sets in order to qualify them</source>
         <translation>Analisar todos os conjuntos selecionado para qualificá-los</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1858"/>
+        <location filename="../../romalyzer.ui" line="1855"/>
         <source>Analyze selected sets</source>
         <translation>Analisar conjuntos selecionados</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1953"/>
+        <location filename="../../romalyzer.ui" line="1950"/>
         <source>Level of automation</source>
         <translation>Nível de automação</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1966"/>
+        <location filename="../../romalyzer.ui" line="1963"/>
         <source>Choose the level of automated wizard operations</source>
         <translation>Escolha o nível das operações do wizard automatizado</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1970"/>
+        <location filename="../../romalyzer.ui" line="1967"/>
         <source>Do nothing automatically</source>
         <translation>Não fazer nada automaticamente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1975"/>
+        <location filename="../../romalyzer.ui" line="1972"/>
         <source>Automatically select matches</source>
         <translation>Selecionar correspondências automaticamente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1980"/>
+        <location filename="../../romalyzer.ui" line="1977"/>
         <source>Automatically select matches and analyze sets</source>
         <translation>Selecionar correspondências e analisar conjuntos automaticamente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1985"/>
+        <location filename="../../romalyzer.ui" line="1982"/>
         <source>Automatically select matches, analyze sets and repair bad ones</source>
         <translation>Selecionar correspondências, analisar conjuntos e reparar os ruins automaticamente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2018"/>
+        <location filename="../../romalyzer.ui" line="2015"/>
         <source>Close ROMAlyzer</source>
         <translation>Fechar ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2021"/>
+        <location filename="../../romalyzer.ui" line="2018"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2041"/>
+        <location filename="../../romalyzer.ui" line="2038"/>
         <source>Current ROMAlyzer status</source>
         <translation>Estado atual do ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2060"/>
+        <location filename="../../romalyzer.ui" line="2057"/>
         <source>Analysis progress indicator</source>
         <translation>Indicador de progresso da análise</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="2079"/>
+        <location filename="../../romalyzer.ui" line="2076"/>
         <source>File I/O progress indicator</source>
         <translation>indicador de progresso de E/S de arquivo</translation>
     </message>
