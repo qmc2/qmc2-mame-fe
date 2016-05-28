@@ -1671,9 +1671,29 @@ bool CollectionRebuilderThread::hardlinkChds(QString baseDir, QString id, QStrin
 					return false;
 				}
 				if ( !sameFileSystem(path, fileName) ) {
-					emit log(tr("WARNING: '%1' and '%2' are NOT on the same file system, hard-linking will not work").arg(path).arg(fileName));
-					success = false;
-					errorReason = tr("can't create hard-link because '%1' and '%2' are on different file systems").arg(path).arg(fileName);
+					emit log(tr("WARNING: '%1' and '%2' are NOT on the same file system, hard-linking will not work").arg(path).arg(fileName) + " - " + tr("falling back to copy mode"));
+					emit log(tr("copying CHD file '%1' to '%2'").arg(path).arg(fileName));
+					QFile targetChd(fileName);
+					if ( targetChd.exists() )
+						targetChd.remove();
+					QFile sourceChd(path);
+					if ( sourceChd.open(QIODevice::ReadOnly) ) {
+						if ( targetChd.open(QIODevice::WriteOnly) ) {
+							char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+							int count = 0;
+							int len = 0;
+							while ( success && (len = sourceChd.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+								if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+									qApp->processEvents();
+								if ( targetChd.write(ioBuffer, len) != len ) {
+									emit log(tr("FATAL: I/O error while writing to '%1'").arg(fileName));
+									success = false;
+								}
+							}
+						} else
+							success = false;
+					} else
+						success = false;
 				} else {
 					emit log(tr("hard-linking CHD file '%1' to '%2'").arg(path).arg(fileName));
 					QFile f(fileName);
@@ -1684,11 +1704,11 @@ bool CollectionRebuilderThread::hardlinkChds(QString baseDir, QString id, QStrin
 #else
 					success = ::link(path.toUtf8().constData(), fileName.toUtf8().constData()) == 0;
 #endif
-					if ( success )
-						reproducedDumps++;
-					else
-						errorReason = tr("failed hard-linking '%1' to '%2'").arg(path).arg(fileName);
 				}
+				if ( success )
+					reproducedDumps++;
+				else
+					errorReason = tr("failed hard-linking '%1' to '%2'").arg(path).arg(fileName);
 			} else {
 				success = false;
 				errorReason = tr("invalid file type '%1'").arg(type);
