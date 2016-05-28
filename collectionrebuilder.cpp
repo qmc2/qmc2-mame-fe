@@ -1847,9 +1847,10 @@ bool CollectionRebuilderThread::moveChds(QString baseDir, QString id, QStringLis
 					} else
 						success = false;
 				}
-				if ( success )
+				if ( success ) {
 					reproducedDumps++;
-				else
+					sourceChd.remove();
+				} else
 					errorReason = tr("failed moving '%1' to '%2'").arg(path).arg(fileName);
 			} else {
 				success = false;
