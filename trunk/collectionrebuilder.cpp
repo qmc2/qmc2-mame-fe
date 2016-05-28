@@ -1886,8 +1886,10 @@ bool CollectionRebuilderThread::moveChds(QString baseDir, QString id, QStringLis
 
 bool CollectionRebuilderThread::sameFileSystem(QString path1, QString path2)
 {
-	struct stat stat1;
-	struct stat stat2;
+	// - path1 and path2 are expected to be fully-qualified file names
+	// - the files may or may not exist, however, the folders they belong to MUST exist for this to work
+	//   (otherwise stat() returns ENOENT) 
+	struct stat stat1, stat2;
 	stat(QFileInfo(path1).absoluteDir().absolutePath().toUtf8().constData(), &stat1);
 	stat(QFileInfo(path2).absoluteDir().absolutePath().toUtf8().constData(), &stat2);
 	return stat1.st_dev == stat2.st_dev;
