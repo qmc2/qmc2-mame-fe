@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QFileDialog>
 #include <QMap>
 #include <QDateTime>
@@ -30,6 +31,8 @@
 #else
 #include <unistd.h>
 #endif
+#include <sys/stat.h>
+#include <sys/types.h>
 
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
@@ -1274,6 +1277,9 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 			case QMC2_COLLECTIONREBUILDER_CHD_COPY:
 				rebuildOkay = copyChds(baseDir, set, diskNameList, diskSha1List);
 				break;
+			case QMC2_COLLECTIONREBUILDER_CHD_MOVE:
+				rebuildOkay = moveChds(baseDir, set, diskNameList, diskSha1List);
+				break;
 			default:
 				break;
 		}
@@ -1664,19 +1670,25 @@ bool CollectionRebuilderThread::hardlinkChds(QString baseDir, QString id, QStrin
 					emit log(tr("FATAL: backup creation failed"));
 					return false;
 				}
-				emit log(tr("hard-linking CHD file '%1' to '%2'").arg(path).arg(fileName));
-				QFile f(fileName);
-				if ( f.exists() )
-					f.remove();
+				if ( !sameFileSystem(path, fileName) ) {
+					emit log(tr("WARNING: '%1' and '%2' are NOT on the same file system, hard-linking will not work").arg(path).arg(fileName));
+					success = false;
+					errorReason = tr("can't create hard-link because '%1' and '%2' are on different file systems").arg(path).arg(fileName);
+				} else {
+					emit log(tr("hard-linking CHD file '%1' to '%2'").arg(path).arg(fileName));
+					QFile f(fileName);
+					if ( f.exists() )
+						f.remove();
 #if defined(QMC2_OS_WIN)
-				success = CreateHardLink((LPCTSTR)fileName.utf16(), (LPCTSTR)path.utf16(), NULL);
+					success = CreateHardLink((LPCTSTR)fileName.utf16(), (LPCTSTR)path.utf16(), NULL);
 #else
-				success = ::link(path.toUtf8().constData(), fileName.toUtf8().constData()) == 0;
+					success = ::link(path.toUtf8().constData(), fileName.toUtf8().constData()) == 0;
 #endif
-				if ( success )
-					reproducedDumps++;
-				else
-					errorReason = tr("failed hard-linking '%1' to '%2'").arg(path).arg(fileName);
+					if ( success )
+						reproducedDumps++;
+					else
+						errorReason = tr("failed hard-linking '%1' to '%2'").arg(path).arg(fileName);
+				}
 			} else {
 				success = false;
 				errorReason = tr("invalid file type '%1'").arg(type);
@@ -1787,6 +1799,77 @@ bool CollectionRebuilderThread::copyChds(QString baseDir, QString id, QStringLis
 	if ( reproducedDumps == 0 )
 		d.rmdir(d.absolutePath());
 	return success;
+}
+
+bool CollectionRebuilderThread::moveChds(QString baseDir, QString id, QStringList *diskNameList, QStringList *diskSha1List)
+{
+	QString targetPath(QDir::cleanPath(baseDir) + "/" + id);
+	QDir d(targetPath);
+	if ( !d.exists() )
+		if ( !d.mkdir(QDir::cleanPath(targetPath)) )
+			return false;
+	bool success = true;
+	QString errorReason = tr("file error");
+	int reproducedDumps = 0;
+	for (int i = 0; i < diskNameList->count() && !exitThread && success; i++) {
+		QString fileName(QDir::cleanPath(targetPath) + "/" + diskNameList->at(i) + ".chd");
+		quint64 size = 0;
+		QString path, member, type;
+		if ( checkSumDb()->getData(diskSha1List->at(i), QString(), &size, &path, &member, &type) ) {
+			if ( m_fileTypes.indexOf(type) == QMC2_COLLECTIONREBUILDER_FILETYPE_CHD ) {
+				if ( !createBackup(fileName) ) {
+					emit log(tr("FATAL: backup creation failed"));
+					return false;
+				}
+				emit log(tr("moving CHD file '%1' to '%2'").arg(path).arg(fileName));
+				QFile targetChd(fileName);
+				if ( targetChd.exists() )
+					targetChd.remove();
+				QFile sourceChd(path);
+				if ( sameFileSystem(path, fileName) )
+					success = QFile::rename(path, fileName);
+				else {
+					if ( sourceChd.open(QIODevice::ReadOnly) ) {
+						if ( targetChd.open(QIODevice::WriteOnly) ) {
+							char ioBuffer[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+							int count = 0;
+							int len = 0;
+							while ( success && (len = sourceChd.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
+								if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+									qApp->processEvents();
+								if ( targetChd.write(ioBuffer, len) != len ) {
+									emit log(tr("FATAL: I/O error while writing to '%1'").arg(fileName));
+									success = false;
+								}
+							}
+						} else
+							success = false;
+					} else
+						success = false;
+				}
+				if ( success )
+					reproducedDumps++;
+				else
+					errorReason = tr("failed moving '%1' to '%2'").arg(path).arg(fileName);
+			} else {
+				success = false;
+				errorReason = tr("invalid file type '%1'").arg(type);
+				break;
+			}
+		}
+	}
+	if ( reproducedDumps == 0 )
+		d.rmdir(d.absolutePath());
+	return success;
+}
+
+bool CollectionRebuilderThread::sameFileSystem(QString path1, QString path2)
+{
+	struct stat stat1;
+	struct stat stat2;
+	stat(QFileInfo(path1).absoluteDir().absolutePath().toUtf8().constData(), &stat1);
+	stat(QFileInfo(path2).absoluteDir().absolutePath().toUtf8().constData(), &stat2);
+	return stat1.st_dev == stat2.st_dev;
 }
 
 bool CollectionRebuilderThread::createBackup(QString filePath)

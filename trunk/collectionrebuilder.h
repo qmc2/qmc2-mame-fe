@@ -31,6 +31,7 @@ class ROMAlyzer;
 #define QMC2_COLLECTIONREBUILDER_CHD_HARDLINK	1
 #define QMC2_COLLECTIONREBUILDER_CHD_SYMLINK	2
 #define QMC2_COLLECTIONREBUILDER_CHD_COPY	3
+#define QMC2_COLLECTIONREBUILDER_CHD_MOVE	4
 
 class CollectionRebuilderThread : public QThread
 {
@@ -92,6 +93,8 @@ class CollectionRebuilderThread : public QThread
 		bool hardlinkChds(QString, QString, QStringList *, QStringList *);
 		bool symlinkChds(QString, QString, QStringList *, QStringList *);
 		bool copyChds(QString, QString, QStringList *, QStringList *);
+		bool moveChds(QString, QString, QStringList *, QStringList *);
+		bool sameFileSystem(QString, QString);
 		bool createBackup(QString filePath);
 		void setFilterExpression(QString, int, int, bool);
 		void setFilterExpressionSoftware(QString, int, int, bool);

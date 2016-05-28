@@ -355,7 +355,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-427</y>
+            <y>0</y>
             <width>837</width>
             <height>993</height>
            </rect>
@@ -574,6 +574,11 @@
                     <item>
                      <property name="text">
                       <string>Copy files</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Move files</string>
                      </property>
                     </item>
                    </widget>
