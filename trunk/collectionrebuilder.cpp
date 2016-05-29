@@ -1836,6 +1836,8 @@ bool CollectionRebuilderThread::moveChds(QString baseDir, QString id, QStringLis
 		quint64 size = 0;
 		QString path, member, type;
 		if ( checkSumDb()->getData(diskSha1List->at(i), QString(), &size, &path, &member, &type) ) {
+			if ( path == fileName )
+				continue;
 			if ( m_fileTypes.indexOf(type) == QMC2_COLLECTIONREBUILDER_FILETYPE_CHD ) {
 				if ( !createBackup(fileName) ) {
 					emit log(tr("FATAL: backup creation failed"));
