@@ -853,8 +853,9 @@
 // Google dev-key
 #define QMC2_GOOGLE_DEV_KEY			"AI39si7D4n3EI-m_1eeFsfbmD8fG7Sqb9gpkgjyliWrSVs4M4hUPZsLnE_Z7XQUMSPK4GuV9A3wbzKkcSBxOTniTe-d8Y1dOlw"
 
-// backup related
+// ROMAlyzer: backup/copy operation response
 #define QMC2_BACKUP_IO_RESPONSE			100
+#define QMC2_COPY_IO_RESPONSE			QMC2_BACKUP_IO_RESPONSE
 
 // database journal modes
 #define QMC2_DB_JOURNAL_MODE_DELETE		0
