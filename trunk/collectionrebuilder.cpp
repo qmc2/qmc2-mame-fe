@@ -1683,7 +1683,7 @@ bool CollectionRebuilderThread::hardlinkChds(QString baseDir, QString id, QStrin
 							int count = 0;
 							int len = 0;
 							while ( success && (len = sourceChd.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
-								if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+								if ( count++ % QMC2_COPY_IO_RESPONSE == 0 )
 									qApp->processEvents();
 								if ( targetChd.write(ioBuffer, len) != len ) {
 									emit log(tr("FATAL: I/O error while writing to '%1'").arg(fileName));
@@ -1794,7 +1794,7 @@ bool CollectionRebuilderThread::copyChds(QString baseDir, QString id, QStringLis
 						int count = 0;
 						int len = 0;
 						while ( success && (len = sourceChd.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
-							if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+							if ( count++ % QMC2_COPY_IO_RESPONSE == 0 )
 								qApp->processEvents();
 							if ( targetChd.write(ioBuffer, len) != len ) {
 								emit log(tr("FATAL: I/O error while writing to '%1'").arg(fileName));
@@ -1857,7 +1857,7 @@ bool CollectionRebuilderThread::moveChds(QString baseDir, QString id, QStringLis
 							int count = 0;
 							int len = 0;
 							while ( success && (len = sourceChd.read(ioBuffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 ) {
-								if ( count++ % QMC2_BACKUP_IO_RESPONSE == 0 )
+								if ( count++ % QMC2_COPY_IO_RESPONSE == 0 )
 									qApp->processEvents();
 								if ( targetChd.write(ioBuffer, len) != len ) {
 									emit log(tr("FATAL: I/O error while writing to '%1'").arg(fileName));
