@@ -1250,23 +1250,25 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 		}
 	} else
 		set = *setKey;
-	bool rebuildOkay = false;
-	switch ( rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() ) {
-		case QMC2_ROMALYZER_RT_ZIP_BUILTIN:
-			rebuildOkay = writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
-			break;
+	bool rebuildOkay = true;
+	if ( !romNameList->isEmpty() ) {
+		switch ( rebuilderDialog()->romAlyzer()->comboBoxSetRewriterReproductionType->currentIndex() ) {
+			case QMC2_ROMALYZER_RT_ZIP_BUILTIN:
+				rebuildOkay = writeAllZipData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+				break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-		case QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE:
-			rebuildOkay = writeAllArchiveData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
-			break;
+			case QMC2_ROMALYZER_RT_ZIP_LIBARCHIVE:
+				rebuildOkay = writeAllArchiveData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+				break;
 #endif
-		case QMC2_ROMALYZER_RT_FOLDERS:
-			rebuildOkay = writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
-			break;
-		default:
-			break;
+			case QMC2_ROMALYZER_RT_FOLDERS:
+				rebuildOkay = writeAllFileData(baseDir, set, romNameList, romSha1List, romCrcList, romSizeList, diskNameList, diskSha1List);
+				break;
+			default:
+				break;
+		}
 	}
-	if ( rebuildOkay ) {
+	if ( rebuildOkay && !diskNameList->isEmpty() ) {
 		switch ( rebuilderDialog()->romAlyzer()->comboBoxCollectionRebuilderCHDHandling->currentIndex() ) {
 			case QMC2_COLLECTIONREBUILDER_CHD_HARDLINK:
 				rebuildOkay = hardlinkChds(baseDir, set, diskNameList, diskSha1List);
@@ -2263,7 +2265,7 @@ void CollectionRebuilderThread::run()
 					emit statusUpdated(setsProcessed, missingROMs, missingDisks);
 					if ( !dryRun ) {
 						bool rewriteOkay = true;
-						if ( !romNameList.isEmpty() )
+						if ( !romNameList.isEmpty() || !diskNameList.isEmpty() )
 							rewriteOkay = rewriteSet(&setKey, &romNameList, &romSha1List, &romCrcList, &romSizeList, &diskNameList, &diskSha1List);
 						if ( rewriteOkay )
 							emit log(tr("set rebuilding finished for '%1'").arg(setKey));
