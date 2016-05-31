@@ -550,13 +550,14 @@ void YouTubeVideoPlayer::copyYouTubeUrlAlt()
 
 void YouTubeVideoPlayer::pasteYouTubeUrl()
 {
-	QString videoID = qApp->clipboard()->text();
-	videoID.replace("https:", "http:");
-	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
-
+	QString clipboardText(qApp->clipboard()->text()), videoID;
+	clipboardText.replace("https:", "http:");
+	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
+		videoID = clipboardText.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
+	else if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtu\\.be\\/.*$")) == 0 )
+		videoID = clipboardText.replace(QRegExp("^http\\:\\/\\/.*youtu\\.be\\/(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 	if ( videoID.isEmpty() )
 		return;
-
 	QStringList videoInfoList;
 	getVideoStreamUrl(videoID, &videoInfoList, true);
 	if ( videoInfoList.count() > 2 ) {
@@ -567,13 +568,14 @@ void YouTubeVideoPlayer::pasteYouTubeUrl()
 
 void YouTubeVideoPlayer::playerPasteYouTubeUrl()
 {
-	QString videoID = qApp->clipboard()->text();
-	videoID.replace("https:", "http:");
-	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
-
+	QString clipboardText(qApp->clipboard()->text()), videoID;
+	clipboardText.replace("https:", "http:");
+	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
+		videoID = clipboardText.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
+	else if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtu\\.be\\/.*$")) == 0 )
+		videoID = clipboardText.replace(QRegExp("^http\\:\\/\\/.*youtu\\.be\\/(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 	if ( videoID.isEmpty() )
 		return;
-
 	playVideo(videoID);
 }
 
@@ -1492,7 +1494,7 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 {
 	QString clipboardText = qApp->clipboard()->text();
 	clipboardText.replace("https:", "http:");
-	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
+	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 || clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtu\\.be\\/.*$")) == 0 )
 		avmActionPasteVideoUrl->setEnabled(true);
 	else
 		avmActionPasteVideoUrl->setEnabled(false);
@@ -1548,7 +1550,7 @@ void YouTubeVideoPlayer::videoPlayer_customContextMenuRequested(const QPoint &p)
 	if ( menuVideoPlayer ) {
 		QString clipboardText = qApp->clipboard()->text();
 		clipboardText.replace("https:", "http:");
-		if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
+		if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 || clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtu\\.be\\/.*$")) == 0 )
 			videoMenuPasteVideoUrlAction->setEnabled(true);
 		else
 			videoMenuPasteVideoUrlAction->setEnabled(false);
