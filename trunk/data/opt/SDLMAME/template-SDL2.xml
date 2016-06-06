@@ -532,14 +532,6 @@
 		<description lang="pl" text="Renderowanie grafiki wektorowej"/>
 		<description lang="fr" text="Rendu Vectoriel"/>
 		<description lang="pt" text="Renderização Vetorial"/>
-		<option default="true" name="antialias" type="bool">
-			<description lang="es" text="Usar suavizado al dibujar vectores"/>
-			<description lang="us" text="Use antialiasing when drawing vectors"/>
-			<description lang="de" text="Anti-Aliasing bei Vektorgrafik verwenden"/>
-			<description lang="pl" text="Użyj antyaliasingu podczas rysowania wektorów"/>
-			<description lang="fr" text="Active l'anti-alias pour le dessin des vecteurs"/>
-			<description lang="pt" text="Usar antialiasing quando desenhar vetores"/>
-		</option>
 		<option default="0.0" name="beam_intensity_weight" type="float">
 			<description lang="us" text="Set vector beam intensity weight"/>
 			<description lang="de" text="Gewichtung der Strahlen-Intensität"/>
