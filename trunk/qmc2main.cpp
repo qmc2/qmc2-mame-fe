@@ -2225,21 +2225,21 @@ void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 
 void MainWindow::on_actionCheckROMs_triggered(bool)
 {
-	if ( qmc2FilterActive ) {
+	if ( qmc2FilterActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
-	} else if ( qmc2VerifyActive ) {
+	else if ( qmc2VerifyActive )
 		log(QMC2_LOG_FRONTEND, tr("ROM verification already active"));
-	} else if ( qmc2ReloadActive ) {
+	else if ( qmc2ReloadActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-	} else if ( qmc2ImageCheckActive ) {
+	else if ( qmc2ImageCheckActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
-	} else if ( qmc2SampleCheckActive ) {
+	else if ( qmc2SampleCheckActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-	} else if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
+	else if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() )
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
-	} else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
+	else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() )
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
-	} else {
+	else {
 		if ( !qmc2MachineList->autoRomCheck ) {
 			switch ( QMessageBox::question(this,
 						tr("Confirm"),
@@ -2257,9 +2257,9 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("automatic ROM check triggered"));
 			qmc2MachineList->verify();
 		}
+		qmc2MachineList->autoRomCheck = false;
+		qmc2AutomaticReload = false;
 	}
-	qmc2MachineList->autoRomCheck = false;
-	qmc2AutomaticReload = false;
 }
 
 void MainWindow::on_actionExportROMStatus_triggered(bool)
