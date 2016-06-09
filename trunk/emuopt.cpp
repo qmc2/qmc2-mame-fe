@@ -1696,7 +1696,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 		else {
 			if ( !qmc2CurrentItem )
 				return;
-			if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+			if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 				return;
 			fileName = "/" + qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME) + ".ini";
 		}
@@ -1826,7 +1826,7 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 		else {
 			if ( !qmc2CurrentItem )
 				return;
-			if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+			if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 				return;
 			fileName = "/" + qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME) + ".ini";
 		}

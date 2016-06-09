@@ -84,6 +84,7 @@ class MachineList : public QObject
 		static bool creatingCatView;
 		static bool creatingVerView;
 		static QString trQuestionMark;
+		static QString trWaitingForData;
 
 		QString lookupDriverName(const QString &);
 		QString romStatus(const QString &, bool translated = false);

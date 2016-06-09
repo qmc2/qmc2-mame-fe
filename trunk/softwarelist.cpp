@@ -1419,7 +1419,7 @@ bool SoftwareList::load()
 				item->setText(QMC2_SWLIST_COLUMN_LIST, swItem->text(QMC2_SWLIST_COLUMN_LIST));
 				item->setText(QMC2_SWLIST_COLUMN_SUPPORTED, swItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 				SoftwareItem *subItem = new SoftwareItem(item);
-				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
+				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 				if ( configNames.count() > i )
 					item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, configNames[i]);
 			}
@@ -1551,7 +1551,7 @@ void SoftwareList::loadTree()
 				softwareHierarchyItemHash[setKey] = parentItem;
 				itemList << parentItem;
 				SoftwareItem *subItem = new SoftwareItem(parentItem);
-				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
+				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 				if ( hiddenLists.contains(parentItem->text(QMC2_SWLIST_COLUMN_LIST)) )
 					hideList << parentItem;
 			}
@@ -1577,7 +1577,7 @@ void SoftwareList::loadTree()
 					softwareHierarchyItemHash[parentSetKey] = parentItem;
 					itemList << parentItem;
 					SoftwareItem *subItem = new SoftwareItem(parentItem);
-					subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
+					subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 					if ( hiddenLists.contains(parentItem->text(QMC2_SWLIST_COLUMN_LIST)) )
 						hideList << parentItem;
 				}
@@ -1598,7 +1598,7 @@ void SoftwareList::loadTree()
 					childItem->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, "c");
 					softwareHierarchyItemHash[setKey] = childItem;
 					SoftwareItem *subItem = new SoftwareItem(childItem);
-					subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
+					subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 					if ( hiddenLists.contains(childItem->text(QMC2_SWLIST_COLUMN_LIST)) )
 						hideList << childItem;
 				}
@@ -2540,7 +2540,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 		else {
 			item = new SoftwareItem(treeWidgetFavoriteSoftware);
 			SoftwareItem *subItem = new SoftwareItem(item);
-			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
+			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 		}
 		if ( item ) {
 			item->setText(QMC2_SWLIST_COLUMN_TITLE, si->text(QMC2_SWLIST_COLUMN_TITLE));
@@ -2642,7 +2642,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 	if ( item->childCount() < 1 )
 		return;
 
-	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
+	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == MachineList::trWaitingForData ) {
 		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
 		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
@@ -2671,7 +2671,7 @@ void SoftwareList::on_treeWidgetKnownSoftwareTree_itemExpanded(QTreeWidgetItem *
 	if ( item->childCount() < 1 )
 		return;
 
-	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
+	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == MachineList::trWaitingForData ) {
 		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
 		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
@@ -2700,7 +2700,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 	if ( item->childCount() < 1 )
 		return;
 
-	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
+	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == MachineList::trWaitingForData ) {
 		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
 		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
@@ -2729,7 +2729,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 	if ( item->childCount() < 1 )
 		return;
 
-	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
+	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == MachineList::trWaitingForData ) {
 		QString softwareXml = swlDb->xml(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
 		if ( !softwareXml.isEmpty() ) {
 			QXmlInputSource xmlInputSource;
@@ -3306,7 +3306,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 			matches << item;
 			SoftwareItem *newItem = new SoftwareItem((QTreeWidget *)0);
 			SoftwareItem *subItem = new SoftwareItem(newItem);
-			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
+			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 			newItem->setText(QMC2_SWLIST_COLUMN_TITLE, item->text(QMC2_SWLIST_COLUMN_TITLE));
 			newItem->setIcon(QMC2_SWLIST_COLUMN_TITLE, item->icon(QMC2_SWLIST_COLUMN_TITLE));
 			newItem->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, item->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
@@ -3803,7 +3803,7 @@ void SoftwareList::loadFavoritesFromFile()
 								SoftwareItem *knowSoftwareItem = (SoftwareItem *)matchedItems.at(0);
 								SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
 								SoftwareItem *subItem = new SoftwareItem(item);
-								subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
+								subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 								item->setText(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_TITLE));
 								item->setWhatsThis(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_TITLE));
 								item->setWhatsThis(QMC2_SWLIST_COLUMN_NAME, knowSoftwareItem->whatsThis(QMC2_SWLIST_COLUMN_NAME));
@@ -4170,7 +4170,7 @@ bool SoftwareListXmlHandler::startElement(const QString &/*namespaceURI*/, const
 		itemList() << softwareItem;
 		softwareItemHash[setKey] = softwareItem;
 		SoftwareItem *subItem = new SoftwareItem(softwareItem);
-		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
+		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_SUPPORTED, softwareSupported);
