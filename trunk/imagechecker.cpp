@@ -1368,168 +1368,293 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 		}
 	} else {
 		// icons
-		if ( QMC2_ICON_FILETYPE_ZIP ) {
-			// zipped icons
-			foreach (QString filePath, qmc2IconFileMap.keys()) {
-				labelStatus->setText(tr("Executing ZIP tool"));
-				progressBar->setRange(0, 0);
-				progressBar->setValue(-1);
+		switch ( qmc2Options->iconFileType() ) {
+			case QMC2_ICON_FILETYPE_ZIP:
+				foreach (QString filePath, qmc2IconFileMap.keys()) {
+					labelStatus->setText(tr("Executing ZIP tool"));
+					progressBar->setRange(0, 0);
+					progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
-				QString command = "cmd.exe";
-				QStringList args;
-				args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
-				     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+					QString command = "cmd.exe";
+					QStringList args;
+					args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+					     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #else
-				QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
-				QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+					QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+					QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #endif
-				QString fullCommandString = command;
-				int i, j;
-				QStringList addArgs;
-				for (i = 0; i < args.count(); i++) {
-					if ( args[i] == "$ARCHIVE$" ) {
+					QString fullCommandString = command;
+					int i, j;
+					QStringList addArgs;
+					for (i = 0; i < args.count(); i++) {
+						if ( args[i] == "$ARCHIVE$" ) {
 #if defined(Q_OS_WIN)
-						QString zipFile = filePath;
-						args[i] = zipFile.replace('/', '\\');
+							QString zipFile = filePath;
+							args[i] = zipFile.replace('/', '\\');
 #else
-						args[i] = filePath;
+							args[i] = filePath;
 #endif
-					} else if ( args[i] == "$FILELIST$" ) {
-						for (j = 0; j < listWidgetObsolete->count(); j++) {
-							QString itemText = listWidgetObsolete->item(j)->text();
-							if ( itemText.startsWith(filePath + ": ") ) {
-								itemText.remove(0, filePath.length() + 2);
-								addArgs << itemText;
+						} else if ( args[i] == "$FILELIST$" ) {
+							for (j = 0; j < listWidgetObsolete->count(); j++) {
+								QString itemText = listWidgetObsolete->item(j)->text();
+								if ( itemText.startsWith(filePath + ": ") ) {
+									itemText.remove(0, filePath.length() + 2);
+									addArgs << itemText;
+								}
+							}
+							args.removeAt(i);
+							j = i;
+							foreach (QString file, addArgs)
+								args.insert(j++, file);
+						}
+					}
+					if ( !addArgs.isEmpty() ) {
+						foreach (QString s, args) {
+							if ( s.contains(rxCharsToEscape) )
+								s = "\"" + s + "\"";
+							fullCommandString += " " + s;
+						}
+						log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+						unzClose(qmc2IconFileMap[filePath]);
+						ToolExecutor zipRemovalTool(this, command, args);
+						zipRemovalTool.exec();
+						qmc2IconFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
+						if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
+							log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+					}
+					labelStatus->setText(tr("Idle"));
+					progressBar->setRange(-1, -1);
+					progressBar->setValue(-1);
+				}
+				listWidgetObsolete->setUpdatesEnabled(false);
+				listWidgetObsolete->clear();
+				checkObsoleteFiles();
+				listWidgetObsolete->setUpdatesEnabled(true);
+				break;
+
+			case QMC2_ICON_FILETYPE_7Z:
+				foreach (QString filePath, qmc2IconFileMap7z.keys()) {
+					labelStatus->setText(tr("Executing 7z tool"));
+					progressBar->setRange(0, 0);
+					progressBar->setValue(-1);
+#if defined(Q_OS_WIN)
+					QString command = "cmd.exe";
+					QStringList args;
+					args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool").toString().replace('/', '\\')
+					     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#else
+					QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool").toString();
+					QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#endif
+					QString fullCommandString = command;
+					int i, j;
+					QStringList addArgs;
+					for (i = 0; i < args.count(); i++) {
+						if ( args[i] == "$ARCHIVE$" ) {
+#if defined(Q_OS_WIN)
+							QString sevenZipFilePath = filePath;
+							args[i] = sevenZipFilePath.replace('/', '\\');
+#else
+							args[i] = filePath;
+#endif
+						} else if ( args[i] == "$FILELIST$" ) {
+							for (j = 0; j < listWidgetObsolete->count(); j++) {
+								QString itemText = listWidgetObsolete->item(j)->text();
+								if ( itemText.startsWith(filePath + ": ") ) {
+									itemText.remove(0, filePath.length() + 2);
+									addArgs << itemText;
+								}
+							}
+							args.removeAt(i);
+							j = i;
+							foreach (QString file, addArgs)
+								args.insert(j++, file);
+						}
+					}
+					if ( !addArgs.isEmpty() ) {
+						foreach (QString s, args) {
+							if ( s.contains(rxCharsToEscape) )
+								s = "\"" + s + "\"";
+							fullCommandString += " " + s;
+						}
+						log(tr("Running 7z tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+						qmc2IconFileMap7z[filePath]->close();
+						ToolExecutor sevenZipRemovalTool(this, command, args);
+						sevenZipRemovalTool.exec();
+						qmc2IconFileMap7z[filePath]->open();
+						if ( sevenZipRemovalTool.toolExitStatus != QProcess::NormalExit || sevenZipRemovalTool.toolExitCode != 0 )
+							log(tr("WARNING: 7z tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(sevenZipRemovalTool.toolExitCode).arg(sevenZipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+					}
+					labelStatus->setText(tr("Idle"));
+					progressBar->setRange(-1, -1);
+					progressBar->setValue(-1);
+				}
+				listWidgetObsolete->setUpdatesEnabled(false);
+				listWidgetObsolete->clear();
+				checkObsoleteFiles();
+				listWidgetObsolete->setUpdatesEnabled(true);
+				break;
+
+#if defined(QMC2_LIBARCHIVE_ENABLED)
+			case QMC2_ICON_FILETYPE_ARCHIVE:
+				foreach (QString filePath, qmc2IconArchiveMap.keys()) {
+					if ( filePath.toLower().endsWith(".7z") ) {
+						labelStatus->setText(tr("Executing 7z tool"));
+						progressBar->setRange(0, 0);
+						progressBar->setValue(-1);
+#if defined(Q_OS_WIN)
+						QString command = "cmd.exe";
+						QStringList args;
+						args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool").toString().replace('/', '\\')
+						     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#else
+						QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool").toString();
+						QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+#endif
+						QString fullCommandString = command;
+						int i, j;
+						QStringList addArgs;
+						for (i = 0; i < args.count(); i++) {
+							if ( args[i] == "$ARCHIVE$" ) {
+#if defined(Q_OS_WIN)
+								QString sevenZipFilePath = filePath;
+								args[i] = sevenZipFilePath.replace('/', '\\');
+#else
+								args[i] = filePath;
+#endif
+							} else if ( args[i] == "$FILELIST$" ) {
+								for (j = 0; j < listWidgetObsolete->count(); j++) {
+									QString itemText = listWidgetObsolete->item(j)->text();
+									if ( itemText.startsWith(filePath + ": ") ) {
+										itemText.remove(0, filePath.length() + 2);
+										addArgs << itemText;
+									}
+								}
+								args.removeAt(i);
+								j = i;
+								foreach (QString file, addArgs)
+									args.insert(j++, file);
 							}
 						}
-						args.removeAt(i);
-						j = i;
-						foreach (QString file, addArgs)
-							args.insert(j++, file);
-					}
-				}
-				if ( !addArgs.isEmpty() ) {
-					foreach (QString s, args) {
-						if ( s.contains(rxCharsToEscape) )
-							s = "\"" + s + "\"";
-						fullCommandString += " " + s;
-					}
-					log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-					unzClose(qmc2IconFileMap[filePath]);
-					ToolExecutor zipRemovalTool(this, command, args);
-					zipRemovalTool.exec();
-					qmc2IconFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
-					if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
-						log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
-				}
-				labelStatus->setText(tr("Idle"));
-				progressBar->setRange(-1, -1);
-				progressBar->setValue(-1);
-			}
-			listWidgetObsolete->setUpdatesEnabled(false);
-			listWidgetObsolete->clear();
-			checkObsoleteFiles();
-			listWidgetObsolete->setUpdatesEnabled(true);
-		} else if ( QMC2_ICON_FILETYPE_7Z ) {
-			// 7-zipped icons
-			foreach (QString filePath, qmc2IconFileMap7z.keys()) {
-				labelStatus->setText(tr("Executing 7z tool"));
-				progressBar->setRange(0, 0);
-				progressBar->setValue(-1);
+						if ( !addArgs.isEmpty() ) {
+							foreach (QString s, args) {
+								if ( s.contains(rxCharsToEscape) )
+									s = "\"" + s + "\"";
+								fullCommandString += " " + s;
+							}
+							log(tr("Running 7z tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+							qmc2IconArchiveMap[filePath]->close();
+							ToolExecutor sevenZipRemovalTool(this, command, args);
+							sevenZipRemovalTool.exec();
+							qmc2IconArchiveMap[filePath]->open();
+							if ( sevenZipRemovalTool.toolExitStatus != QProcess::NormalExit || sevenZipRemovalTool.toolExitCode != 0 )
+								log(tr("WARNING: 7z tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(sevenZipRemovalTool.toolExitCode).arg(sevenZipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+						}
+						labelStatus->setText(tr("Idle"));
+						progressBar->setRange(-1, -1);
+						progressBar->setValue(-1);
+					} else {
+						labelStatus->setText(tr("Executing ZIP tool"));
+						progressBar->setRange(0, 0);
+						progressBar->setValue(-1);
 #if defined(Q_OS_WIN)
-				QString command = "cmd.exe";
-				QStringList args;
-				args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool").toString().replace('/', '\\')
-				     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+						QString command = "cmd.exe";
+						QStringList args;
+						args << "/c" << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString().replace('/', '\\')
+						     << qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #else
-				QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool").toString();
-				QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
+						QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool").toString();
+						QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments").toString().split(" ", QString::SkipEmptyParts);
 #endif
-				QString fullCommandString = command;
-				int i, j;
-				QStringList addArgs;
-				for (i = 0; i < args.count(); i++) {
-					if ( args[i] == "$ARCHIVE$" ) {
+						QString fullCommandString = command;
+						int i, j;
+						QStringList addArgs;
+						for (i = 0; i < args.count(); i++) {
+							if ( args[i] == "$ARCHIVE$" ) {
 #if defined(Q_OS_WIN)
-						QString sevenZipFilePath = filePath;
-						args[i] = sevenZipFilePath.replace('/', '\\');
+								QString zipFile = filePath;
+								args[i] = zipFile.replace('/', '\\');
 #else
-						args[i] = filePath;
+								args[i] = filePath;
 #endif
-					} else if ( args[i] == "$FILELIST$" ) {
-						for (j = 0; j < listWidgetObsolete->count(); j++) {
-							QString itemText = listWidgetObsolete->item(j)->text();
-							if ( itemText.startsWith(filePath + ": ") ) {
-								itemText.remove(0, filePath.length() + 2);
-								addArgs << itemText;
+							} else if ( args[i] == "$FILELIST$" ) {
+								for (j = 0; j < listWidgetObsolete->count(); j++) {
+									QString itemText = listWidgetObsolete->item(j)->text();
+									if ( itemText.startsWith(filePath + ": ") ) {
+										itemText.remove(0, filePath.length() + 2);
+										addArgs << itemText;
+									}
+								}
+								args.removeAt(i);
+								j = i;
+								foreach (QString file, addArgs)
+									args.insert(j++, file);
 							}
 						}
-						args.removeAt(i);
-						j = i;
-						foreach (QString file, addArgs)
-							args.insert(j++, file);
+						if ( !addArgs.isEmpty() ) {
+							foreach (QString s, args) {
+								if ( s.contains(rxCharsToEscape) )
+									s = "\"" + s + "\"";
+								fullCommandString += " " + s;
+							}
+							log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
+							qmc2IconArchiveMap[filePath]->close();
+							ToolExecutor zipRemovalTool(this, command, args);
+							zipRemovalTool.exec();
+							qmc2IconArchiveMap[filePath]->open();
+							if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
+								log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+						}
+						labelStatus->setText(tr("Idle"));
+						progressBar->setRange(-1, -1);
+						progressBar->setValue(-1);
 					}
 				}
-				if ( !addArgs.isEmpty() ) {
-					foreach (QString s, args) {
-						if ( s.contains(rxCharsToEscape) )
-							s = "\"" + s + "\"";
-						fullCommandString += " " + s;
+				listWidgetObsolete->setUpdatesEnabled(false);
+				listWidgetObsolete->clear();
+				checkObsoleteFiles();
+				listWidgetObsolete->setUpdatesEnabled(true);
+				break;
+#endif
+
+			default:
+				labelStatus->setText(tr("Removing obsolete files / folders"));
+				progressBar->setRange(0, listWidgetObsolete->count());
+				listWidgetObsolete->setUpdatesEnabled(false);
+				for (int i = 0; i < listWidgetObsolete->count(); i++) {
+					QListWidgetItem *item = listWidgetObsolete->item(i);
+					progressBar->setValue(++itemCount);
+					QString path = item->text();
+					QFileInfo fi(path);
+					if ( fi.isDir() ) {
+						QDir d(path);
+						if ( d.rmdir(path) ) {
+							log(tr("Obsolete icon folder '%1' removed").arg(d.absolutePath()));
+							QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+							if ( itemToDelete )
+								delete itemToDelete;
+							i--;
+						} else
+							log(tr("Obsolete icon folder '%1' cannot be removed, please check permissions").arg(d.absolutePath()));
+					} else {
+						QFile f(path);
+						if ( f.remove() ) {
+							log(tr("Obsolete icon file '%1' removed").arg(path));
+							QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
+							if ( itemToDelete )
+								delete itemToDelete;
+							i--;
+						} else
+							log(tr("Obsolete icon file '%1' cannot be removed, please check permissions").arg(path));
 					}
-					log(tr("Running 7z tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-					qmc2IconFileMap7z[filePath]->close();
-					ToolExecutor sevenZipRemovalTool(this, command, args);
-					sevenZipRemovalTool.exec();
-					qmc2IconFileMap7z[filePath]->open();
-					if ( sevenZipRemovalTool.toolExitStatus != QProcess::NormalExit || sevenZipRemovalTool.toolExitCode != 0 )
-						log(tr("WARNING: 7z tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(sevenZipRemovalTool.toolExitCode).arg(sevenZipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+					if ( itemCount % QMC2_CHECK_UPDATE_MEDIUM == 0 ) {
+						listWidgetObsolete->setUpdatesEnabled(true);
+						qApp->processEvents();
+						listWidgetObsolete->setUpdatesEnabled(false);
+					}
 				}
-				labelStatus->setText(tr("Idle"));
-				progressBar->setRange(-1, -1);
-				progressBar->setValue(-1);
-			}
-			listWidgetObsolete->setUpdatesEnabled(false);
-			listWidgetObsolete->clear();
-			checkObsoleteFiles();
-			listWidgetObsolete->setUpdatesEnabled(true);
-		} else {
-			// unzipped icons
-			labelStatus->setText(tr("Removing obsolete files / folders"));
-			progressBar->setRange(0, listWidgetObsolete->count());
-			listWidgetObsolete->setUpdatesEnabled(false);
-			for (int i = 0; i < listWidgetObsolete->count(); i++) {
-				QListWidgetItem *item = listWidgetObsolete->item(i);
-				progressBar->setValue(++itemCount);
-				QString path = item->text();
-				QFileInfo fi(path);
-				if ( fi.isDir() ) {
-					QDir d(path);
-					if ( d.rmdir(path) ) {
-						log(tr("Obsolete icon folder '%1' removed").arg(d.absolutePath()));
-						QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
-						if ( itemToDelete )
-							delete itemToDelete;
-						i--;
-					} else
-						log(tr("Obsolete icon folder '%1' cannot be removed, please check permissions").arg(d.absolutePath()));
-				} else {
-					QFile f(path);
-					if ( f.remove() ) {
-						log(tr("Obsolete icon file '%1' removed").arg(path));
-						QListWidgetItem *itemToDelete = listWidgetObsolete->takeItem(listWidgetObsolete->row(item));
-						if ( itemToDelete )
-							delete itemToDelete;
-						i--;
-					} else
-						log(tr("Obsolete icon file '%1' cannot be removed, please check permissions").arg(path));
-				}
-				if ( itemCount % QMC2_CHECK_UPDATE_MEDIUM == 0 ) {
-					listWidgetObsolete->setUpdatesEnabled(true);
-					qApp->processEvents();
-					listWidgetObsolete->setUpdatesEnabled(false);
-				}
-			}
-			listWidgetObsolete->setUpdatesEnabled(true);
+				listWidgetObsolete->setUpdatesEnabled(true);
+				break;
 		}
 	}
 	labelObsolete->setText(tr("Obsolete:") + " " + QString::number(listWidgetObsolete->count()));
@@ -1628,28 +1753,31 @@ void ImageChecker::checkObsoleteFiles()
 		}
 	} else {
 		// icons
-		if ( QMC2_ICON_FILETYPE_ZIP ) {
-			log(tr("Reading ZIP directory recursively"));
-			foreach (unzFile iconFile, qmc2IconFileMap)
-				recursiveZipList(iconFile, &fileList, qmc2IconFileMap.key(iconFile) + ": ");
-		} else if ( QMC2_ICON_FILETYPE_7Z ) {
-			log(tr("Reading 7z directory recursively"));
-			foreach (SevenZipFile *imageFile, qmc2IconFileMap7z)
-				recursiveSevenZipList(imageFile, &fileList, qmc2IconFileMap7z.key(imageFile) + ": ");
-		}
+		switch ( qmc2Options->iconFileType() ) {
+			case QMC2_ICON_FILETYPE_ZIP:
+				log(tr("Reading ZIP directory recursively"));
+				foreach (unzFile iconFile, qmc2IconFileMap)
+					recursiveZipList(iconFile, &fileList, qmc2IconFileMap.key(iconFile) + ": ");
+				break;
+			case QMC2_ICON_FILETYPE_7Z:
+				log(tr("Reading 7z directory recursively"));
+				foreach (SevenZipFile *iconFile, qmc2IconFileMap7z)
+					recursiveSevenZipList(iconFile, &fileList, qmc2IconFileMap7z.key(iconFile) + ": ");
+				break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-		else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
-			log(tr("Reading archive directory recursively"));
-			foreach (ArchiveFile *imageFile, qmc2IconArchiveMap)
-				recursiveArchiveList(imageFile, &fileList, qmc2IconArchiveMap.key(imageFile) + ": ");
-		}
+			case QMC2_ICON_FILETYPE_ARCHIVE:
+				log(tr("Reading archive directory recursively"));
+				foreach (ArchiveFile *iconFile, qmc2IconArchiveMap)
+					recursiveArchiveList(iconFile, &fileList, qmc2IconArchiveMap.key(iconFile) + ": ");
+				break;
 #endif
-		else {
-			dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
-			foreach (QString path, dirList) {
-				log(tr("Reading icon directory '%1' recursively").arg(QDir::toNativeSeparators(path)));
-				recursiveFileList(path, &fileList);
-			}
+			default:
+				dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
+				foreach (QString path, dirList) {
+					log(tr("Reading icon directory '%1' recursively").arg(QDir::toNativeSeparators(path)));
+					recursiveFileList(path, &fileList);
+				}
+				break;
 		}
 	}
 	log(tr("%n directory entries to check", "", fileList.count()));
@@ -1765,7 +1893,7 @@ void ImageChecker::checkObsoleteFiles()
 			}
 		} else {
 			// icons
-			if ( QMC2_ICON_FILETYPE_ZIP || QMC2_ICON_FILETYPE_7Z || QMC2_ICON_FILETYPE_ARCHIVE ) {
+			if ( qmc2Options->iconFileType() != QMC2_ICON_FILETYPE_NONE ) {
 				// for archived icons, only the lower-case basenames and image-type suffixes count (.ico, .png, ...)
 				QString pathCopy = path;
 				pathCopy.remove(rxColonSepStr);
@@ -1997,8 +2125,10 @@ void ImageChecker::recursiveSevenZipList(SevenZipFile *sevenZipFile, QStringList
 void ImageChecker::recursiveArchiveList(ArchiveFile *archiveFile, QStringList *fileNames, QString prependString)
 {
 	if ( archiveFile ) {
-		if ( archiveFile->entryList().isEmpty() )
+		if ( archiveFile->entryList().isEmpty() ) {
+			archiveFile->reopen();
 			archiveFile->createEntryList();
+		}
 		for (int index = 0; index < archiveFile->entryList().count(); index++) {
 			fileNames->append(prependString + archiveFile->entryList()[index].name());
 			if ( index % 25 == 0 )

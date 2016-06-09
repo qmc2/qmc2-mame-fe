@@ -183,38 +183,43 @@ MachineList::MachineList(QObject *parent)
 	machineStateTranslations["imperfect"] = tr("imperfect");
 	machineStateTranslations["N/A"] = tr("N/A");
 	romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
+
+	// identifier strings (see "mame -help") that we support - others will produce a warning
 	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HBMAME" << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 
-	if ( QMC2_ICON_FILETYPE_ZIP ) {
-		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-			unzFile iconFile = unzOpen(filePath.toUtf8().constData());
-			if ( iconFile == 0 )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
-			else
-				qmc2IconFileMap[filePath] = iconFile;
-		}
-	} else if ( QMC2_ICON_FILETYPE_7Z ) {
-		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-			SevenZipFile *iconFile = new SevenZipFile(filePath);
-			if ( !iconFile->open() ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
-				delete iconFile;
-			} else
-				qmc2IconFileMap7z[filePath] = iconFile;
-		}
-	}
+	switch ( qmc2Options->iconFileType() ) {
+		case QMC2_ICON_FILETYPE_ZIP:
+			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+				unzFile iconFile = unzOpen(filePath.toUtf8().constData());
+				if ( iconFile == 0 )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
+				else
+					qmc2IconFileMap[filePath] = iconFile;
+			}
+			break;
+		case QMC2_ICON_FILETYPE_7Z:
+			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+				SevenZipFile *iconFile = new SevenZipFile(filePath);
+				if ( !iconFile->open() ) {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
+					delete iconFile;
+				} else
+					qmc2IconFileMap7z[filePath] = iconFile;
+			}
+			break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-       	else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
-		foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-			ArchiveFile *archiveFile = new ArchiveFile(filePath, true);
-			if ( !archiveFile->open() ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
-				delete archiveFile;
-			} else
-				qmc2IconArchiveMap[filePath] = archiveFile;
-		}
-	}
+		case QMC2_ICON_FILETYPE_ARCHIVE:
+			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+				ArchiveFile *archiveFile = new ArchiveFile(filePath, true);
+				if ( !archiveFile->open() ) {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
+					delete archiveFile;
+				} else
+					qmc2IconArchiveMap[filePath] = archiveFile;
+			}
+			break;
 #endif
+	}
 
 	m_xmlDb = new XmlDatabaseManager(this);
 	xmlDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
@@ -2989,46 +2994,86 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 		QByteArray imageData;
 		QTime preloadTimer, elapsedTime(0, 0, 0, 0);
 		preloadTimer.start();
-		if ( QMC2_ICON_FILETYPE_ZIP ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
-			foreach (unzFile iconFile, qmc2IconFileMap) {
-				unz_global_info unzGlobalInfo;
-				if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
+
+		switch ( qmc2Options->iconFileType() ) {
+			case QMC2_ICON_FILETYPE_ZIP:
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
+				foreach (unzFile iconFile, qmc2IconFileMap) {
+					unz_global_info unzGlobalInfo;
+					if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
+						int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+						QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
+						if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+							qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
+						else
+							qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+						qmc2MainWindow->progressBarMachineList->setRange(0, unzGlobalInfo.number_entry);
+						qmc2MainWindow->progressBarMachineList->reset();
+						qApp->processEvents();
+						char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+						if ( unzGoToFirstFile(iconFile) == UNZ_OK ) {
+							int counter = 0;
+							char unzFileName[QMC2_MAX_PATH_LENGTH];
+							unz_file_info unzFileInfo;
+							do {
+								if ( unzGetCurrentFileInfo(iconFile, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, 0, 0, 0, 0) == UNZ_OK ) {
+									QFileInfo fi(unzFileName);
+									imageData.clear();
+									if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {
+										int len = 0;
+										while ( (len = unzReadCurrentFile(iconFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
+											imageData.append(imageBuffer, len);
+										unzCloseCurrentFile(iconFile);
+										QPixmap iconPixmap;
+										if ( iconPixmap.loadFromData(imageData) ) {
+											QFileInfo fi2(fi.fileName().toLower());
+											qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
+										}
+									}
+								}
+								if ( counter++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
+									qmc2MainWindow->progressBarMachineList->setValue(counter);
+									qApp->processEvents();
+								}
+							} while ( unzGoToNextFile(iconFile) != UNZ_END_OF_LIST_OF_FILE );
+						}
+						qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
+						if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+							qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
+						else
+							qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+					}
+				}
+				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+				break;
+
+			case QMC2_ICON_FILETYPE_7Z:
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from 7z archive"));
+				foreach (SevenZipFile *sevenZipFile, qmc2IconFileMap7z) {
 					int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
 					QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 						qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 					else
 						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-					qmc2MainWindow->progressBarMachineList->setRange(0, unzGlobalInfo.number_entry);
+					qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->entryList().count());
 					qmc2MainWindow->progressBarMachineList->reset();
-					qApp->processEvents();
-					char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-					if ( unzGoToFirstFile(iconFile) == UNZ_OK ) {
-						int counter = 0;
-						char unzFileName[QMC2_MAX_PATH_LENGTH];
-						unz_file_info unzFileInfo;
-						do {
-							if ( unzGetCurrentFileInfo(iconFile, &unzFileInfo, unzFileName, QMC2_MAX_PATH_LENGTH, 0, 0, 0, 0) == UNZ_OK ) {
-								QFileInfo fi(unzFileName);
-								imageData.clear();
-								if ( unzOpenCurrentFile(iconFile) == UNZ_OK ) {
-									int len = 0;
-									while ( (len = unzReadCurrentFile(iconFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
-										imageData.append(imageBuffer, len);
-									unzCloseCurrentFile(iconFile);
-									QPixmap iconPixmap;
-									if ( iconPixmap.loadFromData(imageData) ) {
-										QFileInfo fi2(fi.fileName().toLower());
-										qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
-									}
-								}
+					for (int index = 0; index < sevenZipFile->entryList().count(); index++) {
+						SevenZipMetaData metaData = sevenZipFile->entryList()[index];
+						QFileInfo fi(metaData.name());
+						sevenZipFile->read(index, &imageData);
+						if ( !sevenZipFile->hasError() ) {
+							QPixmap iconPixmap;
+							if ( iconPixmap.loadFromData(imageData) ) {
+								QFileInfo fi2(fi.fileName().toLower());
+								qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
 							}
-							if ( counter++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-								qmc2MainWindow->progressBarMachineList->setValue(counter);
-								qApp->processEvents();
-							}
-						} while ( unzGoToNextFile(iconFile) != UNZ_END_OF_LIST_OF_FILE );
+						}
+						if ( index % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
+							qmc2MainWindow->progressBarMachineList->setValue(index);
+							qApp->processEvents();
+						}
 					}
 					qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -3036,81 +3081,47 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 					else
 						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 				}
-			}
-			elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-		} else if ( QMC2_ICON_FILETYPE_7Z ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from 7z archive"));
-			foreach (SevenZipFile *sevenZipFile, qmc2IconFileMap7z) {
-				int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
-				QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
-				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-					qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
-				else
-					qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-				qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->entryList().count());
-				qmc2MainWindow->progressBarMachineList->reset();
-				for (int index = 0; index < sevenZipFile->entryList().count(); index++) {
-					SevenZipMetaData metaData = sevenZipFile->entryList()[index];
-					QFileInfo fi(metaData.name());
-					sevenZipFile->read(index, &imageData);
-					if ( !sevenZipFile->hasError() ) {
-						QPixmap iconPixmap;
-						if ( iconPixmap.loadFromData(imageData) ) {
-							QFileInfo fi2(fi.fileName().toLower());
-							qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
-						}
-					}
-					if ( index % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
-						qmc2MainWindow->progressBarMachineList->setValue(index);
-						qApp->processEvents();
-					}
-				}
-				qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
-				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-					qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
-				else
-					qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-			}
-			elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from 7z archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-		}
+				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from 7z archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+				break;
+
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-		else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from archive"));
-			foreach (ArchiveFile *archiveFile, qmc2IconArchiveMap) {
-				int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
-				QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
-				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-					qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
-				else
-					qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-				qmc2MainWindow->progressBarMachineList->setRange(0, 0);
-				qmc2MainWindow->progressBarMachineList->reset();
-				ArchiveEntryMetaData metaData;
-				int counter = 0;
-				while ( archiveFile->seekNextEntry(&metaData) ) {
-					QFileInfo fi(metaData.name());
-					if ( archiveFile->readEntry(imageData) ) {
-						QPixmap iconPixmap;
-						if ( iconPixmap.loadFromData(imageData) ) {
-							QFileInfo fi2(fi.fileName().toLower());
-							qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
+			case QMC2_ICON_FILETYPE_ARCHIVE:
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from archive"));
+				foreach (ArchiveFile *archiveFile, qmc2IconArchiveMap) {
+					int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
+					QString oldFormat = qmc2MainWindow->progressBarMachineList->format();
+					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+						qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
+					else
+						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
+					qmc2MainWindow->progressBarMachineList->setRange(0, 0);
+					qmc2MainWindow->progressBarMachineList->reset();
+					ArchiveEntryMetaData metaData;
+					int counter = 0;
+					while ( archiveFile->seekNextEntry(&metaData) ) {
+						QFileInfo fi(metaData.name());
+						if ( archiveFile->readEntry(imageData) ) {
+							QPixmap iconPixmap;
+							if ( iconPixmap.loadFromData(imageData) ) {
+								QFileInfo fi2(fi.fileName().toLower());
+								qmc2IconHash.insert(fi2.baseName(), QIcon(iconPixmap));
+							}
 						}
+						if ( counter++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 )
+							qApp->processEvents();
 					}
-					if ( counter++ % QMC2_ICONCACHE_RESPONSIVENESS == 0 )
-						qApp->processEvents();
+					qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
+					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+						qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
+					else
+						qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 				}
-				qmc2MainWindow->progressBarMachineList->setRange(0, currentMax);
-				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-					qmc2MainWindow->progressBarMachineList->setFormat(oldFormat);
-				else
-					qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-			}
-			elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-		}
+				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+				break;
 #endif
+		}
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", qmc2IconHash.count()));
 		qmc2IconsPreloaded = true;
 		if ( !item )

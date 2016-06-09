@@ -372,9 +372,14 @@
 #define QMC2_MAX_PATH_LENGTH			1024
 
 // indexes in compressed image file type selectors
+#define QMC2_IMG_FILETYPE_NONE			-1
 #define QMC2_IMG_FILETYPE_ZIP			0
 #define QMC2_IMG_FILETYPE_7Z			1
 #define QMC2_IMG_FILETYPE_ARCHIVE		2
+#define QMC2_ICON_FILETYPE_ZIP			QMC2_IMG_FILETYPE_ZIP
+#define QMC2_ICON_FILETYPE_7Z			QMC2_IMG_FILETYPE_7Z
+#define QMC2_ICON_FILETYPE_ARCHIVE		QMC2_IMG_FILETYPE_ARCHIVE
+#define QMC2_ICON_FILETYPE_NONE			QMC2_IMG_FILETYPE_NONE
 
 // retry loading images from 7z archives every how many milliseconds (when the dictionary is being filled up)
 #define QMC2_IMG_7Z_DICT_FILL_DELAY		250
@@ -834,11 +839,6 @@
 // tests the (minor) version 'v' against the minimum (minor) version 'mv', and the SVN rev. 'r' against the minimum SVN rev. 'mr' (true if 'v' or 'r' are in the relevant ranges)
 #define QMC2_TEST_VERSION(v, mv, r, mr)		((v) < mv || ((r) > 0 && (r) < (mr)))
 
-// macros to determine ZIP / 7z compressed icon file type to use
-#define QMC2_ICON_FILETYPE_ZIP			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ZIP)
-#define QMC2_ICON_FILETYPE_7Z			(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_7Z)
-#define QMC2_ICON_FILETYPE_ARCHIVE		(qmc2UseIconFile && qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType").toInt() == QMC2_IMG_FILETYPE_ARCHIVE)
-
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
 #define QMC2_PRINT_STR(s)			printf("%s = %s\n", #s, s.toUtf8().constData())
@@ -878,6 +878,5 @@
 #define QMC2_OS_NAME				XSTR(BUILD_OS_NAME)
 #define QMC2_OS_RELEASE				XSTR(BUILD_OS_RELEASE)
 #define QMC2_MACHINE_ARCHITECTURE		XSTR(BUILD_MACHINE)
-
 
 #endif

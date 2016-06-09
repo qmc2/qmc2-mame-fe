@@ -1704,36 +1704,39 @@ void Options::on_pushButtonApply_clicked()
 		}
 		qmc2IconArchiveMap.clear();
 #endif
-		if ( QMC2_ICON_FILETYPE_ZIP ) {
-			foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-				unzFile iconFile = unzOpen(filePath.toUtf8().constData());
-				if ( iconFile == 0 )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
-				else
-					qmc2IconFileMap[filePath] = iconFile;
-			}
-		} else if ( QMC2_ICON_FILETYPE_7Z ) {
-			foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-				SevenZipFile *iconFile = new SevenZipFile(filePath);
-				if ( !iconFile->open() ) {
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
-					delete iconFile;
-				} else
-					qmc2IconFileMap7z[filePath] = iconFile;
-			}
-		}
+		switch ( iconFileType() ) {
+			case QMC2_ICON_FILETYPE_ZIP:
+				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+					unzFile iconFile = unzOpen(filePath.toUtf8().constData());
+					if ( iconFile == 0 )
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
+					else
+						qmc2IconFileMap[filePath] = iconFile;
+				}
+				break;
+			case QMC2_ICON_FILETYPE_7Z:
+				foreach (QString filePath, config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+					SevenZipFile *iconFile = new SevenZipFile(filePath);
+					if ( !iconFile->open() ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
+						delete iconFile;
+					} else
+						qmc2IconFileMap7z[filePath] = iconFile;
+				}
+				break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-		else if ( QMC2_ICON_FILETYPE_ARCHIVE ) {
-			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
-				ArchiveFile *archiveFile = new ArchiveFile(filePath, true);
-				if ( !archiveFile->open() ) {
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
-					delete archiveFile;
-				} else
-					qmc2IconArchiveMap[filePath] = archiveFile;
-			}
-		}
+			case QMC2_ICON_FILETYPE_ARCHIVE:
+				foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
+					ArchiveFile *archiveFile = new ArchiveFile(filePath, true);
+					if ( !archiveFile->open() ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
+						delete archiveFile;
+					} else
+						qmc2IconArchiveMap[filePath] = archiveFile;
+				}
+			break;
 #endif
+		}
 	}
 	if ( needReload ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
@@ -2114,7 +2117,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditZipTool->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
 	lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
 	lineEditSevenZipTool->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipTool", "7za").toString());
-	lineEditSevenZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments", "d $ARCHIVE$ $FILELIST$").toString());
+	lineEditSevenZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/SevenZipToolRemovalArguments", "-mhc=off -ms=off d $ARCHIVE$ $FILELIST$").toString());
 	lineEditRomTool->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
 	lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ \"$DESCRIPTION$\"").toString());
 	lineEditRomToolWorkingDirectory->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
@@ -2239,6 +2242,14 @@ QString Options::configPath()
 	QDir cd(QMC2_DYNAMIC_DOT_PATH);
 	cd.makeAbsolute();
 	return cd.absolutePath();
+}
+
+int Options::iconFileType()
+{
+	if ( qmc2UseIconFile )
+		return config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFileType", QMC2_IMG_FILETYPE_ZIP).toInt();
+	else
+		return QMC2_ICON_FILETYPE_NONE;
 }
 
 void Options::applyDelayed()
