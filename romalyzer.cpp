@@ -1922,7 +1922,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 						// identify file by CRC
 						int index = sevenZipFile.indexOfCrc(wantedCRC);
 						if ( index >= 0 ) {
-							SevenZipMetaData metaData = sevenZipFile.itemList()[index];
+							SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 							if ( sizeLimited ) {
 								if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
 									log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(metaData.name()).arg(filePath));
@@ -3481,7 +3481,7 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 	if ( sevenZipFile.open() ) {
 		int index = sevenZipFile.indexOfCrc(crc);
 		if ( index >= 0 ) {
-			SevenZipMetaData metaData = sevenZipFile.itemList()[index];
+			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 			qApp->processEvents();
 			quint64 readLength = sevenZipFile.read(index, data);
 			qApp->processEvents();
@@ -5051,7 +5051,7 @@ bool CheckSumScannerThread::scanSevenZip(QString fileName, QStringList *memberLi
 {
 	SevenZipFile sevenZipFile(fileName);
 	if ( sevenZipFile.open() ) {
-		foreach (SevenZipMetaData metaData, sevenZipFile.itemList()) {
+		foreach (SevenZipMetaData metaData, sevenZipFile.entryList()) {
 			if ( exitThread || stopScan )
 				break;
 			if ( deepScan ) {

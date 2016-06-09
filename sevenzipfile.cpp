@@ -3,8 +3,8 @@
 
 #include "sevenzipfile.h"
 
-SevenZipFile::SevenZipFile(QString fileName, QObject *parent)
-	: QObject(parent),
+SevenZipFile::SevenZipFile(QString fileName, QObject *parent) :
+	QObject(parent),
 	m_fileName(fileName),
 	m_isOpen(false),
 	m_fillingDictionary(false),
@@ -74,7 +74,7 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 			if ( m_extractor->result() == SZ_OK )
 				buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
 			else {
-				m_lastError = tr("extraction of file '%1' (index %2) failed").arg(itemList()[index].name()).arg(index) +  " - " + errorCodeToString(m_extractor->result());
+				m_lastError = tr("extraction of file '%1' (index %2) failed").arg(entryList()[index].name()).arg(index) +  " - " + errorCodeToString(m_extractor->result());
 				emit error(lastError());
 				m_sizeProcessed = 0;
 			}
@@ -95,7 +95,7 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 			if ( m_extractor->result() == SZ_OK )
 				buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
 			else {
-				m_lastError = tr("extraction of file '%1' (index %2) failed").arg(itemList()[index].name()).arg(index) +  " - " + errorCodeToString(m_extractor->result());
+				m_lastError = tr("extraction of file '%1' (index %2) failed").arg(entryList()[index].name()).arg(index) +  " - " + errorCodeToString(m_extractor->result());
 				emit error(lastError());
 				m_sizeProcessed = 0;
 			}
@@ -113,7 +113,7 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 		if ( result == SZ_OK )
 			buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
 		else {
-			m_lastError = tr("extraction of file '%1' (index %2) failed").arg(itemList()[index].name()).arg(index) +  " - " + errorCodeToString(result);
+			m_lastError = tr("extraction of file '%1' (index %2) failed").arg(entryList()[index].name()).arg(index) +  " - " + errorCodeToString(result);
 			emit error(lastError());
 			m_sizeProcessed = 0;
 		}
@@ -194,7 +194,7 @@ bool SevenZipFile::open(QString fileName)
 
 	if ( result == SZ_OK ) {
 		m_isOpen = true;
-		createItemList();
+		createEntryList();
 		emit opened();
 		return true;
 	} else {
@@ -214,7 +214,7 @@ void SevenZipFile::close()
 		emit closed();
 	}
 
-	itemList().clear();
+	entryList().clear();
 	m_nameToIndexCache.clear();
 	m_crcToIndexCache.clear();
 	m_isOpen = false;
@@ -277,15 +277,13 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
 	return dateTime;
 }
 
-void SevenZipFile::createItemList()
+void SevenZipFile::createEntryList()
 {
-	itemList().clear();
+	entryList().clear();
 	m_nameToIndexCache.clear();
 	m_crcToIndexCache.clear();
-
 	if ( !isOpen() )
 		return;
-
 	for (uint i = 0; i < db()->db.NumFiles; i++)
 	{
 		const CSzFileItem *fileItem = db()->db.Files + i;
@@ -305,12 +303,12 @@ void SevenZipFile::createItemList()
 			crc = QString::number(fileItem->Crc, 16).rightJustified(8, '0');
 			m_crcToIndexCache[crc] = i;
 		}
-		itemList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
+		entryList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
 	}
 }
 
-SevenZipExtractorThread::SevenZipExtractorThread(QObject *parent)
-	: QThread(parent),
+SevenZipExtractorThread::SevenZipExtractorThread(QObject *parent) :
+	QThread(parent),
 	m_quitFlag(false),
 	m_result(SZ_OK),
 	m_active(false),
