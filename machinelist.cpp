@@ -2971,7 +2971,7 @@ void MachineList::verifyReadyReadStandardOutput()
 
 bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 {
-	QIcon cachedIcon(qmc2IconHash.value(machineName));
+	const QIcon &cachedIcon = qmc2IconHash.value(machineName);
 	if ( !cachedIcon.isNull() ) {
 		// use the cached icon
 		if ( item )
@@ -2994,7 +2994,6 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 		QByteArray imageData;
 		QTime preloadTimer, elapsedTime(0, 0, 0, 0);
 		preloadTimer.start();
-
 		switch ( qmc2Options->iconFileType() ) {
 			case QMC2_ICON_FILETYPE_ZIP:
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
@@ -3009,7 +3008,6 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 							qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 						qmc2MainWindow->progressBarMachineList->setRange(0, unzGlobalInfo.number_entry);
 						qmc2MainWindow->progressBarMachineList->reset();
-						qApp->processEvents();
 						char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
 						if ( unzGoToFirstFile(iconFile) == UNZ_OK ) {
 							int counter = 0;
@@ -3047,7 +3045,6 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 				break;
-
 			case QMC2_ICON_FILETYPE_7Z:
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from 7z archive"));
 				foreach (SevenZipFile *sevenZipFile, qmc2IconFileMap7z) {
@@ -3084,7 +3081,6 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 				elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from 7z archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 				break;
-
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 			case QMC2_ICON_FILETYPE_ARCHIVE:
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from archive"));
@@ -3144,14 +3140,12 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 				qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 			qmc2MainWindow->progressBarMachineList->setRange(0, iconFiles.count());
 			qmc2MainWindow->progressBarMachineList->reset();
-			qApp->processEvents();
 			for (int fileCount = 0; fileCount < iconFiles.count(); fileCount++) {
 				QFileInfo fi = iconFiles[fileCount];
 				if ( fi.isFile() ) {
 					QPixmap iconPixmap;
-					if ( iconPixmap.load(fi.absoluteFilePath()) ) {
+					if ( iconPixmap.load(fi.absoluteFilePath()) )
 						qmc2IconHash.insert(fi.baseName().toLower(), QIcon(iconPixmap));
-					}
 				}
 				if ( fileCount % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
 					qmc2MainWindow->progressBarMachineList->setValue(fileCount);
