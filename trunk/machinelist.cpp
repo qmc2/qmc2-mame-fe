@@ -1301,7 +1301,7 @@ void MachineList::parse()
 			QString line(tsMachineListCache.readLine());
 			while ( line.startsWith('#') && !tsMachineListCache.atEnd() )
 				line = tsMachineListCache.readLine();
-			QStringList words(line.split('\t'));
+			QStringList words(line.split(columnSplitChar));
 			if ( words.count() >= 2 ) {
 				if ( words.at(0).compare("MAME_VERSION") == 0 )
 					romStateCacheUpdate = reparseMachineList = (words.at(1).compare(emulatorVersion) != 0);
@@ -1317,6 +1317,9 @@ void MachineList::parse()
 					}
 				}
 			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the machine list cache is invalid, forcing a refresh"));
+			reparseMachineList = true;
 		}
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
@@ -1523,7 +1526,7 @@ void MachineList::parse()
 							break;
 					}
 					machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations[machineDrvStat]);
+					machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations.value(machineDrvStat));
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 					loadIcon(machineName, machineItem);
@@ -1647,7 +1650,7 @@ void MachineList::parse()
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr("N/A"));
 					} else {
 						machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations[machineDrvStat]);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations.value(machineDrvStat));
 					}
 					if ( useCategories ) {
 						if ( isBIOS )
