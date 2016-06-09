@@ -105,7 +105,7 @@ class SevenZipFile : public QObject
 		bool hasError() { return !m_lastError.isEmpty(); }
 		bool isOpen() { return m_isOpen; }
 		bool isFillingDictionary() { return m_fillingDictionary; }
-		QList<SevenZipMetaData> &itemList() { return m_itemList; }
+		QList<SevenZipMetaData> &entryList() { return m_entryList; }
 		quint64 read(QString name, QByteArray *buffer);
 		quint64 read(uint index, QByteArray *buffer, bool *async = 0);
 		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
@@ -128,7 +128,7 @@ class SevenZipFile : public QObject
 
 	private:
 		QDateTime convertFileTime(const CNtfsFileTime *ft);
-		void createItemList();
+		void createEntryList();
 		QString errorCodeToString(SRes errorCode);
 		CSzArEx *db() { return &m_db; }
 
@@ -142,7 +142,7 @@ class SevenZipFile : public QObject
 		size_t m_sizeProcessed;
 		Byte *m_buffer;
 		QMap<uint, size_t> m_offsetMap;
-		QList<SevenZipMetaData> m_itemList;
+		QList<SevenZipMetaData> m_entryList;
 		QString m_fileName;
 		QString m_lastError;
 		SevenZipExtractorThread *m_extractor;

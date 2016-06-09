@@ -1985,8 +1985,8 @@ void ImageChecker::recursiveZipList(unzFile zip, QStringList *fileNames, QString
 void ImageChecker::recursiveSevenZipList(SevenZipFile *sevenZipFile, QStringList *fileNames, QString prependString)
 {
 	if ( sevenZipFile ) {
-		for (int index = 0; index < sevenZipFile->itemList().count(); index++) {
-			fileNames->append(prependString + sevenZipFile->itemList()[index].name());
+		for (int index = 0; index < sevenZipFile->entryList().count(); index++) {
+			fileNames->append(prependString + sevenZipFile->entryList()[index].name());
 			if ( index % 25 == 0 )
 				qApp->processEvents();
 		}

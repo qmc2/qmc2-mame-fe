@@ -3048,10 +3048,10 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 					qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 				else
 					qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-				qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->itemList().count());
+				qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->entryList().count());
 				qmc2MainWindow->progressBarMachineList->reset();
-				for (int index = 0; index < sevenZipFile->itemList().count(); index++) {
-					SevenZipMetaData metaData = sevenZipFile->itemList()[index];
+				for (int index = 0; index < sevenZipFile->entryList().count(); index++) {
+					SevenZipMetaData metaData = sevenZipFile->entryList()[index];
 					QFileInfo fi(metaData.name());
 					sevenZipFile->read(index, &imageData);
 					if ( !sevenZipFile->hasError() ) {

@@ -724,8 +724,8 @@ class FileSystemModel : public QAbstractItemModel
 					mZipEntryDates.clear();
 					mBreakZipScan = false;
 					// the zip-entry lists carry only one entry at a time for better GUI response
-					while ( row < sevenZipFile.itemList().count() && !mBreakZipScan ) {
-						SevenZipMetaData metaData = sevenZipFile.itemList()[row];
+					while ( row < sevenZipFile.entryList().count() && !mBreakZipScan ) {
+						SevenZipMetaData metaData = sevenZipFile.entryList()[row];
 						mZipEntryList << metaData.name();
 						mZipEntrySizes << metaData.size();
 						mZipEntryDates << metaData.date();

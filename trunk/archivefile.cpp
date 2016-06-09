@@ -1,7 +1,7 @@
 #include "archivefile.h"
 
-ArchiveFile::ArchiveFile(QString fileName, bool sequential, bool deflate, QObject *parent)
-	: QObject(parent),
+ArchiveFile::ArchiveFile(QString fileName, bool sequential, bool deflate, QObject *parent) :
+	QObject(parent),
 	m_fileName(fileName),
 	m_sequential(sequential),
 	m_deflate(deflate),
