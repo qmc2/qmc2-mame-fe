@@ -1554,7 +1554,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	if ( !qmc2CurrentItem && qmc2DemoGame.isEmpty() )
 		return;
 
-	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	if ( qmc2CriticalSection ) {
@@ -2129,7 +2129,7 @@ void MainWindow::on_actionToFavorites_triggered(bool)
 	QString itemText = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 	QString itemName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
-	if ( itemText == tr("Waiting for data...") )
+	if ( itemText == MachineList::trWaitingForData )
 		return;
 
 	QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(itemText, Qt::MatchExactly);
@@ -2430,7 +2430,7 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
 	if ( !qmc2CurrentItem )
 		return;
 
-	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", QString()).toString();
@@ -2450,7 +2450,7 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 	if ( !qmc2CurrentItem )
 		return;
 
-	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
@@ -2480,7 +2480,7 @@ void MainWindow::actionRebuildRom_triggered(bool)
 	if ( !qmc2CurrentItem )
 		return;
 
-	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->rebuilderActive() ) {
@@ -2959,7 +2959,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		stopSearch = false;
 
 	if ( treeWidgetMachineList->topLevelItemCount() == 1 )
-		if ( treeWidgetMachineList->topLevelItem(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+		if ( treeWidgetMachineList->topLevelItem(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			return;
 
 	QString pattern = comboBoxSearch->currentText();
@@ -3595,7 +3595,7 @@ void MainWindow::scrollToCurrentItem()
 	else
 		ci = treeWidgetMachineList->currentItem();
 	if ( ci ) {
-		if ( ci->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+		if ( ci->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			return;
 		switch ( stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWHIERARCHY_INDEX:
@@ -4695,7 +4695,7 @@ void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
 	if ( item->child(0) ) {
 		treeWidgetMachineList->viewport()->update();
 		qApp->processEvents();
-		if ( item->child(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") ) {
+		if ( item->child(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData ) {
 			treeWidgetMachineList->viewport()->update();
 			qmc2MachineList->parseMachineDetail(item);
 			qmc2ExpandedMachineListItems << item;
@@ -4778,7 +4778,7 @@ void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
 	qmc2HierarchySelectedItem = 0;
 	QList<QTreeWidgetItem *>selected = treeWidgetHierarchy->selectedItems();
 	if ( selected.count() > 0 ) {
-		if ( selected.at(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+		if ( selected.at(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			return;
 		qmc2HierarchySelectedItem = qmc2MachineListItemHash.value(selected.at(0)->text(QMC2_MACHINELIST_COLUMN_NAME));
 		qmc2CheckItemVisibility = false;
@@ -5316,7 +5316,7 @@ void MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoin
 	QTreeWidgetItem *item = treeWidgetMachineList->itemAt(p);
 	if ( !item )
 		return;
-	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	treeWidgetMachineList->setItemSelected(item, true);
 	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetMachineList->viewport()->mapToGlobal(p), qmc2GameMenu));
@@ -5328,7 +5328,7 @@ void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint 
 	QTreeWidgetItem *item = treeWidgetHierarchy->itemAt(p);
 	if ( !item )
 		return;
-	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	if ( item ) {
 		treeWidgetHierarchy->setItemSelected(item, true);
@@ -6359,7 +6359,7 @@ void MainWindow::viewByCategory()
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
 	QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
 	if ( item ) {
-		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			QTimer::singleShot(0, qmc2MachineList, SLOT(createCategoryView()));
 		else
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
@@ -6393,7 +6393,7 @@ void MainWindow::viewByVersion()
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
 	QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
 	if ( item ) {
-		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			QTimer::singleShot(0, qmc2MachineList, SLOT(createVersionView()));
 		else
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
@@ -7825,7 +7825,7 @@ void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 	QList<QTreeWidgetItem *>selected = treeWidgetCategoryView->selectedItems();
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *item = selected.at(0);
-		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 			return;
 		qmc2CategoryViewSelectedItem = qmc2MachineListItemHash.value(item->text(QMC2_MACHINELIST_COLUMN_NAME));
 		qmc2CheckItemVisibility = false;
@@ -7838,7 +7838,7 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 	QTreeWidgetItem *item = treeWidgetCategoryView->itemAt(p);
 	if ( !item )
 		return;
-	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
+	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 		return;
 	treeWidgetCategoryView->setItemSelected(item, true);
 	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetCategoryView->viewport()->mapToGlobal(p), qmc2GameMenu));
@@ -7905,7 +7905,7 @@ void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
 	QList<QTreeWidgetItem *>selected = treeWidgetVersionView->selectedItems();
 	if ( selected.count() > 0 ) {
 		QTreeWidgetItem *item = selected.at(0);
-		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 			return;
 		qmc2VersionViewSelectedItem = qmc2MachineListItemHash.value(item->text(QMC2_MACHINELIST_COLUMN_NAME));
 		qmc2CheckItemVisibility = false;
@@ -7918,7 +7918,7 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 	QTreeWidgetItem *item = treeWidgetVersionView->itemAt(p);
 	if ( !item )
 		return;
-	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
+	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 		return;
 	treeWidgetVersionView->setItemSelected(item, true);
 	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetVersionView->viewport()->mapToGlobal(p), qmc2GameMenu));
@@ -9621,7 +9621,7 @@ void MainWindow::treeWidgetMachineList_verticalScrollChanged(int)
 
 void MainWindow::treeWidgetMachineList_updateRanks()
 {
-  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	QTreeWidget *treeWidget = treeWidgetMachineList;
@@ -9676,7 +9676,7 @@ void MainWindow::treeWidgetHierarchy_verticalScrollChanged(int)
 
 void MainWindow::treeWidgetHierarchy_updateRanks()
 {
-  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	QTreeWidget *treeWidget = treeWidgetHierarchy;
@@ -9744,7 +9744,7 @@ void MainWindow::treeWidgetCategoryView_verticalScrollChanged(int)
 
 void MainWindow::treeWidgetCategoryView_updateRanks()
 {
-  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	QTreeWidget *treeWidget = treeWidgetCategoryView;
@@ -9816,7 +9816,7 @@ void MainWindow::treeWidgetVersionView_verticalScrollChanged(int)
 
 void MainWindow::treeWidgetVersionView_updateRanks()
 {
-  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+  	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
 	QTreeWidget *treeWidget = treeWidgetVersionView;
@@ -9882,7 +9882,7 @@ void MainWindow::on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *item)
 
 void MainWindow::on_actionIncreaseRank_triggered(bool)
 {
-	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
@@ -9891,7 +9891,7 @@ void MainWindow::on_actionIncreaseRank_triggered(bool)
 
 void MainWindow::on_actionDecreaseRank_triggered(bool)
 {
-	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") )
+	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )

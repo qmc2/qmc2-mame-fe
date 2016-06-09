@@ -126,6 +126,7 @@ QHash<QString, QString> MachineList::machineStateTranslations;
 bool MachineList::creatingCatView = false;
 bool MachineList::creatingVerView = false;
 QString MachineList::trQuestionMark;
+QString MachineList::trWaitingForData;
 Qt::ItemFlags MachineListItem::defaultItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled;
 
 MachineList::MachineList(QObject *parent)
@@ -176,6 +177,7 @@ MachineList::MachineList(QObject *parent)
 	reverseTranslation[QObject::tr("no")] = "no";
 	reverseTranslation[QObject::tr("partially")] = "partially";
 	trQuestionMark = tr("?");
+	trWaitingForData = tr("Waiting for data...");
 	machineStateTranslations["good"] = tr("good");
 	machineStateTranslations["preliminary"] = tr("preliminary");
 	machineStateTranslations["imperfect"] = tr("imperfect");
@@ -484,13 +486,13 @@ void MachineList::load()
 	qmc2CurrentItem = 0;
 	QTreeWidgetItem *dummyItem;
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetMachineList);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 	dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
-	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+	dummyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 	qmc2MainWindow->labelMachineListStatus->setText(status());
 	ImageWidget::updateArtwork();
 	if ( qmc2DeviceConfigurator ) {
@@ -1288,7 +1290,6 @@ void MachineList::parse()
 	QTime machineListCacheElapsedTime(0, 0, 0, 0);
 	QList<QTreeWidgetItem *> itemList;
 	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
-	QString trWaitingForData(tr("Waiting for data..."));
 	QString trSystemBios(tr("System / BIOS"));
 	QString trSystemDevice(tr("System / Device"));
 	QChar columnSplitChar('\t');
@@ -2718,7 +2719,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			foreach (QTreeWidgetItem *ci, ti->takeChildren())
 				delete ci;
 			QTreeWidgetItem *nameItem = new QTreeWidgetItem(ti);
-			nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+			nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 			nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ti->text(QMC2_MACHINELIST_COLUMN_NAME));
 		}
 		qmc2ExpandedMachineListItems.clear();

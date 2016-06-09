@@ -16,6 +16,7 @@
 #include "imagewidget.h"
 #include "customartwork.h"
 #include "qmc2main.h"
+#include "machinelist.h"
 #include "macros.h"
 
 // external global variables
@@ -213,7 +214,7 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 		return;
 	}
 
-	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == tr("Waiting for data...") ) {
+	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData ) {
 		drawCenteredImage(0, &p); // clear image widget
 		return;
 	}

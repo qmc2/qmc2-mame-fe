@@ -1473,7 +1473,7 @@ void Options::on_pushButtonApply_clicked()
 			foreach (QTreeWidgetItem *ci, ti->takeChildren())
 				delete ci;
 			QTreeWidgetItem *nameItem = new QTreeWidgetItem(ti);
-			nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Waiting for data..."));
+			nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, MachineList::trWaitingForData);
 			nameItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ti->text(QMC2_MACHINELIST_COLUMN_NAME));
 		}
 		qmc2ExpandedMachineListItems.clear();
