@@ -1,14 +1,14 @@
 #include "archivefile.h"
 
 ArchiveFile::ArchiveFile(QString fileName, bool sequential, bool deflate, QObject *parent)
-	: QObject(parent)
+	: QObject(parent),
+	m_fileName(fileName),
+	m_sequential(sequential),
+	m_deflate(deflate),
+	m_archive(0),
+	m_entry(0),
+	m_openMode(QIODevice::ReadOnly)
 {
-	m_fileName = fileName;
-	m_sequential = sequential;
-	m_deflate = deflate;
-	m_archive = 0;
-	m_entry = 0;
-	m_openMode = QIODevice::ReadOnly;
 }
 
 ArchiveFile::~ArchiveFile()
@@ -177,7 +177,7 @@ void ArchiveFile::createEntryList()
 	while ( archive_read_next_header(m_archive, &entry) == ARCHIVE_OK ) {
 		QString entryName(archive_entry_pathname(entry));
 		entryList() << ArchiveEntryMetaData(entryName, archive_entry_size(entry), QDateTime::fromTime_t(archive_entry_mtime(entry)));
-		m_nameToIndexCache[entryName] = counter++;
+		m_nameToIndexCache.insert(entryName, counter++);
 		archive_read_data_skip(m_archive);
 	}
 }

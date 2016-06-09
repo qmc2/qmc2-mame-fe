@@ -4,20 +4,21 @@
 #include "sevenzipfile.h"
 
 SevenZipFile::SevenZipFile(QString fileName, QObject *parent)
-	: QObject(parent)
+	: QObject(parent),
+	m_fileName(fileName),
+	m_isOpen(false),
+	m_fillingDictionary(false),
+	m_firstExtraction(true),
+	m_sizeProcessed(0),
+	m_blockIndex(0xFFFFFFFF),
+	m_buffer(0),
+	m_bufferSize(0),
+	m_extractor(0)
 {
-	m_fileName = fileName;
-	m_isOpen = m_fillingDictionary = false;
-	m_firstExtraction = true;
 	m_allocImp.Alloc = SzAlloc;
 	m_allocImp.Free = SzFree;
 	m_allocTempImp.Alloc = SzAllocTemp;
 	m_allocTempImp.Free = SzFreeTemp;
-	m_sizeProcessed = 0;
-	m_blockIndex = 0xFFFFFFFF;
-	m_buffer = 0;
-	m_bufferSize = 0;
-	m_extractor = 0;
 }
 
 SevenZipFile::~SevenZipFile()
@@ -28,7 +29,6 @@ SevenZipFile::~SevenZipFile()
 quint64 SevenZipFile::read(QString name, QByteArray *buffer)
 {
 	m_lastError.clear();
-
 	int index = indexOfName(name);
 	if ( index >= 0 )
 		return read(index, buffer);
@@ -42,19 +42,16 @@ quint64 SevenZipFile::read(QString name, QByteArray *buffer)
 quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 {
 	m_lastError.clear();
-
 	if ( !isOpen() ) {
 		m_lastError = tr("archive not open");
 		emit error(lastError());
 		return 0;
 	}
-
 	if ( !buffer ) {
 		m_lastError = tr("null-buffer not allowed");
 		emit error(lastError());
 		return 0;
 	}
-
 	if ( m_firstExtraction ) {
 		// do the first extraction in a separate thread because 7z decompresses the *complete* LZMA stream at once (and returns pointers to already decompressed data on subsequent extractions)
 		if ( !m_extractor ) {
@@ -313,12 +310,12 @@ void SevenZipFile::createItemList()
 }
 
 SevenZipExtractorThread::SevenZipExtractorThread(QObject *parent)
-	: QThread(parent)
+	: QThread(parent),
+	m_quitFlag(false),
+	m_result(SZ_OK),
+	m_active(false),
+	m_fileCount(0)
 {
-	setQuitFlag(false);
-	m_result = SZ_OK;
-	m_active = false;
-	m_fileCount = 0;
 	start();
 }
 
