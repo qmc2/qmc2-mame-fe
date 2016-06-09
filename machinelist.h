@@ -94,6 +94,7 @@ class MachineList : public QObject
 		int rank(const QString &systemName) { return userDataDb()->rank(systemName); }
 		QString comment(const QString systemName) { return userDataDb()->comment(systemName); }
 
+		bool loadIcon(const QString &, QTreeWidgetItem *);
 		void clearCategoryNames();
 		void clearVersionNames();
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
@@ -131,7 +132,6 @@ class MachineList : public QObject
 		void insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate = false);
 		void enableWidgets(bool enable = true);
 		void filter(bool initial = false);
-		bool loadIcon(const QString &, QTreeWidgetItem *item);
 
 	private:
 		XmlDatabaseManager *m_xmlDb;
