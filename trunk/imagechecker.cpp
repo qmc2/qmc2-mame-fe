@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QHash>
 #include <QHashIterator>
+#include <QImageReader>
 
 #include "settings.h"
 #include "imagechecker.h"
@@ -1771,6 +1772,7 @@ void ImageChecker::checkObsoleteFiles()
 					recursiveArchiveList(iconFile, &fileList, qmc2IconArchiveMap.key(iconFile) + ": ");
 				break;
 #endif
+			case QMC2_ICON_FILETYPE_NONE:
 			default:
 				dirList = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts);
 				foreach (QString path, dirList) {
@@ -1894,7 +1896,6 @@ void ImageChecker::checkObsoleteFiles()
 		} else {
 			// icons
 			if ( qmc2Options->iconFileType() != QMC2_ICON_FILETYPE_NONE ) {
-				// for archived icons, only the lower-case basenames and image-type suffixes count (.ico, .png, ...)
 				QString pathCopy = path;
 				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
@@ -1903,14 +1904,10 @@ void ImageChecker::checkObsoleteFiles()
 						isValidPath = true;
 				}
 			} else {
-				// for unzipped icons, only PNG images are supported
-#if defined(Q_OS_WIN)
-				if ( qmc2MachineListItemHash.contains(fi.baseName().toLower()) && fi.completeSuffix().toLower() == "png" )
-					isValidPath = true;
-#else
-				if ( qmc2MachineListItemHash.contains(fi.baseName()) && fi.completeSuffix() == "png" )
-					isValidPath = true;
-#endif
+				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
+					if ( qmc2MachineListItemHash.contains(fi.baseName().toLower()) )
+						isValidPath = true;
+				}
 			}
 		}
 
