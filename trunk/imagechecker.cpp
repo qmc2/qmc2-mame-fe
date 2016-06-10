@@ -1799,7 +1799,7 @@ void ImageChecker::checkObsoleteFiles()
 			// images
 			if ( imageWidget->useZip() || imageWidget->useSevenZip() || imageWidget->useArchive() ) {
 				// archived images
-				QString pathCopy = path;
+				QString pathCopy(path);
 				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
 				foreach (int format, imageWidget->activeFormats) {
@@ -1841,7 +1841,7 @@ void ImageChecker::checkObsoleteFiles()
 					}
 				}
 			} else {
-				// unzipped images
+				// image files
 				foreach (QString dirPath, dirList) {
 					dirPath = QDir::toNativeSeparators(dirPath);
 					if ( isValidPath )
@@ -1896,21 +1896,13 @@ void ImageChecker::checkObsoleteFiles()
 		} else {
 			// icons
 			if ( qmc2Options->iconFileType() != QMC2_ICON_FILETYPE_NONE ) {
-				QString pathCopy = path;
+				QString pathCopy(path);
 				pathCopy.remove(rxColonSepStr);
 				fi.setFile(pathCopy);
-				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
-					if ( qmc2MachineListItemHash.contains(fi.baseName().toLower()) )
-						isValidPath = true;
-				}
-			} else {
-				if ( imageFormats.contains(fi.completeSuffix().toLower()) ) {
-					if ( qmc2MachineListItemHash.contains(fi.baseName().toLower()) )
-						isValidPath = true;
-				}
 			}
+			if ( imageFormats.contains(fi.completeSuffix().toLower()) )
+				isValidPath = qmc2MachineListItemHash.contains(fi.baseName().toLower());
 		}
-
 		if ( !isValidPath ) {
 			bool isZip = false;
 			if ( imageWidget )
@@ -1932,16 +1924,13 @@ void ImageChecker::checkObsoleteFiles()
 			}
 			obsoleteCount++;
 		}
-
 		if ( itemCount % QMC2_CHECK_UPDATE_FAST == 0 )
 			qApp->processEvents();
 	}
-
 	if ( passNumber > 0 && isRunning ) {
 		passNumber = -1;
 		QTimer::singleShot(0, this, SLOT(startStop()));
 	}
-
 	log(tr("%n obsolete file(s) found", "", obsoleteCount));
 }
 
