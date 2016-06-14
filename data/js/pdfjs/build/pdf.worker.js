@@ -28,8 +28,8 @@ factory((root.pdfjsDistBuildPdfWorker = {}));
   // Use strict in our context only - users might not want it
   'use strict';
 
-var pdfjsVersion = '1.5.236';
-var pdfjsBuild = '5f59d07';
+var pdfjsVersion = '1.5.294';
+var pdfjsBuild = '64a409b';
 
   var pdfjsFilePath =
     typeof document !== 'undefined' && document.currentScript ?
@@ -3132,6 +3132,11 @@ function isArrayBuffer(v) {
   return typeof v === 'object' && v !== null && v.byteLength !== undefined;
 }
 
+// Checks if ch is one of the following characters: SPACE, TAB, CR or LF.
+function isSpace(ch) {
+  return (ch === 0x20 || ch === 0x09 || ch === 0x0D || ch === 0x0A);
+}
+
 /**
  * Promise Capability object.
  *
@@ -4379,6 +4384,7 @@ exports.isEmptyObj = isEmptyObj;
 exports.isInt = isInt;
 exports.isNum = isNum;
 exports.isString = isString;
+exports.isSpace = isSpace;
 exports.isSameOrigin = isSameOrigin;
 exports.isValidUrl = isValidUrl;
 exports.isLittleEndian = isLittleEndian;
@@ -5235,8 +5241,8 @@ var CFFParser = (function CFFParserClosure() {
       var start = pos;
       var bytes = this.bytes;
       var format = bytes[pos++];
-      var fdSelect = [];
-      var i;
+      var fdSelect = [], rawBytes;
+      var i, invalidFirstGID = false;
 
       switch (format) {
         case 0:
@@ -5244,11 +5250,18 @@ var CFFParser = (function CFFParserClosure() {
             var id = bytes[pos++];
             fdSelect.push(id);
           }
+          rawBytes = bytes.subarray(start, pos);
           break;
         case 3:
           var rangesCount = (bytes[pos++] << 8) | bytes[pos++];
           for (i = 0; i < rangesCount; ++i) {
             var first = (bytes[pos++] << 8) | bytes[pos++];
+            if (i === 0 && first !== 0) {
+              warn('parseFDSelect: The first range must have a first GID of 0' +
+                   ' -- trying to recover.');
+              invalidFirstGID = true;
+              first = 0;
+            }
             var fdIndex = bytes[pos++];
             var next = (bytes[pos] << 8) | bytes[pos + 1];
             for (var j = first; j < next; ++j) {
@@ -5257,13 +5270,19 @@ var CFFParser = (function CFFParserClosure() {
           }
           // Advance past the sentinel(next).
           pos += 2;
+          rawBytes = bytes.subarray(start, pos);
+
+          if (invalidFirstGID) {
+            rawBytes[3] = rawBytes[4] = 0; // Adjust the first range, first GID.
+          }
           break;
         default:
-          error('Unknown fdselect format ' + format);
+          error('parseFDSelect: Unknown format "' + format + '".');
           break;
       }
-      var end = pos;
-      return new CFFFDSelect(fdSelect, bytes.subarray(start, end));
+      assert(fdSelect.length === length, 'parseFDSelect: Invalid font data.');
+
+      return new CFFFDSelect(fdSelect, rawBytes);
     }
   };
   return CFFParser;
@@ -5374,6 +5393,11 @@ var CFFDict = (function CFFDictClosure() {
       // remove the array wrapping these types of values
       if (type === 'num' || type === 'sid' || type === 'offset') {
         value = value[0];
+        // Ignore invalid values (fixes bug 1068432).
+        if (isNaN(value)) {
+          warn('Invalid CFFDict value: ' + value + ', for key: ' + key + '.');
+          return true;
+        }
       }
       this.values[key] = value;
       return true;
@@ -17687,6 +17711,10 @@ function isRef(v) {
   return v instanceof Ref;
 }
 
+function isRefsEqual(v1, v2) {
+  return v1.num === v2.num && v1.gen === v2.gen;
+}
+
 function isStream(v) {
   return typeof v === 'object' && v !== null && v.getBytes !== undefined;
 }
@@ -17701,6 +17729,7 @@ exports.isCmd = isCmd;
 exports.isDict = isDict;
 exports.isName = isName;
 exports.isRef = isRef;
+exports.isRefsEqual = isRefsEqual;
 exports.isStream = isStream;
 }));
 
@@ -19698,6 +19727,7 @@ var isArray = sharedUtil.isArray;
 var createObjectURL = sharedUtil.createObjectURL;
 var shadow = sharedUtil.shadow;
 var warn = sharedUtil.warn;
+var isSpace = sharedUtil.isSpace;
 var Dict = corePrimitives.Dict;
 var isDict = corePrimitives.isDict;
 var Jbig2Image = coreJbig2.Jbig2Image;
@@ -20586,7 +20616,7 @@ var JpegStream = (function JpegStreamClosure() {
 
       // checking if values needs to be transformed before conversion
       if (this.forceRGB && this.dict && isArray(this.dict.get('Decode'))) {
-        var decodeArr = this.dict.get('Decode');
+        var decodeArr = this.dict.getArray('Decode');
         var bitsPerComponent = this.dict.get('BitsPerComponent') || 8;
         var decodeArrLength = decodeArr.length;
         var transform = new Int32Array(decodeArrLength);
@@ -20726,8 +20756,8 @@ var Jbig2Stream = (function Jbig2StreamClosure() {
 
     var jbig2Image = new Jbig2Image();
 
-    var chunks = [], xref = this.dict.xref;
-    var decodeParams = xref.fetchIfRef(this.dict.get('DecodeParms'));
+    var chunks = [];
+    var decodeParams = this.dict.getArray('DecodeParms');
 
     // According to the PDF specification, DecodeParms can be either
     // a dictionary, or an array whose elements are dictionaries.
@@ -20736,7 +20766,7 @@ var Jbig2Stream = (function Jbig2StreamClosure() {
         warn('JBIG2 - \'DecodeParms\' array with multiple elements ' +
              'not supported.');
       }
-      decodeParams = xref.fetchIfRef(decodeParams[0]);
+      decodeParams = decodeParams[0];
     }
     if (decodeParams && decodeParams.has('JBIG2Globals')) {
       var globalsStream = decodeParams.get('JBIG2Globals');
@@ -20806,11 +20836,6 @@ var DecryptStream = (function DecryptStreamClosure() {
 })();
 
 var Ascii85Stream = (function Ascii85StreamClosure() {
-  // Checks if ch is one of the following characters: SPACE, TAB, CR or LF.
-  function isSpace(ch) {
-    return (ch === 0x20 || ch === 0x09 || ch === 0x0D || ch === 0x0A);
-  }
-
   function Ascii85Stream(str, maybeLength) {
     this.str = str;
     this.dict = str.dict;
@@ -25592,11 +25617,6 @@ var Lexer = (function LexerClosure() {
     this.knownCommands = knownCommands;
   }
 
-  Lexer.isSpace = function Lexer_isSpace(ch) {
-    // Space is one of the following characters: SPACE, TAB, CR or LF.
-    return (ch === 0x20 || ch === 0x09 || ch === 0x0D || ch === 0x0A);
-  };
-
   // A '1' in this array means the character is white space. A '1' or
   // '2' means the character ends a name or command.
   var specialChars = [
@@ -26056,6 +26076,706 @@ exports.Lexer = Lexer;
 exports.Linearization = Linearization;
 exports.Parser = Parser;
 exports.isEOF = isEOF;
+}));
+
+
+(function (root, factory) {
+  {
+    factory((root.pdfjsCoreType1Parser = {}), root.pdfjsSharedUtil,
+      root.pdfjsCoreStream, root.pdfjsCoreEncodings);
+  }
+}(this, function (exports, sharedUtil, coreStream, coreEncodings) {
+
+var warn = sharedUtil.warn;
+var isSpace = sharedUtil.isSpace;
+var Stream = coreStream.Stream;
+var getEncoding = coreEncodings.getEncoding;
+
+// Hinting is currently disabled due to unknown problems on windows
+// in tracemonkey and various other pdfs with type1 fonts.
+var HINTING_ENABLED = false;
+
+/*
+ * CharStrings are encoded following the the CharString Encoding sequence
+ * describe in Chapter 6 of the "Adobe Type1 Font Format" specification.
+ * The value in a byte indicates a command, a number, or subsequent bytes
+ * that are to be interpreted in a special way.
+ *
+ * CharString Number Encoding:
+ *  A CharString byte containing the values from 32 through 255 inclusive
+ *  indicate an integer. These values are decoded in four ranges.
+ *
+ * 1. A CharString byte containing a value, v, between 32 and 246 inclusive,
+ * indicate the integer v - 139. Thus, the integer values from -107 through
+ * 107 inclusive may be encoded in single byte.
+ *
+ * 2. A CharString byte containing a value, v, between 247 and 250 inclusive,
+ * indicates an integer involving the next byte, w, according to the formula:
+ * [(v - 247) x 256] + w + 108
+ *
+ * 3. A CharString byte containing a value, v, between 251 and 254 inclusive,
+ * indicates an integer involving the next byte, w, according to the formula:
+ * -[(v - 251) * 256] - w - 108
+ *
+ * 4. A CharString containing the value 255 indicates that the next 4 bytes
+ * are a two complement signed integer. The first of these bytes contains the
+ * highest order bits, the second byte contains the next higher order bits
+ * and the fourth byte contain the lowest order bits.
+ *
+ *
+ * CharString Command Encoding:
+ *  CharStrings commands are encoded in 1 or 2 bytes.
+ *
+ *  Single byte commands are encoded in 1 byte that contains a value between
+ *  0 and 31 inclusive.
+ *  If a command byte contains the value 12, then the value in the next byte
+ *  indicates a command. This "escape" mechanism allows many extra commands
+ * to be encoded and this encoding technique helps to minimize the length of
+ * the charStrings.
+ */
+var Type1CharString = (function Type1CharStringClosure() {
+  var COMMAND_MAP = {
+    'hstem': [1],
+    'vstem': [3],
+    'vmoveto': [4],
+    'rlineto': [5],
+    'hlineto': [6],
+    'vlineto': [7],
+    'rrcurveto': [8],
+    'callsubr': [10],
+    'flex': [12, 35],
+    'drop' : [12, 18],
+    'endchar': [14],
+    'rmoveto': [21],
+    'hmoveto': [22],
+    'vhcurveto': [30],
+    'hvcurveto': [31]
+  };
+
+  function Type1CharString() {
+    this.width = 0;
+    this.lsb = 0;
+    this.flexing = false;
+    this.output = [];
+    this.stack = [];
+  }
+
+  Type1CharString.prototype = {
+    convert: function Type1CharString_convert(encoded, subrs,
+                                              seacAnalysisEnabled) {
+      var count = encoded.length;
+      var error = false;
+      var wx, sbx, subrNumber;
+      for (var i = 0; i < count; i++) {
+        var value = encoded[i];
+        if (value < 32) {
+          if (value === 12) {
+            value = (value << 8) + encoded[++i];
+          }
+          switch (value) {
+            case 1: // hstem
+              if (!HINTING_ENABLED) {
+                this.stack = [];
+                break;
+              }
+              error = this.executeCommand(2, COMMAND_MAP.hstem);
+              break;
+            case 3: // vstem
+              if (!HINTING_ENABLED) {
+                this.stack = [];
+                break;
+              }
+              error = this.executeCommand(2, COMMAND_MAP.vstem);
+              break;
+            case 4: // vmoveto
+              if (this.flexing) {
+                if (this.stack.length < 1) {
+                  error = true;
+                  break;
+                }
+                // Add the dx for flex and but also swap the values so they are
+                // the right order.
+                var dy = this.stack.pop();
+                this.stack.push(0, dy);
+                break;
+              }
+              error = this.executeCommand(1, COMMAND_MAP.vmoveto);
+              break;
+            case 5: // rlineto
+              error = this.executeCommand(2, COMMAND_MAP.rlineto);
+              break;
+            case 6: // hlineto
+              error = this.executeCommand(1, COMMAND_MAP.hlineto);
+              break;
+            case 7: // vlineto
+              error = this.executeCommand(1, COMMAND_MAP.vlineto);
+              break;
+            case 8: // rrcurveto
+              error = this.executeCommand(6, COMMAND_MAP.rrcurveto);
+              break;
+            case 9: // closepath
+              // closepath is a Type1 command that does not take argument and is
+              // useless in Type2 and it can simply be ignored.
+              this.stack = [];
+              break;
+            case 10: // callsubr
+              if (this.stack.length < 1) {
+                error = true;
+                break;
+              }
+              subrNumber = this.stack.pop();
+              error = this.convert(subrs[subrNumber], subrs,
+                                   seacAnalysisEnabled);
+              break;
+            case 11: // return
+              return error;
+            case 13: // hsbw
+              if (this.stack.length < 2) {
+                error = true;
+                break;
+              }
+              // To convert to type2 we have to move the width value to the
+              // first part of the charstring and then use hmoveto with lsb.
+              wx = this.stack.pop();
+              sbx = this.stack.pop();
+              this.lsb = sbx;
+              this.width = wx;
+              this.stack.push(wx, sbx);
+              error = this.executeCommand(2, COMMAND_MAP.hmoveto);
+              break;
+            case 14: // endchar
+              this.output.push(COMMAND_MAP.endchar[0]);
+              break;
+            case 21: // rmoveto
+              if (this.flexing) {
+                break;
+              }
+              error = this.executeCommand(2, COMMAND_MAP.rmoveto);
+              break;
+            case 22: // hmoveto
+              if (this.flexing) {
+                // Add the dy for flex.
+                this.stack.push(0);
+                break;
+              }
+              error = this.executeCommand(1, COMMAND_MAP.hmoveto);
+              break;
+            case 30: // vhcurveto
+              error = this.executeCommand(4, COMMAND_MAP.vhcurveto);
+              break;
+            case 31: // hvcurveto
+              error = this.executeCommand(4, COMMAND_MAP.hvcurveto);
+              break;
+            case (12 << 8) + 0: // dotsection
+              // dotsection is a Type1 command to specify some hinting feature
+              // for dots that do not take a parameter and it can safely be
+              // ignored for Type2.
+              this.stack = [];
+              break;
+            case (12 << 8) + 1: // vstem3
+              if (!HINTING_ENABLED) {
+                this.stack = [];
+                break;
+              }
+              // [vh]stem3 are Type1 only and Type2 supports [vh]stem with
+              // multiple parameters, so instead of returning [vh]stem3 take a
+              // shortcut and return [vhstem] instead.
+              error = this.executeCommand(2, COMMAND_MAP.vstem);
+              break;
+            case (12 << 8) + 2: // hstem3
+              if (!HINTING_ENABLED) {
+                 this.stack = [];
+                break;
+              }
+              // See vstem3.
+              error = this.executeCommand(2, COMMAND_MAP.hstem);
+              break;
+            case (12 << 8) + 6: // seac
+              // seac is like type 2's special endchar but it doesn't use the
+              // first argument asb, so remove it.
+              if (seacAnalysisEnabled) {
+                this.seac = this.stack.splice(-4, 4);
+                error = this.executeCommand(0, COMMAND_MAP.endchar);
+              } else {
+                error = this.executeCommand(4, COMMAND_MAP.endchar);
+              }
+              break;
+            case (12 << 8) + 7: // sbw
+              if (this.stack.length < 4) {
+                error = true;
+                break;
+              }
+              // To convert to type2 we have to move the width value to the
+              // first part of the charstring and then use rmoveto with
+              // (dx, dy). The height argument will not be used for vmtx and
+              // vhea tables reconstruction -- ignoring it.
+              var wy = this.stack.pop();
+              wx = this.stack.pop();
+              var sby = this.stack.pop();
+              sbx = this.stack.pop();
+              this.lsb = sbx;
+              this.width = wx;
+              this.stack.push(wx, sbx, sby);
+              error = this.executeCommand(3, COMMAND_MAP.rmoveto);
+              break;
+            case (12 << 8) + 12: // div
+              if (this.stack.length < 2) {
+                error = true;
+                break;
+              }
+              var num2 = this.stack.pop();
+              var num1 = this.stack.pop();
+              this.stack.push(num1 / num2);
+              break;
+            case (12 << 8) + 16: // callothersubr
+              if (this.stack.length < 2) {
+                error = true;
+                break;
+              }
+              subrNumber = this.stack.pop();
+              var numArgs = this.stack.pop();
+              if (subrNumber === 0 && numArgs === 3) {
+                var flexArgs = this.stack.splice(this.stack.length - 17, 17);
+                this.stack.push(
+                  flexArgs[2] + flexArgs[0], // bcp1x + rpx
+                  flexArgs[3] + flexArgs[1], // bcp1y + rpy
+                  flexArgs[4], // bcp2x
+                  flexArgs[5], // bcp2y
+                  flexArgs[6], // p2x
+                  flexArgs[7], // p2y
+                  flexArgs[8], // bcp3x
+                  flexArgs[9], // bcp3y
+                  flexArgs[10], // bcp4x
+                  flexArgs[11], // bcp4y
+                  flexArgs[12], // p3x
+                  flexArgs[13], // p3y
+                  flexArgs[14] // flexDepth
+                  // 15 = finalx unused by flex
+                  // 16 = finaly unused by flex
+                );
+                error = this.executeCommand(13, COMMAND_MAP.flex, true);
+                this.flexing = false;
+                this.stack.push(flexArgs[15], flexArgs[16]);
+              } else if (subrNumber === 1 && numArgs === 0) {
+                this.flexing = true;
+              }
+              break;
+            case (12 << 8) + 17: // pop
+              // Ignore this since it is only used with othersubr.
+              break;
+            case (12 << 8) + 33: // setcurrentpoint
+              // Ignore for now.
+              this.stack = [];
+              break;
+            default:
+              warn('Unknown type 1 charstring command of "' + value + '"');
+              break;
+          }
+          if (error) {
+            break;
+          }
+          continue;
+        } else if (value <= 246) {
+          value = value - 139;
+        } else if (value <= 250) {
+          value = ((value - 247) * 256) + encoded[++i] + 108;
+        } else if (value <= 254) {
+          value = -((value - 251) * 256) - encoded[++i] - 108;
+        } else {
+          value = (encoded[++i] & 0xff) << 24 | (encoded[++i] & 0xff) << 16 |
+                  (encoded[++i] & 0xff) << 8 | (encoded[++i] & 0xff) << 0;
+        }
+        this.stack.push(value);
+      }
+      return error;
+    },
+
+    executeCommand: function(howManyArgs, command, keepStack) {
+      var stackLength = this.stack.length;
+      if (howManyArgs > stackLength) {
+        return true;
+      }
+      var start = stackLength - howManyArgs;
+      for (var i = start; i < stackLength; i++) {
+        var value = this.stack[i];
+        if (value === (value | 0)) { // int
+          this.output.push(28, (value >> 8) & 0xff, value & 0xff);
+        } else { // fixed point
+          value = (65536 * value) | 0;
+          this.output.push(255,
+                           (value >> 24) & 0xFF,
+                           (value >> 16) & 0xFF,
+                           (value >> 8) & 0xFF,
+                           value & 0xFF);
+        }
+      }
+      this.output.push.apply(this.output, command);
+      if (keepStack) {
+        this.stack.splice(start, howManyArgs);
+      } else {
+        this.stack.length = 0;
+      }
+      return false;
+    }
+  };
+
+  return Type1CharString;
+})();
+
+/*
+ * Type1Parser encapsulate the needed code for parsing a Type1 font
+ * program. Some of its logic depends on the Type2 charstrings
+ * structure.
+ * Note: this doesn't really parse the font since that would require evaluation
+ * of PostScript, but it is possible in most cases to extract what we need
+ * without a full parse.
+ */
+var Type1Parser = (function Type1ParserClosure() {
+  /*
+   * Decrypt a Sequence of Ciphertext Bytes to Produce the Original Sequence
+   * of Plaintext Bytes. The function took a key as a parameter which can be
+   * for decrypting the eexec block of for decoding charStrings.
+   */
+  var EEXEC_ENCRYPT_KEY = 55665;
+  var CHAR_STRS_ENCRYPT_KEY = 4330;
+
+  function isHexDigit(code) {
+    return code >= 48 && code <= 57 || // '0'-'9'
+           code >= 65 && code <= 70 || // 'A'-'F'
+           code >= 97 && code <= 102;  // 'a'-'f'
+  }
+
+  function decrypt(data, key, discardNumber) {
+    if (discardNumber >= data.length) {
+      return new Uint8Array(0);
+    }
+    var r = key | 0, c1 = 52845, c2 = 22719, i, j;
+    for (i = 0; i < discardNumber; i++) {
+      r = ((data[i] + r) * c1 + c2) & ((1 << 16) - 1);
+    }
+    var count = data.length - discardNumber;
+    var decrypted = new Uint8Array(count);
+    for (i = discardNumber, j = 0; j < count; i++, j++) {
+      var value = data[i];
+      decrypted[j] = value ^ (r >> 8);
+      r = ((value + r) * c1 + c2) & ((1 << 16) - 1);
+    }
+    return decrypted;
+  }
+
+  function decryptAscii(data, key, discardNumber) {
+    var r = key | 0, c1 = 52845, c2 = 22719;
+    var count = data.length, maybeLength = count >>> 1;
+    var decrypted = new Uint8Array(maybeLength);
+    var i, j;
+    for (i = 0, j = 0; i < count; i++) {
+      var digit1 = data[i];
+      if (!isHexDigit(digit1)) {
+        continue;
+      }
+      i++;
+      var digit2;
+      while (i < count && !isHexDigit(digit2 = data[i])) {
+        i++;
+      }
+      if (i < count) {
+        var value = parseInt(String.fromCharCode(digit1, digit2), 16);
+        decrypted[j++] = value ^ (r >> 8);
+        r = ((value + r) * c1 + c2) & ((1 << 16) - 1);
+      }
+    }
+    return Array.prototype.slice.call(decrypted, discardNumber, j);
+  }
+
+  function isSpecial(c) {
+    return c === 0x2F || // '/'
+           c === 0x5B || c === 0x5D || // '[', ']'
+           c === 0x7B || c === 0x7D || // '{', '}'
+           c === 0x28 || c === 0x29; // '(', ')'
+  }
+
+  function Type1Parser(stream, encrypted, seacAnalysisEnabled) {
+    if (encrypted) {
+      var data = stream.getBytes();
+      var isBinary = !(isHexDigit(data[0]) && isHexDigit(data[1]) &&
+                       isHexDigit(data[2]) && isHexDigit(data[3]));
+      stream = new Stream(isBinary ? decrypt(data, EEXEC_ENCRYPT_KEY, 4) :
+                          decryptAscii(data, EEXEC_ENCRYPT_KEY, 4));
+    }
+    this.seacAnalysisEnabled = !!seacAnalysisEnabled;
+
+    this.stream = stream;
+    this.nextChar();
+  }
+
+  Type1Parser.prototype = {
+    readNumberArray: function Type1Parser_readNumberArray() {
+      this.getToken(); // read '[' or '{' (arrays can start with either)
+      var array = [];
+      while (true) {
+        var token = this.getToken();
+        if (token === null || token === ']' || token === '}') {
+          break;
+        }
+        array.push(parseFloat(token || 0));
+      }
+      return array;
+    },
+
+    readNumber: function Type1Parser_readNumber() {
+      var token = this.getToken();
+      return parseFloat(token || 0);
+    },
+
+    readInt: function Type1Parser_readInt() {
+      // Use '| 0' to prevent setting a double into length such as the double
+      // does not flow into the loop variable.
+      var token = this.getToken();
+      return parseInt(token || 0, 10) | 0;
+    },
+
+    readBoolean: function Type1Parser_readBoolean() {
+      var token = this.getToken();
+
+      // Use 1 and 0 since that's what type2 charstrings use.
+      return token === 'true' ? 1 : 0;
+    },
+
+    nextChar : function Type1_nextChar() {
+      return (this.currentChar = this.stream.getByte());
+    },
+
+    getToken: function Type1Parser_getToken() {
+      // Eat whitespace and comments.
+      var comment = false;
+      var ch = this.currentChar;
+      while (true) {
+        if (ch === -1) {
+          return null;
+        }
+
+        if (comment) {
+          if (ch === 0x0A || ch === 0x0D) {
+            comment = false;
+          }
+        } else if (ch === 0x25) { // '%'
+          comment = true;
+        } else if (!isSpace(ch)) {
+          break;
+        }
+        ch = this.nextChar();
+      }
+      if (isSpecial(ch)) {
+        this.nextChar();
+        return String.fromCharCode(ch);
+      }
+      var token = '';
+      do {
+        token += String.fromCharCode(ch);
+        ch = this.nextChar();
+      } while (ch >= 0 && !isSpace(ch) && !isSpecial(ch));
+      return token;
+    },
+
+    /*
+     * Returns an object containing a Subrs array and a CharStrings
+     * array extracted from and eexec encrypted block of data
+     */
+    extractFontProgram: function Type1Parser_extractFontProgram() {
+      var stream = this.stream;
+
+      var subrs = [], charstrings = [];
+      var privateData = Object.create(null);
+      privateData['lenIV'] = 4;
+      var program = {
+        subrs: [],
+        charstrings: [],
+        properties: {
+          'privateData': privateData
+        }
+      };
+      var token, length, data, lenIV, encoded;
+      while ((token = this.getToken()) !== null) {
+        if (token !== '/') {
+          continue;
+        }
+        token = this.getToken();
+        switch (token) {
+          case 'CharStrings':
+            // The number immediately following CharStrings must be greater or
+            // equal to the number of CharStrings.
+            this.getToken();
+            this.getToken(); // read in 'dict'
+            this.getToken(); // read in 'dup'
+            this.getToken(); // read in 'begin'
+            while(true) {
+              token = this.getToken();
+              if (token === null || token === 'end') {
+                break;
+              }
+
+              if (token !== '/') {
+                continue;
+              }
+              var glyph = this.getToken();
+              length = this.readInt();
+              this.getToken(); // read in 'RD' or '-|'
+              data = stream.makeSubStream(stream.pos, length);
+              lenIV = program.properties.privateData['lenIV'];
+              encoded = decrypt(data.getBytes(), CHAR_STRS_ENCRYPT_KEY, lenIV);
+              // Skip past the required space and binary data.
+              stream.skip(length);
+              this.nextChar();
+              token = this.getToken(); // read in 'ND' or '|-'
+              if (token === 'noaccess') {
+                this.getToken(); // read in 'def'
+              }
+              charstrings.push({
+                glyph: glyph,
+                encoded: encoded
+              });
+            }
+            break;
+          case 'Subrs':
+            var num = this.readInt();
+            this.getToken(); // read in 'array'
+            while ((token = this.getToken()) === 'dup') {
+              var index = this.readInt();
+              length = this.readInt();
+              this.getToken(); // read in 'RD' or '-|'
+              data = stream.makeSubStream(stream.pos, length);
+              lenIV = program.properties.privateData['lenIV'];
+              encoded = decrypt(data.getBytes(), CHAR_STRS_ENCRYPT_KEY, lenIV);
+              // Skip past the required space and binary data.
+              stream.skip(length);
+              this.nextChar();
+              token = this.getToken(); // read in 'NP' or '|'
+              if (token === 'noaccess') {
+                this.getToken(); // read in 'put'
+              }
+              subrs[index] = encoded;
+            }
+            break;
+          case 'BlueValues':
+          case 'OtherBlues':
+          case 'FamilyBlues':
+          case 'FamilyOtherBlues':
+            var blueArray = this.readNumberArray();
+            // *Blue* values may contain invalid data: disables reading of
+            // those values when hinting is disabled.
+            if (blueArray.length > 0 && (blueArray.length % 2) === 0 &&
+                HINTING_ENABLED) {
+              program.properties.privateData[token] = blueArray;
+            }
+            break;
+          case 'StemSnapH':
+          case 'StemSnapV':
+            program.properties.privateData[token] = this.readNumberArray();
+            break;
+          case 'StdHW':
+          case 'StdVW':
+            program.properties.privateData[token] =
+              this.readNumberArray()[0];
+            break;
+          case 'BlueShift':
+          case 'lenIV':
+          case 'BlueFuzz':
+          case 'BlueScale':
+          case 'LanguageGroup':
+          case 'ExpansionFactor':
+            program.properties.privateData[token] = this.readNumber();
+            break;
+          case 'ForceBold':
+            program.properties.privateData[token] = this.readBoolean();
+            break;
+        }
+      }
+
+      for (var i = 0; i < charstrings.length; i++) {
+        glyph = charstrings[i].glyph;
+        encoded = charstrings[i].encoded;
+        var charString = new Type1CharString();
+        var error = charString.convert(encoded, subrs,
+                                       this.seacAnalysisEnabled);
+        var output = charString.output;
+        if (error) {
+          // It seems when FreeType encounters an error while evaluating a glyph
+          // that it completely ignores the glyph so we'll mimic that behaviour
+          // here and put an endchar to make the validator happy.
+          output = [14];
+        }
+        program.charstrings.push({
+          glyphName: glyph,
+          charstring: output,
+          width: charString.width,
+          lsb: charString.lsb,
+          seac: charString.seac
+        });
+      }
+
+      return program;
+    },
+
+    extractFontHeader: function Type1Parser_extractFontHeader(properties) {
+      var token;
+      while ((token = this.getToken()) !== null) {
+        if (token !== '/') {
+          continue;
+        }
+        token = this.getToken();
+        switch (token) {
+          case 'FontMatrix':
+            var matrix = this.readNumberArray();
+            properties.fontMatrix = matrix;
+            break;
+          case 'Encoding':
+            var encodingArg = this.getToken();
+            var encoding;
+            if (!/^\d+$/.test(encodingArg)) {
+              // encoding name is specified
+              encoding = getEncoding(encodingArg);
+            } else {
+              encoding = [];
+              var size = parseInt(encodingArg, 10) | 0;
+              this.getToken(); // read in 'array'
+
+              for (var j = 0; j < size; j++) {
+                token = this.getToken();
+                // skipping till first dup or def (e.g. ignoring for statement)
+                while (token !== 'dup' && token !== 'def') {
+                  token = this.getToken();
+                  if (token === null) {
+                    return; // invalid header
+                  }
+                }
+                if (token === 'def') {
+                  break; // read all array data
+                }
+                var index = this.readInt();
+                this.getToken(); // read in '/'
+                var glyph = this.getToken();
+                encoding[index] = glyph;
+                this.getToken(); // read the in 'put'
+              }
+            }
+            properties.builtInEncoding = encoding;
+            break;
+          case 'FontBBox':
+            var fontBBox = this.readNumberArray();
+            // adjusting ascent/descent
+            properties.ascent = fontBBox[3];
+            properties.descent = fontBBox[1];
+            properties.ascentScaled = true;
+            break;
+        }
+      }
+    }
+  };
+
+  return Type1Parser;
+})();
+
+exports.Type1Parser = Type1Parser;
 }));
 
 
@@ -27068,933 +27788,13 @@ exports.IdentityCMap = IdentityCMap;
 
 (function (root, factory) {
   {
-    factory((root.pdfjsCorePsParser = {}), root.pdfjsSharedUtil,
-      root.pdfjsCoreParser);
-  }
-}(this, function (exports, sharedUtil, coreParser) {
-
-var error = sharedUtil.error;
-var EOF = coreParser.EOF;
-var Lexer = coreParser.Lexer;
-
-var PostScriptParser = (function PostScriptParserClosure() {
-  function PostScriptParser(lexer) {
-    this.lexer = lexer;
-    this.operators = [];
-    this.token = null;
-    this.prev = null;
-  }
-  PostScriptParser.prototype = {
-    nextToken: function PostScriptParser_nextToken() {
-      this.prev = this.token;
-      this.token = this.lexer.getToken();
-    },
-    accept: function PostScriptParser_accept(type) {
-      if (this.token.type === type) {
-        this.nextToken();
-        return true;
-      }
-      return false;
-    },
-    expect: function PostScriptParser_expect(type) {
-      if (this.accept(type)) {
-        return true;
-      }
-      error('Unexpected symbol: found ' + this.token.type + ' expected ' +
-        type + '.');
-    },
-    parse: function PostScriptParser_parse() {
-      this.nextToken();
-      this.expect(PostScriptTokenTypes.LBRACE);
-      this.parseBlock();
-      this.expect(PostScriptTokenTypes.RBRACE);
-      return this.operators;
-    },
-    parseBlock: function PostScriptParser_parseBlock() {
-      while (true) {
-        if (this.accept(PostScriptTokenTypes.NUMBER)) {
-          this.operators.push(this.prev.value);
-        } else if (this.accept(PostScriptTokenTypes.OPERATOR)) {
-          this.operators.push(this.prev.value);
-        } else if (this.accept(PostScriptTokenTypes.LBRACE)) {
-          this.parseCondition();
-        } else {
-          return;
-        }
-      }
-    },
-    parseCondition: function PostScriptParser_parseCondition() {
-      // Add two place holders that will be updated later
-      var conditionLocation = this.operators.length;
-      this.operators.push(null, null);
-
-      this.parseBlock();
-      this.expect(PostScriptTokenTypes.RBRACE);
-      if (this.accept(PostScriptTokenTypes.IF)) {
-        // The true block is right after the 'if' so it just falls through on
-        // true else it jumps and skips the true block.
-        this.operators[conditionLocation] = this.operators.length;
-        this.operators[conditionLocation + 1] = 'jz';
-      } else if (this.accept(PostScriptTokenTypes.LBRACE)) {
-        var jumpLocation = this.operators.length;
-        this.operators.push(null, null);
-        var endOfTrue = this.operators.length;
-        this.parseBlock();
-        this.expect(PostScriptTokenTypes.RBRACE);
-        this.expect(PostScriptTokenTypes.IFELSE);
-        // The jump is added at the end of the true block to skip the false
-        // block.
-        this.operators[jumpLocation] = this.operators.length;
-        this.operators[jumpLocation + 1] = 'j';
-
-        this.operators[conditionLocation] = endOfTrue;
-        this.operators[conditionLocation + 1] = 'jz';
-      } else {
-        error('PS Function: error parsing conditional.');
-      }
-    }
-  };
-  return PostScriptParser;
-})();
-
-var PostScriptTokenTypes = {
-  LBRACE: 0,
-  RBRACE: 1,
-  NUMBER: 2,
-  OPERATOR: 3,
-  IF: 4,
-  IFELSE: 5
-};
-
-var PostScriptToken = (function PostScriptTokenClosure() {
-  function PostScriptToken(type, value) {
-    this.type = type;
-    this.value = value;
-  }
-
-  var opCache = Object.create(null);
-
-  PostScriptToken.getOperator = function PostScriptToken_getOperator(op) {
-    var opValue = opCache[op];
-    if (opValue) {
-      return opValue;
-    }
-    return opCache[op] = new PostScriptToken(PostScriptTokenTypes.OPERATOR, op);
-  };
-
-  PostScriptToken.LBRACE = new PostScriptToken(PostScriptTokenTypes.LBRACE,
-    '{');
-  PostScriptToken.RBRACE = new PostScriptToken(PostScriptTokenTypes.RBRACE,
-    '}');
-  PostScriptToken.IF = new PostScriptToken(PostScriptTokenTypes.IF, 'IF');
-  PostScriptToken.IFELSE = new PostScriptToken(PostScriptTokenTypes.IFELSE,
-    'IFELSE');
-  return PostScriptToken;
-})();
-
-var PostScriptLexer = (function PostScriptLexerClosure() {
-  function PostScriptLexer(stream) {
-    this.stream = stream;
-    this.nextChar();
-
-    this.strBuf = [];
-  }
-  PostScriptLexer.prototype = {
-    nextChar: function PostScriptLexer_nextChar() {
-      return (this.currentChar = this.stream.getByte());
-    },
-    getToken: function PostScriptLexer_getToken() {
-      var comment = false;
-      var ch = this.currentChar;
-
-      // skip comments
-      while (true) {
-        if (ch < 0) {
-          return EOF;
-        }
-
-        if (comment) {
-          if (ch === 0x0A || ch === 0x0D) {
-            comment = false;
-          }
-        } else if (ch === 0x25) { // '%'
-          comment = true;
-        } else if (!Lexer.isSpace(ch)) {
-          break;
-        }
-        ch = this.nextChar();
-      }
-      switch (ch | 0) {
-        case 0x30: case 0x31: case 0x32: case 0x33: case 0x34: // '0'-'4'
-        case 0x35: case 0x36: case 0x37: case 0x38: case 0x39: // '5'-'9'
-        case 0x2B: case 0x2D: case 0x2E: // '+', '-', '.'
-          return new PostScriptToken(PostScriptTokenTypes.NUMBER,
-                                     this.getNumber());
-        case 0x7B: // '{'
-          this.nextChar();
-          return PostScriptToken.LBRACE;
-        case 0x7D: // '}'
-          this.nextChar();
-          return PostScriptToken.RBRACE;
-      }
-      // operator
-      var strBuf = this.strBuf;
-      strBuf.length = 0;
-      strBuf[0] = String.fromCharCode(ch);
-
-      while ((ch = this.nextChar()) >= 0 && // and 'A'-'Z', 'a'-'z'
-             ((ch >= 0x41 && ch <= 0x5A) || (ch >= 0x61 && ch <= 0x7A))) {
-        strBuf.push(String.fromCharCode(ch));
-      }
-      var str = strBuf.join('');
-      switch (str.toLowerCase()) {
-        case 'if':
-          return PostScriptToken.IF;
-        case 'ifelse':
-          return PostScriptToken.IFELSE;
-        default:
-          return PostScriptToken.getOperator(str);
-      }
-    },
-    getNumber: function PostScriptLexer_getNumber() {
-      var ch = this.currentChar;
-      var strBuf = this.strBuf;
-      strBuf.length = 0;
-      strBuf[0] = String.fromCharCode(ch);
-
-      while ((ch = this.nextChar()) >= 0) {
-        if ((ch >= 0x30 && ch <= 0x39) || // '0'-'9'
-            ch === 0x2D || ch === 0x2E) { // '-', '.'
-          strBuf.push(String.fromCharCode(ch));
-        } else {
-          break;
-        }
-      }
-      var value = parseFloat(strBuf.join(''));
-      if (isNaN(value)) {
-        error('Invalid floating point number: ' + value);
-      }
-      return value;
-    }
-  };
-  return PostScriptLexer;
-})();
-
-exports.PostScriptLexer = PostScriptLexer;
-exports.PostScriptParser = PostScriptParser;
-}));
-
-
-(function (root, factory) {
-  {
-    factory((root.pdfjsCoreType1Parser = {}), root.pdfjsSharedUtil,
-      root.pdfjsCoreStream, root.pdfjsCoreParser, root.pdfjsCoreEncodings);
-  }
-}(this, function (exports, sharedUtil, coreStream, coreParser, coreEncodings) {
-
-var warn = sharedUtil.warn;
-var Stream = coreStream.Stream;
-var Lexer = coreParser.Lexer;
-var getEncoding = coreEncodings.getEncoding;
-
-// Hinting is currently disabled due to unknown problems on windows
-// in tracemonkey and various other pdfs with type1 fonts.
-var HINTING_ENABLED = false;
-
-/*
- * CharStrings are encoded following the the CharString Encoding sequence
- * describe in Chapter 6 of the "Adobe Type1 Font Format" specification.
- * The value in a byte indicates a command, a number, or subsequent bytes
- * that are to be interpreted in a special way.
- *
- * CharString Number Encoding:
- *  A CharString byte containing the values from 32 through 255 inclusive
- *  indicate an integer. These values are decoded in four ranges.
- *
- * 1. A CharString byte containing a value, v, between 32 and 246 inclusive,
- * indicate the integer v - 139. Thus, the integer values from -107 through
- * 107 inclusive may be encoded in single byte.
- *
- * 2. A CharString byte containing a value, v, between 247 and 250 inclusive,
- * indicates an integer involving the next byte, w, according to the formula:
- * [(v - 247) x 256] + w + 108
- *
- * 3. A CharString byte containing a value, v, between 251 and 254 inclusive,
- * indicates an integer involving the next byte, w, according to the formula:
- * -[(v - 251) * 256] - w - 108
- *
- * 4. A CharString containing the value 255 indicates that the next 4 bytes
- * are a two complement signed integer. The first of these bytes contains the
- * highest order bits, the second byte contains the next higher order bits
- * and the fourth byte contain the lowest order bits.
- *
- *
- * CharString Command Encoding:
- *  CharStrings commands are encoded in 1 or 2 bytes.
- *
- *  Single byte commands are encoded in 1 byte that contains a value between
- *  0 and 31 inclusive.
- *  If a command byte contains the value 12, then the value in the next byte
- *  indicates a command. This "escape" mechanism allows many extra commands
- * to be encoded and this encoding technique helps to minimize the length of
- * the charStrings.
- */
-var Type1CharString = (function Type1CharStringClosure() {
-  var COMMAND_MAP = {
-    'hstem': [1],
-    'vstem': [3],
-    'vmoveto': [4],
-    'rlineto': [5],
-    'hlineto': [6],
-    'vlineto': [7],
-    'rrcurveto': [8],
-    'callsubr': [10],
-    'flex': [12, 35],
-    'drop' : [12, 18],
-    'endchar': [14],
-    'rmoveto': [21],
-    'hmoveto': [22],
-    'vhcurveto': [30],
-    'hvcurveto': [31]
-  };
-
-  function Type1CharString() {
-    this.width = 0;
-    this.lsb = 0;
-    this.flexing = false;
-    this.output = [];
-    this.stack = [];
-  }
-
-  Type1CharString.prototype = {
-    convert: function Type1CharString_convert(encoded, subrs,
-                                              seacAnalysisEnabled) {
-      var count = encoded.length;
-      var error = false;
-      var wx, sbx, subrNumber;
-      for (var i = 0; i < count; i++) {
-        var value = encoded[i];
-        if (value < 32) {
-          if (value === 12) {
-            value = (value << 8) + encoded[++i];
-          }
-          switch (value) {
-            case 1: // hstem
-              if (!HINTING_ENABLED) {
-                this.stack = [];
-                break;
-              }
-              error = this.executeCommand(2, COMMAND_MAP.hstem);
-              break;
-            case 3: // vstem
-              if (!HINTING_ENABLED) {
-                this.stack = [];
-                break;
-              }
-              error = this.executeCommand(2, COMMAND_MAP.vstem);
-              break;
-            case 4: // vmoveto
-              if (this.flexing) {
-                if (this.stack.length < 1) {
-                  error = true;
-                  break;
-                }
-                // Add the dx for flex and but also swap the values so they are
-                // the right order.
-                var dy = this.stack.pop();
-                this.stack.push(0, dy);
-                break;
-              }
-              error = this.executeCommand(1, COMMAND_MAP.vmoveto);
-              break;
-            case 5: // rlineto
-              error = this.executeCommand(2, COMMAND_MAP.rlineto);
-              break;
-            case 6: // hlineto
-              error = this.executeCommand(1, COMMAND_MAP.hlineto);
-              break;
-            case 7: // vlineto
-              error = this.executeCommand(1, COMMAND_MAP.vlineto);
-              break;
-            case 8: // rrcurveto
-              error = this.executeCommand(6, COMMAND_MAP.rrcurveto);
-              break;
-            case 9: // closepath
-              // closepath is a Type1 command that does not take argument and is
-              // useless in Type2 and it can simply be ignored.
-              this.stack = [];
-              break;
-            case 10: // callsubr
-              if (this.stack.length < 1) {
-                error = true;
-                break;
-              }
-              subrNumber = this.stack.pop();
-              error = this.convert(subrs[subrNumber], subrs,
-                                   seacAnalysisEnabled);
-              break;
-            case 11: // return
-              return error;
-            case 13: // hsbw
-              if (this.stack.length < 2) {
-                error = true;
-                break;
-              }
-              // To convert to type2 we have to move the width value to the
-              // first part of the charstring and then use hmoveto with lsb.
-              wx = this.stack.pop();
-              sbx = this.stack.pop();
-              this.lsb = sbx;
-              this.width = wx;
-              this.stack.push(wx, sbx);
-              error = this.executeCommand(2, COMMAND_MAP.hmoveto);
-              break;
-            case 14: // endchar
-              this.output.push(COMMAND_MAP.endchar[0]);
-              break;
-            case 21: // rmoveto
-              if (this.flexing) {
-                break;
-              }
-              error = this.executeCommand(2, COMMAND_MAP.rmoveto);
-              break;
-            case 22: // hmoveto
-              if (this.flexing) {
-                // Add the dy for flex.
-                this.stack.push(0);
-                break;
-              }
-              error = this.executeCommand(1, COMMAND_MAP.hmoveto);
-              break;
-            case 30: // vhcurveto
-              error = this.executeCommand(4, COMMAND_MAP.vhcurveto);
-              break;
-            case 31: // hvcurveto
-              error = this.executeCommand(4, COMMAND_MAP.hvcurveto);
-              break;
-            case (12 << 8) + 0: // dotsection
-              // dotsection is a Type1 command to specify some hinting feature
-              // for dots that do not take a parameter and it can safely be
-              // ignored for Type2.
-              this.stack = [];
-              break;
-            case (12 << 8) + 1: // vstem3
-              if (!HINTING_ENABLED) {
-                this.stack = [];
-                break;
-              }
-              // [vh]stem3 are Type1 only and Type2 supports [vh]stem with
-              // multiple parameters, so instead of returning [vh]stem3 take a
-              // shortcut and return [vhstem] instead.
-              error = this.executeCommand(2, COMMAND_MAP.vstem);
-              break;
-            case (12 << 8) + 2: // hstem3
-              if (!HINTING_ENABLED) {
-                 this.stack = [];
-                break;
-              }
-              // See vstem3.
-              error = this.executeCommand(2, COMMAND_MAP.hstem);
-              break;
-            case (12 << 8) + 6: // seac
-              // seac is like type 2's special endchar but it doesn't use the
-              // first argument asb, so remove it.
-              if (seacAnalysisEnabled) {
-                this.seac = this.stack.splice(-4, 4);
-                error = this.executeCommand(0, COMMAND_MAP.endchar);
-              } else {
-                error = this.executeCommand(4, COMMAND_MAP.endchar);
-              }
-              break;
-            case (12 << 8) + 7: // sbw
-              if (this.stack.length < 4) {
-                error = true;
-                break;
-              }
-              // To convert to type2 we have to move the width value to the
-              // first part of the charstring and then use rmoveto with
-              // (dx, dy). The height argument will not be used for vmtx and
-              // vhea tables reconstruction -- ignoring it.
-              var wy = this.stack.pop();
-              wx = this.stack.pop();
-              var sby = this.stack.pop();
-              sbx = this.stack.pop();
-              this.lsb = sbx;
-              this.width = wx;
-              this.stack.push(wx, sbx, sby);
-              error = this.executeCommand(3, COMMAND_MAP.rmoveto);
-              break;
-            case (12 << 8) + 12: // div
-              if (this.stack.length < 2) {
-                error = true;
-                break;
-              }
-              var num2 = this.stack.pop();
-              var num1 = this.stack.pop();
-              this.stack.push(num1 / num2);
-              break;
-            case (12 << 8) + 16: // callothersubr
-              if (this.stack.length < 2) {
-                error = true;
-                break;
-              }
-              subrNumber = this.stack.pop();
-              var numArgs = this.stack.pop();
-              if (subrNumber === 0 && numArgs === 3) {
-                var flexArgs = this.stack.splice(this.stack.length - 17, 17);
-                this.stack.push(
-                  flexArgs[2] + flexArgs[0], // bcp1x + rpx
-                  flexArgs[3] + flexArgs[1], // bcp1y + rpy
-                  flexArgs[4], // bcp2x
-                  flexArgs[5], // bcp2y
-                  flexArgs[6], // p2x
-                  flexArgs[7], // p2y
-                  flexArgs[8], // bcp3x
-                  flexArgs[9], // bcp3y
-                  flexArgs[10], // bcp4x
-                  flexArgs[11], // bcp4y
-                  flexArgs[12], // p3x
-                  flexArgs[13], // p3y
-                  flexArgs[14] // flexDepth
-                  // 15 = finalx unused by flex
-                  // 16 = finaly unused by flex
-                );
-                error = this.executeCommand(13, COMMAND_MAP.flex, true);
-                this.flexing = false;
-                this.stack.push(flexArgs[15], flexArgs[16]);
-              } else if (subrNumber === 1 && numArgs === 0) {
-                this.flexing = true;
-              }
-              break;
-            case (12 << 8) + 17: // pop
-              // Ignore this since it is only used with othersubr.
-              break;
-            case (12 << 8) + 33: // setcurrentpoint
-              // Ignore for now.
-              this.stack = [];
-              break;
-            default:
-              warn('Unknown type 1 charstring command of "' + value + '"');
-              break;
-          }
-          if (error) {
-            break;
-          }
-          continue;
-        } else if (value <= 246) {
-          value = value - 139;
-        } else if (value <= 250) {
-          value = ((value - 247) * 256) + encoded[++i] + 108;
-        } else if (value <= 254) {
-          value = -((value - 251) * 256) - encoded[++i] - 108;
-        } else {
-          value = (encoded[++i] & 0xff) << 24 | (encoded[++i] & 0xff) << 16 |
-                  (encoded[++i] & 0xff) << 8 | (encoded[++i] & 0xff) << 0;
-        }
-        this.stack.push(value);
-      }
-      return error;
-    },
-
-    executeCommand: function(howManyArgs, command, keepStack) {
-      var stackLength = this.stack.length;
-      if (howManyArgs > stackLength) {
-        return true;
-      }
-      var start = stackLength - howManyArgs;
-      for (var i = start; i < stackLength; i++) {
-        var value = this.stack[i];
-        if (value === (value | 0)) { // int
-          this.output.push(28, (value >> 8) & 0xff, value & 0xff);
-        } else { // fixed point
-          value = (65536 * value) | 0;
-          this.output.push(255,
-                           (value >> 24) & 0xFF,
-                           (value >> 16) & 0xFF,
-                           (value >> 8) & 0xFF,
-                           value & 0xFF);
-        }
-      }
-      this.output.push.apply(this.output, command);
-      if (keepStack) {
-        this.stack.splice(start, howManyArgs);
-      } else {
-        this.stack.length = 0;
-      }
-      return false;
-    }
-  };
-
-  return Type1CharString;
-})();
-
-/*
- * Type1Parser encapsulate the needed code for parsing a Type1 font
- * program. Some of its logic depends on the Type2 charstrings
- * structure.
- * Note: this doesn't really parse the font since that would require evaluation
- * of PostScript, but it is possible in most cases to extract what we need
- * without a full parse.
- */
-var Type1Parser = (function Type1ParserClosure() {
-  /*
-   * Decrypt a Sequence of Ciphertext Bytes to Produce the Original Sequence
-   * of Plaintext Bytes. The function took a key as a parameter which can be
-   * for decrypting the eexec block of for decoding charStrings.
-   */
-  var EEXEC_ENCRYPT_KEY = 55665;
-  var CHAR_STRS_ENCRYPT_KEY = 4330;
-
-  function isHexDigit(code) {
-    return code >= 48 && code <= 57 || // '0'-'9'
-           code >= 65 && code <= 70 || // 'A'-'F'
-           code >= 97 && code <= 102;  // 'a'-'f'
-  }
-
-  function decrypt(data, key, discardNumber) {
-    if (discardNumber >= data.length) {
-      return new Uint8Array(0);
-    }
-    var r = key | 0, c1 = 52845, c2 = 22719, i, j;
-    for (i = 0; i < discardNumber; i++) {
-      r = ((data[i] + r) * c1 + c2) & ((1 << 16) - 1);
-    }
-    var count = data.length - discardNumber;
-    var decrypted = new Uint8Array(count);
-    for (i = discardNumber, j = 0; j < count; i++, j++) {
-      var value = data[i];
-      decrypted[j] = value ^ (r >> 8);
-      r = ((value + r) * c1 + c2) & ((1 << 16) - 1);
-    }
-    return decrypted;
-  }
-
-  function decryptAscii(data, key, discardNumber) {
-    var r = key | 0, c1 = 52845, c2 = 22719;
-    var count = data.length, maybeLength = count >>> 1;
-    var decrypted = new Uint8Array(maybeLength);
-    var i, j;
-    for (i = 0, j = 0; i < count; i++) {
-      var digit1 = data[i];
-      if (!isHexDigit(digit1)) {
-        continue;
-      }
-      i++;
-      var digit2;
-      while (i < count && !isHexDigit(digit2 = data[i])) {
-        i++;
-      }
-      if (i < count) {
-        var value = parseInt(String.fromCharCode(digit1, digit2), 16);
-        decrypted[j++] = value ^ (r >> 8);
-        r = ((value + r) * c1 + c2) & ((1 << 16) - 1);
-      }
-    }
-    return Array.prototype.slice.call(decrypted, discardNumber, j);
-  }
-
-  function isSpecial(c) {
-    return c === 0x2F || // '/'
-           c === 0x5B || c === 0x5D || // '[', ']'
-           c === 0x7B || c === 0x7D || // '{', '}'
-           c === 0x28 || c === 0x29; // '(', ')'
-  }
-
-  function Type1Parser(stream, encrypted, seacAnalysisEnabled) {
-    if (encrypted) {
-      var data = stream.getBytes();
-      var isBinary = !(isHexDigit(data[0]) && isHexDigit(data[1]) &&
-                       isHexDigit(data[2]) && isHexDigit(data[3]));
-      stream = new Stream(isBinary ? decrypt(data, EEXEC_ENCRYPT_KEY, 4) :
-                          decryptAscii(data, EEXEC_ENCRYPT_KEY, 4));
-    }
-    this.seacAnalysisEnabled = !!seacAnalysisEnabled;
-
-    this.stream = stream;
-    this.nextChar();
-  }
-
-  Type1Parser.prototype = {
-    readNumberArray: function Type1Parser_readNumberArray() {
-      this.getToken(); // read '[' or '{' (arrays can start with either)
-      var array = [];
-      while (true) {
-        var token = this.getToken();
-        if (token === null || token === ']' || token === '}') {
-          break;
-        }
-        array.push(parseFloat(token || 0));
-      }
-      return array;
-    },
-
-    readNumber: function Type1Parser_readNumber() {
-      var token = this.getToken();
-      return parseFloat(token || 0);
-    },
-
-    readInt: function Type1Parser_readInt() {
-      // Use '| 0' to prevent setting a double into length such as the double
-      // does not flow into the loop variable.
-      var token = this.getToken();
-      return parseInt(token || 0, 10) | 0;
-    },
-
-    readBoolean: function Type1Parser_readBoolean() {
-      var token = this.getToken();
-
-      // Use 1 and 0 since that's what type2 charstrings use.
-      return token === 'true' ? 1 : 0;
-    },
-
-    nextChar : function Type1_nextChar() {
-      return (this.currentChar = this.stream.getByte());
-    },
-
-    getToken: function Type1Parser_getToken() {
-      // Eat whitespace and comments.
-      var comment = false;
-      var ch = this.currentChar;
-      while (true) {
-        if (ch === -1) {
-          return null;
-        }
-
-        if (comment) {
-          if (ch === 0x0A || ch === 0x0D) {
-            comment = false;
-          }
-        } else if (ch === 0x25) { // '%'
-          comment = true;
-        } else if (!Lexer.isSpace(ch)) {
-          break;
-        }
-        ch = this.nextChar();
-      }
-      if (isSpecial(ch)) {
-        this.nextChar();
-        return String.fromCharCode(ch);
-      }
-      var token = '';
-      do {
-        token += String.fromCharCode(ch);
-        ch = this.nextChar();
-      } while (ch >= 0 && !Lexer.isSpace(ch) && !isSpecial(ch));
-      return token;
-    },
-
-    /*
-     * Returns an object containing a Subrs array and a CharStrings
-     * array extracted from and eexec encrypted block of data
-     */
-    extractFontProgram: function Type1Parser_extractFontProgram() {
-      var stream = this.stream;
-
-      var subrs = [], charstrings = [];
-      var privateData = Object.create(null);
-      privateData['lenIV'] = 4;
-      var program = {
-        subrs: [],
-        charstrings: [],
-        properties: {
-          'privateData': privateData
-        }
-      };
-      var token, length, data, lenIV, encoded;
-      while ((token = this.getToken()) !== null) {
-        if (token !== '/') {
-          continue;
-        }
-        token = this.getToken();
-        switch (token) {
-          case 'CharStrings':
-            // The number immediately following CharStrings must be greater or
-            // equal to the number of CharStrings.
-            this.getToken();
-            this.getToken(); // read in 'dict'
-            this.getToken(); // read in 'dup'
-            this.getToken(); // read in 'begin'
-            while(true) {
-              token = this.getToken();
-              if (token === null || token === 'end') {
-                break;
-              }
-
-              if (token !== '/') {
-                continue;
-              }
-              var glyph = this.getToken();
-              length = this.readInt();
-              this.getToken(); // read in 'RD' or '-|'
-              data = stream.makeSubStream(stream.pos, length);
-              lenIV = program.properties.privateData['lenIV'];
-              encoded = decrypt(data.getBytes(), CHAR_STRS_ENCRYPT_KEY, lenIV);
-              // Skip past the required space and binary data.
-              stream.skip(length);
-              this.nextChar();
-              token = this.getToken(); // read in 'ND' or '|-'
-              if (token === 'noaccess') {
-                this.getToken(); // read in 'def'
-              }
-              charstrings.push({
-                glyph: glyph,
-                encoded: encoded
-              });
-            }
-            break;
-          case 'Subrs':
-            var num = this.readInt();
-            this.getToken(); // read in 'array'
-            while ((token = this.getToken()) === 'dup') {
-              var index = this.readInt();
-              length = this.readInt();
-              this.getToken(); // read in 'RD' or '-|'
-              data = stream.makeSubStream(stream.pos, length);
-              lenIV = program.properties.privateData['lenIV'];
-              encoded = decrypt(data.getBytes(), CHAR_STRS_ENCRYPT_KEY, lenIV);
-              // Skip past the required space and binary data.
-              stream.skip(length);
-              this.nextChar();
-              token = this.getToken(); // read in 'NP' or '|'
-              if (token === 'noaccess') {
-                this.getToken(); // read in 'put'
-              }
-              subrs[index] = encoded;
-            }
-            break;
-          case 'BlueValues':
-          case 'OtherBlues':
-          case 'FamilyBlues':
-          case 'FamilyOtherBlues':
-            var blueArray = this.readNumberArray();
-            // *Blue* values may contain invalid data: disables reading of
-            // those values when hinting is disabled.
-            if (blueArray.length > 0 && (blueArray.length % 2) === 0 &&
-                HINTING_ENABLED) {
-              program.properties.privateData[token] = blueArray;
-            }
-            break;
-          case 'StemSnapH':
-          case 'StemSnapV':
-            program.properties.privateData[token] = this.readNumberArray();
-            break;
-          case 'StdHW':
-          case 'StdVW':
-            program.properties.privateData[token] =
-              this.readNumberArray()[0];
-            break;
-          case 'BlueShift':
-          case 'lenIV':
-          case 'BlueFuzz':
-          case 'BlueScale':
-          case 'LanguageGroup':
-          case 'ExpansionFactor':
-            program.properties.privateData[token] = this.readNumber();
-            break;
-          case 'ForceBold':
-            program.properties.privateData[token] = this.readBoolean();
-            break;
-        }
-      }
-
-      for (var i = 0; i < charstrings.length; i++) {
-        glyph = charstrings[i].glyph;
-        encoded = charstrings[i].encoded;
-        var charString = new Type1CharString();
-        var error = charString.convert(encoded, subrs,
-                                       this.seacAnalysisEnabled);
-        var output = charString.output;
-        if (error) {
-          // It seems when FreeType encounters an error while evaluating a glyph
-          // that it completely ignores the glyph so we'll mimic that behaviour
-          // here and put an endchar to make the validator happy.
-          output = [14];
-        }
-        program.charstrings.push({
-          glyphName: glyph,
-          charstring: output,
-          width: charString.width,
-          lsb: charString.lsb,
-          seac: charString.seac
-        });
-      }
-
-      return program;
-    },
-
-    extractFontHeader: function Type1Parser_extractFontHeader(properties) {
-      var token;
-      while ((token = this.getToken()) !== null) {
-        if (token !== '/') {
-          continue;
-        }
-        token = this.getToken();
-        switch (token) {
-          case 'FontMatrix':
-            var matrix = this.readNumberArray();
-            properties.fontMatrix = matrix;
-            break;
-          case 'Encoding':
-            var encodingArg = this.getToken();
-            var encoding;
-            if (!/^\d+$/.test(encodingArg)) {
-              // encoding name is specified
-              encoding = getEncoding(encodingArg);
-            } else {
-              encoding = [];
-              var size = parseInt(encodingArg, 10) | 0;
-              this.getToken(); // read in 'array'
-
-              for (var j = 0; j < size; j++) {
-                token = this.getToken();
-                // skipping till first dup or def (e.g. ignoring for statement)
-                while (token !== 'dup' && token !== 'def') {
-                  token = this.getToken();
-                  if (token === null) {
-                    return; // invalid header
-                  }
-                }
-                if (token === 'def') {
-                  break; // read all array data
-                }
-                var index = this.readInt();
-                this.getToken(); // read in '/'
-                var glyph = this.getToken();
-                encoding[index] = glyph;
-                this.getToken(); // read the in 'put'
-              }
-            }
-            properties.builtInEncoding = encoding;
-            break;
-          case 'FontBBox':
-            var fontBBox = this.readNumberArray();
-            // adjusting ascent/descent
-            properties.ascent = fontBBox[3];
-            properties.descent = fontBBox[1];
-            properties.ascentScaled = true;
-            break;
-        }
-      }
-    }
-  };
-
-  return Type1Parser;
-})();
-
-exports.Type1Parser = Type1Parser;
-}));
-
-
-(function (root, factory) {
-  {
     factory((root.pdfjsCoreFonts = {}), root.pdfjsSharedUtil,
-      root.pdfjsCorePrimitives, root.pdfjsCoreStream, root.pdfjsCoreParser,
-      root.pdfjsCoreGlyphList, root.pdfjsCoreFontRenderer,
-      root.pdfjsCoreEncodings, root.pdfjsCoreStandardFonts,
-      root.pdfjsCoreUnicode, root.pdfjsCoreType1Parser,
-      root.pdfjsCoreCFFParser);
+      root.pdfjsCorePrimitives, root.pdfjsCoreStream, root.pdfjsCoreGlyphList,
+      root.pdfjsCoreFontRenderer, root.pdfjsCoreEncodings,
+      root.pdfjsCoreStandardFonts, root.pdfjsCoreUnicode,
+      root.pdfjsCoreType1Parser, root.pdfjsCoreCFFParser);
   }
-}(this, function (exports, sharedUtil, corePrimitives, coreStream, coreParser,
+}(this, function (exports, sharedUtil, corePrimitives, coreStream,
                   coreGlyphList, coreFontRenderer, coreEncodings,
                   coreStandardFonts, coreUnicode, coreType1Parser,
                   coreCFFParser) {
@@ -28013,8 +27813,8 @@ var shadow = sharedUtil.shadow;
 var string32 = sharedUtil.string32;
 var warn = sharedUtil.warn;
 var MissingDataException = sharedUtil.MissingDataException;
+var isSpace = sharedUtil.isSpace;
 var Stream = coreStream.Stream;
-var Lexer = coreParser.Lexer;
 var getGlyphsUnicode = coreGlyphList.getGlyphsUnicode;
 var getDingbatsGlyphsUnicode = coreGlyphList.getDingbatsGlyphsUnicode;
 var FontRendererFactory = coreFontRenderer.FontRendererFactory;
@@ -30847,7 +30647,7 @@ var Type1Font = (function Type1FontClosure() {
       }
       if (j >= signatureLength) { // `signature` found, skip over whitespace.
         i += j;
-        while (i < streamBytesLength && Lexer.isSpace(streamBytes[i])) {
+        while (i < streamBytesLength && isSpace(streamBytes[i])) {
           i++;
         }
         found = true;
@@ -31272,6 +31072,225 @@ exports.getFontType = getFontType;
 
 (function (root, factory) {
   {
+    factory((root.pdfjsCorePsParser = {}), root.pdfjsSharedUtil,
+      root.pdfjsCoreParser);
+  }
+}(this, function (exports, sharedUtil, coreParser) {
+
+var error = sharedUtil.error;
+var isSpace = sharedUtil.isSpace;
+var EOF = coreParser.EOF;
+
+var PostScriptParser = (function PostScriptParserClosure() {
+  function PostScriptParser(lexer) {
+    this.lexer = lexer;
+    this.operators = [];
+    this.token = null;
+    this.prev = null;
+  }
+  PostScriptParser.prototype = {
+    nextToken: function PostScriptParser_nextToken() {
+      this.prev = this.token;
+      this.token = this.lexer.getToken();
+    },
+    accept: function PostScriptParser_accept(type) {
+      if (this.token.type === type) {
+        this.nextToken();
+        return true;
+      }
+      return false;
+    },
+    expect: function PostScriptParser_expect(type) {
+      if (this.accept(type)) {
+        return true;
+      }
+      error('Unexpected symbol: found ' + this.token.type + ' expected ' +
+        type + '.');
+    },
+    parse: function PostScriptParser_parse() {
+      this.nextToken();
+      this.expect(PostScriptTokenTypes.LBRACE);
+      this.parseBlock();
+      this.expect(PostScriptTokenTypes.RBRACE);
+      return this.operators;
+    },
+    parseBlock: function PostScriptParser_parseBlock() {
+      while (true) {
+        if (this.accept(PostScriptTokenTypes.NUMBER)) {
+          this.operators.push(this.prev.value);
+        } else if (this.accept(PostScriptTokenTypes.OPERATOR)) {
+          this.operators.push(this.prev.value);
+        } else if (this.accept(PostScriptTokenTypes.LBRACE)) {
+          this.parseCondition();
+        } else {
+          return;
+        }
+      }
+    },
+    parseCondition: function PostScriptParser_parseCondition() {
+      // Add two place holders that will be updated later
+      var conditionLocation = this.operators.length;
+      this.operators.push(null, null);
+
+      this.parseBlock();
+      this.expect(PostScriptTokenTypes.RBRACE);
+      if (this.accept(PostScriptTokenTypes.IF)) {
+        // The true block is right after the 'if' so it just falls through on
+        // true else it jumps and skips the true block.
+        this.operators[conditionLocation] = this.operators.length;
+        this.operators[conditionLocation + 1] = 'jz';
+      } else if (this.accept(PostScriptTokenTypes.LBRACE)) {
+        var jumpLocation = this.operators.length;
+        this.operators.push(null, null);
+        var endOfTrue = this.operators.length;
+        this.parseBlock();
+        this.expect(PostScriptTokenTypes.RBRACE);
+        this.expect(PostScriptTokenTypes.IFELSE);
+        // The jump is added at the end of the true block to skip the false
+        // block.
+        this.operators[jumpLocation] = this.operators.length;
+        this.operators[jumpLocation + 1] = 'j';
+
+        this.operators[conditionLocation] = endOfTrue;
+        this.operators[conditionLocation + 1] = 'jz';
+      } else {
+        error('PS Function: error parsing conditional.');
+      }
+    }
+  };
+  return PostScriptParser;
+})();
+
+var PostScriptTokenTypes = {
+  LBRACE: 0,
+  RBRACE: 1,
+  NUMBER: 2,
+  OPERATOR: 3,
+  IF: 4,
+  IFELSE: 5
+};
+
+var PostScriptToken = (function PostScriptTokenClosure() {
+  function PostScriptToken(type, value) {
+    this.type = type;
+    this.value = value;
+  }
+
+  var opCache = Object.create(null);
+
+  PostScriptToken.getOperator = function PostScriptToken_getOperator(op) {
+    var opValue = opCache[op];
+    if (opValue) {
+      return opValue;
+    }
+    return opCache[op] = new PostScriptToken(PostScriptTokenTypes.OPERATOR, op);
+  };
+
+  PostScriptToken.LBRACE = new PostScriptToken(PostScriptTokenTypes.LBRACE,
+    '{');
+  PostScriptToken.RBRACE = new PostScriptToken(PostScriptTokenTypes.RBRACE,
+    '}');
+  PostScriptToken.IF = new PostScriptToken(PostScriptTokenTypes.IF, 'IF');
+  PostScriptToken.IFELSE = new PostScriptToken(PostScriptTokenTypes.IFELSE,
+    'IFELSE');
+  return PostScriptToken;
+})();
+
+var PostScriptLexer = (function PostScriptLexerClosure() {
+  function PostScriptLexer(stream) {
+    this.stream = stream;
+    this.nextChar();
+
+    this.strBuf = [];
+  }
+  PostScriptLexer.prototype = {
+    nextChar: function PostScriptLexer_nextChar() {
+      return (this.currentChar = this.stream.getByte());
+    },
+    getToken: function PostScriptLexer_getToken() {
+      var comment = false;
+      var ch = this.currentChar;
+
+      // skip comments
+      while (true) {
+        if (ch < 0) {
+          return EOF;
+        }
+
+        if (comment) {
+          if (ch === 0x0A || ch === 0x0D) {
+            comment = false;
+          }
+        } else if (ch === 0x25) { // '%'
+          comment = true;
+        } else if (!isSpace(ch)) {
+          break;
+        }
+        ch = this.nextChar();
+      }
+      switch (ch | 0) {
+        case 0x30: case 0x31: case 0x32: case 0x33: case 0x34: // '0'-'4'
+        case 0x35: case 0x36: case 0x37: case 0x38: case 0x39: // '5'-'9'
+        case 0x2B: case 0x2D: case 0x2E: // '+', '-', '.'
+          return new PostScriptToken(PostScriptTokenTypes.NUMBER,
+                                     this.getNumber());
+        case 0x7B: // '{'
+          this.nextChar();
+          return PostScriptToken.LBRACE;
+        case 0x7D: // '}'
+          this.nextChar();
+          return PostScriptToken.RBRACE;
+      }
+      // operator
+      var strBuf = this.strBuf;
+      strBuf.length = 0;
+      strBuf[0] = String.fromCharCode(ch);
+
+      while ((ch = this.nextChar()) >= 0 && // and 'A'-'Z', 'a'-'z'
+             ((ch >= 0x41 && ch <= 0x5A) || (ch >= 0x61 && ch <= 0x7A))) {
+        strBuf.push(String.fromCharCode(ch));
+      }
+      var str = strBuf.join('');
+      switch (str.toLowerCase()) {
+        case 'if':
+          return PostScriptToken.IF;
+        case 'ifelse':
+          return PostScriptToken.IFELSE;
+        default:
+          return PostScriptToken.getOperator(str);
+      }
+    },
+    getNumber: function PostScriptLexer_getNumber() {
+      var ch = this.currentChar;
+      var strBuf = this.strBuf;
+      strBuf.length = 0;
+      strBuf[0] = String.fromCharCode(ch);
+
+      while ((ch = this.nextChar()) >= 0) {
+        if ((ch >= 0x30 && ch <= 0x39) || // '0'-'9'
+            ch === 0x2D || ch === 0x2E) { // '-', '.'
+          strBuf.push(String.fromCharCode(ch));
+        } else {
+          break;
+        }
+      }
+      var value = parseFloat(strBuf.join(''));
+      if (isNaN(value)) {
+        error('Invalid floating point number: ' + value);
+      }
+      return value;
+    }
+  };
+  return PostScriptLexer;
+})();
+
+exports.PostScriptLexer = PostScriptLexer;
+exports.PostScriptParser = PostScriptParser;
+}));
+
+
+(function (root, factory) {
+  {
     factory((root.pdfjsCoreFunction = {}), root.pdfjsSharedUtil,
       root.pdfjsCorePrimitives, root.pdfjsCorePsParser);
   }
@@ -31393,8 +31412,8 @@ var PDFFunction = (function PDFFunctionClosure() {
         }
         return out;
       }
-      var domain = dict.get('Domain');
-      var range = dict.get('Range');
+      var domain = dict.getArray('Domain');
+      var range = dict.getArray('Range');
 
       if (!domain || !range) {
         error('No domain or range');
@@ -31415,7 +31434,7 @@ var PDFFunction = (function PDFFunctionClosure() {
         info('No support for cubic spline interpolation: ' + order);
       }
 
-      var encode = dict.get('Encode');
+      var encode = dict.getArray('Encode');
       if (!encode) {
         encode = [];
         for (var i = 0; i < inputSize; ++i) {
@@ -31425,7 +31444,7 @@ var PDFFunction = (function PDFFunctionClosure() {
       }
       encode = toMultiArray(encode);
 
-      var decode = dict.get('Decode');
+      var decode = dict.getArray('Decode');
       if (!decode) {
         decode = range;
       } else {
@@ -31527,8 +31546,8 @@ var PDFFunction = (function PDFFunctionClosure() {
 
     constructInterpolated: function PDFFunction_constructInterpolated(str,
                                                                       dict) {
-      var c0 = dict.get('C0') || [0];
-      var c1 = dict.get('C1') || [1];
+      var c0 = dict.getArray('C0') || [0];
+      var c1 = dict.getArray('C1') || [1];
       var n = dict.get('N');
 
       if (!isArray(c0) || !isArray(c1)) {
@@ -31563,7 +31582,7 @@ var PDFFunction = (function PDFFunctionClosure() {
     },
 
     constructStiched: function PDFFunction_constructStiched(fn, dict, xref) {
-      var domain = dict.get('Domain');
+      var domain = dict.getArray('Domain');
 
       if (!domain) {
         error('No domain');
@@ -31580,8 +31599,8 @@ var PDFFunction = (function PDFFunctionClosure() {
         fns.push(PDFFunction.getIR(xref, xref.fetchIfRef(fnRefs[i])));
       }
 
-      var bounds = dict.get('Bounds');
-      var encode = dict.get('Encode');
+      var bounds = dict.getArray('Bounds');
+      var encode = dict.getArray('Encode');
 
       return [CONSTRUCT_STICHED, domain, bounds, encode, fns];
     },
@@ -31643,8 +31662,8 @@ var PDFFunction = (function PDFFunctionClosure() {
 
     constructPostScript: function PDFFunction_constructPostScript(fn, dict,
                                                                   xref) {
-      var domain = dict.get('Domain');
-      var range = dict.get('Range');
+      var domain = dict.getArray('Domain');
+      var range = dict.getArray('Range');
 
       if (!domain) {
         error('No domain.');
@@ -32718,16 +32737,16 @@ var ColorSpace = (function ColorSpaceClosure() {
           return 'DeviceCmykCS';
         case 'CalGray':
           params = xref.fetchIfRef(cs[1]);
-          whitePoint = params.get('WhitePoint');
-          blackPoint = params.get('BlackPoint');
+          whitePoint = params.getArray('WhitePoint');
+          blackPoint = params.getArray('BlackPoint');
           gamma = params.get('Gamma');
           return ['CalGrayCS', whitePoint, blackPoint, gamma];
         case 'CalRGB':
           params = xref.fetchIfRef(cs[1]);
-          whitePoint = params.get('WhitePoint');
-          blackPoint = params.get('BlackPoint');
-          gamma = params.get('Gamma');
-          var matrix = params.get('Matrix');
+          whitePoint = params.getArray('WhitePoint');
+          blackPoint = params.getArray('BlackPoint');
+          gamma = params.getArray('Gamma');
+          var matrix = params.getArray('Matrix');
           return ['CalRGBCS', whitePoint, blackPoint, gamma, matrix];
         case 'ICCBased':
           var stream = xref.fetchIfRef(cs[1]);
@@ -32781,9 +32800,9 @@ var ColorSpace = (function ColorSpaceClosure() {
           return ['AlternateCS', numComps, alt, tintFnIR];
         case 'Lab':
           params = xref.fetchIfRef(cs[1]);
-          whitePoint = params.get('WhitePoint');
-          blackPoint = params.get('BlackPoint');
-          var range = params.get('Range');
+          whitePoint = params.getArray('WhitePoint');
+          blackPoint = params.getArray('BlackPoint');
+          var range = params.getArray('Range');
           return ['LabCS', whitePoint, blackPoint, range];
         default:
           error('unimplemented color space object "' + mode + '"');
@@ -33856,7 +33875,7 @@ var PDFImage = (function PDFImageClosure() {
       this.numComps = this.colorSpace.numComps;
     }
 
-    this.decode = dict.get('Decode', 'D');
+    this.decode = dict.getArray('Decode', 'D');
     this.needsDecode = false;
     if (this.decode &&
         ((this.colorSpace && !this.colorSpace.isDefaultDecode(this.decode)) ||
@@ -34391,6 +34410,7 @@ var isName = corePrimitives.isName;
 var isCmd = corePrimitives.isCmd;
 var isDict = corePrimitives.isDict;
 var isRef = corePrimitives.isRef;
+var isRefsEqual = corePrimitives.isRefsEqual;
 var isStream = corePrimitives.isStream;
 var CipherTransformFactory = coreCrypto.CipherTransformFactory;
 var Lexer = coreParser.Lexer;
@@ -34507,7 +34527,7 @@ var Catalog = (function CatalogClosure() {
         var title = outlineDict.get('Title');
         var flags = outlineDict.get('F') || 0;
 
-        var color = outlineDict.get('C'), rgbColor = blackColor;
+        var color = outlineDict.getArray('C'), rgbColor = blackColor;
         // We only need to parse the color when it's valid, and non-default.
         if (isArray(color) && color.length === 3 &&
             (color[0] !== 0 || color[1] !== 0 || color[2] !== 0)) {
@@ -34857,7 +34877,7 @@ var Catalog = (function CatalogClosure() {
       return capability.promise;
     },
 
-    getPageIndex: function Catalog_getPageIndex(ref) {
+    getPageIndex: function Catalog_getPageIndex(pageRef) {
       // The page tree nodes have the count of all the leaves below them. To get
       // how many pages are before we just have to walk up the tree and keep
       // adding the count of siblings to the left of the node.
@@ -34866,15 +34886,21 @@ var Catalog = (function CatalogClosure() {
         var total = 0;
         var parentRef;
         return xref.fetchAsync(kidRef).then(function (node) {
+          if (isRefsEqual(kidRef, pageRef) && !isDict(node, 'Page') &&
+              !(isDict(node) && !node.has('Type') && node.has('Contents'))) {
+            throw new Error('The reference does not point to a /Page Dict.');
+          }
           if (!node) {
             return null;
           }
+          assert(isDict(node), 'node must be a Dict.');
           parentRef = node.getRaw('Parent');
           return node.getAsync('Parent');
         }).then(function (parent) {
           if (!parent) {
             return null;
           }
+          assert(isDict(parent), 'parent must be a Dict.');
           return parent.getAsync('Kids');
         }).then(function (kids) {
           if (!kids) {
@@ -34884,7 +34910,7 @@ var Catalog = (function CatalogClosure() {
           var found = false;
           for (var i = 0; i < kids.length; i++) {
             var kid = kids[i];
-            assert(isRef(kid), 'kids must be a ref');
+            assert(isRef(kid), 'kid must be a Ref.');
             if (kid.num === kidRef.num) {
               found = true;
               break;
@@ -34920,7 +34946,7 @@ var Catalog = (function CatalogClosure() {
         });
       }
 
-      return next(ref);
+      return next(pageRef);
     }
   };
 
@@ -35510,6 +35536,11 @@ var XRef = (function XRefClosure() {
       // read stream objects for cache
       for (i = 0; i < n; ++i) {
         entries.push(parser.getObj());
+        // The ObjStm should not contain 'endobj'. If it's present, skip over it
+        // to support corrupt PDFs (fixes issue 5241, bug 898610, bug 1037816).
+        if (isCmd(parser.buf1, 'endobj')) {
+          parser.shift();
+        }
         num = nums[i];
         var entry = this.entries[num];
         if (entry && entry.offset === tableOffset && entry.gen === i) {
@@ -36028,7 +36059,7 @@ Shadings.SMALL_NUMBER = 1e-6;
 Shadings.RadialAxial = (function RadialAxialClosure() {
   function RadialAxial(dict, matrix, xref, res) {
     this.matrix = matrix;
-    this.coordsArr = dict.get('Coords');
+    this.coordsArr = dict.getArray('Coords');
     this.shadingType = dict.get('ShadingType');
     this.type = 'Pattern';
     var cs = dict.get('ColorSpace', 'CS');
@@ -36037,14 +36068,14 @@ Shadings.RadialAxial = (function RadialAxialClosure() {
 
     var t0 = 0.0, t1 = 1.0;
     if (dict.has('Domain')) {
-      var domainArr = dict.get('Domain');
+      var domainArr = dict.getArray('Domain');
       t0 = domainArr[0];
       t1 = domainArr[1];
     }
 
     var extendStart = false, extendEnd = false;
     if (dict.has('Extend')) {
-      var extendArr = dict.get('Extend');
+      var extendArr = dict.getArray('Extend');
       extendStart = extendArr[0];
       extendEnd = extendArr[1];
     }
@@ -36649,7 +36680,7 @@ Shadings.Mesh = (function MeshClosure() {
     this.matrix = matrix;
     this.shadingType = dict.get('ShadingType');
     this.type = 'Pattern';
-    this.bbox = dict.get('BBox');
+    this.bbox = dict.getArray('BBox');
     var cs = dict.get('ColorSpace', 'CS');
     cs = ColorSpace.parse(cs, xref, res);
     this.cs = cs;
@@ -36667,7 +36698,7 @@ Shadings.Mesh = (function MeshClosure() {
       bitsPerCoordinate: dict.get('BitsPerCoordinate'),
       bitsPerComponent: dict.get('BitsPerComponent'),
       bitsPerFlag: dict.get('BitsPerFlag'),
-      decode: dict.get('Decode'),
+      decode: dict.getArray('Decode'),
       colorFn: fn,
       colorSpace: cs,
       numComps: fn ? 1 : cs.numComps
@@ -36734,8 +36765,8 @@ Shadings.Dummy = (function DummyClosure() {
 })();
 
 function getTilingPatternIR(operatorList, dict, args) {
-  var matrix = dict.get('Matrix');
-  var bbox = dict.get('BBox');
+  var matrix = dict.getArray('Matrix');
+  var bbox = dict.getArray('BBox');
   var xstep = dict.get('XStep');
   var ystep = dict.get('YStep');
   var paintType = dict.get('PaintType');
@@ -36869,7 +36900,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       function NativeImageDecoder_isSupported(image, xref, res) {
     var cs = ColorSpace.parse(image.dict.get('ColorSpace', 'CS'), xref, res);
     return (cs.name === 'DeviceGray' || cs.name === 'DeviceRGB') &&
-           cs.isDefaultDecode(image.dict.get('Decode', 'D'));
+           cs.isDefaultDecode(image.dict.getArray('Decode', 'D'));
   };
   /**
    * Checks if the image can be decoded by the browser.
@@ -36878,7 +36909,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       function NativeImageDecoder_isDecodable(image, xref, res) {
     var cs = ColorSpace.parse(image.dict.get('ColorSpace', 'CS'), xref, res);
     return (cs.numComps === 1 || cs.numComps === 3) &&
-           cs.isDefaultDecode(image.dict.get('Decode', 'D'));
+           cs.isDefaultDecode(image.dict.getArray('Decode', 'D'));
   };
 
   function PartialEvaluator(pdfManager, xref, handler, pageIndex,
@@ -37068,7 +37099,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         var height = dict.get('Height', 'H');
         var bitStrideLength = (width + 7) >> 3;
         var imgArray = image.getBytes(bitStrideLength * height);
-        var decode = dict.get('Decode', 'D');
+        var decode = dict.getArray('Decode', 'D');
         var inverseDecode = (!!decode && decode[0] > 0);
 
         imgData = PDFImage.createMask(imgArray, width, height,
@@ -37509,7 +37540,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                                        dict, operatorList, task);
         } else if (typeNum === SHADING_PATTERN) {
           var shading = dict.get('Shading');
-          var matrix = dict.get('Matrix');
+          var matrix = dict.getArray('Matrix');
           pattern = Pattern.parseShading(shading, matrix, xref, resources,
                                          this.handler);
           operatorList.addOp(fn, pattern.getIR());
@@ -38117,13 +38148,13 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           textState = stateManager.state;
           var fn = operation.fn;
           args = operation.args;
-          var advance;
+          var advance, diff;
 
           switch (fn | 0) {
             case OPS.setFont:
               flushTextContentItem();
               textState.fontSize = args[1];
-              next(handleSetFont(args[0].name));
+              next(handleSetFont(args[0].name, null));
               return;
             case OPS.setTextRise:
               flushTextContentItem();
@@ -38150,8 +38181,8 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                   (args[0] - textContentItem.lastAdvanceWidth);
                 textContentItem.height +=
                   (args[1] - textContentItem.lastAdvanceHeight);
-                var diff = (args[0] - textContentItem.lastAdvanceWidth) -
-                           (args[1] - textContentItem.lastAdvanceHeight);
+                diff = (args[0] - textContentItem.lastAdvanceWidth) -
+                       (args[1] - textContentItem.lastAdvanceHeight);
                 addFakeSpaces(diff, textContentItem.str);
                 break;
               }
@@ -38171,6 +38202,24 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               textState.carriageReturn();
               break;
             case OPS.setTextMatrix:
+              // Optimization to treat same line movement as advance.
+              advance = textState.calcTextLineMatrixAdvance(
+                args[0], args[1], args[2], args[3], args[4], args[5]);
+              if (advance !== null && textContentItem.initialized &&
+                  advance.value > 0 &&
+                  advance.value <= textContentItem.fakeMultiSpaceMax) {
+                textState.translateTextLineMatrix(advance.width,
+                                                  advance.height);
+                textContentItem.width +=
+                  (advance.width - textContentItem.lastAdvanceWidth);
+                textContentItem.height +=
+                  (advance.height - textContentItem.lastAdvanceHeight);
+                diff = (advance.width - textContentItem.lastAdvanceWidth) -
+                       (advance.height - textContentItem.lastAdvanceHeight);
+                addFakeSpaces(diff, textContentItem.str);
+                break;
+              }
+
               flushTextContentItem();
               textState.setTextMatrix(args[0], args[1], args[2], args[3],
                 args[4], args[5]);
@@ -38290,7 +38339,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               }
 
               stateManager.save();
-              var matrix = xobj.dict.get('Matrix');
+              var matrix = xobj.dict.getArray('Matrix');
               if (isArray(matrix) && matrix.length === 6) {
                 stateManager.transform(matrix);
               }
@@ -38311,21 +38360,17 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               var dictName = args[0];
               var extGState = resources.get('ExtGState');
 
-              if (!isDict(extGState) || !extGState.has(dictName.name)) {
+              if (!isDict(extGState) || !isName(dictName)) {
                 break;
               }
-
-              var gsStateMap = extGState.get(dictName.name);
-              var gsStateFont = null;
-              for (var key in gsStateMap) {
-                if (key === 'Font') {
-                  assert(!gsStateFont);
-                  gsStateFont = gsStateMap[key];
-                }
+              var gState = extGState.get(dictName.name);
+              if (!isDict(gState)) {
+                break;
               }
-              if (gsStateFont) {
-                textState.fontSize = gsStateFont[1];
-                next(handleSetFont(gsStateFont[0]));
+              var gStateFont = gState.get('Font');
+              if (gStateFont) {
+                textState.fontSize = gStateFont[1];
+                next(handleSetFont(null, gStateFont[0]));
                 return;
               }
               break;
@@ -38887,7 +38932,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           // is a tagged pdf. Create a barbebones one to get by.
           descriptor = new Dict(null);
           descriptor.set('FontName', Name.get(type));
-          descriptor.set('FontBBox', dict.get('FontBBox'));
+          descriptor.set('FontBBox', dict.getArray('FontBBox'));
         } else {
           // Before PDF 1.5 if the font was one of the base 14 fonts, having a
           // FontDescriptor was not required.
@@ -38989,10 +39034,10 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         composite: composite,
         wideChars: composite,
         fixedPitch: false,
-        fontMatrix: (dict.get('FontMatrix') || FONT_IDENTITY_MATRIX),
+        fontMatrix: (dict.getArray('FontMatrix') || FONT_IDENTITY_MATRIX),
         firstChar: firstChar || 0,
         lastChar: (lastChar || maxCharIndex),
-        bbox: descriptor.get('FontBBox'),
+        bbox: descriptor.getArray('FontBBox'),
         ascent: descriptor.get('Ascent'),
         descent: descriptor.get('Descent'),
         xHeight: descriptor.get('XHeight'),
@@ -39267,6 +39312,30 @@ var TextState = (function TextStateClosure() {
       var m = this.textLineMatrix;
       m[4] = m[0] * x + m[2] * y + m[4];
       m[5] = m[1] * x + m[3] * y + m[5];
+    },
+    calcTextLineMatrixAdvance:
+        function TextState_calcTextLineMatrixAdvance(a, b, c, d, e, f) {
+      var font = this.font;
+      if (!font) {
+        return null;
+      }
+      var m = this.textLineMatrix;
+      if (!(a === m[0] && b === m[1] && c === m[2] && d === m[3])) {
+        return null;
+      }
+      var txDiff = e - m[4], tyDiff = f - m[5];
+      if ((font.vertical && txDiff !== 0) || (!font.vertical && tyDiff !== 0)) {
+        return null;
+      }
+      var tx, ty, denominator = a * d - b * c;
+      if (font.vertical) {
+        tx = -tyDiff * c / denominator;
+        ty = tyDiff * a / denominator;
+      } else {
+        tx = txDiff * d / denominator;
+        ty = -txDiff * b / denominator;
+      }
+      return { width: tx, height: ty, value: (font.vertical ? ty : tx), };
     },
     calcRenderMatrix: function TextState_calcRendeMatrix(ctm) {
       // 9.4.4 Text Space Details
@@ -40104,7 +40173,7 @@ var Annotation = (function AnnotationClosure() {
 
     this.setFlags(dict.get('F'));
     this.setRectangle(dict.getArray('Rect'));
-    this.setColor(dict.get('C'));
+    this.setColor(dict.getArray('C'));
     this.setBorderStyle(dict);
     this.appearance = getDefaultAppearance(dict);
 
@@ -40121,27 +40190,48 @@ var Annotation = (function AnnotationClosure() {
 
   Annotation.prototype = {
     /**
+     * @private
+     */
+    _hasFlag: function Annotation_hasFlag(flags, flag) {
+      return !!(flags & flag);
+    },
+
+    /**
+     * @private
+     */
+    _isViewable: function Annotation_isViewable(flags) {
+      return !this._hasFlag(flags, AnnotationFlag.INVISIBLE) &&
+             !this._hasFlag(flags, AnnotationFlag.HIDDEN) &&
+             !this._hasFlag(flags, AnnotationFlag.NOVIEW);
+    },
+
+    /**
+     * @private
+     */
+    _isPrintable: function AnnotationFlag_isPrintable(flags) {
+      return this._hasFlag(flags, AnnotationFlag.PRINT) &&
+             !this._hasFlag(flags, AnnotationFlag.INVISIBLE) &&
+             !this._hasFlag(flags, AnnotationFlag.HIDDEN);
+    },
+
+    /**
      * @return {boolean}
      */
     get viewable() {
-      if (this.flags) {
-        return !this.hasFlag(AnnotationFlag.INVISIBLE) &&
-               !this.hasFlag(AnnotationFlag.HIDDEN) &&
-               !this.hasFlag(AnnotationFlag.NOVIEW);
+      if (this.flags === 0) {
+        return true;
       }
-      return true;
+      return this._isViewable(this.flags);
     },
 
     /**
      * @return {boolean}
      */
     get printable() {
-      if (this.flags) {
-        return this.hasFlag(AnnotationFlag.PRINT) &&
-               !this.hasFlag(AnnotationFlag.INVISIBLE) &&
-               !this.hasFlag(AnnotationFlag.HIDDEN);
+      if (this.flags === 0) {
+        return false;
       }
-      return false;
+      return this._isPrintable(this.flags);
     },
 
     /**
@@ -40154,11 +40244,7 @@ var Annotation = (function AnnotationClosure() {
      * @see {@link shared/util.js}
      */
     setFlags: function Annotation_setFlags(flags) {
-      if (isInt(flags)) {
-        this.flags = flags;
-      } else {
-        this.flags = 0;
-      }
+      this.flags = (isInt(flags) && flags > 0) ? flags : 0;
     },
 
     /**
@@ -40172,10 +40258,7 @@ var Annotation = (function AnnotationClosure() {
      * @see {@link shared/util.js}
      */
     hasFlag: function Annotation_hasFlag(flag) {
-      if (this.flags) {
-        return (this.flags & flag) > 0;
-      }
-      return false;
+      return this._hasFlag(this.flags, flag);
     },
 
     /**
@@ -40255,10 +40338,10 @@ var Annotation = (function AnnotationClosure() {
                                   dictType.name === 'Border')) {
           this.borderStyle.setWidth(dict.get('W'));
           this.borderStyle.setStyle(dict.get('S'));
-          this.borderStyle.setDashArray(dict.get('D'));
+          this.borderStyle.setDashArray(dict.getArray('D'));
         }
       } else if (borderStyle.has('Border')) {
-        var array = borderStyle.get('Border');
+        var array = borderStyle.getArray('Border');
         if (isArray(array) && array.length >= 3) {
           this.borderStyle.setHorizontalCornerRadius(array[0]);
           this.borderStyle.setVerticalCornerRadius(array[1]);
@@ -40330,8 +40413,8 @@ var Annotation = (function AnnotationClosure() {
         // ProcSet
         // Properties
       ]);
-      var bbox = appearanceDict.get('BBox') || [0, 0, 1, 1];
-      var matrix = appearanceDict.get('Matrix') || [1, 0, 0, 1, 0 ,0];
+      var bbox = appearanceDict.getArray('BBox') || [0, 0, 1, 1];
+      var matrix = appearanceDict.getArray('Matrix') || [1, 0, 0, 1, 0 ,0];
       var transform = getTransformMatrix(data.rect, bbox, matrix);
       var self = this;
 
@@ -40673,9 +40756,17 @@ var LinkAnnotation = (function LinkAnnotationClosure() {
             if (isName(remoteDest)) {
               remoteDest = remoteDest.name;
             }
-            if (isString(remoteDest) && isString(url)) {
+            if (isString(url)) {
               var baseUrl = url.split('#')[0];
-              url = baseUrl + '#' + remoteDest;
+              if (isString(remoteDest)) {
+                // In practice, a named destination may contain only a number.
+                // If that happens, use the '#nameddest=' form to avoid the link
+                // redirecting to a page, instead of the correct destination.
+                url = baseUrl + '#' +
+                  (/^\d+$/.test(remoteDest) ? 'nameddest=' : '') + remoteDest;
+              } else if (isArray(remoteDest)) {
+                url = baseUrl + '#' + JSON.stringify(remoteDest);
+              }
             }
           }
           // The 'NewWindow' property, equal to `LinkTarget.BLANK`.
@@ -40750,8 +40841,18 @@ var PopupAnnotation = (function PopupAnnotationClosure() {
       // Fall back to the default background color.
       this.data.color = null;
     } else {
-      this.setColor(parentItem.get('C'));
+      this.setColor(parentItem.getArray('C'));
       this.data.color = this.color;
+    }
+
+    // If the Popup annotation is not viewable, but the parent annotation is,
+    // that is most likely a bug. Fallback to inherit the flags from the parent
+    // annotation (this is consistent with the behaviour in Adobe Reader).
+    if (!this.viewable) {
+      var parentFlags = parentItem.get('F');
+      if (this._isViewable(parentFlags)) {
+        this.setFlags(parentFlags);
+      }
     }
   }
 
@@ -40868,6 +40969,7 @@ var shadow = sharedUtil.shadow;
 var stringToBytes = sharedUtil.stringToBytes;
 var stringToPDFString = sharedUtil.stringToPDFString;
 var warn = sharedUtil.warn;
+var isSpace = sharedUtil.isSpace;
 var Dict = corePrimitives.Dict;
 var isDict = corePrimitives.isDict;
 var isName = corePrimitives.isName;
@@ -40878,7 +40980,6 @@ var StreamsSequenceStream = coreStream.StreamsSequenceStream;
 var Catalog = coreObj.Catalog;
 var ObjectLoader = coreObj.ObjectLoader;
 var XRef = coreObj.XRef;
-var Lexer = coreParser.Lexer;
 var Linearization = coreParser.Linearization;
 var calculateMD5 = coreCrypto.calculateMD5;
 var OperatorList = coreEvaluator.OperatorList;
@@ -41291,7 +41392,7 @@ var PDFDocument = (function PDFDocumentClosure() {
           var ch;
           do {
             ch = stream.getByte();
-          } while (Lexer.isSpace(ch));
+          } while (isSpace(ch));
           var str = '';
           while (ch >= 0x20 && ch <= 0x39) { // < '9'
             str += String.fromCharCode(ch);
