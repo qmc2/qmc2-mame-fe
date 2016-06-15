@@ -24,7 +24,7 @@ class CatverIniOptimizer : public QDialog, public Ui::CatverIniOptimizer
 	private:
 		void clearCategoryNames();
 		void clearVersionNames();
-		void loadCatverIni();
+		bool loadCatverIni();
 		void optimize();
 
 		QString m_fileName;
