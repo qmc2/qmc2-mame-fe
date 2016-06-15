@@ -1,5 +1,5 @@
-#ifndef _GAMELIST_H_
-#define _GAMELIST_H_
+#ifndef _MACHINELIST_H_
+#define _MACHINELIST_H_
 
 #include <QtGui>
 #include <QIcon>
