@@ -3236,16 +3236,20 @@ void MachineList::createCategoryView()
 				qApp->processEvents();
 			}
 			QTreeWidgetItem *baseItem = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
-			QString machineName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+			QString machineName(baseItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 			QString category;
-			bool isBIOS = isBios(machineName);
-			bool isDev = isDevice(machineName);
-			if ( isBIOS )
-				category = trSystemBios;
-			else if ( isDev )
-				category = trSystemDevice;
-			else
-				category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+			int machineType = int(isBios(machineName)) + int(isDevice(machineName)) * 2; // 0: normal, 1: BIOS, 2: device
+			switch ( machineType ) {
+				case QMC2_MACHINETYPE_NORMAL:
+					category = baseItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY);
+					break;
+				case QMC2_MACHINETYPE_BIOS:
+					category = trSystemBios;
+					break;
+				case QMC2_MACHINETYPE_DEVICE:
+					category = trSystemDevice;
+					break;
+			}
 			QTreeWidgetItem *categoryItem = itemHash[category];
 			if ( !categoryItem ) {
 				categoryItem = new QTreeWidgetItem();
@@ -3256,7 +3260,7 @@ void MachineList::createCategoryView()
 			}
 			QTreeWidgetItem *machineItem = new MachineListItem(categoryItem);
 			childCountHash[categoryItem]++;
-			if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) ) {
+			if ( (machineType == QMC2_MACHINETYPE_BIOS && !showBiosSets) || (machineType == QMC2_MACHINETYPE_DEVICE && !showDeviceSets) ) {
 				hideList << machineItem;
 				childCountHash[categoryItem]--;
 			}
@@ -3276,45 +3280,70 @@ void MachineList::createCategoryView()
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
 				switch ( machineStatusHash.value(machineName) ) {
 					case 'C':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'M':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'I':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'N':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'U':
 					default:
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
+								break;
+						}
 						break;
 				}
 			}
@@ -3474,10 +3503,9 @@ void MachineList::createVersionView()
 				itemHash[version] = versionItem;
 			}
 			QTreeWidgetItem *machineItem = new MachineListItem(versionItem);
-			bool isBIOS = isBios(machineName);
-			bool isDev = isDevice(machineName);
+			int machineType = int(isBios(machineName)) + int(isDevice(machineName)) * 2; // 0: normal, 1: BIOS, 2: device
 			childCountHash[versionItem]++;
-			if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) ) {
+			if ( (machineType == QMC2_MACHINETYPE_BIOS && !showBiosSets) || (machineType == QMC2_MACHINETYPE_DEVICE && !showDeviceSets) ) {
 				hideList << machineItem;
 				childCountHash[versionItem]--;
 			}
@@ -3497,45 +3525,70 @@ void MachineList::createVersionView()
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool() ) {
 				switch ( machineStatusHash.value(machineName) ) {
 					case 'C':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'M':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'I':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'N':
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
+								break;
+						}
 						break;
 					case 'U':
 					default:
-						if ( isBIOS )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
-						else if ( isDev )
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
-						else
-							machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+						switch ( machineType ) {
+							case QMC2_MACHINETYPE_NORMAL:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+								break;
+							case QMC2_MACHINETYPE_BIOS:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
+								break;
+							case QMC2_MACHINETYPE_DEVICE:
+								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
+								break;
+						}
 						break;
 				}
 			}
