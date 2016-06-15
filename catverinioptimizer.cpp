@@ -27,6 +27,7 @@ CatverIniOptimizer::CatverIniOptimizer(QString fileName, QWidget *parent) :
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEdit->setFont(logFont);
+	log(tr("click 'optimize' to start"));
 }
 
 CatverIniOptimizer::~CatverIniOptimizer()
@@ -119,7 +120,7 @@ void CatverIniOptimizer::optimize()
 	progressBar->setFormat(tr("Optimizing"));
 	progressBar->setRange(0, m_categoryHash.count() + m_versionHash.count());
 	progressBar->setValue(0);
-	int count = 0;
+	int count = 0, categoryChanges = 0, verAddedChanges = 0;
 	// [Category]
 	ts << "[Category]\n";
 	QHashIterator<QString, QString *> catIter(m_categoryHash);
@@ -135,6 +136,7 @@ void CatverIniOptimizer::optimize()
 			continue;
 		if ( !qmc2MachineListItemHash.contains(machineName) ) {
 			log(QString("[Category] ") + tr("removed invalid set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			categoryChanges++;
 			continue;
 		}
 		QString parentName(qmc2ParentHash.value(machineName));
@@ -146,8 +148,11 @@ void CatverIniOptimizer::optimize()
 				ts << parentName << " = " << machineCategory << "\n";
 				replacedParentsHash.insert(parentName, true);
 				log(QString("[Category] ") + tr("added parent set '%1' with category '%2' and removed clone set '%3'").arg(parentName).arg(machineCategory).arg(machineName));
-			} else
+				categoryChanges++;
+			} else {
 				log(QString("[Category] ") + tr("removed clone set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+				categoryChanges++;
+			}
 		}
 	}
 	// [VerAdded]
@@ -162,13 +167,15 @@ void CatverIniOptimizer::optimize()
 		QString machineVerAdded(*verIter.value());
 		if ( machineName.isEmpty() || machineVerAdded.isEmpty() )
 			continue;
-		if ( !qmc2MachineListItemHash.contains(machineName) )
+		if ( !qmc2MachineListItemHash.contains(machineName) ) {
 			log(QString("[VerAdded] ") + tr("removed invalid set '%1' with version '%2'").arg(machineName).arg(machineVerAdded));
-		else {
+			verAddedChanges++;
+		} else {
 			ts << machineName << " = " << machineVerAdded << "\n";
 			log(QString("[VerAdded] ") + tr("kept %1 set '%2' with version '%3'").arg(qmc2ParentHash.value(machineName).isEmpty() ? tr("parent") : tr("clone")).arg(machineName).arg(machineVerAdded));
 		}
 	}
+	log(tr("changes to categories / versions: %1 / %2").arg(categoryChanges).arg(verAddedChanges));
 	catverIniFile.close();
 	progressBar->setValue(0);
 	progressBar->setFormat(tr("Idle"));
