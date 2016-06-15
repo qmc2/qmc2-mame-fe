@@ -402,7 +402,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void checkCurrentSearchSelection();
 		void checkCurrentFavoritesSelection();
 		void checkCurrentPlayedSelection();
-		void log(char, QString);
+		void log(char, const QString &);
 		void logScrollToEnd(char);
 		void init();
 		void setupStyle(QString);

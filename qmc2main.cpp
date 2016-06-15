@@ -305,17 +305,18 @@ extern QMap<HWND, QString> winWindowMap;
 extern QString qmc2CurrentStyleName;
 extern QHash<QString, QString> softwareParentHash;
 
-void MainWindow::log(char logTarget, QString message)
+void MainWindow::log(char logTarget, const QString &msg)
 {
 	if ( !qmc2GuiReady )
 		return;
-	QString timeString = QTime::currentTime().toString("hh:mm:ss.zzz");
+	QString message(msg);
+	QString timeString(QTime::currentTime().toString("hh:mm:ss.zzz"));
 	// count subsequent message duplicates
 	switch ( logTarget ) {
 		case QMC2_LOG_FRONTEND:
 			if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
 				return;
-			if ( message == qmc2LastFrontendLogMessage ) {
+			if ( message.compare(qmc2LastFrontendLogMessage) == 0 ) {
 				qmc2FrontendLogMessageRepeatCount++;
 				qmc2LogFrontendMutex.unlock();
 				return;
@@ -330,7 +331,7 @@ void MainWindow::log(char logTarget, QString message)
 		case QMC2_LOG_EMULATOR:
 			if( !qmc2LogEmulatorMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
 				return;
-			if ( message == qmc2LastEmulatorLogMessage ) {
+			if ( message.compare(qmc2LastEmulatorLogMessage) == 0 ) {
 				qmc2EmulatorLogMessageRepeatCount++;
 				qmc2LogEmulatorMutex.unlock();
 				return;
@@ -351,9 +352,9 @@ void MainWindow::log(char logTarget, QString message)
 			textBrowserFrontendLog->appendPlainText(message);
 			if ( !qmc2FrontendLogFile ) {
 #if defined(QMC2_SDLMAME)
-				QString defaultFrontendLogPath = QString(Options::configPath()) + "/qmc2-sdlmame.log";
+				QString defaultFrontendLogPath(Options::configPath() + "/qmc2-sdlmame.log");
 #elif defined(QMC2_MAME)
-				QString defaultFrontendLogPath = QString(Options::configPath()) + "/qmc2-mame.log";
+				QString defaultFrontendLogPath(Options::configPath() + "/qmc2-mame.log");
 #endif
 				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == 0 ) {
 					qmc2LogFrontendMutex.unlock();
@@ -370,6 +371,7 @@ void MainWindow::log(char logTarget, QString message)
 			}
 			qmc2FrontendLogStream << message << "\n";
 			qmc2FrontendLogStream.flush();
+			qmc2LogFrontendMutex.unlock();
 			break;
 
 		case QMC2_LOG_EMULATOR:
@@ -391,12 +393,9 @@ void MainWindow::log(char logTarget, QString message)
 			}
 			qmc2EmulatorLogStream << message << "\n";
 			qmc2EmulatorLogStream.flush();
+			qmc2LogEmulatorMutex.unlock();
 			break;
 	}
-	if ( logTarget == QMC2_LOG_FRONTEND )
-		qmc2LogFrontendMutex.unlock();
-	else
-		qmc2LogEmulatorMutex.unlock();
 }
 
 void MainWindow::logScrollToEnd(char logTarget)
