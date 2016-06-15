@@ -6,6 +6,7 @@
 #include <QDateTime>
 #include <QTreeWidgetItem>
 #include <QApplication>
+#include <QFileInfo>
 
 #include "catverinioptimizer.h"
 #include "settings.h"
@@ -27,7 +28,23 @@ CatverIniOptimizer::CatverIniOptimizer(QString fileName, QWidget *parent) :
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEdit->setFont(logFont);
-	log(tr("click 'optimize' to start"));
+	if ( m_fileName.isEmpty() ) {
+		log(tr("ERROR: file name is empty") + " - " + tr("no catver.ini data available"));
+		pushButtonOptimize->setEnabled(false);
+	} else { 
+		QFileInfo fi(m_fileName);
+		if ( fi.exists() ) {
+			if ( fi.isReadable() )
+				log(tr("click 'optimize' to start"));
+			else {
+				log(tr("ERROR: '%1' isn't readable").arg(m_fileName) + " - " + tr("no catver.ini data available"));
+				pushButtonOptimize->setEnabled(false);
+			}
+		} else {
+			log(tr("ERROR: '%1' doesn't exist").arg(m_fileName) + " - " + tr("no catver.ini data available"));
+			pushButtonOptimize->setEnabled(false);
+		}
+	}
 }
 
 CatverIniOptimizer::~CatverIniOptimizer()
@@ -52,7 +69,7 @@ void CatverIniOptimizer::clearVersionNames()
 	m_versionNames.clear();
 }
 
-void CatverIniOptimizer::loadCatverIni()
+bool CatverIniOptimizer::loadCatverIni()
 {
 	clearCategoryNames();
 	m_categoryHash.clear();
@@ -103,10 +120,13 @@ void CatverIniOptimizer::loadCatverIni()
 			}
 		}
 		catverIniFile.close();
-	} else
+	} else {
 		log(tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(m_fileName));
+		return false;
+	}
 	log(tr("done (loading catver.ini data from '%1')").arg(m_fileName));
 	log(tr("%1 category / %2 version records loaded").arg(m_categoryHash.count()).arg(m_versionHash.count()));
+	return true;
 }
 
 void CatverIniOptimizer::optimize()
@@ -189,8 +209,8 @@ void CatverIniOptimizer::on_pushButtonOptimize_clicked()
 	plainTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	plainTextEdit->clear();
 	log(tr("optimizer started"));
-	loadCatverIni();
-	optimize();
+	if ( loadCatverIni() )
+		optimize();
 	log(tr("optimizer ended"));
 	plainTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 	plainTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);

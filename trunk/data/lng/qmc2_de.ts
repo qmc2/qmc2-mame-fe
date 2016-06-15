@@ -1477,7 +1477,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="39"/>
-        <location filename="../../catverinioptimizer.cpp" line="181"/>
+        <location filename="../../catverinioptimizer.cpp" line="201"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -1502,92 +1502,114 @@ p, li { white-space: pre-wrap; }
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="30"/>
+        <location filename="../../catverinioptimizer.cpp" line="38"/>
         <source>click &apos;optimize&apos; to start</source>
         <translation>Auf &apos;Optimieren&apos; klicken, um zu beginnen</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="61"/>
+        <location filename="../../catverinioptimizer.cpp" line="78"/>
         <source>loading catver.ini data from &apos;%1&apos;</source>
         <translation>Lade catver.ini Daten von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="107"/>
+        <location filename="../../catverinioptimizer.cpp" line="32"/>
+        <source>ERROR: file name is empty</source>
+        <translation>FEHLER: Dateiname ist leer</translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="32"/>
+        <location filename="../../catverinioptimizer.cpp" line="40"/>
+        <location filename="../../catverinioptimizer.cpp" line="44"/>
+        <source>no catver.ini data available</source>
+        <translation>keine catver.ini Daten verfügbar</translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="40"/>
+        <source>ERROR: &apos;%1&apos; isn&apos;t readable</source>
+        <translation>FEHLER: &apos;%1&apos; ist nicht lesbar</translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="44"/>
+        <source>ERROR: &apos;%1&apos; doesn&apos;t exist</source>
+        <translation>FEHLER: &apos;%1&apos; existiert nicht</translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="124"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Lesen öffnen -- keine catver.ini Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="108"/>
+        <location filename="../../catverinioptimizer.cpp" line="127"/>
         <source>done (loading catver.ini data from &apos;%1&apos;)</source>
         <translation>Fertig (Lade catver.ini Daten von &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="109"/>
+        <location filename="../../catverinioptimizer.cpp" line="128"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>%1 Kategorie- / %2 Versions-Datensätze geladen</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="116"/>
+        <location filename="../../catverinioptimizer.cpp" line="136"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for writing</source>
         <translation>FEHLER: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="120"/>
+        <location filename="../../catverinioptimizer.cpp" line="140"/>
         <source>Optimizing</source>
         <translation>Optimiere</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="138"/>
+        <location filename="../../catverinioptimizer.cpp" line="158"/>
         <source>removed invalid set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation>Ungültiges Set &apos;%1&apos; mit Kategorie &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="145"/>
+        <location filename="../../catverinioptimizer.cpp" line="165"/>
         <source>kept parent set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation>Eltern Set &apos;%1&apos; mit Kategorie &apos;%2&apos; beibehalten</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="150"/>
+        <location filename="../../catverinioptimizer.cpp" line="170"/>
         <source>added parent set &apos;%1&apos; with category &apos;%2&apos; and removed clone set &apos;%3&apos;</source>
         <translation>Eltern Set &apos;%1&apos; mit Kategorie &apos;%2&apos; hinzugefügt und Klon Set &apos;%3&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="153"/>
+        <location filename="../../catverinioptimizer.cpp" line="173"/>
         <source>removed clone set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation>Klon Set &apos;%1&apos; mit Kategorie &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="171"/>
+        <location filename="../../catverinioptimizer.cpp" line="191"/>
         <source>removed invalid set &apos;%1&apos; with version &apos;%2&apos;</source>
         <translation>Ungültiges Set &apos;%1&apos; mit Version &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="175"/>
+        <location filename="../../catverinioptimizer.cpp" line="195"/>
         <source>kept %1 set &apos;%2&apos; with version &apos;%3&apos;</source>
         <translation>%1 Set &apos;%2&apos; mit Version &apos;%3&apos; beibehalten</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="175"/>
+        <location filename="../../catverinioptimizer.cpp" line="195"/>
         <source>parent</source>
         <translation>Eltern</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="175"/>
+        <location filename="../../catverinioptimizer.cpp" line="195"/>
         <source>clone</source>
         <translation>Klon</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="178"/>
+        <location filename="../../catverinioptimizer.cpp" line="198"/>
         <source>changes to categories / versions: %1 / %2</source>
         <translation>Änderungen an Kategorien / Versionen: %1 / %2</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="191"/>
+        <location filename="../../catverinioptimizer.cpp" line="211"/>
         <source>optimizer started</source>
         <translation>Optimierer gestartet</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="194"/>
+        <location filename="../../catverinioptimizer.cpp" line="214"/>
         <source>optimizer ended</source>
         <translation>Optimierer beendet</translation>
     </message>
