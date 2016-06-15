@@ -63,6 +63,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			movierecordersetup.ui \
 			romstatefilter.ui \
 			individualfallbacksettings.ui \
+			catverinioptimizer.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -145,6 +146,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customartwork.cpp \
 			customsoftwareartwork.cpp \
 			individualfallbacksettings.cpp \
+			catverinioptimizer.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -274,6 +276,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customartwork.h \
 			customsoftwareartwork.h \
 			individualfallbacksettings.h \
+			catverinioptimizer.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

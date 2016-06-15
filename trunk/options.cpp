@@ -72,6 +72,7 @@
 #include "componentsetup.h"
 #include "cryptedbytearray.h"
 #include "individualfallbacksettings.h"
+#include "catverinioptimizer.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -506,6 +507,7 @@ void Options::apply()
 	toolButtonImportMameInfo->setIconSize(iconSize);
 	toolButtonImportMessInfo->setIconSize(iconSize);
 	toolButtonImportSoftwareInfo->setIconSize(iconSize);
+	toolButtonOptimizeCatverIni->setIconSize(iconSize);
 	qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSizeMiddle);
 	checkBoxUseCategoryIni->setIconSize(iconSize);
 	toolButtonBrowseCategoryIniFile->setIconSize(iconSize);
@@ -2586,6 +2588,12 @@ void Options::on_toolButtonImportSoftwareInfo_clicked()
 	qmc2MachineList->datInfoDb()->importSoftwareInfo(pathList);
 	toolButtonImportSoftwareInfo->setEnabled(true);
 	qmc2LoadingSoftwareInfoDB = false;
+}
+
+void Options::on_toolButtonOptimizeCatverIni_clicked()
+{
+	CatverIniOptimizer optimizer(lineEditCatverIniFile->text(), this);
+	optimizer.exec();
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()

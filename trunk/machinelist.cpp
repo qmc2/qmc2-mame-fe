@@ -314,6 +314,7 @@ void MachineList::enableWidgets(bool enable)
 	qmc2Options->toolButtonImportMameInfo->setEnabled(enable);
 	qmc2Options->toolButtonImportMessInfo->setEnabled(enable);
 	qmc2Options->toolButtonImportSoftwareInfo->setEnabled(enable);
+	qmc2Options->toolButtonOptimizeCatverIni->setEnabled(enable);
 	qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
 	qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
 	qmc2Options->toolButtonBrowseCategoryIniFile->setEnabled(enable);
@@ -3144,7 +3145,7 @@ void MachineList::loadCategoryIni()
 	qmc2MainWindow->progressBarMachineList->reset();
 	QFile categoryIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CategoryIni").toString());
 	int entryCounter = 0;
-	if ( categoryIniFile.open(QFile::ReadOnly) ) {
+	if ( categoryIniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, categoryIniFile.size());
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
@@ -3390,7 +3391,7 @@ void MachineList::loadCatverIni()
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 	qmc2MainWindow->progressBarMachineList->reset();
 	QFile catverIniFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CatverIni").toString());
-	if ( catverIniFile.open(QFile::ReadOnly) ) {
+	if ( catverIniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, catverIniFile.size());
 		QTextStream tsCatverIni(&catverIniFile);
 		bool categoryDone = false, versionDone = false;

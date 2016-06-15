@@ -934,20 +934,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxUseCatverIni">
-                   <property name="toolTip">
-                    <string>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</string>
-                   </property>
-                   <property name="text">
-                    <string>Use catver.ini</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="26" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxUseSoftwareNotesTemplate">
                    <property name="toolTip">
@@ -3039,6 +3025,37 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="11" column="0">
+                  <widget class="QCheckBox" name="checkBoxUseCatverIni">
+                   <property name="toolTip">
+                    <string>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</string>
+                   </property>
+                   <property name="text">
+                    <string>Use catver.ini</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="11" column="1">
+                  <widget class="QToolButton" name="toolButtonOptimizeCatverIni">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Optimize catver.ini for faster loading</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/optimize.png</normaloff>:/data/img/optimize.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -3068,7 +3085,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>579</width>
+                <width>575</width>
                 <height>487</height>
                </rect>
               </property>
@@ -4856,7 +4873,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>471</width>
+                <width>467</width>
                 <height>519</height>
                </rect>
               </property>
@@ -5978,6 +5995,7 @@
   <tabstop>lineEditSoftwareInfoDB</tabstop>
   <tabstop>toolButtonBrowseSoftwareInfoDB</tabstop>
   <tabstop>checkBoxUseCatverIni</tabstop>
+  <tabstop>toolButtonOptimizeCatverIni</tabstop>
   <tabstop>lineEditCatverIniFile</tabstop>
   <tabstop>toolButtonBrowseCatverIniFile</tabstop>
   <tabstop>checkBoxUseCategoryIni</tabstop>
