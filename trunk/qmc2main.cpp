@@ -361,7 +361,7 @@ void MainWindow::log(char logTarget, const QString &msg)
 					return;
 				}
 			}
-			if ( qmc2FrontendLogFile->handle() == -1 ) {
+			if ( !qmc2FrontendLogFile->isOpen() ) {
 				if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
 					qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
 				else {
@@ -383,7 +383,7 @@ void MainWindow::log(char logTarget, const QString &msg)
 					return;
 				}
 			}
-			if ( qmc2EmulatorLogFile->handle() == -1 ) {
+			if ( !qmc2EmulatorLogFile->isOpen() ) {
 				if ( qmc2EmulatorLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
 					qmc2EmulatorLogStream.setDevice(qmc2EmulatorLogFile);
 				else {
