@@ -37,7 +37,7 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
 
 QIcon RankItemWidget::gradientRankIcon()
 {
-	QPixmap pmRank = QPixmap::fromImage(rankSingle);
+	QPixmap pmRank(QPixmap::fromImage(rankSingle));
 	QPainter pRank;
 	pRank.begin(&pmRank);
 	pRank.setCompositionMode(QPainter::CompositionMode_Overlay);
@@ -48,7 +48,7 @@ QIcon RankItemWidget::gradientRankIcon()
 
 QIcon RankItemWidget::flatRankIcon()
 {
-	QPixmap pmRank = QPixmap::fromImage(rankSingleFlat);
+	QPixmap pmRank(QPixmap::fromImage(rankSingleFlat));
 	QPainter pRank;
 	pRank.begin(&pmRank);
 	pRank.setCompositionMode(QPainter::CompositionMode_Overlay);
@@ -59,7 +59,7 @@ QIcon RankItemWidget::flatRankIcon()
 
 QIcon RankItemWidget::colorRankIcon()
 {
-	QPixmap pmRank = QPixmap::fromImage(rankSingleFlat);
+	QPixmap pmRank(QPixmap::fromImage(rankSingleFlat));
 	QPainter pRank;
 	pRank.begin(&pmRank);
 	pRank.setCompositionMode(QPainter::CompositionMode_SourceIn);
@@ -90,7 +90,7 @@ void RankItemWidget::setRank(int rank)
 	m_rank = rank;
 	if ( m_item )
 		m_item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, QString::number(m_rank));
-	QPixmap pmRank = useFlatRankImage || useColorRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle);
+	QPixmap pmRank(useFlatRankImage || useColorRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle));
 	QPainter pRank;
 	pRank.begin(&pmRank);
 	pRank.setCompositionMode(useColorRankImage ? QPainter::CompositionMode_SourceIn : QPainter::CompositionMode_Overlay);
@@ -101,7 +101,7 @@ void RankItemWidget::setRank(int rank)
 		p.drawPixmap(x, 0, pmRank);
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
 	}
-	QPixmap pmBackground = QPixmap::fromImage(rankBackround);
+	QPixmap pmBackground(QPixmap::fromImage(rankBackround));
 	QPainter pBackground;
 	pBackground.begin(&pmBackground);
 	pBackground.setCompositionMode(QPainter::CompositionMode_SourceIn);
