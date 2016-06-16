@@ -1477,7 +1477,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="39"/>
-        <location filename="../../catverinioptimizer.cpp" line="201"/>
+        <location filename="../../catverinioptimizer.cpp" line="209"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
@@ -1565,52 +1565,62 @@ p, li { white-space: pre-wrap; }
         <translation>Ungültiges Set &apos;%1&apos; mit Kategorie &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="165"/>
+        <location filename="../../catverinioptimizer.cpp" line="164"/>
+        <source>removed device set &apos;%1&apos; with category &apos;%2&apos;</source>
+        <translation>Geräte Set &apos;%1&apos; mit Kategorie &apos;%2&apos; entfernt</translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="168"/>
+        <source>removed BIOS set &apos;%1&apos; with category &apos;%2&apos;</source>
+        <translation>BIOS Set &apos;%1&apos; mit Kategorie &apos;%2&apos; entfernt</translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="173"/>
         <source>kept parent set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation>Eltern Set &apos;%1&apos; mit Kategorie &apos;%2&apos; beibehalten</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="170"/>
+        <location filename="../../catverinioptimizer.cpp" line="178"/>
         <source>added parent set &apos;%1&apos; with category &apos;%2&apos; and removed clone set &apos;%3&apos;</source>
         <translation>Eltern Set &apos;%1&apos; mit Kategorie &apos;%2&apos; hinzugefügt und Klon Set &apos;%3&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="173"/>
+        <location filename="../../catverinioptimizer.cpp" line="181"/>
         <source>removed clone set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation>Klon Set &apos;%1&apos; mit Kategorie &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="191"/>
+        <location filename="../../catverinioptimizer.cpp" line="199"/>
         <source>removed invalid set &apos;%1&apos; with version &apos;%2&apos;</source>
         <translation>Ungültiges Set &apos;%1&apos; mit Version &apos;%2&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="195"/>
+        <location filename="../../catverinioptimizer.cpp" line="203"/>
         <source>kept %1 set &apos;%2&apos; with version &apos;%3&apos;</source>
         <translation>%1 Set &apos;%2&apos; mit Version &apos;%3&apos; beibehalten</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="195"/>
+        <location filename="../../catverinioptimizer.cpp" line="203"/>
         <source>parent</source>
         <translation>Eltern</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="195"/>
+        <location filename="../../catverinioptimizer.cpp" line="203"/>
         <source>clone</source>
         <translation>Klon</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="198"/>
+        <location filename="../../catverinioptimizer.cpp" line="206"/>
         <source>changes to categories / versions: %1 / %2</source>
         <translation>Änderungen an Kategorien / Versionen: %1 / %2</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="211"/>
+        <location filename="../../catverinioptimizer.cpp" line="219"/>
         <source>optimizer started</source>
         <translation>Optimierer gestartet</translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="214"/>
+        <location filename="../../catverinioptimizer.cpp" line="222"/>
         <source>optimizer ended</source>
         <translation>Optimierer beendet</translation>
     </message>

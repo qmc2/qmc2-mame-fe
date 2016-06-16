@@ -160,6 +160,14 @@ void CatverIniOptimizer::optimize()
 			continue;
 		}
 		QString parentName(qmc2ParentHash.value(machineName));
+		if ( qmc2MachineList->isDevice(machineName) ) {
+			log(QString("[Category] ") + tr("removed device set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			continue;
+		}
+		if ( qmc2MachineList->isBios(machineName) ) {
+			log(QString("[Category] ") + tr("removed BIOS set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			continue;
+		}
 		if ( parentName.isEmpty() ) {
 			ts << machineName << " = " << machineCategory << "\n";
 			log(QString("[Category] ") + tr("kept parent set '%1' with category '%2'").arg(machineName).arg(machineCategory));
