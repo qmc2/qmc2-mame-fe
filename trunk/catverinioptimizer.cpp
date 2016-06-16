@@ -79,27 +79,13 @@ bool CatverIniOptimizer::loadCatverIni()
 	QFile catverIniFile(m_fileName);
 	if ( catverIniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream tsCatverIni(&catverIniFile);
-		bool categoryDone = false, versionDone = false;
-		int lineCounter = 0;
-		char catVerSwitch = 0;
+		int lineCounter = 0, catVerSwitch = 0;
 		QChar splitChar('='), dotChar('.'), zeroChar('0');
 		QString catStr("[Category]"), verStr("[VerAdded]");
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine(tsCatverIni.readLine());
 			if ( catverLine.isEmpty() )
 				continue;
-			if ( !categoryDone && catVerSwitch != 1 ) {
-				if ( catverLine.indexOf(catStr) >= 0 ) {
-					categoryDone = true;
-					catVerSwitch = 1;
-				}
-			}
-			if ( !versionDone && catVerSwitch != 2 ) {
-				if ( catverLine.indexOf(verStr) >= 0 ) {
-					versionDone = true;
-					catVerSwitch = 2;
-				}
-			}
 			QStringList tokens(catverLine.split(splitChar, QString::SkipEmptyParts));
 			if ( tokens.count() > 1 ) {
 				QString token1(tokens.at(1).trimmed());
@@ -116,6 +102,14 @@ bool CatverIniOptimizer::loadCatverIni()
 							m_versionNames.insert(token1, new QString(token1));
 						m_versionMap.insert(tokens.at(0).trimmed(), m_versionNames.value(token1));
 						break;
+				}
+			} else {
+				if ( catVerSwitch != 1 ) {
+					if ( catverLine.indexOf(catStr) >= 0 )
+						catVerSwitch = 1;
+				} else if ( catVerSwitch != 2 ) {
+					if ( catverLine.indexOf(verStr) >= 0 )
+						catVerSwitch = 2;
 				}
 			}
 		}
