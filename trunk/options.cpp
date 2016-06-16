@@ -3820,6 +3820,124 @@ void Options::saveCustomPalette()
 	config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomPalette/DisabledColors", disabledColors);
 }
 
+void Options::enableWidgets(bool enable)
+{
+	toolButtonBrowseStyleSheet->setEnabled(enable);
+	toolButtonBrowseFont->setEnabled(enable);
+	toolButtonBrowseLogFont->setEnabled(enable);
+	toolButtonBrowseTemporaryFile->setEnabled(enable);
+	toolButtonBrowseFrontendLogFile->setEnabled(enable);
+	toolButtonBrowsePreviewDirectory->setEnabled(enable);
+	toolButtonBrowsePreviewFile->setEnabled(enable);
+	toolButtonBrowseDataDirectory->setEnabled(enable);
+	toolButtonBrowseDatInfoDatabase->setEnabled(enable);
+	toolButtonBrowseMameHistoryDat->setEnabled(enable);
+	toolButtonBrowseMessSysinfoDat->setEnabled(enable);
+	checkBoxProcessMameHistoryDat->setEnabled(enable);
+	checkBoxProcessMessSysinfoDat->setEnabled(enable);
+	toolButtonBrowseMameInfoDat->setEnabled(enable);
+	toolButtonBrowseMessInfoDat->setEnabled(enable);
+	checkBoxProcessMameInfoDat->setEnabled(enable);
+	checkBoxProcessMessInfoDat->setEnabled(enable);
+	toolButtonBrowseSoftwareInfoDB->setEnabled(enable);
+	checkBoxProcessSoftwareInfoDB->setEnabled(enable);
+	toolButtonImportGameInfo->setEnabled(enable);
+	toolButtonImportMachineInfo->setEnabled(enable);
+	toolButtonImportMameInfo->setEnabled(enable);
+	toolButtonImportMessInfo->setEnabled(enable);
+	toolButtonImportSoftwareInfo->setEnabled(enable);
+	toolButtonOptimizeCatverIni->setEnabled(enable);
+	toolButtonBrowseCatverIniFile->setEnabled(enable);
+	checkBoxUseCatverIni->setEnabled(enable);
+	toolButtonBrowseCategoryIniFile->setEnabled(enable);
+	checkBoxUseCategoryIni->setEnabled(enable);
+	checkBoxShowROMStatusIcons->setEnabled(enable);
+	checkBoxRomStateFilter->setEnabled(enable);
+	checkBoxShowBiosSets->setEnabled(enable);
+	checkBoxShowDeviceSets->setEnabled(enable);
+	toolButtonBrowseSoftwareListCacheDb->setEnabled(enable);
+	toolButtonBrowseSoftwareStateCache->setEnabled(enable);
+	toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
+	toolButtonBrowseExecutableFile->setEnabled(enable);
+	lineEditExecutableFile->setEnabled(enable);
+	toolButtonBrowseWorkingDirectory->setEnabled(enable);
+	toolButtonBrowseEmulatorLogFile->setEnabled(enable);
+	toolButtonBrowseOptionsTemplateFile->setEnabled(enable);
+	toolButtonBrowseXmlCacheDatabase->setEnabled(enable);
+	toolButtonBrowseUserDataDatabase->setEnabled(enable);
+	toolButtonCleanupUserDataDatabase->setEnabled(enable);
+	toolButtonClearUserDataDatabase->setEnabled(enable);
+	toolButtonBrowseFavoritesFile->setEnabled(enable);
+	toolButtonBrowseHistoryFile->setEnabled(enable);
+	toolButtonBrowseMachineListCacheFile->setEnabled(enable);
+	toolButtonBrowseROMStateCacheFile->setEnabled(enable);
+	toolButtonBrowseSlotInfoCacheFile->setEnabled(enable);
+	toolButtonBrowseFlyerDirectory->setEnabled(enable);
+	toolButtonBrowseFlyerFile->setEnabled(enable);
+	toolButtonBrowseIconDirectory->setEnabled(enable);
+	toolButtonBrowseIconFile->setEnabled(enable);
+	toolButtonBrowseCabinetDirectory->setEnabled(enable);
+	toolButtonBrowseCabinetFile->setEnabled(enable);
+	toolButtonBrowseControllerDirectory->setEnabled(enable);
+	toolButtonBrowseControllerFile->setEnabled(enable);
+	toolButtonBrowseMarqueeDirectory->setEnabled(enable);
+	toolButtonBrowseMarqueeFile->setEnabled(enable);
+	toolButtonBrowseTitleDirectory->setEnabled(enable);
+	toolButtonBrowseTitleFile->setEnabled(enable);
+	toolButtonBrowsePCBDirectory->setEnabled(enable);
+	toolButtonBrowsePCBFile->setEnabled(enable);
+	comboBoxIconFileType->setEnabled(enable);
+	comboBoxPreviewFileType->setEnabled(enable);
+	comboBoxFlyerFileType->setEnabled(enable);
+	comboBoxCabinetFileType->setEnabled(enable);
+	comboBoxControllerFileType->setEnabled(enable);
+	comboBoxMarqueeFileType->setEnabled(enable);
+	comboBoxTitleFileType->setEnabled(enable);
+	comboBoxPCBFileType->setEnabled(enable);
+	comboBoxSoftwareSnapFileType->setEnabled(enable);
+	toolButtonBrowseSoftwareSnapDirectory->setEnabled(enable);
+	toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
+	toolButtonBrowseSoftwareNotesFolder->setEnabled(enable);
+	toolButtonBrowseSoftwareNotesTemplate->setEnabled(enable);
+	toolButtonBrowseSystemNotesFolder->setEnabled(enable);
+	toolButtonBrowseSystemNotesTemplate->setEnabled(enable);
+	toolButtonBrowseVideoSnapFolder->setEnabled(enable);
+	toolButtonShowC->setEnabled(enable);
+	toolButtonShowM->setEnabled(enable);
+	toolButtonShowI->setEnabled(enable);
+	toolButtonShowN->setEnabled(enable);
+	toolButtonShowU->setEnabled(enable);
+	comboBoxSortCriteria->setEnabled(enable);
+	comboBoxSortOrder->setEnabled(enable);
+	treeWidgetShortcuts->clearSelection();
+	treeWidgetShortcuts->setEnabled(enable);
+	treeWidgetJoystickMappings->clearSelection();
+	treeWidgetJoystickMappings->setEnabled(enable);
+	toolButtonBrowseCookieDatabase->setEnabled(enable);
+	pushButtonManageCookies->setEnabled(enable ? checkBoxRestoreCookies->isChecked() : false);
+	toolButtonBrowseZipTool->setEnabled(enable);
+	toolButtonBrowseSevenZipTool->setEnabled(enable);
+	toolButtonBrowseRomTool->setEnabled(enable);
+	toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
+	toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
+	toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
+	pushButtonCustomizeToolBar->setEnabled(enable);
+	checkBoxParentImageFallback->setEnabled(enable);
+	pushButtonIndividualFallbackSettings->setEnabled(enable && checkBoxParentImageFallback->isChecked());
+	checkBoxStandardColorPalette->setEnabled(enable);
+	pushButtonEditPalette->setEnabled(enable && !checkBoxStandardColorPalette->isChecked());
+	pushButtonAdditionalArtworkSetup->setEnabled(enable);
+	pushButtonImageFormats->setEnabled(enable);
+	for (int row = 0; row < tableWidgetRegisteredEmulators->rowCount(); row++) {
+		QWidget *w = tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON);
+		if ( w )
+			w->setEnabled(enable);
+		w = tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
+		if ( w )
+			w->setEnabled(enable);
+	}
+}
+
 #if QMC2_JOYSTICK == 1
 void Options::on_pushButtonRescanJoysticks_clicked()
 {
