@@ -121,7 +121,7 @@ bool CatverIniOptimizer::loadCatverIni()
 		}
 		catverIniFile.close();
 	} else {
-		log(tr("ERROR: can't open '%1' for reading -- no catver.ini data available").arg(m_fileName));
+		log(tr("ERROR: can't open '%1' for reading").arg(m_fileName) + " - " + tr("no catver.ini data available"));
 		return false;
 	}
 	log(tr("done (loading catver.ini data from '%1')").arg(m_fileName));
