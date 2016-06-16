@@ -225,6 +225,18 @@ void CatverIniOptimizer::log(const QString &message)
 	plainTextEdit->verticalScrollBar()->setValue(plainTextEdit->verticalScrollBar()->maximum());
 }
 
+void CatverIniOptimizer::showEvent(QShowEvent *e)
+{
+	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CatverIniOptimizer/Geometry", QByteArray()).toByteArray());
+	QDialog::showEvent(e);
+}
+
+void CatverIniOptimizer::hideEvent(QHideEvent *e)
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CatverIniOptimizer/Geometry", saveGeometry());
+	QDialog::hideEvent(e);
+}
+
 void CatverIniOptimizer::closeEvent(QCloseEvent *e)
 {
 	if ( pushButtonClose->isEnabled() )
