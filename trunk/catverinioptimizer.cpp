@@ -28,6 +28,8 @@ CatverIniOptimizer::CatverIniOptimizer(QString fileName, QWidget *parent) :
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEdit->setFont(logFont);
+	m_categoryStr = "[Category]";
+	m_verAddedStr = "[VerAdded]";
 	if ( m_fileName.isEmpty() ) {
 		log(tr("ERROR: file name is empty") + " - " + tr("no catver.ini data available"));
 		pushButtonOptimize->setEnabled(false);
@@ -81,7 +83,6 @@ bool CatverIniOptimizer::loadCatverIni()
 		QTextStream tsCatverIni(&catverIniFile);
 		int lineCounter = 0, catVerSwitch = 0;
 		QChar splitChar('='), dotChar('.'), zeroChar('0');
-		QString catStr("[Category]"), verStr("[VerAdded]");
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine(tsCatverIni.readLine());
 			if ( catverLine.isEmpty() )
@@ -105,10 +106,10 @@ bool CatverIniOptimizer::loadCatverIni()
 				}
 			} else {
 				if ( catVerSwitch != 1 ) {
-					if ( catverLine.indexOf(catStr) >= 0 )
+					if ( catverLine.indexOf(m_categoryStr) >= 0 )
 						catVerSwitch = 1;
 				} else if ( catVerSwitch != 2 ) {
-					if ( catverLine.indexOf(verStr) >= 0 )
+					if ( catverLine.indexOf(m_verAddedStr) >= 0 )
 						catVerSwitch = 2;
 				}
 			}
@@ -136,7 +137,7 @@ void CatverIniOptimizer::optimize()
 	progressBar->setValue(0);
 	int count = 0, categoryChanges = 0, verAddedChanges = 0;
 	// [Category]
-	ts << "[Category]\n";
+	ts << m_categoryStr << "\n";
 	QMapIterator<QString, QString *> catIter(m_categoryMap);
 	QHash<QString, bool> replacedParentsHash;
 	while ( catIter.hasNext() ) {
@@ -149,36 +150,36 @@ void CatverIniOptimizer::optimize()
 		if ( machineName.isEmpty() || machineCategory.isEmpty() )
 			continue;
 		if ( !qmc2MachineListItemHash.contains(machineName) ) {
-			log(QString("[Category] ") + tr("removed invalid set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			log(m_categoryStr + " " + tr("removed invalid set '%1' with category '%2'").arg(machineName).arg(machineCategory));
 			categoryChanges++;
 			continue;
 		}
 		QString parentName(qmc2ParentHash.value(machineName));
 		if ( qmc2MachineList->isDevice(machineName) ) {
-			log(QString("[Category] ") + tr("removed device set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			log(m_categoryStr + " " + tr("removed device set '%1' with category '%2'").arg(machineName).arg(machineCategory));
 			continue;
 		}
 		if ( qmc2MachineList->isBios(machineName) ) {
-			log(QString("[Category] ") + tr("removed BIOS set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			log(m_categoryStr + " " + tr("removed BIOS set '%1' with category '%2'").arg(machineName).arg(machineCategory));
 			continue;
 		}
 		if ( parentName.isEmpty() ) {
 			ts << machineName << " = " << machineCategory << "\n";
-			log(QString("[Category] ") + tr("kept parent set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+			log(m_categoryStr + " " + tr("kept parent set '%1' with category '%2'").arg(machineName).arg(machineCategory));
 		} else {
 			if ( !m_categoryMap.contains(parentName) && !replacedParentsHash.contains(parentName) ) {
 				ts << parentName << " = " << machineCategory << "\n";
 				replacedParentsHash.insert(parentName, true);
-				log(QString("[Category] ") + tr("added parent set '%1' with category '%2' and removed clone set '%3'").arg(parentName).arg(machineCategory).arg(machineName));
+				log(m_categoryStr + " " + tr("added parent set '%1' with category '%2' and removed clone set '%3'").arg(parentName).arg(machineCategory).arg(machineName));
 				categoryChanges++;
 			} else {
-				log(QString("[Category] ") + tr("removed clone set '%1' with category '%2'").arg(machineName).arg(machineCategory));
+				log(m_categoryStr + " " + tr("removed clone set '%1' with category '%2'").arg(machineName).arg(machineCategory));
 				categoryChanges++;
 			}
 		}
 	}
 	// [VerAdded]
-	ts << "\n[VerAdded]\n";
+	ts << "\n" << m_verAddedStr << "\n";
 	QMapIterator<QString, QString *> verIter(m_versionMap);
 	while ( verIter.hasNext() ) {
 		verIter.next();
@@ -190,11 +191,11 @@ void CatverIniOptimizer::optimize()
 		if ( machineName.isEmpty() || machineVerAdded.isEmpty() )
 			continue;
 		if ( !qmc2MachineListItemHash.contains(machineName) ) {
-			log(QString("[VerAdded] ") + tr("removed invalid set '%1' with version '%2'").arg(machineName).arg(machineVerAdded));
+			log(m_verAddedStr + " " + tr("removed invalid set '%1' with version '%2'").arg(machineName).arg(machineVerAdded));
 			verAddedChanges++;
 		} else {
 			ts << machineName << " = " << machineVerAdded << "\n";
-			log(QString("[VerAdded] ") + tr("kept %1 set '%2' with version '%3'").arg(qmc2ParentHash.value(machineName).isEmpty() ? tr("parent") : tr("clone")).arg(machineName).arg(machineVerAdded));
+			log(m_verAddedStr + " " + tr("kept %1 set '%2' with version '%3'").arg(qmc2ParentHash.value(machineName).isEmpty() ? tr("parent") : tr("clone")).arg(machineName).arg(machineVerAdded));
 		}
 	}
 	log(tr("changes to categories / versions: %1 / %2").arg(categoryChanges).arg(verAddedChanges));
