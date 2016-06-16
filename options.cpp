@@ -1351,24 +1351,25 @@ void Options::on_pushButtonApply_clicked()
 		QTimer::singleShot(0, qmc2EmulatorOptions, SLOT(updateAllEmuOptActions()));
 
 	// Files and directories
-	needReload |= config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
-	config->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
-	config->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
-	config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
-	config->setValue("MAME/FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
-	config->setValue("MAME/FilesAndDirectories/UserDataDatabase", lineEditUserDataDatabase->text());
-	config->setValue("MAME/FilesAndDirectories/MachineListCacheFile", lineEditMachineListCacheFile->text());
-	config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
-	config->setValue("MAME/FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
-	config->setValue("MAME/FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
-	config->setValue("MAME/FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
-	config->setValue("MAME/FilesAndDirectories/GeneralSoftwareFolder", lineEditGeneralSoftwareFolder->text());
+	needReload |= config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", lineEditUserDataDatabase->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", lineEditMachineListCacheFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GeneralSoftwareFolder", lineEditGeneralSoftwareFolder->text());
 	s = lineEditOptionsTemplateFile->text();
-	needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
-	config->setValue("MAME/FilesAndDirectories/OptionsTemplateFile", s);
-	config->setValue("MAME/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
-	config->setValue("MAME/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
-	config->setValue("MAME/AutoClearEmuCaches", checkBoxAutoClearEmuCaches->isChecked());
+	needRecreateTemplateMap = needRecreateTemplateMap || (config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile").toString() != s );
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile", s);
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", checkBoxAutoClearEmuCaches->isChecked());
+	config->setValue(QMC2_EMULATOR_PREFIX + "SkipEmuIdent", checkBoxSkipEmuIdent->isChecked());
 
 	// Additional emulators
 	tableWidgetRegisteredEmulators->setSortingEnabled(false);
@@ -2140,28 +2141,29 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		qmc2GlobalEmulatorOptions->load();
 
 	// Files and directories
-	lineEditExecutableFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
-	lineEditWorkingDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
-	lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
-	lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
-	lineEditUserDataDatabase->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/UserDataDatabase", userScopePath + "/mame-user-data.db").toString());
-	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString());
-	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
-	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
-	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());
+	lineEditExecutableFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", "").toString());
+	lineEditWorkingDirectory->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", "").toString());
+	lineEditEmulatorLogFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
+	lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
+	lineEditUserDataDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", userScopePath + "/mame-user-data.db").toString());
+	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString());
+	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
+	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
+	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());
 #if defined(QMC2_SDLMAME)
-	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml").toString());
+	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml").toString());
 #elif defined(QMC2_MAME)
-	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml").toString());
+	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml").toString());
 #endif
-	lineEditFavoritesFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FavoritesFile", userScopePath + "/mame.fav").toString());
-	lineEditHistoryFile->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/HistoryFile", userScopePath + "/mame.hst").toString());
+	lineEditFavoritesFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile", userScopePath + "/mame.fav").toString());
+	lineEditHistoryFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile", userScopePath + "/mame.hst").toString());
 	QDir swStateCacheDir(config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString());
 	if ( !swStateCacheDir.exists() )
 		swStateCacheDir.mkdir(swStateCacheDir.absolutePath());
 	lineEditSoftwareStateCache->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", userScopePath + "/sw-state-cache/").toString());
 	lineEditGeneralSoftwareFolder->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GeneralSoftwareFolder", QString()).toString());
 	checkBoxAutoClearEmuCaches->setChecked(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool());
+	checkBoxSkipEmuIdent->setChecked(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "SkipEmuIdent", true).toBool());
 
 	// Additional emulators
 	tableWidgetRegisteredEmulators->clearContents();

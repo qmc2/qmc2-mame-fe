@@ -480,17 +480,75 @@ void MachineList::load()
 				break;
 		}
 	}
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
-	QTime elapsedTime(0, 0, 0, 0);
-	parseTimer.start();
-	QProcess commandProc;
 	QString execFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	QFileInfo fi(execFile);
-	bool started = false, commandProcStarted = false;
-	int retries = 0;
-	// emulator version
-	if ( fi.exists() && fi.isReadable() ) {
-		commandProc.start(execFile, QStringList() << "-help");
+	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "SkipEmuIdent", true).toBool() || fi.lastModified().toTime_t() != qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Time", 0).toUInt() ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
+		QTime elapsedTime(0, 0, 0, 0);
+		parseTimer.start();
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/Time", fi.lastModified().toTime_t());
+		QProcess commandProc;
+		bool started = false, commandProcStarted = false;
+		int retries = 0;
+		// emulator version
+		if ( fi.exists() && fi.isReadable() ) {
+			commandProc.start(execFile, QStringList() << "-help");
+			started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
+			while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+				qApp->processEvents();
+				started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+			}
+			if ( started ) {
+				commandProcStarted = true;
+				bool commandProcRunning = (commandProc.state() == QProcess::Running);
+				while ( commandProcRunning && !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) ) {
+					qApp->processEvents();
+					commandProcRunning = (commandProc.state() == QProcess::Running);
+				}
+			} else {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
+				qmc2ReloadActive = qmc2EarlyReloadActive = false;
+				qmc2StopParser = true;
+				enableWidgets(true);
+				return;
+			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start %1 executable, file '%2' does not exist").arg(QMC2_EMU_NAME).arg(execFile));
+			qmc2ReloadActive = qmc2EarlyReloadActive = false;
+			qmc2StopParser = true;
+			enableWidgets(true);
+			return;
+		}
+		if ( commandProcStarted ) {
+			QString s(commandProc.readAllStandardOutput());
+#if defined(QMC2_OS_WIN)
+			s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#endif
+			QStringList versionLines(s.split('\n'));
+			QStringList versionWords(versionLines.first().split(' '));
+			if ( versionWords.count() > 1 ) {
+				emulatorVersion = versionWords[1].remove('v');
+				if ( emulatorIdentifiers.contains(versionWords.at(0)) )
+					emulatorType = "MAME";
+				else {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
+					emulatorType = versionWords.at(0);
+				}
+			} else {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
+				emulatorVersion = tr("unknown");
+				emulatorType = tr("unknown");
+			}
+		} else {
+			emulatorVersion = tr("unknown");
+			emulatorType = tr("unknown");
+		}
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/Version", emulatorVersion);
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/Type", emulatorType);
+		// supported (non-device) sets
+		commandProcStarted = false;
+		retries = 0;
+		commandProc.start(execFile, QStringList() << "-listfull");
 		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 		while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 			qApp->processEvents();
@@ -507,98 +565,53 @@ void MachineList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 			qmc2ReloadActive = qmc2EarlyReloadActive = false;
 			qmc2StopParser = true;
+			return;
+		}
+		QString listfullSha1;
+		if ( commandProcStarted ) {
+			QCryptographicHash sha1(QCryptographicHash::Sha1);
+			QString lfOutput(commandProc.readAllStandardOutput());
+			numTotalMachines = lfOutput.count('\n') - 1;
+			sha1.addData(lfOutput.toUtf8().constData());
+			listfullSha1 = sha1.result().toHex();
+			elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+		}
+		qmc2MainWindow->labelMachineListStatus->setText(status());
+		if ( emulatorVersion != tr("unknown") )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
+		else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
+			qmc2ReloadActive = false;
 			enableWidgets(true);
 			return;
 		}
-	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start %1 executable, file '%2' does not exist").arg(QMC2_EMU_NAME).arg(execFile));
-		qmc2ReloadActive = qmc2EarlyReloadActive = false;
-		qmc2StopParser = true;
-		enableWidgets(true);
-		return;
-	}
-	if ( commandProcStarted ) {
-		QString s(commandProc.readAllStandardOutput());
-#if defined(QMC2_OS_WIN)
-		s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
-#endif
-		QStringList versionLines(s.split('\n'));
-		QStringList versionWords(versionLines.first().split(' '));
-		if ( versionWords.count() > 1 ) {
-			emulatorVersion = versionWords[1].remove('v');
-			if ( emulatorIdentifiers.contains(versionWords.at(0)) )
-				emulatorType = "MAME";
-			else {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
-				emulatorType = versionWords.at(0);
-			}
+		if ( numTotalMachines > 0 ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalMachines));
+			qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines", numTotalMachines);
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
-			emulatorVersion = tr("unknown");
-			emulatorType = tr("unknown");
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
+			qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines");
+			qmc2ReloadActive = false;
+			enableWidgets(true);
+			return;
 		}
-	} else {
-		emulatorVersion = tr("unknown");
-		emulatorType = tr("unknown");
-	}
-	// supported (non-device) sets
-	commandProcStarted = false;
-	retries = 0;
-	commandProc.start(execFile, QStringList() << "-listfull");
-	started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
-	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-		qApp->processEvents();
-		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
-	}
-	if ( started ) {
-		commandProcStarted = true;
-		bool commandProcRunning = (commandProc.state() == QProcess::Running);
-		while ( commandProcRunning && !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) ) {
-			qApp->processEvents();
-			commandProcRunning = (commandProc.state() == QProcess::Running);
+		if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
+			if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES && qmc2Config->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool() ) {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output from -listfull changed, forcing a refresh of all emulator caches"));
+				qmc2ForceCacheRefresh = true;
+				qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
+				qmc2ForceCacheRefresh = false;
+			}
 		}
+		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "ListfullSha1", listfullSha1);
 	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
-		qmc2ReloadActive = qmc2EarlyReloadActive = false;
-		qmc2StopParser = true;
-		return;
-	}
-	QString listfullSha1;
-	if ( commandProcStarted ) {
-		QCryptographicHash sha1(QCryptographicHash::Sha1);
-		QString lfOutput(commandProc.readAllStandardOutput());
-		numTotalMachines = lfOutput.count('\n') - 1;
-		sha1.addData(lfOutput.toUtf8().constData());
-		listfullSha1 = sha1.result().toHex();
-		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-	}
-	qmc2MainWindow->labelMachineListStatus->setText(status());
-	if ( emulatorVersion != tr("unknown") )
+		emulatorVersion = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Version", QString()).toString();
+		emulatorType = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Type", QString()).toString();
+		numTotalMachines = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines", 0).toInt();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
-	else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
-		qmc2ReloadActive = false;
-		enableWidgets(true);
-		return;
-	}
-	if ( numTotalMachines > 0 )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalMachines));
-	else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
-		qmc2ReloadActive = false;
-		enableWidgets(true);
-		return;
 	}
-	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
-		if ( !QMC2_CLI_OPT_CLEAR_ALL_CACHES && qmc2Config->value(QMC2_EMULATOR_PREFIX + "AutoClearEmuCaches", true).toBool() ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the output from -listfull changed, forcing a refresh of all emulator caches"));
-			qmc2ForceCacheRefresh = true;
-			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
-			qmc2ForceCacheRefresh = false;
-		}
-	}
-	qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "ListfullSha1", listfullSha1);
 	categoryHash.clear();
 	versionHash.clear();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool() ) {

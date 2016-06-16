@@ -880,8 +880,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>1103</height>
+                <width>358</width>
+                <height>1102</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -3086,7 +3086,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>575</width>
-                <height>487</height>
+                <height>297</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3741,8 +3741,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>259</width>
+                <height>52</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3863,8 +3863,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>428</width>
+                <height>270</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4332,7 +4332,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
+                <width>383</width>
                 <height>698</height>
                </rect>
               </property>
@@ -4873,8 +4873,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>467</width>
-                <height>519</height>
+                <width>507</width>
+                <height>546</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -4982,7 +4982,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="0" colspan="5">
+                 <item row="14" column="0" colspan="5">
                   <spacer name="spacer11">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -5036,7 +5036,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="0" colspan="5">
+                 <item row="16" column="0" colspan="5">
                   <layout class="QHBoxLayout" name="layout17">
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
@@ -5440,6 +5440,22 @@
                    </property>
                    <property name="text">
                     <string>Automatically recreate all emulator caches when the output from '-listfull' changes</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="13" column="0" colspan="5">
+                  <widget class="QCheckBox" name="checkBoxSkipEmuIdent">
+                   <property name="toolTip">
+                    <string>Skip emulator identification when the file's modification time hasn't changed</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>Skip emulator identification when the file's modification time hasn't changed</string>
+                   </property>
+                   <property name="text">
+                    <string>Skip emulator identification when the file's modification time hasn't changed</string>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -6156,6 +6172,7 @@
   <tabstop>lineEditGeneralSoftwareFolder</tabstop>
   <tabstop>toolButtonBrowseGeneralSoftwareFolder</tabstop>
   <tabstop>checkBoxAutoClearEmuCaches</tabstop>
+  <tabstop>checkBoxSkipEmuIdent</tabstop>
   <tabstop>tableWidgetRegisteredEmulators</tabstop>
   <tabstop>toolButtonAddEmulator</tabstop>
   <tabstop>toolButtonRemoveEmulator</tabstop>
