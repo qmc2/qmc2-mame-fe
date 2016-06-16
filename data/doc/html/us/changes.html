@@ -25,6 +25,7 @@ inf: informational only
 	<li>imp: changed the default command line for the 7zip removal tool to include <code>-mhc=off</code> (disables header compression which libarchive doesn't support) and <code>-ms=off</code> (disables solid blocks which are generally counter productive for our use case)</li>
 	<li>imp: pre-caching icons from a directory will no longer block the GUI and works faster now (using QDirIterator)</li>
 	<li>imp: updated PDF.js to a newer git revision (as of 11-JUN-2016)</li>
+	<li>imp: hide the splash-screen as soon as the initial start-up is done (in case it's still open by that time - which is likely)</li>
 	<li>new: ROMAlyzer / collection rebuilder: CHD files are now optionally included in the reproduction process (automatically renaming them if required); you can choose between creating hard links, symbolic links and real copies, or to omit CHD reproduction completely (which is the default) -- see also <a href="http://tracker.batcom-it.net/view.php?id=114" target="_blank">bug tracker ID #114</a></li>
 	<li>new: added a catver.ini optimizer to potentially speed up loading slightly</li>
 	<li>new: emulator identification is now skipped when the binary's modification time hasn't changed - this generally speeds up loading greatly (but can be disabled in case it causes any trouble)</li>

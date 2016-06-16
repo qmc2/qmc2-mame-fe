@@ -15,13 +15,14 @@
 #include <QTimer>
 #include <QMap>
 #include <QSet>
+#include <QChar>
 #include <QDir>
 #include <QDirIterator>
 #include <QBitArray>
 #include <QByteArray>
 #include <QCryptographicHash>
 #include <QApplication>
-#include <QChar>
+#include <QSplashScreen>
 
 #include "machinelist.h"
 #include "imagewidget.h"
@@ -119,6 +120,7 @@ extern MachineList *qmc2MachineList;
 extern bool qmc2TemplateCheck;
 extern bool qmc2ParentImageFallback;
 extern QTime qmc2StartupTimer;
+extern QSplashScreen *qmc2SplashScreen;
 
 QStringList MachineList::phraseTranslatorList;
 QStringList MachineList::romTypeNames;
@@ -655,6 +657,8 @@ void MachineList::load()
 			QTime startupTime(0, 0, 0, 0);
 			startupTime = startupTime.addMSecs(qmc2StartupTimer.elapsed());
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("total start-up time: %1").arg(startupTime.toString("mm:ss.zzz")));
+			if ( qmc2SplashScreen )
+				QTimer::singleShot(0, qmc2SplashScreen, SLOT(hide()));
 			initialLoad = false;
 		}
 		// show machine list / hide loading animation
