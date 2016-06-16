@@ -602,14 +602,13 @@ void MachineList::load()
 	QTime elapsedTime(0, 0, 0, 0);
 	parseTimer.start();
 	QProcess commandProc;
-	QStringList args = QStringList() << "-help";
 	QString execFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	QFileInfo fi(execFile);
 	bool started = false, commandProcStarted = false;
 	int retries = 0;
 	// emulator version
 	if ( fi.exists() && fi.isReadable() ) {
-		commandProc.start(execFile, args);
+		commandProc.start(execFile, QStringList() << "-help");
 		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 		while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 			qApp->processEvents();
@@ -661,11 +660,9 @@ void MachineList::load()
 		emulatorType = tr("unknown");
 	}
 	// supported (non-device) sets
-	args.clear();
-	args << "-listfull";
 	commandProcStarted = false;
 	retries = 0;
-	commandProc.start(execFile, args);
+	commandProc.start(execFile, QStringList() << "-listfull");
 	started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 		qApp->processEvents();
@@ -809,8 +806,6 @@ void MachineList::load()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("XML data - %p%"));
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		args.clear();
-		args << "-listxml";
 		uncommittedXmlDbRows = 0;
 		dtdBufferReady = false;
 		xmlLineBuffer.clear();
@@ -825,7 +820,7 @@ void MachineList::load()
 		connect(loadProc, SIGNAL(readyReadStandardOutput()), this, SLOT(loadReadyReadStandardOutput()));
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
 		loadProc->setProcessChannelMode(QProcess::MergedChannels);
-		loadProc->start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
+		loadProc->start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), QStringList() << "-listxml");
 	}
 	userDataDb()->setEmulatorVersion(emulatorVersion);
 	userDataDb()->setQmc2Version(XSTR(QMC2_VERSION));
