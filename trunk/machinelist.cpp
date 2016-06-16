@@ -611,6 +611,9 @@ void MachineList::load()
 		numTotalMachines = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines", 0).toInt();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalMachines));
+		// this synchronizes with the key- and joy-map checks
+		while ( qApp->hasPendingEvents() )
+			qApp->processEvents();
 	}
 	categoryHash.clear();
 	versionHash.clear();
