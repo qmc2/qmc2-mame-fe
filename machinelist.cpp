@@ -272,10 +272,7 @@ MachineList::~MachineList()
 void MachineList::enableWidgets(bool enable)
 {
 	static bool lastEnable = true;
-
-	// store widget enablement flag for later dialog setups
 	qmc2WidgetsEnabled = enable;
-
 	if ( enable && qmc2MainWindow->labelLoadingMachineList->isVisible() ) {
 		// show machine list / hide loading animation
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
@@ -284,130 +281,15 @@ void MachineList::enableWidgets(bool enable)
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 	}
-
 	// avoid redundant operations
 	if ( lastEnable == enable )
 		return;
 	lastEnable = enable;
-
-	qmc2Options->toolButtonBrowseStyleSheet->setEnabled(enable);
-	qmc2Options->toolButtonBrowseFont->setEnabled(enable);
-	qmc2Options->toolButtonBrowseLogFont->setEnabled(enable);
-	qmc2Options->toolButtonBrowseTemporaryFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseFrontendLogFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowsePreviewFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseDataDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseDatInfoDatabase->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMameHistoryDat->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMessSysinfoDat->setEnabled(enable);
-	qmc2Options->checkBoxProcessMameHistoryDat->setEnabled(enable);
-	qmc2Options->checkBoxProcessMessSysinfoDat->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMameInfoDat->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMessInfoDat->setEnabled(enable);
-	qmc2Options->checkBoxProcessMameInfoDat->setEnabled(enable);
-	qmc2Options->checkBoxProcessMessInfoDat->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareInfoDB->setEnabled(enable);
-	qmc2Options->checkBoxProcessSoftwareInfoDB->setEnabled(enable);
-	qmc2Options->toolButtonImportGameInfo->setEnabled(enable);
-	qmc2Options->toolButtonImportMachineInfo->setEnabled(enable);
-	qmc2Options->toolButtonImportMameInfo->setEnabled(enable);
-	qmc2Options->toolButtonImportMessInfo->setEnabled(enable);
-	qmc2Options->toolButtonImportSoftwareInfo->setEnabled(enable);
-	qmc2Options->toolButtonOptimizeCatverIni->setEnabled(enable);
-	qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
-	qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
-	qmc2Options->toolButtonBrowseCategoryIniFile->setEnabled(enable);
-	qmc2Options->checkBoxUseCategoryIni->setEnabled(enable);
-	qmc2Options->checkBoxShowROMStatusIcons->setEnabled(enable);
-	qmc2Options->checkBoxRomStateFilter->setEnabled(enable);
-	qmc2Options->checkBoxShowBiosSets->setEnabled(enable);
-	qmc2Options->checkBoxShowDeviceSets->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareListCacheDb->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareStateCache->setEnabled(enable);
-	qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
-	qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
-	qmc2Options->lineEditExecutableFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseOptionsTemplateFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseXmlCacheDatabase->setEnabled(enable);
-	qmc2Options->toolButtonBrowseUserDataDatabase->setEnabled(enable);
-	qmc2Options->toolButtonCleanupUserDataDatabase->setEnabled(enable);
-	qmc2Options->toolButtonClearUserDataDatabase->setEnabled(enable);
-	qmc2Options->toolButtonBrowseFavoritesFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseHistoryFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMachineListCacheFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseROMStateCacheFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSlotInfoCacheFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseFlyerFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseIconDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseIconFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseCabinetDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseCabinetFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseControllerDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseControllerFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMarqueeDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseMarqueeFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseTitleDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseTitleFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowsePCBDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowsePCBFile->setEnabled(enable);
-	qmc2Options->comboBoxIconFileType->setEnabled(enable);
-	qmc2Options->comboBoxPreviewFileType->setEnabled(enable);
-	qmc2Options->comboBoxFlyerFileType->setEnabled(enable);
-	qmc2Options->comboBoxCabinetFileType->setEnabled(enable);
-	qmc2Options->comboBoxControllerFileType->setEnabled(enable);
-	qmc2Options->comboBoxMarqueeFileType->setEnabled(enable);
-	qmc2Options->comboBoxTitleFileType->setEnabled(enable);
-	qmc2Options->comboBoxPCBFileType->setEnabled(enable);
-	qmc2Options->comboBoxSoftwareSnapFileType->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareSnapDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareNotesFolder->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSoftwareNotesTemplate->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSystemNotesFolder->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSystemNotesTemplate->setEnabled(enable);
-	qmc2Options->toolButtonBrowseVideoSnapFolder->setEnabled(enable);
-	qmc2Options->toolButtonShowC->setEnabled(enable);
-	qmc2Options->toolButtonShowM->setEnabled(enable);
-	qmc2Options->toolButtonShowI->setEnabled(enable);
-	qmc2Options->toolButtonShowN->setEnabled(enable);
-	qmc2Options->toolButtonShowU->setEnabled(enable);
-	qmc2Options->comboBoxSortCriteria->setEnabled(enable);
-	qmc2Options->comboBoxSortOrder->setEnabled(enable);
-	qmc2Options->treeWidgetShortcuts->clearSelection();
-	qmc2Options->treeWidgetShortcuts->setEnabled(enable);
-	qmc2Options->treeWidgetJoystickMappings->clearSelection();
-	qmc2Options->treeWidgetJoystickMappings->setEnabled(enable);
-	qmc2Options->toolButtonBrowseCookieDatabase->setEnabled(enable);
-	qmc2Options->pushButtonManageCookies->setEnabled(enable ? qmc2Options->checkBoxRestoreCookies->isChecked() : false);
-	qmc2Options->toolButtonBrowseZipTool->setEnabled(enable);
-	qmc2Options->toolButtonBrowseSevenZipTool->setEnabled(enable);
-	qmc2Options->toolButtonBrowseRomTool->setEnabled(enable);
-	qmc2Options->toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
-	qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
-	qmc2Options->toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
-	qmc2Options->pushButtonCustomizeToolBar->setEnabled(enable);
-	qmc2Options->checkBoxParentImageFallback->setEnabled(enable);
-	qmc2Options->pushButtonIndividualFallbackSettings->setEnabled(enable && qmc2Options->checkBoxParentImageFallback->isChecked());
-	qmc2Options->checkBoxStandardColorPalette->setEnabled(enable);
-	qmc2Options->pushButtonEditPalette->setEnabled(enable && !qmc2Options->checkBoxStandardColorPalette->isChecked());
-	qmc2Options->pushButtonAdditionalArtworkSetup->setEnabled(enable);
-	qmc2Options->pushButtonImageFormats->setEnabled(enable);
-	for (int row = 0; row < qmc2Options->tableWidgetRegisteredEmulators->rowCount(); row++) {
-		QWidget *w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_ICON);
-		if ( w )
-			w->setEnabled(enable);
-		w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
-		if ( w )
-			w->setEnabled(enable);
-	}
 #if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
 	qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
 #endif
+	qmc2Options->enableWidgets(enable);
 	if ( qmc2ROMStatusExporter )
 		qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
 	if ( qmc2SystemROMAlyzer ) {

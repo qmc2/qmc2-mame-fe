@@ -1321,9 +1321,9 @@ void EmulatorOptions::createTemplateMap()
 				}
 			}
 		}
+		qmc2TemplateFile.close();
 		foreach (QString section, templateMap.keys())
 			std::sort(templateMap[section].begin(), templateMap[section].end(), EmulatorOption::lessThan);
-		qmc2TemplateFile.close();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open options template file"));
 	if ( templateEmulator.compare(trUnknown) == 0 )

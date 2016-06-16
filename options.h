@@ -241,6 +241,7 @@ class Options : public QDialog, public Ui::Options
 		void checkPlaceholderStatus();
 		void loadCustomPalette(QString);
 		void saveCustomPalette();
+		void enableWidgets(bool enable = true);
 
 	protected:
 		void moveEvent(QMoveEvent *);
