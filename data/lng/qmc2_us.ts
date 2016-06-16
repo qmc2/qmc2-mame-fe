@@ -1520,6 +1520,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../catverinioptimizer.cpp" line="32"/>
         <location filename="../../catverinioptimizer.cpp" line="40"/>
         <location filename="../../catverinioptimizer.cpp" line="44"/>
+        <location filename="../../catverinioptimizer.cpp" line="124"/>
         <source>no catver.ini data available</source>
         <translation></translation>
     </message>
@@ -1535,7 +1536,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="124"/>
-        <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
+        <source>ERROR: can&apos;t open &apos;%1&apos; for reading</source>
         <translation></translation>
     </message>
     <message>
