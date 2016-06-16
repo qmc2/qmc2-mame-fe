@@ -1496,7 +1496,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="39"/>
-        <location filename="../../catverinioptimizer.cpp" line="201"/>
+        <location filename="../../catverinioptimizer.cpp" line="209"/>
         <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1584,52 +1584,62 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="165"/>
-        <source>kept parent set &apos;%1&apos; with category &apos;%2&apos;</source>
+        <location filename="../../catverinioptimizer.cpp" line="164"/>
+        <source>removed device set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="170"/>
-        <source>added parent set &apos;%1&apos; with category &apos;%2&apos; and removed clone set &apos;%3&apos;</source>
+        <location filename="../../catverinioptimizer.cpp" line="168"/>
+        <source>removed BIOS set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="173"/>
+        <source>kept parent set &apos;%1&apos; with category &apos;%2&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="178"/>
+        <source>added parent set &apos;%1&apos; with category &apos;%2&apos; and removed clone set &apos;%3&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../catverinioptimizer.cpp" line="181"/>
         <source>removed clone set &apos;%1&apos; with category &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="191"/>
+        <location filename="../../catverinioptimizer.cpp" line="199"/>
         <source>removed invalid set &apos;%1&apos; with version &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="195"/>
+        <location filename="../../catverinioptimizer.cpp" line="203"/>
         <source>kept %1 set &apos;%2&apos; with version &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="195"/>
+        <location filename="../../catverinioptimizer.cpp" line="203"/>
         <source>parent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="195"/>
+        <location filename="../../catverinioptimizer.cpp" line="203"/>
         <source>clone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="198"/>
+        <location filename="../../catverinioptimizer.cpp" line="206"/>
         <source>changes to categories / versions: %1 / %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="211"/>
+        <location filename="../../catverinioptimizer.cpp" line="219"/>
         <source>optimizer started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../catverinioptimizer.cpp" line="214"/>
+        <location filename="../../catverinioptimizer.cpp" line="222"/>
         <source>optimizer ended</source>
         <translation type="unfinished"></translation>
     </message>
