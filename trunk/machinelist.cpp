@@ -599,17 +599,15 @@ void MachineList::load()
 		}
 	}
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
-	QStringList args;
 	QTime elapsedTime(0, 0, 0, 0);
 	parseTimer.start();
-	// emulator version
 	QProcess commandProc;
-	args << "-help";
-	bool commandProcStarted = false;
-	int retries = 0;
+	QStringList args = QStringList() << "-help";
 	QString execFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	QFileInfo fi(execFile);
-	bool started = false;
+	bool started = false, commandProcStarted = false;
+	int retries = 0;
+	// emulator version
 	if ( fi.exists() && fi.isReadable() ) {
 		commandProc.start(execFile, args);
 		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
