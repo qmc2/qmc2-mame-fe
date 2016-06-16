@@ -1,6 +1,7 @@
 #ifndef _CATVERINIOPTIMIZER_H_
 #define _CATVERINIOPTIMIZER_H_
 
+#include <QMap>
 #include <QHash>
 #include <QString>
 
@@ -31,9 +32,9 @@ class CatverIniOptimizer : public QDialog, public Ui::CatverIniOptimizer
 
 		QString m_fileName;
 		QHash<QString, QString *> m_categoryNames;
-		QHash<QString, QString *> m_categoryHash;
+		QMap<QString, QString *> m_categoryMap;
 		QHash<QString, QString *> m_versionNames;
-		QHash<QString, QString *> m_versionHash;
+		QMap<QString, QString *> m_versionMap;
 };
 
 #endif

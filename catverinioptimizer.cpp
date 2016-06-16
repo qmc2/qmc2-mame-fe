@@ -72,9 +72,9 @@ void CatverIniOptimizer::clearVersionNames()
 bool CatverIniOptimizer::loadCatverIni()
 {
 	clearCategoryNames();
-	m_categoryHash.clear();
+	m_categoryMap.clear();
 	clearVersionNames();
-	m_versionHash.clear();
+	m_versionMap.clear();
 	log(tr("loading catver.ini data from '%1'").arg(m_fileName));
 	QFile catverIniFile(m_fileName);
 	if ( catverIniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -107,14 +107,14 @@ bool CatverIniOptimizer::loadCatverIni()
 					case 1: // category
 						if ( !m_categoryNames.contains(token1) )
 							m_categoryNames.insert(token1, new QString(token1));
-						m_categoryHash.insert(tokens.at(0).trimmed(), m_categoryNames.value(token1));
+						m_categoryMap.insert(tokens.at(0).trimmed(), m_categoryNames.value(token1));
 						break;
 					case 2: // version
 						if ( token1.startsWith(dotChar) )
 							token1.prepend(zeroChar);
 						if ( !m_versionNames.contains(token1) )
 							m_versionNames.insert(token1, new QString(token1));
-						m_versionHash.insert(tokens.at(0).trimmed(), m_versionNames.value(token1));
+						m_versionMap.insert(tokens.at(0).trimmed(), m_versionNames.value(token1));
 						break;
 				}
 			}
@@ -125,7 +125,7 @@ bool CatverIniOptimizer::loadCatverIni()
 		return false;
 	}
 	log(tr("done (loading catver.ini data from '%1')").arg(m_fileName));
-	log(tr("%1 category / %2 version records loaded").arg(m_categoryHash.count()).arg(m_versionHash.count()));
+	log(tr("%1 category / %2 version records loaded").arg(m_categoryMap.count()).arg(m_versionMap.count()));
 	return true;
 }
 
@@ -138,12 +138,12 @@ void CatverIniOptimizer::optimize()
 	}
 	QTextStream ts(&catverIniFile);
 	progressBar->setFormat(tr("Optimizing"));
-	progressBar->setRange(0, m_categoryHash.count() + m_versionHash.count());
+	progressBar->setRange(0, m_categoryMap.count() + m_versionMap.count());
 	progressBar->setValue(0);
 	int count = 0, categoryChanges = 0, verAddedChanges = 0;
 	// [Category]
 	ts << "[Category]\n";
-	QHashIterator<QString, QString *> catIter(m_categoryHash);
+	QMapIterator<QString, QString *> catIter(m_categoryMap);
 	QHash<QString, bool> replacedParentsHash;
 	while ( catIter.hasNext() ) {
 		catIter.next();
@@ -164,7 +164,7 @@ void CatverIniOptimizer::optimize()
 			ts << machineName << " = " << machineCategory << "\n";
 			log(QString("[Category] ") + tr("kept parent set '%1' with category '%2'").arg(machineName).arg(machineCategory));
 		} else {
-			if ( !m_categoryHash.contains(parentName) && !replacedParentsHash.contains(parentName) ) {
+			if ( !m_categoryMap.contains(parentName) && !replacedParentsHash.contains(parentName) ) {
 				ts << parentName << " = " << machineCategory << "\n";
 				replacedParentsHash.insert(parentName, true);
 				log(QString("[Category] ") + tr("added parent set '%1' with category '%2' and removed clone set '%3'").arg(parentName).arg(machineCategory).arg(machineName));
@@ -177,7 +177,7 @@ void CatverIniOptimizer::optimize()
 	}
 	// [VerAdded]
 	ts << "\n[VerAdded]\n";
-	QHashIterator<QString, QString *> verIter(m_versionHash);
+	QMapIterator<QString, QString *> verIter(m_versionMap);
 	while ( verIter.hasNext() ) {
 		verIter.next();
 		if ( count % 10 == 0 )
