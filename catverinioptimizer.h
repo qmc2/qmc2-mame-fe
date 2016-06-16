@@ -31,6 +31,8 @@ class CatverIniOptimizer : public QDialog, public Ui::CatverIniOptimizer
 		void optimize();
 
 		QString m_fileName;
+		QString m_categoryStr;
+		QString m_verAddedStr;
 		QHash<QString, QString *> m_categoryNames;
 		QMap<QString, QString *> m_categoryMap;
 		QHash<QString, QString *> m_versionNames;
