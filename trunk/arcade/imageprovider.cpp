@@ -33,19 +33,19 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 	foreach (QString imageType, QStringList() << mImageTypes << mCustomImageTypes) {
 		foreach (QString imagePath, imageTypeToFile(imageType).split(";", QString::SkipEmptyParts)) {
 			if ( isZippedImageType(imageType) ) {
-				mFileMapZip[imagePath] = unzOpen(imagePath.toUtf8().constData());
-				if ( !mFileMapZip[imagePath] ) {
+				mFileMapZip.insert(imagePath, unzOpen(imagePath.toUtf8().constData()));
+				if ( !mFileMapZip.value(imagePath) ) {
 					QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open %1 ZIP file '%2'").arg(imageTypeToLongName(imageType)).arg(imagePath));
 				} else
-					mFileTypeMap[imagePath] = imageType;
+					mFileTypeMap.insert(imagePath, imageType);
 				emit imageDataUpdated(imageType);
 			} else if ( isSevenZippedImageType(imageType) ) {
 				SevenZipFile *imageFile = new SevenZipFile(imagePath);
 				if ( imageFile->open() ) {
 					connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
-					mFileMap7z[imagePath] = imageFile;
-					mFileTypeMap[imagePath] = imageType;
-					mAsyncMap[imagePath] = false;
+					mFileMap7z.insert(imagePath, imageFile);
+					mFileTypeMap.insert(imagePath, imageType);
+					mAsyncMap.insert(imagePath, false);
 				} else {
 					QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open %1 7z file '%2'").arg(imageTypeToLongName(imageType)).arg(imagePath));
 					delete imageFile;
@@ -55,8 +55,8 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 			else if ( isArchivedImageType(imageType) ) {
 				ArchiveFile *imageFile = new ArchiveFile(imagePath);
 				if ( imageFile->open() ) {
-					mArchiveMap[imagePath] = imageFile;
-					mFileTypeMap[imagePath] = imageType;
+					mArchiveMap.insert(imagePath, imageFile);
+					mFileTypeMap.insert(imagePath, imageType);
 				} else {
 					QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open %1 archive file '%2'").arg(imageTypeToLongName(imageType)).arg(imagePath));
 					delete imageFile;
@@ -65,7 +65,7 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 #endif
 			else {
 				emit imageDataUpdated(imageType);
-				mFileTypeMap[imagePath] = imageType;
+				mFileTypeMap.insert(imagePath, imageType);
 			}
 		}
 		QStringList activeFormats;
@@ -105,7 +105,7 @@ QImage ImageProvider::requestImage(const QString &id, QSize *size, const QSize &
 
 	if ( !id.isEmpty() ) {
 		cacheKey = loadImage(id, CacheClassImage);
-		cachePrefix = id.split("/", QString::SkipEmptyParts)[0];
+		cachePrefix = id.split("/", QString::SkipEmptyParts).at(0);
 	}
 
 	if ( !cacheKey.isEmpty() ) {
@@ -171,7 +171,7 @@ QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize
 
 	if ( !id.isEmpty() ) {
 		cacheKey = loadImage(id, CacheClassPixmap);
-		cachePrefix = id.split("/", QString::SkipEmptyParts)[0];
+		cachePrefix = id.split("/", QString::SkipEmptyParts).at(0);
 	}
 
 	if ( !cacheKey.isEmpty() ) {
@@ -235,7 +235,7 @@ void ImageProvider::sevenZipDataReady()
 	SevenZipFile *sevenZipFile = (SevenZipFile *)sender();
 	if ( sevenZipFile ) {
 		QString cachePrefix = sevenZipFile->userData().split("/", QString::SkipEmptyParts)[0];
-		mAsyncMap[sevenZipFile->fileName()] = false;
+		mAsyncMap.insert(sevenZipFile->fileName(), false);
 		emit imageDataUpdated(cachePrefix);
 	}
 }
@@ -244,16 +244,12 @@ QString ImageProvider::loadImage(const QString &id)
 {
 	if ( id.isEmpty() )
 		return QString();
-
-	QString cacheKey;
-	cacheKey = loadImage(id, CacheClassImage);
+	QString cacheKey(loadImage(id, CacheClassImage));
 	if ( !cacheKey.isEmpty() )
 		return cacheKey;
-
 	cacheKey = loadImage(id, CacheClassPixmap);
 	if ( !cacheKey.isEmpty() )
 		return cacheKey;
-
 	return QString();
 }
 
@@ -261,23 +257,22 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 {
 	if ( id.isEmpty() )
 		return QString();
-
-	QString validCacheKey, gameId, parentId, imageType;
-	QStringList idWords = id.split("/", QString::SkipEmptyParts);
+	QString validCacheKey, machineId, parentId, imageType;
+	QStringList idWords(id.split("/", QString::SkipEmptyParts));
 	if ( idWords.count() < 2 ) {
 		if ( idWords.count() > 0 ) {
-			if ( idWords[0] == "ghost" ) // allows using "image://qmc2/ghost" to retrieve the Ghostbusters image
+			if ( idWords.at(0).compare("ghost") == 0 ) // allows using "image://qmc2/ghost" to retrieve the Ghostbusters image
 				return QString();
 			else
 				QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): invalid image ID '%1' requested").arg(id));
 		} else
 			QMC2_ARCADE_LOG_STR(QObject::tr("WARNING: ImageProvider::loadImage(): invalid image ID '%1' requested").arg(id));
 	} else {
-		imageType = idWords[0];
-		gameId = idWords[1];
+		imageType = idWords.at(0);
+		machineId = idWords.at(1);
 		if ( idWords.count() > 2 )
 			parentId = idWords[2];
-		QString cacheKey = imageType + "/" + gameId;
+		QString cacheKey(imageType + "/" + machineId);
 		switch ( cacheClass ) {
 		case CacheClassImage:
 			if ( mImageCache.contains(cacheKey) )
@@ -286,11 +281,11 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 				QImage image;
 				foreach (QString imagePath, imageTypeToFile(imageType).split(";", QString::SkipEmptyParts)) {
 					if ( isZippedImageType(imageType) ) {
-						unzFile imageFile = mFileMapZip[imagePath];
-						foreach (int format, mActiveFormatsMap[imageType]) {
-							QString formatName = mFormatNames[format];
+						unzFile imageFile = mFileMapZip.value(imagePath);
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							QString formatName(mFormatNames[format]);
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString imageFileName = gameId + "." + extension;
+								QString imageFileName(machineId + "." + extension);
 								if ( imageFile && unzLocateFile(imageFile, imageFileName.toUtf8().constData(), 0) == UNZ_OK ) {
 									QByteArray imageData;
 									char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
@@ -314,11 +309,11 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 								break;
 						}
 					} else if ( isSevenZippedImageType(imageType) ) {
-						SevenZipFile *sevenZipFile = mFileMap7z[imagePath];
-						foreach (int format, mActiveFormatsMap[imageType]) {
-							QString formatName = mFormatNames[format];
+						SevenZipFile *sevenZipFile = mFileMap7z.value(imagePath);
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							QString formatName(mFormatNames[format]);
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString imageFileName = gameId + "." + extension;
+								QString imageFileName(machineId + "." + extension);
 								int index = sevenZipFile->indexOfName(imageFileName);
 								if ( index >= 0 ) {
 									QByteArray imageData;
@@ -331,7 +326,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 										mImageCache.insert(cacheKey, new QImage(image));
 										validCacheKey = cacheKey;
 									}
-									mAsyncMap[imagePath] = async;
+									mAsyncMap.insert(imagePath, async);
 								}
 								if ( !validCacheKey.isEmpty() )
 									break;
@@ -342,11 +337,11 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 					}
 #if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
 					else if ( isArchivedImageType(imageType) ) {
-						ArchiveFile *archiveFile = mArchiveMap[imagePath];
-						foreach (int format, mActiveFormatsMap[imageType]) {
-							QString formatName = mFormatNames[format];
+						ArchiveFile *archiveFile = mArchiveMap.value(imagePath);
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							QString formatName(mFormatNames[format]);
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString imageFileName = gameId + "." + extension;
+								QString imageFileName(machineId + "." + extension);
 								if ( archiveFile->seekEntry(imageFileName) ) {
 									QByteArray imageData;
 									if ( archiveFile->readEntry(imageData) > 0 ) {
@@ -365,9 +360,9 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 					}
 #endif
 					else {
-						foreach (int format, mActiveFormatsMap[imageType]) {
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString fileName = QFileInfo(imagePath + "/" + gameId + "." + extension).absoluteFilePath();
+								QString fileName(QFileInfo(imagePath + "/" + machineId + "." + extension).absoluteFilePath());
 								QImage image;
 								if ( image.load(fileName) ) {
 									mImageCache.insert(cacheKey, new QImage(image));
@@ -395,11 +390,11 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 				QPixmap image;
 				foreach (QString imagePath, imageTypeToFile(imageType).split(";", QString::SkipEmptyParts)) {
 					if ( isZippedImageType(imageType) ) {
-						unzFile imageFile = mFileMapZip[imagePath];
-						foreach (int format, mActiveFormatsMap[imageType]) {
-							QString formatName = mFormatNames[format];
+						unzFile imageFile = mFileMapZip.value(imagePath);
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							QString formatName(mFormatNames[format]);
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString imageFileName = gameId + "." + extension;
+								QString imageFileName(machineId + "." + extension);
 								if ( imageFile && unzLocateFile(imageFile, imageFileName.toUtf8().constData(), 0) == UNZ_OK ) {
 									QByteArray imageData;
 									char imageBuffer[QMC2_ARCADE_ZIP_BUFSIZE];
@@ -423,11 +418,11 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 								break;
 						}
 					} else if ( isSevenZippedImageType(imageType) ) {
-						SevenZipFile *sevenZipFile = mFileMap7z[imageType];
-						foreach (int format, mActiveFormatsMap[imageType]) {
-							QString formatName = mFormatNames[format];
+						SevenZipFile *sevenZipFile = mFileMap7z.value(imageType);
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							QString formatName(mFormatNames[format]);
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString imageFileName = gameId + "." + extension;
+								QString imageFileName(machineId + "." + extension);
 								int index = sevenZipFile->indexOfName(imageFileName);
 								if ( index >= 0 ) {
 									QByteArray imageData;
@@ -440,7 +435,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 										mPixmapCache.insert(cacheKey, new QPixmap(image));
 										validCacheKey = cacheKey;
 									}
-									mAsyncMap[imagePath] = async;
+									mAsyncMap.insert(imagePath, async);
 								}
 								if ( !validCacheKey.isEmpty() )
 									break;
@@ -448,10 +443,35 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 							if ( !validCacheKey.isEmpty() )
 								break;
 						}
-					} else {
-						foreach (int format, mActiveFormatsMap[imageType]) {
+					}
+#if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
+					else if ( isArchivedImageType(imageType) ) {
+						ArchiveFile *archiveFile = mArchiveMap.value(imagePath);
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							QString formatName(mFormatNames[format]);
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-								QString fileName = QFileInfo(imagePath + "/" + gameId + "." + extension).absoluteFilePath();
+								QString imageFileName(machineId + "." + extension);
+								if ( archiveFile->seekEntry(imageFileName) ) {
+									QByteArray imageData;
+									if ( archiveFile->readEntry(imageData) > 0 ) {
+										if ( image.loadFromData(imageData, formatName.toUtf8().constData()) ) {
+											mPixmapCache.insert(cacheKey, new QPixmap(image));
+											validCacheKey = cacheKey;
+										}
+									}
+								}
+								if ( !validCacheKey.isEmpty() )
+									break;
+							}
+							if ( !validCacheKey.isEmpty() )
+								break;
+						}
+					}
+#endif
+					else {
+						foreach (int format, mActiveFormatsMap.value(imageType)) {
+							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
+								QString fileName(QFileInfo(imagePath + "/" + machineId + "." + extension).absoluteFilePath());
 								QPixmap image;
 								if ( image.load(fileName) ) {
 									mPixmapCache.insert(cacheKey, new QPixmap(image));
@@ -700,8 +720,8 @@ bool ImageProvider::isAsync(QString type)
 {
 	bool async = false;
 	foreach (QString filePath, mFileTypeMap.keys()) {
-		if ( mFileTypeMap[filePath] == type )
-			if ( mAsyncMap[filePath] ) {
+		if ( mFileTypeMap.value(filePath).compare(type) == 0 )
+			if ( mAsyncMap.value(filePath) ) {
 				async = true;
 				break;
 			}
