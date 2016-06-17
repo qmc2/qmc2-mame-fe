@@ -20,10 +20,7 @@ DESCRIPTION
 
   Changed back-end default options will require a restart of QMC2 Arcade to take effect. Specifying them on the command line will overwrite
   the current defaults temporarily, but will not change their stored default values. Note that the -language back-end default option is a shared
-  setting for both QMC2 Arcade and the (respective variant's) main GUI.
-
-  Theme-specific settings are shared between all modes. That is, when a theme supports multiple emulators, it will usually look the same in
-  each mode.
+  setting for both QMC2 Arcade and the main GUI.
 
 OPTIONS
   -theme qml_theme  Select the QML theme used for scene graphics, animations and/or shader effects. Available values for qml_theme are 'ToxicWaste'
