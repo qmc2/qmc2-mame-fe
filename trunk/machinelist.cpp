@@ -1155,11 +1155,7 @@ void MachineList::parse()
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 	qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines);
 	romStateCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
-	romStateCache.open(QIODevice::ReadOnly | QIODevice::Text);
-	if ( !romStateCache.isOpen() ) {
-		if ( !autoRomCheck )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
-	} else {
+	if ( romStateCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading ROM state from cache"));
 		parseTimer.start();
 		tsRomCache.setDevice(&romStateCache);
@@ -1176,7 +1172,8 @@ void MachineList::parse()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading ROM state from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n cached ROM state(s) loaded", "", machineStatusHash.count()));
 		romStateCache.close();
-	}
+	} else if ( !autoRomCheck )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
 	parseTimer.start();
 	qmc2MainWindow->treeWidgetMachineList->clear();
@@ -1188,7 +1185,6 @@ void MachineList::parse()
 	bool reparseMachineList = true;
 	bool romStateCacheUpdate = false;
 	bool loadedFromCache = false;
-	QTime machineListCacheElapsedTime(0, 0, 0, 0);
 	QList<QTreeWidgetItem *> itemList;
 	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
 	QString trSystemBios(tr("System / BIOS"));
@@ -1768,8 +1764,9 @@ void MachineList::parse()
 		itHierarchyHiddenItemHash.key()->setHidden(true);
 	}
 	if ( loadedFromCache ) {
-		machineListCacheElapsedTime = machineListCacheElapsedTime.addMSecs(miscTimer.elapsed());
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(machineListCacheElapsedTime.toString("mm:ss.zzz")));
+		QTime elapsedTime(0, 0, 0, 0);
+		elapsedTime = elapsedTime.addMSecs(miscTimer.elapsed());
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	}
 	QString sortCriteria(trQuestionMark);
 	switch ( qmc2SortCriteria ) {
@@ -2595,6 +2592,8 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(elapsedTime.toString("mm:ss.zzz")));
 	else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+	if ( romStateCache.isOpen() )
+		romStateCache.close();
 	QString sL(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark);
 	QString sC(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark);
 	QString sM(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark);
@@ -2603,14 +2602,11 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	QString sU(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
 	qmc2MainWindow->progressBarMachineList->reset();
-	if ( verifyProc )
+	if ( verifyProc ) {
 		delete verifyProc;
-	verifyProc = 0;
-	qmc2VerifyActive = false;
-	if ( romStateCache.isOpen() ) {
-		tsRomCache.flush();
-		romStateCache.close();
+		verifyProc = 0;
 	}
+	qmc2VerifyActive = false;
 	if ( qmc2SortCriteria == QMC2_SORT_BY_ROM_STATE ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 		qmc2SortingActive = true;
