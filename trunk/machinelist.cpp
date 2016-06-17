@@ -485,8 +485,8 @@ void MachineList::load()
 	QString execFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	QFileInfo fi(execFile);
 	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "SkipEmuIdent", true).toBool() || fi.lastModified().toTime_t() != qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Time", 0).toUInt() ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
 		QTime elapsedTime(0, 0, 0, 0);
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
 		parseTimer.start();
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/Time", fi.lastModified().toTime_t());
 		QProcess commandProc;
@@ -1153,7 +1153,6 @@ void MachineList::parse()
 	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
-	QTime elapsedTime(0, 0, 0, 0);
 	qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines);
 	romStateCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile").toString());
 	romStateCache.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -1161,8 +1160,8 @@ void MachineList::parse()
 		if ( !autoRomCheck )
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
 	} else {
-		parseTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading ROM state from cache"));
+		parseTimer.start();
 		tsRomCache.setDevice(&romStateCache);
 		tsRomCache.reset();
 		tsRomCache.readLine(); // ignore the first line
@@ -1172,14 +1171,14 @@ void MachineList::parse()
 			machineStatusHash.insert(words.at(QMC2_RSC_INDEX_NAME), words.at(QMC2_RSC_INDEX_STATE).at(0).toLatin1());
 		}
 		numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numNotFoundMachines = 0;
+		QTime elapsedTime(0, 0, 0, 0);
 		elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading ROM state from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n cached ROM state(s) loaded", "", machineStatusHash.count()));
 		romStateCache.close();
 	}
-	QTime processMachineListElapsedTimer(0, 0, 0, 0);
-	parseTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
+	parseTimer.start();
 	qmc2MainWindow->treeWidgetMachineList->clear();
 	qmc2ParentHash.clear();
 	hierarchyHash.clear();
@@ -1853,6 +1852,7 @@ void MachineList::parse()
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 	qmc2MainWindow->treeWidgetHierarchy->setUpdatesEnabled(true);
+	QTime processMachineListElapsedTimer(0, 0, 0, 0);
 	processMachineListElapsedTimer = processMachineListElapsedTimer.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processMachineListElapsedTimer.toString("mm:ss.zzz")));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalMachines - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", deviceSets.count()));
@@ -1926,10 +1926,10 @@ void MachineList::filter(bool initial)
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
 	QTime elapsedTime(0, 0, 0, 0);
 	qmc2StopParser = false;
-	parseTimer.start();
 	qmc2FilterActive = true;
 	enableWidgets(false);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("applying ROM state filter"));
+	parseTimer.start();
 	qmc2MainWindow->progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		qmc2MainWindow->progressBarMachineList->setFormat(tr("State filter - %p%"));
