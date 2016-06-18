@@ -2589,8 +2589,7 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 			return;
 		}
 	}
-	QString userScopePath = Options::configPath();
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString();
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", Options::configPath() + "/mame.rsc").toString();
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2612,8 +2611,7 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 			return;
 		}
 	}
-	QString userScopePath = Options::configPath();
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString();
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", Options::configPath() + "/mame.mlc").toString();
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2644,8 +2642,7 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 			return;
 		}
 	}
-	QString userScopePath = Options::configPath();
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString();
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2673,13 +2670,15 @@ void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 		QTimer::singleShot(0, qmc2ImageChecker, SLOT(updateCornerWidget()));
 }
 
-void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
+void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool complete)
 {
 	actionClearROMStateCache->trigger();
 	actionClearMachineListCache->trigger();
 	actionClearXMLCache->trigger();
 	actionClearSlotInfoCache->trigger();
 	actionClearSoftwareListCache->trigger();
+	if ( complete )
+		qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Cache");
 }
 
 void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
@@ -10587,7 +10586,7 @@ int main(int argc, char *argv[])
 #endif
 		// if CLI option -cc is set, clear all emulator caches before starting up
 		if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
-			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered();
+			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered(true);
 
 		// finally run the application
 		retCode = qmc2App.exec();
