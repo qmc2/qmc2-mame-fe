@@ -42,10 +42,10 @@ public:
 	QImage requestImage(const QString &, QSize *, const QSize &);
 	QPixmap requestPixmap(const QString &, QSize *, const QSize &);
 	QString loadImage(const QString &);
-	bool isZippedImageType(QString);
-	bool isSevenZippedImageType(QString);
-	bool isArchivedImageType(QString);
-	QString customCachePrefix(QString);
+	bool isZippedImageType(const QString &);
+	bool isSevenZippedImageType(const QString &);
+	bool isArchivedImageType(const QString &);
+	QString customCachePrefix(const QString &);
 
 	enum CacheClass { CacheClassImage, CacheClassPixmap };
 
@@ -57,10 +57,10 @@ signals:
 
 private:
 	QString loadImage(const QString &id, const enum CacheClass cacheClass);
-	QString imageTypeToFile(QString);
-	QString imageTypeToLongName(QString);
-	QString imageFolder(QString);
-	bool isAsync(QString);
+	QString imageTypeToFile(const QString &);
+	QString imageTypeToLongName(const QString &);
+	QString imageFolder(const QString &);
+	bool isAsync(const QString &);
 
 	QStringList mImageTypes;
 	QStringList mCustomImageTypes;
@@ -92,10 +92,10 @@ public:
 	QImage requestImage(const QString &, QSize *, const QSize &);
 	QPixmap requestPixmap(const QString &, QSize *, const QSize &);
 	QString loadImage(const QString &);
-	bool isZippedImageType(QString);
-	bool isSevenZippedImageType(QString);
-	bool isArchivedImageType(QString);
-	QString customCachePrefix(QString);
+	bool isZippedImageType(const QString &);
+	bool isSevenZippedImageType(const QString &);
+	bool isArchivedImageType(const QString &);
+	QString customCachePrefix(const QString &);
 
 	enum CacheClass { CacheClassImage, CacheClassPixmap };
 
@@ -107,10 +107,10 @@ signals:
 
 private:
 	QString loadImage(const QString &id, const enum CacheClass cacheClass);
-	QString imageTypeToFile(QString);
-	QString imageTypeToLongName(QString);
-	QString imageFolder(QString);
-	bool isAsync(QString);
+	QString imageTypeToFile(const QString &);
+	QString imageTypeToLongName(const QString &);
+	QString imageFolder(const QString &);
+	bool isAsync(const QString &);
 
 	QStringList mImageTypes;
 	QStringList mCustomImageTypes;

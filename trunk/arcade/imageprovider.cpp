@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QTimer>
+#include <QChar>
 
 #include "imageprovider.h"
 #include "arcadesettings.h"
@@ -19,12 +20,14 @@
 extern ArcadeSettings *globalConfig;
 
 #if QT_VERSION < 0x050000
-ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type, QObject *parent)
-	: QObject(parent), QDeclarativeImageProvider(type)
-	#else
-ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *parent)
-	: QObject(parent), QQuickImageProvider(type)
-	#endif
+ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type, QObject *parent) :
+	QObject(parent),
+	QDeclarativeImageProvider(type)
+#else
+ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *parent) :
+	QObject(parent),
+	QQuickImageProvider(type)
+#endif
 {
 	mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws" << "ico";
 	mCustomImageTypes << globalConfig->customSystemArtworkNames() << globalConfig->customSoftwareArtworkNames();
@@ -36,9 +39,10 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 				mFileMapZip.insert(imagePath, unzOpen(imagePath.toUtf8().constData()));
 				if ( !mFileMapZip.value(imagePath) ) {
 					QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open %1 ZIP file '%2'").arg(imageTypeToLongName(imageType)).arg(imagePath));
-				} else
+				} else {
 					mFileTypeMap.insert(imagePath, imageType);
-				emit imageDataUpdated(imageType);
+					emit imageDataUpdated(imageType);
+				}
 			} else if ( isSevenZippedImageType(imageType) ) {
 				SevenZipFile *imageFile = new SevenZipFile(imagePath);
 				if ( imageFile->open() ) {
@@ -57,6 +61,7 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 				if ( imageFile->open() ) {
 					mArchiveMap.insert(imagePath, imageFile);
 					mFileTypeMap.insert(imagePath, imageType);
+					emit imageDataUpdated(imageType);
 				} else {
 					QMC2_ARCADE_LOG_STR(tr("WARNING: Can't open %1 archive file '%2'").arg(imageTypeToLongName(imageType)).arg(imagePath));
 					delete imageFile;
@@ -64,8 +69,8 @@ ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *paren
 			}
 #endif
 			else {
-				emit imageDataUpdated(imageType);
 				mFileTypeMap.insert(imagePath, imageType);
+				emit imageDataUpdated(imageType);
 			}
 		}
 		QStringList activeFormats;
@@ -234,9 +239,8 @@ void ImageProvider::sevenZipDataReady()
 {
 	SevenZipFile *sevenZipFile = (SevenZipFile *)sender();
 	if ( sevenZipFile ) {
-		QString cachePrefix = sevenZipFile->userData().split("/", QString::SkipEmptyParts)[0];
 		mAsyncMap.insert(sevenZipFile->fileName(), false);
-		emit imageDataUpdated(cachePrefix);
+		emit imageDataUpdated(sevenZipFile->userData().split('/', QString::SkipEmptyParts).at(0));
 	}
 }
 
@@ -271,7 +275,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 		imageType = idWords.at(0);
 		machineId = idWords.at(1);
 		if ( idWords.count() > 2 )
-			parentId = idWords[2];
+			parentId = idWords.at(2);
 		QString cacheKey(imageType + "/" + machineId);
 		switch ( cacheClass ) {
 		case CacheClassImage:
@@ -363,7 +367,6 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 						foreach (int format, mActiveFormatsMap.value(imageType)) {
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 								QString fileName(QFileInfo(imagePath + "/" + machineId + "." + extension).absoluteFilePath());
-								QImage image;
 								if ( image.load(fileName) ) {
 									mImageCache.insert(cacheKey, new QImage(image));
 									validCacheKey = cacheKey;
@@ -472,7 +475,6 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 						foreach (int format, mActiveFormatsMap.value(imageType)) {
 							foreach (QString extension, mFormatExtensions[format].split(", ", QString::SkipEmptyParts)) {
 								QString fileName(QFileInfo(imagePath + "/" + machineId + "." + extension).absoluteFilePath());
-								QPixmap image;
 								if ( image.load(fileName) ) {
 									mPixmapCache.insert(cacheKey, new QPixmap(image));
 									validCacheKey = cacheKey;
@@ -493,7 +495,6 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 			break;
 		}
 	}
-
 	if ( validCacheKey.isEmpty() ) {
 		if ( globalConfig->parentFallback(imageType) && !parentId.isEmpty() && !imageType.isEmpty() )
 			return loadImage(imageType + "/" + parentId, cacheClass);
@@ -503,7 +504,7 @@ QString ImageProvider::loadImage(const QString &id, const enum CacheClass cacheC
 		return validCacheKey;
 }
 
-QString ImageProvider::imageTypeToFile(QString type)
+QString ImageProvider::imageTypeToFile(const QString &type)
 {
 	QString realType;
 	if ( isZippedImageType(type) || isSevenZippedImageType(type) || isArchivedImageType(type) ) {
@@ -563,7 +564,7 @@ QString ImageProvider::imageTypeToFile(QString type)
 	}
 }
 
-QString ImageProvider::imageTypeToLongName(QString type)
+QString ImageProvider::imageTypeToLongName(const QString &type)
 {
 	switch ( mImageTypes.indexOf(type) ) {
 	case QMC2_ARCADE_IMGTYPE_PREVIEW:
@@ -586,13 +587,13 @@ QString ImageProvider::imageTypeToLongName(QString type)
 		return QObject::tr("icon");
 	default:
 		if ( mCustomImageTypes.contains(type) )
-			return type.replace("&", QString());
+			return QString(type).replace('&', QChar());
 		else
 			return QString();
 	}
 }
 
-bool ImageProvider::isZippedImageType(QString type)
+bool ImageProvider::isZippedImageType(const QString &type)
 {
 	switch ( mImageTypes.indexOf(type) ) {
 	case QMC2_ARCADE_IMGTYPE_PREVIEW:
@@ -621,7 +622,7 @@ bool ImageProvider::isZippedImageType(QString type)
 	}
 }
 
-bool ImageProvider::isSevenZippedImageType(QString type)
+bool ImageProvider::isSevenZippedImageType(const QString &type)
 {
 	switch ( mImageTypes.indexOf(type) ) {
 	case QMC2_ARCADE_IMGTYPE_PREVIEW:
@@ -650,7 +651,7 @@ bool ImageProvider::isSevenZippedImageType(QString type)
 	}
 }
 
-bool ImageProvider::isArchivedImageType(QString type)
+bool ImageProvider::isArchivedImageType(const QString &type)
 {
 	switch ( mImageTypes.indexOf(type) ) {
 	case QMC2_ARCADE_IMGTYPE_PREVIEW:
@@ -679,15 +680,15 @@ bool ImageProvider::isArchivedImageType(QString type)
 	}
 }
 
-QString ImageProvider::customCachePrefix(QString name)
+QString ImageProvider::customCachePrefix(const QString &name)
 {
 	if ( mCustomCachePrefixes.contains(name) )
-		return mCustomCachePrefixes[name];
+		return mCustomCachePrefixes.value(name);
 	else
 		return QString();
 }
 
-QString ImageProvider::imageFolder(QString type)
+QString ImageProvider::imageFolder(const QString &type)
 {
 	switch ( mImageTypes.indexOf(type) ) {
 	case QMC2_ARCADE_IMGTYPE_PREVIEW:
@@ -716,7 +717,7 @@ QString ImageProvider::imageFolder(QString type)
 	}
 }
 
-bool ImageProvider::isAsync(QString type)
+bool ImageProvider::isAsync(const QString &type)
 {
 	bool async = false;
 	foreach (QString filePath, mFileTypeMap.keys()) {

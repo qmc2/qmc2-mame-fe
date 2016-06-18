@@ -1,6 +1,6 @@
 #include "machineobject.h"
 
-MachineObject::MachineObject(QString myId, QString myParentId, QString myDescription, int myRomState, QObject *parent)
+MachineObject::MachineObject(const QString &myId, const QString &myParentId, const QString &myDescription, int myRomState, QObject *parent)
 	: QObject(parent)
 {
 	setId(myId);

@@ -108,7 +108,7 @@ public:
 signals:
 	void emulatorStarted(int);
 	void emulatorFinished(int);
-	void imageDataUpdated(QString cachePrefix);
+	void imageDataUpdated(const QString & cachePrefix);
 
 public slots:
 	void displayInit();
@@ -138,9 +138,9 @@ public slots:
 	void handleQuit();
 #endif
 	int runningEmulators() { return processManager->runningProcesses(); }
-	void imageDataUpdate(QString cachePrefix) { emit imageDataUpdated(cachePrefix); }
-	bool isSevenZippedImageType(QString type) { return imageProvider->isSevenZippedImageType(type); }
-	bool isZippedImageType(QString type) { return imageProvider->isZippedImageType(type); }
+	void imageDataUpdate(const QString &cachePrefix) { emit imageDataUpdated(cachePrefix); }
+	bool isSevenZippedImageType(const QString & type) { return imageProvider->isSevenZippedImageType(type); }
+	bool isZippedImageType(const QString & type) { return imageProvider->isZippedImageType(type); }
 	QString parentId(QString id);
 	QStringList customSystemArtwork();
 	QStringList customSoftwareArtwork();
@@ -148,7 +148,7 @@ public slots:
 	QString previousCustomSytemArtwork();
 	QString nextCustomSoftwareArtwork();
 	QString previousCustomSoftwareArtwork();
-	QString customCachePrefix(QString name) { return imageProvider->customCachePrefix(name); }
+	QString customCachePrefix(const QString &name) { return imageProvider->customCachePrefix(name); }
 
 private:
 	bool m_initialized;

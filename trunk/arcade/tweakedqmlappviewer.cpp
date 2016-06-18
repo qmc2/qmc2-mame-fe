@@ -120,7 +120,7 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 	imageProvider = new ImageProvider(QQuickImageProvider::Image);
 #endif
 
-	connect(imageProvider, SIGNAL(imageDataUpdated(QString)), this, SLOT(imageDataUpdate(QString)), Qt::DirectConnection);
+	connect(imageProvider, SIGNAL(imageDataUpdated(const QString &)), this, SLOT(imageDataUpdate(const QString &)), Qt::DirectConnection);
 	engine()->addImageProvider(QString("qmc2"), imageProvider);
 
 	infoProvider = new InfoProvider();
