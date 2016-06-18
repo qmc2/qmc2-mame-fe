@@ -284,7 +284,7 @@ bool Welcome::checkConfig()
 	startupConfig->endGroup();
 
 	/* *** There are currently no settings upgrades ***
-	QStringList verList(startupConfig->value("Version").toString().split(".", QString::SkipEmptyParts));
+	QStringList verList(startupConfig->value("Version").toString().split('.', QString::SkipEmptyParts));
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
