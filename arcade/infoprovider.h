@@ -14,8 +14,8 @@ public:
 	enum InfoClass { InfoClassGame, InfoClassEmu, InfoClassSoft };
 	QString requestInfo(const QString &, InfoClass);
 
-	bool isMessGameInfo(QString id) { return datInfoDb()->machineInfoEmulator(id) == "MESS"; }
-	bool isMameGameInfo(QString id) { return datInfoDb()->machineInfoEmulator(id) == "MAME"; }
+	bool isMessGameInfo(const QString & id) { return datInfoDb()->machineInfoEmulator(id) == "MESS"; }
+	bool isMameGameInfo(const QString & id) { return datInfoDb()->machineInfoEmulator(id) == "MAME"; }
 
 	QString &messWikiToHtml(QString &);
 	DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }

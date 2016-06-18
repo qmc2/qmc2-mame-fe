@@ -13,7 +13,7 @@ class MachineObject : public QObject
 	Q_PROPERTY(int romState READ romState WRITE setRomState NOTIFY romStateChanged)
 
 public:
-	explicit MachineObject(QString, QString, QString, int, QObject *parent = 0);
+	explicit MachineObject(const QString &, const QString &, const QString &, int, QObject *parent = 0);
 	virtual ~MachineObject();
 
 	static bool lessThan(const QObject *g1, const QObject *g2) {
@@ -28,9 +28,9 @@ signals:
 
 public slots:
 	// setters
-	void setId(QString newId) { mId = newId; }
-	void setParentId(QString newParentId) { mParentId = newParentId; }
-	void setDescription(QString newDescription) { mDescription = newDescription; }
+	void setId(const QString &newId) { mId = newId; }
+	void setParentId(const QString & newParentId) { mParentId = newParentId; }
+	void setDescription(const QString & newDescription) { mDescription = newDescription; }
 	void setRomState(int newRomState) { mRomState = newRomState; }
 
 	// getters

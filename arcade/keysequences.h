@@ -2,7 +2,8 @@
 #define KEYSEQUENCES_H
 
 // common key-sequences
-#define QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(stringList)         (stringList) << "Ctrl+P" \
+#define QMC2_ARCADE_ADD_COMMON_KEYSEQUENCES(stringList) (stringList) \
+	<< "Ctrl+P" \
 	<< "F11" \
 	<< "Alt+Enter" \
 	<< "Alt+Return" \
@@ -11,7 +12,8 @@
 	<< "Ctrl+V"
 
 // common key-sequence descriptions
-#define QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(stringList)         (stringList) << QObject::tr("[global] Start emulation") \
+#define QMC2_ARCADE_ADD_COMMON_DESCRIPTIONS(stringList) (stringList) \
+	<< QObject::tr("[global] Start emulation") \
 	<< QObject::tr("[global] Toggle full-screen / windowed mode") \
 	<< QObject::tr("[global] Toggle full-screen / windowed mode") \
 	<< QObject::tr("[global] Toggle full-screen / windowed mode") \
@@ -20,7 +22,8 @@
 	<< QObject::tr("[global] Toggle video playback")
 
 // ToxicWaste-specific key-sequences
-#define QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(stringList)    (stringList) << "Up" \
+#define QMC2_ARCADE_ADD_TOXIXCWASTE_KEYSEQUENCES(stringList) (stringList) \
+	<< "Up" \
 	<< "Down" \
 	<< "Left" \
 	<< "Right" \
@@ -35,8 +38,10 @@
 	<< "Esc" \
 	<< "Ctrl+X" \
 	<< "Ctrl+Backspace"
+
 // ToxicWaste-specific key-sequence descriptions
-#define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList)    (stringList) << QObject::tr("[global] Cursor up") \
+#define QMC2_ARCADE_ADD_TOXIXCWASTE_DESCRIPTIONS(stringList) (stringList) \
+	<< QObject::tr("[global] Cursor up") \
 	<< QObject::tr("[global] Cursor down") \
 	<< QObject::tr("[global] Cursor left") \
 	<< QObject::tr("[global] Cursor right") \
@@ -51,8 +56,10 @@
 	<< QObject::tr("[global] Exit") \
 	<< QObject::tr("[global] Exit") \
 	<< QObject::tr("[global] Flip cabinet / machine-card")
+
 // darkone-specific key-sequences
-#define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList)        (stringList) << "Ctrl+Up" \
+#define QMC2_ARCADE_ADD_DARKONE_KEYSEQUENCES(stringList) (stringList) \
+	<< "Ctrl+Up" \
 	<< "Ctrl+Down" \
 	<< "Left" \
 	<< "Right" \
@@ -78,8 +85,10 @@
 	<< "Ctrl+L" \
 	<< "Ctrl+T" \
 	<< "Ctrl+Q"
+
 // darkone-specific key-sequence descriptions
-#define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)       (stringList)  << QObject::tr("[context] Previous component / List page up / Info page up") \
+#define QMC2_ARCADE_ADD_DARKONE_DESCRIPTIONS(stringList)       (stringList) \
+	<< QObject::tr("[context] Previous component / List page up / Info page up") \
 	<< QObject::tr("[context] Next component / List page down / Info page down") \
 	<< QObject::tr("[context] Hide list / Previous item / Slide left / Cycle backwards") \
 	<< QObject::tr("[context] Show list / Next item / Slide right / Cycle forwards") \
