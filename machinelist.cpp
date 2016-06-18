@@ -1180,8 +1180,6 @@ void MachineList::parse()
 	qmc2ParentHash.clear();
 	hierarchyHash.clear();
 	qmc2MainWindow->progressBarMachineList->reset();
-	machineListCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
-	machineListCache.open(QIODevice::ReadOnly | QIODevice::Text);
 	bool reparseMachineList = true;
 	bool romStateCacheUpdate = false;
 	bool loadedFromCache = false;
@@ -1191,7 +1189,8 @@ void MachineList::parse()
 	QString trSystemDevice(tr("System / Device"));
 	QChar columnSplitChar('\t');
 	QChar lineSplitChar('\n');
-	if ( machineListCache.isOpen() ) {
+	machineListCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
+	if ( machineListCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		tsMachineListCache.setDevice(&machineListCache);
 		tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 		tsMachineListCache.seek(0);
@@ -1442,9 +1441,8 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 			loadedFromCache = true;
 		}
-	} 
-	if ( machineListCache.isOpen() )
 		machineListCache.close();
+	} 
 	if ( reparseMachineList && !qmc2StopParser ) {
 		loadIcon(QString(), 0); // initiates icon pre-caching
 		qmc2MainWindow->progressBarMachineList->setRange(0, numTotalMachines * 2);
