@@ -235,7 +235,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionClearXMLCache_triggered(bool checked = false);
 		void on_actionClearSlotInfoCache_triggered(bool checked = false);
 		void on_actionClearSoftwareListCache_triggered(bool checked = false);
-		void on_actionClearAllEmulatorCaches_triggered(bool checked = false);
+		void on_actionClearAllEmulatorCaches_triggered(bool complete = false);
 		void on_actionOptions_triggered(bool checked = false);
 
 		// display menu

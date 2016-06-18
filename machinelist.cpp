@@ -846,7 +846,7 @@ void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QString element,
 			QTreeWidgetItem *attributeItem = new QTreeWidgetItem();
 			attributeItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, descriptions.at(i));
 			attributeItem->setText(QMC2_MACHINELIST_COLUMN_ICON, tr(valueString.toUtf8().constData()));
-			itemList << attributeItem;
+			itemList.append(attributeItem);
 		}
 	}
 	parent->addChildren(itemList);
@@ -1135,7 +1135,7 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 		}
 		gamePos++;
 		if ( childItem )
-			itemList << childItem;
+			itemList.append(childItem);
 	}
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 	delete item->takeChild(0);
@@ -1428,7 +1428,7 @@ void MachineList::parse()
 					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 					loadIcon(machineName, machineItem);
-					itemList << machineItem;
+					itemList.append(machineItem);
 					if ( numMachines++ % qmc2MachineListResponsiveness == 0 ) {
 						qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 						qmc2MainWindow->labelMachineListStatus->setText(status());
@@ -1453,212 +1453,209 @@ void MachineList::parse()
 			qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine data - %p%"));
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-		machineListCache.open(QIODevice::WriteOnly | QIODevice::Text);
-		if ( !machineListCache.isOpen() )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(machineListCache.fileName()));
-		else {
+		if ( machineListCache.open(QIODevice::WriteOnly | QIODevice::Text) ) {
 			tsMachineListCache.setDevice(&machineListCache);
 			tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 			tsMachineListCache.reset();
 			tsMachineListCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 			tsMachineListCache << "MAME_VERSION\t" + emulatorVersion + "\tMLC_VERSION\t" + QString::number(QMC2_MLC_VERSION) + "\n";
-		}
-		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
-		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();;
-		// parse XML data
-		numMachines = numUnknownMachines = 0;
-		qint64 xmlRowCount = xmlDb()->xmlRowCount();
-		for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
-			QStringList xmlLines = xmlDb()->xml(rowCounter).split(lineSplitChar, QString::SkipEmptyParts);
-			for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2StopParser; lineCounter++) {
-				while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
-					lineCounter++;
-				if ( !qmc2StopParser && lineCounter < xmlLines.count() ) {
-					QString machineElement(xmlLines.at(lineCounter - 1).simplified());
-					if ( !machineElement.contains(" name=\"") )
-						continue;
-					bool isBIOS = value(machineElement, "isbios").compare("yes") == 0;
-					bool isDev = value(machineElement, "isdevice").compare("yes") == 0;
-					QString machineName(value(machineElement, "name"));
-					if ( machineName.isEmpty() ) {
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
-						qApp->processEvents();
-						continue;
-					}
-					QString machineSource(value(machineElement, "sourcefile"));
-					QString machineCloneOf(value(machineElement, "cloneof"));
-					QString descriptionElement(xmlLines.at(lineCounter).simplified());
-					QString machineDescription(descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
-					MachineListItem *machineItem = new MachineListItem();
-					qmc2MachineListItemHash.insert(machineName, machineItem);
-					machineItem->setFlags(MachineListItem::defaultItemFlags);
-					machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
-					if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) )
-						hiddenItemHash.insert(machineItem, true);
-					// find year & manufacturer and determine ROM/CHD requirements
-					bool endGame = false;
-					int i = lineCounter;
-					QString machineYear(trQuestionMark), machineManufacturer(trQuestionMark), machinePlayers(trQuestionMark), machineDrvStat(trQuestionMark);
-					bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
-					QString endMark("</machine>");
-					while ( !endGame ) {
-						QString xmlLine(xmlLines[i]);
-						if ( xmlLine.contains("<year>") ) {
-							machineYear = xmlLine.simplified().remove("<year>").remove("</year>");
-							yearFound = true;
-						} else if ( xmlLine.contains("<manufacturer>") ) {
-							machineManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
-							manufacturerFound = true;
-						} else if ( xmlLine.contains("<rom name") ) {
-							hasROMs = true;
-						} else if ( xmlLine.contains("<disk name") ) {
-							hasCHDs = true;
-						} else if ( xmlLine.contains("<input players") ) {
-							int playersPos = xmlLine.indexOf("input players=\"") + 15;
-							if ( playersPos >= 0 ) {
-								machinePlayers = xmlLine.mid(playersPos, xmlLine.indexOf("\"", playersPos) - playersPos);
-								playersFound = true;
-							}
-						} else if ( xmlLine.contains("<driver status") ) {
-							int statusPos = xmlLine.indexOf("driver status=\"") + 15;
-							if ( statusPos >= 0 ) {
-								machineDrvStat = xmlLine.mid(statusPos, xmlLine.indexOf("\"", statusPos) - statusPos);
-								statusFound = true;
-							}
+			bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
+			bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();;
+			// parse XML data
+			numMachines = numUnknownMachines = 0;
+			qint64 xmlRowCount = xmlDb()->xmlRowCount();
+			for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2StopParser; rowCounter++) {
+				QStringList xmlLines = xmlDb()->xml(rowCounter).split(lineSplitChar, QString::SkipEmptyParts);
+				for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2StopParser; lineCounter++) {
+					while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
+						lineCounter++;
+					if ( !qmc2StopParser && lineCounter < xmlLines.count() ) {
+						QString machineElement(xmlLines.at(lineCounter - 1).simplified());
+						if ( !machineElement.contains(" name=\"") )
+							continue;
+						bool isBIOS = value(machineElement, "isbios").compare("yes") == 0;
+						bool isDev = value(machineElement, "isdevice").compare("yes") == 0;
+						QString machineName(value(machineElement, "name"));
+						if ( machineName.isEmpty() ) {
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
+							qApp->processEvents();
+							continue;
 						}
-						endGame = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
-						i++;
-					}
-					if ( machineCloneOf.isEmpty() ) {
-						if ( !hierarchyHash.contains(machineName) )
-							hierarchyHash.insert(machineName, QStringList());
-					} else
-						hierarchyHash[machineCloneOf].append(machineName);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineDescription);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineYear);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineManufacturer);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineSource);
-					machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames.at(int(hasROMs) + int(hasCHDs) * 2));
-					if ( isDev ) {
-						if ( machinePlayers.compare(trQuestionMark) != 0 )
+						QString machineSource(value(machineElement, "sourcefile"));
+						QString machineCloneOf(value(machineElement, "cloneof"));
+						QString descriptionElement(xmlLines.at(lineCounter).simplified());
+						QString machineDescription(descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+						MachineListItem *machineItem = new MachineListItem();
+						qmc2MachineListItemHash.insert(machineName, machineItem);
+						machineItem->setFlags(MachineListItem::defaultItemFlags);
+						machineItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
+						if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) )
+							hiddenItemHash.insert(machineItem, true);
+						// find year & manufacturer and determine ROM/CHD requirements
+						bool endGame = false;
+						int i = lineCounter;
+						QString machineYear(trQuestionMark), machineManufacturer(trQuestionMark), machinePlayers(trQuestionMark), machineDrvStat(trQuestionMark);
+						bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
+						QString endMark("</machine>");
+						while ( !endGame ) {
+							QString xmlLine(xmlLines[i]);
+							if ( xmlLine.contains("<year>") ) {
+								machineYear = xmlLine.simplified().remove("<year>").remove("</year>");
+								yearFound = true;
+							} else if ( xmlLine.contains("<manufacturer>") ) {
+								machineManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+								manufacturerFound = true;
+							} else if ( xmlLine.contains("<rom name") ) {
+								hasROMs = true;
+							} else if ( xmlLine.contains("<disk name") ) {
+								hasCHDs = true;
+							} else if ( xmlLine.contains("<input players") ) {
+								int playersPos = xmlLine.indexOf("input players=\"") + 15;
+								if ( playersPos >= 0 ) {
+									machinePlayers = xmlLine.mid(playersPos, xmlLine.indexOf("\"", playersPos) - playersPos);
+									playersFound = true;
+								}
+							} else if ( xmlLine.contains("<driver status") ) {
+								int statusPos = xmlLine.indexOf("driver status=\"") + 15;
+								if ( statusPos >= 0 ) {
+									machineDrvStat = xmlLine.mid(statusPos, xmlLine.indexOf("\"", statusPos) - statusPos);
+									statusFound = true;
+								}
+							}
+							endGame = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
+							i++;
+						}
+						if ( machineCloneOf.isEmpty() ) {
+							if ( !hierarchyHash.contains(machineName) )
+								hierarchyHash.insert(machineName, QStringList());
+						} else
+							hierarchyHash[machineCloneOf].append(machineName);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, machineDescription);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_YEAR, machineYear);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_MANU, machineManufacturer);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_NAME, machineName);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_SRCFILE, machineSource);
+						machineItem->setText(QMC2_MACHINELIST_COLUMN_RTYPES, romTypeNames.at(int(hasROMs) + int(hasCHDs) * 2));
+						if ( isDev ) {
+							if ( machinePlayers.compare(trQuestionMark) != 0 )
+								machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
+							else
+								machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, tr("N/A"));
+							machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr("N/A"));
+						} else {
 							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
-						else
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, tr("N/A"));
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, tr("N/A"));
-					} else {
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_PLAYERS, machinePlayers);
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations.value(machineDrvStat));
-					}
-					if ( useCategories ) {
-						if ( isBIOS )
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
-						else if ( isDev )
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
-						else {
-							QString *categoryString = categoryHash.value(machineName);
-							machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
+							machineItem->setText(QMC2_MACHINELIST_COLUMN_DRVSTAT, machineStateTranslations.value(machineDrvStat));
 						}
+						if ( useCategories ) {
+							if ( isBIOS )
+								machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemBios);
+							else if ( isDev )
+								machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, trSystemDevice);
+							else {
+								QString *categoryString = categoryHash.value(machineName);
+								machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
+							}
+						}
+						if ( useCatverIni ) {
+							QString *versionString = versionHash.value(machineName);
+							machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
+						}
+						switch ( machineStatusHash.value(machineName) ) {
+							case 'C': 
+								numCorrectMachines++;
+								if ( isBIOS ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
+									biosSets.insert(machineName, true);
+								} else if ( isDev ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
+									deviceSets.insert(machineName, true);
+								} else if ( showROMStatusIcons )
+									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+								break;
+
+							case 'M': 
+								numMostlyCorrectMachines++;
+								if ( isBIOS ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
+									biosSets.insert(machineName, true);
+								} else if ( isDev ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
+									deviceSets.insert(machineName, true);
+								} else if ( showROMStatusIcons )
+									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+								break;
+
+							case 'I':
+								numIncorrectMachines++;
+								if ( isBIOS ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
+									biosSets.insert(machineName, true);
+								} else if ( isDev ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
+									deviceSets.insert(machineName, true);
+								} else if ( showROMStatusIcons )
+									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+								break;
+
+							case 'N':
+								numNotFoundMachines++;
+								if ( isBIOS ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
+									biosSets.insert(machineName, true);
+								} else if ( isDev ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
+									deviceSets.insert(machineName, true);
+								} else if ( showROMStatusIcons )
+									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+								break;
+
+							default:
+								numUnknownMachines++;
+								machineStatusHash[machineName] = 'U';
+								if ( isBIOS ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
+									biosSets.insert(machineName, true);
+								} else if ( isDev ) {
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
+									deviceSets.insert(machineName, true);
+								} else if ( showROMStatusIcons )
+									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+								break;
+						}
+						QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
+						nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
+						loadIcon(machineName, machineItem);
+						if ( machineListCache.isOpen() )
+							tsMachineListCache << machineName << columnSplitChar << machineDescription << columnSplitChar << machineManufacturer << columnSplitChar
+								<< machineYear << columnSplitChar << machineCloneOf << columnSplitChar << (isBIOS ? '1': '0') << columnSplitChar
+								<< (hasROMs ? '1' : '0') << columnSplitChar << (hasCHDs ? '1': '0') << columnSplitChar
+								<< machinePlayers << columnSplitChar << machineDrvStat << columnSplitChar << (isDev ? '1': '0') << columnSplitChar
+								<< machineSource << lineSplitChar;
+						numMachines++;
+						itemList.append(machineItem);
 					}
-					if ( useCatverIni ) {
-						QString *versionString = versionHash.value(machineName);
-						machineItem->setText(QMC2_MACHINELIST_COLUMN_VERSION, versionString ? *versionString : trQuestionMark);
+					if ( numMachines % qmc2MachineListResponsiveness == 0 ) {
+						qmc2MainWindow->progressBarMachineList->setValue(numMachines);
+						qmc2MainWindow->labelMachineListStatus->setText(status());
+						qApp->processEvents();
 					}
-					switch ( machineStatusHash.value(machineName) ) {
-						case 'C': 
-							numCorrectMachines++;
-							if ( isBIOS ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectBIOSImageIcon);
-								biosSets.insert(machineName, true);
-							} else if ( isDev ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectDeviceImageIcon);
-								deviceSets.insert(machineName, true);
-							} else if ( showROMStatusIcons )
-								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
-							break;
-
-						case 'M': 
-							numMostlyCorrectMachines++;
-							if ( isBIOS ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectBIOSImageIcon);
-								biosSets.insert(machineName, true);
-							} else if ( isDev ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectDeviceImageIcon);
-								deviceSets.insert(machineName, true);
-							} else if ( showROMStatusIcons )
-								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
-							break;
-
-						case 'I':
-							numIncorrectMachines++;
-							if ( isBIOS ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectBIOSImageIcon);
-								biosSets.insert(machineName, true);
-							} else if ( isDev ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectDeviceImageIcon);
-								deviceSets.insert(machineName, true);
-							} else if ( showROMStatusIcons )
-								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
-							break;
-
-						case 'N':
-							numNotFoundMachines++;
-							if ( isBIOS ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundBIOSImageIcon);
-								biosSets.insert(machineName, true);
-							} else if ( isDev ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundDeviceImageIcon);
-								deviceSets.insert(machineName, true);
-							} else if ( showROMStatusIcons )
-								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
-							break;
-
-						default:
-							numUnknownMachines++;
-							machineStatusHash[machineName] = 'U';
-							if ( isBIOS ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownBIOSImageIcon);
-								biosSets.insert(machineName, true);
-							} else if ( isDev ) {
-								if ( showROMStatusIcons )
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownDeviceImageIcon);
-								deviceSets.insert(machineName, true);
-							} else if ( showROMStatusIcons )
-								machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
-							break;
-					}
-					QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
-					nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
-					loadIcon(machineName, machineItem);
-					if ( machineListCache.isOpen() )
-						tsMachineListCache << machineName << columnSplitChar << machineDescription << columnSplitChar << machineManufacturer << columnSplitChar
-							<< machineYear << columnSplitChar << machineCloneOf << columnSplitChar << (isBIOS ? '1': '0') << columnSplitChar
-							<< (hasROMs ? '1' : '0') << columnSplitChar << (hasCHDs ? '1': '0') << columnSplitChar
-							<< machinePlayers << columnSplitChar << machineDrvStat << columnSplitChar << (isDev ? '1': '0') << columnSplitChar
-							<< machineSource << lineSplitChar;
-					numMachines++;
-					itemList << machineItem;
-				}
-				if ( numMachines % qmc2MachineListResponsiveness == 0 ) {
-					qmc2MainWindow->progressBarMachineList->setValue(numMachines);
-					qmc2MainWindow->labelMachineListStatus->setText(status());
-					qApp->processEvents();
 				}
 			}
-		}
-		qmc2MainWindow->progressBarMachineList->setValue(numMachines);
+			qmc2MainWindow->progressBarMachineList->setValue(numMachines);
+			machineListCache.close();
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(machineListCache.fileName()));
 	}
-	if ( machineListCache.isOpen() )
-		machineListCache.close();
 	// create hierarchical view
 	bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
 	bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
@@ -1682,7 +1679,7 @@ void MachineList::parse()
 		qmc2HierarchyItemHash.insert(parentName, hierarchyItem);
 		if ( hiddenItemHash.contains(baseItem) )
 			hierarchyHiddenItemHash.insert(hierarchyItem, true);
-		hierarchyItemList << hierarchyItem;
+		hierarchyItemList.append(hierarchyItem);
 		hierarchyItem->setFlags(MachineListItem::defaultItemFlags);
 		hierarchyItem->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		hierarchyItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, baseItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
@@ -2834,8 +2831,8 @@ void MachineList::verifyReadyReadStandardOutput()
 						if ( romItem == qmc2CurrentItem )
 							qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 					}
-					machineStatusHash[romName] = romState;
-					verifiedList << romName;
+					machineStatusHash.insert(romName, romState);
+					verifiedList.append(romName);
 					if ( verifyCurrentOnly ) {
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM status for '%1' is '%2'").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(romStateLong));
 						numUnknownMachines--;
@@ -2882,10 +2879,10 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 		qmc2MainWindow->progressBarMachineList->setFormat(tr("Icon cache - %p%"));
 	else
 		qmc2MainWindow->progressBarMachineList->setFormat("%p%");
-	preloadTimer.start();
 	switch ( qmc2Options->iconFileType() ) {
 		case QMC2_ICON_FILETYPE_ZIP:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from ZIP archive"));
+			preloadTimer.start();
 			foreach (unzFile iconFile, qmc2IconFileMap) {
 				unz_global_info unzGlobalInfo;
 				if ( unzGetGlobalInfo(iconFile, &unzGlobalInfo) == UNZ_OK ) {
@@ -2925,6 +2922,7 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 			break;
 		case QMC2_ICON_FILETYPE_7Z:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from 7z archive"));
+			preloadTimer.start();
 			foreach (SevenZipFile *sevenZipFile, qmc2IconFileMap7z) {
 				qmc2MainWindow->progressBarMachineList->setRange(0, sevenZipFile->entryList().count());
 				qmc2MainWindow->progressBarMachineList->reset();
@@ -2951,6 +2949,7 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 		case QMC2_ICON_FILETYPE_ARCHIVE:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from archive"));
+			preloadTimer.start();
 			foreach (ArchiveFile *archiveFile, qmc2IconArchiveMap) {
 				qmc2MainWindow->progressBarMachineList->setRange(0, 0);
 				qmc2MainWindow->progressBarMachineList->reset();
@@ -2976,6 +2975,7 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 		case QMC2_ICON_FILETYPE_NONE:
 		default:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from directory"));
+			preloadTimer.start();
 			foreach(QString icoDir, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory").toString().split(";", QString::SkipEmptyParts)) {
 				qmc2MainWindow->progressBarMachineList->setRange(0, 0);
 				qmc2MainWindow->progressBarMachineList->reset();
@@ -3138,14 +3138,14 @@ void MachineList::createCategoryView()
 			if ( !categoryItem ) {
 				categoryItem = new QTreeWidgetItem();
 				categoryItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, category);
-				itemList << categoryItem;
+				itemList.append(categoryItem);
 				itemHash[category] = categoryItem;
 				childCountHash[categoryItem] = 0;
 			}
 			QTreeWidgetItem *machineItem = new MachineListItem(categoryItem);
 			childCountHash[categoryItem]++;
 			if ( (machineType == QMC2_MACHINETYPE_BIOS && !showBiosSets) || (machineType == QMC2_MACHINETYPE_DEVICE && !showDeviceSets) ) {
-				hideList << machineItem;
+				hideList.append(machineItem);
 				childCountHash[categoryItem]--;
 			}
 			machineItem->setFlags(MachineListItem::defaultItemFlags);
@@ -3236,9 +3236,9 @@ void MachineList::createCategoryView()
 		foreach (QTreeWidgetItem *item, itemList) {
 			if ( childCountHash.contains(item) ) {
 				if ( childCountHash[item] <= 0 )
-					hideList << item;
+					hideList.append(item);
 			} else
-				hideList << item;
+				hideList.append(item);
 		}
 		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		for (int i = 0; i < hideList.count(); i++)
@@ -3377,14 +3377,14 @@ void MachineList::createVersionView()
 			if ( !versionItem ) {
 				versionItem = new QTreeWidgetItem();
 				versionItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, version);
-				itemList << versionItem;
+				itemList.append(versionItem);
 				itemHash[version] = versionItem;
 			}
 			QTreeWidgetItem *machineItem = new MachineListItem(versionItem);
 			int machineType = int(isBios(machineName)) + int(isDevice(machineName)) * 2; // 0: normal, 1: BIOS, 2: device
 			childCountHash[versionItem]++;
 			if ( (machineType == QMC2_MACHINETYPE_BIOS && !showBiosSets) || (machineType == QMC2_MACHINETYPE_DEVICE && !showDeviceSets) ) {
-				hideList << machineItem;
+				hideList.append(machineItem);
 				childCountHash[versionItem]--;
 			}
 			machineItem->setFlags(MachineListItem::defaultItemFlags);
@@ -3475,9 +3475,9 @@ void MachineList::createVersionView()
 		foreach (QTreeWidgetItem *item, itemList) {
 			if ( childCountHash.contains(item) ) {
 				if ( childCountHash[item] <= 0 )
-					hideList << item;
+					hideList.append(item);
 			} else
-				hideList << item;
+				hideList.append(item);
 		}
 		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		for (int i = 0; i < hideList.count(); i++)
