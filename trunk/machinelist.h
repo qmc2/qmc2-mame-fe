@@ -98,6 +98,7 @@ class MachineList : public QObject
 		bool loadIcon(const QString &, QTreeWidgetItem *);
 		void clearCategoryNames();
 		void clearVersionNames();
+		QString sortCriteriaName(int);
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
 		DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }

@@ -1427,49 +1427,7 @@ void Options::on_pushButtonApply_clicked()
 
 	if ( needResort && !needReload ) {
 		qmc2SortingActive = true;
-		QString sortCriteria = MachineList::trQuestionMark;
-		switch ( qmc2SortCriteria ) {
-			case QMC2_SORT_BY_DESCRIPTION:
-				sortCriteria = QObject::tr("machine description");
-				break;
-			case QMC2_SORT_BY_ROM_STATE:
-				sortCriteria = QObject::tr("ROM state");
-				break;
-			case QMC2_SORT_BY_TAG:
-				sortCriteria = QObject::tr("tag");
-				break;
-			case QMC2_SORT_BY_YEAR:
-				sortCriteria = QObject::tr("year");
-				break;
-			case QMC2_SORT_BY_MANUFACTURER:
-				sortCriteria = QObject::tr("manufacturer");
-				break;
-			case QMC2_SORT_BY_NAME:
-				sortCriteria = QObject::tr("machine name");
-				break;
-			case QMC2_SORT_BY_ROMTYPES:
-				sortCriteria = QObject::tr("ROM types");
-				break;
-			case QMC2_SORT_BY_PLAYERS:
-				sortCriteria = QObject::tr("players");
-				break;
-			case QMC2_SORT_BY_DRVSTAT:
-				sortCriteria = QObject::tr("driver status");
-				break;
-			case QMC2_SORT_BY_SRCFILE:
-				sortCriteria = QObject::tr("source file");
-				break;
-			case QMC2_SORT_BY_RANK:
-				sortCriteria = QObject::tr("rank");
-				break;
-			case QMC2_SORT_BY_CATEGORY:
-				sortCriteria = QObject::tr("category");
-				break;
-			case QMC2_SORT_BY_VERSION:
-				sortCriteria = QObject::tr("version");
-				break;
-		}
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(qmc2MachineList->sortCriteriaName(qmc2SortCriteria)).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 		foreach (QTreeWidgetItem *ti, qmc2ExpandedMachineListItems) {
 			qmc2MainWindow->treeWidgetMachineList->collapseItem(ti);
 			QList<QTreeWidgetItem *> childrenList = ti->takeChildren();

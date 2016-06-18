@@ -305,113 +305,6 @@ extern QMap<HWND, QString> winWindowMap;
 extern QString qmc2CurrentStyleName;
 extern QHash<QString, QString> softwareParentHash;
 
-void MainWindow::log(char logTarget, const QString &msg)
-{
-	if ( !qmc2GuiReady )
-		return;
-	QString message(msg);
-	QString timeString(QTime::currentTime().toString("hh:mm:ss.zzz"));
-	// count subsequent message duplicates
-	switch ( logTarget ) {
-		case QMC2_LOG_FRONTEND:
-			if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
-				return;
-			if ( message.compare(qmc2LastFrontendLogMessage) == 0 ) {
-				qmc2FrontendLogMessageRepeatCount++;
-				qmc2LogFrontendMutex.unlock();
-				return;
-			} else {
-				qmc2LastFrontendLogMessage = message;
-				if ( qmc2FrontendLogMessageRepeatCount > 0 )
-					message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastFrontendLogMessage;
-				qmc2FrontendLogMessageRepeatCount = 0;
-			}
-			break;
-
-		case QMC2_LOG_EMULATOR:
-			if( !qmc2LogEmulatorMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
-				return;
-			if ( message.compare(qmc2LastEmulatorLogMessage) == 0 ) {
-				qmc2EmulatorLogMessageRepeatCount++;
-				qmc2LogEmulatorMutex.unlock();
-				return;
-			} else {
-				qmc2LastEmulatorLogMessage = message;
-				if ( qmc2EmulatorLogMessageRepeatCount > 0 )
-					message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastEmulatorLogMessage;
-				qmc2EmulatorLogMessageRepeatCount = 0;
-			}
-			break;
-
-		default:
-			return;
-	}
-	message.prepend(timeString + ": ");
-	switch ( logTarget ) {
-		case QMC2_LOG_FRONTEND:
-			textBrowserFrontendLog->appendPlainText(message);
-			if ( !qmc2FrontendLogFile ) {
-#if defined(QMC2_SDLMAME)
-				QString defaultFrontendLogPath(Options::configPath() + "/qmc2-sdlmame.log");
-#elif defined(QMC2_MAME)
-				QString defaultFrontendLogPath(Options::configPath() + "/qmc2-mame.log");
-#endif
-				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == 0 ) {
-					qmc2LogFrontendMutex.unlock();
-					return;
-				}
-			}
-			if ( !qmc2FrontendLogFile->isOpen() ) {
-				if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
-					qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
-				else {
-					qmc2LogFrontendMutex.unlock();
-					return;
-				}
-			}
-			qmc2FrontendLogStream << message << "\n";
-			qmc2FrontendLogStream.flush();
-			qmc2LogFrontendMutex.unlock();
-			break;
-
-		case QMC2_LOG_EMULATOR:
-			textBrowserEmulatorLog->appendPlainText(message);
-			if ( !qmc2EmulatorLogFile ) {
-				QString defaultEmuLogPath = QString(Options::configPath()) + "/mame.log";
-				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == 0 ) {
-					qmc2LogEmulatorMutex.unlock();
-					return;
-				}
-			}
-			if ( !qmc2EmulatorLogFile->isOpen() ) {
-				if ( qmc2EmulatorLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
-					qmc2EmulatorLogStream.setDevice(qmc2EmulatorLogFile);
-				else {
-					qmc2LogEmulatorMutex.unlock();
-					return;
-				}
-			}
-			qmc2EmulatorLogStream << message << "\n";
-			qmc2EmulatorLogStream.flush();
-			qmc2LogEmulatorMutex.unlock();
-			break;
-	}
-}
-
-void MainWindow::logScrollToEnd(char logTarget)
-{
-	switch ( logTarget ) {
-		case QMC2_LOG_FRONTEND:
-			textBrowserFrontendLog->horizontalScrollBar()->setValue(textBrowserFrontendLog->horizontalScrollBar()->minimum());
-		        textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
-			break;
-		case QMC2_LOG_EMULATOR:
-			textBrowserEmulatorLog->horizontalScrollBar()->setValue(textBrowserEmulatorLog->horizontalScrollBar()->minimum());
-		        textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
-			break;
-	}
-}
-
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
 {
@@ -425,9 +318,7 @@ MainWindow::MainWindow(QWidget *parent)
 	comboBoxEmuSelector = 0;
 	proxyStyle = 0;
 	swlDb = 0;
-	videoSnapAllowedFormatExtensions
-		<< ".mp4"
-		<< ".avi";
+	videoSnapAllowedFormatExtensions << ".mp4" << ".avi";
 	FileIconProvider::setCacheSize(QMC2_FILEICONPROVIDER_CACHE_SIZE);
 
 	// remember the default style
@@ -1371,8 +1262,8 @@ MainWindow::MainWindow(QWidget *parent)
 	urlSectionRegExp = QString("[%1]+").arg(urlChar);
 
 	connect(treeWidgetMachineList->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetMachineList_verticalScrollChanged(int)));
-	m_glRankUpdateTimer.setSingleShot(true);
-	connect(&m_glRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetMachineList_updateRanks()));
+	m_mlRankUpdateTimer.setSingleShot(true);
+	connect(&m_mlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetMachineList_updateRanks()));
 	connect(treeWidgetHierarchy->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeWidgetHierarchy_verticalScrollChanged(int)));
 	m_hlRankUpdateTimer.setSingleShot(true);
 	connect(&m_hlRankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetHierarchy_updateRanks()));
@@ -1410,6 +1301,114 @@ MainWindow::~MainWindow()
 		delete qmc2StartupDefaultFont;
 	delete loadAnimMovie;
 	delete nullMovie;
+}
+
+void MainWindow::log(int logTarget, const QString &msg)
+{
+	if ( !qmc2GuiReady )
+		return;
+	QString message(msg);
+	QString timeString(QTime::currentTime().toString("hh:mm:ss.zzz"));
+	switch ( logTarget ) {
+		case QMC2_LOG_FRONTEND:
+			if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
+				return;
+			if ( message.compare(qmc2LastFrontendLogMessage) == 0 ) {
+				qmc2FrontendLogMessageRepeatCount++;
+				qmc2LogFrontendMutex.unlock();
+				return;
+			} else {
+				qmc2LastFrontendLogMessage = message;
+				if ( qmc2FrontendLogMessageRepeatCount > 0 )
+					message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastFrontendLogMessage;
+				qmc2FrontendLogMessageRepeatCount = 0;
+			}
+			break;
+		case QMC2_LOG_EMULATOR:
+			if( !qmc2LogEmulatorMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
+				return;
+			if ( message.compare(qmc2LastEmulatorLogMessage) == 0 ) {
+				qmc2EmulatorLogMessageRepeatCount++;
+				qmc2LogEmulatorMutex.unlock();
+				return;
+			} else {
+				qmc2LastEmulatorLogMessage = message;
+				if ( qmc2EmulatorLogMessageRepeatCount > 0 )
+					message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastEmulatorLogMessage;
+				qmc2EmulatorLogMessageRepeatCount = 0;
+			}
+			break;
+		default:
+			return;
+	}
+	message.prepend(timeString + ": ");
+	switch ( logTarget ) {
+		case QMC2_LOG_FRONTEND:
+			textBrowserFrontendLog->appendPlainText(message);
+			if ( !qmc2FrontendLogFile ) {
+#if defined(QMC2_SDLMAME)
+				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", Options::configPath() + "/qmc2-sdlmame.log").toString(), this)) == 0 ) {
+					qmc2LogFrontendMutex.unlock();
+					return;
+				}
+#elif defined(QMC2_MAME)
+				if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", Options::configPath() + "/qmc2-mame.log").toString(), this)) == 0 ) {
+					qmc2LogFrontendMutex.unlock();
+					return;
+				}
+#endif
+			}
+			if ( !qmc2FrontendLogFile->isOpen() ) {
+				if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
+					qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
+				else {
+					qmc2LogFrontendMutex.unlock();
+					return;
+				}
+			}
+			qmc2FrontendLogStream << message << "\n";
+			qmc2FrontendLogStream.flush();
+			qmc2LogFrontendMutex.unlock();
+			break;
+		case QMC2_LOG_EMULATOR:
+			textBrowserEmulatorLog->appendPlainText(message);
+			if ( !qmc2EmulatorLogFile ) {
+				if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/LogFile", Options::configPath() + "/mame.log").toString(), this)) == 0 ) {
+					qmc2LogEmulatorMutex.unlock();
+					return;
+				}
+			}
+			if ( !qmc2EmulatorLogFile->isOpen() ) {
+				if ( qmc2EmulatorLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
+					qmc2EmulatorLogStream.setDevice(qmc2EmulatorLogFile);
+				else {
+					qmc2LogEmulatorMutex.unlock();
+					return;
+				}
+			}
+			qmc2EmulatorLogStream << message << "\n";
+			qmc2EmulatorLogStream.flush();
+			qmc2LogEmulatorMutex.unlock();
+			break;
+		default:
+			break;
+	}
+}
+
+void MainWindow::logScrollToEnd(int logTarget)
+{
+	switch ( logTarget ) {
+		case QMC2_LOG_FRONTEND:
+			textBrowserFrontendLog->horizontalScrollBar()->setValue(textBrowserFrontendLog->horizontalScrollBar()->minimum());
+		        textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+			break;
+		case QMC2_LOG_EMULATOR:
+			textBrowserEmulatorLog->horizontalScrollBar()->setValue(textBrowserEmulatorLog->horizontalScrollBar()->minimum());
+		        textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+			break;
+		default:
+			break;
+	}
 }
 
 void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
@@ -9615,7 +9614,7 @@ void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 void MainWindow::treeWidgetMachineList_verticalScrollChanged(int)
 {
 	if ( !treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
-		m_glRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+		m_mlRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
 }
 
 void MainWindow::treeWidgetMachineList_updateRanks()
@@ -9648,7 +9647,7 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 		if ( endIndex + 1 < treeWidget->topLevelItemCount() )
 			endIndex++;
 		int minWidth = 0;
-		for (int i = startIndex; i <= endIndex && !m_glRankUpdateTimer.isActive(); i++) {
+		for (int i = startIndex; i <= endIndex && !m_mlRankUpdateTimer.isActive(); i++) {
 			QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 			if ( item->isHidden() )
 				continue;

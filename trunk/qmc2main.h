@@ -402,8 +402,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void checkCurrentSearchSelection();
 		void checkCurrentFavoritesSelection();
 		void checkCurrentPlayedSelection();
-		void log(char, const QString &);
-		void logScrollToEnd(char);
+		void log(int, const QString &);
+		void logScrollToEnd(int);
 		void init();
 		void setupStyle(QString);
 		void setupStyleSheet(QString);
@@ -548,7 +548,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void paletteSetupRequested(QString);
 
 	private:
-		QTimer m_glRankUpdateTimer;
+		QTimer m_mlRankUpdateTimer;
 		QTimer m_hlRankUpdateTimer;
 		QTimer m_clRankUpdateTimer;
 		QTimer m_vlRankUpdateTimer;
