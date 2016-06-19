@@ -537,6 +537,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	lineCollectionRebuilderSpecific->setEnabled(enable);
 	checkBoxCollectionRebuilderHashCache->setEnabled(enable);
 	checkBoxCollectionRebuilderDryRun->setEnabled(enable);
+	labelCollectionRebuilderCHDHandling->setEnabled(enable);
+	comboBoxCollectionRebuilderCHDHandling->setEnabled(enable);
 	listWidgetCheckSumDbScannedPaths->clear();
 	QStringList checkSumDbScannedPaths = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPaths", QStringList()).toStringList();
 	QStringList checkSumDbScannedPathsEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbScannedPathsEnabled", QStringList()).toStringList();
@@ -2630,6 +2632,8 @@ void ROMAlyzer::on_groupBoxSetRewriter_toggled(bool enable)
 	lineCollectionRebuilderSpecific->setEnabled(doEnable);
 	checkBoxCollectionRebuilderHashCache->setEnabled(doEnable);
 	checkBoxCollectionRebuilderDryRun->setEnabled(doEnable);
+	labelCollectionRebuilderCHDHandling->setEnabled(doEnable);
+	comboBoxCollectionRebuilderCHDHandling->setEnabled(doEnable);
 	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
 		qmc2MainWindow->update_rebuildRomActions_visibility();
 	else if ( qmc2SoftwareList )
@@ -2655,6 +2659,8 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 	lineCollectionRebuilderSpecific->setEnabled(doEnable);
 	checkBoxCollectionRebuilderHashCache->setEnabled(doEnable);
 	checkBoxCollectionRebuilderDryRun->setEnabled(doEnable);
+	labelCollectionRebuilderCHDHandling->setEnabled(doEnable);
+	comboBoxCollectionRebuilderCHDHandling->setEnabled(doEnable);
 	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
 		qmc2MainWindow->update_rebuildRomActions_visibility();
 	else if ( qmc2SoftwareList )
@@ -4189,6 +4195,8 @@ void ROMAlyzer::checkSumScannerThread_scanStarted()
 	lineCollectionRebuilderSpecific->setEnabled(false);
 	checkBoxCollectionRebuilderHashCache->setEnabled(false);
 	checkBoxCollectionRebuilderDryRun->setEnabled(false);
+	labelCollectionRebuilderCHDHandling->setEnabled(false);
+	comboBoxCollectionRebuilderCHDHandling->setEnabled(false);
 	lineEditCheckSumDbDatabasePath->setEnabled(false);
 	toolButtonBrowseCheckSumDbDatabasePath->setEnabled(false);
 	qApp->processEvents();
@@ -4210,6 +4218,8 @@ void ROMAlyzer::checkSumScannerThread_scanFinished()
 	lineCollectionRebuilderSpecific->setEnabled(enable);
 	checkBoxCollectionRebuilderHashCache->setEnabled(enable);
 	checkBoxCollectionRebuilderDryRun->setEnabled(enable);
+	labelCollectionRebuilderCHDHandling->setEnabled(enable);
+	comboBoxCollectionRebuilderCHDHandling->setEnabled(enable);
 	lineEditCheckSumDbDatabasePath->setEnabled(enable);
 	toolButtonBrowseCheckSumDbDatabasePath->setEnabled(enable);
 	qApp->processEvents();
