@@ -43,7 +43,7 @@ extern MachineList *qmc2MachineList;
 extern bool qmc2ReloadActive;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
-extern bool qmc2StopParser;
+extern bool qmc2LoadingInterrupted;
 extern bool qmc2SuppressQtMessages;
 extern SoftwareList *qmc2SoftwareList;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
@@ -317,11 +317,11 @@ void ROMAlyzer::on_pushButtonAnalyze_clicked()
 	if ( active() ) {
 		// stop ROMAlyzer
 		log(tr("stopping analysis"));
-		qmc2StopParser = true;
+		qmc2LoadingInterrupted = true;
 	} else if ( qmc2MachineList->numMachines > 0 ) {
 		// start ROMAlyzer
 		log(tr("starting analysis"));
-		qmc2StopParser = false;
+		qmc2LoadingInterrupted = false;
 		QTimer::singleShot(0, this, SLOT(analyze()));
 	}
 }
@@ -734,7 +734,7 @@ void ROMAlyzer::analyze()
 					QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 					i = 0;
 					bool matchAll = (lineEditSets->text().simplified() == "*");
-					while ( it.hasNext() && !qmc2StopParser ) {
+					while ( it.hasNext() && !qmc2LoadingInterrupted ) {
 						it.next();
 						progressBar->setValue(++i);
 						QString gameID = it.key();
@@ -759,7 +759,7 @@ void ROMAlyzer::analyze()
 	analyzerList.sort();
 	quickSearch = false;
 
-	if ( !qmc2StopParser ) {
+	if ( !qmc2LoadingInterrupted ) {
 		log(tr("done (determining list of sets to analyze)"));
 		log(tr("%n set(s) to analyze", "", analyzerList.count()));
 		i = 0;
@@ -781,7 +781,7 @@ void ROMAlyzer::analyze()
 					break;
 			}
 			// wait if paused...
-			for (quint64 waitCounter = 0; paused() && !qmc2StopParser; waitCounter++) {
+			for (quint64 waitCounter = 0; paused() && !qmc2LoadingInterrupted; waitCounter++) {
 				if ( waitCounter == 0 ) {
 					log(tr("analysis paused"));
 					pushButtonPause->setText(tr("&Resume"));
@@ -796,7 +796,7 @@ void ROMAlyzer::analyze()
 			bool filesUnknown = false;
 			bool filesError = false;
 
-			if ( qmc2StopParser )
+			if ( qmc2LoadingInterrupted )
 				break;
 
 			// remove the 'oldest' sets from the report if the report limit has been reached
@@ -841,7 +841,7 @@ void ROMAlyzer::analyze()
 					break;
 			}
 
-			if ( qmc2StopParser )
+			if ( qmc2LoadingInterrupted )
 				break;
 
 			// step 2: parse XML data, insert ROMs / CHDs and check-sums as they *should* be
@@ -856,7 +856,7 @@ void ROMAlyzer::analyze()
 			else
 				log(tr("error (parsing XML data for '%1')").arg(setKey));
 
-			if ( qmc2StopParser )
+			if ( qmc2LoadingInterrupted )
 				break;
 
 			if ( !xmlHandler.deviceReferences.isEmpty() )
@@ -880,7 +880,7 @@ void ROMAlyzer::analyze()
 			setRewriterSetName = setKey;
 			setRewriterItem = item;
 
-			for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
+			for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2LoadingInterrupted; fileCounter++) {
 				progressBar->setValue(fileCounter + 1);
 				progressBar->setFormat(QString("%1 / %2").arg(fileCounter + 1).arg(xmlHandler.fileCounter));
 				qApp->processEvents();
@@ -913,7 +913,7 @@ void ROMAlyzer::analyze()
 									 parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_MERGE), childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
 									 &data, &sha1Calculated, &md5Calculated, &zipped, &sevenZipped, &merged, fileCounter, &fallbackPath, optionalRom, &fromCheckSumDb); 
 
-				if ( qmc2StopParser )
+				if ( qmc2LoadingInterrupted )
 					continue;
 
 				if ( effectiveFile.isEmpty() ) {
@@ -1237,7 +1237,7 @@ void ROMAlyzer::analyze()
 			progressBar->reset();
 			qApp->processEvents();
 
-			if ( qmc2StopParser ) 
+			if ( qmc2LoadingInterrupted ) 
 				log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(setKey));
 			else {
 				gameOkay |= filesError;
@@ -1320,10 +1320,10 @@ void ROMAlyzer::analyze()
 
 				if ( gameOkay || !checkBoxSetRewriterGoodDumpsOnly->isChecked() )
 					if ( groupBoxSetRewriter->isChecked() )
-						if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser && !wizardSearch )
+						if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2LoadingInterrupted && !wizardSearch )
 							runSetRewriter();
 			}
-			if ( qmc2StopParser )
+			if ( qmc2LoadingInterrupted )
 				break;
 
 			treeWidgetChecksums->update();
@@ -1353,7 +1353,7 @@ void ROMAlyzer::analyze()
 
 	actionExportToDataFile->setEnabled(!analyzerBadSets.isEmpty());
 
-	if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2StopParser ) {
+	if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2LoadingInterrupted ) {
 		if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
 			on_pushButtonChecksumWizardRepairBadSets_clicked();
 	}
@@ -1603,7 +1603,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 										progressBarFileIO->setRange(0, chdTotalHunks);
 										progressBarFileIO->reset();
 										int step;
-										for (step = 0; step < 2 && !qmc2StopParser; step++) {
+										for (step = 0; step < 2 && !qmc2LoadingInterrupted; step++) {
 											QStringList args;
 											QString oldFormat;
 											if ( progressWidget ) oldFormat = progressWidget->format();
@@ -1688,9 +1688,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 											chdManagerMD5Success = chdManagerSHA1Success = false;
 
 											// wait for CHD manager to finish...
-											while ( chdManagerRunning && !qmc2StopParser ) {
+											while ( chdManagerRunning && !qmc2LoadingInterrupted ) {
 												QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
-												if ( qmc2StopParser ) {
+												if ( qmc2LoadingInterrupted ) {
 													log(tr("CHD manager: terminating external process"));
 													chdManagerProc->kill();
 													chdManagerProc->waitForFinished();
@@ -1712,7 +1712,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 												}
 											}
 											chdManagerRunning = false;
-											if ( !qmc2StopParser ) {
+											if ( !qmc2LoadingInterrupted ) {
 												if ( chdManagerMD5Success && calcMD5 )
 													log(tr("CHD manager: CHD file integrity is good"));
 												else if ( chdManagerSHA1Success && calcSHA1 )
@@ -1845,7 +1845,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 								*fallbackPath = chdFilePath;
 						}
 					} else {
-						while ( (len = romFile.read(buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
+						while ( (len = romFile.read(buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 && !qmc2LoadingInterrupted ) {
 							QByteArray readData((const char *)buffer, len);
 							fileData->append(readData);
 							if ( calcSHA1 )
@@ -1913,7 +1913,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 			}
 		}
 
-		if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
+		if ( effectiveFile.isEmpty() && !qmc2LoadingInterrupted ) {
 			filePath = romPath + "/" + gameName + ".7z";
 			if ( QFile::exists(filePath) ) {
 				QFileInfo fi(filePath);
@@ -2000,7 +2000,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 					log(tr("WARNING: found '%1' but can't read from it - check permission").arg(filePath));
 			}
 
-			if ( !effectiveFile.isEmpty() || qmc2StopParser )
+			if ( !effectiveFile.isEmpty() || qmc2LoadingInterrupted )
 				break;
 
 			filePath = romPath + "/" + gameName + ".zip";
@@ -2066,7 +2066,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 									sha1Hash.reset();
 								if ( calcMD5 )
 									md5Hash.reset();
-								while ( (len = unzReadCurrentFile(zipFile, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
+								while ( (len = unzReadCurrentFile(zipFile, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !qmc2LoadingInterrupted ) {
 									QByteArray readData((const char *)buffer, len);
 									if ( !isCHD )
 										fileData->append(readData);
@@ -2133,17 +2133,17 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 			}
 		}
 
-		if ( !effectiveFile.isEmpty() || qmc2StopParser )
+		if ( !effectiveFile.isEmpty() || qmc2LoadingInterrupted )
 			break;
 	}
 
 	// try merging if applicable...
-	if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
+	if ( effectiveFile.isEmpty() && !qmc2LoadingInterrupted ) {
 		if ( mergeFile.isEmpty() && !merge.isEmpty() ) {
 			// romof/cloneof is set, but the merge's file name is missing... use the same file name for the merge
 			mergeFile = fileName;
 		}
-		if ( !mergeFile.isEmpty() && !qmc2StopParser ) {
+		if ( !mergeFile.isEmpty() && !qmc2LoadingInterrupted ) {
 			// romof/clonef is set, and the merge's file name is given
 			*mergeUsed = true;
 			switch ( mode() ) {
@@ -2167,7 +2167,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 	}
 
 	// try check-sum database if available/applicable...
-	if ( effectiveFile.isEmpty() && !qmc2StopParser && groupBoxCheckSumDatabase->isChecked() ) {
+	if ( effectiveFile.isEmpty() && !qmc2LoadingInterrupted && groupBoxCheckSumDatabase->isChecked() ) {
 		QString wantedSHA1 = myItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
 		quint64 size = myItem->text(QMC2_ROMALYZER_COLUMN_SIZE).toULongLong();
 		if ( checkSumDb()->exists(wantedSHA1, wantedCRC, size) ) {
@@ -2697,7 +2697,7 @@ void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 
 void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 {
-	qmc2StopParser = false;
+	qmc2LoadingInterrupted = false;
 
 	treeWidgetChecksumWizardSearchResult->clear();
 	QString searchedChecksum = lineEditChecksumWizardHash->text().toLower();
@@ -2823,7 +2823,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	lineEditChecksumWizardHash->setReadOnly(false);
 	qApp->processEvents();
 
-	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2StopParser ) {
+	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2LoadingInterrupted ) {
 		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() )
 			on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
 	}
@@ -2855,7 +2855,7 @@ void ROMAlyzer::runSetRewriter()
 			QTreeWidgetItem *item = il[0];
 			while ( item->parent() != 0 ) item = item->parent();
 			if ( item != 0 ) {
-				if ( treeWidgetChecksums->topLevelItemCount() > 1 || qmc2StopParser ) {
+				if ( treeWidgetChecksums->topLevelItemCount() > 1 || qmc2LoadingInterrupted ) {
 					groupBoxSetRewriter->setEnabled(false);
 					bool savedSRWA = checkBoxSetRewriterWhileAnalyzing->isChecked();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(false);
@@ -2870,7 +2870,7 @@ void ROMAlyzer::runSetRewriter()
 							lineEditSets->setText(setKeyTokens[0]);
 							break;
 					}
-					qmc2StopParser = false;
+					qmc2LoadingInterrupted = false;
 					analyze();
 					checkBoxSetRewriterWhileAnalyzing->setChecked(savedSRWA);
 					groupBoxSetRewriter->setEnabled(true);

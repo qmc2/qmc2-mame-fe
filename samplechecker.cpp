@@ -21,7 +21,7 @@ extern Settings *qmc2Config;
 extern MachineList *qmc2MachineList;
 extern bool qmc2CleaningUp;
 extern bool qmc2SampleCheckActive;
-extern bool qmc2StopParser;
+extern bool qmc2LoadingInterrupted;
 extern bool qmc2TemplateCheck;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 
@@ -83,7 +83,7 @@ void SampleChecker::verify()
 {
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying samples"));
 	qmc2SampleCheckActive = true;
-	qmc2StopParser = false;
+	qmc2LoadingInterrupted = false;
 	sampleSets.clear();
 	verifyTimer.start();
 	listWidgetSamplesGood->clear();
@@ -111,7 +111,7 @@ void SampleChecker::verify()
 		progressBar->setValue(rowCounter);
 		if ( rowCounter % QMC2_CHECK_UPDATE_FAST == 0 )
 			qApp->processEvents();
-		for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2StopParser; gameListPos++) {
+		for (int gameListPos = 0; gameListPos < xmlLinesCount && !qmc2LoadingInterrupted; gameListPos++) {
 			QString line = xmlLines[gameListPos];
 			int startIndex = line.indexOf("<machine name=\"");
 			int endIndex = -1;
@@ -160,7 +160,7 @@ void SampleChecker::verify()
 		}
 	}
 
-	if ( qmc2StopParser ) {
+	if ( qmc2LoadingInterrupted ) {
 		progressBar->setFormat(tr("Idle"));
 		progressBar->setRange(-1, -1);
 		progressBar->setValue(-1);
@@ -199,7 +199,7 @@ void SampleChecker::verify()
   
 	QString userScopePath = Options::configPath();
 	QString emuWorkDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
-	for (int i = 0; i < sampleSets.count() && !qmc2StopParser; i++) {
+	for (int i = 0; i < sampleSets.count() && !qmc2LoadingInterrupted; i++) {
 		progressBar->setValue(i + 1);
 		QString sampleSet = sampleSets[i];
 		QProcess commandProc;
@@ -276,7 +276,7 @@ void SampleChecker::verify()
 		sampleTemp.remove();
 	}
 
-	if ( !qmc2StopParser )
+	if ( !qmc2LoadingInterrupted )
 		verifyObsolete();
 
 	listWidgetSamplesGood->sortItems(Qt::AscendingOrder);
@@ -343,7 +343,7 @@ void SampleChecker::on_pushButtonSamplesCheck_clicked()
 {
 	if ( qmc2SampleCheckActive ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("stopping sample check upon user request"));
-		qmc2StopParser = true;
+		qmc2LoadingInterrupted = true;
 		return;
 	}
 

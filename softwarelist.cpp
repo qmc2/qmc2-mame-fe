@@ -45,7 +45,7 @@ extern bool qmc2RetryLoadingImages;
 extern bool qmc2ShowGameName;
 extern int qmc2UpdateDelay;
 extern int qmc2DefaultLaunchMode;
-extern bool qmc2StopParser;
+extern bool qmc2LoadingInterrupted;
 extern bool qmc2CriticalSection;
 extern bool qmc2UseDefaultEmulator;
 extern bool qmc2TemplateCheck;
@@ -1262,7 +1262,7 @@ bool SoftwareList::load()
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << QString("\"%1\"").arg(hashPath);
 
-		if ( !qmc2StopParser ) {
+		if ( !qmc2LoadingInterrupted ) {
 			validData = true;
 			loadFinishedFlag = false;
 			QString emuWorkDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
@@ -1270,8 +1270,8 @@ bool SoftwareList::load()
 				loadProc->setWorkingDirectory(emuWorkDir);
 			loadProc->start(command, args);
 			// FIXME: this is blocking the GUI shortly
-			if ( loadProc->waitForStarted() && !qmc2StopParser ) {
-				while ( !loadFinishedFlag && !qmc2StopParser ) {
+			if ( loadProc->waitForStarted() && !qmc2LoadingInterrupted ) {
+				while ( !loadFinishedFlag && !qmc2LoadingInterrupted ) {
 					qApp->processEvents();
 #if defined(QMC2_OS_MAC)
 					QTest::qWait(10);
@@ -1283,7 +1283,7 @@ bool SoftwareList::load()
 				validData = false;
 		} 
 
-		if ( qmc2StopParser ) {
+		if ( qmc2LoadingInterrupted ) {
 			if ( loadProc->state() == QProcess::Running ) {
 				loadProc->kill();
 				validData = false;

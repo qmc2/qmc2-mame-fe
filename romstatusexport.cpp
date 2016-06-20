@@ -20,7 +20,7 @@ extern Settings *qmc2Config;
 extern bool qmc2WidgetsEnabled;
 extern MachineList *qmc2MachineList;
 extern bool qmc2ExportingROMStatus;
-extern bool qmc2StopParser;
+extern bool qmc2LoadingInterrupted;
 
 ROMStatusExporter::ROMStatusExporter(QWidget *parent)
 	: QDialog(parent)
@@ -328,7 +328,7 @@ void ROMStatusExporter::exportToASCII()
 	bool showMoreChars = ( spinBoxASCIIColumnWidth->value() > 3 );
 	if ( !ascendingOrder )
 		itExport.toBack();
-	while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2StopParser ) {
+	while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2LoadingInterrupted ) {
 		progressBarExport->setValue(++i);
 		qApp->processEvents();
 
@@ -549,7 +549,7 @@ void ROMStatusExporter::exportToCSV()
 	bool ascendingOrder = (comboBoxSortOrder->currentIndex() == 0);
 	if ( !ascendingOrder )
 		itExport.toBack();
-	while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2StopParser ) {
+	while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2LoadingInterrupted ) {
 		progressBarExport->setValue(++i);
 		qApp->processEvents();
 
@@ -797,7 +797,7 @@ void ROMStatusExporter::exportToHTML()
       	bool ascendingOrder = (comboBoxSortOrder->currentIndex() == 0);
       	if ( !ascendingOrder )
 	    	itExport.toBack();
-      	while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2StopParser ) {
+      	while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2LoadingInterrupted ) {
 	    	progressBarExport->setValue(++i);
 	    	qApp->processEvents();
 

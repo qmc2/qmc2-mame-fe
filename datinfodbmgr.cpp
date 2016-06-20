@@ -21,7 +21,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern bool qmc2StopParser;
+extern bool qmc2LoadingInterrupted;
 extern QHash<QString, QString> softwareParentHash;
 
 DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
@@ -557,7 +557,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 		if ( swInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("software info-texts")).arg(QDir::toNativeSeparators(path)));
 			qApp->processEvents();
-			qmc2StopParser = false;
+			qmc2LoadingInterrupted = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				qmc2MainWindow->progressBarMachineList->setFormat(tr("Software info - %p%"));
@@ -571,7 +571,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			quint64 recordsProcessed = 0, pendingUpdates = 0;
 			QRegExp markRegExp("^\\$\\S+\\=\\S+\\,$");
 			QRegExp reduceLinesRegExp("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2StopParser ) {
+			while ( !ts.atEnd() && !qmc2LoadingInterrupted ) {
 				QString singleLineSimplified = ts.readLine().simplified();
 				bool containsMark = singleLineSimplified.contains(markRegExp);
 				while ( !containsMark && !ts.atEnd() ) {
@@ -640,7 +640,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
-			if ( qmc2StopParser ) {
+			if ( qmc2LoadingInterrupted ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("software info")));
 				recreateSoftwareInfoTable();
 				break;
@@ -653,7 +653,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open software info file '%1'").arg(QDir::toNativeSeparators(path)));
 	}
 
-	if ( !qmc2StopParser )
+	if ( !qmc2LoadingInterrupted )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n software info record(s) imported", "", softwareInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
@@ -719,7 +719,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 		if ( emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("emulator info-texts")).arg(QDir::toNativeSeparators(path)));
 			qApp->processEvents();
-			qmc2StopParser = false;
+			qmc2LoadingInterrupted = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				qmc2MainWindow->progressBarMachineList->setFormat(tr("Emu info - %p%"));
@@ -732,7 +732,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
 			quint64 recordsProcessed = 0, pendingUpdates = 0;
 			QRegExp lineBreakRx("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2StopParser ) {
+			while ( !ts.atEnd() && !qmc2LoadingInterrupted ) {
 				QString singleLineSimplified = ts.readLine().simplified();
 				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
@@ -793,7 +793,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarMachineList->setValue(emuInfoDB.pos());
-			if ( qmc2StopParser ) {
+			if ( qmc2LoadingInterrupted ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("emu info")));
 				recreateEmuInfoTable();
 				break;
@@ -807,7 +807,7 @@ void DatInfoDatabaseManager::importEmuInfo(QStringList pathList, bool fromScratc
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open emulator info file %1").arg(QDir::toNativeSeparators(path)));
 	}
 
-	if ( !qmc2StopParser )
+	if ( !qmc2LoadingInterrupted )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n emulator info record(s) imported", "", emuInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
@@ -875,7 +875,7 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 		if ( machineInfoDB.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("importing %1 from '%2'").arg(tr("machine info-texts")).arg(QDir::toNativeSeparators(path)));
 			qApp->processEvents();
-			qmc2StopParser = false;
+			qmc2LoadingInterrupted = false;
 			beginTransaction();
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 				qmc2MainWindow->progressBarMachineList->setFormat(tr("Machine info - %p%"));
@@ -888,7 +888,7 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 			ts.setCodec(QTextCodec::codecForName("UTF-8"));
 			quint64 recordsProcessed = 0, pendingUpdates = 0;
 			QRegExp lineBreakRx("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2StopParser ) {
+			while ( !ts.atEnd() && !qmc2LoadingInterrupted ) {
 				QString singleLineSimplified = ts.readLine().simplified();
 				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
 				while ( !startsWithDollarInfo && !ts.atEnd() ) {
@@ -958,7 +958,7 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
-			if ( qmc2StopParser ) {
+			if ( qmc2LoadingInterrupted ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("import stopped, invalidating %1 table").arg(tr("machine info")));
 				recreateMachineInfoTable();
 				break;
@@ -971,7 +971,7 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: can't open machine info file %1").arg(QDir::toNativeSeparators(path)));
 	}
 
-	if ( !qmc2StopParser )
+	if ( !qmc2LoadingInterrupted )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("%n machine info record(s) imported", "", machineInfoRowCount()));
 
 	if ( !importPaths.isEmpty() ) {
