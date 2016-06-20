@@ -62,10 +62,10 @@ class MachineList : public QObject
 		QString emulatorType;
 		QString emulatorVersion;
 		QString verifyLastLine;
-		QStringList emulatorIdentifiers;
-		QStringList verifiedList;
 		QString xmlLineBuffer;
 		QString statusString;
+		QStringList emulatorIdentifiers;
+		QStringList verifiedList;
 		QHash<QString, QString> driverNameHash;
 		QHash<QString, char> machineStatusHash;
 		QHash<QString, QString *> categoryNames;
@@ -79,7 +79,7 @@ class MachineList : public QObject
 
 		static QStringList romTypeNames;
 		static QStringList phraseTranslatorList;
-		static QHash<QString, QString> reverseTranslation;
+		static QHash<QString, QString> reverseTranslations;
 		static QHash<QString, QString> machineStateTranslations;
 		static bool creatingCatView;
 		static bool creatingVerView;

@@ -208,7 +208,7 @@ QString qmc2LastFrontendLogMessage;
 quint64 qmc2FrontendLogMessageRepeatCount = 0;
 QString qmc2LastEmulatorLogMessage;
 quint64 qmc2EmulatorLogMessageRepeatCount = 0;
-bool qmc2StopParser = false;
+bool qmc2LoadingInterrupted = false;
 QTreeWidgetItem *qmc2CurrentItem = 0;
 QTreeWidgetItem *qmc2LastConfigItem = 0;
 QTreeWidgetItem *qmc2LastGameInfoItem = 0;
@@ -2170,13 +2170,13 @@ void MainWindow::on_actionReload_triggered(bool)
 	if ( qmc2ReloadActive )
 		log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
 	else {
-		qmc2StopParser = false;
+		qmc2LoadingInterrupted = false;
 		qmc2MachineList->enableWidgets(false);
-		if ( !qmc2StopParser && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool()) )
+		if ( !qmc2LoadingInterrupted && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool()) )
 			loadGameInfoDB();
-		if ( !qmc2StopParser && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool()) )
+		if ( !qmc2LoadingInterrupted && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool()) )
 			loadEmuInfoDB();
-		if ( !qmc2StopParser && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB", false).toBool() )
+		if ( !qmc2LoadingInterrupted && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB", false).toBool() )
 			loadSoftwareInfoDB();
 		if ( !qmc2StartingUp && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool() ) {
 			if ( qmc2CurrentItem ) {
@@ -2185,7 +2185,7 @@ void MainWindow::on_actionReload_triggered(bool)
 			} else
 				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
 		}
-		if ( !qmc2StopParser )
+		if ( !qmc2LoadingInterrupted )
 			qmc2MachineList->load();
 		else
 			qmc2MachineList->enableWidgets(true);
@@ -3515,7 +3515,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PARENT_ID$"] = softwareParent;
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED);
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = MachineList::reverseTranslation[qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED)];
+				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_SUPPORTED_UT$"] = MachineList::reverseTranslations.value(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_SUPPORTED));
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_STATUS$"] = qmc2SoftwareList->softwareStatus(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST), qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME), true);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_STATUS_UT$"] = qmc2SoftwareList->softwareStatus(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST), qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME), false);
 	      			qmc2SoftwareNotesEditor->templateMap["$GUI_LANGUAGE$"] = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
@@ -4229,7 +4229,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS);
 				qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_RTYPES);
 				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
-				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = MachineList::reverseTranslation[qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT)];
+				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS_UT$"] = MachineList::reverseTranslations.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT));
 				qmc2SystemNotesEditor->templateMap["$ROM_STATUS$"] = qmc2MachineList->romStatus(gameName, true);
 				qmc2SystemNotesEditor->templateMap["$ROM_STATUS_UT$"] = qmc2MachineList->romStatus(gameName, false);
 				qmc2SystemNotesEditor->templateMap["$IS_BIOS$"] = qmc2MachineList->isBios(gameName) ? "true" : "false";
@@ -5570,7 +5570,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	}
 
 	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingGameInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
-		qmc2StopParser = true;
+		qmc2LoadingInterrupted = true;
 		log(QMC2_LOG_FRONTEND, tr("stopping current processing upon user request"));
 		e->ignore();
 		return;
@@ -8601,8 +8601,8 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
-	qmc2StopParser = false;
-	while ( it.hasNext() && !qmc2StopParser ) {
+	qmc2LoadingInterrupted = false;
+	while ( it.hasNext() && !qmc2LoadingInterrupted ) {
 		it.next();
 		item = qmc2MachineListItemHash.value(it.key());
 		if ( item ) {
@@ -8610,7 +8610,7 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 				qApp->processEvents();
 				qmc2CurrentItem = item;
 				on_actionCheckCurrentROM_triggered();
-				while ( qmc2VerifyActive && !qmc2StopParser )
+				while ( qmc2VerifyActive && !qmc2LoadingInterrupted )
 					QTest::qWait(QMC2_TAGGEDROMCHECK_DELAY);
 			}
 		}
@@ -8677,7 +8677,7 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
-	while ( it.hasNext() && !qmc2StopParser ) {
+	while ( it.hasNext() && !qmc2LoadingInterrupted ) {
 		progressBarMachineList->setValue(count++);
 		it.next();
 		item = qmc2MachineListItemHash.value(it.key());

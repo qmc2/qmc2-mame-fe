@@ -35,7 +35,7 @@ extern Options *qmc2Options;
 extern MachineList *qmc2MachineList;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern bool qmc2ImageCheckActive;
-extern bool qmc2StopParser;
+extern bool qmc2LoadingInterrupted;
 extern bool qmc2IconsPreloaded;
 extern bool qmc2UseIconFile;
 extern Preview *qmc2Preview;
@@ -150,7 +150,7 @@ void ImageCheckerThread::runSystemArtworkCheck()
 		}
 	}
 #endif
-	while ( !exitThread && !qmc2StopParser ) {
+	while ( !exitThread && !qmc2LoadingInterrupted ) {
 		emit log(tr("Thread[%1]: waiting for work").arg(threadNumber));
 		mutex.lock();
 		isWaiting = true;
@@ -159,13 +159,13 @@ void ImageCheckerThread::runSystemArtworkCheck()
 		isActive = true;
 		isWaiting = false;
 		mutex.unlock();
-		if ( !exitThread && !qmc2StopParser ) {
+		if ( !exitThread && !qmc2LoadingInterrupted ) {
 			if ( workUnitMutex.tryLock(QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT) ) {
 				emit log(tr("Thread[%1]: processing work unit with %n entries", "", workUnit.count()).arg(threadNumber));
 				foundList.clear();
 				missingList.clear();
 				foreach (QString machineName, workUnit) {
-					if ( exitThread || qmc2StopParser )
+					if ( exitThread || qmc2LoadingInterrupted )
 						break;
 					QString fileName;
 					QSize imageSize;
@@ -658,7 +658,7 @@ void ImageChecker::startStop()
 				imageWidget = 0;
 				break;
 		}
-		qmc2StopParser = false;
+		qmc2LoadingInterrupted = false;
 		enableWidgets(false);
 		log(tr("%1 check started").arg(imageWidget ? tr("Image") : tr("Icon")));
 		if ( imageWidget ) {
@@ -807,7 +807,7 @@ void ImageChecker::feedWorkerThreads()
 	} while ( waitForThreads );
 
 	bool decompressionDone = false;
-	while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
+	while ( it.hasNext() && qmc2ImageCheckActive && !qmc2LoadingInterrupted ) {
 		if ( !threadMap.isEmpty() ) {
 			// images
 			bool enableStartStop = true;
@@ -847,7 +847,7 @@ void ImageChecker::feedWorkerThreads()
 			if ( selectedThread >= 0 ) {
 				if ( threadMap[selectedThread]->workUnitMutex.tryLock(QMC2_IMGCHK_WU_MUTEX_LOCK_TIMEOUT) ) {
 					QStringList workUnit;
-					while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2StopParser ) {
+					while ( it.hasNext() && qmc2ImageCheckActive && workUnit.count() < QMC2_IMGCHK_WORKUNIT_SIZE && !qmc2LoadingInterrupted ) {
 						it.next();
 						if ( qmc2MachineListItemHash.contains(it.key()) )
 							workUnit << it.key();
@@ -878,7 +878,7 @@ void ImageChecker::feedWorkerThreads()
 			bool firstCheck = true;
 			qmc2MainWindow->progressBarMachineList->setRange(0, qmc2MachineListItemHash.count());
 			qmc2MainWindow->progressBarMachineList->setFormat(QString());
-			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2StopParser ) {
+			while ( it.hasNext() && qmc2ImageCheckActive && !qmc2LoadingInterrupted ) {
 				it.next();
 				QString machineName(it.key());
 				if ( !qmc2MachineListItemHash.contains(machineName) )
@@ -1791,7 +1791,7 @@ void ImageChecker::checkObsoleteFiles()
 		imageFormats << QString(format).toLower();
 	foreach (QString path, fileList) {
 		progressBar->setValue(itemCount++);
-		if ( qmc2StopParser || !isRunning )
+		if ( qmc2LoadingInterrupted || !isRunning )
 			break;
 		QFileInfo fi(path);
 		bool isValidPath = false;
@@ -1972,7 +1972,7 @@ void ImageChecker::updateResults()
 		foreach (ImageCheckerThread *thread, threadMap)
 			if ( !thread->exitThread )
 				runCount++;
-		if ( (runCount == 0 || qmc2StopParser) && isRunning && !threadMap.isEmpty() ) {
+		if ( (runCount == 0 || qmc2LoadingInterrupted) && isRunning && !threadMap.isEmpty() ) {
 			passNumber = -1;
 			QTimer::singleShot(0, this, SLOT(startStop()));
 		}
