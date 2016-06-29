@@ -7,3 +7,7 @@ template.html                   Default system notes template
 
 Shideravan System Template.html Alternative system notes template contributed
                                 by José Marcio Rezende Franco aka Shideravan
+
+Concise.html			An advanced (concise) version of the classic
+				'Shideravan System Template' by José Marcio
+				Rezende Franco aka Shideravan
