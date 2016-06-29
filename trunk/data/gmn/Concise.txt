@@ -1,0 +1,24 @@
+Shideravan Concise Template for QMC2 v1 (27/June/2016)
+
+Copyright (c) 2015 Jose Marcio Rezende Franco
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    
+This is a derivative work from Shideravan System Template for QMC2, its purpose is to be a concise alternative for the classic Shideravan System Template using less resources and with a better performance and optimizations and visual experience as similar as been possible.
+Some features, such videosnaps support, translations and a customizable experience was dropped in favor of a better performance and a more direct approach, not needing any configuration.
+I expect that it could be useful for you.
+
+Recommended for use with QMC2 0.58 and beyond.
+This code are distributed with GPLv2 license.
+http://www.gnu.org/licenses/gpl-2.0.html

@@ -1,0 +1,387 @@
+<!--Concise template for QMC2 v1 (27/June/2016) by Jose Marcio Rezende Franco (Shideravan) - Please look at Concise.txt for more info-->
+<html><head>
+
+<style type="text/css">
+html, body {height: 100%; width: 100%; position: relative; margin: 0;}
+#contentnolink {position: absolute; top: 0; bottom: 19; width: 100%; overflow: auto;}
+#footernolink {position: absolute; bottom: 0; height: 19; width: 100%;}
+</style>
+
+<script language="JavaScript">
+function iconTag(){
+   var data = qmc2NEO.getIconData();
+   if (data != "")  
+      imgTag = "<img style=\"border: 0; vertical-align: bottom; max-height: 32;\" src=\"data:image/png;base64," + data + "\"/>";
+   else imgTag = "";
+   return imgTag;
+}
+
+function barraCor(){
+   switch ("$DRIVER_STATUS_UT$"){
+      case "good": {document.write("<tbody bgcolor=\"#005000\">"); break;}
+      case "imperfect": {document.write("<tbody bgcolor=\"#777700\">"); break;}
+      case "preliminary": {document.write("<tbody bgcolor=\"#700000\">"); break;}
+      default: document.write("<tbody bgcolor=\"#000070\">");
+   }
+}
+
+function barraRom(){
+   if ("$ROM_TYPES$"=="--") document.write("<tbody bgcolor=\"#005000\">");
+   else{
+      switch ("$ROM_STATUS_UT$"){
+         case "correct": {document.write("<tbody bgcolor=\"#005000\">"); break;}
+         case "mostly correct": {document.write("<tbody bgcolor=\"#777700\">"); break;}
+         case "incorrect": {document.write("<tbody bgcolor=\"#700000\">"); break;}
+         case "not found": {document.write("<tbody bgcolor=\"#7f7f7f\">"); break;}
+         default: document.write("<tbody bgcolor=\"#000070\">");
+      }
+   }
+}
+
+function tdCor(tipo, cor){
+        var cases ={
+           "good": function() {document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">"+tipo+": Good</font></td>")},
+           "imperfect": function() {document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#777700\"><font color=\"white\">"+tipo+": Imperfect</font></td>")},
+           "preliminary": function() {document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#700000\"><font color=\"white\">"+tipo+": Preliminary</font></td>")}
+        };
+
+        if (cases[cor]) cases[cor]();
+        else document.write("<td width=\"20%\" align=\"center\" bgcolor=\"#000070\"><font color=\"white\">"+tr(tipo)+": Unsupported</font></td>");
+}
+
+function mostraFonte(v, type, zip){   
+   if(v=="miss") document.write("<i>Not available</i><br>");
+}
+
+function estilImagem(type){
+   var stilo="style=\" border-color: #000;";
+
+   switch (type){
+      case "mrq": {stilo+="max-height: 100px;"; break;}
+      case "prv": {stilo+="height: 200; width: 300;"; break;}
+      default: stilo+="max-height: 200px;";
+   }
+
+   if (type=="prv"||type=="tit") stilo+="max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);";
+   else stilo+="max-width: 100%;";
+
+   stilo+="opacity: 0;\"";
+
+   if (type=="mrq"||type=="tit") stilo+="border=\"1\"";
+   return stilo;
+}
+
+function mostraImagem(url, ttl, dom, type){
+   document.write("<a href=\""+url+"\"><img onload=\"this.style.opacity='1';\" "+estilImagem(type)+" title=\""+ttl+" IMAGE\" src= \""+url+"\"></a>");
+   mostraFonte(dom, type, 1);
+}
+
+if (qmc2NEO.isDevice("$ID$")) var device="1";
+else var device="0";
+
+var bc, ei, mi;
+if ("$EMU_INFO_STATUS$"=="NO_DATA"){
+   ei="0";
+   if ("$GAME_INFO_STATUS$"=="OK") {mi="65"; bc="35";}
+   else {mi="0"; bc="100";}
+}
+
+document.write("</head><body style=\"background-color: #ffffe2;color:#000000;\"><div id=\"contentnolink\"><table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
+
+if (device=="0"){
+   document.write("<table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/@sampleof/string()", false, "machine")){
+      var result = qmc2NEO.getXmlResult(); var len = result.length;
+
+      if (len>0){
+         document.write("<td bgcolor=\"#700000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>Samples: ");
+         for (var i=0; i<len; i++) document.write((i > 0 ? ", " : " ") + result[i]);
+      }
+      else document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"left\"><font color=\"white\"><b>Samples: Not necessary");
+   }
+   else document.write("XML query error!");
+
+   document.write("</font></td>");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/softwarelist/@name/string()", false, "machine")){
+      var result = qmc2NEO.getXmlResult();
+      var len = result.length;
+
+      if (len > 0){
+         document.write("<td bgcolor=\"#005000\" width=\"50%\" align=\"right\"><font color=\"white\"><b>Software List: ");
+
+         for (var i = 0; i < len; i++) document.write((i > 0 ? ", " : " ") + result[i]);
+      }
+      else document.write("<td bgcolor=\"#356035\" width=\"50%\" align=\"right\"><font color=\"white\"><b>Software List: Unsupported");
+   }
+   else document.write("XML query error!");
+}
+else document.write("<td width=\"100%\" align=\"center\" bgcolor=\"#007095\"><font color=\"white\">___________<br>Device set</br>");
+
+document.write("</b></font></td></tr></tbody></table><table cellspacing=\"0\" valign=\"middle\" width=\"100%\"><tr>");
+
+if (device=="0"){
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@emulation/string()", false, "machine"))
+      tdCor("Emulation", qmc2NEO.getXmlResult());
+   else document.write("XML query error!");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@graphic/string()", false, "machine"))
+      tdCor("Graphics", qmc2NEO.getXmlResult());
+   else document.write("XML query error!");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@color/string()", false, "machine"))
+      tdCor("Color", qmc2NEO.getXmlResult());
+   else document.write("XML query error!");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@sound/string()", false, "machine"))
+      tdCor("Sound", qmc2NEO.getXmlResult());
+   else document.write("XML query error!");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/driver/@savestate/string()", false, "machine")){
+      if (qmc2NEO.getXmlResult()=="supported") document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#005000\"><font color=\"white\">S.State: Supported");
+      else document.write("</font></td><td width=\"20%\" align=\"center\" bgcolor=\"#7f7f7f\"><font color=\"white\">S.State: Unsupported");
+   }
+   else document.write("XML query error!");
+}
+document.write("</font></td></tr></table>");
+</script>
+
+<table border="0" cellspacing="2" width="100%" height="200" valign="middle" align="right">
+<tbody><tr>
+<script language="JavaScript">
+
+document.write("<td width=\"300\" height=\"200\" align=\"center\">");
+
+   if ("$TITLE_IMAGE$"!="$GHOST_IMAGE$") mostraImagem("$TITLE_IMAGE$", "TITLE", "local", "tit");
+   else{
+      document.write("<b>Title image:</b><br>");
+      mostraFonte("miss", "n","n");
+   }
+
+document.write("</td><td align=\"center\">");
+
+if ("$MARQUEE_IMAGE$"!="$GHOST_IMAGE$"){
+   mostraImagem("$MARQUEE_IMAGE$", "MARQUEE/LOGO", "local", "mrq");
+   document.write("<font size=\"4\">");
+}
+else document.write("<font size=\"6\">");
+
+document.write("<br><b>$DESCRIPTION$</b></font>");
+
+if (localStorage['SystemNotesTemplate/InfoXML']=='true'){
+   if (device=="0") document.write("<font size=\"3\"><br><i>$MANUFACTURER$, $YEAR$</i>");
+
+   document.write("<br><br><b>Driver");
+
+   if (device=="0") document.write(":<br></b><button title=\"Click here to see the source code in GitHub\" style= \"vertical-align:center;font-size:9px;color:black;background-color:#009FFF;height:19\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/src/mame/drivers/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+   else document.write(":<br></b><button title=\"Click here to see the source code of this device in GitHub\" style= \"vertical-align:center;font-size:9px;color:white;background-color:#007095;height:19\" onclick=\"qmc2NEO.openLinkInDefaultBrowser('https://github.com/mamedev/mame/blob/master/$SOURCE_FILE$')\">$SOURCE_FILE$</button>");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@type/string()", false, "machine")){
+      var type = qmc2NEO.getXmlResult();
+      var len = type.length;
+
+      if (len > 0){
+         for (var i=0;i<len;i++){
+            document.write("<br><b>Screen "+(i+1)+": </b>"+type[i]);
+            qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@width/string()", false, "machine");
+            var width = qmc2NEO.getXmlResult();
+
+            if (width[i]){
+               qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/display/@height/string()", false, "machine");
+               var height = qmc2NEO.getXmlResult();
+               document.write(" ("+width[i]+"x"+height[i]+")");
+            }
+         }
+      }
+      else document.write("<br><b>Screenless System</b>");
+   }
+   else document.write("XML query error!");
+
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/input/control/@type/string()", false, "machine")){
+      var result = qmc2NEO.getXmlResult();
+      var tam = result.length;
+
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/input/@buttons/string()", false, "machine");
+      var buttons = qmc2NEO.getXmlResult();
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/input/control/@ways/string()", false, "machine");
+      var ways = qmc2NEO.getXmlResult();
+
+      if (tam>0){
+         for (var i=0; i<tam; i++){
+            document.write("<br><b>Control - "+result[i]);
+            if (buttons>0) document.write(":</b> "+buttons+" buttons");
+            if (ways[i]) document.write("</b> ("+ways[i]+" ways)");
+         }
+      }
+      else document.write("<br><b>No Controller</b>");
+   }
+   else document.write("XML query error!");
+}
+
+else{
+   document.write("<br><br>");
+   if (device=="0") document.write("<b>Manufacturer: </b>$MANUFACTURER$<br><b>Release date: </b>$YEAR$");
+}
+   if ("$PLAYERS$">0) document.write("<br><b>Players: </b></b>$PLAYERS$");
+   if ("$VERSION$" != "?") document.write("<br><b>Version: </b>$VERSION$");
+
+   document.write("<br><b>");
+
+   if("$PARENT_ID$" != "") document.write("Clone of: </b>$PARENT_ID$");
+   else document.write("MAIN SYSTEM!!!</b>");
+
+if (device=="0"){
+   if (qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@name/string()", false, "machine"))   {
+      var result = qmc2NEO.getXmlResult();
+      var len = result.length;
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@tag/string()", false, "machine");
+      var tag = qmc2NEO.getXmlResult();
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@type/string()", false, "machine");
+      var type = qmc2NEO.getXmlResult();
+      qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/chip/@clock/string()", false, "machine");
+      var clock = qmc2NEO.getXmlResult();
+      document.write("<td max-width=\"25%\" align=\"center\"><b><u>"+len+" PROCESSOR(S) </u></b><br>");
+
+      if (len>0){
+         var i=0;
+
+         if (type[i]=="cpu") document.write("<br><b>CPU:</b><br>");
+         while (type[i]=="cpu"){
+            document.write("<b>"+tag[i]+":</b> "+result[i]);
+            if (clock[i]){
+               c=(clock[i] / 1048576);
+               c=Math.round(c*100)/100;
+               document.write(" ("+c+" MHz)<br>");
+            }
+            else document.write("<br>");
+            i++;
+         }
+
+         if (type[i]=="audio") document.write("<br><b>Audio:</b><br>");
+         while (type[i]=="audio"){
+            document.write("<b>"+tag[i]+":</b> "+result[i]);
+            if (clock[i]){
+               c=(clock[i] / 1048576);
+               c=Math.round(c*100)/100;
+               document.write(" ("+c+" MHz)<br>");
+            }
+            else document.write("<br>");
+            i++;
+         }
+         if (i<len) document.write("<br><b>Others:</b><br>");
+         while (i<len){
+            document.write("<b>"+tag[i]+" ("+type[i]+"):</b> "+result[i]);
+            if (clock[i]){
+               c=(clock[i] / 1048576);
+               c=Math.round(c*100)/100;
+               document.write(" ("+c+" MHz)<br>");
+            }
+            else document.write("<br>");
+            i++;
+         }
+         document.write("</td>");
+      }
+      else document.write("<td max-width=\"25%\" align=\"center\"><br><b> NO PROCESSORS </b></td>");
+   }
+   else document.write("XML query error!");
+}
+
+document.write("</font></td><td width=\"300\" height=\"200\" valign=\"middle\" align=\"center\">");
+if ("$PREVIEW_IMAGE$"!="$GHOST_IMAGE$") mostraImagem("$PREVIEW_IMAGE$", "PREVIEW", "local", "prv");
+else{
+   document.write("<b>Preview image:</b><br>");
+   mostraFonte("miss", "n","n");
+}
+
+document.write("</td></tr></tbody></table><table cellspacing=\"0\" valign=\"middle\" height=\"34\" width=\"100%\">");
+
+if (device=="0") barraCor();
+else document.write("<tbody bgcolor=\"#007095\">");
+</script>
+
+<tr><td width="33%" align="left" valign="middle"><font size="6" style="color:white">
+<b valign="middle">$ID$</b>
+
+<script language="JavaScript">
+if (qmc2NEO.isBios("$ID$")) document.write("<font size=\"4\">(BIOS set)</font>");
+rank=qmc2NEO.rank("$ID$");
+document.write("<font size=\"6\"><b>");
+
+for(i=0;i<rank;i++) document.write("<img  style=\"border: 0; vertical-align: center; max-height: 16;\" src=\"../img/favorites.png\"></img>");
+
+document.write("</b></font></td><td width=\"33%\" align=\"center\" valign=\"middle\"><font size=\"5\" color=\"white\">");
+
+if (device=="0") document.write("<b>Driver: $DRIVER_STATUS$</b>");
+else document.write("<b>Device set</b>");
+</script>
+</font></td>
+
+<td width="33%" align="right" valign="middle"><font size="5" style="color:white"><i>$CATEGORY$</i></font>
+<td width="32" align="right" valign="middle">
+
+<script language="JavaScript">
+document.write(iconTag());
+document.write("</td></tr></tbody></table><table cellspacing=\"0\" width=\"100%\" height=\"100%\" style=\"table-layout: fixed;\"><tbody><tr>");
+document.write("<td width=\""+ei+"%\" valign=\"top\">");
+</script>
+
+<font size="4"><div style="vertical-align: top" align="left" height="100%" style="overflow : auto;">$EMU_INFO$</font></div></td>
+
+<script language="JavaScript">
+document.write("<td bgcolor=\"#00000\" valign=\"top\" width=\""+bc+"%\" height=\"100%\"><div align=\"center\" style=\"width: 100%; overflow : auto\"><font size=\"3\" color=\"white\">");
+
+document.write("<b>Cabinet image:</b><br>");
+if ("$CABINET_IMAGE$" != "$GHOST_IMAGE$") mostraImagem("$CABINET_IMAGE$", "CABINET", "local", "cab");
+else mostraFonte("miss", "n", "n");
+document.write("<br><br>"); 
+
+document.write("<b>Controller image:</b><br>");
+if ("$CONTROLLER_IMAGE$" != "$GHOST_IMAGE$") mostraImagem("$CONTROLLER_IMAGE$", "CONTROLLER", "local", "ctl");
+else mostraFonte("miss", "n", "n");
+document.write("<br><br>");
+
+document.write("<b>Flyer image:</b><br>");
+if ("$FLYER_IMAGE$" != "$GHOST_IMAGE$") mostraImagem("$FLYER_IMAGE$", "FLYER", "local", "fly");
+else mostraFonte("miss", "n", "n");
+document.write("<br><br>");
+
+document.write("<b>PCB image:</b><br>");
+if ("$PCB_IMAGE$" != "$GHOST_IMAGE$") mostraImagem("$PCB_IMAGE$", "PCB", "local", "pcb");
+else mostraFonte("miss", "n", "n");
+document.write("<br><br>");
+
+var customArtworkNames = qmc2NEO.customSystemArtwork();
+if (customArtworkNames.length>0){
+   for (var cont=0; cont < customArtworkNames.length; cont++){
+     var artworkKey = customArtworkNames[cont];
+     var artworkName = customArtworkNames[cont].replace("&", "");
+     var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkKey);
+
+     document.write("<b>"+artworkName+":</b><br>");
+
+     if (imageUrl != "$GHOST_IMAGE$") mostraImagem(imageUrl, artworkName, "local", artworkName);
+     else mostraFonte("miss", "n", "n");
+
+     document.write("<br><br>");
+   }
+}
+else{
+   if(ei=="0"&&mi=="0") document.write("<td style=\"background-color: #ffffe2\"  width=\"100%\" height=\"100%\">");
+   else document.write("<td bgcolor=\"#00000\" width=\"1\" height=\"100%\">");
+}
+
+document.write("</div></td><td valign=\"top\" width=\""+mi+"%\">");
+</script>
+
+<font size="4"><div align="left" height="100%" style="overflow : auto">$GAME_INFO$</div></font></td></tr></tbody></table></div>
+<div id="footernolink"><table border="0" cellspacing="0" valign="top" width="100%">
+
+<script language="JavaScript">
+barraRom();
+document.write("<td align=\"center\" valign=\"middle\"><font size=\"5\"><font style=\"color:white\"><b>");
+if ("$ROM_TYPES$"=="--") document.write("SYSTEM WITHOUT ROM");
+else document.write("$ROM_TYPES$ Status: $ROM_STATUS$");
+</script>
+
+</b></font></tr></td></tbody></table></body></html>
