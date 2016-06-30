@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -560,7 +560,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="251"/>
         <location filename="../../additionalartworksetup.cpp" line="335"/>
         <source>use semicolon (;) to separate multiple archives</source>
-        <translation type="unfinished"></translation>
+        <translation>use ponto e vírgula (;) para separar múltiplos arquivos</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="252"/>
@@ -591,7 +591,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../additionalartworksetup.cpp" line="259"/>
         <location filename="../../additionalartworksetup.cpp" line="342"/>
         <source>use semicolon (;) to separate multiple folders</source>
-        <translation type="unfinished"></translation>
+        <translation>use ponto e vírgula (;) para separar múltiplos arquivos</translation>
     </message>
     <message>
         <location filename="../../additionalartworksetup.cpp" line="260"/>
@@ -1408,7 +1408,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -1482,58 +1482,58 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../catverinioptimizer.ui" line="14"/>
         <source>Optimize catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Otimizar catver.ini</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="20"/>
         <source>Optimizer log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log do otimizador</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="33"/>
         <source>Optimizer status / progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado do otimizador / progresso</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="39"/>
         <location filename="../../catverinioptimizer.cpp" line="204"/>
         <source>Idle</source>
-        <translation type="unfinished">Ocioso</translation>
+        <translation>Ocioso</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="46"/>
         <source>Optimize catver.ini now</source>
-        <translation type="unfinished"></translation>
+        <translation>Otimizar catver.ini agora</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="49"/>
         <source>Optimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Otimizar</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="59"/>
         <source>Close this dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar esse diálogo</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.ui" line="62"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="40"/>
         <source>click &apos;optimize&apos; to start</source>
-        <translation type="unfinished"></translation>
+        <translation>clique &apos;otimizar&apos; para iniciar</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="80"/>
         <source>loading catver.ini data from &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando dados do catver.ini de &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="34"/>
         <source>ERROR: file name is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: nome do arquivo vazio</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="34"/>
@@ -1541,107 +1541,107 @@ p, li { white-space: pre-wrap; }
         <location filename="../../catverinioptimizer.cpp" line="46"/>
         <location filename="../../catverinioptimizer.cpp" line="119"/>
         <source>no catver.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhum dado disponível de catver.ini</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="42"/>
         <source>ERROR: &apos;%1&apos; isn&apos;t readable</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: &apos;%1&apos; não pode ser lido</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="46"/>
         <source>ERROR: &apos;%1&apos; doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: &apos;%1&apos; não existe</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="119"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir &apos;%1&apos; para leitura</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="122"/>
         <source>done (loading catver.ini data from &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados do catver.ini de &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="123"/>
         <source>%1 category / %2 version records loaded</source>
-        <translation type="unfinished">%1 categoria / %2 versão de registros carregados</translation>
+        <translation>%1 categoria / %2 versão de registros carregados</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="131"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir %1 para escrita</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="135"/>
         <source>Optimizing</source>
-        <translation type="unfinished"></translation>
+        <translation>Otimizando</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="153"/>
         <source>removed invalid set &apos;%1&apos; with category &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>removido conjunto inválido &apos;%1&apos; com categoria &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="159"/>
         <source>removed device set &apos;%1&apos; with category &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>removido conjunto de dispositivo &apos;%1&apos; com categoria &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="163"/>
         <source>removed BIOS set &apos;%1&apos; with category &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>removido conjunto de BIOS &apos;%1&apos; com categoria &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="168"/>
         <source>kept parent set &apos;%1&apos; with category &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>mantido conjunto pai &apos;%1&apos; com categoria &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="173"/>
         <source>added parent set &apos;%1&apos; with category &apos;%2&apos; and removed clone set &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>adicionado conjunto pai &apos;%1&apos; com categoria &apos;%2&apos; e removido conjunto clone &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="176"/>
         <source>removed clone set &apos;%1&apos; with category &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>removido conjunto clone &apos;%1&apos; com categoria &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="194"/>
         <source>removed invalid set &apos;%1&apos; with version &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>removido conjunto inválido &apos;%1&apos; com versão &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="198"/>
         <source>kept %1 set &apos;%2&apos; with version &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>mantido conjunto &apos;%1&apos; &apos;%2&apos; com versão &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="198"/>
         <source>parent</source>
-        <translation type="unfinished"></translation>
+        <translation>pai</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="198"/>
         <source>clone</source>
-        <translation type="unfinished"></translation>
+        <translation>clone</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="201"/>
         <source>changes to categories / versions: %1 / %2</source>
-        <translation type="unfinished"></translation>
+        <translation>mudanças para categorias / versões: %1 / %2</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="214"/>
         <source>optimizer started</source>
-        <translation type="unfinished"></translation>
+        <translation>otimizador iniciado</translation>
     </message>
     <message>
         <location filename="../../catverinioptimizer.cpp" line="217"/>
         <source>optimizer ended</source>
-        <translation type="unfinished"></translation>
+        <translation>otimizador terminado</translation>
     </message>
 </context>
 <context>
@@ -2695,17 +2695,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1676"/>
         <source>WARNING: &apos;%1&apos; and &apos;%2&apos; are NOT on the same file system, hard-linking will not work</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: &apos;%1&apos; e &apos;%2&apos; NÃO estão no mesmo sistema de arquivos, criação de hard-links não irá funcionar</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1700"/>
         <source>hard-linking CHD file &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>criando hard-link de arquivo CHD &apos;%1&apos; para &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1713"/>
         <source>failed hard-linking &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>falha ao criar hard-link &apos;%1&apos; para &apos;%2 </translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1716"/>
@@ -2713,43 +2713,43 @@ p, li { white-space: pre-wrap; }
         <location filename="../../collectionrebuilder.cpp" line="1816"/>
         <location filename="../../collectionrebuilder.cpp" line="1881"/>
         <source>invalid file type &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>tipo de arquivo &apos;%1&apos; inválido</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1746"/>
         <source>sym-linking CHD file &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>criando link simbólico de arquivo CHD &apos;%1&apos; para &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1755"/>
         <source>failed sym-linking &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>falha ao criar link simbólico &apos;%1&apos; para &apos;%2 </translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1677"/>
         <location filename="../../collectionrebuilder.cpp" line="1788"/>
         <source>copying CHD file &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>copiando arquivo CHD &apos;%1&apos; para &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1676"/>
         <source>falling back to copy mode</source>
-        <translation type="unfinished"></translation>
+        <translation>usando modo de cópia como alternativa</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1813"/>
         <source>failed copying &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>falha ao copiar &apos;%1&apos; para &apos;%2 </translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1848"/>
         <source>moving CHD file &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>movendo arquivo CHD &apos;%1&apos; para &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1878"/>
         <source>failed moving &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>falha ao mover &apos;%1&apos; para &apos;%2 </translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1948"/>
@@ -8292,67 +8292,67 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="1219"/>
         <source>WARNING: the machine list cache is invalid, forcing a refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o cache da lista de máquinas é inválido, forçando atualização</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1859"/>
         <source>machine description</source>
-        <translation type="unfinished">descrição da máquina</translation>
+        <translation>descrição da máquina</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1863"/>
         <source>tag</source>
-        <translation type="unfinished">etiqueta</translation>
+        <translation>etiqueta</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1865"/>
         <source>year</source>
-        <translation type="unfinished">ano</translation>
+        <translation>ano</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1867"/>
         <source>manufacturer</source>
-        <translation type="unfinished">fabricante</translation>
+        <translation>fabricante</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1869"/>
         <source>machine name</source>
-        <translation type="unfinished">nome da máquina</translation>
+        <translation>nome da máquina</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1871"/>
         <source>ROM types</source>
-        <translation type="unfinished">Tipos de ROM</translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1873"/>
         <source>players</source>
-        <translation type="unfinished">jogadores</translation>
+        <translation>jogadores</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1875"/>
         <source>driver status</source>
-        <translation type="unfinished">estado do driver</translation>
+        <translation>estado do driver</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1877"/>
         <source>source file</source>
-        <translation type="unfinished">arquivo fonte</translation>
+        <translation>arquivo fonte</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1879"/>
         <source>rank</source>
-        <translation type="unfinished">classificação</translation>
+        <translation>classificação</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1881"/>
         <source>category</source>
-        <translation type="unfinished">categoria</translation>
+        <translation>categoria</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1883"/>
         <source>version</source>
-        <translation type="unfinished">versão</translation>
+        <translation>versão</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1959"/>
@@ -9874,7 +9874,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5703"/>
         <source>destroying media player</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo tocador de mídia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5886"/>
@@ -13009,7 +13009,7 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="411"/>
         <location filename="../../options.cpp" line="413"/>
         <source>use semicolon (;) to separate multiple folders</source>
-        <translation type="unfinished"></translation>
+        <translation>use ponto e vírgula (;) para separar múltiplas pastas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="396"/>
@@ -13022,7 +13022,7 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="410"/>
         <location filename="../../options.cpp" line="412"/>
         <source>use semicolon (;) to separate multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>use ponto e vírgula (;) para separar múltiplos arquivos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1321"/>
@@ -15352,7 +15352,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="3051"/>
         <source>Optimize catver.ini for faster loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Otimizar catver.ini para carregamento mais rápido</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3069"/>
@@ -15998,7 +15998,7 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../options.ui" line="5455"/>
         <location filename="../../options.ui" line="5458"/>
         <source>Skip emulator identification when the file&apos;s modification time hasn&apos;t changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar identificação de emulador quando o tempo de modificação do arquivo não foi alterado</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5541"/>
@@ -19106,32 +19106,32 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="557"/>
         <source>Select how CHDs are handled</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar como CHD&apos;s serão gerenciados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="561"/>
         <source>Don&apos;t reproduce</source>
-        <translation type="unfinished"></translation>
+        <translation>Não reproduzir</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="566"/>
         <source>Create hard links</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar hard links</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="571"/>
         <source>Create symbolic links</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar links simbólicos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="576"/>
         <source>Copy files</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar arquivos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="581"/>
         <source>Move files</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover arquivos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="672"/>
@@ -19384,7 +19384,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="547"/>
         <source>CHD handling</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciamento de CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1631"/>
