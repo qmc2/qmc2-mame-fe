@@ -21,7 +21,7 @@ inf: informational only
 	<li>fix: image checker: corrected checking for obsolete icon files when read from a directory (this verified only PNGs as valid but the restriction is long gone)</li>
 	<li>imp: video player: accept youtu.be besides youtube.com when copy-pasting video URLs</li>
 	<li>imp: updated category.ini to MAME 0.175</li>
-	<li>imp: emulator configuration templates updated to MAME 0.175 (removed option 'antialias')</li>
+	<li>imp: emulator configuration templates updated to MAME 0.175 (removed core option 'antialias', added Windows-specific option 'vector_beam_smooth')</li>
 	<li>imp: changed the default command line for the 7zip removal tool to include <code>-mhc=off</code> (disables header compression which libarchive doesn't support) and <code>-ms=off</code> (disables solid blocks which are generally counter productive for our use case)</li>
 	<li>imp: pre-caching icons from a directory will no longer block the GUI and works faster now (using QDirIterator)</li>
 	<li>imp: updated PDF.js to a newer git revision (as of 11-JUN-2016)</li>
