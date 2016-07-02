@@ -79,6 +79,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			itemselect.cpp \
 			romalyzer.cpp \
 			machinelist.cpp \
+			machinelistdbmgr.cpp \
 			processmanager.cpp \
 			imagewidget.cpp \
 			preview.cpp \
@@ -207,6 +208,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			itemselect.h \
 			romalyzer.h \
 			machinelist.h \
+			machinelistdbmgr.h \
 			processmanager.h \
 			imagewidget.h \
 			preview.h \
