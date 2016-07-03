@@ -1214,8 +1214,10 @@ void MachineList::parse()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the machine list cache is invalid, forcing a refresh"));
 			reparseMachineList = true;
 		}
-		if ( machineListDb()->isEmpty() )
+		if ( machineListDb()->isEmpty() ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the machine list database is invalid, forcing a refresh"));
 			reparseMachineList = true;
+		}
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
 		if ( !reparseMachineList && !qmc2LoadingInterrupted ) {
@@ -1822,10 +1824,12 @@ void MachineList::parse()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully parsed, invalidating machine list cache"));
 			QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
 			f.remove();
-		} else if ( !qmc2LoadingInterrupted) {
+			machineListDb()->recreateDatabase();
+		} else if ( !qmc2LoadingInterrupted ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list cache is out of date, invalidating machine list cache"));
 			QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
 			f.remove();
+			machineListDb()->recreateDatabase();
 		}
 	}
 	QString sL(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark);
