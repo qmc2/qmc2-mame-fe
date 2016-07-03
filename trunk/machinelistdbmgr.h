@@ -26,6 +26,9 @@ class MachineListDatabaseManager : public QObject
 
 		QString id(int rowid);
 		bool exists(QString id);
+		bool logActive() { return m_logActive; }
+		void setLogActive(bool enable) { m_logActive = enable; }
+		bool isEmpty();
 
 		qint64 machineListRowCount();
 		qint64 nextRowId(bool refreshRowIds = false);
@@ -50,6 +53,7 @@ class MachineListDatabaseManager : public QObject
 		QString m_connectionName;
 		QList<qint64> m_rowIdList;
 		qint64 m_lastRowId;
+		bool m_logActive;
 };
 
 #endif

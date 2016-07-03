@@ -166,7 +166,8 @@ qint64 CheckSumDatabaseManager::checkSumRowCount()
 			return -1;
 	} else {
 		emitlog(tr("WARNING: failed to fetch row count from check-sum database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
 }
 
 qint64 CheckSumDatabaseManager::nextRowId(bool refreshRowIds)

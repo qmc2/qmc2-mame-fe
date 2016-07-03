@@ -1214,6 +1214,8 @@ void MachineList::parse()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the machine list cache is invalid, forcing a refresh"));
 			reparseMachineList = true;
 		}
+		if ( machineListDb()->isEmpty() )
+			reparseMachineList = true;
 		bool useCatverIni = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCatverIni", false).toBool();
 		bool useCategories = useCatverIni | qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/UseCategoryIni", false).toBool();
 		if ( !reparseMachineList && !qmc2LoadingInterrupted ) {

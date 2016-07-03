@@ -2611,7 +2611,7 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 			return;
 		}
 	}
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", Options::configPath() + "/mame.mlc").toString();
+	QString fileName(qmc2Config->value("MAME/FilesAndDirectories/MachineListCacheFile", Options::configPath() + "/mame.mlc").toString());
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2619,6 +2619,9 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the machine list cache file '%1', please check permissions").arg(fileName));
 	}
+	qmc2MachineList->machineListDb()->setLogActive(true);
+	qmc2MachineList->machineListDb()->recreateDatabase();
+	qmc2MachineList->machineListDb()->setLogActive(false);
 }
 
 void MainWindow::on_actionClearXMLCache_triggered(bool)
