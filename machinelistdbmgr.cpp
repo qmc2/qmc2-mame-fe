@@ -167,6 +167,15 @@ qint64 MachineListDatabaseManager::machineListRowCount()
 	}
 }
 
+bool MachineListDatabaseManager::isEmpty()
+{
+	QSqlQuery query(m_db);
+	if ( query.exec(QString("SELECT * FROM %1").arg(m_tableBasename)) )
+		return !query.first();
+	else
+		return true;
+}
+
 qint64 MachineListDatabaseManager::nextRowId(bool refreshRowIds)
 {
 	if ( refreshRowIds ) {
