@@ -28,7 +28,7 @@ class MachineListDatabaseManager : public QObject
 		bool exists(QString id);
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
-		bool isEmpty() { return machineListRowCount() <= 0; }
+		bool isEmpty();
 
 		qint64 machineListRowCount();
 		qint64 nextRowId(bool refreshRowIds = false);
