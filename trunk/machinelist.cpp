@@ -233,6 +233,9 @@ MachineList::MachineList(QObject *parent)
 	m_datInfoDb = new DatInfoDatabaseManager(this);
 	datInfoDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 	datInfoDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	m_machineListDb = new MachineListDatabaseManager(this);
+	machineListDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+	machineListDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
 }
 
 MachineList::~MachineList()
@@ -257,11 +260,14 @@ MachineList::~MachineList()
 		delete iconFile;
 	}
 #endif
-	QString connectionName(m_xmlDb->connectionName());
-	delete m_xmlDb;
+	QString connectionName(xmlDb()->connectionName());
+	delete xmlDb();
 	QSqlDatabase::removeDatabase(connectionName);
-	connectionName = m_userDataDb->connectionName();
-	delete m_userDataDb;
+	connectionName = userDataDb()->connectionName();
+	delete userDataDb();
+	QSqlDatabase::removeDatabase(connectionName);
+	connectionName = machineListDb()->connectionName();
+	delete machineListDb();
 	QSqlDatabase::removeDatabase(connectionName);
 }
 
@@ -1442,6 +1448,10 @@ void MachineList::parse()
 		else
 			qmc2MainWindow->progressBarMachineList->setFormat("%p%");
 		if ( machineListCache.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			machineListDb()->recreateDatabase();
+			machineListDb()->setEmulatorVersion(emulatorVersion);
+			machineListDb()->setQmc2Version(XSTR(QMC2_VERSION));
+			machineListDb()->setMachineListVersion(QMC2_MACHINELIST_DB_VERSION);
 			tsMachineListCache.setDevice(&machineListCache);
 			tsMachineListCache.setCodec(QTextCodec::codecForName("UTF-8"));
 			tsMachineListCache.reset();
@@ -1452,6 +1462,8 @@ void MachineList::parse()
 			// parse XML data
 			numMachines = numUnknownMachines = 0;
 			qint64 xmlRowCount = xmlDb()->xmlRowCount();
+			machineListDb()->beginTransaction();
+			int pendingDbUpdates = 0;
 			for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2LoadingInterrupted; rowCounter++) {
 				QStringList xmlLines = xmlDb()->xml(rowCounter).split(lineSplitChar, QString::SkipEmptyParts);
 				for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2LoadingInterrupted; lineCounter++) {
@@ -1623,12 +1635,18 @@ void MachineList::parse()
 						QTreeWidgetItem *nameItem = new QTreeWidgetItem(machineItem);
 						nameItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, trWaitingForData);
 						loadIcon(machineName, machineItem);
-						if ( machineListCache.isOpen() )
-							tsMachineListCache << machineName << columnSplitChar << machineDescription << columnSplitChar << machineManufacturer << columnSplitChar
-								<< machineYear << columnSplitChar << machineCloneOf << columnSplitChar << (isBIOS ? '1': '0') << columnSplitChar
-								<< (hasROMs ? '1' : '0') << columnSplitChar << (hasCHDs ? '1': '0') << columnSplitChar
-								<< machinePlayers << columnSplitChar << machineDrvStat << columnSplitChar << (isDev ? '1': '0') << columnSplitChar
-								<< machineSource << lineSplitChar;
+						tsMachineListCache << machineName << columnSplitChar << machineDescription << columnSplitChar << machineManufacturer << columnSplitChar
+							<< machineYear << columnSplitChar << machineCloneOf << columnSplitChar << (isBIOS ? '1': '0') << columnSplitChar
+							<< (hasROMs ? '1' : '0') << columnSplitChar << (hasCHDs ? '1': '0') << columnSplitChar
+							<< machinePlayers << columnSplitChar << machineDrvStat << columnSplitChar << (isDev ? '1': '0') << columnSplitChar
+							<< machineSource << lineSplitChar;
+						machineListDb()->setData(machineName, machineDescription, machineManufacturer, machineYear, machineCloneOf, isBIOS, isDev, hasROMs, hasCHDs, machinePlayers.toInt(), machineDrvStat, machineSource);
+						pendingDbUpdates++;
+						if ( pendingDbUpdates >= QMC2_MACHINELIST_COMMIT ) {
+							machineListDb()->commitTransaction();
+							pendingDbUpdates = 0;
+							machineListDb()->beginTransaction();
+						}
 						numMachines++;
 						itemList.append(machineItem);
 					}
@@ -1641,6 +1659,7 @@ void MachineList::parse()
 			}
 			qmc2MainWindow->progressBarMachineList->setValue(numMachines);
 			machineListCache.close();
+			machineListDb()->commitTransaction();
 		} else
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(machineListCache.fileName()));
 	}

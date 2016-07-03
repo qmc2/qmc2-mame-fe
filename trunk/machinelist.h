@@ -10,6 +10,7 @@
 #include "xmldbmgr.h"
 #include "userdatadbmgr.h"
 #include "datinfodbmgr.h"
+#include "machinelistdbmgr.h"
 #include "macros.h"
 
 class MachineList : public QObject
@@ -102,6 +103,7 @@ class MachineList : public QObject
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
 		DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }
+		MachineListDatabaseManager *machineListDb() { return m_machineListDb; }
 
 		MachineList(QObject *parent = 0);
 		~MachineList();
@@ -139,6 +141,7 @@ class MachineList : public QObject
 		XmlDatabaseManager *m_xmlDb;
 		UserDataDatabaseManager *m_userDataDb;
 		DatInfoDatabaseManager *m_datInfoDb;
+		MachineListDatabaseManager *m_machineListDb;
 };
 
 class MachineListItem : public QTreeWidgetItem
