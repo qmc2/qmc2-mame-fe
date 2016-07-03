@@ -251,7 +251,8 @@ qint64 XmlDatabaseManager::xmlRowCount()
 			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
 }
 
 qint64 XmlDatabaseManager::nextRowId(bool refreshRowIds)

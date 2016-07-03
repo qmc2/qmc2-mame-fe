@@ -367,7 +367,8 @@ qint64 SoftwareListXmlDatabaseManager::swlRowCount()
 			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from software-list XML cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
 }
 
 qint64 SoftwareListXmlDatabaseManager::nextRowId(bool refreshRowIds)

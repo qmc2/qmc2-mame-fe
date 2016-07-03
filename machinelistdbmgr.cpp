@@ -20,7 +20,9 @@ extern Settings *qmc2Config;
 extern MachineList *qmc2MachineList;
 
 MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
-	QObject(parent)
+	QObject(parent),
+	m_lastRowId(-1),
+	m_logActive(false)
 {
 	m_connectionName = QString("machine-list-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
@@ -32,7 +34,6 @@ MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
 			recreateDatabase();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open machine list database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
-	m_lastRowId = -1;
 }
 
 MachineListDatabaseManager::~MachineListDatabaseManager()
@@ -162,7 +163,18 @@ qint64 MachineListDatabaseManager::machineListRowCount()
 			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from machine list database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
+}
+
+bool MachineListDatabaseManager::isEmpty()
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT id FROM %1 WHERE rowid=1").arg(m_tableBasename));
+	if ( query.exec() )
+		return !query.first();
+	else
+		return true;
 }
 
 qint64 MachineListDatabaseManager::nextRowId(bool refreshRowIds)
@@ -325,4 +337,6 @@ void MachineListDatabaseManager::recreateDatabase()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create machine list database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
+	if ( logActive() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("machine list database '%1' initialized").arg(m_db.databaseName()));
 }

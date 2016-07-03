@@ -209,7 +209,8 @@ qint64 DatInfoDatabaseManager::softwareInfoRowCount()
 			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
 }
 
 QString DatInfoDatabaseManager::emuInfo(QString id)
@@ -276,7 +277,8 @@ qint64 DatInfoDatabaseManager::emuInfoRowCount()
 			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
 }
 
 QString DatInfoDatabaseManager::machineInfo(QString id)
@@ -360,7 +362,8 @@ qint64 DatInfoDatabaseManager::machineInfoRowCount()
 			return -1;
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from DAT-info database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-	}	return -1;
+		return -1;
+	}
 }
 
 quint64 DatInfoDatabaseManager::databaseSize()
