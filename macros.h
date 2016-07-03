@@ -143,6 +143,12 @@
 // number of rows added to the DAT-info database in *one* transaction
 #define QMC2_DATINFO_COMMIT			5000
 
+// current format version of the machine list database schema
+#define QMC2_MACHINELIST_DB_VERSION		1
+
+// number of rows added to the machine list database in *one* transaction
+#define QMC2_MACHINELIST_COMMIT			1000
+
 // check-sum DB status updates
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT	1000
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG	60000

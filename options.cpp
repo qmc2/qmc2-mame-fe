@@ -2105,6 +2105,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditXmlCacheDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", userScopePath + "/mame-xml-cache.db").toString());
 	lineEditUserDataDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", userScopePath + "/mame-user-data.db").toString());
 	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString());
+	lineEditMachineListDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListDatabase", userScopePath + "/mame-machine-list.db").toString());
 	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
 	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
 	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());
@@ -2786,11 +2787,16 @@ void Options::on_toolButtonBrowseHistoryFile_clicked()
 void Options::on_toolButtonBrowseMachineListCacheFile_clicked()
 {
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose machine list cache file"), lineEditMachineListCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") )
-			s += "/";
+	if ( !s.isNull() )
 		lineEditMachineListCacheFile->setText(s);
-	}
+	raise();
+}
+
+void Options::on_toolButtonBrowseMachineListDatabase_clicked()
+{
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose machine list database file"), lineEditMachineListDatabase->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	if ( !s.isNull() )
+		lineEditMachineListDatabase->setText(s);
 	raise();
 }
 
@@ -3830,6 +3836,7 @@ void Options::enableWidgets(bool enable)
 	toolButtonBrowseFavoritesFile->setEnabled(enable);
 	toolButtonBrowseHistoryFile->setEnabled(enable);
 	toolButtonBrowseMachineListCacheFile->setEnabled(enable);
+	toolButtonBrowseMachineListDatabase->setEnabled(enable);
 	toolButtonBrowseROMStateCacheFile->setEnabled(enable);
 	toolButtonBrowseSlotInfoCacheFile->setEnabled(enable);
 	toolButtonBrowseFlyerDirectory->setEnabled(enable);

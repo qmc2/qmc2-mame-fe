@@ -222,6 +222,26 @@ bool MachineListDatabaseManager::exists(QString id)
 	}
 }
 
+void MachineListDatabaseManager::setData(const QString &id, const QString &description, const QString &manufacturer, const QString &year, const QString &cloneof, bool is_bios, bool is_device, bool has_roms, bool has_chds, int players, const QString &drvstat, const QString &srcfile)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("INSERT INTO %1 (id, description, manufacturer, year, cloneof, is_bios, is_device, has_roms, has_chds, players, drvstat, srcfile) VALUES (:id, :description, :manufacturer, :year, :cloneof, :is_bios, :is_device, :has_roms, :has_chds, :players, :drvstat, :srcfile)").arg(m_tableBasename));
+	query.bindValue(":id", id);
+	query.bindValue(":description", description);
+	query.bindValue(":manufacturer", manufacturer);
+	query.bindValue(":year", year);
+	query.bindValue(":cloneof", cloneof);
+	query.bindValue(":is_bios", is_bios);
+	query.bindValue(":is_device", is_device);
+	query.bindValue(":has_roms", has_roms);
+	query.bindValue(":has_chds", has_chds);
+	query.bindValue(":players", players);
+	query.bindValue(":drvstat", drvstat);
+	query.bindValue(":srcfile", srcfile);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to machine list database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
 quint64 MachineListDatabaseManager::databaseSize()
 {
 	QSqlQuery query(m_db);
@@ -272,7 +292,6 @@ void MachineListDatabaseManager::setJournalMode(uint journalMode)
 
 void MachineListDatabaseManager::recreateDatabase()
 {
-	// FIXME
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasename)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove machine list database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
@@ -306,5 +325,4 @@ void MachineListDatabaseManager::recreateDatabase()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create machine list database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("user data database '%1' initialized").arg(m_db.databaseName()));
 }

@@ -880,8 +880,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>358</width>
-                <height>1102</height>
+                <width>507</width>
+                <height>1103</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -3086,7 +3086,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>575</width>
-                <height>297</height>
+                <height>487</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3741,8 +3741,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>259</width>
-                <height>52</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3863,8 +3863,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>428</width>
-                <height>270</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4332,7 +4332,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>383</width>
+                <width>507</width>
                 <height>698</height>
                </rect>
               </property>
@@ -4874,7 +4874,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>507</width>
-                <height>546</height>
+                <height>584</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -4975,14 +4975,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0">
+                 <item row="7" column="0">
                   <widget class="QLabel" name="labelMachineListCacheFile">
                    <property name="text">
                     <string>Machine list cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="0" colspan="5">
+                 <item row="15" column="0" colspan="5">
                   <spacer name="spacer11">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -4995,7 +4995,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="6" column="4">
+                 <item row="7" column="4">
                   <widget class="QToolButton" name="toolButtonBrowseMachineListCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -5012,14 +5012,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0">
+                 <item row="8" column="0">
                   <widget class="QLabel" name="labelROMStateCacheFile">
                    <property name="text">
                     <string>ROM state cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="4">
+                 <item row="8" column="4">
                   <widget class="QToolButton" name="toolButtonBrowseROMStateCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -5036,7 +5036,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="0" colspan="5">
+                 <item row="17" column="0" colspan="5">
                   <layout class="QHBoxLayout" name="layout17">
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
@@ -5072,14 +5072,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="9" column="0">
+                 <item row="10" column="0">
                   <widget class="QLabel" name="labelSoftwareListCacheDb">
                    <property name="text">
                     <string>Software list cache DB</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="4">
+                 <item row="10" column="4">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareListCacheDb">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -5096,14 +5096,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0">
+                 <item row="12" column="0">
                   <widget class="QLabel" name="labelGeneralSoftwareFolder">
                    <property name="text">
                     <string>General software folder</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="4">
+                 <item row="12" column="4">
                   <widget class="QToolButton" name="toolButtonBrowseGeneralSoftwareFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -5144,14 +5144,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0">
+                 <item row="9" column="0">
                   <widget class="QLabel" name="labelSlotInfoCacheFile">
                    <property name="text">
                     <string>Slot info cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="4">
+                 <item row="9" column="4">
                   <widget class="QToolButton" name="toolButtonBrowseSlotInfoCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -5168,14 +5168,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="0">
+                 <item row="11" column="0">
                   <widget class="QLabel" name="labelSoftwareStateCache">
                    <property name="text">
                     <string>Software state cache</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="4">
+                 <item row="11" column="4">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareStateCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -5287,7 +5287,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="1" colspan="3">
+                 <item row="7" column="1" colspan="3">
                   <widget class="QLineEdit" name="lineEditMachineListCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5365,7 +5365,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="1" colspan="3">
+                 <item row="8" column="1" colspan="3">
                   <widget class="QLineEdit" name="lineEditROMStateCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5378,7 +5378,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="1" colspan="3">
+                 <item row="9" column="1" colspan="3">
                   <widget class="QLineEdit" name="lineEditSlotInfoCacheFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5391,7 +5391,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="1" colspan="3">
+                 <item row="10" column="1" colspan="3">
                   <widget class="QLineEdit" name="lineEditSoftwareListCacheDb">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5404,7 +5404,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="1" colspan="3">
+                 <item row="11" column="1" colspan="3">
                   <widget class="QLineEdit" name="lineEditSoftwareStateCache">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5417,7 +5417,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="1" colspan="3">
+                 <item row="12" column="1" colspan="3">
                   <widget class="QLineEdit" name="lineEditGeneralSoftwareFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -5430,7 +5430,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0" colspan="5">
+                 <item row="13" column="0" colspan="5">
                   <widget class="QCheckBox" name="checkBoxAutoClearEmuCaches">
                    <property name="toolTip">
                     <string>Automatically recreate all emulator caches when the output from '-listfull' changes</string>
@@ -5446,7 +5446,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="0" colspan="5">
+                 <item row="14" column="0" colspan="5">
                   <widget class="QCheckBox" name="checkBoxSkipEmuIdent">
                    <property name="toolTip">
                     <string>Skip emulator identification when the file's modification time hasn't changed</string>
@@ -5459,6 +5459,46 @@
                    </property>
                    <property name="checked">
                     <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="labelMachineListDatabase">
+                   <property name="text">
+                    <string>Machine list database</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="1" colspan="3">
+                  <widget class="QLineEdit" name="lineEditMachineListDatabase">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Machine list database file (write)</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="4">
+                  <widget class="QToolButton" name="toolButtonBrowseMachineListDatabase">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse machine list database file</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -6159,6 +6199,8 @@
   <tabstop>toolButtonClearUserDataDatabase</tabstop>
   <tabstop>toolButtonCleanupUserDataDatabase</tabstop>
   <tabstop>toolButtonBrowseUserDataDatabase</tabstop>
+  <tabstop>lineEditMachineListDatabase</tabstop>
+  <tabstop>toolButtonBrowseMachineListDatabase</tabstop>
   <tabstop>lineEditMachineListCacheFile</tabstop>
   <tabstop>toolButtonBrowseMachineListCacheFile</tabstop>
   <tabstop>lineEditROMStateCacheFile</tabstop>

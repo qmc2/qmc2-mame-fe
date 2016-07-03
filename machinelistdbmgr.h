@@ -30,6 +30,8 @@ class MachineListDatabaseManager : public QObject
 		qint64 machineListRowCount();
 		qint64 nextRowId(bool refreshRowIds = false);
 
+		void setData(const QString &id, const QString &description, const QString &manufacturer, const QString &year, const QString &cloneof, bool is_bios, bool is_device, bool has_roms, bool has_chds, int players, const QString &drvstat, const QString &srcfile);
+
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
