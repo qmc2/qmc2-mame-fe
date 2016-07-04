@@ -49,8 +49,8 @@ class MachineListDatabaseManager : public QObject
 
 		void setData(const QString &id, const QString &description, const QString &manufacturer, const QString &year, const QString &cloneof, bool is_bios, bool is_device, bool has_roms, bool has_chds, int players, const QString &drvstat, const QString &srcfile);
 
-		void queryRecords();
-		bool nextRecord(QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile);
+		void queryRecords(QSqlQuery *query);
+		bool nextRecord(QSqlQuery *query, QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile);
 		
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
@@ -59,7 +59,7 @@ class MachineListDatabaseManager : public QObject
 		void setSyncMode(uint syncMode);
 		void setJournalMode(uint journalMode);
 
-		QSqlQuery *globalQuery() { return m_globalQuery; }
+		QSqlDatabase &db() { return m_db; }
 
 	public slots:
 		void recreateDatabase();
@@ -75,7 +75,6 @@ class MachineListDatabaseManager : public QObject
 		bool m_logActive;
 		bool m_resetRowCount;
 		qint64 m_lastRowCount;
-		QSqlQuery *m_globalQuery;
 };
 
 #endif

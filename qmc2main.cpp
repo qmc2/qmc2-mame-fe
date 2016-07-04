@@ -44,6 +44,7 @@
 #include "emuopt.h"
 #include "processmanager.h"
 #include "machinelist.h"
+#include "machinelistviewer.h"
 #include "preview.h"
 #include "flyer.h"
 #include "cabinet.h"
@@ -330,6 +331,10 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(this, SIGNAL(paletteSetupRequested(QString)), this, SLOT(setupPalette(QString)));
 
 	setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED)
+	actionNewFilteredView->setVisible(false);
+#endif
 
 	criticalActions << actionRebuildROM << actionRebuildROMTagged;
 	rebuildRomActions << actionRebuildROM << actionRebuildROMTagged;
@@ -2323,6 +2328,11 @@ void MainWindow::viewHtml(QString filePath)
 void MainWindow::on_actionNewPdfViewer_triggered(bool)
 {
 	viewPdf();
+}
+
+void MainWindow::on_actionNewFilteredView_triggered(bool)
+{
+	new MachineListViewer;
 }
 
 void MainWindow::viewPdf(QString filePath)
