@@ -80,6 +80,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romalyzer.cpp \
 			machinelist.cpp \
 			machinelistdbmgr.cpp \
+			machinelistmodel.cpp \
 			processmanager.cpp \
 			imagewidget.cpp \
 			preview.cpp \
