@@ -209,6 +209,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romalyzer.h \
 			machinelist.h \
 			machinelistdbmgr.h \
+			machinelistmodel.h \
 			processmanager.h \
 			imagewidget.h \
 			preview.h \
