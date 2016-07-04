@@ -23,7 +23,7 @@
 class MachineListModelItem
 {
 	public:
-		MachineListModelItem(const QString &name, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, const QString &players, const QString &category, const QString &version, int rank, char rom_status, char rom_types, char driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem = 0);
+		MachineListModelItem(const QString &name, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, char rom_types, char driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem = 0);
 		MachineListModelItem(MachineListModelItem *parentItem = 0);
 		~MachineListModelItem();
 
@@ -39,8 +39,8 @@ class MachineListModelItem
 		QString &year() { return m_year; }
 		void setSourceFile(const QString &source_file) { m_source_file = source_file; }
 		QString &sourceFile() { return m_source_file; }
-		void setPlayers(const QString &players) { m_players = players; }
-		QString &players() { return m_players; }
+		void setPlayers(int players) { m_players = players; }
+		int players() { return m_players; }
 		void setCategory(const QString &category) { m_category = category; }
 		QString &category() { return m_category; }
 		void setVersion(const QString &version) { m_version = version; }
@@ -73,7 +73,7 @@ class MachineListModelItem
 		QString m_manufacturer;
 		QString m_year;
 		QString m_source_file;
-		QString m_players;
+		int m_players;
 		QString m_category;
 		QString m_version;
 		QIcon m_icon;
