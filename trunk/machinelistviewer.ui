@@ -23,11 +23,8 @@
    <item row="0" column="0">
     <widget class="QWidget" name="widgetConfigure" native="true">
      <layout class="QGridLayout" name="gridLayoutWidgetConfigure">
-      <item row="0" column="1">
-       <widget class="QToolButton" name="toolButtonSaveView">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
+      <item row="0" column="6">
+       <widget class="QToolButton" name="toolButtonConfigureView">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -35,53 +32,21 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>Save view</string>
+         <string>Configure view</string>
         </property>
         <property name="text">
-         <string>Save view</string>
+         <string>Configure view</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/filesaveas_and_apply.png</normaloff>:/data/img/filesaveas_and_apply.png</iconset>
+          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLineEdit" name="lineEditViewName">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Enter a unique name for this view</string>
-        </property>
-        <property name="placeholderText">
-         <string>Enter a unique name for this view</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::MinimumExpanding</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="6">
+      <item row="0" column="7">
        <widget class="QToolButton" name="toolButtonRefreshView">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -127,8 +92,43 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QToolButton" name="toolButtonConfigureView">
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="lineEditViewName">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Enter a unique name for this view</string>
+        </property>
+        <property name="placeholderText">
+         <string>Enter a unique name for this view</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QToolButton" name="toolButtonSaveView">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -136,14 +136,40 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>Configure view</string>
+         <string>Save view</string>
         </property>
         <property name="text">
-         <string>Configure view</string>
+         <string>Save view</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+          <normaloff>:/data/img/filesaveas_and_apply.png</normaloff>:/data/img/filesaveas_and_apply.png</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QToolButton" name="toolButtonViewModeToggle">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Toggle flat / tree view</string>
+        </property>
+        <property name="text">
+         <string>Flat</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -187,6 +213,7 @@
   <tabstop>lineEditViewName</tabstop>
   <tabstop>toolButtonSaveView</tabstop>
   <tabstop>toolButtonCloneView</tabstop>
+  <tabstop>toolButtonViewModeToggle</tabstop>
   <tabstop>toolButtonConfigureView</tabstop>
   <tabstop>toolButtonRefreshView</tabstop>
   <tabstop>toolButton</tabstop>
