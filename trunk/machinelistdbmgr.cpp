@@ -24,8 +24,7 @@ MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
 	m_lastRowId(-1),
 	m_logActive(false),
 	m_resetRowCount(true),
-	m_lastRowCount(-1),
-	m_globalQuery(0)
+	m_lastRowCount(-1)
 {
 	m_connectionName = QString("machine-list-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
@@ -35,7 +34,6 @@ MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
-		m_globalQuery = new QSqlQuery(m_db);
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open machine list database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 }
@@ -44,8 +42,6 @@ MachineListDatabaseManager::~MachineListDatabaseManager()
 {
 	if ( m_db.isOpen() )
 		m_db.close();
-	if ( globalQuery() )
-		delete globalQuery();
 }
 
 QString MachineListDatabaseManager::emulatorVersion()
@@ -264,28 +260,28 @@ void MachineListDatabaseManager::setData(const QString &id, const QString &descr
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to machine list database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
-void MachineListDatabaseManager::queryRecords()
+void MachineListDatabaseManager::queryRecords(QSqlQuery *query)
 {
-	globalQuery()->clear();
-	globalQuery()->prepare(QString("SELECT id, description, manufacturer, year, cloneof, is_bios, is_device, has_roms, has_chds, players, drvstat, srcfile FROM %1").arg(m_tableBasename));
-	globalQuery()->exec();
+	query->clear();
+	query->prepare(QString("SELECT id, description, manufacturer, year, cloneof, is_bios, is_device, has_roms, has_chds, players, drvstat, srcfile FROM %1").arg(m_tableBasename));
+	query->exec();
 }
 
-bool MachineListDatabaseManager::nextRecord(QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile)
+bool MachineListDatabaseManager::nextRecord(QSqlQuery *query, QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile)
 {
-	if ( globalQuery()->next() ) {
-		*id = globalQuery()->value(QMC2_MLDB_INDEX_ID).toString();
-		*description = globalQuery()->value(QMC2_MLDB_INDEX_DESCRIPTION).toString();
-		*manufacturer = globalQuery()->value(QMC2_MLDB_INDEX_MANUFACTURER).toString();
-		*year = globalQuery()->value(QMC2_MLDB_INDEX_YEAR).toString();
-		*cloneof = globalQuery()->value(QMC2_MLDB_INDEX_CLONEOF).toString();
-		*is_bios = globalQuery()->value(QMC2_MLDB_INDEX_IS_BIOS).toBool();
-		*is_device = globalQuery()->value(QMC2_MLDB_INDEX_IS_DEVICE).toBool();
-		*has_roms = globalQuery()->value(QMC2_MLDB_INDEX_HAS_ROMS).toBool();
-		*has_chds = globalQuery()->value(QMC2_MLDB_INDEX_HAS_CHDS).toBool();
-		*players = globalQuery()->value(QMC2_MLDB_INDEX_PLAYERS).toInt();
-		*drvstat = globalQuery()->value(QMC2_MLDB_INDEX_DRVSTAT).toString();
-		*srcfile = globalQuery()->value(QMC2_MLDB_INDEX_SRCFILE).toString();
+	if ( query->next() ) {
+		*id = query->value(QMC2_MLDB_INDEX_ID).toString();
+		*description = query->value(QMC2_MLDB_INDEX_DESCRIPTION).toString();
+		*manufacturer = query->value(QMC2_MLDB_INDEX_MANUFACTURER).toString();
+		*year = query->value(QMC2_MLDB_INDEX_YEAR).toString();
+		*cloneof = query->value(QMC2_MLDB_INDEX_CLONEOF).toString();
+		*is_bios = query->value(QMC2_MLDB_INDEX_IS_BIOS).toBool();
+		*is_device = query->value(QMC2_MLDB_INDEX_IS_DEVICE).toBool();
+		*has_roms = query->value(QMC2_MLDB_INDEX_HAS_ROMS).toBool();
+		*has_chds = query->value(QMC2_MLDB_INDEX_HAS_CHDS).toBool();
+		*players = query->value(QMC2_MLDB_INDEX_PLAYERS).toInt();
+		*drvstat = query->value(QMC2_MLDB_INDEX_DRVSTAT).toString();
+		*srcfile = query->value(QMC2_MLDB_INDEX_SRCFILE).toString();
 		return true;
 	} else
 		return false;

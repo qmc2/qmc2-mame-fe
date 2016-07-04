@@ -7,18 +7,9 @@
 #include <QString>
 #include <QVariant>
 #include <QIcon>
+#include <QSqlQuery>
 
 #include "macros.h"
-
-#define QMC2_MLM_ROM_TYPE_NONE			0
-#define QMC2_MLM_ROM_TYPE_ROM			1
-#define QMC2_MLM_ROM_TYPE_CHD			2
-#define QMC2_MLM_ROM_TYPE_BOTH			3
-
-#define QMC2_MLM_DRIVER_STATUS_NONE		0
-#define QMC2_MLM_DRIVER_STATUS_GOOD		1
-#define QMC2_MLM_DRIVER_STATUS_IMPERFECT	2
-#define QMC2_MLM_DRIVER_STATUS_PRELIMINARY	3
 
 class MachineListModelItem
 {
@@ -67,6 +58,7 @@ class MachineListModelItem
 		void setParentItem(MachineListModelItem *item) { m_parentItem = item; }
 		MachineListModelItem *parentItem() { return m_parentItem; }
 		QList<MachineListModelItem *> &childItems() { return m_childItems; }
+		int row() const;
 
 	private:
 		QString m_id;
@@ -116,7 +108,6 @@ class MachineListModel : public QAbstractItemModel
 		~MachineListModel();
 
 		void setRootItem(MachineListModelItem *item);
-		void startQuery();
  
 		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const;
 		virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -128,9 +119,14 @@ class MachineListModel : public QAbstractItemModel
 		virtual QVariant data(const QModelIndex &index, int role) const;
 		virtual QModelIndex parent(const QModelIndex &child) const;
 
+	public slots:
+		void startQuery();
+
 	private:
 		QStringList m_headers;
 		MachineListModelItem *m_rootItem;
+		QSqlQuery *m_query;
+		qint64 m_recordCount;
 
 		MachineListModelItem *itemFromIndex(const QModelIndex &index) const;
 };

@@ -2533,7 +2533,7 @@
      <x>0</x>
      <y>0</y>
      <width>935</width>
-     <height>18</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -2610,6 +2610,7 @@
     <addaction name="actionDemoMode"/>
     <addaction name="actionNewBrowserWindow"/>
     <addaction name="actionNewPdfViewer"/>
+    <addaction name="actionNewFilteredView"/>
     <addaction name="separator"/>
     <addaction name="menuAudioPlayer"/>
     <addaction name="separator"/>
@@ -4717,6 +4718,18 @@
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionNewFilteredView">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+   </property>
+   <property name="text">
+    <string>New filtered view...</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new filtered machine list view</string>
    </property>
   </action>
  </widget>
