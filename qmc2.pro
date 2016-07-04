@@ -38,6 +38,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			comboeditwidget.ui \
 			comboboxwidget.ui \
 			componentsetup.ui \
+			machinelistviewer.ui \
 			miniwebbrowser.ui \
 			youtubevideoplayer.ui \
 			videoitemwidget.ui \
@@ -81,6 +82,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			machinelist.cpp \
 			machinelistdbmgr.cpp \
 			machinelistmodel.cpp \
+			machinelistviewer.cpp \
 			processmanager.cpp \
 			imagewidget.cpp \
 			preview.cpp \
@@ -211,6 +213,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			machinelist.h \
 			machinelistdbmgr.h \
 			machinelistmodel.h \
+			machinelistviewer.h \
 			processmanager.h \
 			imagewidget.h \
 			preview.h \
