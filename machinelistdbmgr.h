@@ -4,10 +4,24 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QSqlQuery>
 #include <QString>
 #include <QStringList>
 #include <QList>
 #include <QHash>
+
+#define QMC2_MLDB_INDEX_ID			0
+#define QMC2_MLDB_INDEX_DESCRIPTION		1
+#define QMC2_MLDB_INDEX_MANUFACTURER		2
+#define QMC2_MLDB_INDEX_YEAR			3
+#define QMC2_MLDB_INDEX_CLONEOF			4
+#define QMC2_MLDB_INDEX_IS_BIOS			5
+#define QMC2_MLDB_INDEX_IS_DEVICE		6
+#define QMC2_MLDB_INDEX_HAS_ROMS		7
+#define QMC2_MLDB_INDEX_HAS_CHDS		8
+#define QMC2_MLDB_INDEX_PLAYERS			9
+#define QMC2_MLDB_INDEX_DRVSTAT			10
+#define QMC2_MLDB_INDEX_SRCFILE			11
 
 class MachineListDatabaseManager : public QObject
 {
@@ -30,17 +44,22 @@ class MachineListDatabaseManager : public QObject
 		void setLogActive(bool enable) { m_logActive = enable; }
 		bool isEmpty();
 
-		qint64 machineListRowCount();
+		qint64 machineListRowCount(bool reset = false);
 		qint64 nextRowId(bool refreshRowIds = false);
 
 		void setData(const QString &id, const QString &description, const QString &manufacturer, const QString &year, const QString &cloneof, bool is_bios, bool is_device, bool has_roms, bool has_chds, int players, const QString &drvstat, const QString &srcfile);
 
+		void queryRecords();
+		bool nextRecord(QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile);
+		
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
 		void setCacheSize(quint64 kiloBytes);
 		void setSyncMode(uint syncMode);
 		void setJournalMode(uint journalMode);
+
+		QSqlQuery *globalQuery() { return m_globalQuery; }
 
 	public slots:
 		void recreateDatabase();
@@ -54,6 +73,9 @@ class MachineListDatabaseManager : public QObject
 		QList<qint64> m_rowIdList;
 		qint64 m_lastRowId;
 		bool m_logActive;
+		bool m_resetRowCount;
+		qint64 m_lastRowCount;
+		QSqlQuery *m_globalQuery;
 };
 
 #endif

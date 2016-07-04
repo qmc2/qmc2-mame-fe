@@ -23,12 +23,12 @@
 class MachineListModelItem
 {
 	public:
-		MachineListModelItem(const QString &name, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, char rom_types, char driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem = 0);
+		MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem = 0);
 		MachineListModelItem(MachineListModelItem *parentItem = 0);
 		~MachineListModelItem();
 
-		void setName(const QString &name) { m_name = name; }
-		QString &name() { return m_name; }
+		void setId(const QString &id) { m_id = id; }
+		QString &id() { return m_id; }
 		void setParent(const QString &parent) { m_parent = parent; }
 		QString &parent() { return m_parent; }
 		void setDescription(const QString &description) { m_description = description; }
@@ -51,10 +51,12 @@ class MachineListModelItem
 		int rank() { return m_rank; }
 		void setRomStatus(char rom_status) { m_rom_status = rom_status; }
 		char romStatus() { return m_rom_status; }
-		void setRomTypes(char rom_types) { m_rom_types = rom_types; }
-		char romTypes() { return m_rom_types; }
-		void setDriverStatus(char driver_status) { m_driver_status = driver_status; }
-		char driverStatus() { return m_driver_status; }
+		void setHasRoms(bool has_roms) { m_has_roms = has_roms; }
+		bool hasRoms() { return m_has_roms; }
+		void setHasChds(bool has_chds) { m_has_chds = has_chds; }
+		bool hasChds() { return m_has_chds; }
+		void setDriverStatus(const QString &driver_status) { m_driver_status = driver_status; }
+		QString &driverStatus() { return m_driver_status; }
 		void setIsDevice(bool is_device) { m_is_device = is_device; }
 		bool isDevice() { return m_is_device; }
 		void setIsBios(bool is_bios) { m_is_bios = is_bios; }
@@ -67,20 +69,21 @@ class MachineListModelItem
 		QList<MachineListModelItem *> &childItems() { return m_childItems; }
 
 	private:
-		QString m_name;
+		QString m_id;
 		QString m_parent;
 		QString m_description;
 		QString m_manufacturer;
 		QString m_year;
 		QString m_source_file;
-		int m_players;
 		QString m_category;
 		QString m_version;
+		QString m_driver_status;
 		QIcon m_icon;
+		int m_players;
 		int m_rank;
 		char m_rom_status;
-		char m_rom_types;
-		char m_driver_status;
+		bool m_has_roms;
+		bool m_has_chds;
 		bool m_is_device;
 		bool m_is_bios;
 		bool m_tagged;
@@ -107,17 +110,18 @@ class MachineListModel : public QAbstractItemModel
 	Q_OBJECT
 
 	public:
-		enum Column {TAG, ICON, NAME, PARENT, DESCRIPTION, MANUFACTURER, YEAR, ROM_STATUS, ROM_TYPES, DRIVER_STATUS, SOURCE_FILE, PLAYERS, RANK, IS_BIOS, IS_DEVICE, CATEGORY, VERSION, LAST_COLUMN};
+		enum Column {TAG, ICON, ID, PARENT, DESCRIPTION, MANUFACTURER, YEAR, ROM_STATUS, HAS_ROMS, HAS_CHDS, DRIVER_STATUS, SOURCE_FILE, PLAYERS, RANK, IS_BIOS, IS_DEVICE, CATEGORY, VERSION, LAST_COLUMN};
 
 		MachineListModel(QObject *parent = 0);
 		~MachineListModel();
 
 		void setRootItem(MachineListModelItem *item);
+		void startQuery();
  
 		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const;
 		virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-		//virtual bool canFetchMore(const QModelIndex &parent) const;
-		//virtual void fetchMore(const QModelIndex &parent) const;
+		virtual bool canFetchMore(const QModelIndex &parent) const;
+		virtual void fetchMore(const QModelIndex &parent);
 		virtual Qt::ItemFlags flags(const QModelIndex &index) const;
 		virtual int columnCount(const QModelIndex &) const;
 		virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
