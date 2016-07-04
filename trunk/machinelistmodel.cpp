@@ -1,9 +1,17 @@
-#include "machinelistmodel.h"
+#include <QHash>
 
-MachineListModelItem::MachineListModelItem(const QString &name, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, char rom_types, char driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem) :
+#include "machinelistmodel.h"
+#include "machinelist.h"
+
+extern MachineList *qmc2MachineList;
+extern QHash<QString, QIcon> qmc2IconHash;
+
+#define mlDb	qmc2MachineList->machineListDb()
+
+MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem)
 {
-	setName(name);
+	setId(id);
 	setParent(parent);
 	setDescription(description);
 	setManufacturer(manufacturer);
@@ -15,7 +23,8 @@ MachineListModelItem::MachineListModelItem(const QString &name, const QIcon &ico
 	setIcon(icon);
 	setRank(rank);
 	setRomStatus(rom_status);
-	setRomTypes(rom_types);
+	setHasRoms(has_roms);
+	setHasChds(has_chds);
 	setDriverStatus(driver_status);
 	setIsDevice(is_device);
 	setIsBios(is_bios);
@@ -27,10 +36,11 @@ MachineListModelItem::MachineListModelItem(MachineListModelItem *parentItem) :
 {
 	setRank(0);
 	setRomStatus('U');
-	setRomTypes(QMC2_MLM_ROM_TYPE_NONE);
 	setDriverStatus(QMC2_MLM_DRIVER_STATUS_NONE);
 	setIsDevice(false);
 	setIsBios(false);
+	setHasRoms(false);
+	setHasChds(false);
 	setTag(false);
 }
 
@@ -73,7 +83,7 @@ MachineListModel::MachineListModel(QObject *parent) :
 	QAbstractItemModel(parent),
 	m_rootItem(0)
 {
-	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM Status") << tr("ROM Types") << tr("Driver Status") << tr("Source File") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is Device?") << tr("Category") << tr("Version");
+	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM Status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver Status") << tr("Source File") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is Device?") << tr("Category") << tr("Version");
 }
 
 MachineListModel::~MachineListModel()
@@ -81,13 +91,16 @@ MachineListModel::~MachineListModel()
 	delete m_rootItem;
 }
 
+void MachineListModel::startQuery()
+{
+	mlDb->queryRecords();
+}
+
 void MachineListModel::setRootItem(MachineListModelItem *item)
 {
 	delete m_rootItem;
 	m_rootItem = item;
-#if QT_VERSION < 0x050000
 	reset();
-#endif
 }
  
 QModelIndex MachineListModel::index(int row, int column, const QModelIndex &parent) const
@@ -111,18 +124,50 @@ QVariant MachineListModel::headerData(int section, Qt::Orientation orientation, 
 	return QVariant();
 }
 
-/*
 bool MachineListModel::canFetchMore(const QModelIndex &parent) const
 {
-	// FIXME
-	return false;
+	/*
+	MachineListModelItem *parentItem = itemFromIndex(parent);
+	if ( !parentItem )
+		return false;
+	return rowCount(parent) < mlDb->globalQuery()->size();
+	*/
+	return rowCount() < mlDb->globalQuery()->size();
 }
 
-void MachineListModel::fetchMore(const QModelIndex &parent) const
+void MachineListModel::fetchMore(const QModelIndex &parent)
 {
-	// FIXME
+	int rows = rowCount();
+	int remainder = mlDb->globalQuery()->size() - rows;
+	int itemsToFetch = qMin(100, remainder);
+	beginInsertRows(QModelIndex(), rows, rows + itemsToFetch - 1);
+	QString id, description, manufacturer, year, cloneof, drvstat, srcfile;
+	bool is_bios, is_device, has_roms, has_chds;
+	int players, i = 0;
+	while ( i < itemsToFetch && mlDb->nextRecord(&id, &description, &manufacturer, &year, &cloneof, &is_bios, &is_device, &has_roms, &has_chds, &players, &drvstat, &srcfile) ) {
+		m_rootItem->childItems().append(new MachineListModelItem(id,
+									 qmc2IconHash.value(id),
+									 cloneof,
+									 description,
+									 manufacturer,
+									 year,
+									 srcfile,
+									 players,
+									 QString(), // FIXME: category
+									 QString(), // FIXME: version
+									 0,         // FIXME: rank
+									 qmc2MachineList->romState(id),
+									 has_roms,
+									 has_chds,
+									 drvstat,
+									 is_device,
+									 is_bios,
+									 false,
+									 0));
+		i++;
+	}
+        endInsertRows();
 }
-*/
 
 Qt::ItemFlags MachineListModel::flags(const QModelIndex &index) const
 {
@@ -136,10 +181,13 @@ int MachineListModel::columnCount(const QModelIndex &) const
 
 int MachineListModel::rowCount(const QModelIndex &parent) const
 {
+	/*
 	MachineListModelItem *parentItem = itemFromIndex(parent);
 	if ( !parentItem )
 		return 0;
 	return parentItem->childItems().count();
+	*/
+	m_rootItem->childItems().count();
 }
 
 QVariant MachineListModel::data(const QModelIndex &index, int role) const
@@ -149,7 +197,6 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 	MachineListModelItem *item = itemFromIndex(index);
 	if ( !item )
 		return QVariant();
-	QVariant data;
 	switch ( role ) {
 		case Qt::TextAlignmentRole:
 			return Qt::AlignLeft;
@@ -159,10 +206,40 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 					return item->tagged();
 				case ICON:
 					return item->icon();
-				// FIXME
-				case NAME:
+				case ID:
+					return item->id();
+				case PARENT:
+					return item->parent();
+				case DESCRIPTION:
+					return item->description();
+				case MANUFACTURER:
+					return item->manufacturer();
+				case YEAR:
+					return item->year();
+				case ROM_STATUS:
+					return item->romStatus();
+				case HAS_ROMS:
+					return item->hasRoms();
+				case HAS_CHDS:
+					return item->hasChds();
+				case DRIVER_STATUS:
+					return item->driverStatus();
+				case SOURCE_FILE:
+					return item->sourceFile();
+				case PLAYERS:
+					return item->players();
+				case RANK:
+					return item->rank();
+				case IS_BIOS:
+					return item->isBios();
+				case IS_DEVICE:
+					return item->isDevice();
+				case CATEGORY:
+					return item->category();
+				case VERSION:
+					return item->version();
 				default:
-					return item->name();
+					return QVariant();
 			}
 			break;
 		case Qt::DecorationRole:
@@ -175,7 +252,7 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 		default:
 			return QVariant();
 	}
-	return data;
+	return QVariant();
 }
 
 QModelIndex MachineListModel::parent(const QModelIndex &child) const

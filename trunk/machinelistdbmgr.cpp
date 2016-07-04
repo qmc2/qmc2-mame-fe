@@ -22,7 +22,10 @@ extern MachineList *qmc2MachineList;
 MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
 	QObject(parent),
 	m_lastRowId(-1),
-	m_logActive(false)
+	m_logActive(false),
+	m_resetRowCount(true),
+	m_lastRowCount(-1),
+	m_globalQuery(0)
 {
 	m_connectionName = QString("machine-list-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
@@ -32,6 +35,7 @@ MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
+		m_globalQuery = new QSqlQuery(m_db);
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open machine list database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 }
@@ -40,6 +44,8 @@ MachineListDatabaseManager::~MachineListDatabaseManager()
 {
 	if ( m_db.isOpen() )
 		m_db.close();
+	if ( globalQuery() )
+		delete globalQuery();
 }
 
 QString MachineListDatabaseManager::emulatorVersion()
@@ -153,18 +159,23 @@ void MachineListDatabaseManager::setMachineListVersion(int machinelist_version)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from machine list database: query = '%2', error = '%3'").arg("machinelist_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
-qint64 MachineListDatabaseManager::machineListRowCount()
+qint64 MachineListDatabaseManager::machineListRowCount(bool reset)
 {
-	QSqlQuery query(m_db);
-	if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {
-		if ( query.first() )
-			return query.value(0).toLongLong();
-		else
-			return -1;
-	} else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from machine list database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-		return -1;
+	m_resetRowCount |= reset;
+	if ( m_resetRowCount ) {
+		QSqlQuery query(m_db);
+		if ( query.exec(QString("SELECT COUNT(*) FROM %1").arg(m_tableBasename)) ) {
+			if ( query.first() )
+				m_lastRowCount = query.value(0).toLongLong();
+			else
+				m_lastRowCount = -1;
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from machine list database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+			m_lastRowCount = -1;
+		}
+		m_resetRowCount = false;
 	}
+	return m_lastRowCount;
 }
 
 bool MachineListDatabaseManager::isEmpty()
@@ -251,6 +262,33 @@ void MachineListDatabaseManager::setData(const QString &id, const QString &descr
 	query.bindValue(":srcfile", srcfile);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to machine list database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
+void MachineListDatabaseManager::queryRecords()
+{
+	globalQuery()->clear();
+	globalQuery()->prepare(QString("SELECT id, description, manufacturer, year, cloneof, is_bios, is_device, has_roms, has_chds, players, drvstat, srcfile FROM %1").arg(m_tableBasename));
+	globalQuery()->exec();
+}
+
+bool MachineListDatabaseManager::nextRecord(QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile)
+{
+	if ( globalQuery()->next() ) {
+		*id = globalQuery()->value(QMC2_MLDB_INDEX_ID).toString();
+		*description = globalQuery()->value(QMC2_MLDB_INDEX_DESCRIPTION).toString();
+		*manufacturer = globalQuery()->value(QMC2_MLDB_INDEX_MANUFACTURER).toString();
+		*year = globalQuery()->value(QMC2_MLDB_INDEX_YEAR).toString();
+		*cloneof = globalQuery()->value(QMC2_MLDB_INDEX_CLONEOF).toString();
+		*is_bios = globalQuery()->value(QMC2_MLDB_INDEX_IS_BIOS).toBool();
+		*is_device = globalQuery()->value(QMC2_MLDB_INDEX_IS_DEVICE).toBool();
+		*has_roms = globalQuery()->value(QMC2_MLDB_INDEX_HAS_ROMS).toBool();
+		*has_chds = globalQuery()->value(QMC2_MLDB_INDEX_HAS_CHDS).toBool();
+		*players = globalQuery()->value(QMC2_MLDB_INDEX_PLAYERS).toInt();
+		*drvstat = globalQuery()->value(QMC2_MLDB_INDEX_DRVSTAT).toString();
+		*srcfile = globalQuery()->value(QMC2_MLDB_INDEX_SRCFILE).toString();
+		return true;
+	} else
+		return false;
 }
 
 quint64 MachineListDatabaseManager::databaseSize()
