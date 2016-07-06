@@ -54,8 +54,10 @@ class UserDataDatabaseManager : public QObject
 
 		bool rankCacheComplete() { return userDataRowCount() == m_rankCache.count(); }
 		void fillUpRankCache();
+		QHash<QString, int> &rankCache() { return m_rankCache; }
 		bool commentCacheComplete() { return userDataRowCount() == m_commentCache.count(); }
 		void fillUpCommentCache();
+		QHash<QString, QString> &commentCache() { return m_commentCache; }
 
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }

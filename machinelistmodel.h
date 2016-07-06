@@ -7,6 +7,7 @@
 #include <QVariant>
 #include <QIcon>
 #include <QSqlQuery>
+#include <QTreeView>
 
 #include "macros.h"
 
@@ -91,7 +92,7 @@ class MachineListModel : public QAbstractItemModel
 	public:
 		enum Column {TAG, ICON, ID, PARENT, DESCRIPTION, MANUFACTURER, YEAR, ROM_STATUS, HAS_ROMS, HAS_CHDS, DRIVER_STATUS, SOURCE_FILE, PLAYERS, RANK, IS_BIOS, IS_DEVICE, CATEGORY, VERSION, LAST_COLUMN};
 
-		MachineListModel(QObject *parent = 0);
+		MachineListModel(QTreeView *treeView, QObject *parent = 0);
 		~MachineListModel();
 
 		void setRootItem(MachineListModelItem *item);
@@ -115,6 +116,7 @@ class MachineListModel : public QAbstractItemModel
 		MachineListModelItem *m_rootItem;
 		QSqlQuery *m_query;
 		qint64 m_recordCount;
+		QTreeView *m_treeView;
 
 		MachineListModelItem *itemFromIndex(const QModelIndex &index) const;
 };

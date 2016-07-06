@@ -21,6 +21,6 @@ MachineListViewer::~MachineListViewer()
 
 void MachineListViewer::init()
 {
-	m_model = new MachineListModel(this);
+	m_model = new MachineListModel(treeView, this);
 	treeView->setModel(model());
 }

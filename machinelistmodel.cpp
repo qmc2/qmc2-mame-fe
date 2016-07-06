@@ -10,6 +10,7 @@ extern QHash<QString, QIcon> qmc2IconHash;
 
 #define ml	qmc2MachineList
 #define mlDb	ml->machineListDb()
+#define udDb	ml->userDataDb()
 
 MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem)
@@ -59,11 +60,12 @@ int MachineListModelItem::row() const
         return 0;
 }
 
-MachineListModel::MachineListModel(QObject *parent) :
+MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	QAbstractItemModel(parent),
 	m_rootItem(0),
 	m_query(0),
-	m_recordCount(0)
+	m_recordCount(0),
+	m_treeView(treeView)
 {
 	m_query = new QSqlQuery(mlDb->db());
 	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM Status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver Status") << tr("Source File") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is Device?") << tr("Category") << tr("Version");
@@ -119,7 +121,7 @@ QVariant MachineListModel::headerData(int section, Qt::Orientation orientation, 
 
 bool MachineListModel::canFetchMore(const QModelIndex &parent) const
 {
-	return m_recordCount < qmc2MachineList->numMachines;
+	return m_recordCount < ml->numMachines;
 }
 
 void MachineListModel::fetchMore(const QModelIndex &parent)
@@ -127,7 +129,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 	MachineListModelItem *parentItem = itemFromIndex(parent);
 	if ( !parentItem )
 		return;
-	int itemsToFetch = QMC2_MIN(QMC2_MLM_FETCH_ONCE, qmc2MachineList->numMachines - m_recordCount);
+	int itemsToFetch = QMC2_MIN(QMC2_MLM_FETCH_ONCE, ml->numMachines - m_recordCount);
 	QString id, description, manufacturer, year, cloneof, drvstat, srcfile;
 	bool is_bios, is_device, has_roms, has_chds;
 	int players, i = 0;
@@ -145,8 +147,8 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 players,
 									 category ? *category : MachineList::trQuestionMark,
 									 version ? *version : MachineList::trQuestionMark,
-									 0,         // FIXME: rank
-									 qmc2MachineList->romState(id),
+									 udDb->rankCache().value(id),
+									 ml->romState(id),
 									 has_roms,
 									 has_chds,
 									 drvstat,
@@ -310,6 +312,10 @@ QModelIndex MachineListModel::parent(const QModelIndex &child) const
 
 void MachineListModel::sort(int column, Qt::SortOrder order)
 {
+	QModelIndexList selectedIndexes = m_treeView->selectionModel()->selectedIndexes();
+	MachineListModelItem *selectedItem = 0;
+	if ( !selectedIndexes.isEmpty() )
+		selectedItem = itemFromIndex(selectedIndexes.at(0));
 	emit layoutAboutToBeChanged();
 	switch ( Column(column) ) {
 		case TAG:
@@ -463,6 +469,14 @@ void MachineListModel::sort(int column, Qt::SortOrder order)
 		for (int k = 0; k < m_rootItem->childItems().size() / 2; k++)
 			m_rootItem->childItems().swap(k, m_rootItem->childItems().size() - (1 + k));
 	emit layoutChanged();
+	if ( selectedItem ) {
+		int row = m_rootItem->childItems().indexOf(selectedItem);
+		if ( row >= 0 ) {
+			QModelIndex idx(index(row, 0, QModelIndex()));
+			m_treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+			m_treeView->scrollTo(idx); // FIXME?
+		}
+	}
 }
 
 MachineListModelItem *MachineListModel::itemFromIndex(const QModelIndex &index) const
