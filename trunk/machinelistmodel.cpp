@@ -193,10 +193,15 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 	switch ( role ) {
 		case Qt::TextAlignmentRole:
 			return Qt::AlignLeft;
-		case Qt::DisplayRole:
+		case Qt::CheckStateRole:
 			switch ( Column(index.column()) ) {
 				case TAG:
-					return item->tagged() ? "true" : "false";
+					return item->tagged() ? Qt::Checked : Qt::Unchecked;
+				default:
+					return QVariant();
+			}
+		case Qt::DisplayRole:
+			switch ( Column(index.column()) ) {
 				case ID:
 					return item->id();
 				case PARENT:
