@@ -13,14 +13,12 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		~MachineListViewer();
 
 		MachineListModel *model() { return m_model; }
-		MachineListProxyModel *proxyModel() { return m_proxyModel; }
 
 	public slots:
 		void init();
 
 	private:
 		MachineListModel *m_model;
-		MachineListProxyModel *m_proxyModel;
 };
 
 #endif

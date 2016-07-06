@@ -2,7 +2,6 @@
 #define _MACHINELISTMODEL_H_
 
 #include <QAbstractItemModel>
-#include <QSortFilterProxyModel>
 #include <QList>
 #include <QString>
 #include <QVariant>
@@ -10,6 +9,8 @@
 #include <QSqlQuery>
 
 #include "macros.h"
+
+#define QMC2_MLM_FETCH_ONCE	1000
 
 class MachineListModelItem
 {
@@ -83,22 +84,6 @@ class MachineListModelItem
 		MachineListModelItem *m_parentItem;
 };
 
-class MachineListProxyModel : public QSortFilterProxyModel
-{
-	Q_OBJECT
-
-	public:
-		MachineListProxyModel(QObject *parent = 0);
-
-	protected:
-		QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-		bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-		bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
-		int rowCount(const QModelIndex &parent = QModelIndex()) const;
-
-	private:
-};
-
 class MachineListModel : public QAbstractItemModel
 {
 	Q_OBJECT
@@ -120,6 +105,7 @@ class MachineListModel : public QAbstractItemModel
 		virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
 		virtual QVariant data(const QModelIndex &index, int role) const;
 		virtual QModelIndex parent(const QModelIndex &child) const;
+		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
 	public slots:
 		void startQuery();
