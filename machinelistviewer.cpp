@@ -7,7 +7,6 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent)
 {
 	setupUi(this);
-	show();
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -22,7 +21,7 @@ void MachineListViewer::init()
 {
 	m_model = new MachineListModel;
 	m_proxyModel = new MachineListProxyModel;
-	//proxyModel()->setSourceModel(model());
-	//treeView->setModel(proxyModel());
-	treeView->setModel(model());
+	proxyModel()->setSourceModel(model());
+	treeView->setModel(proxyModel());
+	//treeView->setModel(model());
 }

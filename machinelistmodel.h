@@ -91,8 +91,10 @@ class MachineListProxyModel : public QSortFilterProxyModel
 		MachineListProxyModel(QObject *parent = 0);
 
 	protected:
+		QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 		bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 		bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+		int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
 	private:
 };
