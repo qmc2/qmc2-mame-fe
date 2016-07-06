@@ -2332,7 +2332,8 @@ void MainWindow::on_actionNewPdfViewer_triggered(bool)
 
 void MainWindow::on_actionNewFilteredView_triggered(bool)
 {
-	new MachineListViewer;
+	MachineListViewer *mlv = new MachineListViewer;
+	mlv->show();
 }
 
 void MainWindow::viewPdf(QString filePath)

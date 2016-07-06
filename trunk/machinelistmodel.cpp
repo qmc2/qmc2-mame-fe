@@ -7,7 +7,8 @@
 extern MachineList *qmc2MachineList;
 extern QHash<QString, QIcon> qmc2IconHash;
 
-#define mlDb	qmc2MachineList->machineListDb()
+#define ml	qmc2MachineList
+#define mlDb	ml->machineListDb()
 
 MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem)
@@ -69,10 +70,15 @@ bool MachineListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &s
 	return true;
 }
 
+QVariant MachineListProxyModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+	return sourceModel()->headerData(section, orientation, role);
+}
+
 bool MachineListProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-	QVariant leftData(sourceModel()->data(left));
-	QVariant rightData(sourceModel()->data(right));
+	QVariant leftData(sourceModel()->data(mapToSource(left)));
+	QVariant rightData(sourceModel()->data(mapToSource(right)));
 	switch ( leftData.type() ) {
 		case QVariant::String:
 			return QString::localeAwareCompare(leftData.toString(), rightData.toString()) < 0;
@@ -85,6 +91,11 @@ bool MachineListProxyModel::lessThan(const QModelIndex &left, const QModelIndex 
 		default:
 			return false;
 	}
+}
+
+int MachineListProxyModel::rowCount(const QModelIndex &parent) const
+{
+	return sourceModel()->rowCount(mapToSource(parent));
 }
 
 MachineListModel::MachineListModel(QObject *parent) :
@@ -151,13 +162,10 @@ bool MachineListModel::canFetchMore(const QModelIndex &parent) const
 
 void MachineListModel::fetchMore(const QModelIndex &parent)
 {
-	//if ( !m_rootItem )
-	//	return;
 	MachineListModelItem *parentItem = itemFromIndex(parent);
 	if ( !parentItem )
 		return;
 	int itemsToFetch = QMC2_MIN(100, qmc2MachineList->numMachines - m_recordCount);
-	QMC2_PRINT_INT(itemsToFetch);
 	QString id, description, manufacturer, year, cloneof, drvstat, srcfile;
 	bool is_bios, is_device, has_roms, has_chds;
 	int players, i = 0;
@@ -186,7 +194,6 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 	}
 	m_recordCount += itemsToFetch;
         endInsertRows();
-	QMC2_PRINT_INT(m_recordCount);
 }
 
 Qt::ItemFlags MachineListModel::flags(const QModelIndex &index) const
@@ -201,6 +208,8 @@ int MachineListModel::columnCount(const QModelIndex &) const
 
 int MachineListModel::rowCount(const QModelIndex &parent) const
 {
+	if ( !parent.isValid() )
+		return m_rootItem->childItems().count();
         MachineListModelItem *parentItem = itemFromIndex(parent);
 	if ( !parentItem )
 		return 0;
@@ -214,17 +223,15 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 	MachineListModelItem *item = itemFromIndex(index);
 	if ( !item )
 		return QVariant();
+	int machineType = int(item->isBios()) + int(item->isDevice()) * 2; // 0: normal, 1: BIOS, 2: device
 	switch ( role ) {
 		case Qt::TextAlignmentRole:
 			return Qt::AlignLeft;
 		case Qt::DisplayRole:
 			switch ( Column(index.column()) ) {
-				/*
 				case TAG:
-					return item->tagged();
-				*/
+					return item->tagged() ? "true" : "false";
 				case ID:
-					QMC2_PRINT_STR(item->id());
 					return item->id();
 				case PARENT:
 					return item->parent();
@@ -235,7 +242,7 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 				case YEAR:
 					return item->year();
 				case ROM_STATUS:
-					return item->romStatus();
+					return ml->romStatus(item->id(), true);
 				case HAS_ROMS:
 					return item->hasRoms() ? "true" : "false";
 				case HAS_CHDS:
@@ -259,30 +266,82 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 				default:
 					return QVariant();
 			}
-			break;
 		case Qt::DecorationRole:
 			switch ( Column(index.column()) ) {
 				// FIXME
 				case ICON:
-					return item->icon();
+					if ( !item->icon().isNull() )
+						return item->icon();
+					else if ( !item->parent().isEmpty() )
+						return qmc2IconHash.value(item->parent());
+					else
+						return QVariant();
+				case ROM_STATUS:
+					switch ( item->romStatus() ) {
+						case 'C':
+							switch ( machineType ) {
+								case QMC2_MACHINETYPE_NORMAL:
+									return ml->qmc2CorrectImageIcon;
+								case QMC2_MACHINETYPE_BIOS:
+									return ml->qmc2CorrectBIOSImageIcon;
+								case QMC2_MACHINETYPE_DEVICE:
+									return ml->qmc2CorrectDeviceImageIcon;
+							}
+						case 'M':
+							switch ( machineType ) {
+								case QMC2_MACHINETYPE_NORMAL:
+									return ml->qmc2MostlyCorrectImageIcon;
+								case QMC2_MACHINETYPE_BIOS:
+									return ml->qmc2MostlyCorrectBIOSImageIcon;
+								case QMC2_MACHINETYPE_DEVICE:
+									return ml->qmc2MostlyCorrectDeviceImageIcon;
+							}
+						case 'I':
+							switch ( machineType ) {
+								case QMC2_MACHINETYPE_NORMAL:
+									return ml->qmc2IncorrectImageIcon;
+								case QMC2_MACHINETYPE_BIOS:
+									return ml->qmc2IncorrectBIOSImageIcon;
+								case QMC2_MACHINETYPE_DEVICE:
+									return ml->qmc2IncorrectDeviceImageIcon;
+							}
+						case 'N':
+							switch ( machineType ) {
+								case QMC2_MACHINETYPE_NORMAL:
+									return ml->qmc2NotFoundImageIcon;
+								case QMC2_MACHINETYPE_BIOS:
+									return ml->qmc2NotFoundBIOSImageIcon;
+								case QMC2_MACHINETYPE_DEVICE:
+									return ml->qmc2NotFoundDeviceImageIcon;
+							}
+						case 'U':
+						default:
+							switch ( machineType ) {
+								case QMC2_MACHINETYPE_NORMAL:
+									return ml->qmc2UnknownImageIcon;
+								case QMC2_MACHINETYPE_BIOS:
+									return ml->qmc2UnknownBIOSImageIcon;
+								case QMC2_MACHINETYPE_DEVICE:
+									return ml->qmc2UnknownDeviceImageIcon;
+							}
+					}
 				default:
 					return QVariant();
 			}
-			break;
-		default:
-			return QVariant();
 	}
 	return QVariant();
 }
 
-QModelIndex MachineListModel::parent(const QModelIndex &index) const
+QModelIndex MachineListModel::parent(const QModelIndex &child) const
 {
-	if ( !index.isValid() )
+	if ( !child.isValid() )
 		return QModelIndex();
-	MachineListModelItem *parentItem = itemFromIndex(index);
-	if ( !parentItem || parentItem == m_rootItem )
+	MachineListModelItem *childItem = itemFromIndex(child);
+	if ( !childItem )
 		return QModelIndex();
-	return createIndex(parentItem->row(), 0, parentItem);
+	if ( childItem->parentItem() == m_rootItem )
+		return QModelIndex();
+	return createIndex(childItem->row(), 0, childItem);
 }
 
 MachineListModelItem *MachineListModel::itemFromIndex(const QModelIndex &index) const
