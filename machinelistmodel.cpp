@@ -133,6 +133,8 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 	int players, i = 0;
 	beginInsertRows(QModelIndex(), m_recordCount, m_recordCount + itemsToFetch - 1);
 	while ( i < itemsToFetch && mlDb->nextRecord(m_query, &id, &description, &manufacturer, &year, &cloneof, &is_bios, &is_device, &has_roms, &has_chds, &players, &drvstat, &srcfile) ) {
+		QString *category = ml->categoryHash.value(id);
+		QString *version = ml->versionHash.value(id);
 		parentItem->childItems().append(new MachineListModelItem(id,
 									 qmc2IconHash.value(id),
 									 cloneof,
@@ -141,8 +143,8 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 year,
 									 srcfile,
 									 players,
-									 QString(), // FIXME: category
-									 QString(), // FIXME: version
+									 category ? *category : MachineList::trQuestionMark,
+									 version ? *version : MachineList::trQuestionMark,
 									 0,         // FIXME: rank
 									 qmc2MachineList->romState(id),
 									 has_roms,
