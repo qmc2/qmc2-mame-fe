@@ -517,8 +517,8 @@ void UserDataDatabaseManager::fillUpRankCache()
 		QString idString = id(row);
 		if ( !m_rankCache.contains(idString) ) {
 			int rankInt = rank(row);
-			m_rankCache[idString] = rankInt;
-			QString rankString = QString::number(rankInt);
+			m_rankCache.insert(idString, rankInt);
+			QString rankString(QString::number(rankInt));
 			QTreeWidgetItem *item = qmc2MachineListItemHash.value(idString);
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
