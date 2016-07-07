@@ -65,8 +65,9 @@ void MachineListViewer::adjustIconSizes()
 	toolButtonSaveView->setIconSize(iconSize);
 	toolButtonCloneView->setIconSize(iconSize);
 	toolButtonViewModeToggle->setIconSize(iconSize);
-	toolButtonConfigureView->setIconSize(iconSize);
-	toolButtonRefreshView->setIconSize(iconSize);
+	toolButtonConfigureFilters->setIconSize(iconSize);
+	toolButtonVisibleColumns->setIconSize(iconSize);
+	toolButtonUpdateView->setIconSize(iconSize);
 	treeView->setIconSize(iconSize);
 }
 
