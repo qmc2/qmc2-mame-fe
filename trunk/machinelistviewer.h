@@ -17,6 +17,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 	public slots:
 		void init();
 		void adjustIconSizes();
+		void on_toolButtonToggleMenu_clicked();
 
 	protected:
 		void showEvent(QShowEvent *e);
