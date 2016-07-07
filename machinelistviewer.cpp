@@ -2,12 +2,16 @@
 #include <QFont>
 #include <QSize>
 #include <QLineEdit>
+#include <QTreeWidgetItem>
+#include <QAbstractItemView>
 
 #include "machinelistviewer.h"
 #include "settings.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
+extern QTreeWidgetItem *qmc2CurrentItem;
+extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent)
@@ -31,6 +35,18 @@ void MachineListViewer::init()
 {
 	m_model = new MachineListModel(treeView, this);
 	treeView->setModel(model());
+	if ( qmc2CurrentItem ) {
+		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( item ) {
+			int row = model()->rootItem()->childItems().indexOf(item);
+			if ( row >= 0 ) {
+				QModelIndex idx(model()->index(row, 0, QModelIndex()));
+				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+				treeView->scrollTo(idx, qmc2CursorPositioningMode);
+			}
+		}
+	}
+	treeView->setFocus();
 }
 
 void MachineListViewer::adjustIconSizes()
@@ -51,6 +67,7 @@ void MachineListViewer::adjustIconSizes()
 void MachineListViewer::on_toolButtonToggleMenu_clicked()
 {
 	widgetMenu->setVisible(!widgetMenu->isVisible());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)
@@ -58,6 +75,7 @@ void MachineListViewer::showEvent(QShowEvent *e)
 	adjustIconSizes();
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", QByteArray()).toByteArray());
 	treeView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState").toByteArray());
+	widgetMenu->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", true).toBool());
 	if ( e )
 		QWidget::showEvent(e);
 }
@@ -66,4 +84,5 @@ void MachineListViewer::hideEvent(QHideEvent *e)
 {
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", saveGeometry());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", treeView->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
 }
