@@ -1,6 +1,7 @@
 #include <QTimer>
 #include <QFont>
 #include <QSize>
+#include <QLineEdit>
 
 #include "machinelistviewer.h"
 #include "settings.h"
@@ -12,10 +13,12 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent)
 {
 	setupUi(this);
-	QTimer::singleShot(0, this, SLOT(init()));
+	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
 
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
+
+	QTimer::singleShot(0, this, SLOT(init()));
 }
 
 MachineListViewer::~MachineListViewer()
@@ -43,6 +46,11 @@ void MachineListViewer::adjustIconSizes()
 	toolButtonConfigureView->setIconSize(iconSize);
 	toolButtonRefreshView->setIconSize(iconSize);
 	treeView->setIconSize(iconSize);
+}
+
+void MachineListViewer::on_toolButtonToggleMenu_clicked()
+{
+	widgetMenu->setVisible(!widgetMenu->isVisible());
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)
