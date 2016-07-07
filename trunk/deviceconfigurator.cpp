@@ -578,9 +578,9 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 				int defaultIndex = -1;
 				bool addArg = false;
 				if ( slotPreselectionMap.contains(cb) )
-					defaultIndex = slotPreselectionMap[cb];
+					defaultIndex = slotPreselectionMap.value(cb);
 				else if ( nestedSlotPreselectionMap.contains(cb) )
-					defaultIndex = nestedSlotPreselectionMap[cb];
+					defaultIndex = nestedSlotPreselectionMap.value(cb);
 				if ( isNestedSlot ) {
 					// there must be a "parent" slot, otherwise ignore this argument
 					if ( item->parent() != 0 )
@@ -1511,30 +1511,28 @@ bool DeviceConfigurator::save()
 	if ( !fullyLoaded )
 		return false;
 
-	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
-	QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
+	QString group(QString("MAME/Configuration/Devices/%1").arg(currentMachineName));
+	QString devDir(qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString());
 
 	qmc2Config->remove(group);
 
-	if ( configurationMap.count() > 0 ) {
-		foreach (QString configName, configurationMap.keys()) {
-			QPair<QStringList, QStringList> config = configurationMap[configName];
-			qmc2Config->setValue(group + QString("/%1/Instances").arg(configName), config.first);
-			qmc2Config->setValue(group + QString("/%1/Files").arg(configName), config.second);
-			QPair<QStringList, QStringList> slotConfig = slotMap[configName];
-			if ( slotConfig.first.isEmpty() ) {
-				qmc2Config->remove(group + QString("/%1/Slots").arg(configName));
-				qmc2Config->remove(group + QString("/%1/SlotOptions").arg(configName));
-			} else {
-				qmc2Config->setValue(group + QString("/%1/Slots").arg(configName), slotConfig.first);
-				qmc2Config->setValue(group + QString("/%1/SlotOptions").arg(configName), slotConfig.second);
-			}
-			QPair<QStringList, QStringList> slotBIOSs = slotBiosMap[configName];
-			if ( slotBIOSs.first.isEmpty() )
-				qmc2Config->remove(group + QString("/%1/SlotBIOSs").arg(configName));
-			else
-				qmc2Config->setValue(group + QString("/%1/SlotBIOSs").arg(configName), slotBIOSs.second);
+	foreach (QString configName, configurationMap.keys()) {
+		QPair<QStringList, QStringList> config = configurationMap[configName];
+		qmc2Config->setValue(group + QString("/%1/Instances").arg(configName), config.first);
+		qmc2Config->setValue(group + QString("/%1/Files").arg(configName), config.second);
+		QPair<QStringList, QStringList> slotConfig = slotMap[configName];
+		if ( slotConfig.first.isEmpty() ) {
+			qmc2Config->remove(group + QString("/%1/Slots").arg(configName));
+			qmc2Config->remove(group + QString("/%1/SlotOptions").arg(configName));
+		} else {
+			qmc2Config->setValue(group + QString("/%1/Slots").arg(configName), slotConfig.first);
+			qmc2Config->setValue(group + QString("/%1/SlotOptions").arg(configName), slotConfig.second);
 		}
+		QPair<QStringList, QStringList> slotBIOSs = slotBiosMap[configName];
+		if ( slotBIOSs.first.isEmpty() )
+			qmc2Config->remove(group + QString("/%1/SlotBIOSs").arg(configName));
+		else
+			qmc2Config->setValue(group + QString("/%1/SlotBIOSs").arg(configName), slotBIOSs.second);
 	}
 
 	if ( !devDir.isEmpty() )
@@ -1589,95 +1587,12 @@ void DeviceConfigurator::on_toolButtonCloneConfiguration_clicked()
 
 void DeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 {
-	QString cfgName = lineEditConfigurationName->text();
-
+	QString cfgName(lineEditConfigurationName->text());
 	if ( cfgName.isEmpty() )
 		return;
-
 	QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(cfgName, Qt::MatchExactly);
-	if ( matchedItemList.count() > 0 ) {
-		// save device configuration
-		QStringList instances, files;
-		for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
-			QTreeWidgetItem *item = treeWidgetDeviceSetup->topLevelItem(i);
-			QString fileName = item->data(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole).toString();
-			if ( !fileName.isEmpty() ) {
-				instances << item->data(QMC2_DEVCONFIG_COLUMN_NAME, Qt::EditRole).toString();
-				files << fileName;
-			}
-		}
-		configurationMap[cfgName].first = instances;
-		configurationMap[cfgName].second = files;
-
-		// save slot setup
-		QList<QTreeWidgetItem *> allSlotItems;
-		for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
-			QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
-			allSlotItems << item;
-			insertChildItems(item, allSlotItems);
-		}
-		QStringList slotNames, slotOptions, slotBIOSs;
-		QChar splitChar(' ');
-		foreach (QTreeWidgetItem *item, allSlotItems) {
-			QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
-			if ( !slotName.isEmpty() ) {
-				QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
-				if ( cb ) {
-					int defaultIndex = -1;
-					if ( slotPreselectionMap.contains(cb) )
-						defaultIndex = slotPreselectionMap[cb];
-					else if ( nestedSlotPreselectionMap.contains(cb) )
-						defaultIndex = nestedSlotPreselectionMap[cb];
-					QComboBox *cbBIOS = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
-					if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
-						slotNames << slotName;
-						slotOptions << cb->currentText().split(splitChar)[0];
-						if ( cbBIOS ) {
-							QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];
-							if ( biosChoice == tr("N/A") )
-								biosChoice.clear();
-							slotBIOSs << biosChoice;
-						} else
-							slotBIOSs << QString();
-					} else if ( cb->currentIndex() == 0 && defaultIndex > 0 ) {
-						slotNames << slotName;
-						slotOptions << "\"\"";
-						slotBIOSs << QString();
-					} else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex ) {
-						slotNames << slotName;
-						slotOptions << cb->currentText().split(splitChar)[0];
-						if ( cbBIOS ) {
-							QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];
-							if ( biosChoice == tr("N/A") )
-								biosChoice.clear();
-							slotBIOSs << biosChoice;
-						} else
-							slotBIOSs << QString();
-					} else {
-						slotNames << slotName;
-						if ( cbBIOS ) {
-							bool isDefaultBiosChoice = cbBIOS->currentText().endsWith(" / " + tr("default"));
-							QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];
-							if ( biosChoice == tr("N/A") )
-								biosChoice.clear();
-							slotBIOSs << biosChoice;
-							if ( !biosChoice.isEmpty() && !isDefaultBiosChoice )
-								slotOptions << cb->currentText().split(splitChar)[0];
-							else
-								slotOptions << QString();
-						} else  {
-							slotOptions << QString();
-							slotBIOSs << QString();
-						}
-					}
-				}
-			}
-		}
-		slotMap[cfgName].first = slotNames;
-		slotMap[cfgName].second = slotOptions;
-		slotBiosMap[cfgName].first = slotNames;
-		slotBiosMap[cfgName].second = slotBIOSs;
-	} else {
+	treeWidgetDeviceSetup->setUpdatesEnabled(false);
+	if ( matchedItemList.count() <= 0 ) {
 		// add new device configuration
 		listWidgetDeviceConfigurations->setSortingEnabled(false);
 		int row = listWidgetDeviceConfigurations->count();
@@ -1685,11 +1600,89 @@ void DeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 		listWidgetDeviceConfigurations->item(row)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
 		listWidgetDeviceConfigurations->setSortingEnabled(true);
 		listWidgetDeviceConfigurations->sortItems(Qt::AscendingOrder);
-
 		dontIgnoreNameChange = true;
-		on_toolButtonSaveConfiguration_clicked();
 	}
-
+	// save device configuration
+	QStringList instances, files;
+	for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidgetDeviceSetup->topLevelItem(i);
+		QString fileName(item->data(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole).toString());
+		if ( !fileName.isEmpty() ) {
+			instances << item->data(QMC2_DEVCONFIG_COLUMN_NAME, Qt::EditRole).toString();
+			files << fileName;
+		}
+	}
+	configurationMap[cfgName].first = instances;
+	configurationMap[cfgName].second = files;
+	// save slot setup
+	QList<QTreeWidgetItem *> allSlotItems;
+	for (int i = 0; i < treeWidgetSlotOptions->topLevelItemCount(); i++) {
+		QTreeWidgetItem *item = treeWidgetSlotOptions->topLevelItem(i);
+		allSlotItems << item;
+		insertChildItems(item, allSlotItems);
+	}
+	QStringList slotNames, slotOptions, slotBIOSs;
+	QChar splitChar(' ');
+	foreach (QTreeWidgetItem *item, allSlotItems) {
+		QString slotName(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT));
+		if ( !slotName.isEmpty() ) {
+			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+			if ( cb ) {
+				int defaultIndex = -1;
+				if ( slotPreselectionMap.contains(cb) )
+					defaultIndex = slotPreselectionMap.value(cb);
+				else if ( nestedSlotPreselectionMap.contains(cb) )
+					defaultIndex = nestedSlotPreselectionMap.value(cb);
+				QComboBox *cbBIOS = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
+				if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
+					slotNames << slotName;
+					slotOptions << cb->currentText().split(splitChar).at(0);
+					if ( cbBIOS ) {
+						QString biosChoice(cbBIOS->currentText().split(splitChar, QString::SkipEmptyParts).at(0));
+						if ( biosChoice == tr("N/A") )
+							biosChoice.clear();
+						slotBIOSs << biosChoice;
+					} else
+						slotBIOSs << QString();
+				} else if ( cb->currentIndex() == 0 && defaultIndex > 0 ) {
+					slotNames << slotName;
+					slotOptions << "\"\"";
+					slotBIOSs << QString();
+				} else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex ) {
+					slotNames << slotName;
+					slotOptions << cb->currentText().split(splitChar).at(0);
+					if ( cbBIOS ) {
+						QString biosChoice(cbBIOS->currentText().split(splitChar, QString::SkipEmptyParts).at(0));
+						if ( biosChoice == tr("N/A") )
+							biosChoice.clear();
+						slotBIOSs << biosChoice;
+					} else
+						slotBIOSs << QString();
+				} else {
+					slotNames << slotName;
+					if ( cbBIOS ) {
+						bool isDefaultBiosChoice = cbBIOS->currentText().endsWith(" / " + tr("default"));
+						QString biosChoice(cbBIOS->currentText().split(splitChar, QString::SkipEmptyParts).at(0));
+						if ( biosChoice == tr("N/A") )
+							biosChoice.clear();
+						slotBIOSs << biosChoice;
+						if ( !biosChoice.isEmpty() && !isDefaultBiosChoice )
+							slotOptions << cb->currentText().split(splitChar).at(0);
+						else
+							slotOptions << QString();
+					} else  {
+						slotOptions << QString();
+						slotBIOSs << QString();
+					}
+				}
+			}
+		}
+	}
+	slotMap[cfgName].first = slotNames;
+	slotMap[cfgName].second = slotOptions;
+	slotBiosMap[cfgName].first = slotNames;
+	slotBiosMap[cfgName].second = slotBIOSs;
+	treeWidgetDeviceSetup->setUpdatesEnabled(true);
 	on_lineEditConfigurationName_textChanged(lineEditConfigurationName->text());
 }
 
@@ -1840,9 +1833,9 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 					if ( cb ) {
 						int index = -1;
 						if ( slotPreselectionMap.contains(cb) )
-							index = slotPreselectionMap[cb];
+							index = slotPreselectionMap.value(cb);
 						else if ( nestedSlotPreselectionMap.contains(cb) )
-							index = nestedSlotPreselectionMap[cb];
+							index = nestedSlotPreselectionMap.value(cb);
 						if ( index >= 0 ) {
 							cb->blockSignals(true);
 							cb->setCurrentIndex(index);
@@ -2553,9 +2546,9 @@ void DeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 							if ( cb ) {
 								int defaultIndex = -1;
 								if ( slotPreselectionMap.contains(cb) )
-									defaultIndex = slotPreselectionMap[cb];
+									defaultIndex = slotPreselectionMap.value(cb);
 								else if ( nestedSlotPreselectionMap.contains(cb) )
-									defaultIndex = nestedSlotPreselectionMap[cb];
+									defaultIndex = nestedSlotPreselectionMap.value(cb);
 								QComboBox *cbBIOS = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
 								if ( cbBIOS ) {
 									QString biosChoice = cbBIOS->currentText().split(" ", QString::SkipEmptyParts)[0];

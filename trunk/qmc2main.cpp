@@ -1925,8 +1925,6 @@ void MainWindow::on_actionPlay_triggered(bool)
 		default: {
 				QString configName = qmc2DeviceConfigurator->lineEditConfigurationName->text();
 				if ( configName != tr("Default configuration") ) {
-					// make sure the currently edited data is up to date
-					qmc2DeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
 					if ( qmc2DeviceConfigurator->configurationMap.contains(configName) ) {
 						QPair<QStringList, QStringList> valuePair = qmc2DeviceConfigurator->slotMap[configName];
 						for (int i = 0; i < valuePair.first.count(); i++) {
