@@ -5999,11 +5999,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	qInstallMessageHandler(0);
 #endif
 	delete qmc2MainEventFilter;
-	delete qmc2Options;
-	e->accept();
 
 	// remove possible left-overs
 	QApplication::closeAllWindows();
+
+	delete qmc2Options;
+	e->accept();
 }
 
 void MainWindow::showEvent(QShowEvent *e)

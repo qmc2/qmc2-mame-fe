@@ -16,6 +16,11 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 
 	public slots:
 		void init();
+		void adjustIconSizes();
+
+	protected:
+		void showEvent(QShowEvent *e);
+		void hideEvent(QHideEvent *e);
 
 	private:
 		MachineListModel *m_model;
