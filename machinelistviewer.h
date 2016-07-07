@@ -19,12 +19,20 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void adjustIconSizes();
 		void on_toolButtonToggleMenu_clicked();
 
+		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
+		void mainSelectionChanged(const QString &id);
+
+	signals:
+		void selectionChanged(const QString &);
+
 	protected:
 		void showEvent(QShowEvent *e);
 		void hideEvent(QHideEvent *e);
 
 	private:
 		MachineListModel *m_model;
+		QString m_currentId;
+		bool m_ignoreSelectionChange;
 };
 
 #endif

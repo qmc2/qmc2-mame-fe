@@ -12,6 +12,7 @@
 #include <QProxyStyle>
 #include <QMovie>
 #include <QPoint>
+#include <QList>
 
 #include "settings.h"
 #include "ui_qmc2main.h"
@@ -27,6 +28,7 @@
 #include "rankitemwidget.h"
 #include "swldbmgr.h"
 #include "romstatefilter.h"
+#include "machinelistviewer.h"
 
 class ProxyStyle : public QProxyStyle
 {
@@ -156,6 +158,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		static QColor qmc2StatusColorRed;
 		static QColor qmc2StatusColorBlue;
 		static QColor qmc2StatusColorGrey;
+		static QList<MachineListViewer *> machineListViewers;
 
 		QToolButton *floatToggleButtonSoftwareDetail;
 
@@ -538,6 +541,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem *, int); 
 		void on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint &);
 
+		// selection changes done by filtering machine list viewers
+		void machineListViewer_selectionChanged(const QString &id);
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
@@ -548,11 +554,16 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void styleSheetSetupRequested(QString);
 		void paletteSetupRequested(QString);
 
+		// inform about selection changes done by ourself
+		void selectionChanged(const QString &);
+
 	private:
 		QTimer m_mlRankUpdateTimer;
 		QTimer m_hlRankUpdateTimer;
 		QTimer m_clRankUpdateTimer;
 		QTimer m_vlRankUpdateTimer;
+		bool m_ignoreSelectionChange;
+		MachineListViewer *m_lastMlvSender;
 };
 
 #endif
