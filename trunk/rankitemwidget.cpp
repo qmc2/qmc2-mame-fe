@@ -7,6 +7,7 @@
 #include "rankitemwidget.h"
 #include "machinelist.h"
 #include "settings.h"
+#include "qmc2main.h"
 #include "macros.h"
 
 extern MachineList *qmc2MachineList;
@@ -140,7 +141,8 @@ void RankItemWidget::setRankComplete(int rank)
 			updateForeignItems();
 		}
 		if ( m_mlmItem ) {
-			// FIXME
+			qmc2MachineList->userDataDb()->setRank(m_mlmItem->id(), m_rank);
+			updateForeignItems();
 		}
 	}
 }
@@ -171,7 +173,6 @@ void RankItemWidget::updateRankFromMousePos(int mouseX)
 {
 	if ( (m_item || m_mlmItem) && RankItemWidget::ranksLocked )
 		return;
-
 	setRankComplete(int(0.5f + 6.0f * (double)mouseX / (double)(width())));
 }
 
@@ -194,7 +195,11 @@ void RankItemWidget::mouseMoveEvent(QMouseEvent *e)
 void RankItemWidget::updateForeignItems()
 {
 	RankItemWidget *foreignRiw;
-	QString myId = m_item->text(QMC2_MACHINELIST_COLUMN_NAME);
+	QString myId;
+	if ( m_item )
+		myId = m_item->text(QMC2_MACHINELIST_COLUMN_NAME);
+	if ( m_mlmItem )
+		myId = m_mlmItem->id();
 	QTreeWidgetItem *item = qmc2MachineListItemHash.value(myId);
 	if ( item && item != m_item ) {
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
@@ -218,5 +223,32 @@ void RankItemWidget::updateForeignItems()
 		foreignRiw = (RankItemWidget *)item->treeWidget()->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( foreignRiw )
 			foreignRiw->setRank(m_rank);
+	}
+	if ( m_mlmItem ) {
+		foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+			if ( v != m_mlmItem->treeView()->parent() ) {
+				MachineListModelItem *mlmItem = v->model()->itemHash().value(myId);
+				if ( mlmItem ) {
+					int row = v->model()->rootItem()->childItems().indexOf(mlmItem);
+					if ( row >= 0 ) {
+						foreignRiw = (RankItemWidget *)mlmItem->treeView()->indexWidget(v->model()->index(row, MachineListModel::RANK, QModelIndex()));
+						if ( foreignRiw )
+							foreignRiw->setRank(m_rank);
+					}
+				}
+			}
+		}
+	} else {
+		foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+			MachineListModelItem *mlmItem = v->model()->itemHash().value(myId);
+			if ( mlmItem ) {
+				int row = v->model()->rootItem()->childItems().indexOf(mlmItem);
+				if ( row >= 0 ) {
+					foreignRiw = (RankItemWidget *)mlmItem->treeView()->indexWidget(v->model()->index(row, MachineListModel::RANK, QModelIndex()));
+					if ( foreignRiw )
+						foreignRiw->setRank(m_rank);
+				}
+			}
+		}
 	}
 }
