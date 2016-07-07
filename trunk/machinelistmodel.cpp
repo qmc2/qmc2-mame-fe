@@ -1,12 +1,12 @@
 #include <QMultiMap>
-#include <QTimer>
-#include <QHash>
+#include <QAbstractItemView>
 
 #include "machinelistmodel.h"
 #include "machinelist.h"
 
 extern MachineList *qmc2MachineList;
 extern QHash<QString, QIcon> qmc2IconHash;
+extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 #define ml	qmc2MachineList
 #define mlDb	ml->machineListDb()
@@ -70,7 +70,7 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	m_query = new QSqlQuery(mlDb->db());
 	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM Status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver Status") << tr("Source File") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is Device?") << tr("Category") << tr("Version");
 	setRootItem(new MachineListModelItem);
-	QTimer::singleShot(0, this, SLOT(startQuery()));
+	startQuery();
 }
 
 MachineListModel::~MachineListModel()
@@ -137,7 +137,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 	while ( i < itemsToFetch && mlDb->nextRecord(m_query, &id, &description, &manufacturer, &year, &cloneof, &is_bios, &is_device, &has_roms, &has_chds, &players, &drvstat, &srcfile) ) {
 		QString *category = ml->categoryHash.value(id);
 		QString *version = ml->versionHash.value(id);
-		parentItem->childItems().append(new MachineListModelItem(id,
+		MachineListModelItem *mlmItem = new MachineListModelItem(id,
 									 qmc2IconHash.value(id),
 									 cloneof,
 									 description,
@@ -155,7 +155,9 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 is_device,
 									 is_bios,
 									 false,
-									 m_rootItem));
+									 m_rootItem);
+		parentItem->childItems().append(mlmItem);
+		itemHash().insert(id, mlmItem);
 		i++;
 	}
 	m_recordCount += itemsToFetch;
@@ -479,7 +481,7 @@ void MachineListModel::sort(int column, Qt::SortOrder order)
 		if ( row >= 0 ) {
 			QModelIndex idx(index(row, 0, QModelIndex()));
 			m_treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-			m_treeView->scrollTo(idx); // FIXME?
+			m_treeView->scrollTo(idx, qmc2CursorPositioningMode);
 		}
 	}
 }

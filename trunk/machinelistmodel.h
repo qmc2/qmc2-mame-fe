@@ -3,6 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QList>
+#include <QHash>
 #include <QString>
 #include <QVariant>
 #include <QIcon>
@@ -108,6 +109,9 @@ class MachineListModel : public QAbstractItemModel
 		virtual QModelIndex parent(const QModelIndex &child) const;
 		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
+		MachineListModelItem *rootItem() { return m_rootItem; }
+		QHash<QString, MachineListModelItem *> &itemHash() { return m_itemHash; }
+
 	public slots:
 		void startQuery();
 
@@ -117,6 +121,7 @@ class MachineListModel : public QAbstractItemModel
 		QSqlQuery *m_query;
 		qint64 m_recordCount;
 		QTreeView *m_treeView;
+		QHash<QString, MachineListModelItem *> m_itemHash;
 
 		MachineListModelItem *itemFromIndex(const QModelIndex &index) const;
 };
