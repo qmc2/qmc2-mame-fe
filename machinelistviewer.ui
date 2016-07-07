@@ -6,23 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>977</width>
-    <height>717</height>
+    <width>1002</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Machine list viewer</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="verticalSpacing">
-    <number>0</number>
-   </property>
    <property name="margin">
+    <number>2</number>
+   </property>
+   <property name="spacing">
     <number>0</number>
    </property>
    <item row="0" column="0">
     <widget class="QWidget" name="widgetMenu" native="true">
-     <layout class="QGridLayout" name="gridLayoutWidgetConfigure">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
       <item row="0" column="0">
        <widget class="QComboBox" name="comboBoxViewName">
         <property name="sizePolicy">
@@ -36,91 +42,6 @@
         </property>
         <property name="editable">
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::MinimumExpanding</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="6">
-       <widget class="QToolButton" name="toolButtonConfigureView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Configure view</string>
-        </property>
-        <property name="text">
-         <string>Configure view</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="toolButtonCloneView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Clone view</string>
-        </property>
-        <property name="text">
-         <string>Clone view</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="QToolButton" name="toolButtonRefreshView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Refresh view</string>
-        </property>
-        <property name="text">
-         <string>Refresh view</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -150,7 +71,46 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
+      <item row="0" column="2">
+       <widget class="QToolButton" name="toolButtonCloneView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Clone view</string>
+        </property>
+        <property name="text">
+         <string>Clone view</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="4">
        <widget class="QToolButton" name="toolButtonViewModeToggle">
         <property name="enabled">
          <bool>false</bool>
@@ -170,6 +130,52 @@
         <property name="icon">
          <iconset resource="qmc2.qrc">
           <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QToolButton" name="toolButtonConfigureView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Configure view</string>
+        </property>
+        <property name="text">
+         <string>Configure view</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QToolButton" name="toolButtonRefreshView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Refresh view</string>
+        </property>
+        <property name="text">
+         <string>Refresh view</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
