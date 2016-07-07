@@ -57,7 +57,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 
 	adjustIconSizes();
 
-	m_rankItemWidget = new RankItemWidget(0, frameRankFilter);
+	m_rankItemWidget = new RankItemWidget((QTreeWidgetItem *)0, frameRankFilter);
 	m_rankItemWidget->setMouseTracking(true);
 	m_rankItemWidget->setToolTip(tr("Select the rank a machine must at least have to be included (or none to ignore the rank)"));
 	gridLayoutRankFilter->addWidget(m_rankItemWidget, 0, 0, Qt::AlignLeft);

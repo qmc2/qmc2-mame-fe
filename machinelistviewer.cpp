@@ -7,6 +7,7 @@
 
 #include "qmc2main.h"
 #include "machinelistviewer.h"
+#include "rankitemwidget.h"
 #include "settings.h"
 #include "macros.h"
 
@@ -61,6 +62,7 @@ void MachineListViewer::adjustIconSizes()
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	QSize iconSizeView(fm.height(), fm.height());
 
 	toolButtonSaveView->setIconSize(iconSize);
 	toolButtonCloneView->setIconSize(iconSize);
@@ -68,7 +70,7 @@ void MachineListViewer::adjustIconSizes()
 	toolButtonConfigureFilters->setIconSize(iconSize);
 	toolButtonVisibleColumns->setIconSize(iconSize);
 	toolButtonUpdateView->setIconSize(iconSize);
-	treeView->setIconSize(iconSize);
+	treeView->setIconSize(iconSizeView);
 }
 
 void MachineListViewer::on_toolButtonToggleMenu_clicked()
@@ -115,4 +117,63 @@ void MachineListViewer::hideEvent(QHideEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", saveGeometry());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", treeView->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
+}
+
+void MlvDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+	switch ( MachineListModel::Column(index.column()) ) {
+		case MachineListModel::RANK:
+			// FIXME
+			break;
+		default:
+			QStyledItemDelegate::paint(painter, option, index);
+			break;
+	}
+}
+
+QSize MlvDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+	switch ( MachineListModel::Column(index.column()) ) {
+		case MachineListModel::RANK:
+			// FIXME
+			return QSize(10, 10);
+		default:
+			return QStyledItemDelegate::sizeHint(option, index);
+	}
+}
+
+QWidget *MlvDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+	switch ( MachineListModel::Column(index.column()) ) {
+		case MachineListModel::RANK: {
+			// RankItemWidget *riw = new RankItemWidget()
+			return 0;
+		}
+		default:
+			return QStyledItemDelegate::createEditor(parent, option, index);
+	}
+}
+
+void MlvDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+{
+	switch ( MachineListModel::Column(index.column()) ) {
+		case MachineListModel::RANK:
+			// FIXME
+			break;
+		default:
+			QStyledItemDelegate::setEditorData(editor, index);
+			break;
+	}
+}
+
+void MlvDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+{
+	switch ( MachineListModel::Column(index.column()) ) {
+		case MachineListModel::RANK:
+			// FIXME
+			break;
+		default:
+			QStyledItemDelegate::setModelData(editor, model, index);
+			break;
+	}
 }

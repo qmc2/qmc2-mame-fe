@@ -25,13 +25,25 @@ bool RankItemWidget::useColorRankImage;
 bool RankItemWidget::ranksLocked = false;
 QColor RankItemWidget::rankImageColor;
 
-RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent)
-	: QWidget(parent)
+RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent) :
+	QWidget(parent),
+	m_item(item),
+	m_mlmItem(0)
 {
-	m_item = item;
 	setupUi(this);
 	updateSize();
 	if ( m_item )
+		QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
+}
+
+RankItemWidget::RankItemWidget(MachineListModelItem *item, QWidget *parent) :
+	QWidget(parent),
+	m_item(0),
+	m_mlmItem(item)
+{
+	setupUi(this);
+	updateSize();
+	if ( m_mlmItem )
 		QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
 }
 
@@ -75,7 +87,7 @@ void RankItemWidget::updateSize(QFontMetrics *fm)
 		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fm->height()), Qt::KeepAspectRatio);
 	else
 		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fontMetrics().height()), Qt::KeepAspectRatio);
-	if ( !m_item )
+	if ( !m_item && !m_mlmItem )
 		newSize += QSize(2, 2);
 	setFixedSize(newSize);
 }
@@ -90,6 +102,8 @@ void RankItemWidget::setRank(int rank)
 	m_rank = rank;
 	if ( m_item )
 		m_item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, QString::number(m_rank));
+	if ( m_mlmItem )
+		m_mlmItem->setRank(m_rank);
 	QPixmap pmRank(useFlatRankImage || useColorRankImage ? QPixmap::fromImage(rankSingleFlat) : QPixmap::fromImage(rankSingle));
 	QPainter pRank;
 	pRank.begin(&pmRank);
@@ -105,7 +119,7 @@ void RankItemWidget::setRank(int rank)
 	QPainter pBackground;
 	pBackground.begin(&pmBackground);
 	pBackground.setCompositionMode(QPainter::CompositionMode_SourceIn);
-	if ( m_item )
+	if ( m_item || m_mlmItem )
 		pBackground.fillRect(pmBackground.rect(), m_item->treeWidget()->palette().color(QPalette::Text));
 	pBackground.end();
 	p.drawPixmap(0, 0, pmBackground);
@@ -122,6 +136,9 @@ void RankItemWidget::setRankComplete(int rank)
 		if ( m_item ) {
 			qmc2MachineList->userDataDb()->setRank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME), m_rank);
 			updateForeignItems();
+		}
+		if ( m_mlmItem ) {
+			// FIXME
 		}
 	}
 }
@@ -142,12 +159,15 @@ void RankItemWidget::decreaseRank()
 
 void RankItemWidget::updateRankFromDb()
 {
-	setRank(qmc2MachineList->userDataDb()->rank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME)));
+	if ( m_item )
+		setRank(qmc2MachineList->userDataDb()->rank(m_item->text(QMC2_MACHINELIST_COLUMN_NAME)));
+	if ( m_mlmItem )
+		setRank(qmc2MachineList->userDataDb()->rank(m_mlmItem->id()));
 }
 
 void RankItemWidget::updateRankFromMousePos(int mouseX)
 {
-	if ( m_item && RankItemWidget::ranksLocked )
+	if ( (m_item || m_mlmItem) && RankItemWidget::ranksLocked )
 		return;
 
 	setRankComplete(int(0.5f + 6.0f * (double)mouseX / (double)(width())));
