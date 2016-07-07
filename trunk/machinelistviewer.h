@@ -32,6 +32,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 	protected:
 		void showEvent(QShowEvent *e);
 		void hideEvent(QHideEvent *e);
+		void resizeEvent(QResizeEvent *e);
 
 	private:
 		MachineListModel *m_model;

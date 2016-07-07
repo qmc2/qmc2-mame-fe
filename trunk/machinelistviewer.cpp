@@ -148,4 +148,13 @@ void MachineListViewer::hideEvent(QHideEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", saveGeometry());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", treeView->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
+	if ( e )
+		QWidget::hideEvent(e);
+}
+
+void MachineListViewer::resizeEvent(QResizeEvent *e)
+{
+	m_rankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+	if ( e )
+		QWidget::resizeEvent(e);
 }
