@@ -119,8 +119,10 @@ void RankItemWidget::setRank(int rank)
 	QPainter pBackground;
 	pBackground.begin(&pmBackground);
 	pBackground.setCompositionMode(QPainter::CompositionMode_SourceIn);
-	if ( m_item || m_mlmItem )
+	if ( m_item )
 		pBackground.fillRect(pmBackground.rect(), m_item->treeWidget()->palette().color(QPalette::Text));
+	if ( m_mlmItem )
+		pBackground.fillRect(pmBackground.rect(), m_mlmItem->treeView()->palette().color(QPalette::Text));
 	pBackground.end();
 	p.drawPixmap(0, 0, pmBackground);
 	p.end();

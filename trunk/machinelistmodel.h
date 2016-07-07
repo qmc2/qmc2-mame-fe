@@ -17,7 +17,7 @@
 class MachineListModelItem
 {
 	public:
-		MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem = 0);
+		MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, QTreeView *treeView, MachineListModelItem *parentItem = 0);
 		MachineListModelItem(MachineListModelItem *parentItem = 0);
 		~MachineListModelItem();
 
@@ -62,6 +62,8 @@ class MachineListModelItem
 		MachineListModelItem *parentItem() { return m_parentItem; }
 		QList<MachineListModelItem *> &childItems() { return m_childItems; }
 		int row() const;
+		QTreeView *treeView() { return m_treeView; }
+		void setTreeView(QTreeView *treeView) { m_treeView = treeView; }
 
 	private:
 		QString m_id;
@@ -84,6 +86,7 @@ class MachineListModelItem
 		bool m_tagged;
 		QList<MachineListModelItem *> m_childItems;
 		MachineListModelItem *m_parentItem;
+		QTreeView *m_treeView;
 };
 
 class MachineListModel : public QAbstractItemModel
