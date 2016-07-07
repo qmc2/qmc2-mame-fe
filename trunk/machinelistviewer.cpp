@@ -5,6 +5,7 @@
 #include <QTreeWidgetItem>
 #include <QAbstractItemView>
 
+#include "qmc2main.h"
 #include "machinelistviewer.h"
 #include "settings.h"
 #include "macros.h"
@@ -14,7 +15,9 @@ extern QTreeWidgetItem *qmc2CurrentItem;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
-	QWidget(parent)
+	QWidget(parent),
+	m_model(0),
+	m_ignoreSelectionChange(false)
 {
 	setupUi(this);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
@@ -27,6 +30,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 
 MachineListViewer::~MachineListViewer()
 {
+	MainWindow::machineListViewers.removeAll(this);
 	treeView->setModel(0);
 	delete model();
 }
@@ -38,6 +42,7 @@ void MachineListViewer::init()
 	if ( qmc2CurrentItem ) {
 		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		if ( item ) {
+			m_currentId = item->id();
 			int row = model()->rootItem()->childItems().indexOf(item);
 			if ( row >= 0 ) {
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
@@ -46,6 +51,7 @@ void MachineListViewer::init()
 			}
 		}
 	}
+	connect(treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
 	treeView->setFocus();
 }
 
@@ -68,6 +74,29 @@ void MachineListViewer::on_toolButtonToggleMenu_clicked()
 {
 	widgetMenu->setVisible(!widgetMenu->isVisible());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
+}
+
+void MachineListViewer::currentChanged(const QModelIndex &current, const QModelIndex & /*previous*/)
+{
+	m_currentId = current.sibling(current.row(), MachineListModel::ID).data().toString();
+	if ( !m_ignoreSelectionChange )
+		emit selectionChanged(m_currentId);
+	m_ignoreSelectionChange = false;
+}
+
+void MachineListViewer::mainSelectionChanged(const QString &id)
+{
+	m_currentId = id;
+	MachineListModelItem *item = model()->itemHash().value(m_currentId);
+	if ( item ) {
+		int row = model()->rootItem()->childItems().indexOf(item);
+		if ( row >= 0 ) {
+			m_ignoreSelectionChange = true;
+			QModelIndex idx(model()->index(row, 0, QModelIndex()));
+			treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+			treeView->scrollTo(idx, qmc2CursorPositioningMode);
+		}
+	}
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)

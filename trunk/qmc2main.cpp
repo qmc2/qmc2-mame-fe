@@ -44,7 +44,6 @@
 #include "emuopt.h"
 #include "processmanager.h"
 #include "machinelist.h"
-#include "machinelistviewer.h"
 #include "preview.h"
 #include "flyer.h"
 #include "cabinet.h"
@@ -296,6 +295,7 @@ QColor MainWindow::qmc2StatusColorYellowGreen = QColor("#799632");
 QColor MainWindow::qmc2StatusColorRed = QColor("#f90000");
 QColor MainWindow::qmc2StatusColorBlue = QColor("#0000f9");
 QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
+QList<MachineListViewer *> MainWindow::machineListViewers;
 
 // extern global variables
 extern QHash<QString, QStringList> systemSoftwareListHash;
@@ -307,7 +307,9 @@ extern QString qmc2CurrentStyleName;
 extern QHash<QString, QString> softwareParentHash;
 
 MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0)
+	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0),
+	m_ignoreSelectionChange(false),
+	m_lastMlvSender(0)
 {
 	setUpdatesEnabled(false);
 	setVisible(false);
@@ -2331,6 +2333,9 @@ void MainWindow::on_actionNewPdfViewer_triggered(bool)
 void MainWindow::on_actionNewFilteredView_triggered(bool)
 {
 	MachineListViewer *mlv = new MachineListViewer;
+	machineListViewers.append(mlv);
+	connect(mlv, SIGNAL(selectionChanged(const QString &)), this, SLOT(machineListViewer_selectionChanged(const QString &)));
+	connect(this, SIGNAL(selectionChanged(const QString &)), mlv, SLOT(mainSelectionChanged(const QString &)));
 	mlv->show();
 }
 
@@ -3764,6 +3769,15 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 		labelMachineStatus->setVisible(false);
 
 	QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+	if ( qmc2CurrentItem ) {
+		if ( !m_ignoreSelectionChange )
+			emit selectionChanged(gameName);
+		else foreach (MachineListViewer *v, machineListViewers)
+			if ( v != m_lastMlvSender )
+				v->mainSelectionChanged(gameName);
+	}
+	m_ignoreSelectionChange = false;
+	m_lastMlvSender = 0;
 
 	// setup status indicator color
 	switch ( qmc2MachineList->romState(gameName) ) {
@@ -4682,6 +4696,15 @@ void MainWindow::on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint
 		qmc2ForeignIDsMenu->move(adjustedWidgetPosition(treeWidgetForeignIDs->viewport()->mapToGlobal(p), qmc2ForeignIDsMenu));
 		qmc2ForeignIDsMenu->show();
 	}
+}
+
+void MainWindow::machineListViewer_selectionChanged(const QString &id)
+{
+	m_lastMlvSender = (MachineListViewer *)sender();
+	m_ignoreSelectionChange = true;
+	qmc2CurrentItem = qmc2MachineListItemHash.value(id);
+	treeWidgetMachineList->setCurrentItem(qmc2CurrentItem);
+	scrollToCurrentItem();
 }
 
 void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
