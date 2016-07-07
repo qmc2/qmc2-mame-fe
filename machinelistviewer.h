@@ -2,6 +2,7 @@
 #define _MACHINELISTVIEWER_H_
 
 #include <QStyledItemDelegate>
+#include <QTimer>
 
 #include "machinelistmodel.h"
 #include "ui_machinelistviewer.h"
@@ -20,9 +21,10 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void init();
 		void adjustIconSizes();
 		void on_toolButtonToggleMenu_clicked();
-
 		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
 		void mainSelectionChanged(const QString &id);
+		void treeViewVerticalScrollChanged(int);
+		void treeViewUpdateRanks();
 
 	signals:
 		void selectionChanged(const QString &);
@@ -35,6 +37,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		MachineListModel *m_model;
 		QString m_currentId;
 		bool m_ignoreSelectionChange;
+		QTimer m_rankUpdateTimer;
 };
 
 #endif

@@ -1,9 +1,10 @@
-#include <QTimer>
 #include <QFont>
 #include <QSize>
 #include <QLineEdit>
 #include <QTreeWidgetItem>
 #include <QAbstractItemView>
+#include <QFontMetrics>
+#include <QFont>
 
 #include "qmc2main.h"
 #include "machinelistviewer.h"
@@ -14,6 +15,7 @@
 extern Settings *qmc2Config;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
+extern int qmc2UpdateDelay;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
@@ -22,6 +24,8 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 {
 	setupUi(this);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
+	m_rankUpdateTimer.setSingleShot(true);
+	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
 
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
@@ -49,10 +53,12 @@ void MachineListViewer::init()
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 				treeView->scrollTo(idx, qmc2CursorPositioningMode);
+				treeViewUpdateRanks();
 			}
 		}
 	}
 	connect(treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
+	connect((QObject *)treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeViewVerticalScrollChanged(int)));
 	treeView->setFocus();
 }
 
@@ -99,6 +105,31 @@ void MachineListViewer::mainSelectionChanged(const QString &id)
 			treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 			treeView->scrollTo(idx, qmc2CursorPositioningMode);
 		}
+	}
+}
+
+void MachineListViewer::treeViewVerticalScrollChanged(int)
+{
+	m_rankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+}
+
+void MachineListViewer::treeViewUpdateRanks()
+{
+	QModelIndex index = treeView->indexAt(treeView->viewport()->rect().topLeft());
+	QModelIndex endIndex = treeView->indexAt(treeView->viewport()->rect().bottomLeft());
+	QFontMetrics fm(treeView->fontMetrics());
+	while ( index.isValid() ) {
+		QModelIndex idx(index.sibling(index.row(), MachineListModel::RANK));
+		RankItemWidget *riw = (RankItemWidget *)treeView->indexWidget(idx);
+		if ( riw ) {
+			riw->updateSize(&fm);
+			if ( riw->rank() > 0 )
+				QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+		} else
+			treeView->setIndexWidget(idx, new RankItemWidget(model()->itemFromIndex(idx)));
+		if ( index == endIndex )
+			break;
+		index = treeView->indexBelow(index);
 	}
 }
 

@@ -12,8 +12,9 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 #define mlDb	ml->machineListDb()
 #define udDb	ml->userDataDb()
 
-MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, MachineListModelItem *parentItem) :
-	m_parentItem(parentItem)
+MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, QTreeView *treeView, MachineListModelItem *parentItem) :
+	m_parentItem(parentItem),
+	m_treeView(treeView)
 {
 	setId(id);
 	setParent(parent);
@@ -36,7 +37,8 @@ MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon,
 }
 
 MachineListModelItem::MachineListModelItem(MachineListModelItem *parentItem) :
-	m_parentItem(parentItem)
+	m_parentItem(parentItem),
+	m_treeView(0)
 {
 	setRank(0);
 	setRomStatus('U');
@@ -155,6 +157,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 is_device,
 									 is_bios,
 									 false,
+									 m_treeView,
 									 m_rootItem);
 		parentItem->childItems().append(mlmItem);
 		itemHash().insert(id, mlmItem);
@@ -226,8 +229,6 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 					return item->sourceFile();
 				case PLAYERS:
 					return item->players();
-				case RANK:
-					return QString::number(item->rank());
 				case IS_BIOS:
 					return item->isBios() ? "true" : "false";
 				case IS_DEVICE:
