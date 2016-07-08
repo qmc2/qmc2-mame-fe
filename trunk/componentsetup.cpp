@@ -327,8 +327,8 @@ void ComponentSetup::loadComponent(QString name, bool fromSettings)
 	listWidgetAvailableFeatures->clear();
 	listWidgetActiveFeatures->clear();
 	if ( name.isEmpty() )
-		name = m_components[comboBoxComponents->currentIndex()];
-	ComponentInfo *componentInfo = componentInfoHash()[name];
+		name = m_components.at(comboBoxComponents->currentIndex());
+	ComponentInfo *componentInfo = componentInfoHash().value(name);
 	if ( !componentInfo )
 		return;
 	if ( fromSettings ) {
@@ -376,11 +376,11 @@ void ComponentSetup::loadComponent(QString name, bool fromSettings)
 void ComponentSetup::saveComponent(QString name)
 {
 	if ( name.isEmpty() )
-		name = m_components[comboBoxComponents->currentIndex()];
-	ComponentInfo *componentInfo = componentInfoHash()[name];
-	QTabWidget *tabWidget = m_componentToWidgetHash[name];
-	QSplitter *splitter = m_componentToSplitterHash[name];
-	int widgetIndex = m_componentToSplitterIndexHash[name];
+		name = m_components.at(comboBoxComponents->currentIndex());
+	ComponentInfo *componentInfo = componentInfoHash().value(name);
+	QTabWidget *tabWidget = m_componentToWidgetHash.value(name);
+	QSplitter *splitter = m_componentToSplitterHash.value(name);
+	int widgetIndex = m_componentToSplitterIndexHash.value(name);
 	QWidget *oldWidget = tabWidget->currentWidget();
 	tabWidget->clear();
 	componentInfo->appliedFeatureList().clear();
@@ -630,7 +630,7 @@ void ComponentSetup::adjustIconSizes()
 
 void ComponentSetup::on_listWidgetAvailableFeatures_itemSelectionChanged()
 {
-	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
+	ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
 	if ( !componentInfo )
 		return;
 	if ( listWidgetAvailableFeatures->selectedItems().count() > 0 ) {
@@ -666,7 +666,7 @@ void ComponentSetup::on_listWidgetActiveFeatures_itemSelectionChanged()
 
 void ComponentSetup::on_pushButtonActivateFeatures_clicked()
 {
-	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
+	ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
 	if ( !componentInfo )
 		return;
 	foreach (QListWidgetItem *item, listWidgetAvailableFeatures->selectedItems()) {
@@ -687,7 +687,7 @@ void ComponentSetup::on_pushButtonActivateFeatures_clicked()
 
 void ComponentSetup::on_pushButtonConfigureFeature_clicked()
 {
-	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
+	ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
 	if ( !componentInfo )
 		return;
 	// FIXME (supports only component 2 ATM)
@@ -725,7 +725,7 @@ void ComponentSetup::on_pushButtonConfigureFeature_clicked()
 
 void ComponentSetup::on_pushButtonDeactivateFeatures_clicked()
 {
-	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
+	ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
 	if ( !componentInfo )
 		return;
 	foreach (QListWidgetItem *item, listWidgetActiveFeatures->selectedItems()) {
@@ -744,7 +744,7 @@ void ComponentSetup::on_pushButtonDeactivateFeatures_clicked()
 
 void ComponentSetup::on_pushButtonFeatureUp_clicked()
 {
-	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
+	ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
 	if ( !componentInfo )
 		return;
 	foreach (QListWidgetItem *item, listWidgetActiveFeatures->selectedItems()) {
@@ -764,7 +764,7 @@ void ComponentSetup::on_pushButtonFeatureUp_clicked()
 
 void ComponentSetup::on_pushButtonFeatureDown_clicked()
 {
-	ComponentInfo *componentInfo = componentInfoHash()[m_components[comboBoxComponents->currentIndex()]];
+	ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
 	if ( !componentInfo )
 		return;
 	foreach (QListWidgetItem *item, listWidgetActiveFeatures->selectedItems()) {
@@ -786,14 +786,14 @@ void ComponentSetup::on_comboBoxComponents_currentIndexChanged(int index)
 {
 	static int lastIndex = -1;
 	if ( lastIndex > -1 ) {
-		ComponentInfo *componentInfo = componentInfoHash()[m_components[lastIndex]];
+		ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(lastIndex));
 		bool changed = (componentInfo->activeFeatureList().count() != componentInfo->appliedFeatureList().count());
 		for (int i = 0; !changed && i < componentInfo->activeFeatureList().count(); i++)
-			 changed = (componentInfo->activeFeatureList()[i] != componentInfo->appliedFeatureList()[i]);
+			 changed = (componentInfo->activeFeatureList().at(i) != componentInfo->appliedFeatureList().at(i));
 		if ( changed ) {
 			switch ( QMessageBox::question(this, tr("Question"), tr("The current component's setup hasn't been applied yet. Apply it now?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::Yes) ) {
 				case QMessageBox::Yes:
-					saveComponent(m_components[lastIndex]);
+					saveComponent(m_components.at(lastIndex));
 					break;
 				case QMessageBox::No:
 					break;
@@ -802,7 +802,7 @@ void ComponentSetup::on_comboBoxComponents_currentIndexChanged(int index)
 					comboBoxComponents->blockSignals(true);
 					comboBoxComponents->setCurrentIndex(lastIndex);
 					comboBoxComponents->blockSignals(false);
-					loadComponent(m_components[lastIndex], false);
+					loadComponent(m_components.at(lastIndex), false);
 					return;
 			}
 		}

@@ -31,6 +31,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void treeViewVerticalScrollChanged(int);
 		void treeViewUpdateRanks();
 		void on_treeView_customContextMenuRequested(const QPoint &p);
+		void on_treeView_activated(const QModelIndex &);
 
 	signals:
 		void selectionChanged(const QString &);

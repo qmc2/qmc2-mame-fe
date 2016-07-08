@@ -10,6 +10,7 @@
 #include "machinelistviewer.h"
 #include "rankitemwidget.h"
 #include "settings.h"
+#include "demomode.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
@@ -18,6 +19,10 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern int qmc2UpdateDelay;
 extern QMenu *qmc2MachineMenu;
 extern MainWindow *qmc2MainWindow;
+extern DemoModeDialog *qmc2DemoModeDialog;
+extern int qmc2DefaultLaunchMode;
+extern bool qmc2StartEmbedded;
+extern bool qmc2IgnoreItemActivation;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
@@ -53,7 +58,7 @@ void MachineListViewer::init()
 		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		if ( item ) {
 			m_currentId = item->id();
-			int row = model()->rootItem()->childItems().indexOf(item);
+			int row = item->row();
 			if ( row >= 0 ) {
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
@@ -108,7 +113,7 @@ void MachineListViewer::on_toolButtonUpdateView_clicked()
 		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		if ( item ) {
 			m_currentId = item->id();
-			int row = model()->rootItem()->childItems().indexOf(item);
+			int row = item->row();
 			if ( row >= 0 ) {
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
@@ -132,7 +137,7 @@ void MachineListViewer::mainSelectionChanged(const QString &id)
 	m_currentId = id;
 	MachineListModelItem *item = model()->itemHash().value(m_currentId);
 	if ( item ) {
-		int row = model()->rootItem()->childItems().indexOf(item);
+		int row = item->row();
 		if ( row >= 0 ) {
 			m_ignoreSelectionChange = true;
 			QModelIndex idx(model()->index(row, 0, QModelIndex()));
@@ -183,6 +188,28 @@ void MachineListViewer::on_treeView_customContextMenuRequested(const QPoint &p)
 		return;
 	qmc2MachineMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeView->viewport()->mapToGlobal(p), qmc2MachineMenu));
 	qmc2MachineMenu->show();
+}
+
+void MachineListViewer::on_treeView_activated(const QModelIndex &)
+{
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			return;
+	qmc2StartEmbedded = false;
+	if ( !qmc2IgnoreItemActivation ) {
+		switch ( qmc2DefaultLaunchMode ) {
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				qmc2MainWindow->on_actionPlayEmbedded_triggered();
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				qmc2MainWindow->on_actionPlay_triggered();
+				break;
+		}
+	}
+	qmc2IgnoreItemActivation = false;
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)
