@@ -30,6 +30,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void mainSelectionChanged(const QString &id);
 		void treeViewVerticalScrollChanged(int);
 		void treeViewUpdateRanks();
+		void on_treeView_customContextMenuRequested(const QPoint &p);
 
 	signals:
 		void selectionChanged(const QString &);
