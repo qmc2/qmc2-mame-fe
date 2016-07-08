@@ -8,7 +8,8 @@ TEMPLATE = app
 win32 {
     system(copy ..\\..\\data\\lng\\qt_*.qm translations > NUL)
 } else {
-    system(cp ../../data/lng/qt_*.qm translations > /dev/null)
+    system(rm -f translations/qt_*.qm > /dev/null)
+    system(ln ../../data/lng/qt_*.qm translations > /dev/null)
 }
 QMAKE_CLEAN += translations/qt_*.qm
 
