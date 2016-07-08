@@ -20,7 +20,8 @@ extern int qmc2UpdateDelay;
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
 	m_model(0),
-	m_ignoreSelectionChange(false)
+	m_ignoreSelectionChange(false),
+	m_filterConfig(0)
 {
 	setupUi(this);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
@@ -38,10 +39,12 @@ MachineListViewer::~MachineListViewer()
 	MainWindow::machineListViewers.removeAll(this);
 	treeView->setModel(0);
 	delete model();
+	delete filterConfig();
 }
 
 void MachineListViewer::init()
 {
+	m_filterConfig = new FilterConfigurationDialog(this);
 	m_model = new MachineListModel(treeView, this);
 	treeView->setModel(model());
 	if ( qmc2CurrentItem ) {
@@ -83,6 +86,16 @@ void MachineListViewer::on_toolButtonToggleMenu_clicked()
 {
 	widgetMenu->setVisible(!widgetMenu->isVisible());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
+}
+
+void MachineListViewer::on_toolButtonConfigureFilters_clicked()
+{
+	filterConfig()->show();
+	if ( filterConfig()->exec() == QDialog::Accepted ) {
+		QMC2_PRINT_TXT(FIXME: QDialog::Accepted);
+	} else {
+		QMC2_PRINT_TXT(FIXME: QDialog::Rejected);
+	}
 }
 
 void MachineListViewer::currentChanged(const QModelIndex &current, const QModelIndex & /*previous*/)

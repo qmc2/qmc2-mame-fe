@@ -65,6 +65,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			romstatefilter.ui \
 			individualfallbacksettings.ui \
 			catverinioptimizer.ui \
+			filterconfigurationdialog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -151,6 +152,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customsoftwareartwork.cpp \
 			individualfallbacksettings.cpp \
 			catverinioptimizer.cpp \
+			filterconfigurationdialog.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -284,6 +286,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			customsoftwareartwork.h \
 			individualfallbacksettings.h \
 			catverinioptimizer.h \
+			filterconfigurationdialog.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
