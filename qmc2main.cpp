@@ -9929,6 +9929,13 @@ void MainWindow::on_actionDecreaseRank_triggered(bool)
 		riw->decreaseRank();
 }
 
+void MainWindow::updateUserData()
+{
+	resizeEvent(0);
+	foreach (MachineListViewer *v, machineListViewers)
+		QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
+}
+
 void MainWindow::on_actionRankImageGradient_triggered(bool checked)
 {
 	if ( checked ) {
