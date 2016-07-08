@@ -134,12 +134,13 @@ void MachineListViewer::currentChanged(const QModelIndex &current, const QModelI
 
 void MachineListViewer::mainSelectionChanged(const QString &id)
 {
+	bool wasEqual = m_currentId == id;
 	m_currentId = id;
 	MachineListModelItem *item = model()->itemHash().value(m_currentId);
 	if ( item ) {
 		int row = item->row();
 		if ( row >= 0 ) {
-			m_ignoreSelectionChange = true;
+			m_ignoreSelectionChange = !wasEqual;
 			QModelIndex idx(model()->index(row, 0, QModelIndex()));
 			treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 			treeView->scrollTo(idx, qmc2CursorPositioningMode);

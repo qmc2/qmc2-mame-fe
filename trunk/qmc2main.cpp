@@ -4781,15 +4781,15 @@ void MainWindow::on_treeWidgetMachineList_itemSelectionChanged()
 void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 {
 	updateTimer.stop();
-	QList<QTreeWidgetItem *>selected;
+	QList<QTreeWidgetItem *> selected;
 	if ( qmc2HierarchySelectedItem != 0 )
 		selected.append(qmc2HierarchySelectedItem);
 	else
 		selected = treeWidgetMachineList->selectedItems();
-	if ( selected.count() == 0 )
+	if ( selected.isEmpty() )
 		if ( treeWidgetMachineList->currentItem() )
 			selected.append(treeWidgetMachineList->currentItem());
-	if ( selected.count() > 0 ) {
+	if ( !selected.isEmpty() ) {
 		QTreeWidgetItem *topLevelItem = selected.at(0);
 		while ( topLevelItem->parent() )
 			topLevelItem = topLevelItem->parent();
