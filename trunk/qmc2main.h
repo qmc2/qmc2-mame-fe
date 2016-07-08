@@ -509,7 +509,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void treeWidgetVersionView_verticalScrollChanged(int value = -1);
 		void treeWidgetVersionView_updateRanks();
 		void on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *);
-		void updateUserData() { resizeEvent(0); }
+		void updateUserData();
 		void on_actionIncreaseRank_triggered(bool);
 		void on_actionDecreaseRank_triggered(bool);
 		void on_actionRankImageGradient_triggered(bool checked = false);
