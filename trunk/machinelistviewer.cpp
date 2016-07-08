@@ -21,7 +21,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
 	m_model(0),
 	m_ignoreSelectionChange(false),
-	m_filterConfig(0)
+	m_filterConfigurationDialog(0)
 {
 	setupUi(this);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
@@ -39,12 +39,12 @@ MachineListViewer::~MachineListViewer()
 	MainWindow::machineListViewers.removeAll(this);
 	treeView->setModel(0);
 	delete model();
-	delete filterConfig();
+	delete filterConfigurationDialog();
 }
 
 void MachineListViewer::init()
 {
-	m_filterConfig = new FilterConfigurationDialog(this);
+	m_filterConfigurationDialog = new FilterConfigurationDialog(this, this);
 	m_model = new MachineListModel(treeView, this);
 	treeView->setModel(model());
 	if ( qmc2CurrentItem ) {
@@ -90,11 +90,30 @@ void MachineListViewer::on_toolButtonToggleMenu_clicked()
 
 void MachineListViewer::on_toolButtonConfigureFilters_clicked()
 {
-	filterConfig()->show();
-	if ( filterConfig()->exec() == QDialog::Accepted ) {
-		QMC2_PRINT_TXT(FIXME: QDialog::Accepted);
-	} else {
-		QMC2_PRINT_TXT(FIXME: QDialog::Rejected);
+	filterConfigurationDialog()->show();
+	if ( filterConfigurationDialog()->isMinimized() )
+		filterConfigurationDialog()->showNormal();
+	filterConfigurationDialog()->exec();
+}
+
+void MachineListViewer::on_toolButtonUpdateView_clicked()
+{
+	int currentSortColumn = treeView->header()->sortIndicatorSection();
+	Qt::SortOrder currentSortOrder = treeView->header()->sortIndicatorOrder();
+	model()->resetModel();
+	treeView->sortByColumn(currentSortColumn, currentSortOrder);
+	if ( qmc2CurrentItem ) {
+		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( item ) {
+			m_currentId = item->id();
+			int row = model()->rootItem()->childItems().indexOf(item);
+			if ( row >= 0 ) {
+				QModelIndex idx(model()->index(row, 0, QModelIndex()));
+				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+				treeView->scrollTo(idx, qmc2CursorPositioningMode);
+				treeViewUpdateRanks();
+			}
+		}
 	}
 }
 

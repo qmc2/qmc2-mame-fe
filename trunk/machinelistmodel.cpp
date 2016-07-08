@@ -97,6 +97,15 @@ void MachineListModel::startQuery()
 		fetchMore(QModelIndex());
 }
 
+void MachineListModel::resetModel()
+{
+	beginResetModel();
+	setRootItem(new MachineListModelItem);
+	m_recordCount = 0;
+	endResetModel();
+	startQuery();
+}
+
 QModelIndex MachineListModel::index(int row, int column, const QModelIndex &parent) const
 {
 	if ( parent.isValid() && parent.column() != int(ID) )

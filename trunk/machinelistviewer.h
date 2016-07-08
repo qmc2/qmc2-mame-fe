@@ -17,13 +17,14 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		~MachineListViewer();
 
 		MachineListModel *model() { return m_model; }
-		FilterConfigurationDialog *filterConfig() { return m_filterConfig; }
+		FilterConfigurationDialog *filterConfigurationDialog() { return m_filterConfigurationDialog; }
 
 	public slots:
 		void init();
 		void adjustIconSizes();
 		void on_toolButtonToggleMenu_clicked();
 		void on_toolButtonConfigureFilters_clicked();
+		void on_toolButtonUpdateView_clicked();
 		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
 		void mainSelectionChanged(const QString &id);
 		void treeViewVerticalScrollChanged(int);
@@ -42,7 +43,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QString m_currentId;
 		bool m_ignoreSelectionChange;
 		QTimer m_rankUpdateTimer;
-		FilterConfigurationDialog *m_filterConfig;
+		FilterConfigurationDialog *m_filterConfigurationDialog;
 };
 
 #endif

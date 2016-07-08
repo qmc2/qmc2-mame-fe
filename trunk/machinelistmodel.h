@@ -118,6 +118,7 @@ class MachineListModel : public QAbstractItemModel
 
 	public slots:
 		void startQuery();
+		void resetModel();
 
 	private:
 		QStringList m_headers;
