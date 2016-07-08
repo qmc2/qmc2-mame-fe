@@ -236,7 +236,7 @@ bool qmc2YouTubeVideoInfoHashChanged = false;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = 0;
 QMenu *qmc2EmulatorMenu = 0,
-      *qmc2GameMenu = 0,
+      *qmc2MachineMenu = 0,
       *qmc2FavoritesMenu = 0,
       *qmc2PlayedMenu = 0,
       *qmc2SearchMenu = 0,
@@ -693,48 +693,48 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 
-	qmc2GameMenu = new QMenu(0);
+	qmc2MachineMenu = new QMenu(0);
 	s = tr("Play selected machine");
-	action = qmc2GameMenu->addAction(tr("&Play"));
+	action = qmc2MachineMenu->addAction(tr("&Play"));
 	contextMenuPlayActions.append(action);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	s = tr("Play selected machine (embedded)");
-	action = qmc2GameMenu->addAction(tr("Play &embedded"));
+	action = qmc2MachineMenu->addAction(tr("Play &embedded"));
 	contextMenuPlayActions.append(action);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 	s = tr("Add current machine to favorites");
-	action = qmc2GameMenu->addAction(tr("To &favorites"));
+	action = qmc2MachineMenu->addAction(tr("To &favorites"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_triggered()));
-	qmc2GameMenu->addSeparator();
+	qmc2MachineMenu->addSeparator();
 	s = tr("Check current machine's ROM state");
-	action = qmc2GameMenu->addAction(tr("Check &ROM state"));
+	action = qmc2MachineMenu->addAction(tr("Check &ROM state"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_triggered()));
 	s = tr("Analyse current machine's ROM set with the ROMAlyzer");
-	action = qmc2GameMenu->addAction(tr("&Analyse ROM..."));
+	action = qmc2MachineMenu->addAction(tr("&Analyse ROM..."));
 	criticalActions << action;
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/romalyzer.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
 	s = tr("Rebuild current machine's ROM set with the ROMAlyzer");
-	action = qmc2GameMenu->addAction(tr("&Rebuild ROM..."));
+	action = qmc2MachineMenu->addAction(tr("&Rebuild ROM..."));
 	criticalActions << action;
 	rebuildRomActions << action;
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/rebuild.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(actionRebuildRom_triggered()));
-	qmc2GameMenu->addSeparator();
-	qmc2GameMenu->addMenu(menuRank);
-	qmc2GameMenu->addMenu(menuSearchWeb);
+	qmc2MachineMenu->addSeparator();
+	qmc2MachineMenu->addMenu(menuRank);
+	qmc2MachineMenu->addMenu(menuSearchWeb);
 
 	qmc2SearchMenu = new QMenu(0);
 	s = tr("Play selected machine");
@@ -5349,8 +5349,8 @@ void MainWindow::on_treeWidgetMachineList_customContextMenuRequested(const QPoin
 	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	treeWidgetMachineList->setItemSelected(item, true);
-	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetMachineList->viewport()->mapToGlobal(p), qmc2GameMenu));
-	qmc2GameMenu->show();
+	qmc2MachineMenu->move(adjustedWidgetPosition(treeWidgetMachineList->viewport()->mapToGlobal(p), qmc2MachineMenu));
+	qmc2MachineMenu->show();
 }
 
 void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint &p)
@@ -5362,8 +5362,8 @@ void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint 
 		return;
 	if ( item ) {
 		treeWidgetHierarchy->setItemSelected(item, true);
-		qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetHierarchy->viewport()->mapToGlobal(p), qmc2GameMenu));
-		qmc2GameMenu->show();
+		qmc2MachineMenu->move(adjustedWidgetPosition(treeWidgetHierarchy->viewport()->mapToGlobal(p), qmc2MachineMenu));
+		qmc2MachineMenu->show();
 	}
 }
 
@@ -7872,8 +7872,8 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 		return;
 	treeWidgetCategoryView->setItemSelected(item, true);
-	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetCategoryView->viewport()->mapToGlobal(p), qmc2GameMenu));
-	qmc2GameMenu->show();
+	qmc2MachineMenu->move(adjustedWidgetPosition(treeWidgetCategoryView->viewport()->mapToGlobal(p), qmc2MachineMenu));
+	qmc2MachineMenu->show();
 }
 
 void MainWindow::treeWidgetVersionView_headerSectionClicked(int logicalIndex)
@@ -7952,8 +7952,8 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 	if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData || item->text(QMC2_MACHINELIST_COLUMN_NAME).isEmpty() )
 		return;
 	treeWidgetVersionView->setItemSelected(item, true);
-	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetVersionView->viewport()->mapToGlobal(p), qmc2GameMenu));
-	qmc2GameMenu->show();
+	qmc2MachineMenu->move(adjustedWidgetPosition(treeWidgetVersionView->viewport()->mapToGlobal(p), qmc2MachineMenu));
+	qmc2MachineMenu->show();
 }
 
 void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)

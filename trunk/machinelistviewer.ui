@@ -229,6 +229,9 @@
    </item>
    <item row="2" column="0">
     <widget class="QTreeView" name="treeView">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
      <property name="textElideMode">
       <enum>Qt::ElideMiddle</enum>
      </property>

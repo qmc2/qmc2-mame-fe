@@ -4,7 +4,7 @@
 #include <QTreeWidgetItem>
 #include <QAbstractItemView>
 #include <QFontMetrics>
-#include <QFont>
+#include <QMenu>
 
 #include "qmc2main.h"
 #include "machinelistviewer.h"
@@ -16,6 +16,8 @@ extern Settings *qmc2Config;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern int qmc2UpdateDelay;
+extern QMenu *qmc2MachineMenu;
+extern MainWindow *qmc2MainWindow;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
@@ -172,6 +174,15 @@ void MachineListViewer::treeViewUpdateRanks()
 			break;
 		index = treeView->indexBelow(index);
 	}
+}
+
+void MachineListViewer::on_treeView_customContextMenuRequested(const QPoint &p)
+{
+	QModelIndex idx(treeView->indexAt(p));
+	if ( !idx.isValid() )
+		return;
+	qmc2MachineMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeView->viewport()->mapToGlobal(p), qmc2MachineMenu));
+	qmc2MachineMenu->show();
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)
