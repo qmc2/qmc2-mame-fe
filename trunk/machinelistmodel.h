@@ -115,6 +115,7 @@ class MachineListModel : public QAbstractItemModel
 		MachineListModelItem *rootItem() { return m_rootItem; }
 		QHash<QString, MachineListModelItem *> &itemHash() { return m_itemHash; }
 		MachineListModelItem *itemFromIndex(const QModelIndex &index) const;
+		void updateData(const QModelIndex &index);
 
 	public slots:
 		void startQuery();
