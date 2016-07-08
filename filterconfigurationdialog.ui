@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FilterConfigurationDialog</class>
+ <widget class="QDialog" name="FilterConfigurationDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>555</width>
+    <height>212</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Configure filters</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" rowspan="2">
+    <widget class="QListWidget" name="listWidget"/>
+   </item>
+   <item row="0" column="1" colspan="4">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QWidget" name="pageString">
+      <layout class="QGridLayout" name="gridLayoutPageString" columnstretch="0,1,0">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLineEdit" name="lineEditFilterExpression">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Filter expression</string>
+         </property>
+         <property name="placeholderText">
+          <string>Filter expression (empty string)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelMatchMode">
+         <property name="text">
+          <string>Match mode</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBoxFilterType">
+         <property name="toolTip">
+          <string>Select the filter type (include / exclude filter)</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Include matches</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Exclude matches</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBoxExpressionSyntax">
+         <property name="toolTip">
+          <string>Choose the regular expression syntax</string>
+         </property>
+         <item>
+          <property name="text">
+           <string notr="true">RegExp</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">RegExp2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">Wildcard</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">WildcardUnix</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">FixedString</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">W3CXmlSchema11</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QToolButton" name="toolButtonClearFilterExpression">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Clear filter expression</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBoxMatchMode">
+         <property name="toolTip">
+          <string>Choose match mode (sub-strings or exact matches)</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Sub string match</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Exact match</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelFilterType">
+         <property name="text">
+          <string>Filter type</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelExpressionSyntax">
+         <property name="text">
+          <string>Expression syntax</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="3">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>278</width>
+           <height>17</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_2"/>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <spacer name="horizontalSpacer1">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButtonOk">
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <spacer name="horizontalSpacer1_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>44</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>listWidget</tabstop>
+  <tabstop>comboBoxExpressionSyntax</tabstop>
+  <tabstop>comboBoxFilterType</tabstop>
+  <tabstop>comboBoxMatchMode</tabstop>
+  <tabstop>lineEditFilterExpression</tabstop>
+  <tabstop>toolButtonClearFilterExpression</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>toolButtonClearFilterExpression</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEditFilterExpression</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>534</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>487</x>
+     <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonOk</sender>
+   <signal>clicked()</signal>
+   <receiver>FilterConfigurationDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>374</x>
+     <y>191</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>294</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>FilterConfigurationDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>461</x>
+     <y>186</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>525</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
