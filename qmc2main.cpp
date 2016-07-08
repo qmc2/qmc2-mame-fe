@@ -1421,7 +1421,7 @@ void MainWindow::logScrollToEnd(int logTarget)
 void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
 {
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(0);
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 
 	if ( !componentInfo )
 		return;
@@ -1449,10 +1449,10 @@ void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
 		}
 	}
 
-	int fromFeature = componentInfo->appliedFeatureList()[adjustedFrom];
+	int fromFeature = componentInfo->appliedFeatureList().at(adjustedFrom);
 	componentInfo->appliedFeatureList().removeAt(adjustedFrom);
 	componentInfo->appliedFeatureList().insert(adjustedTo, fromFeature);
-	fromFeature = componentInfo->activeFeatureList()[adjustedFrom];
+	fromFeature = componentInfo->activeFeatureList().at(adjustedFrom);
 	componentInfo->activeFeatureList().removeAt(adjustedFrom);
 	componentInfo->activeFeatureList().insert(adjustedTo, fromFeature);
 
@@ -1462,7 +1462,7 @@ void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
 
 	QStringList activeIndexList;
 	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
-		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+		activeIndexList << QString::number(componentInfo->appliedFeatureList().at(i));
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component1/ActiveFeatures", activeIndexList);
 }
@@ -1470,15 +1470,15 @@ void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
 void MainWindow::tabWidgetMachineDetail_tabMoved(int from, int to)
 {
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(1);
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component2");
 
 	if ( !componentInfo )
 		return;
 
-	int fromFeature = componentInfo->appliedFeatureList()[from];
+	int fromFeature = componentInfo->appliedFeatureList().at(from);
 	componentInfo->appliedFeatureList().removeAt(from);
 	componentInfo->appliedFeatureList().insert(to, fromFeature);
-	fromFeature = componentInfo->activeFeatureList()[from];
+	fromFeature = componentInfo->activeFeatureList().at(from);
 	componentInfo->activeFeatureList().removeAt(from);
 	componentInfo->activeFeatureList().insert(to, fromFeature);
 
@@ -1488,7 +1488,7 @@ void MainWindow::tabWidgetMachineDetail_tabMoved(int from, int to)
 
 	QStringList activeIndexList;
 	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
-		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+		activeIndexList << QString::number(componentInfo->appliedFeatureList().at(i));
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component2/ActiveFeatures", activeIndexList);
 }
@@ -1496,15 +1496,15 @@ void MainWindow::tabWidgetMachineDetail_tabMoved(int from, int to)
 void MainWindow::tabWidgetLogsAndEmulators_tabMoved(int from, int to)
 {
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(2);
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component3"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component3");
 
 	if ( !componentInfo )
 		return;
 
-	int fromFeature = componentInfo->appliedFeatureList()[from];
+	int fromFeature = componentInfo->appliedFeatureList().at(from);
 	componentInfo->appliedFeatureList().removeAt(from);
 	componentInfo->appliedFeatureList().insert(to, fromFeature);
-	fromFeature = componentInfo->activeFeatureList()[from];
+	fromFeature = componentInfo->activeFeatureList().at(from);
 	componentInfo->activeFeatureList().removeAt(from);
 	componentInfo->activeFeatureList().insert(to, fromFeature);
 
@@ -1514,7 +1514,7 @@ void MainWindow::tabWidgetLogsAndEmulators_tabMoved(int from, int to)
 
 	QStringList activeIndexList;
 	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
-		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+		activeIndexList << QString::number(componentInfo->appliedFeatureList().at(i));
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component3/ActiveFeatures", activeIndexList);
 }
@@ -1522,15 +1522,15 @@ void MainWindow::tabWidgetLogsAndEmulators_tabMoved(int from, int to)
 void MainWindow::tabWidgetSoftwareDetail_tabMoved(int from, int to)
 {
 	qmc2ComponentSetup->comboBoxComponents->setCurrentIndex(3);
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component4"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component4");
 
 	if ( !componentInfo )
 		return;
 
-	int fromFeature = componentInfo->appliedFeatureList()[from];
+	int fromFeature = componentInfo->appliedFeatureList().at(from);
 	componentInfo->appliedFeatureList().removeAt(from);
 	componentInfo->appliedFeatureList().insert(to, fromFeature);
-	fromFeature = componentInfo->activeFeatureList()[from];
+	fromFeature = componentInfo->activeFeatureList().at(from);
 	componentInfo->activeFeatureList().removeAt(from);
 	componentInfo->activeFeatureList().insert(to, fromFeature);
 
@@ -1540,7 +1540,7 @@ void MainWindow::tabWidgetSoftwareDetail_tabMoved(int from, int to)
 
 	QStringList activeIndexList;
 	for (int i = 0; i < componentInfo->appliedFeatureList().count(); i++)
-		activeIndexList << QString::number(componentInfo->appliedFeatureList()[i]);
+		activeIndexList << QString::number(componentInfo->appliedFeatureList().at(i));
 
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Component4/ActiveFeatures", activeIndexList);
 }
@@ -1576,7 +1576,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	else
 		machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component2");
 	if ( !componentInfo )
 		return;
 
@@ -2026,7 +2026,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	QString workingDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
 	QStringList argsResolved = Settings::stResolve(args);
 
-	// start game/machine
+	// start machine
 	qmc2ProcessManager->process(qmc2ProcessManager->start(command, argsResolved, true, workingDirectory, softwareLists, softwareNames));
 
 	qmc2AutoMinimizedWidgets.clear();
@@ -2040,7 +2040,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	}
 
 	if ( qmc2DemoGame.isEmpty() ) {
-		// add game/machine to played list
+		// add machine to played list
 		listWidgetPlayed->blockSignals(true);
 		QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(machineName);
 		QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(mlItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
@@ -2448,11 +2448,11 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
 	QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", QString()).toString();
 	QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", QString()).toString().split(" ");
 	QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", QString()).toString();
-	QString gameID = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+	QString machineId = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 	QString gameDescription = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 	QStringList newArgs;
 	foreach (QString argument, args)
-		newArgs << argument.replace("$ID$", gameID).replace("$DESCRIPTION$", gameDescription);
+		newArgs << argument.replace("$ID$", machineId).replace("$DESCRIPTION$", gameDescription);
 	ToolExecutor romTool(this, command, newArgs, wd);
 	romTool.exec();
 }
@@ -3231,12 +3231,12 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 		menuVersionHeader->hide();
 	}
 
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	if ( componentInfo->appliedFeatureList().count() <= currentIndex || currentIndex < 0 )
 		return;
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-	if ( hSplitterSizes.count() > 1 && componentInfo->appliedFeatureList()[currentIndex] != QMC2_EMBED_INDEX )
+	if ( hSplitterSizes.count() > 1 && componentInfo->appliedFeatureList().at(currentIndex) != QMC2_EMBED_INDEX )
 		hSplitter->setSizes(hSplitterSizes);
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( embedIndex >= 0 && embedIndex <= currentIndex )
@@ -3247,13 +3247,13 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 	if ( foreignIndex >= 0 && foreignIndex <= currentIndex )
 		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			currentIndex++;
-	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
+	switch ( componentInfo->appliedFeatureList().at(currentIndex) ) {
 		case QMC2_MACHINELIST_INDEX:
 			actionToggleTagCursorDown->setVisible(true);
 			actionToggleTagCursorUp->setVisible(true);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			if ( lastTabWidgetMachineListIndex >= 0 )
-				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3294,7 +3294,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			if ( lastTabWidgetMachineListIndex >= 0 )
-				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3316,7 +3316,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			if ( lastTabWidgetMachineListIndex >= 0 )
-				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3335,7 +3335,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			actionToggleTagCursorUp->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			if ( lastTabWidgetMachineListIndex >= 0 )
-				if ( componentInfo->appliedFeatureList()[lastTabWidgetMachineListIndex] != QMC2_EMBED_INDEX )
+				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3394,7 +3394,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 	// show / hide game status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( componentInfo->appliedFeatureList()[currentIndex] != QMC2_MACHINELIST_INDEX )
+			if ( componentInfo->appliedFeatureList().at(currentIndex) != QMC2_MACHINELIST_INDEX )
 				labelMachineStatus->setVisible(true);
 			else
 				labelMachineStatus->setVisible(false);
@@ -3410,10 +3410,10 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 
 void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component3"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component3");
 	if ( componentInfo->appliedFeatureList().count() <= currentIndex || currentIndex < 0 )
 		return;
-	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
+	switch ( componentInfo->appliedFeatureList().at(currentIndex) ) {
 		case QMC2_FRONTENDLOG_INDEX:
 			logScrollToEnd(QMC2_LOG_FRONTEND);
 			break;
@@ -3429,7 +3429,7 @@ void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 
 void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component4"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component4");
 	if ( !qmc2SoftwareList )
 		return;
 	if ( !qmc2SoftwareList->currentItem )
@@ -3438,7 +3438,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 		return;
 	int left, top, right, bottom;
 	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
+	switch ( componentInfo->appliedFeatureList().at(currentIndex) ) {
 		case QMC2_SWINFO_SNAPSHOT_PAGE:
 			if ( qmc2SoftwareNotesEditor )
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
@@ -3717,7 +3717,7 @@ void MainWindow::checkCurrentPlayedSelection()
 
 void MainWindow::softwareLoadInterrupted()
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component2");
 	on_tabWidgetMachineDetail_currentChanged(componentInfo->appliedFeatureList().indexOf(QMC2_SOFTWARE_LIST_INDEX));
 }
 
@@ -3730,7 +3730,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 		return;
 	}
 
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component2");
 
 	if ( qmc2CleaningUp || componentInfo->appliedFeatureList().isEmpty() || currentIndex == -1 )
 		return;
@@ -3802,7 +3802,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	}
 
 	// 'special widgets': switch back to the default page if applicable
-	switch ( componentInfo->appliedFeatureList()[tabWidgetMachineDetail->currentIndex()] )
+	switch ( componentInfo->appliedFeatureList().at(tabWidgetMachineDetail->currentIndex()) )
 	{
 		case QMC2_SOFTWARE_LIST_INDEX:
 			if ( qmc2SoftwareList && qmc2CurrentItem == qmc2LastSoftwareListItem )
@@ -3818,7 +3818,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 	// depending on the codec, an unused YT widget may still cause load on the system, so we destroy it when it's no longer required...
-	if ( componentInfo->appliedFeatureList()[tabWidgetMachineDetail->currentIndex()] != QMC2_YOUTUBE_INDEX ) {
+	if ( componentInfo->appliedFeatureList().at(tabWidgetMachineDetail->currentIndex()) != QMC2_YOUTUBE_INDEX ) {
 		if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
 			qmc2YouTubeWidget->saveSettings();
 			qmc2YouTubeWidget->forcedExit = true;
@@ -3835,7 +3835,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	}
 #endif
 
-	if ( componentInfo->appliedFeatureList()[tabWidgetMachineDetail->currentIndex()] != QMC2_SYSTEM_NOTES_INDEX ) {
+	if ( componentInfo->appliedFeatureList().at(tabWidgetMachineDetail->currentIndex()) != QMC2_SYSTEM_NOTES_INDEX ) {
 		if ( qmc2SystemNotesEditor ) {
 			qmc2SystemNotesEditor->hideTearOffMenus();
 			qmc2SystemNotesEditor->hide();
@@ -3848,7 +3848,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	qmc2UseDefaultEmulator = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(machineName), tr("Default")).toString() == tr("Default");
 
 	int left, top, right, bottom;
-	switch ( componentInfo->appliedFeatureList()[currentIndex] ) {
+	switch ( componentInfo->appliedFeatureList().at(currentIndex) ) {
 #if defined(QMC2_YOUTUBE_ENABLED)
 		case QMC2_YOUTUBE_INDEX:
 			if ( qmc2YouTubeVideoInfoHash.isEmpty() )
@@ -4837,14 +4837,14 @@ void MainWindow::action_embedEmulator_triggered()
 	QStringList statusList;
 #endif
 
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 
 	QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
 	for (int i = 0; i < sl.count(); i++) {
-		QTreeWidgetItem *item = sl[i];
+		QTreeWidgetItem *item = sl.at(i);
 		while ( item->parent() )
 			item = item->parent();
-		mL << item->text(QMC2_EMUCONTROL_COLUMN_MACHINE).split(":")[0];
+		mL << item->text(QMC2_EMUCONTROL_COLUMN_MACHINE).split(':').at(0);
 		idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
 #if defined(QMC2_OS_UNIX)
 		statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
@@ -4856,7 +4856,7 @@ void MainWindow::action_embedEmulator_triggered()
 			QTreeWidgetItem *item = treeWidgetEmulators->currentItem();
 			while ( item->parent() )
 				item = item->parent();
-			mL << item->text(QMC2_EMUCONTROL_COLUMN_MACHINE).split(":")[0];
+			mL << item->text(QMC2_EMUCONTROL_COLUMN_MACHINE).split(':').at(0);
 			idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
 #if defined(QMC2_OS_UNIX)
 			statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
@@ -4867,32 +4867,32 @@ void MainWindow::action_embedEmulator_triggered()
 	int i;
 	for (i = 0; i < mL.count(); i++) {
 		QString machineName(mL.at(i));
-		QString gameID = idList[i];
+		QString machineId(idList.at(i));
 #if defined(QMC2_OS_UNIX)
-		QString gameStatus = statusList[i];
+		QString machineStatus(statusList.at(i));
 #endif
 
-		if ( machineName.isEmpty() || gameID.isEmpty() )
+		if ( machineName.isEmpty() || machineId.isEmpty() )
 			continue;
 
 		// check if the emulator window is already embedded
 		bool found = false;
 		int j;
 		for (j = 0; j < tabWidgetEmbeddedEmulators->count() && !found; j++)
-			found = tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(gameID));
+			found = tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(machineId));
 		if ( found ) {                                                                  
-			log(QMC2_LOG_FRONTEND, tr("emulator #%1 is already embedded").arg(gameID));
+			log(QMC2_LOG_FRONTEND, tr("emulator #%1 is already embedded").arg(machineId));
 			tabWidgetMachineList->setCurrentIndex(tabWidgetMachineList->indexOf(widgetEmbeddedEmus));
 			tabWidgetEmbeddedEmulators->setCurrentIndex(j - 1);
 			continue;
 		}
 
-		QTreeWidgetItem *gameItem = qmc2MachineListItemHash.value(machineName);
+		QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(machineName);
 #if defined(QMC2_OS_UNIX)
 		QList<WId> winIdList;
 		int xwininfoRetries = 0;
 		while ( winIdList.isEmpty() && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
-			WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(gameItem ? gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) : "")), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(gameID)));
+			WId windowId = x11FindWindowId(QRegExp::escape(QString("MAME: %1").arg(machineItem ? machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) : "")), QRegExp::escape(QString("QMC2-MAME-ID-%1").arg(machineId)));
 			if ( windowId )
 				winIdList << windowId;
 
@@ -4903,7 +4903,7 @@ void MainWindow::action_embedEmulator_triggered()
 		QList<WId> winIdList;
 		int wininfoRetries = 0;
 		while ( winIdList.isEmpty() && wininfoRetries++ < QMC2_MAX_WININFO_RETRIES ) {
-			Q_PID gamePid = qmc2ProcessManager->getPid(gameID.toInt());
+			Q_PID gamePid = qmc2ProcessManager->getPid(machineId.toInt());
 			if ( gamePid ) {
 				HWND hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
 				if ( hwnd )
@@ -4916,10 +4916,10 @@ void MainWindow::action_embedEmulator_triggered()
 
 #if defined(QMC2_OS_UNIX)
 		if ( winIdList.count() > 1 )
-			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(machineId).arg("0x" + QString::number(winIdList[0], 16)));
 #elif defined(QMC2_OS_WIN)
 		if ( winIdList.count() > 1 )
-			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(machineId).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
 #endif
 
 		if ( !winIdList.isEmpty() ) {
@@ -4937,17 +4937,17 @@ void MainWindow::action_embedEmulator_triggered()
 			tabWidgetMachineList->setCurrentIndex(tabWidgetMachineList->indexOf(widgetEmbeddedEmus));
 #if defined(QMC2_OS_UNIX)
 			qApp->syncX();
-			log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number(winIdList[0], 16)));
-			Embedder *embedder = new Embedder(machineName, gameID, winIdList[0], (gameStatus == tr("paused")), this, qmc2IconHash.value(machineName));
+			log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(machineId).arg("0x" + QString::number(winIdList[0], 16)));
+			Embedder *embedder = new Embedder(machineName, machineId, winIdList[0], (machineStatus == tr("paused")), this, qmc2IconHash.value(machineName));
 #elif defined(QMC2_OS_WIN)
-			log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
-			Embedder *embedder = new Embedder(machineName, gameID, winIdList[0], false, this, qmc2IconHash.value(machineName));
+			log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(machineId).arg("0x" + QString::number((qulonglong)winIdList[0], 16)));
+			Embedder *embedder = new Embedder(machineName, machineId, winIdList[0], false, this, qmc2IconHash.value(machineName));
 #endif
 			connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
-			if ( gameItem )
-				tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)));
+			if ( machineItem )
+				tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(machineId).arg(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)));
 			else
-				tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1").arg(gameID));
+				tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1").arg(machineId));
 			tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
 
 			// serious hack to access the tab bar without sub-classing from QTabWidget ;)
@@ -5009,7 +5009,7 @@ void MainWindow::action_embedEmulator_triggered()
 			}
 		} else {
 			success = false;
-			log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
+			log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(machineId));
 		}
 	}
 
@@ -5058,7 +5058,6 @@ void MainWindow::embedderOptions_toggled(bool enabled)
 	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(optionsButton->pos()));
 	if ( embedder )
 		embedder->toggleOptions();
-
 	if ( enabled )
 		tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->indexOf(embedder));
 }
@@ -5066,17 +5065,12 @@ void MainWindow::embedderOptions_toggled(bool enabled)
 void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 {
 	tabWidgetMachineList->setUpdatesEnabled(false);
-
 	QWidget *widget = 0;
-
 	if ( index >= 0 ) {
 		widget = tabWidgetEmbeddedEmulators->widget(index);
 		if ( widget )
 			tabWidgetEmbeddedEmulators->removeTab(index);
 	}
-
-	qApp->processEvents();
-
 	if ( tabWidgetEmbeddedEmulators->count() < 1 ) {
 		tabWidgetMachineList->removeTab(tabWidgetMachineList->indexOf(tabEmbeddedEmus));
 		tabWidgetMachineList->setCurrentIndex(qmc2LastListIndex);
@@ -5086,12 +5080,10 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
 	}
-
 	if ( widget ) {
 		widget->close();
 		widget->deleteLater();
 	}
-
 	tabWidgetMachineList->setUpdatesEnabled(true);
 }
 
@@ -5798,7 +5790,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 			}
 		}
 
-		ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+		ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 		int currentIndex = tabWidgetMachineList->currentIndex();
@@ -5810,7 +5802,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		if ( foreignIndex >= 0 && foreignIndex <= currentIndex )
 			if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 				currentIndex++;
-		if ( toolButtonEmbedderMaximizeToggle->isChecked() && componentInfo->appliedFeatureList()[currentIndex] == QMC2_EMBED_INDEX )
+		if ( toolButtonEmbedderMaximizeToggle->isChecked() && componentInfo->appliedFeatureList().at(currentIndex) == QMC2_EMBED_INDEX )
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
 		else
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
@@ -5824,7 +5816,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitterSizes.at(0), vSplitterSizes.at(1)));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail", QSize(vSplitterSizesSoftwareDetail.at(0), vSplitterSizesSoftwareDetail.at(1)));
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
-		if ( componentInfo->appliedFeatureList()[currentIndex] == QMC2_EMBED_INDEX )
+		if ( componentInfo->appliedFeatureList().at(currentIndex) == QMC2_EMBED_INDEX )
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", qmc2LastListIndex);
 		else
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", tabWidgetMachineList->currentIndex());
@@ -6317,7 +6309,7 @@ void MainWindow::setupPalette(QString styleName)
 
 void MainWindow::viewFullDetail()
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
@@ -6343,7 +6335,7 @@ void MainWindow::viewFullDetail()
 
 void MainWindow::viewParentClones()
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
@@ -6369,7 +6361,7 @@ void MainWindow::viewParentClones()
 
 void MainWindow::viewByCategory()
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
@@ -6403,7 +6395,7 @@ void MainWindow::viewByCategory()
 
 void MainWindow::viewByVersion()
 {
-	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
@@ -8574,7 +8566,6 @@ void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
-
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -9527,8 +9518,8 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 		}
 		adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 		if ( lastPageSoftware ) {
-			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
-			switch ( componentInfo->appliedFeatureList()[tabWidgetLogsAndEmulators->currentIndex()] ) {
+			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component2");
+			switch ( componentInfo->appliedFeatureList().at(tabWidgetLogsAndEmulators->currentIndex()) ) {
 				case QMC2_FRONTENDLOG_INDEX:
 					logScrollToEnd(QMC2_LOG_FRONTEND);
 					break;
@@ -9573,8 +9564,8 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 				qmc2SoftwareNotesEditor->hideTearOffMenus();
 			adjustSplitter(vSplitter, tabWidgetLogsAndEmulators, vSplitterSizes, false);
 			if ( lastPageSoftware ) {
-				ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component2"];
-				switch ( componentInfo->appliedFeatureList()[tabWidgetLogsAndEmulators->currentIndex()] ) {
+				ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component2");
+				switch ( componentInfo->appliedFeatureList().at(tabWidgetLogsAndEmulators->currentIndex()) ) {
 					case QMC2_FRONTENDLOG_INDEX:
 						logScrollToEnd(QMC2_LOG_FRONTEND);
 						break;

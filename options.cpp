@@ -2355,7 +2355,7 @@ void Options::applyDelayed()
 				}
 			}
 			qmc2MainWindow->treeWidgetForeignIDs->insertTopLevelItems(0, itemList);
-			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash()["Component1"];
+			ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 			if ( componentInfo->appliedFeatureList().contains(QMC2_FOREIGN_INDEX) ) {
 				int index = qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators);
 				int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);

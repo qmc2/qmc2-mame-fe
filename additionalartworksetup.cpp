@@ -72,11 +72,11 @@ void AdditionalArtworkSetup::on_pushButtonRestore_clicked()
 
 void AdditionalArtworkSetup::save()
 {
-	ComponentInfo *component2Info = qmc2ComponentSetup->componentInfoHash()["Component2"];
+	ComponentInfo *component2Info = qmc2ComponentSetup->componentInfoHash().value("Component2");
 	int deleteAfterIndex = component2Info->availableFeatureList().indexOf(QMC2_SYSTEM_NOTES_INDEX);
 	for (int i = component2Info->availableFeatureList().count(); i > deleteAfterIndex; i--)
 		component2Info->availableFeatureList().removeAt(i);
-	ComponentInfo *component4Info = qmc2ComponentSetup->componentInfoHash()["Component4"];
+	ComponentInfo *component4Info = qmc2ComponentSetup->componentInfoHash().value("Component4");
 	deleteAfterIndex = component4Info->availableFeatureList().indexOf(QMC2_SWINFO_INFO_PAGE);
 	for (int i = component4Info->availableFeatureList().count(); i > deleteAfterIndex; i--)
 		component4Info->availableFeatureList().removeAt(i);
