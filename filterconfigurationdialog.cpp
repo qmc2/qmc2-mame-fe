@@ -3,13 +3,15 @@
 #include <QFontMetrics>
 
 #include "filterconfigurationdialog.h"
+#include "machinelistviewer.h"
 #include "settings.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
 
-FilterConfigurationDialog::FilterConfigurationDialog(QWidget *parent) :
-	QDialog(parent)
+FilterConfigurationDialog::FilterConfigurationDialog(MachineListViewer *viewer, QWidget *parent) :
+	QDialog(parent),
+	m_viewer(viewer)
 {
 	setVisible(false);
 	setupUi(this);
@@ -22,6 +24,22 @@ void FilterConfigurationDialog::adjustIconSizes()
 	QFontMetrics fm(f);
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	toolButtonClearFilterExpression->setIconSize(iconSize);
+}
+
+void FilterConfigurationDialog::on_pushButtonOk_clicked()
+{
+	on_pushButtonApply_clicked();
+}
+
+void FilterConfigurationDialog::on_pushButtonApply_clicked()
+{
+	// FIXME
+	viewer()->toolButtonUpdateView->animateClick();
+}
+
+void FilterConfigurationDialog::on_pushButtonCancel_clicked()
+{
+	// FIXME
 }
 
 void FilterConfigurationDialog::showEvent(QShowEvent *e)

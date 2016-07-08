@@ -6,18 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>555</width>
-    <height>212</height>
+    <width>552</width>
+    <height>209</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Configure filters</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pushButtonOk">
+     <property name="toolTip">
+      <string>Apply changes and close dialog</string>
+     </property>
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0" rowspan="2">
     <widget class="QListWidget" name="listWidget"/>
    </item>
-   <item row="0" column="1" colspan="4">
+   <item row="0" column="1" colspan="5">
     <widget class="QStackedWidget" name="stackedWidget">
      <widget class="QWidget" name="pageString">
       <layout class="QGridLayout" name="gridLayoutPageString" columnstretch="0,1,0">
@@ -180,32 +190,38 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="pushButtonOk">
-     <property name="text">
-      <string>Ok</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
+   <item row="1" column="4">
     <widget class="QPushButton" name="pushButtonCancel">
+     <property name="toolTip">
+      <string>Revert changes and close dialog</string>
+     </property>
      <property name="text">
       <string>Cancel</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
-    <spacer name="horizontalSpacer1_2">
+   <item row="1" column="5">
+    <spacer name="horizontalSpacer2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>44</width>
+       <width>0</width>
        <height>20</height>
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="pushButtonApply">
+     <property name="toolTip">
+      <string>Apply changes now</string>
+     </property>
+     <property name="text">
+      <string>Apply</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -217,6 +233,7 @@
   <tabstop>lineEditFilterExpression</tabstop>
   <tabstop>toolButtonClearFilterExpression</tabstop>
   <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonApply</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
