@@ -126,6 +126,8 @@ class MachineListModel : public QAbstractItemModel
 		qint64 m_recordCount;
 		QTreeView *m_treeView;
 		QHash<QString, MachineListModelItem *> m_itemHash;
+
+		void toggleSortOrder(Qt::SortOrder &order) { if ( order == Qt::DescendingOrder ) order = Qt::AscendingOrder; else order = Qt::DescendingOrder; }
 };
 
 #endif

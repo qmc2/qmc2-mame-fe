@@ -436,6 +436,7 @@ void MachineListModel::sort(int column, Qt::SortOrder order)
 				foreach (MachineListModelItem *item, m_rootItem->childItems())
 					map.insert(item->rank(), item);
 				m_rootItem->childItems() = map.values();
+				toggleSortOrder(order);
 			}
 			break;
 		case IS_BIOS:
