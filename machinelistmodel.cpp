@@ -4,6 +4,7 @@
 
 #include "machinelistmodel.h"
 #include "machinelist.h"
+#include "filterconfigurationdialog.h"
 
 extern MachineList *qmc2MachineList;
 extern QHash<QString, QIcon> qmc2IconHash;
@@ -72,7 +73,42 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	m_treeView(treeView)
 {
 	m_query = new QSqlQuery(mlDb->db());
-	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver status") << tr("Source file") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is device?") << tr("Category") << tr("Version");
+	m_headers << tr("Tag")
+		  << tr("Icon")
+		  << tr("Name")
+		  << tr("Parent")
+		  << tr("Description")
+		  << tr("Manufacturer")
+		  << tr("Year")
+		  << tr("ROM status")
+		  << tr("Has ROMs?")
+		  << tr("Has CHDs?")
+		  << tr("Driver status")
+		  << tr("Source file")
+		  << tr("Players")
+		  << tr("Rank")
+		  << tr("Is BIOS?")
+		  << tr("Is device?")
+		  << tr("Category")
+		  << tr("Version");
+	m_pages << QMC2_FCDLG_PAGE_BOOL
+		<< QMC2_FCDLG_PAGE_ICON
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_ROMSTATUS
+		<< QMC2_FCDLG_PAGE_BOOL
+		<< QMC2_FCDLG_PAGE_BOOL
+		<< QMC2_FCDLG_PAGE_DRVSTATUS
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_INT
+		<< QMC2_FCDLG_PAGE_RANK
+		<< QMC2_FCDLG_PAGE_BOOL
+		<< QMC2_FCDLG_PAGE_BOOL
+		<< QMC2_FCDLG_PAGE_STRING
+		<< QMC2_FCDLG_PAGE_STRING;
 	setRootItem(new MachineListModelItem(m_treeView));
 	startQuery();
 }

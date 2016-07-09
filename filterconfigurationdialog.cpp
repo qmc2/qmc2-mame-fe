@@ -2,8 +2,6 @@
 #include <QFont>
 #include <QTimer>
 #include <QFontMetrics>
-#include <QTreeWidgetItem>
-#include <QToolButton>
 
 #include "filterconfigurationdialog.h"
 #include "machinelistviewer.h"
@@ -34,19 +32,53 @@ void FilterConfigurationDialog::adjustIconSizes()
 
 void FilterConfigurationDialog::init()
 {
-	foreach (QString name, viewer()->headers()) {
+	QList<int> pages(viewer()->pages());
+	QStringList headers(viewer()->headers());
+	for (int i = 0; i < headers.count(); i++) {
 		QTreeWidgetItem *item = new QTreeWidgetItem(treeWidget);
-		item->setText(QMC2_FCDLG_COLUMN_NAME, name);
+		item->setText(QMC2_FCDLG_COLUMN_NAME, headers.at(i));
 		QToolButton *tb = new QToolButton;
+		m_buttonToPageHash.insert(tb, pages.at(i));
+		m_buttonToItemHash.insert(tb, item);
 		tb->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 		tb->setIcon(QIcon(QString::fromUtf8(":/data/img/plus.png")));
 		tb->setText(tr("Add filter"));
 		tb->setFixedSize(tb->sizeHint());
 		tb->setToolTip(tr("Add filter"));
+		connect(tb, SIGNAL(clicked()), this, SLOT(addFilterClicked()));
 		treeWidget->setItemWidget(item, QMC2_FCDLG_COLUMN_ACTION, tb);
 	}
 	treeWidget->resizeColumnToContents(QMC2_FCDLG_COLUMN_ACTION);
 	treeWidget->sortByColumn(QMC2_FCDLG_COLUMN_NAME, Qt::AscendingOrder);
+}
+
+void FilterConfigurationDialog::addFilterClicked()
+{
+	QToolButton *tb = (QToolButton *)sender();
+	int pageIndex = buttonToPage(tb);
+	QTreeWidgetItem *parentItem = buttonToItem(tb);
+	QTreeWidgetItem *item = new QTreeWidgetItem(parentItem);
+	item->setText(QMC2_FCDLG_COLUMN_NAME, tr("Inactive filter"));
+	item->setTextAlignment(QMC2_FCDLG_COLUMN_NAME, Qt::AlignRight | Qt::AlignVCenter);
+	QToolButton *tbRemove = new QToolButton;
+	m_removeButtonToItemHash.insert(tbRemove, item);
+	tbRemove->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+	tbRemove->setIcon(QIcon(QString::fromUtf8(":/data/img/minus.png")));
+	tbRemove->setText(tr("Remove filter"));
+	tbRemove->setFixedSize(tbRemove->sizeHint());
+	tbRemove->setToolTip(tr("Remove filter"));
+	connect(tbRemove, SIGNAL(clicked()), this, SLOT(removeFilterClicked()));
+	treeWidget->setItemWidget(item, QMC2_FCDLG_COLUMN_ACTION, tbRemove);
+	parentItem->setExpanded(true);
+}
+
+void FilterConfigurationDialog::removeFilterClicked()
+{
+	QToolButton *tb = (QToolButton *)sender();
+	QTreeWidgetItem *item = m_removeButtonToItemHash.value(tb);
+	item->parent()->removeChild(item);
+	delete item;
+	m_removeButtonToItemHash.remove(tb);
 }
 
 void FilterConfigurationDialog::on_pushButtonOk_clicked()
