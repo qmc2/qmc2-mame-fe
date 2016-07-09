@@ -38,9 +38,9 @@ MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon,
 	setTagged(tagged);
 }
 
-MachineListModelItem::MachineListModelItem(MachineListModelItem *parentItem) :
+MachineListModelItem::MachineListModelItem(QTreeView *treeView, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem),
-	m_treeView(0)
+	m_treeView(treeView)
 {
 	setRank(0);
 	setRomStatus('U');
@@ -73,7 +73,7 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 {
 	m_query = new QSqlQuery(mlDb->db());
 	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM Status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver Status") << tr("Source File") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is Device?") << tr("Category") << tr("Version");
-	setRootItem(new MachineListModelItem);
+	setRootItem(new MachineListModelItem(m_treeView));
 	startQuery();
 }
 
@@ -89,7 +89,6 @@ void MachineListModel::setRootItem(MachineListModelItem *item)
 	if ( m_rootItem )
 		delete m_rootItem;
 	m_rootItem = item;
-	reset();
 }
  
 void MachineListModel::startQuery()
@@ -102,7 +101,8 @@ void MachineListModel::startQuery()
 void MachineListModel::resetModel()
 {
 	beginResetModel();
-	setRootItem(new MachineListModelItem);
+	reset();
+	setRootItem(new MachineListModelItem(m_treeView));
 	m_recordCount = 0;
 	endResetModel();
 	startQuery();
@@ -155,6 +155,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 	while ( i < itemsToFetch && mlDb->nextRecord(m_query, &id, &description, &manufacturer, &year, &cloneof, &is_bios, &is_device, &has_roms, &has_chds, &players, &drvstat, &srcfile) ) {
 		QString *category = ml->categoryHash.value(id);
 		QString *version = ml->versionHash.value(id);
+		MachineListItem *mlItem = (MachineListItem *)qmc2MachineListItemHash.value(id);
 		MachineListModelItem *mlmItem = new MachineListModelItem(id,
 									 qmc2IconHash.value(id),
 									 cloneof,
@@ -172,7 +173,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 drvstat,
 									 is_device,
 									 is_bios,
-									 qmc2MachineListItemHash.value(id)->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked,
+									 mlItem->tagged(),
 									 m_treeView,
 									 m_rootItem);
 		parentItem->childItems().append(mlmItem);

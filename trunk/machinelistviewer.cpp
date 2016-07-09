@@ -13,7 +13,6 @@
 #include "qmc2main.h"
 #include "machinelistviewer.h"
 #include "machinelist.h"
-#include "rankitemwidget.h"
 #include "settings.h"
 #include "demomode.h"
 #include "macros.h"

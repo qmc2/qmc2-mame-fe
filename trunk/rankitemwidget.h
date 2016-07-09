@@ -9,6 +9,7 @@
 #include <QIcon>
 #include <QLinearGradient>
 #include <QTreeWidgetItem>
+#include <QPalette>
 
 #include "machinelistmodel.h"
 #include "ui_rankitemwidget.h"
@@ -60,6 +61,7 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		int m_rank;
 		QTreeWidgetItem *m_item;
 		MachineListModelItem *m_mlmItem;
+		QPalette m_palette;
 };
 
 #endif

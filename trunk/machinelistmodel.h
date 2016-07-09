@@ -18,7 +18,7 @@ class MachineListModelItem
 {
 	public:
 		MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, QTreeView *treeView, MachineListModelItem *parentItem = 0);
-		MachineListModelItem(MachineListModelItem *parentItem = 0);
+		MachineListModelItem(QTreeView *treeView, MachineListModelItem *parentItem = 0);
 		~MachineListModelItem();
 
 		void setId(const QString &id) { m_id = id; }
