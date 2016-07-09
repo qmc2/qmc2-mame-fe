@@ -6,6 +6,7 @@
 
 #include "machinelistmodel.h"
 #include "filterconfigurationdialog.h"
+#include "rankitemwidget.h"
 #include "ui_machinelistviewer.h"
 
 class MachineListViewer : public QWidget, public Ui::MachineListViewer

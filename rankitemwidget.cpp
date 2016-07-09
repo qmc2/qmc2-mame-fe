@@ -33,8 +33,11 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent) :
 {
 	setupUi(this);
 	updateSize();
-	if ( m_item )
+	if ( m_item ) {
+		m_palette = m_item->treeWidget()->palette();
 		QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
+	} else
+		m_palette = qApp->palette();
 }
 
 RankItemWidget::RankItemWidget(MachineListModelItem *item, QWidget *parent) :
@@ -44,8 +47,11 @@ RankItemWidget::RankItemWidget(MachineListModelItem *item, QWidget *parent) :
 {
 	setupUi(this);
 	updateSize();
-	if ( m_mlmItem )
+	if ( m_mlmItem ) {
+		m_palette = m_mlmItem->treeView()->palette();
 		QTimer::singleShot(0, this, SLOT(updateRankFromDb()));
+	} else
+		m_palette = qApp->palette();
 }
 
 QIcon RankItemWidget::gradientRankIcon()
@@ -120,10 +126,7 @@ void RankItemWidget::setRank(int rank)
 	QPainter pBackground;
 	pBackground.begin(&pmBackground);
 	pBackground.setCompositionMode(QPainter::CompositionMode_SourceIn);
-	if ( m_item )
-		pBackground.fillRect(pmBackground.rect(), m_item->treeWidget()->palette().color(QPalette::Text));
-	if ( m_mlmItem )
-		pBackground.fillRect(pmBackground.rect(), m_mlmItem->treeView()->palette().color(QPalette::Text));
+	pBackground.fillRect(pmBackground.rect(), m_palette.color(QPalette::Text));
 	pBackground.end();
 	p.drawPixmap(0, 0, pmBackground);
 	p.end();

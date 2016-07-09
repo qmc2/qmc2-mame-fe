@@ -9651,7 +9651,7 @@ void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 void MainWindow::treeWidgetMachineList_verticalScrollChanged(int)
 {
 	if ( !treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
-		m_mlRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+		m_mlRankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 }
 
 void MainWindow::treeWidgetMachineList_updateRanks()
@@ -9694,7 +9694,7 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 				if ( minWidth == 0 )
 					minWidth = riw->width();
 				if ( riw->rank() > 0 )
-					QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+					riw->updateRankImage();
 			} else
 				treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 		}
@@ -9706,7 +9706,7 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 void MainWindow::treeWidgetHierarchy_verticalScrollChanged(int)
 {
 	if ( !treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
-		m_hlRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+		m_hlRankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 }
 
 void MainWindow::treeWidgetHierarchy_updateRanks()
@@ -9745,7 +9745,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 				if ( minWidth == 0 )
 					minWidth = riw->width();
 				if ( riw->rank() > 0 )
-					QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+					riw->updateRankImage();
 			} else
 				treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 			item = treeWidget->itemBelow(item);
@@ -9757,7 +9757,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 				if ( minWidth == 0 )
 					minWidth = riw->width();
 				if ( riw->rank() > 0 )
-					QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+					riw->updateRankImage();
 			} else
 				treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 		}
@@ -9774,7 +9774,7 @@ void MainWindow::on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem * /*item*/)
 void MainWindow::treeWidgetCategoryView_verticalScrollChanged(int)
 {
 	if ( !treeWidgetCategoryView->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
-		m_clRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+		m_clRankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 }
 
 void MainWindow::treeWidgetCategoryView_updateRanks()
@@ -9814,7 +9814,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 					if ( riw->rank() > 0 )
-						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+						riw->updateRankImage();
 				} else
 					treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
@@ -9828,7 +9828,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 					if ( riw->rank() > 0 )
-						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+						riw->updateRankImage();
 				} else
 					treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
@@ -9846,7 +9846,7 @@ void MainWindow::on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem * /*item
 void MainWindow::treeWidgetVersionView_verticalScrollChanged(int)
 {
 	if ( !treeWidgetVersionView->isColumnHidden(QMC2_MACHINELIST_COLUMN_RANK) )
-		m_vlRankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+		m_vlRankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 }
 
 void MainWindow::treeWidgetVersionView_updateRanks()
@@ -9886,7 +9886,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 					if ( riw->rank() > 0 )
-						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+						riw->updateRankImage();
 				} else
 					treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 			}
@@ -9900,7 +9900,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 					if ( minWidth == 0 )
 						minWidth = riw->width();
 					if ( riw->rank() > 0 )
-						QTimer::singleShot(0, riw, SLOT(updateRankImage()));
+						riw->updateRankImage();
 				} else
 					treeWidget->setItemWidget(item, QMC2_MACHINELIST_COLUMN_RANK, new RankItemWidget(item));
 			}

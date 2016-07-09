@@ -1146,6 +1146,9 @@ void MachineList::parse()
 		enableWidgets(true);
 		return;
 	}
+	QWidget *fW = qApp->focusWidget();
+	foreach (MachineListViewer *v, MainWindow::machineListViewers)
+		v->setEnabled(false);
 	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	bool showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
 	bool showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
@@ -1860,6 +1863,12 @@ void MachineList::parse()
 	else if ( !qmc2LoadingInterrupted && qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() )
 		filter(true);
 	enableWidgets(true);
+	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		v->setEnabled(true);
+		QTimer::singleShot(0, v->toolButtonUpdateView, SLOT(animateClick()));
+	}
+	if ( fW )
+		fW->setFocus();
 }
 
 QString MachineList::sortCriteriaName(int sc)
