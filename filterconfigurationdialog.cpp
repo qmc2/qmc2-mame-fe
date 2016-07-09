@@ -15,6 +15,7 @@ FilterConfigurationDialog::FilterConfigurationDialog(MachineListViewer *viewer, 
 {
 	setVisible(false);
 	setupUi(this);
+	stackedWidget->setCurrentIndex(QMC2_FCDLG_PAGE_DEFAULT);
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
