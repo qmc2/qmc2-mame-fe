@@ -1,13 +1,18 @@
 #include <QFont>
 #include <QSize>
+#include <QPoint>
+#include <QMenu>
+#include <QList>
+#include <QCursor>
 #include <QLineEdit>
+#include <QFontMetrics>
+#include <QApplication>
 #include <QTreeWidgetItem>
 #include <QAbstractItemView>
-#include <QFontMetrics>
-#include <QMenu>
 
 #include "qmc2main.h"
 #include "machinelistviewer.h"
+#include "machinelist.h"
 #include "rankitemwidget.h"
 #include "settings.h"
 #include "demomode.h"
@@ -20,9 +25,11 @@ extern int qmc2UpdateDelay;
 extern QMenu *qmc2MachineMenu;
 extern MainWindow *qmc2MainWindow;
 extern DemoModeDialog *qmc2DemoModeDialog;
+extern MachineList *qmc2MachineList;
 extern int qmc2DefaultLaunchMode;
 extern bool qmc2StartEmbedded;
 extern bool qmc2IgnoreItemActivation;
+extern QList<QWidget *> qmc2ActiveViews;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
@@ -34,6 +41,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
 	m_rankUpdateTimer.setSingleShot(true);
 	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
+	qmc2ActiveViews << treeView;
 
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
@@ -44,6 +52,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 MachineListViewer::~MachineListViewer()
 {
 	MainWindow::machineListViewers.removeAll(this);
+	qmc2ActiveViews.removeAll(treeView);
 	treeView->setModel(0);
 	delete model();
 	delete filterConfigurationDialog();
@@ -132,6 +141,15 @@ void MachineListViewer::currentChanged(const QModelIndex &current, const QModelI
 	m_ignoreSelectionChange = false;
 }
 
+void MachineListViewer::romStatusChanged(const QString &id, char status)
+{
+	MachineListModelItem *item = model()->itemHash().value(id);
+	if ( item ) {
+		item->setRomStatus(status);
+		model()->updateData(model()->index(item->row(), MachineListModel::ROM_STATUS, QModelIndex()));
+	}
+}
+
 void MachineListViewer::mainSelectionChanged(const QString &id)
 {
 	bool wasEqual = m_currentId == id;
@@ -148,16 +166,7 @@ void MachineListViewer::mainSelectionChanged(const QString &id)
 	}
 }
 
-void MachineListViewer::romStatusChanged(const QString &id, char status)
-{
-	MachineListModelItem *item = model()->itemHash().value(id);
-	if ( item ) {
-		item->setRomStatus(status);
-		model()->updateData(model()->index(item->row(), MachineListModel::ROM_STATUS, QModelIndex()));
-	}
-}
-
-void MachineListViewer::tagChanged(const QString &id, bool tagged)
+void MachineListViewer::mainTagChanged(const QString &id, bool tagged)
 {
 	MachineListModelItem *item = model()->itemHash().value(id);
 	if ( item ) {
@@ -220,6 +229,46 @@ void MachineListViewer::on_treeView_activated(const QModelIndex &)
 		}
 	}
 	qmc2IgnoreItemActivation = false;
+}
+
+void MachineListViewer::on_treeView_entered(const QModelIndex &index)
+{
+	if ( MachineListModel::Column(index.column()) == MachineListModel::TAG ) {
+		if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
+			if ( treeView->indexAt(treeView->viewport()->mapFromGlobal(QCursor::pos())) == index ) {
+				MachineListModelItem *item = model()->itemFromIndex(index);
+				if ( item ) {
+					bool wasTagged = item->tagged();
+					item->setTagged(!wasTagged);
+					model()->updateData(model()->index(item->row(), MachineListModel::TAG, QModelIndex()));
+					emit tagChanged(item->id(), item->tagged());
+					if ( wasTagged )
+						qmc2MachineList->numTaggedSets--;
+					else
+						qmc2MachineList->numTaggedSets++;
+					qmc2MainWindow->labelMachineListStatus->setText(qmc2MachineList->status());
+				}
+			}
+		}
+	}
+}
+
+void MachineListViewer::on_treeView_clicked(const QModelIndex &index)
+{
+	if ( MachineListModel::Column(index.column()) == MachineListModel::TAG ) {
+		MachineListModelItem *item = model()->itemFromIndex(index);
+		if ( item ) {
+			bool wasTagged = item->tagged();
+			item->setTagged(!wasTagged);
+			model()->updateData(model()->index(item->row(), MachineListModel::TAG, QModelIndex()));
+			emit tagChanged(item->id(), item->tagged());
+			if ( wasTagged )
+				qmc2MachineList->numTaggedSets--;
+			else
+				qmc2MachineList->numTaggedSets++;
+			qmc2MainWindow->labelMachineListStatus->setText(qmc2MachineList->status());
+		}
+	}
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)

@@ -1,11 +1,13 @@
 #include <QMultiMap>
 #include <QAbstractItemView>
+#include <QTreeWidgetItem>
 
 #include "machinelistmodel.h"
 #include "machinelist.h"
 
 extern MachineList *qmc2MachineList;
 extern QHash<QString, QIcon> qmc2IconHash;
+extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 #define ml	qmc2MachineList
@@ -170,7 +172,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 drvstat,
 									 is_device,
 									 is_bios,
-									 false,
+									 qmc2MachineListItemHash.value(id)->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked,
 									 m_treeView,
 									 m_rootItem);
 		parentItem->childItems().append(mlmItem);

@@ -2335,6 +2335,7 @@ void MainWindow::on_actionNewFilteredView_triggered(bool)
 	MachineListViewer *mlv = new MachineListViewer;
 	machineListViewers.append(mlv);
 	connect(mlv, SIGNAL(selectionChanged(const QString &)), this, SLOT(machineListViewer_selectionChanged(const QString &)));
+	connect(mlv, SIGNAL(tagChanged(const QString &, bool)), this, SLOT(machineListViewer_tagChanged(const QString &, bool)));
 	connect(this, SIGNAL(selectionChanged(const QString &)), mlv, SLOT(mainSelectionChanged(const QString &)));
 	mlv->show();
 }
@@ -4703,6 +4704,24 @@ void MainWindow::machineListViewer_selectionChanged(const QString &id)
 	qmc2CurrentItem = qmc2MachineListItemHash.value(id);
 	treeWidgetMachineList->setCurrentItem(qmc2CurrentItem);
 	scrollToCurrentItem();
+}
+
+void MainWindow::machineListViewer_tagChanged(const QString &id, bool tagged)
+{
+	QTreeWidgetItem *item;
+	item = qmc2MachineListItemHash.value(id);
+	Qt::CheckState cs = (tagged ? Qt::Checked : Qt::Unchecked);
+	if ( item )
+		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
+	item = qmc2HierarchyItemHash.value(id);
+	if ( item )
+		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
+	item = qmc2CategoryItemHash.value(id);
+	if ( item )
+		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
+	item = qmc2VersionItemHash.value(id);
+	if ( item )
+		item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, cs);
 }
 
 void MainWindow::on_treeWidgetMachineList_itemExpanded(QTreeWidgetItem *item)
@@ -8322,7 +8341,7 @@ void MainWindow::on_treeWidgetMachineList_itemEntered(QTreeWidgetItem *item, int
 				else
 					qmc2MachineList->numTaggedSets++;
 				foreach (MachineListViewer *v, machineListViewers)
-					v->tagChanged(machineName, !wasTagged);
+					v->mainTagChanged(machineName, !wasTagged);
 				labelMachineListStatus->setText(qmc2MachineList->status());
 			}
 		}
@@ -8358,7 +8377,7 @@ void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int c
 				else
 					qmc2MachineList->numTaggedSets++;
 				foreach (MachineListViewer *v, machineListViewers)
-					v->tagChanged(machineName, !wasTagged);
+					v->mainTagChanged(machineName, !wasTagged);
 				labelMachineListStatus->setText(qmc2MachineList->status());
 			}
 		}
@@ -8395,7 +8414,7 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 					else
 						qmc2MachineList->numTaggedSets++;
 					foreach (MachineListViewer *v, machineListViewers)
-						v->tagChanged(machineName, !wasTagged);
+						v->mainTagChanged(machineName, !wasTagged);
 					labelMachineListStatus->setText(qmc2MachineList->status());
 				}
 			}
@@ -8433,7 +8452,7 @@ void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int
 					else
 						qmc2MachineList->numTaggedSets++;
 					foreach (MachineListViewer *v, machineListViewers)
-						v->tagChanged(machineName, !wasTagged);
+						v->mainTagChanged(machineName, !wasTagged);
 					labelMachineListStatus->setText(qmc2MachineList->status());
 				}
 			}
@@ -8738,7 +8757,7 @@ void MainWindow::on_actionSetTag_triggered(bool)
 		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
 	foreach (MachineListViewer *v, machineListViewers)
-		v->tagChanged(machineName, true);
+		v->mainTagChanged(machineName, true);
 }
 
 void MainWindow::on_actionUnsetTag_triggered(bool)
@@ -8766,7 +8785,7 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
 	foreach (MachineListViewer *v, machineListViewers)
-		v->tagChanged(machineName, false);
+		v->mainTagChanged(machineName, false);
 }
 
 void MainWindow::on_actionToggleTag_triggered(bool)
@@ -8794,7 +8813,7 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 			qmc2MachineList->numTaggedSets++;
 		labelMachineListStatus->setText(qmc2MachineList->status());
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(machineName, !wasTagged);
+			v->mainTagChanged(machineName, !wasTagged);
 	}
 }
 
@@ -8929,7 +8948,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 		qmc2MachineList->numTaggedSets++;
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(id, true);
+			v->mainTagChanged(id, true);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
@@ -8980,7 +8999,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		qmc2MachineList->numTaggedSets--;
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(id, false);
+			v->mainTagChanged(id, false);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
@@ -9035,7 +9054,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		else
 			qmc2MachineList->numTaggedSets++;
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(id, !wasTagged);
+			v->mainTagChanged(id, !wasTagged);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
@@ -9086,7 +9105,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 		qmc2MachineList->numTaggedSets++;
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(id, true);
+			v->mainTagChanged(id, true);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
@@ -9137,7 +9156,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		qmc2MachineList->numTaggedSets--;
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(id, false);
+			v->mainTagChanged(id, false);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
@@ -9193,7 +9212,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		else
 			qmc2MachineList->numTaggedSets++;
 		foreach (MachineListViewer *v, machineListViewers)
-			v->tagChanged(id, !wasTagged);
+			v->mainTagChanged(id, !wasTagged);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());

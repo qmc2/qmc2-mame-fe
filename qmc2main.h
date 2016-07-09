@@ -541,8 +541,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetForeignIDs_itemDoubleClicked(QTreeWidgetItem *, int); 
 		void on_treeWidgetForeignIDs_customContextMenuRequested(const QPoint &);
 
-		// selection changes done by filtering machine list viewers
+		// selection and tag changes done by filtering machine list viewers
 		void machineListViewer_selectionChanged(const QString &id);
+		void machineListViewer_tagChanged(const QString &id, bool tagged);
 
 	protected:
 		void closeEvent(QCloseEvent *);
