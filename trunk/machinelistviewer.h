@@ -27,15 +27,18 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void on_toolButtonUpdateView_clicked();
 		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
 		void romStatusChanged(const QString &id, char status);
-		void tagChanged(const QString &id, bool tagged);
+		void mainTagChanged(const QString &id, bool tagged);
 		void mainSelectionChanged(const QString &id);
 		void treeViewVerticalScrollChanged(int);
 		void treeViewUpdateRanks();
 		void on_treeView_customContextMenuRequested(const QPoint &p);
 		void on_treeView_activated(const QModelIndex &);
+		void on_treeView_entered(const QModelIndex &);
+		void on_treeView_clicked(const QModelIndex &);
 
 	signals:
 		void selectionChanged(const QString &);
+		void tagChanged(const QString &, bool tagged);
 
 	protected:
 		void showEvent(QShowEvent *e);
