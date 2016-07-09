@@ -98,6 +98,19 @@ void FilterConfigurationDialog::on_pushButtonCancel_clicked()
 	// FIXME
 }
 
+void FilterConfigurationDialog::on_treeWidget_itemSelectionChanged()
+{
+	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+	if ( !selectedItems.isEmpty() ) {
+		QTreeWidgetItem *item = selectedItems.at(0);
+		if ( item->parent() )
+			stackedWidget->setCurrentIndex(buttonToPage((QToolButton *)treeWidget->itemWidget(item->parent(), QMC2_FCDLG_COLUMN_ACTION)));
+		else
+			stackedWidget->setCurrentIndex(QMC2_FCDLG_PAGE_DEFAULT);
+	} else
+		stackedWidget->setCurrentIndex(QMC2_FCDLG_PAGE_DEFAULT);
+}
+
 void FilterConfigurationDialog::showEvent(QShowEvent *e)
 {
 	adjustIconSizes();

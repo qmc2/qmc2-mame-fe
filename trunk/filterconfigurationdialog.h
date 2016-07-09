@@ -41,6 +41,7 @@ class FilterConfigurationDialog : public QDialog, public Ui::FilterConfiguration
 		void on_pushButtonOk_clicked();
 		void on_pushButtonApply_clicked();
 		void on_pushButtonCancel_clicked();
+		void on_treeWidget_itemSelectionChanged();
 
 	protected:
 		void showEvent(QShowEvent *e);
