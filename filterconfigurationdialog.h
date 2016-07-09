@@ -5,6 +5,9 @@
 
 class MachineListViewer;
 
+#define QMC2_FCDLG_COLUMN_ACTION	0
+#define QMC2_FCDLG_COLUMN_NAME		1
+
 class FilterConfigurationDialog : public QDialog, public Ui::FilterConfigurationDialog
 {
 	Q_OBJECT
@@ -15,6 +18,7 @@ class FilterConfigurationDialog : public QDialog, public Ui::FilterConfiguration
 		MachineListViewer *viewer() { return m_viewer; }
 
 	public slots:
+		void init();
 		void adjustIconSizes();
 		void on_pushButtonOk_clicked();
 		void on_pushButtonApply_clicked();

@@ -72,7 +72,7 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	m_treeView(treeView)
 {
 	m_query = new QSqlQuery(mlDb->db());
-	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM Status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver Status") << tr("Source File") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is Device?") << tr("Category") << tr("Version");
+	m_headers << tr("Tag") << tr("Icon") << tr("Name") << tr("Parent") << tr("Description") << tr("Manufacturer") << tr("Year") << tr("ROM status") << tr("Has ROMs?") << tr("Has CHDs?") << tr("Driver status") << tr("Source file") << tr("Players") << tr("Rank") << tr("Is BIOS?") << tr("Is device?") << tr("Category") << tr("Version");
 	setRootItem(new MachineListModelItem(m_treeView));
 	startQuery();
 }

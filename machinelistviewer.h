@@ -19,6 +19,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 
 		MachineListModel *model() { return m_model; }
 		FilterConfigurationDialog *filterConfigurationDialog() { return m_filterConfigurationDialog; }
+		QStringList &headers() { return model()->headers(); }
 
 	public slots:
 		void init();
