@@ -33,7 +33,7 @@ MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon,
 	setDriverStatus(driver_status);
 	setIsDevice(is_device);
 	setIsBios(is_bios);
-	setTag(tagged);
+	setTagged(tagged);
 }
 
 MachineListModelItem::MachineListModelItem(MachineListModelItem *parentItem) :
@@ -47,7 +47,7 @@ MachineListModelItem::MachineListModelItem(MachineListModelItem *parentItem) :
 	setIsBios(false);
 	setHasRoms(false);
 	setHasChds(false);
-	setTag(false);
+	setTagged(false);
 }
 
 MachineListModelItem::~MachineListModelItem()

@@ -8321,6 +8321,8 @@ void MainWindow::on_treeWidgetMachineList_itemEntered(QTreeWidgetItem *item, int
 					qmc2MachineList->numTaggedSets--;
 				else
 					qmc2MachineList->numTaggedSets++;
+				foreach (MachineListViewer *v, machineListViewers)
+					v->tagChanged(machineName, !wasTagged);
 				labelMachineListStatus->setText(qmc2MachineList->status());
 			}
 		}
@@ -8355,6 +8357,8 @@ void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int c
 					qmc2MachineList->numTaggedSets--;
 				else
 					qmc2MachineList->numTaggedSets++;
+				foreach (MachineListViewer *v, machineListViewers)
+					v->tagChanged(machineName, !wasTagged);
 				labelMachineListStatus->setText(qmc2MachineList->status());
 			}
 		}
@@ -8390,6 +8394,8 @@ void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, in
 						qmc2MachineList->numTaggedSets--;
 					else
 						qmc2MachineList->numTaggedSets++;
+					foreach (MachineListViewer *v, machineListViewers)
+						v->tagChanged(machineName, !wasTagged);
 					labelMachineListStatus->setText(qmc2MachineList->status());
 				}
 			}
@@ -8426,6 +8432,8 @@ void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int
 						qmc2MachineList->numTaggedSets--;
 					else
 						qmc2MachineList->numTaggedSets++;
+					foreach (MachineListViewer *v, machineListViewers)
+						v->tagChanged(machineName, !wasTagged);
 					labelMachineListStatus->setText(qmc2MachineList->status());
 				}
 			}
@@ -8536,7 +8544,6 @@ void MainWindow::on_actionPlayTagged_triggered(bool)
 	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
-
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8597,7 +8604,6 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
-
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8623,7 +8629,6 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
 	}
-
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	qmc2LoadingInterrupted = false;
@@ -8646,12 +8651,10 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 {
 	if ( qmc2MachineList->numTaggedSets <= 0 )
 		return;
-
 	if ( isActiveState ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
 	}
-
 	QStringList setsToAnalyze;
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8662,23 +8665,17 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
 				setsToAnalyze << item->text(QMC2_MACHINELIST_COLUMN_NAME);
 	}
-
 	std::sort(setsToAnalyze.begin(), setsToAnalyze.end());
-
 	if ( !qmc2SystemROMAlyzer )
 		qmc2SystemROMAlyzer = new ROMAlyzer(0, QMC2_ROMALYZER_MODE_SYSTEM);
-
 	qmc2SystemROMAlyzer->quickSearch = true;
 	qmc2SystemROMAlyzer->lineEditSets->setText(setsToAnalyze.join(" "));
-
 	if ( qmc2SystemROMAlyzer->isHidden() )
 		qmc2SystemROMAlyzer->show();
 	else if ( qmc2SystemROMAlyzer->isMinimized() )
 		qmc2SystemROMAlyzer->showNormal();
-
 	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabReport && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
 		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabReport);
-
 	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
 	QTimer::singleShot(0, qmc2SystemROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 }
@@ -8689,7 +8686,6 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
 	}
-
 	progressBarMachineList->reset();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("ROM tool tagged - %p%"));
@@ -8698,7 +8694,6 @@ void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 	progressBarMachineList->setRange(0, qmc2MachineList->numMachines);
 	qApp->processEvents();
 	int count = 0;
-
 	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
@@ -8722,7 +8717,6 @@ void MainWindow::on_actionSetTag_triggered(bool)
 {
 	if ( !qmc2CurrentItem )
 		return;
-
 	bool wasUntagged = false;
 	QString machineName(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 	QTreeWidgetItem *item = qmc2MachineListItemHash.value(machineName);
@@ -8743,13 +8737,14 @@ void MainWindow::on_actionSetTag_triggered(bool)
 		qmc2MachineList->numTaggedSets++;
 		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
+	foreach (MachineListViewer *v, machineListViewers)
+		v->tagChanged(machineName, true);
 }
 
 void MainWindow::on_actionUnsetTag_triggered(bool)
 {
 	if ( !qmc2CurrentItem )
 		return;
-
 	bool wasTagged = false;
 	QString machineName(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 	QTreeWidgetItem *item = qmc2MachineListItemHash.value(machineName);
@@ -8770,13 +8765,14 @@ void MainWindow::on_actionUnsetTag_triggered(bool)
 		qmc2MachineList->numTaggedSets--;
 		labelMachineListStatus->setText(qmc2MachineList->status());
 	}
+	foreach (MachineListViewer *v, machineListViewers)
+		v->tagChanged(machineName, false);
 }
 
 void MainWindow::on_actionToggleTag_triggered(bool)
 {
 	if ( !qmc2CurrentItem )
 		return;
-
 	QString machineName(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 	QTreeWidgetItem *item = qmc2MachineListItemHash.value(machineName);
 	if ( item ) {
@@ -8797,6 +8793,8 @@ void MainWindow::on_actionToggleTag_triggered(bool)
 		else
 			qmc2MachineList->numTaggedSets++;
 		labelMachineListStatus->setText(qmc2MachineList->status());
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(machineName, !wasTagged);
 	}
 }
 
@@ -8804,7 +8802,6 @@ void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
 {
 	if ( !qmc2CurrentItem )
 		return;
-
 	QWidget *focusWidget = qApp->focusWidget();
 	if ( qmc2ActiveViews.contains(focusWidget) ) {
 		bool doToggle = true;
@@ -8824,16 +8821,12 @@ void MainWindow::on_actionToggleTagCursorDown_triggered(bool)
 			if ( !item->parent() )
 				doToggle = false;
 		}
-		if ( doToggle ) {
+		if ( doToggle )
 			on_actionToggleTag_triggered();
-			qApp->processEvents();
-		}
-
 		QKeyEvent *pressEv = new QKeyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
 		QKeyEvent *releaseEv = new QKeyEvent(QEvent::KeyRelease, Qt::Key_Down, Qt::NoModifier);
 		qApp->postEvent(focusWidget, pressEv);
 		qApp->postEvent(focusWidget, releaseEv);
-		qApp->processEvents();
 	}
 }
 
@@ -8841,7 +8834,6 @@ void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 {
 	if ( !qmc2CurrentItem )
 		return;
-
 	QWidget *focusWidget = qApp->focusWidget();
 	if ( qmc2ActiveViews.contains(focusWidget) ) {
 		bool doToggle = true;
@@ -8861,16 +8853,12 @@ void MainWindow::on_actionToggleTagCursorUp_triggered(bool)
 			if ( !item->parent() )
 				doToggle = false;
 		}
-		if ( doToggle ) {
+		if ( doToggle )
 			on_actionToggleTag_triggered();
-			qApp->processEvents();
-		}
-
 		QKeyEvent *pressEv = new QKeyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
 		QKeyEvent *releaseEv = new QKeyEvent(QEvent::KeyRelease, Qt::Key_Up, Qt::NoModifier);
 		qApp->postEvent(focusWidget, pressEv);
 		qApp->postEvent(focusWidget, releaseEv);
-		qApp->processEvents();
 	}
 }
 
@@ -8909,7 +8897,6 @@ void MainWindow::on_actionTagAll_triggered(bool)
 {
 	if ( qmc2ReloadActive )
 		return;
-
 	progressBarMachineList->reset();
 	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -8941,10 +8928,11 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 		qmc2MachineList->numTaggedSets++;
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(id, true);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			qApp->processEvents();
 		}
 	}
 	qmc2MachineList->numTaggedSets = qmc2MachineList->numMachines;
@@ -8959,7 +8947,6 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 {
 	if ( qmc2ReloadActive )
 		return;
-
 	progressBarMachineList->reset();
 	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -8991,10 +8978,11 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		qmc2MachineList->numTaggedSets--;
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(id, false);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			qApp->processEvents();
 		}
 	}
 	qmc2MachineList->numTaggedSets = 0;
@@ -9009,7 +8997,6 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 {
 	if ( qmc2ReloadActive )
 		return;
-
 	progressBarMachineList->reset();
 	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -9045,10 +9032,11 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 			qmc2MachineList->numTaggedSets--;
 		else
 			qmc2MachineList->numTaggedSets++;
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(id, !wasTagged);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
@@ -9062,7 +9050,6 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 {
 	if ( qmc2ReloadActive )
 		return;
-
 	progressBarMachineList->reset();
 	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -9095,10 +9082,11 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Checked);
 		qmc2MachineList->numTaggedSets++;
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(id, true);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
@@ -9112,7 +9100,6 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 {
 	if ( qmc2ReloadActive )
 		return;
-
 	progressBarMachineList->reset();
 	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -9145,10 +9132,11 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		if ( item )
 			item->setCheckState(QMC2_MACHINELIST_COLUMN_TAG, Qt::Unchecked);
 		qmc2MachineList->numTaggedSets--;
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(id, false);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
@@ -9162,7 +9150,6 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 {
 	if ( qmc2ReloadActive )
 		return;
-
 	progressBarMachineList->reset();
 	QString oldFormat = progressBarMachineList->format();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -9200,10 +9187,11 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 			qmc2MachineList->numTaggedSets--;
 		else
 			qmc2MachineList->numTaggedSets++;
+		foreach (MachineListViewer *v, machineListViewers)
+			v->tagChanged(id, !wasTagged);
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
-			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
