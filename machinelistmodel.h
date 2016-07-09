@@ -55,7 +55,7 @@ class MachineListModelItem
 		bool isDevice() { return m_is_device; }
 		void setIsBios(bool is_bios) { m_is_bios = is_bios; }
 		bool isBios() { return m_is_bios; }
-		void setTag(bool tagged) { m_tagged = tagged; }
+		void setTagged(bool tagged) { m_tagged = tagged; }
 		bool tagged() { return m_tagged; }
 
 		void setParentItem(MachineListModelItem *item) { m_parentItem = item; }

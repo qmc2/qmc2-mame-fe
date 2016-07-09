@@ -4731,6 +4731,9 @@
    <property name="toolTip">
     <string>Create a new filtered machine list view</string>
    </property>
+   <property name="statusTip">
+    <string>Create a new filtered machine list view</string>
+   </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="6"/>

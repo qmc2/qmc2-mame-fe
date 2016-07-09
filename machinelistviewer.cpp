@@ -157,6 +157,15 @@ void MachineListViewer::romStatusChanged(const QString &id, char status)
 	}
 }
 
+void MachineListViewer::tagChanged(const QString &id, bool tagged)
+{
+	MachineListModelItem *item = model()->itemHash().value(id);
+	if ( item ) {
+		item->setTagged(tagged);
+		model()->updateData(model()->index(item->row(), MachineListModel::TAG, QModelIndex()));
+	}
+}
+
 void MachineListViewer::treeViewVerticalScrollChanged(int)
 {
 	m_rankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);

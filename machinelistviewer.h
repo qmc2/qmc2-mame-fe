@@ -27,6 +27,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void on_toolButtonUpdateView_clicked();
 		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
 		void romStatusChanged(const QString &id, char status);
+		void tagChanged(const QString &id, bool tagged);
 		void mainSelectionChanged(const QString &id);
 		void treeViewVerticalScrollChanged(int);
 		void treeViewUpdateRanks();
