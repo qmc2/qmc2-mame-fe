@@ -8933,6 +8933,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			qApp->processEvents();
 		}
 	}
 	qmc2MachineList->numTaggedSets = qmc2MachineList->numMachines;
@@ -8983,6 +8984,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			qApp->processEvents();
 		}
 	}
 	qmc2MachineList->numTaggedSets = 0;
@@ -9037,6 +9039,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
@@ -9087,6 +9090,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
@@ -9137,6 +9141,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
@@ -9192,6 +9197,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 		if ( count++ % taggingResponse == 0 ) {
 			progressBarMachineList->setValue(count);
 			labelMachineListStatus->setText(qmc2MachineList->status());
+			qApp->processEvents();
 		}
 	}
 	progressBarMachineList->setValue(count);
