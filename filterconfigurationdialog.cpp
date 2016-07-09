@@ -1,4 +1,3 @@
-#include <QSize>
 #include <QFont>
 #include <QTimer>
 #include <QFontMetrics>
@@ -24,9 +23,9 @@ void FilterConfigurationDialog::adjustIconSizes()
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
-	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	m_iconSize = QSize(fm.height() - 2, fm.height() - 2);
 	QSize iconSizeTreeWidget(fm.height(), fm.height());
-	toolButtonClearFilterExpression->setIconSize(iconSize);
+	toolButtonClearFilterExpression->setIconSize(m_iconSize);
 	treeWidget->setIconSize(iconSizeTreeWidget);
 }
 
@@ -40,6 +39,7 @@ void FilterConfigurationDialog::init()
 		QToolButton *tb = new QToolButton;
 		m_buttonToPageHash.insert(tb, pages.at(i));
 		m_buttonToItemHash.insert(tb, item);
+		tb->setIconSize(m_iconSize);
 		tb->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 		tb->setIcon(QIcon(QString::fromUtf8(":/data/img/plus.png")));
 		tb->setText(tr("Add filter"));
@@ -62,6 +62,7 @@ void FilterConfigurationDialog::addFilterClicked()
 	item->setTextAlignment(QMC2_FCDLG_COLUMN_NAME, Qt::AlignRight | Qt::AlignVCenter);
 	QToolButton *tbRemove = new QToolButton;
 	m_removeButtonToItemHash.insert(tbRemove, item);
+	tbRemove->setIconSize(m_iconSize);
 	tbRemove->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	tbRemove->setIcon(QIcon(QString::fromUtf8(":/data/img/minus.png")));
 	tbRemove->setText(tr("Remove filter"));

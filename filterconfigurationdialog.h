@@ -1,6 +1,7 @@
 #ifndef _FILTERCONFIGURATIONDIALOG_H_
 #define _FILTERCONFIGURATIONDIALOG_H_
 
+#include <QSize>
 #include <QHash>
 #include <QToolButton>
 #include <QTreeWidgetItem>
@@ -50,6 +51,7 @@ class FilterConfigurationDialog : public QDialog, public Ui::FilterConfiguration
 		QHash<QToolButton *, int> m_buttonToPageHash;
 		QHash<QToolButton *, QTreeWidgetItem *> m_buttonToItemHash;
 		QHash<QToolButton *, QTreeWidgetItem *> m_removeButtonToItemHash;
+		QSize m_iconSize;
 };
 
 #endif
