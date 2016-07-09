@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Configure filters</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0,0,0,0">
    <item row="2" column="4">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="toolTip">
@@ -239,6 +239,9 @@
    </item>
    <item row="0" column="0" rowspan="3">
     <widget class="QTreeWidget" name="treeWidget">
+     <property name="textElideMode">
+      <enum>Qt::ElideMiddle</enum>
+     </property>
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>

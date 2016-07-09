@@ -117,6 +117,7 @@ class MachineListModel : public QAbstractItemModel
 		MachineListModelItem *itemFromIndex(const QModelIndex &index) const;
 		void updateData(const QModelIndex &index);
 		QStringList &headers() { return m_headers; }
+		QList<int> &pages() { return m_pages; }
 
 	public slots:
 		void startQuery();
@@ -124,6 +125,7 @@ class MachineListModel : public QAbstractItemModel
 
 	private:
 		QStringList m_headers;
+		QList<int> m_pages;
 		MachineListModelItem *m_rootItem;
 		QSqlQuery *m_query;
 		qint64 m_recordCount;
