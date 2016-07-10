@@ -144,11 +144,6 @@ void MachineListModel::resetModel()
 	startQuery();
 }
 
-void MachineListModel::updateData(const QModelIndex &index)
-{
-	dataChanged(index, index);
-}
-
 QModelIndex MachineListModel::index(int row, int column, const QModelIndex &parent) const
 {
 	if ( parent.isValid() && parent.column() != int(ID) )

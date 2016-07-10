@@ -91,7 +91,7 @@ void FilterConfigurationDialog::on_pushButtonOk_clicked()
 void FilterConfigurationDialog::on_pushButtonApply_clicked()
 {
 	// FIXME
-	viewer()->toolButtonUpdateView->animateClick();
+	QTimer::singleShot(0, viewer()->toolButtonUpdateView, SLOT(animateClick()));
 }
 
 void FilterConfigurationDialog::on_pushButtonCancel_clicked()
