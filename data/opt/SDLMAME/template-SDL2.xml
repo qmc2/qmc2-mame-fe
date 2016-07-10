@@ -2031,9 +2031,10 @@
 			<description lang="us" text="Shadow mask texture name"/>
 			<description lang="de" text="Texturname der Lochmaske"/>
 		</option>
-		<option default="bgfx.avi" name="bgfx_avi_name" type="string">
+		<option default="auto" name="bgfx_avi_name" type="combo">
 			<description lang="us" text="File name for BGFX output logging"/>
 			<description lang="de" text="Dateiname für BGFX Ausgabe Logging"/>
+			<choice name="auto"/>
 		</option>
 	</section>
 	<section ignore.Linux="true" ignore.Windows="true" name="core_audio">
