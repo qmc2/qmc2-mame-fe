@@ -118,6 +118,7 @@ class MachineListModel : public QAbstractItemModel
 		void updateData(const QModelIndex &index) { dataChanged(index, index); }
 		QStringList &headers() { return m_headers; }
 		QList<int> &pages() { return m_pages; }
+		qint64 recordCount() { return m_recordCount; }
 
 	public slots:
 		void startQuery();

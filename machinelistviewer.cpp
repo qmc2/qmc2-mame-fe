@@ -75,6 +75,7 @@ void MachineListViewer::init()
 			}
 		}
 	}
+	lcdNumberRecordCount->display((int)model()->recordCount());
 	connect(treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
 	connect((QObject *)treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeViewVerticalScrollChanged(int)));
 	treeView->setFocus();
@@ -130,6 +131,7 @@ void MachineListViewer::on_toolButtonUpdateView_clicked()
 			}
 		}
 	}
+	lcdNumberRecordCount->display((int)model()->recordCount());
 }
 
 void MachineListViewer::currentChanged(const QModelIndex &current, const QModelIndex & /*previous*/)
