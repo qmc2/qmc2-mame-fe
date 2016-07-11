@@ -262,9 +262,11 @@ void MachineListDatabaseManager::setData(const QString &id, const QString &descr
 
 void MachineListDatabaseManager::queryRecords(QSqlQuery *query)
 {
+	m_queryMutex.lock();
 	query->clear();
 	query->prepare(QString("SELECT id, description, manufacturer, year, cloneof, is_bios, is_device, has_roms, has_chds, players, drvstat, srcfile FROM %1").arg(m_tableBasename));
 	query->exec();
+	m_queryMutex.unlock();
 }
 
 bool MachineListDatabaseManager::nextRecord(QSqlQuery *query, QString *id, QString *description, QString *manufacturer, QString *year, QString *cloneof, bool *is_bios, bool *is_device, bool *has_roms, bool *has_chds, int *players, QString *drvstat, QString *srcfile)

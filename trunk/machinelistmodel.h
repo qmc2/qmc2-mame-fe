@@ -88,7 +88,6 @@ class MachineListModelItem
 		QList<MachineListModelItem *> m_childItems;
 		MachineListModelItem *m_parentItem;
 		QTreeView *m_treeView;
-		bool m_dtor;
 };
 
 class MachineListModel : public QAbstractItemModel
@@ -101,8 +100,6 @@ class MachineListModel : public QAbstractItemModel
 		MachineListModel(QTreeView *treeView, QObject *parent = 0);
 		~MachineListModel();
 
-		void setRootItem(MachineListModelItem *item);
- 
 		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const;
 		virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 		virtual bool canFetchMore(const QModelIndex &parent) const;
@@ -114,6 +111,7 @@ class MachineListModel : public QAbstractItemModel
 		virtual QModelIndex parent(const QModelIndex &child) const;
 		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
+		void setRootItem(MachineListModelItem *item);
 		MachineListModelItem *rootItem() { return m_rootItem; }
 		QHash<QString, MachineListModelItem *> &itemHash() { return m_itemHash; }
 		MachineListModelItem *itemFromIndex(const QModelIndex &index) const;
@@ -127,10 +125,14 @@ class MachineListModel : public QAbstractItemModel
 		void startQuery();
 		void resetModel();
 
+	private slots:
+		void deleteOldRoot();
+
 	private:
 		QStringList m_headers;
 		QList<int> m_pages;
 		MachineListModelItem *m_rootItem;
+		MachineListModelItem *m_oldRootItem;
 		QSqlQuery *m_query;
 		qint64 m_recordCount;
 		QTreeView *m_treeView;

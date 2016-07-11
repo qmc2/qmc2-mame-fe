@@ -117,6 +117,8 @@ void MachineListViewer::on_toolButtonUpdateView_clicked()
 	int currentSortColumn = treeView->header()->sortIndicatorSection();
 	Qt::SortOrder currentSortOrder = treeView->header()->sortIndicatorOrder();
 	model()->resetModel();
+	qDeleteAll(m_rankItemWidgets);
+	m_rankItemWidgets.clear();
 	treeView->sortByColumn(currentSortColumn, currentSortOrder);
 	if ( qmc2CurrentItem ) {
 		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
@@ -193,8 +195,11 @@ void MachineListViewer::treeViewUpdateRanks()
 			riw->updateSize(&fm);
 			if ( riw->rank() > 0 )
 				QTimer::singleShot(0, riw, SLOT(updateRankImage()));
-		} else
-			treeView->setIndexWidget(idx, new RankItemWidget(model()->itemFromIndex(idx)));
+		} else {
+			RankItemWidget *riw = new RankItemWidget(model()->itemFromIndex(idx));
+			m_rankItemWidgets << riw;
+			treeView->setIndexWidget(idx, riw);
+		}
 		if ( index == endIndex )
 			break;
 		index = treeView->indexBelow(index);

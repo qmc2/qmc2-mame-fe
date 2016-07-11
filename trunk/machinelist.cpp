@@ -358,6 +358,8 @@ void MachineList::load()
 	qmc2ExpandedMachineListItems.clear();
 	biosSets.clear();
 	deviceSets.clear();
+	qDeleteAll(qmc2MainWindow->rankItemWidgets());
+	qmc2MainWindow->rankItemWidgets().clear();
 	userDataDb()->clearRankCache();
 	userDataDb()->clearCommentCache();
 	enableWidgets(false);

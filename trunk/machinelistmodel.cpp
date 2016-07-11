@@ -1,4 +1,5 @@
 #include <QMultiMap>
+#include <QTimer>
 #include <QAbstractItemView>
 #include <QTreeWidgetItem>
 
@@ -16,8 +17,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, QTreeView *treeView, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem),
-	m_treeView(treeView),
-	m_dtor(false)
+	m_treeView(treeView)
 {
 	setId(id);
 	setParent(parent);
@@ -41,8 +41,7 @@ MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon,
 
 MachineListModelItem::MachineListModelItem(QTreeView *treeView, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem),
-	m_treeView(treeView),
-	m_dtor(false)
+	m_treeView(treeView)
 {
 	setRank(0);
 	setRomStatus('U');
@@ -56,9 +55,6 @@ MachineListModelItem::MachineListModelItem(QTreeView *treeView, MachineListModel
 
 MachineListModelItem::~MachineListModelItem()
 {
-	if ( m_dtor )
-		return;
-	m_dtor = true;
 	qDeleteAll(childItems());
 }
 
@@ -72,6 +68,7 @@ int MachineListModelItem::row() const
 MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	QAbstractItemModel(parent),
 	m_rootItem(0),
+	m_oldRootItem(0),
 	m_recordCount(0),
 	m_treeView(treeView)
 {
@@ -122,18 +119,18 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 MachineListModel::~MachineListModel()
 {
 	m_query->clear();
-	delete m_rootItem;
+	delete rootItem();
 	delete m_query;
 	delete machineListDb();
 }
 
 void MachineListModel::setRootItem(MachineListModelItem *item)
 {
-	if ( m_rootItem )
-		delete m_rootItem;
+	if ( rootItem() )
+		delete rootItem();
 	m_rootItem = item;
 }
- 
+
 void MachineListModel::startQuery()
 {
 	machineListDb()->queryRecords(m_query);
@@ -143,12 +140,21 @@ void MachineListModel::startQuery()
 
 void MachineListModel::resetModel()
 {
+	m_oldRootItem = rootItem();
 	beginResetModel();
 	reset();
-	setRootItem(new MachineListModelItem(m_treeView));
 	m_recordCount = 0;
+	m_rootItem = new MachineListModelItem(m_treeView);
 	endResetModel();
 	startQuery();
+	if ( m_oldRootItem )
+		QTimer::singleShot(1, this, SLOT(deleteOldRoot()));
+}
+
+void MachineListModel::deleteOldRoot()
+{
+	delete m_oldRootItem;
+	m_oldRootItem = 0;
 }
 
 QModelIndex MachineListModel::index(int row, int column, const QModelIndex &parent) const
