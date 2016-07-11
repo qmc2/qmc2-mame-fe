@@ -9937,7 +9937,7 @@ void MainWindow::updateUserData()
 {
 	resizeEvent(0);
 	foreach (MachineListViewer *v, machineListViewers)
-		QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
+		v->treeViewUpdateRanks();
 }
 
 void MainWindow::on_actionRankImageGradient_triggered(bool checked)

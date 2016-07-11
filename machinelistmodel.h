@@ -11,6 +11,7 @@
 #include <QTreeView>
 
 #include "macros.h"
+#include "machinelistdbmgr.h"
 
 #define QMC2_MLM_FETCH_ONCE	1000
 
@@ -87,6 +88,7 @@ class MachineListModelItem
 		QList<MachineListModelItem *> m_childItems;
 		MachineListModelItem *m_parentItem;
 		QTreeView *m_treeView;
+		bool m_dtor;
 };
 
 class MachineListModel : public QAbstractItemModel
@@ -119,6 +121,7 @@ class MachineListModel : public QAbstractItemModel
 		QStringList &headers() { return m_headers; }
 		QList<int> &pages() { return m_pages; }
 		qint64 recordCount() { return m_recordCount; }
+		MachineListDatabaseManager *machineListDb() { return m_machineListDb; }
 
 	public slots:
 		void startQuery();
@@ -132,6 +135,7 @@ class MachineListModel : public QAbstractItemModel
 		qint64 m_recordCount;
 		QTreeView *m_treeView;
 		QHash<QString, MachineListModelItem *> m_itemHash;
+		MachineListDatabaseManager *m_machineListDb;
 
 		void toggleSortOrder(Qt::SortOrder &order) { if ( order == Qt::DescendingOrder ) order = Qt::AscendingOrder; else order = Qt::DescendingOrder; }
 };

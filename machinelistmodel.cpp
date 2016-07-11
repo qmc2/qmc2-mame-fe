@@ -12,12 +12,12 @@ extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 #define ml	qmc2MachineList
-#define mlDb	ml->machineListDb()
 #define udDb	ml->userDataDb()
 
 MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon, const QString &parent, const QString &description, const QString &manufacturer, const QString &year, const QString &source_file, int players, const QString &category, const QString &version, int rank, char rom_status, bool has_roms, bool has_chds, const QString &driver_status, bool is_device, bool is_bios, bool tagged, QTreeView *treeView, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem),
-	m_treeView(treeView)
+	m_treeView(treeView),
+	m_dtor(false)
 {
 	setId(id);
 	setParent(parent);
@@ -41,7 +41,8 @@ MachineListModelItem::MachineListModelItem(const QString &id, const QIcon &icon,
 
 MachineListModelItem::MachineListModelItem(QTreeView *treeView, MachineListModelItem *parentItem) :
 	m_parentItem(parentItem),
-	m_treeView(treeView)
+	m_treeView(treeView),
+	m_dtor(false)
 {
 	setRank(0);
 	setRomStatus('U');
@@ -55,6 +56,9 @@ MachineListModelItem::MachineListModelItem(QTreeView *treeView, MachineListModel
 
 MachineListModelItem::~MachineListModelItem()
 {
+	if ( m_dtor )
+		return;
+	m_dtor = true;
 	qDeleteAll(childItems());
 }
 
@@ -68,11 +72,13 @@ int MachineListModelItem::row() const
 MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	QAbstractItemModel(parent),
 	m_rootItem(0),
-	m_query(0),
 	m_recordCount(0),
 	m_treeView(treeView)
 {
-	m_query = new QSqlQuery(mlDb->db());
+	m_machineListDb = new MachineListDatabaseManager(this);
+	machineListDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+	machineListDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	m_query = new QSqlQuery(machineListDb()->db());
 	m_headers << tr("Tag")
 		  << tr("Icon")
 		  << tr("Name")
@@ -118,6 +124,7 @@ MachineListModel::~MachineListModel()
 	m_query->clear();
 	delete m_rootItem;
 	delete m_query;
+	delete machineListDb();
 }
 
 void MachineListModel::setRootItem(MachineListModelItem *item)
@@ -129,7 +136,7 @@ void MachineListModel::setRootItem(MachineListModelItem *item)
  
 void MachineListModel::startQuery()
 {
-	mlDb->queryRecords(m_query);
+	machineListDb()->queryRecords(m_query);
 	while ( canFetchMore(QModelIndex()) )
 		fetchMore(QModelIndex());
 }
@@ -183,7 +190,7 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 	bool is_bios, is_device, has_roms, has_chds;
 	int players, i = 0;
 	beginInsertRows(QModelIndex(), m_recordCount, m_recordCount + itemsToFetch - 1);
-	while ( i < itemsToFetch && mlDb->nextRecord(m_query, &id, &description, &manufacturer, &year, &cloneof, &is_bios, &is_device, &has_roms, &has_chds, &players, &drvstat, &srcfile) ) {
+	while ( i < itemsToFetch && machineListDb()->nextRecord(m_query, &id, &description, &manufacturer, &year, &cloneof, &is_bios, &is_device, &has_roms, &has_chds, &players, &drvstat, &srcfile) ) {
 		QString *category = ml->categoryHash.value(id);
 		QString *version = ml->versionHash.value(id);
 		MachineListItem *mlItem = (MachineListItem *)qmc2MachineListItemHash.value(id);
