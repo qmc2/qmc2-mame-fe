@@ -9,6 +9,7 @@
 #include <QStringList>
 #include <QList>
 #include <QHash>
+#include <QMutex>
 
 #define QMC2_MLDB_INDEX_ID			0
 #define QMC2_MLDB_INDEX_DESCRIPTION		1
@@ -75,6 +76,7 @@ class MachineListDatabaseManager : public QObject
 		bool m_logActive;
 		bool m_resetRowCount;
 		qint64 m_lastRowCount;
+		QMutex m_queryMutex;
 };
 
 #endif

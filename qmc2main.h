@@ -168,6 +168,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		static bool qStringListLessThan(const QString &, const QString &);
 		SoftwareListXmlDatabaseManager *swlDb;
 		RomStateFilter *romStateFilter;
+		QList<RankItemWidget *> &rankItemWidgets() { return m_rankItemWidgets; }
 
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
@@ -565,6 +566,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QTimer m_vlRankUpdateTimer;
 		bool m_ignoreSelectionChange;
 		MachineListViewer *m_lastMlvSender;
+		QList<RankItemWidget *> m_rankItemWidgets;
 };
 
 #endif
