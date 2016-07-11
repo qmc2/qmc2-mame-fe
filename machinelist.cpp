@@ -75,6 +75,7 @@ extern bool qmc2WidgetsEnabled;
 extern bool qmc2StatesTogglesEnabled;
 extern bool qmc2ForceCacheRefresh;
 extern bool qmc2SortingActive;
+extern bool qmc2GuiReady;
 extern int qmc2MachineListResponsiveness;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
@@ -2903,6 +2904,10 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return false;
 	}
+	if ( !qmc2GuiReady )
+		while ( !Options::applyMutex.tryLock() )
+			qApp->processEvents(QEventLoop::AllEvents, 1);
+	Options::applyMutex.unlock();
 	QByteArray imageData;
 	QTime preloadTimer, elapsedTime(0, 0, 0, 0);
 	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();

@@ -8,6 +8,7 @@
 #include <QCheckBox>
 #include <QSpinBox>
 #include <QScrollArea>
+#include <QMutex>
 
 #include "settings.h"
 #include "ui_options.h"
@@ -93,6 +94,7 @@ class Options : public QDialog, public Ui::Options
 		static QBrush greyBrush;
 		static QBrush yellowBrush;
 		static QBrush blueBrush;
+		static QMutex applyMutex;
 
 		Options(QWidget *parent = 0);
 		~Options();
