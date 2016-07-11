@@ -9935,9 +9935,25 @@ void MainWindow::on_actionDecreaseRank_triggered(bool)
 
 void MainWindow::updateUserData()
 {
-	resizeEvent(0);
+	if ( tabWidgetMachineList->indexOf(tabMachineList) == tabWidgetMachineList->currentIndex() ) {
+		switch ( stackedWidgetView->currentIndex() ) {
+			case QMC2_VIEWHIERARCHY_INDEX:
+				treeWidgetHierarchy_verticalScrollChanged();
+				break;
+			case QMC2_VIEWCATEGORY_INDEX:
+				treeWidgetCategoryView_verticalScrollChanged();
+				break;
+			case QMC2_VIEWVERSION_INDEX:
+				treeWidgetVersionView_verticalScrollChanged();
+				break;
+			case QMC2_VIEWMACHINELIST_INDEX:
+			default:
+				treeWidgetMachineList_verticalScrollChanged();
+				break;
+		}
+	}
 	foreach (MachineListViewer *v, machineListViewers)
-		v->treeViewUpdateRanks();
+		QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
 }
 
 void MainWindow::on_actionRankImageGradient_triggered(bool checked)
