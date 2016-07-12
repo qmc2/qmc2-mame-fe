@@ -15,7 +15,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			CONFIG += qtestlib
 		}
 		TEMPLATE = app
-		INCLUDEPATH += minizip zlib lzma
+		INCLUDEPATH += lzma
 		FORMS += qmc2main.ui \
 			options.ui \
 			docbrowser.ui \
@@ -153,26 +153,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			individualfallbacksettings.cpp \
 			catverinioptimizer.cpp \
 			filterconfigurationdialog.cpp \
-			minizip/ioapi.c \
-			minizip/unzip.c \
-			minizip/zip.c \
 			htmleditor/htmleditor.cpp \
 			htmleditor/highlighter.cpp \
-			zlib/adler32.c \
-			zlib/compress.c \
-			zlib/crc32.c \
-			zlib/deflate.c \
-			zlib/gzwrite.c \
-			zlib/gzclose.c \
-			zlib/gzread.c \
-			zlib/gzlib.c \
-			zlib/infback.c \
-			zlib/inflate.c \
-			zlib/inffast.c \
-			zlib/inftrees.c \
-			zlib/trees.c \
-			zlib/uncompr.c \
-			zlib/zutil.c \
 			lzma/7zAlloc.c \
 			lzma/7zBuf2.c \
 			lzma/7zBuf.c \
@@ -308,6 +290,38 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			SOURCES += archivefile.cpp
 			HEADERS += archivefile.h
 			LIBS += -larchive
+		}
+
+		contains(DEFINES, QMC2_BUNDLED_MINIZIP) {
+			INCLUDEPATH += minizip
+			SOURCES += minizip/ioapi.c \
+				minizip/unzip.c \
+				minizip/zip.c
+		} else {
+			CONFIG += link_pkgconfig
+			PKGCONFIG += minizip
+		}
+
+		contains(DEFINES, QMC2_BUNDLED_ZLIB) {
+			INCLUDEPATH += zlib
+			SOURCES += zlib/adler32.c \
+				zlib/compress.c \
+				zlib/crc32.c \
+				zlib/deflate.c \
+				zlib/gzwrite.c \
+				zlib/gzclose.c \
+				zlib/gzread.c \
+				zlib/gzlib.c \
+				zlib/infback.c \
+				zlib/inflate.c \
+				zlib/inffast.c \
+				zlib/inftrees.c \
+				zlib/trees.c \
+				zlib/uncompr.c \
+				zlib/zutil.c
+		} else {
+			CONFIG += link_pkgconfig
+			PKGCONFIG += zlib
 		}
 
 		# platform specific stuff

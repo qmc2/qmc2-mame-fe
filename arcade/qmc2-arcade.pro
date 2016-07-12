@@ -37,24 +37,6 @@ SOURCES += main.cpp \
     datinfodbmgr.cpp \
     ../settings.cpp \
     ../sevenzipfile.cpp \
-    ../zlib/zutil.c \
-    ../zlib/uncompr.c \
-    ../zlib/trees.c \
-    ../zlib/inftrees.c \
-    ../zlib/inflate.c \
-    ../zlib/inffast.c \
-    ../zlib/infback.c \
-    ../zlib/gzwrite.c \
-    ../zlib/gzread.c \
-    ../zlib/gzlib.c \
-    ../zlib/gzclose.c \
-    ../zlib/deflate.c \
-    ../zlib/crc32.c \
-    ../zlib/compress.c \
-    ../zlib/adler32.c \
-    ../minizip/zip.c \
-    ../minizip/unzip.c \
-    ../minizip/ioapi.c \
     ../lzma/7zAlloc.c \
     ../lzma/7zBuf2.c \
     ../lzma/7zBuf.c \
@@ -115,6 +97,36 @@ contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
     SOURCES += ../archivefile.cpp
     HEADERS += ../archivefile.h
     LIBS += -larchive
+}
+
+contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
+    SOURCES += ../minizip/zip.c \
+               ../minizip/unzip.c \
+               ../minizip/ioapi.c
+} else {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += minizip
+}
+
+contains(DEFINES, QMC2_ARCADE_BUNDLED_ZLIB) {
+    SOURCES += ../zlib/zutil.c \
+               ../zlib/uncompr.c \
+               ../zlib/trees.c \
+               ../zlib/inftrees.c \
+               ../zlib/inflate.c \
+               ../zlib/inffast.c \
+               ../zlib/infback.c \
+               ../zlib/gzwrite.c \
+               ../zlib/gzread.c \
+               ../zlib/gzlib.c \
+               ../zlib/gzclose.c \
+               ../zlib/deflate.c \
+               ../zlib/crc32.c \
+               ../zlib/compress.c \
+               ../zlib/adler32.c
+} else {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += zlib
 }
 
 DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST QMC2_ARCADE_VERSION=$$VERSION QMC2_ARCADE_MAIN_UI_VERSION=$$MAIN_UI_VERSION
