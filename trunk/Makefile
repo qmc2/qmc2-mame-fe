@@ -339,6 +339,23 @@ ifndef LIBARCHIVE
 LIBARCHIVE = 0
 endif
 
+# >>> SYSTEM_MINIZIP <<<
+#
+# Build using system minizip (for distro packagers)
+#
+ifndef SYSTEM_MINIZIP
+SYSTEM_MINIZIP = 0
+endif
+
+# >>> SYSTEM_ZLIB <<<
+#
+# Build using system zlib (for distro packagers)
+#
+
+ifndef SYSTEM_ZLIB
+SYSTEM_ZLIB = 0
+endif
+
 # >>> CC_FLAGS <<<
 #
 # Specify additional flags passed to the C compiler.
@@ -639,6 +656,14 @@ ifeq '$(LIBARCHIVE)' '1'
 DEFINES += QMC2_LIBARCHIVE_ENABLED
 endif
 
+ifeq '$(SYSTEM_MINIZIP)' '0'
+DEFINES += QMC2_BUNDLED_MINIZIP
+endif
+
+ifeq '$(SYSTEM_ZLIB)' '0'
+DEFINES += QMC2_BUNDLED_ZLIB
+endif
+
 # setup SDL library and include paths
 ifdef SDL_LIBS
 undef SDL_LIBS
@@ -888,7 +913,12 @@ endif
 ifeq '$(LIBARCHIVE)' '1'
 ARCADE_DEFINES += QMC2_ARCADE_LIBARCHIVE_ENABLED
 endif
-
+ifeq '$(SYSTEM_MINIZIP)' '0'
+ARCADE_DEFINES += QMC2_ARCADE_BUNDLED_MINIZIP
+endif
+ifeq '$(SYSTEM_ZLIB)' '0'
+ARCADE_DEFINES += QMC2_ARCADE_BUNDLED_ZLIB
+endif
 ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
 ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_ARCADE_JOYSTICK=$(JOYSTICK) SDL=$(SDL) $(ARCADE_QMAKE_CONF)
 
@@ -1315,6 +1345,8 @@ endif
 	@$(ECHO) "L_LIBDIRS              Additional library paths for the linker       $(L_LIBDIRS)"
 	@$(ECHO) "L_LIBDIRFLAGS          Optional value for QMAKE_LIBDIR_FLAGS         $(L_LIBDIRFLAGS)"
 	@$(ECHO) "LIBARCHIVE             Build with support for libarchive (0, 1)      $(LIBARCHIVE)"
+	@$(ECHO) "SYSTEM_MINIZIP         Build using system minizip (0, 1)             $(SYSTEM_MINIZIP)"
+	@$(ECHO) "SYSTEM_ZLIB            Build using system zlib (0, 1)                $(SYSTEM_ZLIB)"
 	@$(ECHO) "LINKER                 The linker to be used (empty = default)       $(LINKER)"
 	@$(ECHO) "LN                     UNIX command ln                               $(LN)"
 	@$(ECHO) "LOCAL_QML_IMPORT_PATH  Additional QML import path to use             $(LOCAL_QML_IMPORT_PATH)"
