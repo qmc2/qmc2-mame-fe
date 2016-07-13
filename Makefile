@@ -950,13 +950,13 @@ endif
 ifeq '$(ARCH)' 'Windows'
 else
 ifeq '$(ARCH)' 'Darwin'
-arcade-install: arcade arcade-macdeployqt
+arcade-install: arcade-bin arcade-macdeployqt
 	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade.app" "/Applications/qmc2"
 	@$(CHMOD) a+rx "/Applications/qmc2/qmc2-arcade.app"
 	@$(RSYNC) arcade/images/qmc2-arcade.icns /Applications/qmc2/qmc2-arcade.app/Contents/Resources/
 	@$(RSYNC) arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
 else
-arcade-install: arcade
+arcade-install: arcade-bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
