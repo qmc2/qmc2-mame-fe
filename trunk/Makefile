@@ -848,11 +848,15 @@ QCHDMAN_DEFINES += QCHDMAN_WIP_ENABLED
 endif
 
 ifeq '$(ARCH)' 'Windows'
-qchdman:
-	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE)
+tools/qchdman/Makefile: tools/qchdman/qchdman.pro
+	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)"
 
-qchdman-clean:
-	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
+qchdman: qchdman-bin
+qchdman-bin: tools/qchdman/Makefile
+	@$(CD) tools/qchdman && $(MAKE)
+
+qchdman-clean: tools/qchdman/Makefile
+	@$(CD) tools/qchdman && $(MAKE) distclean
 	@$(RMDIR) tools/qchdman/release
 	@$(RMDIR) tools/qchdman/debug
 	@$(RM) tools/qchdman/object_script.qchdman.Release tools/qchdman/object_script.qchdman.Debug
@@ -860,11 +864,15 @@ qchdman-clean:
 tools: qchdman
 tools-clean: qchdman-clean
 else
-qchdman:
-	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE)
+tools/qchdman/Makefile: tools/qchdman/qchdman.pro
+	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)'
 
-qchdman-clean:
-	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
+qchdman: qchdman-bin
+qchdman-bin: tools/qchdman/Makefile
+	@$(CD) tools/qchdman && $(MAKE)
+
+qchdman-clean: tools/qchdman/Makefile
+	@$(CD) tools/qchdman && $(MAKE) distclean
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) tools/qchdman/Info.plist
 
@@ -874,13 +882,13 @@ tools/qchdman/Info.plist: tools/qchdman/Info.plist.in
 tools/qchdman/qchdman.app/Contents/Resources/qt.conf: tools/qchdman/Info.plist
 	@$(MACDEPLOYQT) tools/qchdman/qchdman.app
 qchdman-macdeployqt: tools/qchdman/qchdman.app/Contents/Resources/qt.conf
-qchdman-install: qchdman qchdman-macdeployqt
+qchdman-install: qchdman-bin qchdman-macdeployqt
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman.app" "/Applications"
 	@$(CHMOD) a+rx "/Applications/qchdman.app"
 	@$(RSYNC) tools/qchdman/images/qchdman.icns /Applications/qchdman.app/Contents/Resources/
 	@$(RSYNC) tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
 else
-qchdman-install: qchdman
+qchdman-install: qchdman-bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
@@ -922,12 +930,15 @@ endif
 ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
 ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_ARCADE_JOYSTICK=$(JOYSTICK) SDL=$(SDL) $(ARCADE_QMAKE_CONF)
 
-arcade: arcade-bin
-arcade-bin:
-	@$(CD) arcade && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE)
+arcade/Makefile: arcade/qmc2-arcade.pro
+	@$(CD) arcade && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)"
 
-arcade-clean:
-	@$(CD) arcade && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)" && $(MAKE) distclean
+arcade: arcade-bin
+arcade-bin: arcade/Makefile
+	@$(CD) arcade && $(MAKE)
+
+arcade-clean: arcade/Makefile
+	@$(CD) arcade && $(MAKE) distclean
 ifeq '$(ARCH)' 'Windows'
 	@$(RMDIR) arcade/release
 	@$(RMDIR) arcade/debug
