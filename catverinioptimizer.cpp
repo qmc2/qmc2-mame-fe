@@ -7,6 +7,7 @@
 #include <QTreeWidgetItem>
 #include <QApplication>
 #include <QFileInfo>
+#include <QScrollBar>
 
 #include "catverinioptimizer.h"
 #include "settings.h"
