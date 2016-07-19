@@ -142,7 +142,9 @@ void MachineListModel::resetModel()
 {
 	m_oldRootItem = rootItem();
 	beginResetModel();
+#if QT_VERSION < 0x050000
 	reset();
+#endif
 	m_recordCount = 0;
 	m_rootItem = new MachineListModelItem(m_treeView);
 	endResetModel();
