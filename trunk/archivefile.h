@@ -25,11 +25,11 @@ class ArchiveEntryMetaData
 		}
 
 		void setName(QString name) { m_name = name; }
-		QString name() { return m_name; }
+		QString &name() { return m_name; }
 		void setSize(quint64 size) { m_size = size; }
 		quint64 size() { return m_size; }
 		void setDate(QDateTime date) { m_date = date; }
-		QDateTime date() { return m_date; }
+		QDateTime &date() { return m_date; }
 
 	private:
 		QString m_name;
@@ -55,7 +55,7 @@ class ArchiveFile : public QObject
 		bool writeMode() { return m_openMode == QIODevice::WriteOnly; }
 		bool seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset = 0);
 		bool seekEntry(uint index);
-		bool seekEntry(QString name) { int index = indexOfName(name); return index >= 0 ? seekEntry(index) : false; }
+		bool seekEntry(const QString &name) { int index = indexOfName(name); return index >= 0 ? seekEntry(index) : false; }
 		bool hasError() { return errorCode() == ARCHIVE_FATAL; }
 		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
 		qint64 readEntry(QByteArray &buffer);
@@ -67,7 +67,7 @@ class ArchiveFile : public QObject
 		void createEntryList();
 
 	private:
-		int indexOfName(QString name) { return m_nameToIndexCache.contains(name) ? m_nameToIndexCache[name] : -1; }
+		int indexOfName(const QString &name) { return m_nameToIndexCache.contains(name) ? m_nameToIndexCache.value(name) : -1; }
 
 		struct archive *m_archive;
 		struct archive_entry *m_entry;

@@ -32,13 +32,13 @@ class SevenZipMetaData
 		}
 
 		void setName(QString name) { m_name = name; }
-		QString name() { return m_name; }
+		QString &name() { return m_name; }
 		void setSize(quint64 size) { m_size = size; }
 		quint64 size() { return m_size; }
 		void setDate(QDateTime date) { m_date = date; }
-		QDateTime date() { return m_date; }
+		QDateTime &date() { return m_date; }
 		void setCrc(QString crc) { m_crc = crc; }
-		QString crc() { return m_crc; }
+		QString &crc() { return m_crc; }
 
 	private:
 		QString m_name;
@@ -100,18 +100,18 @@ class SevenZipFile : public QObject
 		explicit SevenZipFile(QString fileName = QString(), QObject *parent = 0);
 		~SevenZipFile();
 
-		QString fileName() { return m_fileName; }
-		QString lastError() { return m_lastError; }
+		QString &fileName() { return m_fileName; }
+		QString &lastError() { return m_lastError; }
 		bool hasError() { return !m_lastError.isEmpty(); }
 		bool isOpen() { return m_isOpen; }
 		bool isFillingDictionary() { return m_fillingDictionary; }
 		QList<SevenZipMetaData> &entryList() { return m_entryList; }
 		quint64 read(QString name, QByteArray *buffer);
 		quint64 read(uint index, QByteArray *buffer, bool *async = 0);
-		int indexOfName(QString name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
-		int indexOfCrc(QString crc) { if ( m_crcToIndexCache.contains(crc) ) return m_crcToIndexCache[crc]; else return -1; }
-		QString userData() { return m_userData; }
-		void setUserData(QString data) { m_userData = data; }
+		int indexOfName(const QString &name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
+		int indexOfCrc(const QString &crc) { if ( m_crcToIndexCache.contains(crc) ) return m_crcToIndexCache[crc]; else return -1; }
+		QString &userData() { return m_userData; }
+		void setUserData(const QString &data) { m_userData = data; }
 
 	signals:
 		void opened();
