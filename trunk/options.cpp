@@ -564,6 +564,7 @@ void Options::apply()
 	toolButtonBrowseOptionsTemplateFile->setIconSize(iconSize);
 	toolButtonBrowseXmlCacheDatabase->setIconSize(iconSize);
 	toolButtonBrowseUserDataDatabase->setIconSize(iconSize);
+	toolButtonBrowseMachineListDatabase->setIconSize(iconSize);
 	toolButtonCleanupUserDataDatabase->setIconSize(iconSize);
 	toolButtonClearUserDataDatabase->setIconSize(iconSize);
 	toolButtonBrowseCookieDatabase->setIconSize(iconSize);

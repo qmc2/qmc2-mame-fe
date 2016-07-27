@@ -32,7 +32,7 @@ REM #################################################
 REM # !!! DON'T CHANGE ANYTHING BELOW THIS LINE !!! #
 REM #################################################
 
-set VERSION=0.66
+set VERSION=0.67
 
 set SVN_REV=0
 set SVN_REV_TEMPLATE=scripts\subwcrev.template
