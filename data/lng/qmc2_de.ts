@@ -15224,7 +15224,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../options.cpp" line="4211"/>
         <source>joystick map is clean</source>
-        <translation>Joystick-Abbilding ist in Ordnung</translation>
+        <translation>Joystick-Abbildung ist in Ordnung</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4213"/>
