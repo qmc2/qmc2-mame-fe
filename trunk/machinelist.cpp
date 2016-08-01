@@ -2906,10 +2906,11 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return false;
 	}
-	if ( !qmc2GuiReady )
+	if ( !qmc2GuiReady ) {
 		while ( !Options::applyMutex.tryLock() )
 			qApp->processEvents(QEventLoop::AllEvents, 1);
-	Options::applyMutex.unlock();
+		Options::applyMutex.unlock();
+	}
 	QByteArray imageData;
 	QTime preloadTimer, elapsedTime(0, 0, 0, 0);
 	int currentMax = qmc2MainWindow->progressBarMachineList->maximum();
