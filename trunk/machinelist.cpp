@@ -1784,6 +1784,7 @@ void MachineList::parse()
 	}
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteriaName(qmc2SortCriteria)).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 	qmc2MainWindow->progressBarMachineList->setValue(qmc2MainWindow->progressBarMachineList->maximum());
+	qApp->processEvents();
 	if ( !qmc2MachineList->userDataDb()->rankCacheComplete() )
 		qmc2MachineList->userDataDb()->fillUpRankCache();
 	qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
