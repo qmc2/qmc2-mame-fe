@@ -183,7 +183,6 @@ QBrush Options::blueBrush(QColor(0, 0, 255));
 QBrush Options::redBrush(QColor(255, 0, 0));
 QBrush Options::greyBrush(QColor(128, 128, 128));
 QBrush Options::lightgreyBrush(QColor(200, 200, 200));
-QMutex Options::applyMutex;
 
 QString qmc2StandardWorkDir;
 QString qmc2CurrentStyleName;
@@ -413,7 +412,6 @@ Options::Options(QWidget *parent)
 	lineEditSoftwareSnapFile->setToolTip(lineEditSoftwareSnapFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
 	lineEditVideoSnapFolder->setToolTip(lineEditVideoSnapFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
 
-	applyMutex.lock();
 	checkPlaceholderStatus();
 	restoreCurrentConfig();
 }
@@ -755,9 +753,6 @@ void Options::apply()
 	qmc2SuppressQtMessages = true;
 	qApp->processEvents();
 	qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();;
-
-	if ( !qmc2GuiReady )
-		applyMutex.unlock();
 	applied = true;
 }
 

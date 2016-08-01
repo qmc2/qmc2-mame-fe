@@ -10640,15 +10640,14 @@ int main(int argc, char *argv[])
 		qmc2Options->applied = true;
 		qmc2MainWindow->close();
 	} else {
-		QTimer::singleShot(0, qmc2Options, SLOT(on_pushButtonApply_clicked()));
+		// if CLI option -cc is set, clear all emulator caches before starting up
+		if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
+			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered(true);
 		QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
 #if QMC2_JOYSTICK == 1
 		QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
 #endif
-		// if CLI option -cc is set, clear all emulator caches before starting up
-		if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
-			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered(true);
-
+		qmc2Options->on_pushButtonApply_clicked();
 		// finally run the application
 		retCode = qmc2App.exec();
 	}
