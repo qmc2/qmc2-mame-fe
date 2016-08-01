@@ -2171,6 +2171,10 @@ void MainWindow::on_actionReload_triggered(bool)
 			log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 			return;
 		}
+	} else if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES ) {
+		qmc2ForceCacheRefresh = true;
+		qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered(true);
+		qmc2ForceCacheRefresh = false;
 	}
 	if ( qmc2ReloadActive )
 		log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
@@ -2604,7 +2608,7 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 			return;
 		}
 	}
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", Options::configPath() + "/mame.rsc").toString();
+	QString fileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", Options::configPath() + "/mame.rsc").toString());
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -2660,7 +2664,7 @@ void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
 			return;
 		}
 	}
-	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString();
+	QString fileName(qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
 	QFile f(fileName);
 	if ( f.exists() ) {
 		if ( f.remove() )
@@ -10640,9 +10644,6 @@ int main(int argc, char *argv[])
 		qmc2Options->applied = true;
 		qmc2MainWindow->close();
 	} else {
-		// if CLI option -cc is set, clear all emulator caches before starting up
-		if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES )
-			qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered(true);
 		QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
 #if QMC2_JOYSTICK == 1
 		QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
