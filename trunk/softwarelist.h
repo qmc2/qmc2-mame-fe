@@ -372,6 +372,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void actionViewFlat_triggered();
 		void actionViewTree_triggered();
 		void toggleSoftwareList();
+		void showAllSoftwareLists();
 		void showOnlyThisSoftwareList();
 		void showAllExceptThisSoftwareList();
 

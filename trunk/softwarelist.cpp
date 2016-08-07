@@ -830,6 +830,18 @@ void SoftwareList::toggleSoftwareList()
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
+void SoftwareList::showAllSoftwareLists()
+{
+	foreach (QAction *a, toggleListMenu->actions()) {
+		if ( a->isCheckable() ) {
+			if ( !a->isChecked() )
+				a->setChecked(true);
+		}
+	}
+	qmc2MachineList->userDataDb()->setHiddenLists(systemName, QStringList());
+	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
+}
+
 void SoftwareList::showOnlyThisSoftwareList()
 {
 	QAction *action = (QAction *)sender();
@@ -1459,7 +1471,7 @@ bool SoftwareList::load()
 				QString s(tr("Select software lists to be shown / hidden"));
 				a->setToolTip(s); a->setStatusTip(s);
 			}
-			QStringList softwareLists = systemSoftwareListHash[systemName];
+			QStringList softwareLists(systemSoftwareListHash.value(systemName));
 			addMenuSectionHeader(toggleListMenu, tr("Individual"));
 			QString swlString;
 			foreach (QString list, softwareLists) {
@@ -1475,6 +1487,15 @@ bool SoftwareList::load()
 				QString s(tr("Toggle visibility of software list '%1'").arg(list));
 				a->setToolTip(s); a->setStatusTip(s);
 				connect(a, SIGNAL(triggered()), this, SLOT(toggleSoftwareList()));
+			}
+			if ( softwareLists.count() > 1 ) {
+				if ( hiddenLists.count() > 0 ) {
+					addMenuSectionHeader(toggleListMenu, tr("All"));
+					QAction *a = toggleListMenu->addAction(tr("show all"));
+					QString s(tr("Show all software lists"));
+					a->setToolTip(s); a->setStatusTip(s);
+					connect(a, SIGNAL(triggered()), this, SLOT(showAllSoftwareLists()));
+				}
 			}
 			if ( softwareLists.count() > 2 ) {
 				addMenuSectionHeader(toggleListMenu, tr("Only"));
