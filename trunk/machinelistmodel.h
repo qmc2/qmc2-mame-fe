@@ -139,7 +139,7 @@ class MachineListModel : public QAbstractItemModel
 		QHash<QString, MachineListModelItem *> m_itemHash;
 		MachineListDatabaseManager *m_machineListDb;
 
-		void toggleSortOrder(Qt::SortOrder &order) { if ( order == Qt::DescendingOrder ) order = Qt::AscendingOrder; else order = Qt::DescendingOrder; }
+		void toggleSortOrder(Qt::SortOrder &order) { order = (order == Qt::DescendingOrder ? Qt::AscendingOrder : Qt::DescendingOrder); }
 };
 
 #endif
