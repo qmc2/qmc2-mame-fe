@@ -692,12 +692,12 @@
 // maximum delay in ms before finally killing an external tool (if required to)
 #define QMC2_TOOL_KILL_WAIT			2000
 
-// MAME/MESS exit codes (from MAME source -- src/emu/mame.h)
+// MAME exit codes (from MAME source - src/emu/main.h)
 #define	QMC2_MAME_ERROR_NONE			0	// no error
 #define	QMC2_MAME_ERROR_FAILED_VALIDITY		1	// failed validity checks
 #define	QMC2_MAME_ERROR_MISSING_FILES		2	// missing files
 #define	QMC2_MAME_ERROR_FATALERROR		3	// some other fatal error
-#define	QMC2_MAME_ERROR_DEVICE			4	// device initialization error (MESS-specific)
+#define	QMC2_MAME_ERROR_DEVICE			4	// device initialization error
 #define	QMC2_MAME_ERROR_NO_SUCH_MACHINE		5	// machine was specified but doesn't exist
 #define	QMC2_MAME_ERROR_INVALID_CONFIG		6	// some sort of error in configuration
 #define	QMC2_MAME_ERROR_IDENT_NONROMS		7	// identified all non-ROM files
