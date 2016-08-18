@@ -19,10 +19,10 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 		QRegExp rx("(\\b.*\\b)\\1");
 		for (int i = 0; i < SDL_NumJoysticks(); i++) {
 #if SDL_MAJOR_VERSION == 1
-			QString jsName = SDL_JoystickName(i);
+			QString jsName(SDL_JoystickName(i));
 #elif SDL_MAJOR_VERSION == 2
 			SDL_Joystick *js = SDL_JoystickOpen(i);
-			QString jsName = SDL_JoystickName(js);
+			QString jsName(SDL_JoystickName(js));
 			SDL_JoystickClose(js);
 #endif
 			jsName.replace(rx, "\\1"); // remove consecutive duplicate words in the joystick name (i. e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D")
@@ -30,7 +30,6 @@ Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat,
 		}
 		connect(&joystickTimer, SIGNAL(timeout()), this, SLOT(processEvents()));
 	}
-
 	joystick = 0;
 	jsIndex = -1;
 	numAxes = numButtons = numHats = numTrackballs = 0;
@@ -43,7 +42,6 @@ Joystick::~Joystick()
 {
 	if ( isOpen() )
 		close();
-
 	SDL_Quit();
 }
 
@@ -52,10 +50,8 @@ bool Joystick::open(int stick)
 	static bool firstOpenCall = true;
 	bool doLog = !firstOpenCall;
 	firstOpenCall = false;
-
 	if ( isOpen() )
 		close();
-
 	joystick = SDL_JoystickOpen(stick);
 	if ( joystick ) {
 		numAxes = SDL_JoystickNumAxes(joystick);
@@ -79,7 +75,6 @@ void Joystick::close()
 	static bool firstCloseCall = true;
 	bool doLog = !firstCloseCall;
 	firstCloseCall = false;
-
 	joystickTimer.stop();
 	if ( joystick ) {
 		SDL_JoystickClose(joystick);
@@ -95,12 +90,8 @@ void Joystick::processEvents()
 {
 	if ( !isOpen() )
 		return;
-
 	SDL_JoystickUpdate();
-
-	int i;
-
-	for (i = 0; i < numAxes; i++) {
+	for (int i = 0; i < numAxes; i++) {
 		Sint16 moved = SDL_JoystickGetAxis(joystick, i);
 		if ( !qmc2JoystickIsCalibrating )
 			moved = normalizeAxisValue(moved, i);
@@ -121,8 +112,7 @@ void Joystick::processEvents()
 		} else
 			emit axisValueChanged(i, 0);
 	}
-
-	for (i = 0; i < numButtons; i++) {
+	for (int i = 0; i < numButtons; i++) {
 		Uint8 changed = SDL_JoystickGetButton(joystick, i);
 		if ( (changed != buttons[i]) ) {
 			emit buttonValueChanged(i, (bool) changed);
@@ -136,8 +126,7 @@ void Joystick::processEvents()
 		} else
 			buttonRepeatTimers[i].restart();
 	}
-
-	for (i = 0; i < numHats; i++) {
+	for (int i = 0; i < numHats; i++) {
 		Uint8 changed = SDL_JoystickGetHat(joystick, i);
 		if ( (changed != hats[i]) ) {
 			emit hatValueChanged(i, changed);
@@ -151,8 +140,7 @@ void Joystick::processEvents()
 		} else
 			hatRepeatTimers[i].restart();
 	}
-
-	for (i = 0; i < numTrackballs; i++) {
+	for (int i = 0; i < numTrackballs; i++) {
 		int dx, dy;
 		SDL_JoystickGetBall(joystick, i, &dx, &dy);
 		if ( dx != 0 || dy != 0 )
