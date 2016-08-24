@@ -1096,6 +1096,8 @@ bool DeviceConfigurator::refreshDeviceMap()
 	comboBoxDeviceInstanceChooser->clear();
 
 	if ( instances.count() > 0 ) {
+		tabFileChooser->setEnabled(true);
+		treeWidgetDeviceSetup->setEnabled(true);
 		std::sort(instances.begin(), instances.end());
 		foreach (QString instance, instances) {
 			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
@@ -1383,7 +1385,8 @@ bool DeviceConfigurator::load()
 	} else {
 		comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
 		// base system has no slot-devices so disable the device configurator *completely*
-		setEnabled(false);
+		if ( systemSlotHash.value(currentMachineName).isEmpty() )
+			setEnabled(false);
 	}
 
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
