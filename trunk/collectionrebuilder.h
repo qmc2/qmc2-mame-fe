@@ -125,7 +125,7 @@ class CollectionRebuilderThread : public QThread
 
 		static QString &toHumanReadable(QString &text) {
 			foreach (QString old, m_replacementHash.keys())
-				text.replace(old, m_replacementHash[old]);
+				text.replace(old, m_replacementHash.value(old));
 			return text;
 		}
 
