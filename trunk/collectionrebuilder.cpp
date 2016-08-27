@@ -157,7 +157,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	int index = 1;
 	if ( xmlSources.count() > 0 && setEntities.count() == xmlSources.count() && romEntities.count() == xmlSources.count() && diskEntities.count() == xmlSources.count() && checkpointList.count() == xmlSources.count() && softwareCheckpointListOk ) {
 		for (int i = 0; i < xmlSources.count(); i++) {
-			QString xmlSource = xmlSources[i];
+			QString xmlSource(xmlSources.at(i));
 			QFileInfo fi(xmlSource);
 			if ( fi.exists() && fi.isReadable() ) {
 				comboBoxXmlSource->insertItem(index, xmlSource);
@@ -376,9 +376,9 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 
 	if ( index == 0 ) {
 		if ( lastIndex >= 0 ) {
-			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
-			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
-			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
+			QStringList setEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList());
+			QStringList romEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList());
+			QStringList diskEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList());
 			if ( lastIndex < setEntities.count() ) {
 				setEntities.replace(lastIndex, lineEditSetEntity->text());
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
@@ -407,22 +407,22 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 			int foundAtIndex = comboBoxXmlSource->findText(xmlSource);
 			if ( foundAtIndex < 0 ) {
 				comboBoxXmlSource->blockSignals(true);
-				QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList();
+				QStringList xmlSources(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList());
 				xmlSources << xmlSource;
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", xmlSources);
-				QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
+				QStringList setEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList());
 				setEntities << m_defaultSetEntity;
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
 				lineEditSetEntity->setText(m_defaultSetEntity);
-				QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
+				QStringList romEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList());
 				romEntities << m_defaultRomEntity;
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
 				lineEditRomEntity->setText(m_defaultRomEntity);
-				QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
+				QStringList diskEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList());
 				diskEntities << m_defaultDiskEntity;
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
 				lineEditDiskEntity->setText(m_defaultDiskEntity);
-				QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
+				QStringList checkpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList());
 				checkpointList << "-1";
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
@@ -449,9 +449,9 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 	} else {
 		index -= 1;
 		if ( index >= 0 ) {
-			QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
-			QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
-			QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
+			QStringList setEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList());
+			QStringList romEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList());
+			QStringList diskEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList());
 			if ( lastIndex >= 0 ) {
 				if ( lastIndex < setEntities.count() ) {
 					setEntities.replace(lastIndex, lineEditSetEntity->text());
@@ -482,19 +482,19 @@ void CollectionRebuilder::on_toolButtonRemoveXmlSource_clicked()
 {
 	int index = comboBoxXmlSource->currentIndex() - 1;
 	comboBoxXmlSource->setCurrentIndex(0);
-	QStringList xmlSources = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList();
+	QStringList xmlSources(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", QStringList()).toStringList());
 	xmlSources.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSources", xmlSources);
-	QStringList setEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList();
+	QStringList setEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", QStringList()).toStringList());
 	setEntities.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetEntities", setEntities);
-	QStringList romEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList();
+	QStringList romEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", QStringList()).toStringList());
 	romEntities.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/RomEntities", romEntities);
-	QStringList diskEntities = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList();
+	QStringList diskEntities(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", QStringList()).toStringList());
 	diskEntities.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/DiskEntities", diskEntities);
-	QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
+	QStringList checkpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList());
 	checkpointList.removeAt(index);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 	if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
@@ -596,7 +596,7 @@ void CollectionRebuilder::rebuilderThread_rebuildFinished()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", cp);
 	else {
 		int xmlSourceIndex = index - 1;
-		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
+		QStringList checkpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList());
 		if ( xmlSourceIndex >= 0 && xmlSourceIndex < checkpointList.count() ) {
 			checkpointList.replace(xmlSourceIndex, QString::number(cp));
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
@@ -743,16 +743,16 @@ void CollectionRebuilder::updateMissingList()
 {
 	QList<QTreeWidgetItem *> itemList;
 	foreach (QString newMissing, newMissingList()) {
-		QStringList missingWords = newMissing.split("|");
+		QStringList missingWords(newMissing.split('|'));
 		if ( missingWords.count() >= 7 ) {
 			QTreeWidgetItem *newItem = new QTreeWidgetItem(0);
-			newItem->setText(QMC2_MDV_COLUMN_ID, missingWords[0]);
-			newItem->setText(QMC2_MDV_COLUMN_TYPE, missingWords[1]);
-			newItem->setText(QMC2_MDV_COLUMN_NAME, missingWords[2]);
-			newItem->setText(QMC2_MDV_COLUMN_SIZE, missingWords[3]);
-			newItem->setText(QMC2_MDV_COLUMN_CRC, missingWords[4]);
-			newItem->setText(QMC2_MDV_COLUMN_SHA1, missingWords[5]);
-			newItem->setText(QMC2_MDV_COLUMN_REASON, missingWords[6]);
+			newItem->setText(QMC2_MDV_COLUMN_ID, missingWords.at(0));
+			newItem->setText(QMC2_MDV_COLUMN_TYPE, missingWords.at(1));
+			newItem->setText(QMC2_MDV_COLUMN_NAME, missingWords.at(2));
+			newItem->setText(QMC2_MDV_COLUMN_SIZE, missingWords.at(3));
+			newItem->setText(QMC2_MDV_COLUMN_CRC, missingWords.at(4));
+			newItem->setText(QMC2_MDV_COLUMN_SHA1, missingWords.at(5));
+			newItem->setText(QMC2_MDV_COLUMN_REASON, missingWords.at(6));
 			itemList << newItem;
 		}
 	}
@@ -1240,12 +1240,12 @@ bool CollectionRebuilderThread::rewriteSet(QString *setKey, QStringList *romName
 {
 	QString set, baseDir = rebuilderDialog()->romAlyzer()->lineEditSetRewriterOutputPath->text();
 	if ( rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
-		QStringList setKeyTokens = setKey->split(":", QString::SkipEmptyParts);
+		QStringList setKeyTokens(setKey->split(':', QString::SkipEmptyParts));
 		if ( setKeyTokens.count() < 2 )
 			return false;
 		else {
-			baseDir += "/" + setKeyTokens[0];
-			set = setKeyTokens[1];
+			baseDir += "/" + setKeyTokens.at(0);
+			set = setKeyTokens.at(1);
 		}
 	} else
 		set = *setKey;
@@ -1297,13 +1297,13 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 	int reproducedDumps = 0;
 	bool ignoreErrors = !rebuilderDialog()->romAlyzer()->checkBoxSetRewriterAbortOnError->isChecked();
 	for (int i = 0; i < romNameList->count() && !exitThread && success; i++) {
-		QString fileName = d.absoluteFilePath(romNameList->at(i));
+		QString fileName(d.absoluteFilePath(romNameList->at(i)));
 		if ( !createBackup(fileName) ) {
 			emit log(tr("FATAL: backup creation failed"));
 			success = false;
 		}
 		QFile f(fileName);
-		QString errorReason = tr("file error");
+		QString errorReason(tr("file error"));
 		if ( success && f.open(QIODevice::WriteOnly) ) {
 			QByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
@@ -1373,7 +1373,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 	if ( !d.exists() )
 		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
 			return false;
-	QString fileName = QDir::cleanPath(baseDir) + "/" + id + ".zip";
+	QString fileName(QDir::cleanPath(baseDir) + "/" + id + ".zip");
 	if ( !createBackup(fileName) ) {
 		emit log(tr("FATAL: backup creation failed"));
 		return false;
@@ -1409,7 +1409,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			QByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
-			QString errorReason = tr("file error");
+			QString errorReason(tr("file error"));
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				switch ( m_fileTypes.indexOf(type) ) {
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
@@ -1482,7 +1482,7 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 	if ( !d.exists() )
 		if ( !d.mkdir(QDir::cleanPath(baseDir)) )
 			return false;
-	QString fileName = QDir::cleanPath(baseDir) + "/" + id + ".zip";
+	QString fileName(QDir::cleanPath(baseDir) + "/" + id + ".zip");
 	if ( !createBackup(fileName) ) {
 		emit log(tr("FATAL: backup creation failed"));
 		return false;
@@ -1504,11 +1504,11 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 				emit log(tr("skipping '%1'").arg(romNameList->at(i)) + " ("+ tr("a dump with CRC '%1' already exists").arg(romCrcList->at(i)) + ")");
 				continue;
 			}
-			QString file = romNameList->at(i);
+			QString file(romNameList->at(i));
 			QByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
-			QString errorReason = tr("file error");
+			QString errorReason(tr("file error"));
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				switch ( m_fileTypes.indexOf(type) ) {
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
@@ -1619,11 +1619,11 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 		uLong ulCRC = crc.toULong(0, 16);
 		do {
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
-				crcIdentMap[zipInfo.crc] = QString((const char *)ioBuffer);
+				crcIdentMap.insert(zipInfo.crc, QString((const char *)ioBuffer));
 		} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
-			QString fn = crcIdentMap[ulCRC];
+			QString fn(crcIdentMap.value(ulCRC));
 			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) {
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
@@ -2050,10 +2050,10 @@ bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
 
 	switch ( rebuilderDialog()->romAlyzer()->mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE: {
-				QStringList setKeyTokens = setKey.split(":", QString::SkipEmptyParts);
+				QStringList setKeyTokens(setKey.split(':', QString::SkipEmptyParts));
 				if ( setKeyTokens.count() < 2 )
 					return false;
-				list = setKeyTokens[0];
+				list = setKeyTokens.at(0);
 				if ( doFilterSoftware ) {
 					if ( isIncludeFilterSoftware ) {
 						if ( exactMatchSoftware ) {
@@ -2069,7 +2069,7 @@ bool CollectionRebuilderThread::evaluateFilters(QString &setKey)
 							return false;
 					}
 				}
-				set = setKeyTokens[1];
+				set = setKeyTokens.at(1);
 				break;
 			}
 		case QMC2_ROMALYZER_MODE_SYSTEM:
@@ -2127,7 +2127,7 @@ bool CollectionRebuilderThread::checkSumExists(QString sha1, QString crc, quint6
 			if ( m_hashCache.contains(QString("-%1-%2").arg(crc).arg(size)) )
 				return true;
 			else { // rare case so shouldn't hurt
-				QStringList uniqueKeys = m_hashCache.uniqueKeys();
+				QStringList uniqueKeys(m_hashCache.uniqueKeys());
 				return uniqueKeys.indexOf(QRegExp(QString(".*-%1-%2").arg(crc).arg(size))) >= 0;
 			}
 		} else {
@@ -2154,7 +2154,7 @@ void CollectionRebuilderThread::updateHashCache()
 			emit progressChanged(count++);
 			QString key;
 			if ( !checkSumDb()->pathOfRow(row, &key, true).isEmpty() )
-				m_hashCache[key] = true;
+				m_hashCache.insert(key, true);
 			row = checkSumDb()->nextRowId();
 			if ( exitThread || stopRebuilding )
 				break;
