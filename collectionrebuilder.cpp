@@ -42,8 +42,8 @@ extern SoftwareList *qmc2SoftwareList;
 QHash<QString, QString> CollectionRebuilderThread::m_replacementHash;
 QStringList CollectionRebuilderThread::m_fileTypes;
 
-CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent)
-	: QWidget(parent),
+CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent) :
+	QWidget(parent),
 	m_romAlyzer(myROMAlyzer)
 {
 	setupUi(this);
