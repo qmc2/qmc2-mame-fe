@@ -918,8 +918,8 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 
 	int startIndex = -1;
 	int endIndex = -1;
-	QStringList xmlLines = xml.split("\n");
-	QString xmlLine = xmlLines[0];
+	QStringList xmlLines(xml.split('\n'));
+	QString xmlLine(xmlLines.at(0));
 	startIndex = xmlLine.indexOf(setEntityPattern());
 	if ( startIndex >= 0 ) {
 		startIndex += setEntityPattern().length();
@@ -928,7 +928,7 @@ bool CollectionRebuilderThread::parseXml(QString xml, QString *id, QStringList *
 			*id = xmlLine.mid(startIndex, endIndex - startIndex);
 			QString mergeName, romName, status, romSha1, romCrc, romSize, diskName, diskSha1, diskSize;
 			for (int i = 1; i < xmlLines.count(); i++) {
-				xmlLine = xmlLines[i];
+				xmlLine = xmlLines.at(i);
 				bool romFound = false;
 				startIndex = xmlLine.indexOf(romEntityPattern());
 				if ( startIndex >= 0 ) {
@@ -1179,7 +1179,7 @@ void CollectionRebuilderThread::setCheckpoint(qint64 cp, int xmlSourceIndex)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/Checkpoint", checkpoint());
 	else if ( xmlSourceIndex > 0 && xmlSourceIndex < rebuilderDialog()->comboBoxXmlSource->count() - 1 ) {
 		xmlSourceIndex -= 1;
-		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", QStringList()).toStringList();
+		QStringList checkpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", QStringList()).toStringList());
 		checkpointList.replace(xmlSourceIndex, QString::number(checkpoint()));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceCheckpoints", checkpointList);
 	}
@@ -1190,7 +1190,7 @@ void CollectionRebuilderThread::setListCheckpoint(QString list, int xmlSourceInd
 	m_currentListName = list;
 	if ( xmlSourceIndex > 0 && xmlSourceIndex < rebuilderDialog()->comboBoxXmlSource->count() - 1 ) {
 		xmlSourceIndex -= 1;
-		QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+		QStringList checkpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceListCheckpoints", QStringList()).toStringList());
 		checkpointList.replace(xmlSourceIndex, list);
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + rebuilderDialog()->settingsKey() + "/XmlSourceListCheckpoints", checkpointList);
 	}
