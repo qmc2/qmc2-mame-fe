@@ -8,6 +8,7 @@
 #include "qmc2main.h"
 #include "machinelist.h"
 #include "settings.h"
+#include "options.h"
 #include "swldbmgr.h"
 
 // external global variables
@@ -18,11 +19,10 @@ extern MachineList *qmc2MachineList;
 SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
-	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	m_listIterationQuery = 0;
 	m_connectionName = QString("swl-cache-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
-	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", QString(userScopePath + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
+	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", QString(Options::configPath() + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_swl_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);

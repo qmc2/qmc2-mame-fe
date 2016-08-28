@@ -1097,8 +1097,16 @@
 			<description lang="es" text="Permitir valores de relación de aspecto no enteros"/>
 		</option>
 		<option default="false" name="unevenstretchx" type="bool">
-			<description lang="us" text="Allow non-integer stretch factors only on horizontal axis"/>
+			<description lang="us" text="Allow non-integer stretch factors only on the horizontal axis"/>
 			<description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren nur für die horizontale Achse zulassen"/>
+		</option>
+		<option default="false" name="unevenstretchy" type="bool">
+			<description lang="us" text="Allow non-integer stretch factors only on the vertical axis"/>
+			<description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren nur für die horizontale Achse zulassen"/>
+		</option>
+		<option default="false" name="autostretchxy" type="bool">
+			<description lang="us" text="Automatically apply -unevenstretchx/y based on source native orientation"/>
+			<description lang="de" text="Automatisch -unevenstretchx/y basierend auf der nativen Orientierung der Quelle anwenden"/>
 		</option>
 		<option default="false" name="intoverscan" type="bool">
 			<description lang="us" text="Allow overscan on integer scaled targets"/>
