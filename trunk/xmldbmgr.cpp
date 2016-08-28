@@ -18,10 +18,9 @@ XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	setLogActive(true);
-	QString userScopePath = Options::configPath();
 	m_connectionName = QString("xml-cache-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
-	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(userScopePath + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
+	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(Options::configPath() + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_xml_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);

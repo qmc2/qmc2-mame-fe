@@ -16,19 +16,18 @@
 // external global variables
 extern Settings *qmc2Config;
 
-CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent, QString settingsKey)
-	: QObject(parent)
+CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent, QString settingsKey) :
+	QObject(parent),
+	m_settingsKey(settingsKey)
 {
-	m_settingsKey = settingsKey;
 	m_fileTypes << "ZIP" << "7Z" << "CHD" << "FILE";
-	QString userScopePath = Options::configPath();
 	m_connectionName = QString("checksum-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
-	QString variantName = QMC2_VARIANT_NAME.toLower().replace(QRegExp("\\..*$"), "");
+	QString variantName(QMC2_VARIANT_NAME.toLower().replace(QRegExp("\\..*$"), ""));
 	if ( m_settingsKey == "ROMAlyzer" )
-		m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(userScopePath + "/%1-checksum.db").arg(variantName)).toString());
+		m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(Options::configPath() + "/%1-checksum.db").arg(variantName)).toString());
 	else
-		m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(userScopePath + "/%1-software-checksum.db").arg(variantName)).toString());
+		m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(Options::configPath() + "/%1-software-checksum.db").arg(variantName)).toString());
 	m_tableBasename = QString("%1_checksum").arg(variantName.replace("-", "_"));
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);

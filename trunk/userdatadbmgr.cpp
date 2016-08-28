@@ -27,10 +27,9 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	: QObject(parent)
 {
 	setLogActive(true);
-	QString userScopePath = Options::configPath();
 	m_connectionName = QString("user-data-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
-	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", QString(userScopePath + "/%1-user-data.db").arg(QMC2_EMU_NAME.toLower())).toString());
+	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", QString(Options::configPath() + "/%1-user-data.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_user_data").arg(QMC2_EMU_NAME.toLower());
 	m_oldTableBasenameSL = QString("%1_software_list_visibility").arg(QMC2_EMU_NAME.toLower());
 	m_tableBasenameSL = QString("%1_softlist_user_data").arg(QMC2_EMU_NAME.toLower());
