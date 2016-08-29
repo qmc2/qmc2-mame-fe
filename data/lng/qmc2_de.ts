@@ -1628,86 +1628,86 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CheckSumDatabaseManager</name>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="38"/>
+        <location filename="../../checksumdbmgr.cpp" line="37"/>
         <source>WARNING: failed to open check-sum database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: Prüfsummen Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="58"/>
-        <location filename="../../checksumdbmgr.cpp" line="82"/>
-        <location filename="../../checksumdbmgr.cpp" line="95"/>
-        <location filename="../../checksumdbmgr.cpp" line="119"/>
-        <location filename="../../checksumdbmgr.cpp" line="132"/>
-        <location filename="../../checksumdbmgr.cpp" line="156"/>
-        <location filename="../../checksumdbmgr.cpp" line="283"/>
-        <location filename="../../checksumdbmgr.cpp" line="343"/>
-        <location filename="../../checksumdbmgr.cpp" line="359"/>
-        <location filename="../../checksumdbmgr.cpp" line="375"/>
-        <location filename="../../checksumdbmgr.cpp" line="407"/>
-        <location filename="../../checksumdbmgr.cpp" line="419"/>
-        <location filename="../../checksumdbmgr.cpp" line="436"/>
+        <location filename="../../checksumdbmgr.cpp" line="57"/>
+        <location filename="../../checksumdbmgr.cpp" line="81"/>
+        <location filename="../../checksumdbmgr.cpp" line="94"/>
+        <location filename="../../checksumdbmgr.cpp" line="118"/>
+        <location filename="../../checksumdbmgr.cpp" line="131"/>
+        <location filename="../../checksumdbmgr.cpp" line="155"/>
+        <location filename="../../checksumdbmgr.cpp" line="282"/>
+        <location filename="../../checksumdbmgr.cpp" line="342"/>
+        <location filename="../../checksumdbmgr.cpp" line="358"/>
+        <location filename="../../checksumdbmgr.cpp" line="374"/>
+        <location filename="../../checksumdbmgr.cpp" line="406"/>
+        <location filename="../../checksumdbmgr.cpp" line="418"/>
+        <location filename="../../checksumdbmgr.cpp" line="435"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der Prüfsummen Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="72"/>
-        <location filename="../../checksumdbmgr.cpp" line="109"/>
-        <location filename="../../checksumdbmgr.cpp" line="146"/>
-        <location filename="../../checksumdbmgr.cpp" line="299"/>
+        <location filename="../../checksumdbmgr.cpp" line="71"/>
+        <location filename="../../checksumdbmgr.cpp" line="108"/>
+        <location filename="../../checksumdbmgr.cpp" line="145"/>
+        <location filename="../../checksumdbmgr.cpp" line="298"/>
         <source>WARNING: failed to add &apos;%1&apos; to check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur Prüfsummen Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="78"/>
-        <location filename="../../checksumdbmgr.cpp" line="115"/>
-        <location filename="../../checksumdbmgr.cpp" line="152"/>
-        <location filename="../../checksumdbmgr.cpp" line="447"/>
+        <location filename="../../checksumdbmgr.cpp" line="77"/>
+        <location filename="../../checksumdbmgr.cpp" line="114"/>
+        <location filename="../../checksumdbmgr.cpp" line="151"/>
+        <location filename="../../checksumdbmgr.cpp" line="446"/>
         <source>WARNING: failed to update &apos;%1&apos; in check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der Prüfsummen Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="168"/>
+        <location filename="../../checksumdbmgr.cpp" line="167"/>
         <source>WARNING: failed to fetch row count from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der Prüfsummen Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="188"/>
+        <location filename="../../checksumdbmgr.cpp" line="187"/>
         <source>WARNING: failed to fetch row IDs from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Tabellenzeilen IDs konnten nicht aus der Prüfsummen Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="226"/>
-        <location filename="../../checksumdbmgr.cpp" line="236"/>
-        <location filename="../../checksumdbmgr.cpp" line="246"/>
+        <location filename="../../checksumdbmgr.cpp" line="225"/>
+        <location filename="../../checksumdbmgr.cpp" line="235"/>
+        <location filename="../../checksumdbmgr.cpp" line="245"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der Prüfsummen Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="386"/>
+        <location filename="../../checksumdbmgr.cpp" line="385"/>
         <source>WARNING: failed to remove path &apos;%1&apos; from check-sum database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Pfad &apos;%1&apos; konnte nicht aus der Prüfsummen Datenbank entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="455"/>
+        <location filename="../../checksumdbmgr.cpp" line="454"/>
         <source>WARNING: failed to remove invalidated rows from check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Invalidierte Tabellenzeilen konnten nicht aus der Prüfsummen Datenbank entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="482"/>
-        <location filename="../../checksumdbmgr.cpp" line="487"/>
-        <location filename="../../checksumdbmgr.cpp" line="492"/>
+        <location filename="../../checksumdbmgr.cpp" line="481"/>
+        <location filename="../../checksumdbmgr.cpp" line="486"/>
+        <location filename="../../checksumdbmgr.cpp" line="491"/>
         <source>WARNING: failed to remove check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Prüfsummen Datenbank konnte nicht entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="500"/>
-        <location filename="../../checksumdbmgr.cpp" line="505"/>
-        <location filename="../../checksumdbmgr.cpp" line="510"/>
+        <location filename="../../checksumdbmgr.cpp" line="499"/>
+        <location filename="../../checksumdbmgr.cpp" line="504"/>
+        <location filename="../../checksumdbmgr.cpp" line="509"/>
         <source>WARNING: failed to create check-sum database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Prüfsummen Datenbank konnte nicht erstellt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../checksumdbmgr.cpp" line="516"/>
+        <location filename="../../checksumdbmgr.cpp" line="515"/>
         <source>check-sum database &apos;%1&apos; initialized</source>
         <translation>Prüfsummen Datenbank &apos;%1&apos; initialisiert</translation>
     </message>
@@ -2105,13 +2105,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="43"/>
-        <location filename="../../collectionrebuilder.cpp" line="140"/>
+        <location filename="../../collectionrebuilder.cpp" line="139"/>
         <source>Current default emulator</source>
         <translation>Aktueller Standard Emulator</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="48"/>
-        <location filename="../../collectionrebuilder.cpp" line="202"/>
+        <location filename="../../collectionrebuilder.cpp" line="201"/>
         <source>Select XML file...</source>
         <translation>XML Datei auswählen...</translation>
     </message>
@@ -2218,19 +2218,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="266"/>
-        <location filename="../../collectionrebuilder.cpp" line="546"/>
-        <location filename="../../collectionrebuilder.cpp" line="632"/>
-        <location filename="../../collectionrebuilder.cpp" line="776"/>
-        <location filename="../../collectionrebuilder.cpp" line="787"/>
-        <location filename="../../collectionrebuilder.cpp" line="800"/>
+        <location filename="../../collectionrebuilder.cpp" line="545"/>
+        <location filename="../../collectionrebuilder.cpp" line="631"/>
+        <location filename="../../collectionrebuilder.cpp" line="775"/>
+        <location filename="../../collectionrebuilder.cpp" line="786"/>
+        <location filename="../../collectionrebuilder.cpp" line="799"/>
         <source>Start / stop rebuilding</source>
         <translation>Neu-Erzeugung starten / beenden</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="269"/>
-        <location filename="../../collectionrebuilder.cpp" line="631"/>
-        <location filename="../../collectionrebuilder.cpp" line="786"/>
-        <location filename="../../collectionrebuilder.cpp" line="799"/>
+        <location filename="../../collectionrebuilder.cpp" line="630"/>
+        <location filename="../../collectionrebuilder.cpp" line="785"/>
+        <location filename="../../collectionrebuilder.cpp" line="798"/>
         <source>Start rebuilding</source>
         <translation>Neu-Erzeugung starten</translation>
     </message>
@@ -2241,8 +2241,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="289"/>
-        <location filename="../../collectionrebuilder.cpp" line="548"/>
-        <location filename="../../collectionrebuilder.cpp" line="685"/>
+        <location filename="../../collectionrebuilder.cpp" line="547"/>
+        <location filename="../../collectionrebuilder.cpp" line="684"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
@@ -2383,85 +2383,85 @@ p, li { white-space: pre-wrap; }
         <translation>Filter Ausdruck leeren</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="277"/>
+        <location filename="../../collectionrebuilder.cpp" line="276"/>
         <source>Confirm checkpoint restart</source>
         <translation>Kontrollpunkt bestätigen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="277"/>
+        <location filename="../../collectionrebuilder.cpp" line="276"/>
         <source>Restart from stored checkpoint?</source>
         <translation>Neustart ab gespeichertem Kontrollpunkt?</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="406"/>
+        <location filename="../../collectionrebuilder.cpp" line="405"/>
         <source>Choose source XML file</source>
         <translation>Quell XML Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="406"/>
+        <location filename="../../collectionrebuilder.cpp" line="405"/>
         <source>XML files (*.xml)</source>
         <translation>XML Dateien (*.xml)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="406"/>
+        <location filename="../../collectionrebuilder.cpp" line="405"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="406"/>
+        <location filename="../../collectionrebuilder.cpp" line="405"/>
         <source>Data files (*.dat)</source>
         <translation>Data Dateien (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="406"/>
+        <location filename="../../collectionrebuilder.cpp" line="405"/>
         <source>Data and XML files (*.dat *.xml)</source>
         <translation>Data und XML Dateien (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="542"/>
-        <location filename="../../collectionrebuilder.cpp" line="772"/>
+        <location filename="../../collectionrebuilder.cpp" line="541"/>
+        <location filename="../../collectionrebuilder.cpp" line="771"/>
         <source>Stop dry run</source>
         <translation>Probelauf beenden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="543"/>
-        <location filename="../../collectionrebuilder.cpp" line="629"/>
-        <location filename="../../collectionrebuilder.cpp" line="773"/>
-        <location filename="../../collectionrebuilder.cpp" line="781"/>
-        <location filename="../../collectionrebuilder.cpp" line="804"/>
+        <location filename="../../collectionrebuilder.cpp" line="542"/>
+        <location filename="../../collectionrebuilder.cpp" line="628"/>
+        <location filename="../../collectionrebuilder.cpp" line="772"/>
+        <location filename="../../collectionrebuilder.cpp" line="780"/>
+        <location filename="../../collectionrebuilder.cpp" line="803"/>
         <source>Start / stop dry run</source>
         <translation>Probelauf starten / stoppen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="545"/>
-        <location filename="../../collectionrebuilder.cpp" line="775"/>
+        <location filename="../../collectionrebuilder.cpp" line="544"/>
+        <location filename="../../collectionrebuilder.cpp" line="774"/>
         <source>Stop rebuilding</source>
         <translation>Neu-Erzeugung beenden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="628"/>
-        <location filename="../../collectionrebuilder.cpp" line="780"/>
-        <location filename="../../collectionrebuilder.cpp" line="803"/>
+        <location filename="../../collectionrebuilder.cpp" line="627"/>
+        <location filename="../../collectionrebuilder.cpp" line="779"/>
+        <location filename="../../collectionrebuilder.cpp" line="802"/>
         <source>Start dry run</source>
         <translation>Probelauf starten</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="679"/>
+        <location filename="../../collectionrebuilder.cpp" line="678"/>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="707"/>
+        <location filename="../../collectionrebuilder.cpp" line="706"/>
         <source>Sets processed</source>
         <translation>Verarbeitete Sets</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="709"/>
+        <location filename="../../collectionrebuilder.cpp" line="708"/>
         <source>Missing ROMs</source>
         <translation>Fehlende ROMs</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="711"/>
+        <location filename="../../collectionrebuilder.cpp" line="710"/>
         <source>Missing disks</source>
         <translation>Fehlende Disks</translation>
     </message>
@@ -2469,317 +2469,317 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CollectionRebuilderThread</name>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1076"/>
-        <location filename="../../collectionrebuilder.cpp" line="1233"/>
+        <location filename="../../collectionrebuilder.cpp" line="1075"/>
+        <location filename="../../collectionrebuilder.cpp" line="1232"/>
         <source>FATAL: can&apos;t open XML file &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann XML Datei &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1103"/>
-        <location filename="../../collectionrebuilder.cpp" line="1120"/>
-        <location filename="../../collectionrebuilder.cpp" line="1159"/>
-        <location filename="../../collectionrebuilder.cpp" line="1164"/>
+        <location filename="../../collectionrebuilder.cpp" line="1102"/>
+        <location filename="../../collectionrebuilder.cpp" line="1119"/>
+        <location filename="../../collectionrebuilder.cpp" line="1158"/>
+        <location filename="../../collectionrebuilder.cpp" line="1163"/>
         <source>FATAL: XML parsing failed</source>
         <translation>FATAL: XML Parsen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1208"/>
-        <location filename="../../collectionrebuilder.cpp" line="1227"/>
+        <location filename="../../collectionrebuilder.cpp" line="1207"/>
+        <location filename="../../collectionrebuilder.cpp" line="1226"/>
         <source>restarting from checkpoint &apos;%1&apos;</source>
         <translation>Neustart ab Kontrollpunkt &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1303"/>
-        <location filename="../../collectionrebuilder.cpp" line="1379"/>
-        <location filename="../../collectionrebuilder.cpp" line="1488"/>
-        <location filename="../../collectionrebuilder.cpp" line="1672"/>
-        <location filename="../../collectionrebuilder.cpp" line="1743"/>
-        <location filename="../../collectionrebuilder.cpp" line="1785"/>
-        <location filename="../../collectionrebuilder.cpp" line="1845"/>
+        <location filename="../../collectionrebuilder.cpp" line="1302"/>
+        <location filename="../../collectionrebuilder.cpp" line="1378"/>
+        <location filename="../../collectionrebuilder.cpp" line="1487"/>
+        <location filename="../../collectionrebuilder.cpp" line="1671"/>
+        <location filename="../../collectionrebuilder.cpp" line="1742"/>
+        <location filename="../../collectionrebuilder.cpp" line="1784"/>
+        <location filename="../../collectionrebuilder.cpp" line="1844"/>
         <source>FATAL: backup creation failed</source>
         <translation>FATAL: Backup Erzeugung fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1307"/>
-        <location filename="../../collectionrebuilder.cpp" line="1413"/>
-        <location filename="../../collectionrebuilder.cpp" line="1512"/>
-        <location filename="../../collectionrebuilder.cpp" line="1663"/>
-        <location filename="../../collectionrebuilder.cpp" line="1734"/>
-        <location filename="../../collectionrebuilder.cpp" line="1776"/>
-        <location filename="../../collectionrebuilder.cpp" line="1834"/>
+        <location filename="../../collectionrebuilder.cpp" line="1306"/>
+        <location filename="../../collectionrebuilder.cpp" line="1412"/>
+        <location filename="../../collectionrebuilder.cpp" line="1511"/>
+        <location filename="../../collectionrebuilder.cpp" line="1662"/>
+        <location filename="../../collectionrebuilder.cpp" line="1733"/>
+        <location filename="../../collectionrebuilder.cpp" line="1775"/>
+        <location filename="../../collectionrebuilder.cpp" line="1833"/>
         <source>file error</source>
         <translation>Datei Fehler</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1325"/>
-        <location filename="../../collectionrebuilder.cpp" line="1427"/>
-        <location filename="../../collectionrebuilder.cpp" line="1526"/>
+        <location filename="../../collectionrebuilder.cpp" line="1324"/>
+        <location filename="../../collectionrebuilder.cpp" line="1426"/>
+        <location filename="../../collectionrebuilder.cpp" line="1525"/>
         <source>unknown file type &apos;%1&apos;</source>
         <translation>Unbekannter Datei Typ &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1329"/>
+        <location filename="../../collectionrebuilder.cpp" line="1328"/>
         <source>writing &apos;%1&apos; (size: %2)</source>
         <translation>Schreibe &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1340"/>
+        <location filename="../../collectionrebuilder.cpp" line="1339"/>
         <source>FATAL: failed writing &apos;%1&apos;</source>
         <translation>FATAL: Schreiben von &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1350"/>
+        <location filename="../../collectionrebuilder.cpp" line="1349"/>
         <source>FATAL: failed opening &apos;%1&apos; for writing</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1355"/>
-        <location filename="../../collectionrebuilder.cpp" line="1362"/>
-        <location filename="../../collectionrebuilder.cpp" line="1454"/>
-        <location filename="../../collectionrebuilder.cpp" line="1461"/>
-        <location filename="../../collectionrebuilder.cpp" line="1543"/>
-        <location filename="../../collectionrebuilder.cpp" line="1550"/>
-        <location filename="../../collectionrebuilder.cpp" line="2253"/>
+        <location filename="../../collectionrebuilder.cpp" line="1354"/>
+        <location filename="../../collectionrebuilder.cpp" line="1361"/>
+        <location filename="../../collectionrebuilder.cpp" line="1453"/>
+        <location filename="../../collectionrebuilder.cpp" line="1460"/>
+        <location filename="../../collectionrebuilder.cpp" line="1542"/>
+        <location filename="../../collectionrebuilder.cpp" line="1549"/>
+        <location filename="../../collectionrebuilder.cpp" line="2252"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1392"/>
-        <location filename="../../collectionrebuilder.cpp" line="1500"/>
+        <location filename="../../collectionrebuilder.cpp" line="1391"/>
+        <location filename="../../collectionrebuilder.cpp" line="1499"/>
         <source>creating new ZIP archive &apos;%1&apos;</source>
         <translation>Erzeuge neues ZIP Archiv &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1406"/>
-        <location filename="../../collectionrebuilder.cpp" line="1505"/>
+        <location filename="../../collectionrebuilder.cpp" line="1405"/>
+        <location filename="../../collectionrebuilder.cpp" line="1504"/>
         <source>skipping &apos;%1&apos;</source>
         <translation>Überspringe &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1406"/>
-        <location filename="../../collectionrebuilder.cpp" line="1505"/>
+        <location filename="../../collectionrebuilder.cpp" line="1405"/>
+        <location filename="../../collectionrebuilder.cpp" line="1504"/>
         <source>a dump with CRC &apos;%1&apos; already exists</source>
         <translation>ein Dump mit CRC &apos;%1&apos; existiert bereits</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1431"/>
-        <location filename="../../collectionrebuilder.cpp" line="1530"/>
+        <location filename="../../collectionrebuilder.cpp" line="1430"/>
+        <location filename="../../collectionrebuilder.cpp" line="1529"/>
         <source>writing &apos;%1&apos; to ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Schreibe &apos;%1&apos; in ZIP Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1442"/>
-        <location filename="../../collectionrebuilder.cpp" line="1532"/>
+        <location filename="../../collectionrebuilder.cpp" line="1441"/>
+        <location filename="../../collectionrebuilder.cpp" line="1531"/>
         <source>FATAL: failed writing &apos;%1&apos; to ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: Schreiben von &apos;%1&apos; in ZIP Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1466"/>
+        <location filename="../../collectionrebuilder.cpp" line="1465"/>
         <source>Created by QMC2 v%1 (%2)</source>
         <translation>Erzeugt durch QMC2 v%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1471"/>
-        <location filename="../../collectionrebuilder.cpp" line="1557"/>
+        <location filename="../../collectionrebuilder.cpp" line="1470"/>
+        <location filename="../../collectionrebuilder.cpp" line="1556"/>
         <source>done (creating new ZIP archive &apos;%1&apos;)</source>
         <translation>Fertig (Erzeuge neues ZIP Archiv &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1473"/>
-        <location filename="../../collectionrebuilder.cpp" line="1559"/>
+        <location filename="../../collectionrebuilder.cpp" line="1472"/>
+        <location filename="../../collectionrebuilder.cpp" line="1558"/>
         <source>FATAL: failed creating ZIP archive &apos;%1&apos;</source>
         <translation>FATAL: Erzeugung des ZIP Archivs &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1573"/>
+        <location filename="../../collectionrebuilder.cpp" line="1572"/>
         <source>reading &apos;%1&apos; (size: %2)</source>
         <translation>Lese &apos;%1&apos; (Größe: %2)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1579"/>
+        <location filename="../../collectionrebuilder.cpp" line="1578"/>
         <source>FATAL: failed reading &apos;%1&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1591"/>
+        <location filename="../../collectionrebuilder.cpp" line="1590"/>
         <source>reading &apos;%1&apos; from 7Z archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Lese &apos;%1&apos; aus 7Z Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1594"/>
-        <location filename="../../collectionrebuilder.cpp" line="1598"/>
+        <location filename="../../collectionrebuilder.cpp" line="1593"/>
+        <location filename="../../collectionrebuilder.cpp" line="1597"/>
         <source>FATAL: failed reading &apos;%1&apos; from 7Z archive &apos;%2&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; aus 7Z Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1603"/>
-        <location filename="../../collectionrebuilder.cpp" line="1607"/>
+        <location filename="../../collectionrebuilder.cpp" line="1602"/>
+        <location filename="../../collectionrebuilder.cpp" line="1606"/>
         <source>FATAL: failed reading from 7Z archive &apos;%1&apos;</source>
         <translation>FATAL: Lesen von 7Z Archiv &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1630"/>
+        <location filename="../../collectionrebuilder.cpp" line="1629"/>
         <source>reading &apos;%1&apos; from ZIP archive &apos;%2&apos; (uncompressed size: %3)</source>
         <translation>Lese &apos;%1&apos; aus ZIP Archiv &apos;%2&apos; (unkomprimierte Größe: %3)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1636"/>
-        <location filename="../../collectionrebuilder.cpp" line="1640"/>
+        <location filename="../../collectionrebuilder.cpp" line="1635"/>
+        <location filename="../../collectionrebuilder.cpp" line="1639"/>
         <source>FATAL: failed reading &apos;%1&apos; from ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: Lesen von &apos;%1&apos; aus ZIP Archiv &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1644"/>
+        <location filename="../../collectionrebuilder.cpp" line="1643"/>
         <source>FATAL: CRC &apos;%1&apos; not found in ZIP archive &apos;%2&apos;</source>
         <translation>FATAL: CRC &apos;%1&apos; wurde in ZIP Archiv &apos;%2&apos; nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1649"/>
+        <location filename="../../collectionrebuilder.cpp" line="1648"/>
         <source>FATAL: failed reading from ZIP archive &apos;%1&apos;</source>
         <translation>FATAL: Lesen von ZIP Archiv &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1922"/>
-        <location filename="../../collectionrebuilder.cpp" line="1927"/>
-        <location filename="../../collectionrebuilder.cpp" line="1932"/>
-        <location filename="../../collectionrebuilder.cpp" line="1941"/>
-        <location filename="../../collectionrebuilder.cpp" line="1948"/>
-        <location filename="../../collectionrebuilder.cpp" line="1953"/>
-        <location filename="../../collectionrebuilder.cpp" line="1958"/>
-        <location filename="../../collectionrebuilder.cpp" line="1962"/>
+        <location filename="../../collectionrebuilder.cpp" line="1921"/>
+        <location filename="../../collectionrebuilder.cpp" line="1926"/>
+        <location filename="../../collectionrebuilder.cpp" line="1931"/>
+        <location filename="../../collectionrebuilder.cpp" line="1940"/>
+        <location filename="../../collectionrebuilder.cpp" line="1947"/>
+        <location filename="../../collectionrebuilder.cpp" line="1952"/>
+        <location filename="../../collectionrebuilder.cpp" line="1957"/>
+        <location filename="../../collectionrebuilder.cpp" line="1961"/>
         <source>backup</source>
         <translation>Backup</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1922"/>
+        <location filename="../../collectionrebuilder.cpp" line="1921"/>
         <source>FATAL: target path &apos;%1&apos; cannot be created</source>
         <translation>FATAL: Ziel Pfad &apos;%1&apos; kann nicht erstellt werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1927"/>
+        <location filename="../../collectionrebuilder.cpp" line="1926"/>
         <source>FATAL: source file &apos;%1&apos; cannot be opened for reading</source>
         <translation>FATAL: Quell Datei &apos;%1&apos; kann nicht zum Lesen geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1932"/>
+        <location filename="../../collectionrebuilder.cpp" line="1931"/>
         <source>creating backup copy of &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1691"/>
-        <location filename="../../collectionrebuilder.cpp" line="1802"/>
-        <location filename="../../collectionrebuilder.cpp" line="1865"/>
-        <location filename="../../collectionrebuilder.cpp" line="1941"/>
+        <location filename="../../collectionrebuilder.cpp" line="1690"/>
+        <location filename="../../collectionrebuilder.cpp" line="1801"/>
+        <location filename="../../collectionrebuilder.cpp" line="1864"/>
+        <location filename="../../collectionrebuilder.cpp" line="1940"/>
         <source>FATAL: I/O error while writing to &apos;%1&apos;</source>
         <translation>FATAL: I/O Fehler beim Schreiben von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1676"/>
+        <location filename="../../collectionrebuilder.cpp" line="1675"/>
         <source>WARNING: &apos;%1&apos; and &apos;%2&apos; are NOT on the same file system, hard-linking will not work</source>
         <translation>WARNUNG: &apos;%1&apos; und &apos;%2&apos; befinden sich NICHT auf demselben Dateisystem, Hard-Links funktionieren daher nicht</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1700"/>
+        <location filename="../../collectionrebuilder.cpp" line="1699"/>
         <source>hard-linking CHD file &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Erstelle Hard-Link für CHD Datei &apos;%1&apos; als &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1713"/>
+        <location filename="../../collectionrebuilder.cpp" line="1712"/>
         <source>failed hard-linking &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Hard-Link Erstellung von &apos;%1&apos; nach &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1716"/>
-        <location filename="../../collectionrebuilder.cpp" line="1758"/>
-        <location filename="../../collectionrebuilder.cpp" line="1816"/>
-        <location filename="../../collectionrebuilder.cpp" line="1881"/>
+        <location filename="../../collectionrebuilder.cpp" line="1715"/>
+        <location filename="../../collectionrebuilder.cpp" line="1757"/>
+        <location filename="../../collectionrebuilder.cpp" line="1815"/>
+        <location filename="../../collectionrebuilder.cpp" line="1880"/>
         <source>invalid file type &apos;%1&apos;</source>
         <translation>Ungültiger Datei Typ &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1746"/>
+        <location filename="../../collectionrebuilder.cpp" line="1745"/>
         <source>sym-linking CHD file &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Erstelle Sym-Link für CHD Datei &apos;%1&apos; als &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1755"/>
+        <location filename="../../collectionrebuilder.cpp" line="1754"/>
         <source>failed sym-linking &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Sym-Link Erstellung von &apos;%1&apos; nach &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1677"/>
-        <location filename="../../collectionrebuilder.cpp" line="1788"/>
+        <location filename="../../collectionrebuilder.cpp" line="1676"/>
+        <location filename="../../collectionrebuilder.cpp" line="1787"/>
         <source>copying CHD file &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Kopiere CHD Datei &apos;%1&apos; nach &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1676"/>
+        <location filename="../../collectionrebuilder.cpp" line="1675"/>
         <source>falling back to copy mode</source>
         <translation>falle zurück auf den Kopiermodus</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1813"/>
+        <location filename="../../collectionrebuilder.cpp" line="1812"/>
         <source>failed copying &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Kopieren von &apos;%1&apos; nach &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1848"/>
+        <location filename="../../collectionrebuilder.cpp" line="1847"/>
         <source>moving CHD file &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Bewege CHD Datei &apos;%1&apos; nach &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1878"/>
+        <location filename="../../collectionrebuilder.cpp" line="1877"/>
         <source>failed moving &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Umbenennen / Bewegen von &apos;%1&apos; nach &apos;%2&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1948"/>
+        <location filename="../../collectionrebuilder.cpp" line="1947"/>
         <source>done (creating backup copy of &apos;%1&apos; as &apos;%2&apos;)</source>
         <translation>Fertig (Erstelle Backup Kopie von &apos;%1&apos; als &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1953"/>
+        <location filename="../../collectionrebuilder.cpp" line="1952"/>
         <source>FATAL: destination file &apos;%1&apos; cannot be opened for writing</source>
         <translation>FATAL: Ziel Datei &apos;%1&apos; kann nicht zum Schreiben geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1958"/>
+        <location filename="../../collectionrebuilder.cpp" line="1957"/>
         <source>FATAL: backup folder &apos;%1&apos; isn&apos;t writable</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; kann nicht beschrieben werden</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1962"/>
+        <location filename="../../collectionrebuilder.cpp" line="1961"/>
         <source>FATAL: backup folder &apos;%1&apos; doesn&apos;t exist</source>
         <translation>FATAL: Backup Verzeichnis &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="1996"/>
-        <location filename="../../collectionrebuilder.cpp" line="2030"/>
+        <location filename="../../collectionrebuilder.cpp" line="1995"/>
+        <location filename="../../collectionrebuilder.cpp" line="2029"/>
         <source>WARNING: invalid filter expression &apos;%1&apos; ignored</source>
         <translation>WARNUNG: ungültiger Filter Ausdruck &apos;%1&apos; wird ignoriert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2148"/>
+        <location filename="../../collectionrebuilder.cpp" line="2147"/>
         <source>Preparing</source>
         <translation>Vorbereitung</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2152"/>
+        <location filename="../../collectionrebuilder.cpp" line="2151"/>
         <source>updating hash cache</source>
         <translation>Aktualisiere den Prüfsummen Cache</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2166"/>
+        <location filename="../../collectionrebuilder.cpp" line="2165"/>
         <source>hash cache update interrupted</source>
         <translation>Update des Prüfsummen Caches unterbrochen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2168"/>
+        <location filename="../../collectionrebuilder.cpp" line="2167"/>
         <source>hash cache updated</source>
         <translation>Prüfsummen Cache aktualisiert</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../collectionrebuilder.cpp" line="2168"/>
+        <location filename="../../collectionrebuilder.cpp" line="2167"/>
         <source>%n hash(es) loaded</source>
         <translation>
             <numerusform>%n Prüfsumme geladen</numerusform>
@@ -2787,137 +2787,137 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2179"/>
+        <location filename="../../collectionrebuilder.cpp" line="2178"/>
         <source>rebuilder thread started</source>
         <translation>Neu-Erzeuger Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2181"/>
+        <location filename="../../collectionrebuilder.cpp" line="2180"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2197"/>
+        <location filename="../../collectionrebuilder.cpp" line="2196"/>
         <source>dry run started</source>
         <translation>Probelauf gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2199"/>
+        <location filename="../../collectionrebuilder.cpp" line="2198"/>
         <source>rebuilding started</source>
         <translation>Neu-Erzeugung gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2207"/>
-        <location filename="../../collectionrebuilder.cpp" line="2233"/>
+        <location filename="../../collectionrebuilder.cpp" line="2206"/>
+        <location filename="../../collectionrebuilder.cpp" line="2232"/>
         <source>Analyzing</source>
         <translation>Analysiere</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2209"/>
-        <location filename="../../collectionrebuilder.cpp" line="2235"/>
+        <location filename="../../collectionrebuilder.cpp" line="2208"/>
+        <location filename="../../collectionrebuilder.cpp" line="2234"/>
         <source>Rebuilding</source>
         <translation>Erzeuge</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2221"/>
+        <location filename="../../collectionrebuilder.cpp" line="2220"/>
         <source>Paused</source>
         <translation>Pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2224"/>
+        <location filename="../../collectionrebuilder.cpp" line="2223"/>
         <source>dry run paused</source>
         <translation>Probelauf pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2226"/>
+        <location filename="../../collectionrebuilder.cpp" line="2225"/>
         <source>rebuilding paused</source>
         <translation>Neu-Erzeugung pausiert</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2238"/>
+        <location filename="../../collectionrebuilder.cpp" line="2237"/>
         <source>dry run resumed</source>
         <translation>Probelauf wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2240"/>
+        <location filename="../../collectionrebuilder.cpp" line="2239"/>
         <source>rebuilding resumed</source>
         <translation>Neu-Erzeugung wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2246"/>
+        <location filename="../../collectionrebuilder.cpp" line="2245"/>
         <source>set rebuilding started for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; gestartet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2250"/>
+        <location filename="../../collectionrebuilder.cpp" line="2249"/>
         <source>required ROM</source>
         <translation>Erforderliches ROM</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2250"/>
+        <location filename="../../collectionrebuilder.cpp" line="2249"/>
         <source>name = &apos;%1&apos;, crc = &apos;%2&apos;, sha1 = &apos;%3&apos;, database status = &apos;%4&apos;</source>
         <translation>Name = &apos;%1&apos;, CRC = &apos;%2&apos;, SHA-1 = &apos;%3&apos;, Datenbank Status = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2250"/>
-        <location filename="../../collectionrebuilder.cpp" line="2259"/>
+        <location filename="../../collectionrebuilder.cpp" line="2249"/>
+        <location filename="../../collectionrebuilder.cpp" line="2258"/>
         <source>available</source>
         <translation>verfügbar</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2250"/>
-        <location filename="../../collectionrebuilder.cpp" line="2259"/>
+        <location filename="../../collectionrebuilder.cpp" line="2249"/>
+        <location filename="../../collectionrebuilder.cpp" line="2258"/>
         <source>not available</source>
         <translation>nicht verfügbar</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2253"/>
-        <location filename="../../collectionrebuilder.cpp" line="2262"/>
+        <location filename="../../collectionrebuilder.cpp" line="2252"/>
+        <location filename="../../collectionrebuilder.cpp" line="2261"/>
         <source>check-sum not available in database</source>
         <translation>Prüfsumme in Datenbank nicht enthalten</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2259"/>
+        <location filename="../../collectionrebuilder.cpp" line="2258"/>
         <source>required disk</source>
         <translation>Erforderliche Disk</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2259"/>
+        <location filename="../../collectionrebuilder.cpp" line="2258"/>
         <source>name = &apos;%1&apos;, sha1 = &apos;%2&apos;, database status = &apos;%3&apos;</source>
         <translation>Name = &apos;%1&apos;, SHA-1 = &apos;%2&apos;, Datenbank Status = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2262"/>
+        <location filename="../../collectionrebuilder.cpp" line="2261"/>
         <source>DISK</source>
         <translation>DISK</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2271"/>
+        <location filename="../../collectionrebuilder.cpp" line="2270"/>
         <source>set rebuilding finished for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; beendet</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2273"/>
+        <location filename="../../collectionrebuilder.cpp" line="2272"/>
         <source>set rebuilding failed for &apos;%1&apos;</source>
         <translation>Set Neu-Erzeugung für &apos;%1&apos; fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2291"/>
+        <location filename="../../collectionrebuilder.cpp" line="2290"/>
         <source>dry run finished - total analysis time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4</source>
         <translation>Probelauf beendet - verwendete Zeit insgesamt = %1, verarbeitete Sets = %2, fehlende ROMs = %3, fehlende Disks = %4</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2293"/>
+        <location filename="../../collectionrebuilder.cpp" line="2292"/>
         <source>rebuilding finished - total rebuild time = %1, sets processed = %2, missing ROMs = %3, missing disks = %4</source>
         <translation>Neu-Erzeugung beendet - verwendete Zeit insgesamt = %1, verarbeitete Sets = %2, fehlende ROMs = %3, fehlende Disks = %4</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2296"/>
+        <location filename="../../collectionrebuilder.cpp" line="2295"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.cpp" line="2302"/>
+        <location filename="../../collectionrebuilder.cpp" line="2301"/>
         <source>rebuilder thread ended</source>
         <translation>Neu-Erzeuger Thread beendet</translation>
     </message>
@@ -3696,147 +3696,147 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DatInfoDatabaseManager</name>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="53"/>
+        <location filename="../../datinfodbmgr.cpp" line="52"/>
         <source>WARNING: failed to open DAT-info database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: DAT-Info Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="72"/>
-        <location filename="../../datinfodbmgr.cpp" line="96"/>
-        <location filename="../../datinfodbmgr.cpp" line="109"/>
-        <location filename="../../datinfodbmgr.cpp" line="133"/>
-        <location filename="../../datinfodbmgr.cpp" line="153"/>
-        <location filename="../../datinfodbmgr.cpp" line="185"/>
-        <location filename="../../datinfodbmgr.cpp" line="197"/>
-        <location filename="../../datinfodbmgr.cpp" line="227"/>
-        <location filename="../../datinfodbmgr.cpp" line="254"/>
-        <location filename="../../datinfodbmgr.cpp" line="265"/>
-        <location filename="../../datinfodbmgr.cpp" line="295"/>
-        <location filename="../../datinfodbmgr.cpp" line="310"/>
-        <location filename="../../datinfodbmgr.cpp" line="339"/>
-        <location filename="../../datinfodbmgr.cpp" line="350"/>
+        <location filename="../../datinfodbmgr.cpp" line="71"/>
+        <location filename="../../datinfodbmgr.cpp" line="95"/>
+        <location filename="../../datinfodbmgr.cpp" line="108"/>
+        <location filename="../../datinfodbmgr.cpp" line="132"/>
+        <location filename="../../datinfodbmgr.cpp" line="152"/>
+        <location filename="../../datinfodbmgr.cpp" line="184"/>
+        <location filename="../../datinfodbmgr.cpp" line="196"/>
+        <location filename="../../datinfodbmgr.cpp" line="226"/>
+        <location filename="../../datinfodbmgr.cpp" line="253"/>
+        <location filename="../../datinfodbmgr.cpp" line="264"/>
+        <location filename="../../datinfodbmgr.cpp" line="294"/>
+        <location filename="../../datinfodbmgr.cpp" line="309"/>
+        <location filename="../../datinfodbmgr.cpp" line="338"/>
+        <location filename="../../datinfodbmgr.cpp" line="349"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der DAT-Info Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="86"/>
-        <location filename="../../datinfodbmgr.cpp" line="123"/>
-        <location filename="../../datinfodbmgr.cpp" line="173"/>
-        <location filename="../../datinfodbmgr.cpp" line="243"/>
-        <location filename="../../datinfodbmgr.cpp" line="327"/>
+        <location filename="../../datinfodbmgr.cpp" line="85"/>
+        <location filename="../../datinfodbmgr.cpp" line="122"/>
+        <location filename="../../datinfodbmgr.cpp" line="172"/>
+        <location filename="../../datinfodbmgr.cpp" line="242"/>
+        <location filename="../../datinfodbmgr.cpp" line="326"/>
         <source>WARNING: failed to add &apos;%1&apos; to DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur DAT-Info Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="92"/>
-        <location filename="../../datinfodbmgr.cpp" line="129"/>
-        <location filename="../../datinfodbmgr.cpp" line="181"/>
-        <location filename="../../datinfodbmgr.cpp" line="250"/>
-        <location filename="../../datinfodbmgr.cpp" line="335"/>
+        <location filename="../../datinfodbmgr.cpp" line="91"/>
+        <location filename="../../datinfodbmgr.cpp" line="128"/>
+        <location filename="../../datinfodbmgr.cpp" line="180"/>
+        <location filename="../../datinfodbmgr.cpp" line="249"/>
+        <location filename="../../datinfodbmgr.cpp" line="334"/>
         <source>WARNING: failed to update &apos;%1&apos; in DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der DAT-Info Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="211"/>
-        <location filename="../../datinfodbmgr.cpp" line="279"/>
-        <location filename="../../datinfodbmgr.cpp" line="364"/>
+        <location filename="../../datinfodbmgr.cpp" line="210"/>
+        <location filename="../../datinfodbmgr.cpp" line="278"/>
+        <location filename="../../datinfodbmgr.cpp" line="363"/>
         <source>WARNING: failed to fetch row count from DAT-info database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der DAT-Info Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="394"/>
-        <location filename="../../datinfodbmgr.cpp" line="404"/>
-        <location filename="../../datinfodbmgr.cpp" line="414"/>
+        <location filename="../../datinfodbmgr.cpp" line="393"/>
+        <location filename="../../datinfodbmgr.cpp" line="403"/>
+        <location filename="../../datinfodbmgr.cpp" line="413"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the DAT-info database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der DAT-Info Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="421"/>
-        <location filename="../../datinfodbmgr.cpp" line="426"/>
-        <location filename="../../datinfodbmgr.cpp" line="445"/>
-        <location filename="../../datinfodbmgr.cpp" line="450"/>
-        <location filename="../../datinfodbmgr.cpp" line="469"/>
-        <location filename="../../datinfodbmgr.cpp" line="474"/>
-        <location filename="../../datinfodbmgr.cpp" line="493"/>
+        <location filename="../../datinfodbmgr.cpp" line="420"/>
+        <location filename="../../datinfodbmgr.cpp" line="425"/>
+        <location filename="../../datinfodbmgr.cpp" line="444"/>
+        <location filename="../../datinfodbmgr.cpp" line="449"/>
+        <location filename="../../datinfodbmgr.cpp" line="468"/>
+        <location filename="../../datinfodbmgr.cpp" line="473"/>
+        <location filename="../../datinfodbmgr.cpp" line="492"/>
         <source>WARNING: failed to remove %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="421"/>
-        <location filename="../../datinfodbmgr.cpp" line="426"/>
-        <location filename="../../datinfodbmgr.cpp" line="433"/>
-        <location filename="../../datinfodbmgr.cpp" line="438"/>
+        <location filename="../../datinfodbmgr.cpp" line="420"/>
+        <location filename="../../datinfodbmgr.cpp" line="425"/>
+        <location filename="../../datinfodbmgr.cpp" line="432"/>
+        <location filename="../../datinfodbmgr.cpp" line="437"/>
         <source>software-info</source>
         <translation>Software-Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="433"/>
-        <location filename="../../datinfodbmgr.cpp" line="438"/>
-        <location filename="../../datinfodbmgr.cpp" line="457"/>
-        <location filename="../../datinfodbmgr.cpp" line="462"/>
-        <location filename="../../datinfodbmgr.cpp" line="481"/>
-        <location filename="../../datinfodbmgr.cpp" line="486"/>
-        <location filename="../../datinfodbmgr.cpp" line="500"/>
+        <location filename="../../datinfodbmgr.cpp" line="432"/>
+        <location filename="../../datinfodbmgr.cpp" line="437"/>
+        <location filename="../../datinfodbmgr.cpp" line="456"/>
+        <location filename="../../datinfodbmgr.cpp" line="461"/>
+        <location filename="../../datinfodbmgr.cpp" line="480"/>
+        <location filename="../../datinfodbmgr.cpp" line="485"/>
+        <location filename="../../datinfodbmgr.cpp" line="499"/>
         <source>WARNING: failed to create %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht erstellt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="445"/>
-        <location filename="../../datinfodbmgr.cpp" line="450"/>
-        <location filename="../../datinfodbmgr.cpp" line="457"/>
-        <location filename="../../datinfodbmgr.cpp" line="462"/>
+        <location filename="../../datinfodbmgr.cpp" line="444"/>
+        <location filename="../../datinfodbmgr.cpp" line="449"/>
+        <location filename="../../datinfodbmgr.cpp" line="456"/>
+        <location filename="../../datinfodbmgr.cpp" line="461"/>
         <source>emu-info</source>
         <translation>Emu-Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="469"/>
-        <location filename="../../datinfodbmgr.cpp" line="474"/>
-        <location filename="../../datinfodbmgr.cpp" line="481"/>
-        <location filename="../../datinfodbmgr.cpp" line="486"/>
-        <location filename="../../datinfodbmgr.cpp" line="1005"/>
-        <location filename="../../datinfodbmgr.cpp" line="1007"/>
-        <location filename="../../datinfodbmgr.cpp" line="1009"/>
+        <location filename="../../datinfodbmgr.cpp" line="468"/>
+        <location filename="../../datinfodbmgr.cpp" line="473"/>
+        <location filename="../../datinfodbmgr.cpp" line="480"/>
+        <location filename="../../datinfodbmgr.cpp" line="485"/>
+        <location filename="../../datinfodbmgr.cpp" line="1004"/>
+        <location filename="../../datinfodbmgr.cpp" line="1006"/>
+        <location filename="../../datinfodbmgr.cpp" line="1008"/>
         <source>machine-info</source>
         <translation>Maschinen Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="879"/>
-        <location filename="../../datinfodbmgr.cpp" line="969"/>
+        <location filename="../../datinfodbmgr.cpp" line="878"/>
+        <location filename="../../datinfodbmgr.cpp" line="968"/>
         <source>machine info-texts</source>
         <translation>Maschinen Info-Texte</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="884"/>
+        <location filename="../../datinfodbmgr.cpp" line="883"/>
         <source>Machine info - %p%</source>
         <translation>Maschinen Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="956"/>
+        <location filename="../../datinfodbmgr.cpp" line="955"/>
         <source>WARNING: missing &apos;$end&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="958"/>
+        <location filename="../../datinfodbmgr.cpp" line="957"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$bio&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="960"/>
+        <location filename="../../datinfodbmgr.cpp" line="959"/>
         <source>WARNING: missing &apos;$info&apos; in machine info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Maschinen Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="965"/>
+        <location filename="../../datinfodbmgr.cpp" line="964"/>
         <source>machine info</source>
         <translation>Maschinen Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="974"/>
+        <location filename="../../datinfodbmgr.cpp" line="973"/>
         <source>WARNING: can&apos;t open machine info file %1</source>
         <translation>WARNUNG: kann Maschinen Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="978"/>
+        <location filename="../../datinfodbmgr.cpp" line="977"/>
         <source>%n machine info record(s) imported</source>
         <translation>
             <numerusform>%n Maschinen Info Datensatz importiert</numerusform>
@@ -3844,82 +3844,82 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="1005"/>
-        <location filename="../../datinfodbmgr.cpp" line="1007"/>
-        <location filename="../../datinfodbmgr.cpp" line="1009"/>
+        <location filename="../../datinfodbmgr.cpp" line="1004"/>
+        <location filename="../../datinfodbmgr.cpp" line="1006"/>
+        <location filename="../../datinfodbmgr.cpp" line="1008"/>
         <source>WARNING: failed to alter %1 table: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: %1 Tabelle konnte nicht geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="493"/>
-        <location filename="../../datinfodbmgr.cpp" line="500"/>
+        <location filename="../../datinfodbmgr.cpp" line="492"/>
+        <location filename="../../datinfodbmgr.cpp" line="499"/>
         <source>meta-data</source>
         <translation>Meta-Daten</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="561"/>
-        <location filename="../../datinfodbmgr.cpp" line="647"/>
-        <location filename="../../datinfodbmgr.cpp" line="651"/>
-        <location filename="../../datinfodbmgr.cpp" line="656"/>
-        <location filename="../../datinfodbmgr.cpp" line="660"/>
-        <location filename="../../datinfodbmgr.cpp" line="723"/>
-        <location filename="../../datinfodbmgr.cpp" line="791"/>
-        <location filename="../../datinfodbmgr.cpp" line="793"/>
-        <location filename="../../datinfodbmgr.cpp" line="795"/>
-        <location filename="../../datinfodbmgr.cpp" line="800"/>
-        <location filename="../../datinfodbmgr.cpp" line="804"/>
-        <location filename="../../datinfodbmgr.cpp" line="810"/>
-        <location filename="../../datinfodbmgr.cpp" line="814"/>
-        <location filename="../../datinfodbmgr.cpp" line="879"/>
-        <location filename="../../datinfodbmgr.cpp" line="956"/>
-        <location filename="../../datinfodbmgr.cpp" line="958"/>
-        <location filename="../../datinfodbmgr.cpp" line="960"/>
-        <location filename="../../datinfodbmgr.cpp" line="965"/>
-        <location filename="../../datinfodbmgr.cpp" line="969"/>
-        <location filename="../../datinfodbmgr.cpp" line="974"/>
-        <location filename="../../datinfodbmgr.cpp" line="978"/>
+        <location filename="../../datinfodbmgr.cpp" line="560"/>
+        <location filename="../../datinfodbmgr.cpp" line="646"/>
+        <location filename="../../datinfodbmgr.cpp" line="650"/>
+        <location filename="../../datinfodbmgr.cpp" line="655"/>
+        <location filename="../../datinfodbmgr.cpp" line="659"/>
+        <location filename="../../datinfodbmgr.cpp" line="722"/>
+        <location filename="../../datinfodbmgr.cpp" line="790"/>
+        <location filename="../../datinfodbmgr.cpp" line="792"/>
+        <location filename="../../datinfodbmgr.cpp" line="794"/>
+        <location filename="../../datinfodbmgr.cpp" line="799"/>
+        <location filename="../../datinfodbmgr.cpp" line="803"/>
+        <location filename="../../datinfodbmgr.cpp" line="809"/>
+        <location filename="../../datinfodbmgr.cpp" line="813"/>
+        <location filename="../../datinfodbmgr.cpp" line="878"/>
+        <location filename="../../datinfodbmgr.cpp" line="955"/>
+        <location filename="../../datinfodbmgr.cpp" line="957"/>
+        <location filename="../../datinfodbmgr.cpp" line="959"/>
+        <location filename="../../datinfodbmgr.cpp" line="964"/>
+        <location filename="../../datinfodbmgr.cpp" line="968"/>
+        <location filename="../../datinfodbmgr.cpp" line="973"/>
+        <location filename="../../datinfodbmgr.cpp" line="977"/>
         <source>DAT-info database</source>
         <translation>DAT-Info Datenbank</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="561"/>
-        <location filename="../../datinfodbmgr.cpp" line="723"/>
-        <location filename="../../datinfodbmgr.cpp" line="879"/>
+        <location filename="../../datinfodbmgr.cpp" line="560"/>
+        <location filename="../../datinfodbmgr.cpp" line="722"/>
+        <location filename="../../datinfodbmgr.cpp" line="878"/>
         <source>importing %1 from &apos;%2&apos;</source>
         <translation>Importiere %1 von &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="561"/>
-        <location filename="../../datinfodbmgr.cpp" line="651"/>
+        <location filename="../../datinfodbmgr.cpp" line="560"/>
+        <location filename="../../datinfodbmgr.cpp" line="650"/>
         <source>software info-texts</source>
         <translation>Software Info-Texte</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="566"/>
+        <location filename="../../datinfodbmgr.cpp" line="565"/>
         <source>Software info - %p%</source>
         <translation>Software Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="647"/>
-        <location filename="../../datinfodbmgr.cpp" line="800"/>
-        <location filename="../../datinfodbmgr.cpp" line="965"/>
+        <location filename="../../datinfodbmgr.cpp" line="646"/>
+        <location filename="../../datinfodbmgr.cpp" line="799"/>
+        <location filename="../../datinfodbmgr.cpp" line="964"/>
         <source>import stopped, invalidating %1 table</source>
         <translation>Import gestoppt, invalidiere %1 Tabelle</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="647"/>
+        <location filename="../../datinfodbmgr.cpp" line="646"/>
         <source>software info</source>
         <translation>Software Info</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="651"/>
-        <location filename="../../datinfodbmgr.cpp" line="804"/>
-        <location filename="../../datinfodbmgr.cpp" line="969"/>
+        <location filename="../../datinfodbmgr.cpp" line="650"/>
+        <location filename="../../datinfodbmgr.cpp" line="803"/>
+        <location filename="../../datinfodbmgr.cpp" line="968"/>
         <source>done (importing %1 from &apos;%2&apos;)</source>
         <translation>Fertig (Importiere %1 von &apos;%2&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="660"/>
+        <location filename="../../datinfodbmgr.cpp" line="659"/>
         <source>%n software info record(s) imported</source>
         <translation>
             <numerusform>%n Software Info Datensatz importiert</numerusform>
@@ -3927,43 +3927,43 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="656"/>
+        <location filename="../../datinfodbmgr.cpp" line="655"/>
         <source>WARNING: can&apos;t open software info file &apos;%1&apos;</source>
         <translation>WARNUNG: kann Software Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="723"/>
-        <location filename="../../datinfodbmgr.cpp" line="804"/>
+        <location filename="../../datinfodbmgr.cpp" line="722"/>
+        <location filename="../../datinfodbmgr.cpp" line="803"/>
         <source>emulator info-texts</source>
         <translation>Emulator Info-Texte</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="728"/>
+        <location filename="../../datinfodbmgr.cpp" line="727"/>
         <source>Emu info - %p%</source>
         <translation>Emu Info - %p%</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="791"/>
+        <location filename="../../datinfodbmgr.cpp" line="790"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$end&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="793"/>
+        <location filename="../../datinfodbmgr.cpp" line="792"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$mame&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="795"/>
+        <location filename="../../datinfodbmgr.cpp" line="794"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info file %1</source>
         <translation>WARNUNG: &apos;$info&apos; fehlt in Emulator Info Datei %1</translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="800"/>
+        <location filename="../../datinfodbmgr.cpp" line="799"/>
         <source>emu info</source>
         <translation>Emu Info</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../datinfodbmgr.cpp" line="814"/>
+        <location filename="../../datinfodbmgr.cpp" line="813"/>
         <source>%n emulator info record(s) imported</source>
         <translation>
             <numerusform>%n Emulator Info Datensatz importiert</numerusform>
@@ -3971,7 +3971,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../datinfodbmgr.cpp" line="810"/>
+        <location filename="../../datinfodbmgr.cpp" line="809"/>
         <source>WARNING: can&apos;t open emulator info file %1</source>
         <translation>WARNUNG: kann Emulator Info Datei &apos;%1&apos; nicht öffnen</translation>
     </message>
@@ -4461,14 +4461,14 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1570"/>
-        <location filename="../../deviceconfigurator.cpp" line="1572"/>
+        <location filename="../../deviceconfigurator.cpp" line="1573"/>
+        <location filename="../../deviceconfigurator.cpp" line="1575"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1938"/>
-        <location filename="../../deviceconfigurator.cpp" line="2508"/>
+        <location filename="../../deviceconfigurator.cpp" line="1941"/>
+        <location filename="../../deviceconfigurator.cpp" line="2511"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
@@ -4487,7 +4487,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="235"/>
-        <location filename="../../deviceconfigurator.cpp" line="1327"/>
+        <location filename="../../deviceconfigurator.cpp" line="1329"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
@@ -4561,7 +4561,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="395"/>
-        <location filename="../../deviceconfigurator.cpp" line="2288"/>
+        <location filename="../../deviceconfigurator.cpp" line="2291"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Archiv öffnen</translation>
     </message>
@@ -4602,10 +4602,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="521"/>
-        <location filename="../../deviceconfigurator.cpp" line="1125"/>
-        <location filename="../../deviceconfigurator.cpp" line="1384"/>
-        <location filename="../../deviceconfigurator.cpp" line="2064"/>
-        <location filename="../../deviceconfigurator.cpp" line="2498"/>
+        <location filename="../../deviceconfigurator.cpp" line="1127"/>
+        <location filename="../../deviceconfigurator.cpp" line="1386"/>
+        <location filename="../../deviceconfigurator.cpp" line="2067"/>
+        <location filename="../../deviceconfigurator.cpp" line="2501"/>
         <source>No devices available</source>
         <translation>Keine Geräte verfügbar</translation>
     </message>
@@ -4663,8 +4663,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.cpp" line="862"/>
         <location filename="../../deviceconfigurator.cpp" line="870"/>
-        <location filename="../../deviceconfigurator.cpp" line="1423"/>
-        <location filename="../../deviceconfigurator.cpp" line="1433"/>
+        <location filename="../../deviceconfigurator.cpp" line="1426"/>
+        <location filename="../../deviceconfigurator.cpp" line="1436"/>
         <source>not used</source>
         <translation>nicht verwendet</translation>
     </message>
@@ -4672,14 +4672,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.ui" line="674"/>
         <location filename="../../deviceconfigurator.cpp" line="234"/>
         <location filename="../../deviceconfigurator.cpp" line="1010"/>
-        <location filename="../../deviceconfigurator.cpp" line="1471"/>
-        <location filename="../../deviceconfigurator.cpp" line="1496"/>
-        <location filename="../../deviceconfigurator.cpp" line="1543"/>
-        <location filename="../../deviceconfigurator.cpp" line="1555"/>
-        <location filename="../../deviceconfigurator.cpp" line="1557"/>
-        <location filename="../../deviceconfigurator.cpp" line="1794"/>
-        <location filename="../../deviceconfigurator.cpp" line="1905"/>
-        <location filename="../../deviceconfigurator.cpp" line="1954"/>
+        <location filename="../../deviceconfigurator.cpp" line="1474"/>
+        <location filename="../../deviceconfigurator.cpp" line="1499"/>
+        <location filename="../../deviceconfigurator.cpp" line="1546"/>
+        <location filename="../../deviceconfigurator.cpp" line="1558"/>
+        <location filename="../../deviceconfigurator.cpp" line="1560"/>
+        <location filename="../../deviceconfigurator.cpp" line="1797"/>
+        <location filename="../../deviceconfigurator.cpp" line="1908"/>
+        <location filename="../../deviceconfigurator.cpp" line="1957"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
@@ -4696,53 +4696,53 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../deviceconfigurator.cpp" line="862"/>
         <location filename="../../deviceconfigurator.cpp" line="877"/>
-        <location filename="../../deviceconfigurator.cpp" line="1230"/>
-        <location filename="../../deviceconfigurator.cpp" line="1256"/>
-        <location filename="../../deviceconfigurator.cpp" line="1423"/>
-        <location filename="../../deviceconfigurator.cpp" line="1442"/>
-        <location filename="../../deviceconfigurator.cpp" line="1664"/>
-        <location filename="../../deviceconfigurator.cpp" line="1874"/>
+        <location filename="../../deviceconfigurator.cpp" line="1232"/>
+        <location filename="../../deviceconfigurator.cpp" line="1258"/>
+        <location filename="../../deviceconfigurator.cpp" line="1426"/>
+        <location filename="../../deviceconfigurator.cpp" line="1445"/>
+        <location filename="../../deviceconfigurator.cpp" line="1667"/>
+        <location filename="../../deviceconfigurator.cpp" line="1877"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1220"/>
-        <location filename="../../deviceconfigurator.cpp" line="1239"/>
-        <location filename="../../deviceconfigurator.cpp" line="1283"/>
-        <location filename="../../deviceconfigurator.cpp" line="1642"/>
-        <location filename="../../deviceconfigurator.cpp" line="1656"/>
-        <location filename="../../deviceconfigurator.cpp" line="1666"/>
-        <location filename="../../deviceconfigurator.cpp" line="2555"/>
+        <location filename="../../deviceconfigurator.cpp" line="1222"/>
+        <location filename="../../deviceconfigurator.cpp" line="1241"/>
+        <location filename="../../deviceconfigurator.cpp" line="1285"/>
+        <location filename="../../deviceconfigurator.cpp" line="1645"/>
+        <location filename="../../deviceconfigurator.cpp" line="1659"/>
+        <location filename="../../deviceconfigurator.cpp" line="1669"/>
+        <location filename="../../deviceconfigurator.cpp" line="2558"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2008"/>
+        <location filename="../../deviceconfigurator.cpp" line="2011"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2288"/>
+        <location filename="../../deviceconfigurator.cpp" line="2291"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Archiv schließen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2510"/>
+        <location filename="../../deviceconfigurator.cpp" line="2513"/>
         <source>Choose a unique configuration name</source>
         <translation>Eindeutiger Name für Geräte-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2510"/>
+        <location filename="../../deviceconfigurator.cpp" line="2513"/>
         <source>Unique configuration name:</source>
         <translation>Eindeutiger Name der Geräte-Konfiguration:</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2513"/>
+        <location filename="../../deviceconfigurator.cpp" line="2516"/>
         <source>Name conflict</source>
         <translation>Namenskonflikt</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2513"/>
+        <location filename="../../deviceconfigurator.cpp" line="2516"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -7539,12 +7539,12 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>Joystick</name>
     <message>
-        <location filename="../../joystick.cpp" line="66"/>
+        <location filename="../../joystick.cpp" line="62"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
         <translation>SDL Joystick #%1 geöffnet: Name = %2, Achsen = %3, Knöpfe = %4, Hats = %5, Trackballs = %6</translation>
     </message>
     <message>
-        <location filename="../../joystick.cpp" line="87"/>
+        <location filename="../../joystick.cpp" line="82"/>
         <source>SDL joystick #%1 closed</source>
         <translation>SDL Joystick #%1 geschlossen</translation>
     </message>
@@ -17119,63 +17119,63 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1180"/>
-        <location filename="../../softwarelist.cpp" line="3693"/>
-        <location filename="../../softwarelist.cpp" line="3756"/>
-        <location filename="../../softwarelist.cpp" line="5235"/>
+        <location filename="../../softwarelist.cpp" line="3695"/>
+        <location filename="../../softwarelist.cpp" line="3758"/>
+        <location filename="../../softwarelist.cpp" line="5237"/>
         <source>Auto mount</source>
         <translation>Automatisch</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1185"/>
-        <location filename="../../softwarelist.cpp" line="3709"/>
-        <location filename="../../softwarelist.cpp" line="3730"/>
-        <location filename="../../softwarelist.cpp" line="3736"/>
-        <location filename="../../softwarelist.cpp" line="3760"/>
-        <location filename="../../softwarelist.cpp" line="5240"/>
-        <location filename="../../softwarelist.cpp" line="5244"/>
+        <location filename="../../softwarelist.cpp" line="3711"/>
+        <location filename="../../softwarelist.cpp" line="3732"/>
+        <location filename="../../softwarelist.cpp" line="3738"/>
+        <location filename="../../softwarelist.cpp" line="3762"/>
+        <location filename="../../softwarelist.cpp" line="5242"/>
+        <location filename="../../softwarelist.cpp" line="5246"/>
         <source>Not mounted</source>
         <translation>Nicht zugeordnet</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1187"/>
-        <location filename="../../softwarelist.cpp" line="3711"/>
-        <location filename="../../softwarelist.cpp" line="3764"/>
-        <location filename="../../softwarelist.cpp" line="5246"/>
+        <location filename="../../softwarelist.cpp" line="3713"/>
+        <location filename="../../softwarelist.cpp" line="3766"/>
+        <location filename="../../softwarelist.cpp" line="5248"/>
         <source>Mounted on:</source>
         <translation>Zuordnung:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1179"/>
-        <location filename="../../softwarelist.cpp" line="3717"/>
-        <location filename="../../softwarelist.cpp" line="5234"/>
+        <location filename="../../softwarelist.cpp" line="3719"/>
+        <location filename="../../softwarelist.cpp" line="5236"/>
         <source>Don&apos;t mount</source>
         <translation>Nicht zuordnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5198"/>
         <location filename="../../softwarelist.cpp" line="5200"/>
+        <location filename="../../softwarelist.cpp" line="5202"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5212"/>
+        <location filename="../../softwarelist.cpp" line="5214"/>
         <source>Updating</source>
         <translation>Aktualisierung</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5224"/>
+        <location filename="../../softwarelist.cpp" line="5226"/>
         <source>Part:</source>
         <translation>Teil:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1189"/>
-        <location filename="../../softwarelist.cpp" line="5251"/>
+        <location filename="../../softwarelist.cpp" line="5253"/>
         <source>No mount device</source>
         <translation>Nicht montierbar</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1190"/>
-        <location filename="../../softwarelist.cpp" line="5252"/>
+        <location filename="../../softwarelist.cpp" line="5254"/>
         <source>Unmanaged</source>
         <translation>Nicht verwaltet</translation>
     </message>
@@ -17185,59 +17185,59 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4183"/>
+        <location filename="../../softwarelist.cpp" line="4185"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4185"/>
+        <location filename="../../softwarelist.cpp" line="4187"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4187"/>
+        <location filename="../../softwarelist.cpp" line="4189"/>
         <source>partially</source>
         <translation>teilweise</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5272"/>
+        <location filename="../../softwarelist.cpp" line="5274"/>
         <source>Requirement:</source>
         <translation>Erforderlich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5278"/>
+        <location filename="../../softwarelist.cpp" line="5280"/>
         <source>Compatibility:</source>
         <translation>Kompatibel:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5288"/>
+        <location filename="../../softwarelist.cpp" line="5290"/>
         <source>Data area:</source>
         <translation>Datenbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5291"/>
-        <location filename="../../softwarelist.cpp" line="5303"/>
-        <location filename="../../softwarelist.cpp" line="5317"/>
+        <location filename="../../softwarelist.cpp" line="5293"/>
+        <location filename="../../softwarelist.cpp" line="5305"/>
+        <location filename="../../softwarelist.cpp" line="5319"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5300"/>
+        <location filename="../../softwarelist.cpp" line="5302"/>
         <source>Disk area:</source>
         <translation>Diskbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5320"/>
+        <location filename="../../softwarelist.cpp" line="5322"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5335"/>
+        <location filename="../../softwarelist.cpp" line="5337"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5344"/>
+        <location filename="../../softwarelist.cpp" line="5346"/>
         <source>Info:</source>
         <translation>Info:</translation>
     </message>
@@ -21028,7 +21028,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.cpp" line="424"/>
         <location filename="../../softwarelist.cpp" line="1138"/>
         <location filename="../../softwarelist.cpp" line="1306"/>
-        <location filename="../../softwarelist.cpp" line="1518"/>
+        <location filename="../../softwarelist.cpp" line="1520"/>
         <source>Known software</source>
         <translation>Bekannte Software</translation>
     </message>
@@ -21090,8 +21090,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="210"/>
-        <location filename="../../softwarelist.cpp" line="2508"/>
-        <location filename="../../softwarelist.cpp" line="3434"/>
+        <location filename="../../softwarelist.cpp" line="2510"/>
+        <location filename="../../softwarelist.cpp" line="3436"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
@@ -21208,7 +21208,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="557"/>
         <location filename="../../softwarelist.cpp" line="1139"/>
         <location filename="../../softwarelist.cpp" line="1307"/>
-        <location filename="../../softwarelist.cpp" line="1519"/>
+        <location filename="../../softwarelist.cpp" line="1521"/>
         <source>Favorites</source>
         <translation>Favoriten</translation>
     </message>
@@ -21228,7 +21228,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../softwarelist.ui" line="655"/>
         <location filename="../../softwarelist.cpp" line="1140"/>
         <location filename="../../softwarelist.cpp" line="1308"/>
-        <location filename="../../softwarelist.cpp" line="1520"/>
+        <location filename="../../softwarelist.cpp" line="1522"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -21269,7 +21269,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="826"/>
-        <location filename="../../softwarelist.cpp" line="1880"/>
+        <location filename="../../softwarelist.cpp" line="1882"/>
         <source>Checking software-states - %p%</source>
         <translation>Prüfe Software-Stati - %p%</translation>
     </message>
@@ -21421,13 +21421,13 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="925"/>
-        <location filename="../../softwarelist.cpp" line="1965"/>
+        <location filename="../../softwarelist.cpp" line="1967"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="925"/>
-        <location filename="../../softwarelist.cpp" line="1965"/>
+        <location filename="../../softwarelist.cpp" line="1967"/>
         <source>error text = %1</source>
         <translation>Fehler Text = %1</translation>
     </message>
@@ -21438,15 +21438,15 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>FATAL: ungültige XML Daten für &apos;%1&apos; erhalten</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1517"/>
-        <location filename="../../softwarelist.cpp" line="2275"/>
-        <location filename="../../softwarelist.cpp" line="2281"/>
+        <location filename="../../softwarelist.cpp" line="1519"/>
+        <location filename="../../softwarelist.cpp" line="2277"/>
+        <location filename="../../softwarelist.cpp" line="2283"/>
         <source>filtered</source>
         <translation>gefiltert</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1257"/>
-        <location filename="../../softwarelist.cpp" line="1729"/>
+        <location filename="../../softwarelist.cpp" line="1731"/>
         <source>SWL data - %p%</source>
         <translation>SWL Daten - %p%</translation>
     </message>
@@ -21476,93 +21476,93 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Sichtbarkeit von Software-Liste &apos;%1&apos; ein-/ausschalten</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1741"/>
+        <location filename="../../softwarelist.cpp" line="1743"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der MAME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1741"/>
-        <location filename="../../softwarelist.cpp" line="1999"/>
+        <location filename="../../softwarelist.cpp" line="1743"/>
+        <location filename="../../softwarelist.cpp" line="2001"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1741"/>
-        <location filename="../../softwarelist.cpp" line="1999"/>
+        <location filename="../../softwarelist.cpp" line="1743"/>
+        <location filename="../../softwarelist.cpp" line="2001"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1822"/>
+        <location filename="../../softwarelist.cpp" line="1824"/>
         <source>WARNING: software-list XML bug: the software name &apos;%1&apos; is used multiple times within software-list &apos;%2&apos;</source>
         <translation>WARNUNG: Software-Listen XML Bug: der Software Name &apos;%1&apos; wird in der Software-Liste &apos;%2&apos; mehrfach verwendet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1862"/>
+        <location filename="../../softwarelist.cpp" line="1864"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte MAME Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1869"/>
+        <location filename="../../softwarelist.cpp" line="1871"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der MAME Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1930"/>
+        <location filename="../../softwarelist.cpp" line="1932"/>
         <source>WARNING: can&apos;t open software state cache file &apos;%1&apos; for writing, please check access permissions</source>
         <translation>WARNUNG: kann Software Status Cache Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1999"/>
+        <location filename="../../softwarelist.cpp" line="2001"/>
         <source>WARNING: the external process called to verify the states for software-list &apos;%1&apos; didn&apos;t exit cleanly -- exitCode = %2, exitStatus = %3</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen des Status der Software-Liste &apos;%1&apos; gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %2, exitStatus = %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2684"/>
-        <location filename="../../softwarelist.cpp" line="2713"/>
-        <location filename="../../softwarelist.cpp" line="2742"/>
-        <location filename="../../softwarelist.cpp" line="2771"/>
+        <location filename="../../softwarelist.cpp" line="2686"/>
+        <location filename="../../softwarelist.cpp" line="2715"/>
+        <location filename="../../softwarelist.cpp" line="2744"/>
+        <location filename="../../softwarelist.cpp" line="2773"/>
         <source>FATAL: couldn&apos;t find XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: konnte XML Daten für Software-Listen Eintrag &apos;%1:%2&apos; nicht finden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3962"/>
-        <location filename="../../softwarelist.cpp" line="3972"/>
+        <location filename="../../softwarelist.cpp" line="3964"/>
+        <location filename="../../softwarelist.cpp" line="3974"/>
         <source>L:</source>
         <translation>L:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3964"/>
-        <location filename="../../softwarelist.cpp" line="3974"/>
+        <location filename="../../softwarelist.cpp" line="3966"/>
+        <location filename="../../softwarelist.cpp" line="3976"/>
         <source>C:</source>
         <translation>K:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3965"/>
-        <location filename="../../softwarelist.cpp" line="3975"/>
+        <location filename="../../softwarelist.cpp" line="3967"/>
+        <location filename="../../softwarelist.cpp" line="3977"/>
         <source>M:</source>
         <translation>B:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3966"/>
-        <location filename="../../softwarelist.cpp" line="3976"/>
+        <location filename="../../softwarelist.cpp" line="3968"/>
+        <location filename="../../softwarelist.cpp" line="3978"/>
         <source>I:</source>
         <translation>I:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3967"/>
-        <location filename="../../softwarelist.cpp" line="3977"/>
+        <location filename="../../softwarelist.cpp" line="3969"/>
+        <location filename="../../softwarelist.cpp" line="3979"/>
         <source>N:</source>
         <translation>N:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3968"/>
-        <location filename="../../softwarelist.cpp" line="3978"/>
+        <location filename="../../softwarelist.cpp" line="3970"/>
+        <location filename="../../softwarelist.cpp" line="3980"/>
         <source>U:</source>
         <translation>U:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1890"/>
+        <location filename="../../softwarelist.cpp" line="1892"/>
         <source>Checking software-states, please wait...</source>
         <translation>Prüfe Software-Stati, bitte warten...</translation>
     </message>
@@ -21645,152 +21645,152 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Alle Software Listen anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1499"/>
+        <location filename="../../softwarelist.cpp" line="1501"/>
         <source>Only</source>
         <translation>Nur</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1502"/>
+        <location filename="../../softwarelist.cpp" line="1504"/>
         <source>Show only software list &apos;%1&apos;</source>
         <translation>Nur Software Liste &apos;%1&apos; anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1506"/>
+        <location filename="../../softwarelist.cpp" line="1508"/>
         <source>Except</source>
         <translation>Außer</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1509"/>
+        <location filename="../../softwarelist.cpp" line="1511"/>
         <source>Show all software lists except &apos;%1&apos;</source>
         <translation>Alle Software Listen außer &apos;%1&apos; anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1746"/>
+        <location filename="../../softwarelist.cpp" line="1748"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
         <translation>Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2084"/>
+        <location filename="../../softwarelist.cpp" line="2086"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2259"/>
+        <location filename="../../softwarelist.cpp" line="2261"/>
         <source>WARNING: the external process called to verify software-states caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen der Software-Stati gestartet wurde, erzeugte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2676"/>
-        <location filename="../../softwarelist.cpp" line="2705"/>
-        <location filename="../../softwarelist.cpp" line="2734"/>
-        <location filename="../../softwarelist.cpp" line="2763"/>
+        <location filename="../../softwarelist.cpp" line="2678"/>
+        <location filename="../../softwarelist.cpp" line="2707"/>
+        <location filename="../../softwarelist.cpp" line="2736"/>
+        <location filename="../../softwarelist.cpp" line="2765"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2681"/>
-        <location filename="../../softwarelist.cpp" line="2710"/>
-        <location filename="../../softwarelist.cpp" line="2739"/>
-        <location filename="../../softwarelist.cpp" line="2768"/>
+        <location filename="../../softwarelist.cpp" line="2683"/>
+        <location filename="../../softwarelist.cpp" line="2712"/>
+        <location filename="../../softwarelist.cpp" line="2741"/>
+        <location filename="../../softwarelist.cpp" line="2770"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Listen Eintrag &apos;%1:%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3794"/>
+        <location filename="../../softwarelist.cpp" line="3796"/>
         <source>Choose file to merge favorites from</source>
         <translation>Datei zum Hinzufügen enthaltener Favoriten auswählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3794"/>
-        <location filename="../../softwarelist.cpp" line="3874"/>
+        <location filename="../../softwarelist.cpp" line="3796"/>
+        <location filename="../../softwarelist.cpp" line="3876"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3807"/>
+        <location filename="../../softwarelist.cpp" line="3809"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3851"/>
+        <location filename="../../softwarelist.cpp" line="3853"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>Eintrag &apos;%1:%2&apos; erfolgreich importiert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3853"/>
+        <location filename="../../softwarelist.cpp" line="3855"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>WARNUNG: Eintrag &apos;%1:%2&apos; kann mit keiner bekannten Software für dieses System assoziiert werden (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3855"/>
+        <location filename="../../softwarelist.cpp" line="3857"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>WARNUNG: ein Favoriten-Eintrag für &apos;%1:%2&apos; existiert bereits (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3857"/>
+        <location filename="../../softwarelist.cpp" line="3859"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>WARNUNG: ungültige Syntax in Zeile %1 (ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3861"/>
+        <location filename="../../softwarelist.cpp" line="3863"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>Fertig (Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3863"/>
+        <location filename="../../softwarelist.cpp" line="3865"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3874"/>
+        <location filename="../../softwarelist.cpp" line="3876"/>
         <source>Choose file to store favorites to</source>
         <translation>Datei zum Speichern der Favoriten wählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3885"/>
+        <location filename="../../softwarelist.cpp" line="3887"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3900"/>
+        <location filename="../../softwarelist.cpp" line="3902"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>Fertig (Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3902"/>
+        <location filename="../../softwarelist.cpp" line="3904"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3913"/>
+        <location filename="../../softwarelist.cpp" line="3915"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3919"/>
+        <location filename="../../softwarelist.cpp" line="3921"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3925"/>
+        <location filename="../../softwarelist.cpp" line="3927"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3931"/>
+        <location filename="../../softwarelist.cpp" line="3933"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3938"/>
-        <location filename="../../softwarelist.cpp" line="3945"/>
-        <location filename="../../softwarelist.cpp" line="3951"/>
+        <location filename="../../softwarelist.cpp" line="3940"/>
+        <location filename="../../softwarelist.cpp" line="3947"/>
+        <location filename="../../softwarelist.cpp" line="3953"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3969"/>
-        <location filename="../../softwarelist.cpp" line="3979"/>
+        <location filename="../../softwarelist.cpp" line="3971"/>
+        <location filename="../../softwarelist.cpp" line="3981"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
@@ -22218,81 +22218,81 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4380"/>
+        <location filename="../../softwarelist.cpp" line="4382"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4386"/>
+        <location filename="../../softwarelist.cpp" line="4388"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4395"/>
+        <location filename="../../softwarelist.cpp" line="4397"/>
         <source>Zoom in (+10%)</source>
         <translation>Vergrößern (+10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4401"/>
+        <location filename="../../softwarelist.cpp" line="4403"/>
         <source>Zoom out (-10%)</source>
         <translation>Verkleinern (-10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4407"/>
+        <location filename="../../softwarelist.cpp" line="4409"/>
         <source>Reset zoom (100%)</source>
         <translation>Zoomfaktor zurücksetzen (100%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4415"/>
+        <location filename="../../softwarelist.cpp" line="4417"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4437"/>
-        <location filename="../../softwarelist.cpp" line="4774"/>
+        <location filename="../../softwarelist.cpp" line="4439"/>
+        <location filename="../../softwarelist.cpp" line="4776"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4443"/>
-        <location filename="../../softwarelist.cpp" line="4456"/>
-        <location filename="../../softwarelist.cpp" line="4821"/>
+        <location filename="../../softwarelist.cpp" line="4445"/>
+        <location filename="../../softwarelist.cpp" line="4458"/>
+        <location filename="../../softwarelist.cpp" line="4823"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4443"/>
-        <location filename="../../softwarelist.cpp" line="4821"/>
+        <location filename="../../softwarelist.cpp" line="4445"/>
+        <location filename="../../softwarelist.cpp" line="4823"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4456"/>
+        <location filename="../../softwarelist.cpp" line="4458"/>
         <source>libarchive error</source>
         <translation>Libarchive Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4514"/>
+        <location filename="../../softwarelist.cpp" line="4516"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4529"/>
+        <location filename="../../softwarelist.cpp" line="4531"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4535"/>
+        <location filename="../../softwarelist.cpp" line="4537"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4535"/>
+        <location filename="../../softwarelist.cpp" line="4537"/>
         <source>software snapshot</source>
         <translation>Software Snap</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4856"/>
+        <location filename="../../softwarelist.cpp" line="4858"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
@@ -22588,139 +22588,139 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>UserDataDatabaseManager</name>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="51"/>
+        <location filename="../../userdatadbmgr.cpp" line="50"/>
         <source>WARNING: failed to open user data database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="71"/>
-        <location filename="../../userdatadbmgr.cpp" line="95"/>
-        <location filename="../../userdatadbmgr.cpp" line="108"/>
-        <location filename="../../userdatadbmgr.cpp" line="132"/>
-        <location filename="../../userdatadbmgr.cpp" line="145"/>
-        <location filename="../../userdatadbmgr.cpp" line="169"/>
-        <location filename="../../userdatadbmgr.cpp" line="186"/>
-        <location filename="../../userdatadbmgr.cpp" line="201"/>
-        <location filename="../../userdatadbmgr.cpp" line="234"/>
-        <location filename="../../userdatadbmgr.cpp" line="251"/>
-        <location filename="../../userdatadbmgr.cpp" line="266"/>
-        <location filename="../../userdatadbmgr.cpp" line="299"/>
-        <location filename="../../userdatadbmgr.cpp" line="355"/>
-        <location filename="../../userdatadbmgr.cpp" line="368"/>
-        <location filename="../../userdatadbmgr.cpp" line="570"/>
-        <location filename="../../userdatadbmgr.cpp" line="587"/>
-        <location filename="../../userdatadbmgr.cpp" line="623"/>
-        <location filename="../../userdatadbmgr.cpp" line="640"/>
-        <location filename="../../userdatadbmgr.cpp" line="676"/>
-        <location filename="../../userdatadbmgr.cpp" line="693"/>
-        <location filename="../../userdatadbmgr.cpp" line="767"/>
+        <location filename="../../userdatadbmgr.cpp" line="70"/>
+        <location filename="../../userdatadbmgr.cpp" line="94"/>
+        <location filename="../../userdatadbmgr.cpp" line="107"/>
+        <location filename="../../userdatadbmgr.cpp" line="131"/>
+        <location filename="../../userdatadbmgr.cpp" line="144"/>
+        <location filename="../../userdatadbmgr.cpp" line="168"/>
+        <location filename="../../userdatadbmgr.cpp" line="185"/>
+        <location filename="../../userdatadbmgr.cpp" line="200"/>
+        <location filename="../../userdatadbmgr.cpp" line="233"/>
+        <location filename="../../userdatadbmgr.cpp" line="250"/>
+        <location filename="../../userdatadbmgr.cpp" line="265"/>
+        <location filename="../../userdatadbmgr.cpp" line="298"/>
+        <location filename="../../userdatadbmgr.cpp" line="354"/>
+        <location filename="../../userdatadbmgr.cpp" line="367"/>
+        <location filename="../../userdatadbmgr.cpp" line="569"/>
+        <location filename="../../userdatadbmgr.cpp" line="586"/>
+        <location filename="../../userdatadbmgr.cpp" line="622"/>
+        <location filename="../../userdatadbmgr.cpp" line="639"/>
+        <location filename="../../userdatadbmgr.cpp" line="675"/>
+        <location filename="../../userdatadbmgr.cpp" line="692"/>
+        <location filename="../../userdatadbmgr.cpp" line="766"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der Benutzerdaten Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="85"/>
-        <location filename="../../userdatadbmgr.cpp" line="122"/>
-        <location filename="../../userdatadbmgr.cpp" line="159"/>
-        <location filename="../../userdatadbmgr.cpp" line="223"/>
-        <location filename="../../userdatadbmgr.cpp" line="288"/>
-        <location filename="../../userdatadbmgr.cpp" line="559"/>
-        <location filename="../../userdatadbmgr.cpp" line="612"/>
-        <location filename="../../userdatadbmgr.cpp" line="665"/>
+        <location filename="../../userdatadbmgr.cpp" line="84"/>
+        <location filename="../../userdatadbmgr.cpp" line="121"/>
+        <location filename="../../userdatadbmgr.cpp" line="158"/>
+        <location filename="../../userdatadbmgr.cpp" line="222"/>
+        <location filename="../../userdatadbmgr.cpp" line="287"/>
+        <location filename="../../userdatadbmgr.cpp" line="558"/>
+        <location filename="../../userdatadbmgr.cpp" line="611"/>
+        <location filename="../../userdatadbmgr.cpp" line="664"/>
         <source>WARNING: failed to add &apos;%1&apos; to user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur Benutzerdaten Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="91"/>
-        <location filename="../../userdatadbmgr.cpp" line="128"/>
-        <location filename="../../userdatadbmgr.cpp" line="165"/>
-        <location filename="../../userdatadbmgr.cpp" line="230"/>
-        <location filename="../../userdatadbmgr.cpp" line="295"/>
-        <location filename="../../userdatadbmgr.cpp" line="566"/>
-        <location filename="../../userdatadbmgr.cpp" line="619"/>
-        <location filename="../../userdatadbmgr.cpp" line="672"/>
+        <location filename="../../userdatadbmgr.cpp" line="90"/>
+        <location filename="../../userdatadbmgr.cpp" line="127"/>
+        <location filename="../../userdatadbmgr.cpp" line="164"/>
+        <location filename="../../userdatadbmgr.cpp" line="229"/>
+        <location filename="../../userdatadbmgr.cpp" line="294"/>
+        <location filename="../../userdatadbmgr.cpp" line="565"/>
+        <location filename="../../userdatadbmgr.cpp" line="618"/>
+        <location filename="../../userdatadbmgr.cpp" line="671"/>
         <source>WARNING: failed to update &apos;%1&apos; in user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der Benutzerdaten Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="311"/>
+        <location filename="../../userdatadbmgr.cpp" line="310"/>
         <source>WARNING: failed to fetch row count from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der Benutzerdaten Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="331"/>
+        <location filename="../../userdatadbmgr.cpp" line="330"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Tabellenzeilen IDs konnten nicht aus der Benutzerdaten Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="375"/>
+        <location filename="../../userdatadbmgr.cpp" line="374"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
         <translation>Säubere Benutzerdaten Datenbank &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="388"/>
+        <location filename="../../userdatadbmgr.cpp" line="387"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
         <translation>Überflüssige ID &apos;%1&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="390"/>
-        <location filename="../../userdatadbmgr.cpp" line="399"/>
-        <location filename="../../userdatadbmgr.cpp" line="419"/>
-        <location filename="../../userdatadbmgr.cpp" line="597"/>
-        <location filename="../../userdatadbmgr.cpp" line="650"/>
-        <location filename="../../userdatadbmgr.cpp" line="703"/>
+        <location filename="../../userdatadbmgr.cpp" line="389"/>
+        <location filename="../../userdatadbmgr.cpp" line="398"/>
+        <location filename="../../userdatadbmgr.cpp" line="418"/>
+        <location filename="../../userdatadbmgr.cpp" line="596"/>
+        <location filename="../../userdatadbmgr.cpp" line="649"/>
+        <location filename="../../userdatadbmgr.cpp" line="702"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht aus der Benutzerdaten Datenbank entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="397"/>
+        <location filename="../../userdatadbmgr.cpp" line="396"/>
         <source>removed ID &apos;%1&apos; due to no data</source>
         <translation>ID &apos;%1&apos; entfernt, weil keine Daten vorliegen</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="410"/>
+        <location filename="../../userdatadbmgr.cpp" line="409"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
         <translation>Fertig (Säubere Benutzerdaten Datenbank &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="449"/>
-        <location filename="../../userdatadbmgr.cpp" line="459"/>
-        <location filename="../../userdatadbmgr.cpp" line="469"/>
+        <location filename="../../userdatadbmgr.cpp" line="448"/>
+        <location filename="../../userdatadbmgr.cpp" line="458"/>
+        <location filename="../../userdatadbmgr.cpp" line="468"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der Benutzerdaten Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="476"/>
-        <location filename="../../userdatadbmgr.cpp" line="481"/>
-        <location filename="../../userdatadbmgr.cpp" line="486"/>
-        <location filename="../../userdatadbmgr.cpp" line="710"/>
-        <location filename="../../userdatadbmgr.cpp" line="715"/>
+        <location filename="../../userdatadbmgr.cpp" line="475"/>
+        <location filename="../../userdatadbmgr.cpp" line="480"/>
+        <location filename="../../userdatadbmgr.cpp" line="485"/>
+        <location filename="../../userdatadbmgr.cpp" line="709"/>
+        <location filename="../../userdatadbmgr.cpp" line="714"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank konnte nicht entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="494"/>
-        <location filename="../../userdatadbmgr.cpp" line="499"/>
-        <location filename="../../userdatadbmgr.cpp" line="504"/>
-        <location filename="../../userdatadbmgr.cpp" line="723"/>
-        <location filename="../../userdatadbmgr.cpp" line="728"/>
-        <location filename="../../userdatadbmgr.cpp" line="737"/>
-        <location filename="../../userdatadbmgr.cpp" line="744"/>
-        <location filename="../../userdatadbmgr.cpp" line="751"/>
+        <location filename="../../userdatadbmgr.cpp" line="493"/>
+        <location filename="../../userdatadbmgr.cpp" line="498"/>
+        <location filename="../../userdatadbmgr.cpp" line="503"/>
+        <location filename="../../userdatadbmgr.cpp" line="722"/>
+        <location filename="../../userdatadbmgr.cpp" line="727"/>
+        <location filename="../../userdatadbmgr.cpp" line="736"/>
+        <location filename="../../userdatadbmgr.cpp" line="743"/>
+        <location filename="../../userdatadbmgr.cpp" line="750"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank konnte nicht erstellt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="509"/>
+        <location filename="../../userdatadbmgr.cpp" line="508"/>
         <source>user data database &apos;%1&apos; initialized</source>
         <translation>Benutzerdaten Datenbank &apos;%1&apos; initialisiert</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="514"/>
+        <location filename="../../userdatadbmgr.cpp" line="513"/>
         <source>filling up rank cache from user data database &apos;%1&apos;</source>
         <translation>Lese Rang-Informationen aus Benutzerdaten Datenbank &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="539"/>
+        <location filename="../../userdatadbmgr.cpp" line="538"/>
         <source>done (filling up rank cache from user data database &apos;%1&apos;)</source>
         <translation>Fertig (Lese Rang-Informationen aus Benutzerdaten Datenbank &apos;%1&apos;)</translation>
     </message>
@@ -22949,78 +22949,78 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
 <context>
     <name>XmlDatabaseManager</name>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="31"/>
+        <location filename="../../xmldbmgr.cpp" line="30"/>
         <source>WARNING: failed to open XML cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: XML Cache Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="50"/>
-        <location filename="../../xmldbmgr.cpp" line="74"/>
-        <location filename="../../xmldbmgr.cpp" line="87"/>
-        <location filename="../../xmldbmgr.cpp" line="111"/>
-        <location filename="../../xmldbmgr.cpp" line="124"/>
-        <location filename="../../xmldbmgr.cpp" line="148"/>
-        <location filename="../../xmldbmgr.cpp" line="161"/>
-        <location filename="../../xmldbmgr.cpp" line="185"/>
-        <location filename="../../xmldbmgr.cpp" line="199"/>
-        <location filename="../../xmldbmgr.cpp" line="214"/>
-        <location filename="../../xmldbmgr.cpp" line="241"/>
-        <location filename="../../xmldbmgr.cpp" line="296"/>
-        <location filename="../../xmldbmgr.cpp" line="315"/>
+        <location filename="../../xmldbmgr.cpp" line="49"/>
+        <location filename="../../xmldbmgr.cpp" line="73"/>
+        <location filename="../../xmldbmgr.cpp" line="86"/>
+        <location filename="../../xmldbmgr.cpp" line="110"/>
+        <location filename="../../xmldbmgr.cpp" line="123"/>
+        <location filename="../../xmldbmgr.cpp" line="147"/>
+        <location filename="../../xmldbmgr.cpp" line="160"/>
+        <location filename="../../xmldbmgr.cpp" line="184"/>
+        <location filename="../../xmldbmgr.cpp" line="198"/>
+        <location filename="../../xmldbmgr.cpp" line="213"/>
+        <location filename="../../xmldbmgr.cpp" line="240"/>
+        <location filename="../../xmldbmgr.cpp" line="295"/>
+        <location filename="../../xmldbmgr.cpp" line="314"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der XML Cache Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="64"/>
-        <location filename="../../xmldbmgr.cpp" line="101"/>
-        <location filename="../../xmldbmgr.cpp" line="138"/>
-        <location filename="../../xmldbmgr.cpp" line="175"/>
-        <location filename="../../xmldbmgr.cpp" line="230"/>
+        <location filename="../../xmldbmgr.cpp" line="63"/>
+        <location filename="../../xmldbmgr.cpp" line="100"/>
+        <location filename="../../xmldbmgr.cpp" line="137"/>
+        <location filename="../../xmldbmgr.cpp" line="174"/>
+        <location filename="../../xmldbmgr.cpp" line="229"/>
         <source>WARNING: failed to add &apos;%1&apos; to XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur XML Cache Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="70"/>
-        <location filename="../../xmldbmgr.cpp" line="107"/>
-        <location filename="../../xmldbmgr.cpp" line="144"/>
-        <location filename="../../xmldbmgr.cpp" line="181"/>
-        <location filename="../../xmldbmgr.cpp" line="237"/>
+        <location filename="../../xmldbmgr.cpp" line="69"/>
+        <location filename="../../xmldbmgr.cpp" line="106"/>
+        <location filename="../../xmldbmgr.cpp" line="143"/>
+        <location filename="../../xmldbmgr.cpp" line="180"/>
+        <location filename="../../xmldbmgr.cpp" line="236"/>
         <source>WARNING: failed to update &apos;%1&apos; in XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der XML Cache Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="253"/>
+        <location filename="../../xmldbmgr.cpp" line="252"/>
         <source>WARNING: failed to fetch row count from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der XML Cache Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="273"/>
+        <location filename="../../xmldbmgr.cpp" line="272"/>
         <source>WARNING: failed to fetch row IDs from XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Tabellenzeilen IDs konnten nicht aus der XML Cache Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="363"/>
-        <location filename="../../xmldbmgr.cpp" line="373"/>
-        <location filename="../../xmldbmgr.cpp" line="383"/>
+        <location filename="../../xmldbmgr.cpp" line="362"/>
+        <location filename="../../xmldbmgr.cpp" line="372"/>
+        <location filename="../../xmldbmgr.cpp" line="382"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the XML cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der XML Cache Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="390"/>
-        <location filename="../../xmldbmgr.cpp" line="395"/>
-        <location filename="../../xmldbmgr.cpp" line="400"/>
+        <location filename="../../xmldbmgr.cpp" line="389"/>
+        <location filename="../../xmldbmgr.cpp" line="394"/>
+        <location filename="../../xmldbmgr.cpp" line="399"/>
         <source>WARNING: failed to remove XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: XML Cache Datenbank konnte nicht entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="408"/>
-        <location filename="../../xmldbmgr.cpp" line="413"/>
-        <location filename="../../xmldbmgr.cpp" line="418"/>
+        <location filename="../../xmldbmgr.cpp" line="407"/>
+        <location filename="../../xmldbmgr.cpp" line="412"/>
+        <location filename="../../xmldbmgr.cpp" line="417"/>
         <source>WARNING: failed to create XML cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: XML Cache Datenbank konnte nicht erstellt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../xmldbmgr.cpp" line="422"/>
+        <location filename="../../xmldbmgr.cpp" line="421"/>
         <source>XML cache database &apos;%1&apos; initialized</source>
         <translation>XML Cache Datenbank &apos;%1&apos; initialisiert</translation>
     </message>

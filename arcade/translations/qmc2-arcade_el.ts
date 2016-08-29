@@ -270,23 +270,23 @@
 <context>
     <name>ImageProvider</name>
     <message>
-        <location filename="../imageprovider.cpp" line="38"/>
+        <location filename="../imageprovider.cpp" line="41"/>
         <source>WARNING: Can&apos;t open %1 ZIP file &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="50"/>
+        <location filename="../imageprovider.cpp" line="54"/>
         <source>WARNING: Can&apos;t open %1 7z file &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="61"/>
+        <location filename="../imageprovider.cpp" line="66"/>
         <source>WARNING: Can&apos;t open %1 archive file &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="119"/>
-        <location filename="../imageprovider.cpp" line="185"/>
+        <location filename="../imageprovider.cpp" line="124"/>
+        <location filename="../imageprovider.cpp" line="190"/>
         <source>Decompressing archive, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -299,12 +299,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="59"/>
+        <location filename="../joystick.cpp" line="56"/>
         <source>SDL joystick #%1 opened: name = %2, axes = %3, buttons = %4, hats = %5, trackballs = %6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../joystick.cpp" line="80"/>
+        <location filename="../joystick.cpp" line="77"/>
         <source>SDL joystick #%1 closed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -538,59 +538,59 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../imageprovider.cpp" line="272"/>
-        <location filename="../imageprovider.cpp" line="274"/>
+        <location filename="../imageprovider.cpp" line="271"/>
+        <location filename="../imageprovider.cpp" line="273"/>
         <source>WARNING: ImageProvider::loadImage(): invalid image ID &apos;%1&apos; requested</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="298"/>
-        <location filename="../imageprovider.cpp" line="407"/>
+        <location filename="../imageprovider.cpp" line="297"/>
+        <location filename="../imageprovider.cpp" line="405"/>
         <source>WARNING: ImageProvider::loadImage(): unable to load image file &apos;%1&apos; from ZIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="550"/>
+        <location filename="../imageprovider.cpp" line="571"/>
         <source>preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="552"/>
+        <location filename="../imageprovider.cpp" line="573"/>
         <source>flyer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="554"/>
+        <location filename="../imageprovider.cpp" line="575"/>
         <source>cabinet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="556"/>
+        <location filename="../imageprovider.cpp" line="577"/>
         <source>controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="558"/>
+        <location filename="../imageprovider.cpp" line="579"/>
         <source>marquee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="560"/>
+        <location filename="../imageprovider.cpp" line="581"/>
         <source>title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="562"/>
+        <location filename="../imageprovider.cpp" line="583"/>
         <source>PCB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="564"/>
+        <location filename="../imageprovider.cpp" line="585"/>
         <source>software snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../imageprovider.cpp" line="566"/>
+        <location filename="../imageprovider.cpp" line="587"/>
         <source>icon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -665,206 +665,206 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="82"/>
+        <location filename="../keysequences.h" line="91"/>
         <source>[context] Previous component / List page up / Info page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="83"/>
+        <location filename="../keysequences.h" line="92"/>
         <source>[context] Next component / List page down / Info page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="84"/>
+        <location filename="../keysequences.h" line="93"/>
         <source>[context] Hide list / Previous item / Slide left / Cycle backwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="85"/>
+        <location filename="../keysequences.h" line="94"/>
         <source>[context] Show list / Next item / Slide right / Cycle forwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="86"/>
+        <location filename="../keysequences.h" line="95"/>
         <source>[context] Show toolbar / List up / Info up / Previous widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="87"/>
+        <location filename="../keysequences.h" line="96"/>
         <source>[context] Hide toolbar / List down / Info down / Next widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="88"/>
+        <location filename="../keysequences.h" line="97"/>
         <source>[context] Select / Set / Toggle details / Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="90"/>
+        <location filename="../keysequences.h" line="99"/>
         <source>[context] Zoom in / List top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="91"/>
+        <location filename="../keysequences.h" line="100"/>
         <source>[context] Zoom out / List bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="92"/>
+        <location filename="../keysequences.h" line="101"/>
         <source>[context] List page up / Flick page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="93"/>
+        <location filename="../keysequences.h" line="102"/>
         <source>[context] List page down / Flick page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="94"/>
+        <location filename="../keysequences.h" line="103"/>
         <source>[context] List top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="95"/>
+        <location filename="../keysequences.h" line="104"/>
         <source>[context] List bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="96"/>
+        <location filename="../keysequences.h" line="105"/>
         <source>[context] Set primary display data item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="97"/>
+        <location filename="../keysequences.h" line="106"/>
         <source>[context] Set secondary display data item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="102"/>
+        <location filename="../keysequences.h" line="111"/>
         <source>[global] Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="103"/>
+        <location filename="../keysequences.h" line="112"/>
         <source>[global] Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="14"/>
-        <location filename="../keysequences.h" line="49"/>
-        <location filename="../keysequences.h" line="50"/>
+        <location filename="../keysequences.h" line="16"/>
+        <location filename="../keysequences.h" line="54"/>
+        <location filename="../keysequences.h" line="55"/>
         <source>[global] Start emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="20"/>
+        <location filename="../keysequences.h" line="22"/>
         <source>[global] Toggle video playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="53"/>
+        <location filename="../keysequences.h" line="58"/>
         <source>[global] Flip cabinet / machine-card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="89"/>
+        <location filename="../keysequences.h" line="98"/>
         <source>[context] Abort machine launch / Hide preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="104"/>
+        <location filename="../keysequences.h" line="113"/>
         <source>[global] Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="19"/>
+        <location filename="../keysequences.h" line="21"/>
         <source>[global] Toggle preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="39"/>
+        <location filename="../keysequences.h" line="44"/>
         <source>[global] Cursor up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="40"/>
+        <location filename="../keysequences.h" line="45"/>
         <source>[global] Cursor down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="41"/>
+        <location filename="../keysequences.h" line="46"/>
         <source>[global] Cursor left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="42"/>
+        <location filename="../keysequences.h" line="47"/>
         <source>[global] Cursor right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="43"/>
+        <location filename="../keysequences.h" line="48"/>
         <source>[global] Page up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="44"/>
+        <location filename="../keysequences.h" line="49"/>
         <source>[global] Page down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="45"/>
+        <location filename="../keysequences.h" line="50"/>
         <source>[global] Start of list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="46"/>
+        <location filename="../keysequences.h" line="51"/>
         <source>[global] End of list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="47"/>
+        <location filename="../keysequences.h" line="52"/>
         <source>[global] Focus search box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="48"/>
+        <location filename="../keysequences.h" line="53"/>
         <source>[global] Toggle menu-bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="98"/>
-        <location filename="../keysequences.h" line="99"/>
+        <location filename="../keysequences.h" line="107"/>
+        <location filename="../keysequences.h" line="108"/>
         <source>[global] Next component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="100"/>
-        <location filename="../keysequences.h" line="101"/>
+        <location filename="../keysequences.h" line="109"/>
+        <location filename="../keysequences.h" line="110"/>
         <source>[global] Previous component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="105"/>
+        <location filename="../keysequences.h" line="114"/>
         <source>[global] Toggle list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="106"/>
+        <location filename="../keysequences.h" line="115"/>
         <source>[global] Toggle toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="15"/>
-        <location filename="../keysequences.h" line="16"/>
         <location filename="../keysequences.h" line="17"/>
         <location filename="../keysequences.h" line="18"/>
+        <location filename="../keysequences.h" line="19"/>
+        <location filename="../keysequences.h" line="20"/>
         <source>[global] Toggle full-screen / windowed mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../keysequences.h" line="51"/>
-        <location filename="../keysequences.h" line="52"/>
-        <location filename="../keysequences.h" line="107"/>
+        <location filename="../keysequences.h" line="56"/>
+        <location filename="../keysequences.h" line="57"/>
+        <location filename="../keysequences.h" line="116"/>
         <source>[global] Exit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -877,110 +877,110 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="47"/>
+        <location filename="../../sevenzipfile.cpp" line="46"/>
         <source>archive not open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="53"/>
+        <location filename="../../sevenzipfile.cpp" line="51"/>
         <source>null-buffer not allowed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="80"/>
-        <location filename="../../sevenzipfile.cpp" line="101"/>
-        <location filename="../../sevenzipfile.cpp" line="119"/>
+        <location filename="../../sevenzipfile.cpp" line="77"/>
+        <location filename="../../sevenzipfile.cpp" line="98"/>
+        <location filename="../../sevenzipfile.cpp" line="116"/>
         <source>extraction of file &apos;%1&apos; (index %2) failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="133"/>
+        <location filename="../../sevenzipfile.cpp" line="130"/>
         <source>no error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="135"/>
+        <location filename="../../sevenzipfile.cpp" line="132"/>
         <source>incorrect data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="137"/>
+        <location filename="../../sevenzipfile.cpp" line="134"/>
         <source>out of memory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="139"/>
+        <location filename="../../sevenzipfile.cpp" line="136"/>
         <source>incorrect CRC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="141"/>
+        <location filename="../../sevenzipfile.cpp" line="138"/>
         <source>unsupported compression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="143"/>
+        <location filename="../../sevenzipfile.cpp" line="140"/>
         <source>incorrect properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="145"/>
+        <location filename="../../sevenzipfile.cpp" line="142"/>
         <source>premature end-of-file (input)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="147"/>
+        <location filename="../../sevenzipfile.cpp" line="144"/>
         <source>premature end-of-file (output)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="149"/>
+        <location filename="../../sevenzipfile.cpp" line="146"/>
         <source>failed reading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="151"/>
+        <location filename="../../sevenzipfile.cpp" line="148"/>
         <source>failed writing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="153"/>
+        <location filename="../../sevenzipfile.cpp" line="150"/>
         <source>failed signalling progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="155"/>
+        <location filename="../../sevenzipfile.cpp" line="152"/>
         <source>fatal error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="157"/>
+        <location filename="../../sevenzipfile.cpp" line="154"/>
         <source>thread error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="159"/>
+        <location filename="../../sevenzipfile.cpp" line="156"/>
         <source>invalid archive structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="161"/>
+        <location filename="../../sevenzipfile.cpp" line="158"/>
         <source>invalid header structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="163"/>
+        <location filename="../../sevenzipfile.cpp" line="160"/>
         <source>unknown error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="178"/>
+        <location filename="../../sevenzipfile.cpp" line="175"/>
         <source>no file name specified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="184"/>
-        <location filename="../../sevenzipfile.cpp" line="204"/>
+        <location filename="../../sevenzipfile.cpp" line="181"/>
+        <location filename="../../sevenzipfile.cpp" line="201"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
