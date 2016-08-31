@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1408,7 +1408,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -5458,124 +5458,124 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="14"/>
         <source>Configure filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar filtros</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="59"/>
         <source>&lt;b&gt;&lt;font size=&quot;+2&quot;&gt;Add a new filter on the left or select an existing one&lt;/font&gt;&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&lt;font size=&quot;+2&quot;&gt;Adicione um novo filtro na esquerda ou selecione um existente&lt;/font&gt;&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="82"/>
         <source>Filter expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Expressão do filtro</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="85"/>
         <source>Filter expression (empty string)</source>
-        <translation type="unfinished"></translation>
+        <translation>Expressão do filtro (vazio)</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="92"/>
         <source>Match mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de correspondência</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="99"/>
         <source>Select the filter type (include / exclude filter)</source>
-        <translation type="unfinished">Selecione o tipo de filtro (filtro de inclusão / exclusão)</translation>
+        <translation>Selecione o tipo de filtro (filtro de inclusão / exclusão)</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="103"/>
         <source>Include matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir resultado</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="108"/>
         <source>Exclude matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Excluir resultado</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="116"/>
         <source>Choose the regular expression syntax</source>
-        <translation type="unfinished">Escolha a sintaxe da expressão regular</translation>
+        <translation>Escolha a sintaxe da expressão regular</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="159"/>
         <source>Clear filter expression</source>
-        <translation type="unfinished">Limpar expressão do filtro</translation>
+        <translation>Limpar expressão do filtro</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="170"/>
         <source>Choose match mode (sub-strings or exact matches)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher modo de correspondência (contém texto ou correspondência exata)</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="174"/>
         <source>Sub string match</source>
-        <translation type="unfinished"></translation>
+        <translation>Contém</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="179"/>
         <source>Exact match</source>
-        <translation type="unfinished">Correspondência exata</translation>
+        <translation>Correspondência exata</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="187"/>
         <source>Filter type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de filtro</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="194"/>
         <source>Expression syntax</source>
-        <translation type="unfinished"></translation>
+        <translation>Sintaxe da expressão</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="231"/>
         <source>Apply changes and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar mudanças e fechar diálogo</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="234"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="241"/>
         <source>Apply changes now</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar mudanças agora</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="244"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="251"/>
         <source>Revert changes and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Reverter mudanças e fechar diálogo</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.ui" line="254"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.cpp" line="46"/>
         <location filename="../../filterconfigurationdialog.cpp" line="48"/>
         <source>Add filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar filtro</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.cpp" line="62"/>
         <source>Inactive filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro inativo</translation>
     </message>
     <message>
         <location filename="../../filterconfigurationdialog.cpp" line="69"/>
         <location filename="../../filterconfigurationdialog.cpp" line="71"/>
         <source>Remove filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover filtro</translation>
     </message>
 </context>
 <context>
@@ -8422,7 +8422,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="1224"/>
         <source>WARNING: the machine list database is invalid, forcing a refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o banco de lista de máquinas é invalido, forçando atualização </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1882"/>
@@ -9187,7 +9187,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="38"/>
         <source>WARNING: failed to open machine list database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir base de dados da lista de máquinas &apos;%1&apos;: erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="57"/>
@@ -9199,7 +9199,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelistdbmgr.cpp" line="225"/>
         <location filename="../../machinelistdbmgr.cpp" line="238"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from machine list database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados da lista de máquinas: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="71"/>
@@ -9207,50 +9207,50 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelistdbmgr.cpp" line="145"/>
         <location filename="../../machinelistdbmgr.cpp" line="260"/>
         <source>WARNING: failed to add &apos;%1&apos; to machine list database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; à base de dados da lista de máquinas: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="77"/>
         <location filename="../../machinelistdbmgr.cpp" line="114"/>
         <location filename="../../machinelistdbmgr.cpp" line="151"/>
         <source>WARNING: failed to update &apos;%1&apos; in machine list database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados da lista de máquinas: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="169"/>
         <source>WARNING: failed to fetch row count from machine list database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler quantidade de linhas da base de dados da lista de máquinas: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="201"/>
         <source>WARNING: failed to fetch row IDs from machine list database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler IDs das linhas da base de dados da lista de máquinas: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="317"/>
         <location filename="../../machinelistdbmgr.cpp" line="327"/>
         <location filename="../../machinelistdbmgr.cpp" line="337"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the machine list database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao alterar a configuração de &apos;%1&apos; da base de dados de dados da lista de máquinas: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="344"/>
         <location filename="../../machinelistdbmgr.cpp" line="349"/>
         <location filename="../../machinelistdbmgr.cpp" line="354"/>
         <source>WARNING: failed to remove machine list database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover base de dados da lista de máquinas: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="362"/>
         <location filename="../../machinelistdbmgr.cpp" line="367"/>
         <location filename="../../machinelistdbmgr.cpp" line="372"/>
         <source>WARNING: failed to create machine list database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar base de dados da lista de máquinas: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../machinelistdbmgr.cpp" line="376"/>
         <source>machine list database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>base de dados da lista de máquinas &apos;%1&apos; inicializada</translation>
     </message>
 </context>
 <context>
@@ -9258,92 +9258,92 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelistmodel.cpp" line="79"/>
         <source>Tag</source>
-        <translation type="unfinished">Etiqueta</translation>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="80"/>
         <source>Icon</source>
-        <translation type="unfinished">Ícone</translation>
+        <translation>Ícone</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="81"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="82"/>
         <source>Parent</source>
-        <translation type="unfinished"></translation>
+        <translation>Pai</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="83"/>
         <source>Description</source>
-        <translation type="unfinished">Descrição</translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="84"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricante</translation>
+        <translation>Fabricante</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="85"/>
         <source>Year</source>
-        <translation type="unfinished">Ano</translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="86"/>
         <source>ROM status</source>
-        <translation type="unfinished">Estado da ROM</translation>
+        <translation>Estado da ROM</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="87"/>
         <source>Has ROMs?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tem ROMs?</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="88"/>
         <source>Has CHDs?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tem CHDs?</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="89"/>
         <source>Driver status</source>
-        <translation type="unfinished">Estado do driver</translation>
+        <translation>Estado do driver</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="90"/>
         <source>Source file</source>
-        <translation type="unfinished">Arquivo fonte</translation>
+        <translation>Arquivo fonte</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="91"/>
         <source>Players</source>
-        <translation type="unfinished">Jogadores</translation>
+        <translation>Jogadores</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="92"/>
         <source>Rank</source>
-        <translation type="unfinished">Classificação</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="93"/>
         <source>Is BIOS?</source>
-        <translation type="unfinished">É BIOS?</translation>
+        <translation>É BIOS?</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="94"/>
         <source>Is device?</source>
-        <translation type="unfinished">É dispositivo?</translation>
+        <translation>É dispositivo?</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="95"/>
         <source>Category</source>
-        <translation type="unfinished">Categoria</translation>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../../machinelistmodel.cpp" line="96"/>
         <source>Version</source>
-        <translation type="unfinished">Versão</translation>
+        <translation>Versão</translation>
     </message>
 </context>
 <context>
@@ -9351,84 +9351,84 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelistviewer.ui" line="14"/>
         <source>Machine list viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="41"/>
         <location filename="../../machinelistviewer.ui" line="44"/>
         <location filename="../../machinelistviewer.ui" line="47"/>
         <source>Clone view</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualização de clones</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="70"/>
         <location filename="../../machinelistviewer.ui" line="73"/>
         <source>Toggle flat / tree view mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar visão plana / em árvore</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="76"/>
         <source>Flat</source>
-        <translation type="unfinished">Simples</translation>
+        <translation>Plana</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="90"/>
         <location filename="../../machinelistviewer.ui" line="93"/>
         <source>Setup visible columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar colunas visíveis</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="96"/>
         <source>Visible columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Colunas visíveis</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="116"/>
         <location filename="../../machinelistviewer.ui" line="119"/>
         <source>Configure view filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar filtros</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="122"/>
         <source>Configure filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar filtros</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="145"/>
         <location filename="../../machinelistviewer.ui" line="148"/>
         <location filename="../../machinelistviewer.ui" line="151"/>
         <source>Save view</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar visualização</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="171"/>
         <location filename="../../machinelistviewer.ui" line="174"/>
         <source>Enter a unique name for this view or select an existing one</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com um nome único para essa visualização ou selecione um existente</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="190"/>
         <location filename="../../machinelistviewer.ui" line="193"/>
         <location filename="../../machinelistviewer.ui" line="196"/>
         <source>Update view</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar visualização</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="232"/>
         <location filename="../../machinelistviewer.ui" line="235"/>
         <source>Number of records in view</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de registros na visualização</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="272"/>
         <location filename="../../machinelistviewer.ui" line="275"/>
         <source>Toggle menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar menu</translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.cpp" line="41"/>
         <source>Enter a unique name for this view</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com um nome único para essa visualização</translation>
     </message>
 </context>
 <context>
@@ -12459,13 +12459,13 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
     <message>
         <location filename="../../qmc2main.ui" line="4729"/>
         <source>New filtered view...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nova visualização filtrada...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4732"/>
         <location filename="../../qmc2main.ui" line="4735"/>
         <source>Create a new filtered machine list view</source>
-        <translation type="unfinished"></translation>
+        <translation>Create uma nova visualização de lista de máquina filtrada </translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="4108"/>
@@ -13522,7 +13522,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.cpp" line="2796"/>
         <source>Choose machine list database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo da base de dados da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2831"/>
@@ -16399,17 +16399,17 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="5468"/>
         <source>Machine list database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5481"/>
         <source>Machine list database file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo da base de dados de lista de máquinas (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5497"/>
         <source>Browse machine list database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo da base de dados da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="5581"/>
@@ -21651,17 +21651,17 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../softwarelist.cpp" line="1493"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1494"/>
         <source>show all</source>
-        <translation type="unfinished"></translation>
+        <translation>mostrar tudo</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1495"/>
         <source>Show all software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar todas as listas de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1501"/>
