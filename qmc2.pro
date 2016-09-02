@@ -153,6 +153,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			individualfallbacksettings.cpp \
 			catverinioptimizer.cpp \
 			filterconfigurationdialog.cpp \
+			rankitemdelegate.cpp \
 			htmleditor/htmleditor.cpp \
 			htmleditor/highlighter.cpp \
 			lzma/7zAlloc.c \
@@ -269,6 +270,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			individualfallbacksettings.h \
 			catverinioptimizer.h \
 			filterconfigurationdialog.h \
+			rankitemdelegate.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h
