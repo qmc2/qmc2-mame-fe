@@ -3340,14 +3340,21 @@ void MachineList::loadCatverIni()
 							versionNames.insert(token1, new QString(token1));
 						versionHash.insert(tokens.at(0).trimmed(), versionNames.value(token1));
 						break;
+					default:
+						break;
 				}
 			} else {
-				if ( catVerSwitch != 1 ) {
-					if ( catverLine.indexOf(catStr) >= 0 )
-						catVerSwitch = 1;
-				} else if ( catVerSwitch != 2 ) {
-					if ( catverLine.indexOf(verStr) >= 0 )
-						catVerSwitch = 2;
+				switch ( catVerSwitch ) {
+					case 0:
+						if ( catverLine.indexOf(catStr) >= 0 )
+							catVerSwitch = 1;
+						break;
+					case 1:
+						if ( catverLine.indexOf(verStr) >= 0 )
+							catVerSwitch = 2;
+						break;
+					default:
+						break;
 				}
 			}
 		}
