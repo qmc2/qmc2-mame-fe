@@ -184,14 +184,11 @@ QBrush Options::redBrush(QColor(255, 0, 0));
 QBrush Options::greyBrush(QColor(128, 128, 128));
 QBrush Options::lightgreyBrush(QColor(200, 200, 200));
 
-QString qmc2StandardWorkDir;
-QString qmc2CurrentStyleName;
-
-Options::Options(QWidget *parent)
+Options::Options(QWidget *parent) :
 #if defined(QMC2_OS_WIN)
-	: QDialog(parent, Qt::Dialog)
+	QDialog(parent, Qt::Dialog)
 #else
-	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
+	QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
 	qmc2Filter.resize(QMC2_ROMSTATE_COUNT);
@@ -229,7 +226,7 @@ Options::Options(QWidget *parent)
 
 	cancelClicked = false;
 
-	qmc2StandardWorkDir = QDir::currentPath();
+	setStandardWorkDir(QDir::currentPath());
 
 #if !defined(QMC2_OS_MAC)
 	checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
@@ -1804,7 +1801,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	if ( checkBoxSetWorkDirFromExec->isChecked() )
 		QDir::setCurrent(QCoreApplication::applicationDirPath());
 	else
-		QDir::setCurrent(qmc2StandardWorkDir);
+		QDir::setCurrent(standardWorkDir());
 	checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", true).toBool());
 	checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", false).toBool());
 	checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", true).toBool());
@@ -2268,8 +2265,8 @@ void Options::applyDelayed()
 	if ( !cancelClicked ) {
 		if ( qmc2GuiReady ) {
 			// style
-			if ( qmc2StandardPalettes.contains(qmc2CurrentStyleName) )
-				qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
+			if ( qmc2StandardPalettes.contains(currentStyleName()) )
+				qApp->setPalette(qmc2StandardPalettes[currentStyleName()]);
 			QString styleName(comboBoxStyle->currentText());
 			if ( styleName == tr("Default") )
 				styleName = "Default";
@@ -3410,7 +3407,7 @@ void Options::on_pushButtonEditPalette_clicked()
 	QPalette currentPalette = qApp->palette();
 	if ( !qmc2PaletteEditor )
 		qmc2PaletteEditor = new PaletteEditor(this);
-	loadCustomPalette(qmc2CurrentStyleName);
+	loadCustomPalette(currentStyleName());
 	qmc2PaletteEditor->activePalette = qmc2CustomPalette;
 	bool wasChecked = qmc2PaletteEditor->toolButtonPreview->isChecked();
 	qmc2PaletteEditor->toolButtonPreview->blockSignals(true);
@@ -3432,7 +3429,7 @@ void Options::on_pushButtonEditPalette_clicked()
 	} else {
 		checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
 		if ( checkBoxStandardColorPalette->isChecked() )
-			qApp->setPalette(qmc2StandardPalettes[qmc2CurrentStyleName]);
+			qApp->setPalette(qmc2StandardPalettes[currentStyleName()]);
 		else
 			qApp->setPalette(qmc2CustomPalette);
 	}
