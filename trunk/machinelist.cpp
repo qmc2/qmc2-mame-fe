@@ -200,7 +200,7 @@ MachineList::MachineList(QObject *parent) :
 				if ( iconFile == 0 )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 				else
-					qmc2IconFileMap[filePath] = iconFile;
+					qmc2IconFileMap.insert(filePath, iconFile);
 			}
 			break;
 		case QMC2_ICON_FILETYPE_7Z:
@@ -210,7 +210,7 @@ MachineList::MachineList(QObject *parent) :
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
 					delete iconFile;
 				} else
-					qmc2IconFileMap7z[filePath] = iconFile;
+					qmc2IconFileMap7z.insert(filePath, iconFile);
 			}
 			break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
@@ -221,7 +221,7 @@ MachineList::MachineList(QObject *parent) :
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
 					delete archiveFile;
 				} else
-					qmc2IconArchiveMap[filePath] = archiveFile;
+					qmc2IconArchiveMap.insert(filePath, archiveFile);
 			}
 			break;
 #endif
@@ -268,6 +268,9 @@ MachineList::~MachineList()
 	QSqlDatabase::removeDatabase(connectionName);
 	connectionName = userDataDb()->connectionName();
 	delete userDataDb();
+	QSqlDatabase::removeDatabase(connectionName);
+	connectionName = datInfoDb()->connectionName();
+	delete datInfoDb();
 	QSqlDatabase::removeDatabase(connectionName);
 	connectionName = machineListDb()->connectionName();
 	delete machineListDb();
@@ -1184,15 +1187,11 @@ void MachineList::parse()
 	qmc2ParentHash.clear();
 	hierarchyHash.clear();
 	mainProgressBar->reset();
-	bool reparseMachineList = true;
-	bool romStateCacheUpdate = false;
-	bool loadedFromCache = false;
 	QList<QTreeWidgetItem *> itemList;
 	QHash<QTreeWidgetItem *, bool> hiddenItemHash;
-	QString trSystemBios(tr("System / BIOS"));
-	QString trSystemDevice(tr("System / Device"));
-	QChar columnSplitChar('\t');
-	QChar lineSplitChar('\n');
+	bool reparseMachineList = true, romStateCacheUpdate = false, loadedFromCache = false;
+	QString trSystemBios(tr("System / BIOS")), trSystemDevice(tr("System / Device"));
+	QChar columnSplitChar('\t'), lineSplitChar('\n');
 	machineListCache.setFileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
 	if ( machineListCache.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		tsMachineListCache.setDevice(&machineListCache);
@@ -1796,7 +1795,7 @@ void MachineList::parse()
 		if ( ci->isSelected() ) {
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 		} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-			QString selectedMachine = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
+			QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString());
 			if ( !selectedMachine.isEmpty() ) {
 				QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
 				if ( mlItem ) {
@@ -1809,7 +1808,7 @@ void MachineList::parse()
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 		}
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-		QString selectedMachine = qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString();
+		QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString());
 		if ( !selectedMachine.isEmpty() ) {
 			QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
 			if ( mlItem ) {
@@ -2214,8 +2213,8 @@ void MachineList::loadReadyReadStandardOutput()
 #else
 	QString readBuffer = loadProc->readAllStandardOutput();
 #endif
-	bool startsWithSpace = readBuffer.startsWith(" ") && !lastCharacterWasSpace;
-	bool endsWithSpace = readBuffer.endsWith(" ");
+	bool startsWithSpace = readBuffer.startsWith(' ') && !lastCharacterWasSpace;
+	bool endsWithSpace = readBuffer.endsWith(' ');
 	lastCharacterWasSpace = false;
 	if ( uncommittedXmlDbRows == 0 )
 		xmlDb()->beginTransaction();
@@ -2223,26 +2222,26 @@ void MachineList::loadReadyReadStandardOutput()
 		loadProc->kill();
 	readBuffer = readBuffer.simplified();
 	if ( startsWithSpace )
-		readBuffer.prepend(" ");
+		readBuffer.prepend(' ');
 	// ensure XML elements are on individual lines
 	for (int i = 0; i < readBuffer.length(); i++) {
-		if ( readBuffer[i] == '>' ) {
+		if ( readBuffer.at(i) == '>' ) {
 			if ( i + 1 < readBuffer.length() ) {
 				if ( readBuffer[i + 1] == '<' )
-					readBuffer.insert(i + 1, "\n");
+					readBuffer.insert(i + 1, '\n');
 				else if ( readBuffer[i + 1] == ' ' ) {
 					if ( i + 2 < readBuffer.length() ) {
-						if ( readBuffer[i + 2] == '<' )
-							readBuffer.replace(i + 1, 1, "\n");
+						if ( readBuffer.at(i + 2) == '<' )
+							readBuffer.replace(i + 1, 1, '\n');
 					}
 				}
 			}
 		}
 	}
-	QStringList sl = readBuffer.split("\n");
+	QStringList sl(readBuffer.split('\n'));
 	for (int l = 0; l < sl.count(); l++) {
-		QString singleXMLLine = sl[l];
-		bool newLine = singleXMLLine.endsWith(">");
+		QString singleXMLLine(sl.at(l));
+		bool newLine = singleXMLLine.endsWith('>');
 		if ( newLine ) {
 			if ( singleXMLLine.indexOf(rxDescYearManu) >= 0 )
 				newLine = false;
@@ -2250,18 +2249,18 @@ void MachineList::loadReadyReadStandardOutput()
 				bool found = false;
 				int i;
 				for (i = singleXMLLine.length() - 2; i > 0 && !found; i--)
-					found = (singleXMLLine[i] == '<');
+					found = (singleXMLLine.at(i) == '<');
 				if ( found && i == 0 )
 					newLine = false;
 			}
 		}
-		bool needsSpace = singleXMLLine.endsWith("\"");
+		bool needsSpace = singleXMLLine.endsWith('\"');
 		if ( needsSpace ) {
 			bool found = false;
 			bool stop = false;
 			for (int i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
 				if ( singleXMLLine[i] == '\"' ) {
-					if ( singleXMLLine[i - 1] == '=' )
+					if ( singleXMLLine.at(i - 1) == '=' )
 						found = true;
 					else
 						stop = true;
@@ -2271,24 +2270,24 @@ void MachineList::loadReadyReadStandardOutput()
 				needsSpace = false;
 		}
 		int i = singleXMLLine.length() - 1;
-		while ( i >= 0 && singleXMLLine[i].isSpace() )
+		while ( i >= 0 && singleXMLLine.at(i).isSpace() )
 			singleXMLLine.remove(i--, 1);
 		needsSpace |= endsWithSpace;
 		if ( newLine )
-			singleXMLLine += "\n";
+			singleXMLLine += '\n';
 		else if ( needsSpace ) {
-			singleXMLLine += " ";
+			singleXMLLine += ' ';
 			lastCharacterWasSpace = true;
 		}
 		xmlLineBuffer += singleXMLLine;
-		if ( xmlLineBuffer.endsWith("\n") ) {
+		if ( xmlLineBuffer.endsWith('\n') ) {
 			if ( !dtdBufferReady ) {
 				dtdBufferReady = xmlLineBuffer.startsWith("<mame build=");
 				if ( !dtdBufferReady ) {
 					if ( !xmlLineBuffer.startsWith("<?xml version=") )
 						dtdBuffer += xmlLineBuffer;
 				} else {
-					if ( dtdBuffer.endsWith("\n") )
+					if ( dtdBuffer.endsWith('\n') )
 						dtdBuffer.remove(dtdBuffer.length() - 1, 1);
 					xmlDb()->setDtd(dtdBuffer);
 					dtdBuffer.clear();
@@ -2298,7 +2297,7 @@ void MachineList::loadReadyReadStandardOutput()
 					int startIndex = xmlLineBuffer.indexOf("<machine name=\"");
 					if ( startIndex >= 0 ) {
 						startIndex += 15;
-						int endIndex = xmlLineBuffer.indexOf("\"", startIndex);
+						int endIndex = xmlLineBuffer.indexOf('\"', startIndex);
 						if ( endIndex >= 0 ) {
 							currentSetName = xmlLineBuffer.mid(startIndex, endIndex - startIndex);
 							setXmlBuffer += xmlLineBuffer;
@@ -2308,7 +2307,7 @@ void MachineList::loadReadyReadStandardOutput()
 					setXmlBuffer += xmlLineBuffer;
 					int index = xmlLineBuffer.indexOf("</machine>");
 					if ( index >= 0 ) {
-						if ( setXmlBuffer.endsWith("\n") )
+						if ( setXmlBuffer.endsWith('\n') )
 							setXmlBuffer.remove(setXmlBuffer.length() - 1, 1);
 						if ( xmlDb()->exists(currentSetName) )
 							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML bug: the name '%1' is used for multiple sets -- please inform MAME developers").arg(currentSetName));
@@ -2585,7 +2584,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			QHashIterator<QString, char> it(machineStatusHash);
 			while ( it.hasNext() ) {
 				it.next();
-				QString machineName = it.key();
+				QString machineName(it.key());
 				if ( !machineName.isEmpty() ) {
 					tsRomCache << machineName << " ";
 					switch ( it.value() ) {
@@ -2876,7 +2875,7 @@ void MachineList::verifyReadyReadStandardOutput()
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM status for '%1' is '%2'").arg(checkedItem->text(QMC2_MACHINELIST_COLUMN_MACHINE)).arg(romStateLong));
 						numUnknownMachines--;
 					} else if ( romStateCache.isOpen() )
-						tsRomCache << romName << " " << romState << "\n";
+						tsRomCache << romName << ' ' << romState << '\n';
 				}
 			}
 		}

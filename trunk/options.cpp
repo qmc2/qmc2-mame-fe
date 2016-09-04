@@ -1668,7 +1668,7 @@ void Options::on_pushButtonApply_clicked()
 					if ( iconFile == 0 )
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(filePath));
 					else
-						qmc2IconFileMap[filePath] = iconFile;
+						qmc2IconFileMap.insert(filePath, iconFile);
 				}
 				break;
 			case QMC2_ICON_FILETYPE_7Z:
@@ -1678,7 +1678,7 @@ void Options::on_pushButtonApply_clicked()
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("7z error") + ": " + iconFile->lastError());
 						delete iconFile;
 					} else
-						qmc2IconFileMap7z[filePath] = iconFile;
+						qmc2IconFileMap7z.insert(filePath, iconFile);
 				}
 				break;
 #if defined(QMC2_LIBARCHIVE_ENABLED)
@@ -1689,7 +1689,7 @@ void Options::on_pushButtonApply_clicked()
 						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file %1").arg(filePath) + " - " + tr("libarchive error") + ": " + archiveFile->errorString());
 						delete archiveFile;
 					} else
-						qmc2IconArchiveMap[filePath] = archiveFile;
+						qmc2IconArchiveMap.insert(filePath, archiveFile);
 				}
 			break;
 #endif
