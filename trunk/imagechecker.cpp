@@ -953,7 +953,6 @@ void ImageChecker::on_toolButtonSaveLog_clicked()
 void ImageChecker::on_toolButtonRemoveBad_clicked()
 {
 	ImageWidget *imageWidget = 0;
-	SoftwareImageWidget *softwareImageWidget = 0;
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			imageWidget = qmc2Preview;
@@ -1171,7 +1170,6 @@ void ImageChecker::on_toolButtonRemoveBad_clicked()
 void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 {
 	ImageWidget *imageWidget = 0;
-	SoftwareImageWidget *softwareImageWidget = 0;
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:
 			imageWidget = qmc2Preview;
@@ -1690,7 +1688,6 @@ void ImageChecker::resultsReady(const QStringList &foundList, const QStringList 
 void ImageChecker::checkObsoleteFiles()
 {
 	ImageWidget *imageWidget = 0;
-	SoftwareImageWidget *softwareImageWidget = 0;
 	log(tr("Checking for obsolete files"));
 	switch ( currentImageType ) {
 		case QMC2_IMGCHK_INDEX_PREVIEW:

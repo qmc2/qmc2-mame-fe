@@ -2,11 +2,11 @@
 
 ArchiveFile::ArchiveFile(QString fileName, bool sequential, bool deflate, QObject *parent) :
 	QObject(parent),
+	m_archive(0),
+	m_entry(0),
 	m_fileName(fileName),
 	m_sequential(sequential),
 	m_deflate(deflate),
-	m_archive(0),
-	m_entry(0),
 	m_openMode(QIODevice::ReadOnly)
 {
 }
