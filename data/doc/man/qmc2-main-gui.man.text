@@ -46,9 +46,9 @@ FILES
 
   CONFIG_PATH/mame-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, machine-info and software-info)
 
-  CONFIG_PATH/mame.fav  List of favorite machine
+  CONFIG_PATH/mame.fav  List of favorite machines
 
-  CONFIG_PATH/mame.hst  List of machine last played (play history)
+  CONFIG_PATH/mame.hst  List of machines last played (play history)
 
   CONFIG_PATH/mame.sic  Slot-info cache
 
@@ -60,9 +60,9 @@ FILES
 
   CONFIG_PATH/qmc2-sdlmame-cookies.db  Permanent web-page cookie database (SQLite 3)
 
-  CONFIG_PATH/qmc2-sdlmame-checksum.db  ROMAlyzer's system-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
+  CONFIG_PATH/qmc2-sdlmame-checksum.db  ROMAlyzer's system-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC-32 (SQLite 3)
 
-  CONFIG_PATH/qmc2-sdlmame-software-checksum.db  ROMAlyzer's software-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (SQLite 3)
+  CONFIG_PATH/qmc2-sdlmame-software-checksum.db  ROMAlyzer's software-mode check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC-32 (SQLite 3)
 
   CONFIG_PATH/WebpageIcons.db  Web-page icon database (SQLite 3)
 
