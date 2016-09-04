@@ -1414,10 +1414,10 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 							fullCommandString += " " + s;
 						}
 						log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-						unzClose(qmc2IconFileMap[filePath]);
+						unzClose(qmc2IconFileMap.value(filePath));
 						ToolExecutor zipRemovalTool(this, command, args);
 						zipRemovalTool.exec();
-						qmc2IconFileMap[filePath] = unzOpen(filePath.toUtf8().constData());
+						qmc2IconFileMap.insert(filePath, unzOpen(filePath.toUtf8().constData()));
 						if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
 							log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 					}
@@ -1477,10 +1477,10 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 							fullCommandString += " " + s;
 						}
 						log(tr("Running 7z tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-						qmc2IconFileMap7z[filePath]->close();
+						qmc2IconFileMap7z.value(filePath)->close();
 						ToolExecutor sevenZipRemovalTool(this, command, args);
 						sevenZipRemovalTool.exec();
-						qmc2IconFileMap7z[filePath]->open();
+						qmc2IconFileMap7z.value(filePath)->open();
 						if ( sevenZipRemovalTool.toolExitStatus != QProcess::NormalExit || sevenZipRemovalTool.toolExitCode != 0 )
 							log(tr("WARNING: 7z tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(sevenZipRemovalTool.toolExitCode).arg(sevenZipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 					}
@@ -1542,10 +1542,10 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 								fullCommandString += " " + s;
 							}
 							log(tr("Running 7z tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-							qmc2IconArchiveMap[filePath]->close();
+							qmc2IconArchiveMap.value(filePath)->close();
 							ToolExecutor sevenZipRemovalTool(this, command, args);
 							sevenZipRemovalTool.exec();
-							qmc2IconArchiveMap[filePath]->open();
+							qmc2IconArchiveMap.value(filePath)->open();
 							if ( sevenZipRemovalTool.toolExitStatus != QProcess::NormalExit || sevenZipRemovalTool.toolExitCode != 0 )
 								log(tr("WARNING: 7z tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(sevenZipRemovalTool.toolExitCode).arg(sevenZipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 						}
@@ -1597,10 +1597,10 @@ void ImageChecker::on_toolButtonRemoveObsolete_clicked()
 								fullCommandString += " " + s;
 							}
 							log(tr("Running ZIP tool to remove obsolete files, command = '%1'").arg(fullCommandString));
-							qmc2IconArchiveMap[filePath]->close();
+							qmc2IconArchiveMap.value(filePath)->close();
 							ToolExecutor zipRemovalTool(this, command, args);
 							zipRemovalTool.exec();
-							qmc2IconArchiveMap[filePath]->open();
+							qmc2IconArchiveMap.value(filePath)->open();
 							if ( zipRemovalTool.toolExitStatus != QProcess::NormalExit || zipRemovalTool.toolExitCode != 0 )
 								log(tr("WARNING: ZIP tool didn't exit cleanly: exitCode = %1, exitStatus = %2").arg(zipRemovalTool.toolExitCode).arg(zipRemovalTool.toolExitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
 						}
