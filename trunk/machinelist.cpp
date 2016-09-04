@@ -3069,7 +3069,9 @@ void MachineList::loadCategoryIni()
 		QTextStream tsCategoryIni(&categoryIniFile);
 		QString categoryName;
 		QRegExp rxCategoryName("^\\[.*\\]$");
-		QString guiLanguage = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
+		QString guiLanguage(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString());
+		QString trStart("tr[");
+		QChar trEnd(']');
 		bool trFound = false;
 		while ( !tsCategoryIni.atEnd() ) {
 			QString categoryLine(tsCategoryIni.readLine().simplified().trimmed());
@@ -3081,8 +3083,8 @@ void MachineList::loadCategoryIni()
 				QHash<QString, QString> translations;
 				categoryLine = tsCategoryIni.readLine().simplified().trimmed();
 				trFound = false;
-				while ( !categoryLine.isEmpty() && categoryLine.startsWith("tr[") ) {
-					int endIndex = categoryLine.indexOf(']', 3);
+				while ( !categoryLine.isEmpty() && categoryLine.startsWith(trStart) ) {
+					int endIndex = categoryLine.indexOf(trEnd, 3);
 					QString trLanguage(categoryLine.mid(3, endIndex - 3));
 					translations.insert(trLanguage, categoryLine.mid(endIndex + 2, categoryLine.length() - endIndex - 2));
 					trFound = (trLanguage.compare(guiLanguage) == 0);
@@ -3091,10 +3093,10 @@ void MachineList::loadCategoryIni()
 					categoryLine = tsCategoryIni.readLine().simplified().trimmed();
 				}
 				if ( trFound )
-					categoryName = translations[guiLanguage];
+					categoryName = translations.value(guiLanguage);
 			} else if ( !categoryName.isEmpty() ) {
 				if ( !categoryNames.contains(categoryName) )
-					categoryNames[categoryName] = new QString(categoryName);
+					categoryNames.insert(categoryName, new QString(categoryName));
 				categoryHash.insert(categoryLine, categoryNames.value(categoryName));
 				entryCounter++;
 			}
