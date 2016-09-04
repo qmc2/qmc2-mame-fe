@@ -868,8 +868,8 @@ void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QStri
 
 void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 {
-	QString machineName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QStringList xmlLines = xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts);
+	QString machineName(item->text(QMC2_MACHINELIST_COLUMN_NAME));
+	QStringList xmlLines(xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts));
 	if ( xmlLines.count() < 2 ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(machineName));
 		return;
@@ -889,9 +889,9 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 	insertAttributeItems(&itemList, element, attributes, descriptions, true);
 	QString endMark("</machine>");
 
-	while ( !xmlLines[gamePos].contains(endMark) ) {
+	while ( !xmlLines.at(gamePos).contains(endMark) ) {
 		childItem = 0;
-		element = xmlLines[gamePos].simplified();
+		element = xmlLines.at(gamePos).simplified();
 		if ( element.contains("<year>") ) {
 			content = element.remove("<year>").remove("</year>");
 			childItem = new QTreeWidgetItem();
@@ -957,8 +957,8 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 			descriptions << tr("Service") << tr("Tilt") << tr("Players") << tr("Buttons") << tr("Coins");
 			insertAttributeItems(childItem, element, attributes, descriptions, true);
 			gamePos++;
-			while ( xmlLines[gamePos].contains("<control ") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<control ") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *nextChildItem = new QTreeWidgetItem(childItem);
 				nextChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Control"));
 				nextChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "type", true));
@@ -975,8 +975,8 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("DIP switch"));
 			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name", true));
 			gamePos++;
-			while ( xmlLines[gamePos].contains("<dipvalue ") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<dipvalue ") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("DIP value"));
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", true));
@@ -998,8 +998,8 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 			descriptions << tr("Tag") << tr("Mask");
 			insertAttributeItems(childItem, element, attributes, descriptions, true);
 			gamePos++;
-			while ( xmlLines[gamePos].contains("<confsetting ") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<confsetting ") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Setting"));
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", true));
@@ -1070,8 +1070,8 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Category"));
 			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name", true));
 			gamePos++;
-			while ( xmlLines[gamePos].contains("<item ") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<item ") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Item"));
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", true));
@@ -1093,8 +1093,8 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 			descriptions << tr("Tag") << tr("Mandatory") << tr("Interface");
 			insertAttributeItems(childItem, element, attributes, descriptions, false);
 			gamePos++;
-			while ( xmlLines[gamePos].contains("<instance ") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<instance ") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Instance"));
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", false));
@@ -1105,8 +1105,8 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 				insertAttributeItems(secondChildItem, element, attributes, descriptions, false);
 				gamePos++;
 			}
-			while ( xmlLines[gamePos].contains("<extension ") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<extension ") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Extension"));
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", false));
@@ -1116,13 +1116,13 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 		if ( element.contains("<ramoption") ) {
 			childItem = new QTreeWidgetItem();
 			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("RAM options"));
-			while ( xmlLines[gamePos].contains("<ramoption") ) {
-				QString subElement = xmlLines[gamePos].simplified();
+			while ( xmlLines.at(gamePos).contains("<ramoption") ) {
+				QString subElement(xmlLines.at(gamePos).simplified());
 				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Option"));
 				int fromIndex = subElement.indexOf('>') + 1;
 				int toIndex = subElement.indexOf('<', fromIndex);
-				QString ramOptionValue = subElement.mid(fromIndex, toIndex - fromIndex);
+				QString ramOptionValue(subElement.mid(fromIndex, toIndex - fromIndex));
 				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ramOptionValue);
 				attributes.clear();
 				attributes << "default";
@@ -1131,7 +1131,7 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 				insertAttributeItems(secondChildItem, subElement, attributes, descriptions, false);
 				gamePos++;
 			}
-			if ( xmlLines[gamePos].contains(endMark) )
+			if ( xmlLines.at(gamePos).contains(endMark) )
 				gamePos--;
 		}
 		gamePos++;
@@ -1477,9 +1477,9 @@ void MachineList::parse()
 			machineListDb()->beginTransaction();
 			int pendingDbUpdates = 0;
 			for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2LoadingInterrupted; rowCounter++) {
-				QStringList xmlLines = xmlDb()->xml(rowCounter).split(lineSplitChar, QString::SkipEmptyParts);
+				QStringList xmlLines(xmlDb()->xml(rowCounter).split(lineSplitChar, QString::SkipEmptyParts));
 				for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2LoadingInterrupted; lineCounter++) {
-					while ( lineCounter < xmlLines.count() && !xmlLines[lineCounter].contains("<description>") )
+					while ( lineCounter < xmlLines.count() && !xmlLines.at(lineCounter).contains("<description>") )
 						lineCounter++;
 					if ( !qmc2LoadingInterrupted && lineCounter < xmlLines.count() ) {
 						QString machineElement(xmlLines.at(lineCounter - 1).simplified());
@@ -1510,7 +1510,7 @@ void MachineList::parse()
 						bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
 						QString endMark("</machine>");
 						while ( !endGame ) {
-							QString xmlLine(xmlLines[i]);
+							QString xmlLine(xmlLines.at(i));
 							if ( xmlLine.contains("<year>") ) {
 								machineYear = xmlLine.simplified().remove("<year>").remove("</year>");
 								yearFound = true;
@@ -2426,20 +2426,20 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				// there are quite a number of sets in MAME that don't require any ROMs... many/most device-sets in particular
 				bool romRequired = true;
 				int xmlCounter = 0;
-				QStringList xmlLines = xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts);
+				QStringList xmlLines(xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts));
 				if ( xmlLines.count() > 0 ) {
 					int romCounter = 0;
 					int chdCounter = 0;
 					bool endFound = false;
 					QString endMark = "</machine>";
 					while ( !endFound && xmlCounter < xmlLines.count() ) {
-						if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
+						if ( xmlLines.at(xmlCounter).contains("<rom name=\"") ) {
 							romCounter++;
 							endFound = true;
-						} else if ( xmlLines[xmlCounter].contains("<disk name=\"") ) {
+						} else if ( xmlLines.at(xmlCounter).contains("<disk name=\"") ) {
 							chdCounter++;
 							endFound = true;
-						} else if ( xmlLines[xmlCounter].contains(endMark) )
+						} else if ( xmlLines.at(xmlCounter).contains(endMark) )
 							endFound = true;
 						xmlCounter++;
 					}
@@ -2684,13 +2684,13 @@ void MachineList::verifyReadyReadStandardOutput()
 {
 	// process rom verification output
 	char romState;
-	QString romName, romStateLong; 
-	QString s = verifyLastLine + verifyProc->readAllStandardOutput();
+	QString romStateLong; 
+	QString s(verifyLastLine + verifyProc->readAllStandardOutput());
 #if defined(QMC2_OS_WIN)
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-	QStringList lines = s.split("\n");
-	if ( s.endsWith("\n") )
+	QStringList lines(s.split('\n'));
+	if ( s.endsWith('\n') )
 		verifyLastLine.clear();
 	else {
 		verifyLastLine = lines.last();
@@ -2704,11 +2704,12 @@ void MachineList::verifyReadyReadStandardOutput()
 	bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowROMStatusIcons", true).toBool();
 	QChar splitChar(' ');
 	for (int i = 0; i < lines.count(); i++) {
-		if ( lines[i].startsWith("romset ") ) {
-			QStringList words = lines[i].split(splitChar);
+		if ( lines.at(i).startsWith("romset ") ) {
+			QStringList words(lines.at(i).split(splitChar));
 			numVerifyRoms++;
 			if ( words.count() > 2 ) {
-				romName = words[1].remove("\"");
+				QString romName(words.at(1));
+				romName.remove('\"');
 				QTreeWidgetItem *romItem = qmc2MachineListItemHash.value(romName);
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(romName);
 				if ( romItem && hierarchyItem ) {
@@ -2716,7 +2717,7 @@ void MachineList::verifyReadyReadStandardOutput()
 					QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(romName);
 					bool isBIOS = isBios(romName);
 					bool isDev = isDevice(romName);
-					if ( words.last() == "good" || lines[i].endsWith("has no roms!") ) {
+					if ( words.last() == "good" || lines.at(i).endsWith("has no roms!") ) {
 						romState = 'C';
 						romStateLong = QObject::tr("correct");
 						numCorrectMachines++;
