@@ -82,7 +82,7 @@ bool CatverIniOptimizer::loadCatverIni()
 	QFile catverIniFile(m_fileName);
 	if ( catverIniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream tsCatverIni(&catverIniFile);
-		int lineCounter = 0, catVerSwitch = 0;
+		int catVerSwitch = 0;
 		QChar splitChar('='), dotChar('.'), zeroChar('0');
 		while ( !tsCatverIni.atEnd() ) {
 			QString catverLine(tsCatverIni.readLine());

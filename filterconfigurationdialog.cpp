@@ -56,7 +56,6 @@ void FilterConfigurationDialog::init()
 void FilterConfigurationDialog::addFilterClicked()
 {
 	QToolButton *tb = (QToolButton *)sender();
-	int pageIndex = buttonToPage(tb);
 	QTreeWidgetItem *parentItem = buttonToItem(tb);
 	QTreeWidgetItem *item = new QTreeWidgetItem(parentItem);
 	item->setText(QMC2_FCDLG_COLUMN_NAME, tr("Inactive filter"));

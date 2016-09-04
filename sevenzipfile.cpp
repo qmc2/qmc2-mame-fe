@@ -5,15 +5,15 @@
 
 SevenZipFile::SevenZipFile(QString fileName, QObject *parent) :
 	QObject(parent),
-	m_fileName(fileName),
-	m_isOpen(false),
-	m_fillingDictionary(false),
-	m_firstExtraction(true),
-	m_sizeProcessed(0),
 	m_blockIndex(0xFFFFFFFF),
-	m_buffer(0),
 	m_bufferSize(0),
-	m_extractor(0)
+	m_sizeProcessed(0),
+	m_buffer(0),
+	m_fileName(fileName),
+	m_extractor(0),
+	m_isOpen(false),
+	m_firstExtraction(true),
+	m_fillingDictionary(false)
 {
 	m_allocImp.Alloc = SzAlloc;
 	m_allocImp.Free = SzFree;
@@ -310,9 +310,9 @@ void SevenZipFile::createEntryList()
 SevenZipExtractorThread::SevenZipExtractorThread(QObject *parent) :
 	QThread(parent),
 	m_quitFlag(false),
-	m_result(SZ_OK),
 	m_active(false),
-	m_fileCount(0)
+	m_fileCount(0),
+	m_result(SZ_OK)
 {
 	start();
 }
