@@ -303,7 +303,6 @@ extern QHash<QString, QStringList> systemSoftwareFilterHash;
 #if defined(QMC2_OS_WIN)
 extern QMap<HWND, QString> winWindowMap;
 #endif
-extern QString qmc2CurrentStyleName;
 extern QHash<QString, QString> softwareParentHash;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -6255,7 +6254,7 @@ void MainWindow::init()
 
 void MainWindow::setupStyle(QString styleName)
 {
-	if ( qmc2CurrentStyleName == styleName )
+	if ( qmc2Options->currentStyleName() == styleName )
 		return;
 	QStyle *newStyle = 0;
 	if ( styleName != "Default" ) {
@@ -6282,7 +6281,7 @@ void MainWindow::setupStyle(QString styleName)
 			proxyStyle->setBaseStyle(newStyle);
 			delete oldBaseStyle;
 		}
-		qmc2CurrentStyleName = styleName;
+		qmc2Options->setCurrentStyleName(styleName);
 	} else
 		log(QMC2_LOG_FRONTEND, tr("WARNING: GUI style '%1' not found").arg(styleName));
 }

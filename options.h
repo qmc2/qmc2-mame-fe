@@ -106,6 +106,10 @@ class Options : public QDialog, public Ui::Options
 		bool useNativeFileDialogs() { return config->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
 #endif
 		int iconFileType();
+		void setStandardWorkDir(const QString &d) { m_standardWorkDir = d; }
+		QString &standardWorkDir() { return m_standardWorkDir; }
+		void setCurrentStyleName(const QString &s) { m_currentStyleName = s; }
+		QString &currentStyleName() { return m_currentStyleName; }
 
 		static QString configPath();
 
@@ -247,6 +251,10 @@ class Options : public QDialog, public Ui::Options
 	protected:
 		void moveEvent(QMoveEvent *);
 		void resizeEvent(QResizeEvent *);
+
+	private:
+		QString m_standardWorkDir;
+		QString m_currentStyleName;
 };
 
 #endif
