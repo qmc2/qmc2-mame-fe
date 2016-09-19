@@ -1192,6 +1192,11 @@
 			<description lang="pt" text="Ativar a utilização do VBLANK como troca ao invés do tempo do jogo"/>
 			<description lang="es" text="Activar el uso de VBLANK para acelerar en vez del juego"/>
 		</option>
+		<option default="auto" name="monitorprovider" type="combo">
+			<description lang="us" text="Monitor discovery method"/>
+			<description lang="de" text="Monitor Suchmethode"/>
+			<choice name="auto"/>
+		</option>
 		<option default="false" name="menu" type="bool">
 			<description lang="us" text="Enable menu bar if available by UI implementation"/>
 			<description lang="de" text="Menü-Zeile aktivieren, sofern in UI Implementierung verfügbar"/>
