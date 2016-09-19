@@ -1166,6 +1166,11 @@
 			<description lang="fr" text="Active l'utilisation de V-BLANK comme accélérateur plutôt que le timer du jeu"/>
 			<description lang="pt" text="Ativar a utilização do VBLANK como troca ao invés do tempo do jogo"/>
 		</option>
+		<option default="auto" name="monitorprovider" type="combo">
+			<description lang="us" text="Monitor discovery method"/>
+			<description lang="de" text="Monitor Suchmethode"/>
+			<choice name="auto"/>
+		</option>
 	</section>
 	<section name="opengl">
 		<description lang="us" text="OpenGL"/>
