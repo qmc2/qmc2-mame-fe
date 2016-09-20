@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>295</width>
-    <height>276</height>
+    <width>393</width>
+    <height>391</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,21 +59,130 @@
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
+     <layout class="QGridLayout" name="gridLayoutFrameExportParams">
+      <item row="1" column="0" colspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="comboBoxSortOrder">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip">
+         <string>Select sort order</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Ascending</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Descending</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="comboBoxSortCriteria">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Select sort criteria</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Machine description</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ROM status</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Year</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Manufacturer</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Machine name</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ROM types</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Players</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Driver status</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QCheckBox" name="checkBoxFavoriteSetsOnly">
+          <property name="toolTip">
+           <string>Export only favorite sets?</string>
+          </property>
+          <property name="text">
+           <string>Only favorite sets</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxTaggedSetsOnly">
+          <property name="toolTip">
+           <string>Export only sets that are tagged?</string>
+          </property>
+          <property name="text">
+           <string>Only tagged sets</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelSortOrder">
         <property name="text">
-         <string>Exported ROM states</string>
+         <string>Sort order</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="2" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QToolButton" name="toolButtonExportC">
@@ -175,144 +284,27 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelSortCriteria">
-        <property name="text">
-         <string>Sort criteria</string>
+      <item row="7" column="0" colspan="2">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="comboBoxSortCriteria">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Select sort criteria</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Machine description</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>ROM status</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Year</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Manufacturer</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Machine name</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>ROM types</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Players</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Driver status</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="labelSortOrder">
-        <property name="text">
-         <string>Sort order</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxSortOrder">
+       <widget class="QLabel" name="label">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip">
-         <string>Select sort order</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Ascending</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Descending</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QCheckBox" name="checkBoxIncludeHeader">
-        <property name="toolTip">
-         <string>Include some header information in export</string>
-        </property>
         <property name="text">
-         <string>Include header</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+         <string>Exported ROM states</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QCheckBox" name="checkBoxIncludeStatistics">
-        <property name="toolTip">
-         <string>Include statistical overview of the ROM state in export</string>
-        </property>
-        <property name="text">
-         <string>Include ROM statistics</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QCheckBox" name="checkBoxExportToClipboard">
-        <property name="toolTip">
-         <string>Export to the system clipboard instead of a file</string>
-        </property>
-        <property name="text">
-         <string>Export to clipboard</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
+      <item row="6" column="1">
        <widget class="QCheckBox" name="checkBoxOverwriteBlindly">
         <property name="toolTip">
          <string>Overwrite existing files without asking what to do</string>
@@ -325,10 +317,56 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="0" colspan="2">
+      <item row="5" column="1">
+       <widget class="QCheckBox" name="checkBoxIncludeStatistics">
+        <property name="toolTip">
+         <string>Include statistical overview of the ROM state in export</string>
+        </property>
+        <property name="text">
+         <string>Include ROM statistics</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="checkBoxIncludeHeader">
+        <property name="toolTip">
+         <string>Include some header information in export</string>
+        </property>
+        <property name="text">
+         <string>Include header</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelSortCriteria">
+        <property name="text">
+         <string>Sort criteria</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="checkBoxExportToClipboard">
+        <property name="toolTip">
+         <string>Export to the system clipboard instead of a file</string>
+        </property>
+        <property name="text">
+         <string>Export to clipboard</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" colspan="2">
        <widget class="QStackedWidget" name="stackedWidgetOutputParams">
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="pageASCII">
          <layout class="QGridLayout" name="gridLayout_7">
@@ -388,7 +426,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>26</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -496,8 +534,8 @@
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>17</width>
-                <height>63</height>
+                <width>20</width>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -671,7 +709,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>53</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -774,6 +812,8 @@
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>comboBoxOutputFormat</tabstop>
+  <tabstop>checkBoxFavoriteSetsOnly</tabstop>
+  <tabstop>checkBoxTaggedSetsOnly</tabstop>
   <tabstop>toolButtonExportC</tabstop>
   <tabstop>toolButtonExportM</tabstop>
   <tabstop>toolButtonExportI</tabstop>
@@ -809,8 +849,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>279</y>
+     <x>180</x>
+     <y>380</y>
     </hint>
     <hint type="destinationlabel">
      <x>327</x>
@@ -825,12 +865,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>120</y>
+     <x>61</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>67</x>
-     <y>146</y>
+     <x>76</x>
+     <y>295</y>
     </hint>
    </hints>
   </connection>
@@ -841,12 +881,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>144</x>
-     <y>129</y>
+     <x>134</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>177</x>
-     <y>150</y>
+     <x>280</x>
+     <y>295</y>
     </hint>
    </hints>
   </connection>
@@ -857,12 +897,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>67</x>
-     <y>123</y>
+     <x>75</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>72</x>
-     <y>143</y>
+     <x>81</x>
+     <y>295</y>
     </hint>
    </hints>
   </connection>
@@ -873,12 +913,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>144</x>
-     <y>121</y>
+     <x>134</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>148</x>
-     <y>150</y>
+     <x>244</x>
+     <y>295</y>
     </hint>
    </hints>
   </connection>
@@ -889,12 +929,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>100</x>
-     <y>120</y>
+     <x>108</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>187</x>
-     <y>120</y>
+     <x>328</x>
+     <y>247</y>
     </hint>
    </hints>
   </connection>
@@ -905,12 +945,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>127</y>
+     <x>63</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>60</x>
-     <y>149</y>
+     <x>69</x>
+     <y>295</y>
     </hint>
    </hints>
   </connection>
@@ -921,12 +961,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>43</x>
-     <y>127</y>
+     <x>51</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
-     <x>149</x>
-     <y>146</y>
+     <x>255</x>
+     <y>295</y>
     </hint>
    </hints>
   </connection>

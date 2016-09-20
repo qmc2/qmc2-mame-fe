@@ -22,8 +22,8 @@ extern MachineList *qmc2MachineList;
 extern bool qmc2ExportingROMStatus;
 extern bool qmc2LoadingInterrupted;
 
-ROMStatusExporter::ROMStatusExporter(QWidget *parent)
-	: QDialog(parent)
+ROMStatusExporter::ROMStatusExporter(QWidget *parent) :
+	QDialog(parent)
 {
 	setupUi(this);
 
@@ -34,6 +34,8 @@ ROMStatusExporter::ROMStatusExporter(QWidget *parent)
 
 	// restore settings
 	comboBoxOutputFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/OutputFormat", 0).toInt());
+	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/FavoriteSetsOnly", false).toBool());
+	checkBoxTaggedSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/TaggedSetsOnly", false).toBool());
 	toolButtonExportC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportC", true).toBool());
 	toolButtonExportM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportM", true).toBool());
 	toolButtonExportI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportI", true).toBool());
@@ -80,12 +82,16 @@ void ROMStatusExporter::adjustIconSizes()
 	pushButtonClose->setIconSize(iconSize);
 	pushButtonExport->setIconSize(iconSize);
 	comboBoxSortOrder->setIconSize(iconSize);
+
+	adjustSize();
 }
 
 void ROMStatusExporter::closeEvent(QCloseEvent *e)
 {
 	// save settings
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/OutputFormat", comboBoxOutputFormat->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/FavoriteSetsOnly", checkBoxFavoriteSetsOnly->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/TaggedSetsOnly", checkBoxTaggedSetsOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportC", toolButtonExportC->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportM", toolButtonExportM->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportI", toolButtonExportI->isChecked());
@@ -200,6 +206,19 @@ void ROMStatusExporter::exportToASCII()
 		progressBarExport->setValue(i + 1);
 		qApp->processEvents();
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
+
+		// tagged sets only?
+		if ( checkBoxTaggedSetsOnly->isChecked() )
+			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) != Qt::Checked )
+				continue;
+
+		// favorite sets only?
+		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
+			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+			if ( favoritesMatches.isEmpty() )
+				continue;
+		}
+
 		QString translatedState;
 		switch ( qmc2MachineList->romState(item->text(QMC2_MACHINELIST_COLUMN_NAME)) ) {
 			case 'C':
@@ -494,6 +513,19 @@ void ROMStatusExporter::exportToCSV()
 		progressBarExport->setValue(i + 1);
 		qApp->processEvents();
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
+
+		// tagged sets only?
+		if ( checkBoxTaggedSetsOnly->isChecked() )
+			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) != Qt::Checked )
+				continue;
+
+		// favorite sets only?
+		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
+			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+			if ( favoritesMatches.isEmpty() )
+				continue;
+		}
+
 		switch ( comboBoxSortCriteria->currentIndex() ) {
 			case QMC2_RSE_SORT_BY_DESCRIPTION:
 				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
@@ -746,6 +778,19 @@ void ROMStatusExporter::exportToHTML()
 	    	progressBarExport->setValue(i + 1);
 	    	qApp->processEvents();
 	    	QTreeWidgetItem *item = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
+
+		// tagged sets only?
+		if ( checkBoxTaggedSetsOnly->isChecked() )
+			if ( item->checkState(QMC2_MACHINELIST_COLUMN_TAG) != Qt::Checked )
+				continue;
+
+		// favorite sets only?
+		if ( checkBoxFavoriteSetsOnly->isChecked() ) {
+			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
+			if ( favoritesMatches.isEmpty() )
+				continue;
+		}
+
 	    	switch ( comboBoxSortCriteria->currentIndex() ) {
 		  	case QMC2_RSE_SORT_BY_DESCRIPTION:
 				exportMap.insert(item->text(QMC2_MACHINELIST_COLUMN_MACHINE), item);
@@ -960,7 +1005,6 @@ void ROMStatusExporter::on_comboBoxOutputFormat_currentIndexChanged(int index)
 		exportListAutoCorrected = true;
 		checkBoxExportToClipboard->setChecked(false);
 	}
-
 	exportListAutoCorrected = false;
 }
 
@@ -972,6 +1016,17 @@ void ROMStatusExporter::on_checkBoxExportToClipboard_toggled(bool enable)
 			comboBoxOutputFormat->setCurrentIndex(0);
 		}
 	}
-
 	exportListAutoCorrected = false;
+}
+
+void ROMStatusExporter::on_checkBoxFavoriteSetsOnly_toggled(bool enable)
+{
+	if ( enable )
+		checkBoxTaggedSetsOnly->setChecked(false);
+}
+
+void ROMStatusExporter::on_checkBoxTaggedSetsOnly_toggled(bool enable)
+{
+	if ( enable )
+		checkBoxFavoriteSetsOnly->setChecked(false);
 }

@@ -34,6 +34,8 @@ class ROMStatusExporter : public QDialog, public Ui::ROMStatusExporter
 		void on_pushButtonExport_clicked();
 		void on_comboBoxOutputFormat_currentIndexChanged(int);
 		void on_checkBoxExportToClipboard_toggled(bool);
+		void on_checkBoxFavoriteSetsOnly_toggled(bool);
+		void on_checkBoxTaggedSetsOnly_toggled(bool);
 
 	protected:
 		void closeEvent(QCloseEvent *);
