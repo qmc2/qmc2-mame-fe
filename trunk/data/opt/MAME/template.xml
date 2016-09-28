@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="MAME" format="0.2.8" version="0.177">
+<template emulator="MAME" format="0.2.8" version="0.178">
 	<section name="search_paths">
 		<description lang="us" text="Search paths"/>
 		<description lang="de" text="Suchpfade"/>
