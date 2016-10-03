@@ -6,9 +6,7 @@
 #include <QTextStream>
 #include <QScrollBar>
 #include <QTest>
-#include <QMap>
 #include <QMultiMap>
-#include <QHash>
 #include <QHashIterator>
 #include <QFileDialog>
 #include <QClipboard>
