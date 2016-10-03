@@ -2987,7 +2987,7 @@ void ROMAlyzer::runSetRewriter()
 
 		QByteArray fileData;
 		if ( fromZip ) {
-			if ( readZipFileData(filePath, fileCRC, &fileData) ) {
+			if ( readZipFileData(filePath, fileCRC, fileName, &fileData) ) {
 				outputDataMap[outputFileName] = fileData;
 				uniqueCRCs << fileCRC;
 			} else {
@@ -2998,7 +2998,7 @@ void ROMAlyzer::runSetRewriter()
 					log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
 			}
 		} else if ( fromSevenZip ) {
-			if ( readSevenZipFileData(filePath, fileCRC, &fileData) ) {
+			if ( readSevenZipFileData(filePath, fileCRC, fileName, &fileData) ) {
 				outputDataMap[outputFileName] = fileData;
 				uniqueCRCs << fileCRC;
 			} else {
@@ -3486,13 +3486,13 @@ bool ROMAlyzer::readFileData(QString fileName, QString crc, QByteArray *data)
 }
 
 // reads the file with the CRC 'crc' in the 7z archive 'fileName' and returns its data in 'data'
-bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *data)
+bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QString member, QByteArray *data)
 {
 	SevenZipFile sevenZipFile(fileName);
 	if ( sevenZipFile.open() ) {
 		int index = sevenZipFile.indexOfCrc(crc);
 		if ( index >= 0 ) {
-			int nameIndex = sevenZipFile.indexOfName(fileName);
+			int nameIndex = sevenZipFile.indexOfName(member);
 			if ( nameIndex >= 0 )
 				index = nameIndex;
 			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
@@ -3515,7 +3515,7 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 }
 
 // reads the file with the CRC 'crc' in the ZIP 'fileName' and returns its data in 'data'
-bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
+bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QString member, QByteArray *data)
 {
 	bool success = true;
 	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
@@ -3535,8 +3535,8 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 		if ( crcIdentMap.contains(ulCRC) ) {
 			QString fn;
 			QStringList names(crcIdentMap.values(ulCRC));
-			if ( names.contains(fileName) )
-				fn = fileName;
+			if ( names.contains(member) )
+				fn = member;
 			else
 				fn = names.at(0);
 			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) { // NOT case-sensitive filename compare!
@@ -3803,13 +3803,13 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 			// load ROM image
 			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive
-				if ( !readZipFileData(sourcePath, sourceCRC, &templateData) ) {
+				if ( !readZipFileData(sourcePath, sourceCRC, sourceFile, &templateData) ) {
 					log(tr("check-sum wizard: FATAL: can't open ZIP archive '%1' for reading").arg(sourcePath));
 					loadOkay = false;
 				}
 			} else if ( sourcePath.indexOf(QRegExp("^.*\\.7[zZ]$")) == 0 ) {
 				// file from a 7Z archive
-				if ( !readSevenZipFileData(sourcePath, sourceCRC, &templateData) ) {
+				if ( !readSevenZipFileData(sourcePath, sourceCRC, sourceFile, &templateData) ) {
 					log(tr("check-sum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
 					loadOkay = false;
 				}
