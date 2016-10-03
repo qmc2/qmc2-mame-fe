@@ -311,8 +311,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 
 		void saveState() { closeEvent(0); }
 		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = 0);
-		bool readSevenZipFileData(QString, QString, QByteArray *);
-		bool readZipFileData(QString, QString, QByteArray *);
+		bool readSevenZipFileData(QString, QString, QString, QByteArray *);
+		bool readZipFileData(QString, QString, QString, QByteArray *);
 		bool readFileData(QString, QString, QByteArray *);
 		bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = 0);
 #if defined(QMC2_LIBARCHIVE_ENABLED)
