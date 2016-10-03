@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>877</width>
-    <height>693</height>
+    <height>687</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -768,7 +768,7 @@
                     <item row="0" column="0" colspan="2">
                      <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
                       <property name="toolTip">
-                       <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+                       <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually (recommended) or just the first one?</string>
                       </property>
                       <property name="text">
                        <string>Unique CRCs</string>
@@ -822,7 +822,7 @@
                     <item row="0" column="0" colspan="2">
                      <widget class="QCheckBox" name="checkBoxSetRewriterLibArchiveUniqueCRCs">
                       <property name="toolTip">
-                       <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+                       <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually (recommended) or just the first one?</string>
                       </property>
                       <property name="text">
                        <string>Unique CRCs</string>

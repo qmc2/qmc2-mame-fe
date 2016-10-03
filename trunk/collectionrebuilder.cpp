@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMap>
+#include <QMultiMap>
 #include <QDateTime>
 #include <QMessageBox>
 #include <QScrollBar>
@@ -1311,10 +1312,10 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				switch ( m_fileTypes.indexOf(type) ) {
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
-						success = readZipFileData(path, romCrcList->at(i), &data);
+						success = readZipFileData(path, romCrcList->at(i), member, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_7Z:
-						success = readSevenZipFileData(path, romCrcList->at(i), &data);
+						success = readSevenZipFileData(path, romCrcList->at(i), member, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
 						success = readFileData(path, &data);
@@ -1413,10 +1414,10 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				switch ( m_fileTypes.indexOf(type) ) {
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
-						success = readZipFileData(path, romCrcList->at(i), &data);
+						success = readZipFileData(path, romCrcList->at(i), member, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_7Z:
-						success = readSevenZipFileData(path, romCrcList->at(i), &data);
+						success = readSevenZipFileData(path, romCrcList->at(i), member, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
 						success = readFileData(path, &data);
@@ -1512,10 +1513,10 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
 				switch ( m_fileTypes.indexOf(type) ) {
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_ZIP:
-						success = readZipFileData(path, romCrcList->at(i), &data);
+						success = readZipFileData(path, romCrcList->at(i), member, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_7Z:
-						success = readSevenZipFileData(path, romCrcList->at(i), &data);
+						success = readSevenZipFileData(path, romCrcList->at(i), member, &data);
 						break;
 					case QMC2_COLLECTIONREBUILDER_FILETYPE_FILE:
 						success = readFileData(path, &data);
@@ -1580,12 +1581,15 @@ bool CollectionRebuilderThread::readFileData(QString fileName, QByteArray *data)
 	}
 }
 
-bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString crc, QByteArray *data)
+bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString crc, QString member, QByteArray *data)
 {
 	SevenZipFile sevenZipFile(fileName);
 	if ( sevenZipFile.open() ) {
 		int index = sevenZipFile.indexOfCrc(crc);
 		if ( index >= 0 ) {
+			int nameIndex = sevenZipFile.indexOfName(member);
+			if ( nameIndex >= 0 )
+				index = nameIndex;
 			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 			emit log(tr("reading '%1' from 7Z archive '%2' (uncompressed size: %3)").arg(metaData.name()).arg(fileName).arg(ROMAlyzer::humanReadable(metaData.size())));
 			quint64 readLength = sevenZipFile.read(index, data); // can't be interrupted!
@@ -1608,22 +1612,27 @@ bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString c
 	}
 }
 
-bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, QByteArray *data)
+bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, QString member, QByteArray *data)
 {
 	bool success = true;
 	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ZIP_BUFFER_SIZE];
 		unz_file_info zipInfo;
-		QMap<uLong, QString> crcIdentMap;
+		QMultiMap<uLong, QString> crcIdentMap;
 		uLong ulCRC = crc.toULong(0, 16);
 		do {
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
 				crcIdentMap.insert(zipInfo.crc, QString((const char *)ioBuffer));
-		} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
-			QString fn(crcIdentMap.value(ulCRC));
+			QString fn;
+			QStringList names(crcIdentMap.values(ulCRC));
+			if ( names.contains(member) )
+				fn = member;
+			else
+				fn = names.at(0);
 			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) {
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
