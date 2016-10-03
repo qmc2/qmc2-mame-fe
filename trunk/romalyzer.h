@@ -8,6 +8,7 @@
 #include <QWaitCondition>
 #include <QTime>
 #include <QTimer>
+#include <QMap>
 #include <QHash>
 #include <QPixmap>
 #include <QStringList>
