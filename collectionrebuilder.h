@@ -88,8 +88,8 @@ class CollectionRebuilderThread : public QThread
 		bool writeAllArchiveData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 #endif
 		bool readFileData(QString, QByteArray *);
-		bool readSevenZipFileData(QString, QString, QByteArray *);
-		bool readZipFileData(QString, QString, QByteArray *);
+		bool readSevenZipFileData(QString, QString, QString, QByteArray *);
+		bool readZipFileData(QString, QString, QString, QByteArray *);
 		bool hardlinkChds(QString, QString, QStringList *, QStringList *);
 		bool symlinkChds(QString, QString, QStringList *, QStringList *);
 		bool copyChds(QString, QString, QStringList *, QStringList *);

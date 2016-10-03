@@ -7,6 +7,7 @@
 #include <QScrollBar>
 #include <QTest>
 #include <QMap>
+#include <QMultiMap>
 #include <QHash>
 #include <QHashIterator>
 #include <QFileDialog>
@@ -1924,6 +1925,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 						// identify file by CRC
 						int index = sevenZipFile.indexOfCrc(wantedCRC);
 						if ( index >= 0 ) {
+							int nameIndex = sevenZipFile.indexOfName(fileName);
+							if ( nameIndex >= 0 )
+								index = nameIndex;
 							SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 							if ( sizeLimited ) {
 								if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
@@ -2014,17 +2018,21 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 					if ( zipFile ) {
 						// identify file by CRC
 						unz_file_info zipInfo;
-						QMap<uLong, QString> crcIdentMap;
+						QMultiMap<uLong, QString> crcIdentMap;
 						uLong ulCRC = wantedCRC.toULong(0, 16);
 						do {
 							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
-								crcIdentMap[zipInfo.crc] = QString((const char *)buffer);
-						} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+								crcIdentMap.insert(zipInfo.crc, QString((const char *)buffer));
+						} while ( unzGoToNextFile(zipFile) == UNZ_OK );
 						unzGoToFirstFile(zipFile);
-						QString fn = "QMC2_DUMMY_FILENAME";
-						if ( crcIdentMap.contains(ulCRC) )
-							fn = crcIdentMap[ulCRC];
-						else if ( mergeFile.isEmpty() ) {
+						QString fn("QMC2_DUMMY_FILENAME");
+						if ( crcIdentMap.contains(ulCRC) ) {
+							QStringList names(crcIdentMap.values(ulCRC));
+							if ( names.contains(fileName) )
+								fn = fileName;
+							else
+								fn = names.at(0);
+						} else if ( mergeFile.isEmpty() ) {
 							if ( !isCHD ) {
 								if ( wantedCRC.isEmpty() ) {
 									log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
@@ -2034,7 +2042,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 							}
 							fn = fileName;
 						}
-
 						if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) { // NOT case-sensitive filename compare!
 							totalSize = 0;
 							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
@@ -3487,6 +3494,9 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QByteArray *
 	if ( sevenZipFile.open() ) {
 		int index = sevenZipFile.indexOfCrc(crc);
 		if ( index >= 0 ) {
+			int nameIndex = sevenZipFile.indexOfName(fileName);
+			if ( nameIndex >= 0 )
+				index = nameIndex;
 			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 			qApp->processEvents();
 			quint64 readLength = sevenZipFile.read(index, data);
@@ -3517,15 +3527,20 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 
 		// identify file by CRC
 		unz_file_info zipInfo;
-		QMap<uLong, QString> crcIdentMap;
+		QMultiMap<uLong, QString> crcIdentMap;
 		uLong ulCRC = crc.toULong(0, 16);
 		do {
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
-				crcIdentMap[zipInfo.crc] = QString((const char *)ioBuffer);
-		} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+				crcIdentMap.insert(zipInfo.crc, QString((const char *)ioBuffer));
+		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
 		unzGoToFirstFile(zipFile);
 		if ( crcIdentMap.contains(ulCRC) ) {
-			QString fn = crcIdentMap[ulCRC];
+			QString fn;
+			QStringList names(crcIdentMap.values(ulCRC));
+			if ( names.contains(fileName) )
+				fn = fileName;
+			else
+				fn = names.at(0);
 			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) { // NOT case-sensitive filename compare!
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
