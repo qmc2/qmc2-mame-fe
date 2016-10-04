@@ -1923,9 +1923,11 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 						// identify file by CRC
 						int index = sevenZipFile.indexOfCrc(wantedCRC);
 						if ( index >= 0 ) {
-							int nameIndex = sevenZipFile.indexOfName(fileName);
-							if ( nameIndex >= 0 )
-								index = nameIndex;
+							if ( sevenZipFile.isCrcDuplicate(wantedCRC) ) {
+								int nameIndex = sevenZipFile.indexOfName(fileName);
+								if ( nameIndex >= 0 )
+									index = nameIndex;
+							}
 							SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 							if ( sizeLimited ) {
 								if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
@@ -3492,9 +3494,11 @@ bool ROMAlyzer::readSevenZipFileData(QString fileName, QString crc, QString memb
 	if ( sevenZipFile.open() ) {
 		int index = sevenZipFile.indexOfCrc(crc);
 		if ( index >= 0 ) {
-			int nameIndex = sevenZipFile.indexOfName(member);
-			if ( nameIndex >= 0 )
-				index = nameIndex;
+			if ( sevenZipFile.isCrcDuplicate(crc) ) {
+				int nameIndex = sevenZipFile.indexOfName(member);
+				if ( nameIndex >= 0 )
+					index = nameIndex;
+			}
 			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 			qApp->processEvents();
 			quint64 readLength = sevenZipFile.read(index, data);
