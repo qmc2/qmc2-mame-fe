@@ -1587,9 +1587,11 @@ bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString c
 	if ( sevenZipFile.open() ) {
 		int index = sevenZipFile.indexOfCrc(crc);
 		if ( index >= 0 ) {
-			int nameIndex = sevenZipFile.indexOfName(member);
-			if ( nameIndex >= 0 )
-				index = nameIndex;
+			if ( sevenZipFile.isCrcDuplicate(crc) ) {
+				int nameIndex = sevenZipFile.indexOfName(member);
+				if ( nameIndex >= 0 )
+					index = nameIndex;
+			}
 			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 			emit log(tr("reading '%1' from 7Z archive '%2' (uncompressed size: %3)").arg(metaData.name()).arg(fileName).arg(ROMAlyzer::humanReadable(metaData.size())));
 			quint64 readLength = sevenZipFile.read(index, data); // can't be interrupted!

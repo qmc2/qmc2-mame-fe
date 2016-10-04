@@ -108,8 +108,9 @@ class SevenZipFile : public QObject
 		QList<SevenZipMetaData> &entryList() { return m_entryList; }
 		quint64 read(QString name, QByteArray *buffer);
 		quint64 read(uint index, QByteArray *buffer, bool *async = 0);
-		int indexOfName(const QString &name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache[name]; else return -1; }
-		int indexOfCrc(const QString &crc) { if ( m_crcToIndexCache.contains(crc) ) return m_crcToIndexCache[crc]; else return -1; }
+		int indexOfName(const QString &name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache.value(name); else return -1; }
+		int indexOfCrc(const QString &crc) { if ( m_crcToIndexCache.contains(crc) ) return m_crcToIndexCache.value(crc); else return -1; }
+		bool isCrcDuplicate(const QString &crc) { if ( m_crcDuplicates.contains(crc) ) return m_crcDuplicates.value(crc); else return false; }
 		QString &userData() { return m_userData; }
 		void setUserData(const QString &data) { m_userData = data; }
 
@@ -152,6 +153,7 @@ class SevenZipFile : public QObject
 		QString m_userData;
 		QHash<QString, int> m_nameToIndexCache;
 		QHash<QString, int> m_crcToIndexCache;
+		QHash<QString, bool> m_crcDuplicates;
 };
 
 #endif
