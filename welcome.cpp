@@ -283,31 +283,15 @@ bool Welcome::checkConfig()
 	}
 	startupConfig->endGroup();
 
-	/* *** There are currently no settings upgrades ***
 	QStringList verList(startupConfig->value("Version").toString().split('.', QString::SkipEmptyParts));
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 60, osr, 7285) ) {
-			QString oldMlcName = startupConfig->value("MAME/FilesAndDirectories/MachineListCacheFile", Options::configPath() + "/mame.glc").toString();
-			QString newMlcName = oldMlcName;
-			newMlcName.replace(oldMlcName.length() - 4, 4, ".mlc");
-			if ( oldMlcName.endsWith(".glc") ) {
-				QFile f(oldMlcName);
-				f.rename(newMlcName);
-				startupConfig->setValue("MAME/FilesAndDirectories/MachineListCacheFile", newMlcName);
-			}
-			QString oldFilteredMlcName = oldMlcName + ".filtered";
-			QFile f(oldFilteredMlcName);
-			if ( f.exists() ) {
-				QString newFilteredMlcName = newMlcName + ".filtered";
-				f.rename(newFilteredMlcName);
-				startupConfig->setValue(QMC2_ARCADE_PREFIX + "FilteredListFile", newFilteredMlcName);
-			} else
-				startupConfig->remove(QMC2_ARCADE_PREFIX + "FilteredListFile");
+		if ( QMC2_TEST_VERSION(omv, 68, osr, 7768) ) {
+			startupConfig->remove(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel");
+			startupConfig->remove(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/ChecksumWizardAutomationLevel");
 		}
 	}
-	*/
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();
 	configOkay &= !QMC2_CLI_OPT_RECONFIGURE;

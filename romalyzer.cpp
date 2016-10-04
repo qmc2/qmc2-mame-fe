@@ -284,7 +284,6 @@ void ROMAlyzer::adjustIconSizes()
 		tabBar->setIconSize(iconSize);
 	toolButtonToolsMenu->setIconSize(iconSize);
 	pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
-	pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
 	treeWidgetChecksums->setIconSize(iconSizeTreeWidgets);
 	treeWidgetChecksumWizardSearchResult->setIconSize(iconSizeTreeWidgets);
 	pushButtonChecksumWizardSearch->setIconSize(iconSize);
@@ -440,7 +439,6 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderDryRun", checkBoxCollectionRebuilderDryRun->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CollectionRebuilderCHDHandling", comboBoxCollectionRebuilderCHDHandling->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", groupBoxCheckSumDatabase->isChecked());
 	QStringList checkSumDbScannedPaths;
 	QStringList checkSumDbScannedPathsEnabled;
@@ -523,7 +521,6 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	comboBoxSetRewriterLibArchiveDeflate->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", true).toBool() ? 0 : 1);
 	checkBoxSetRewriterAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
 	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
-	comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 	bool enable = true;
@@ -1351,11 +1348,6 @@ void ROMAlyzer::analyze()
 	log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
 
 	actionExportToDataFile->setEnabled(!analyzerBadSets.isEmpty());
-
-	if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2LoadingInterrupted ) {
-		if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
-			on_pushButtonChecksumWizardRepairBadSets_clicked();
-	}
 
 	setActive(false);
 	wizardSearch = false;
@@ -2707,7 +2699,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	qmc2LoadingInterrupted = false;
 
 	treeWidgetChecksumWizardSearchResult->clear();
-	QString searchedChecksum = lineEditChecksumWizardHash->text().toLower();
+	QString searchedChecksum(lineEditChecksumWizardHash->text().toLower());
 	if ( searchedChecksum.isEmpty() )
 		return;
 
@@ -2736,18 +2728,18 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 
 	switch ( mode() ) {
 		case QMC2_ROMALYZER_MODE_SOFTWARE: {
-				QStringList uniqueSoftwareLists = qmc2MainWindow->swlDb->uniqueSoftwareLists();
+				QStringList uniqueSoftwareLists(qmc2MainWindow->swlDb->uniqueSoftwareLists());
 				progressBar->setRange(0, uniqueSoftwareLists.count());
 				int progressCount = 0, updateCount = 0;
 				foreach (QString list, uniqueSoftwareLists) {
 					foreach (QString set, qmc2MainWindow->swlDb->uniqueSoftwareSets(list)) {
-						QStringList xmlLines = qmc2MainWindow->swlDb->xml(list, set).split("\n", QString::SkipEmptyParts);
+						QStringList xmlLines(qmc2MainWindow->swlDb->xml(list, set).split("\n", QString::SkipEmptyParts));
 						for (int i = 0; i < xmlLines.count(); i++) {
 							QString xmlLine = xmlLines[i];
 							int hashIndex = xmlLine.indexOf(hashStartString);
 							if ( hashIndex >= 0 ) {
 								int hashPos = hashIndex + hashStartOffset;
-								QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
+								QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower());
 								if ( currentChecksum == searchedChecksum ) {
 									int fileNamePos;
 									QString fileType;
@@ -2758,18 +2750,16 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 										fileType = tr("ROM");
 										fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
 									}
-									QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
+									QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos));
 									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
 									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, list + ":" + set);
 									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
 									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
 									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
-									if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
-										item->setSelected(true);
 								}
 							}
 						}
-						if ( updateCount++ % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
+						if ( updateCount++ % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE == 0 ) {
 							progressBar->setValue(progressCount);
 							qApp->processEvents();
 						}
@@ -2783,18 +2773,18 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 		default:
 			progressBar->setRange(0, qmc2MainWindow->treeWidgetMachineList->topLevelItemCount());
 			for (int i = 0; i < qmc2MainWindow->treeWidgetMachineList->topLevelItemCount(); i++) {
-				if ( i % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE ) {
+				if ( i % QMC2_ROMALYZER_CKSUM_SEARCH_RESPONSE == 0 ) {
 					progressBar->setValue(i);
 					qApp->processEvents();
 				}
-				QString currentGame = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME);
-				QStringList xmlLines = qmc2MachineList->xmlDb()->xml(currentGame).split("\n", QString::SkipEmptyParts);
+				QString currentMachine(qmc2MainWindow->treeWidgetMachineList->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME));
+				QStringList xmlLines(qmc2MachineList->xmlDb()->xml(currentMachine).split('\n', QString::SkipEmptyParts));
 				for (int j = 0; j < xmlLines.count(); j++) {
-					QString xmlLine = xmlLines[j];
+					QString xmlLine = xmlLines.at(j);
 					int hashIndex = xmlLine.indexOf(hashStartString);
 					if ( hashIndex >= 0 ) {
 						int hashPos = hashIndex + hashStartOffset;
-						QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
+						QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf('\"', hashPos) - hashPos).toLower());
 						if ( currentChecksum == searchedChecksum ) {
 							int fileNamePos;
 							QString fileType;
@@ -2805,14 +2795,12 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 								fileType = tr("ROM");
 								fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
 							}
-							QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
+							QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos);
 							QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentGame);
+							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentMachine);
 							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
 							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
 							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
-							if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT )
-								item->setSelected(true);
 						}
 					}
 				}
@@ -2829,11 +2817,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	pushButtonChecksumWizardSearch->setEnabled(true);
 	lineEditChecksumWizardHash->setReadOnly(false);
 	qApp->processEvents();
-
-	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2LoadingInterrupted ) {
-		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() )
-			on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
-	}
 
 	currentFilesSize = 0;
 }
@@ -3386,7 +3369,6 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 		}
 	}
 	wizardSelectedSets.removeDuplicates();
-	pushButtonChecksumWizardRepairBadSets->setEnabled(selectedBadSets > 0 && selectedGoodSets > 0);
 }
 
 void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
@@ -3412,51 +3394,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 	}
 	wizardSearch = true;
 	pushButtonAnalyze->animateClick();
-}
-
-// reads all files in the ZIP 'fileName' and maps the data:
-// - CRC codes are mapped to their data in 'dataMap'
-// - CRC codes are mapped to their file names in 'fileMap'
-// - existing filenames will be appended to fileList (if != 0)
-// - will also read files with incorrect CRCs (compared to their header CRCs)
-bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap, QStringList *fileList)
-{
-	bool success = true;
-	unzFile zipFile = unzOpen(fileName.toUtf8().constData());
-
-	if ( zipFile ) {
-  		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
-		unz_file_info zipInfo;
-		do {
-			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
-				QString fn = QString((const char *)ioBuffer);
-				fileMap->insert(crcToString(zipInfo.crc), fn);
-				if ( fileList )
-					fileList->append(fn);
-				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
-					qint64 len;
-					QByteArray fileData;
-					progressBarFileIO->setRange(0, zipInfo.uncompressed_size);
-					progressBarFileIO->reset();
-					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
-						QByteArray readData((const char *)ioBuffer, len);
-						fileData += readData;
-						progressBarFileIO->setValue(fileData.length());
-						progressBarFileIO->update();
-						progressBar->update();
-						if ( fileData.length() % QMC2_128K == 0 || (uLong)fileData.length() == zipInfo.uncompressed_size ) qApp->processEvents();
-					}
-					dataMap->insert(crcToString(zipInfo.crc), fileData);
-					unzCloseCurrentFile(zipFile);
-				}
-			}
-		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
-		unzClose(zipFile);
-	} else
-		success = false;
-
-	progressBarFileIO->reset();
-	return success;
 }
 
 // reads the file 'fileName' with the expected CRC 'crc' and returns its data in 'data'
@@ -3768,260 +3705,6 @@ bool ROMAlyzer::writeAllArchiveData(QString fileName, QMap<QString, QByteArray> 
 	return success;
 }
 #endif
-
-void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
-{
-	QList<QTreeWidgetItem *> badList;
-	QTreeWidgetItem *goodItem = 0;
-	foreach (QTreeWidgetItem *item, treeWidgetChecksumWizardSearchResult->selectedItems()) {
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) {
-			badList << item;
-			if ( !item->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() )
-				goodItem = item;
-		} else if ( goodItem == 0 && item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
-			goodItem = item;
-	}
-	int numBadSets = badList.count();
-
-	// this shouldn't happen, but you never know :)
-	if ( numBadSets <= 0  || goodItem == 0)
-		return;
-
-	// only one repair at a time!
-	if ( !pushButtonChecksumWizardRepairBadSets->isEnabled() )
-		return;
-	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
-
-	log(tr("check-sum wizard: repairing %n bad set(s)", "", numBadSets));
-	if ( goodItem != 0 ) {
-		QString sourceType = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
-		QString sourceFile = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
-		QString sourceCRC  = goodItem->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME); // we need the CRC for file identification in ZIPs
-		QString sourcePath = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
-		log(tr("check-sum wizard: using %1 file '%2' from '%3' as repro template").arg(sourceType).arg(sourceFile).arg(sourcePath));
-
-		bool loadOkay = true;
-		QByteArray templateData;
-		QString fn;
-		if ( sourceType == tr("ROM") ) {
-			// load ROM image
-			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
-				// file from a ZIP archive
-				if ( !readZipFileData(sourcePath, sourceCRC, sourceFile, &templateData) ) {
-					log(tr("check-sum wizard: FATAL: can't open ZIP archive '%1' for reading").arg(sourcePath));
-					loadOkay = false;
-				}
-			} else if ( sourcePath.indexOf(QRegExp("^.*\\.7[zZ]$")) == 0 ) {
-				// file from a 7Z archive
-				if ( !readSevenZipFileData(sourcePath, sourceCRC, sourceFile, &templateData) ) {
-					log(tr("check-sum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
-					loadOkay = false;
-				}
-			} else {
-				// read a regular file
-				if ( !readFileData(sourcePath, sourceCRC, &templateData) ) {
-					log(tr("check-sum wizard: FATAL: can't load repro template data from '%1' with expected CRC '%2'").arg(sourcePath).arg(sourceCRC));
-					loadOkay = false;
-				}
-			}
-		} else {
-			// FIXME: no support for CHDs yet (probably not necessary)
-			log(tr("check-sum wizard: sorry, no support for CHD files yet"));
-			loadOkay = false;
-		}
-
-		if ( loadOkay ) {
-			progressBar->setRange(0, badList.count());
-			progressBar->reset();
-			quint32 counter = 0;
-			foreach (QTreeWidgetItem *badItem, badList) {
-				bool saveOkay = true;
-				QString targetType = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
-				QString targetFile = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
-				QString targetPath = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
-				QString badSetName = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-				if ( !badItem->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() ) {
-					QString myRomPath;
-					if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
-						myRomPath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString();
-					else
-						myRomPath = "roms";
-					if ( groupBoxSetRewriter->isChecked() && checkBoxSetRewriterUseAdditionalRomPath->isChecked() && !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
-						myRomPath.prepend(lineEditSetRewriterAdditionalRomPath->text() + ";");
-					targetPath = QDir::cleanPath(myRomPath.split(";", QString::SkipEmptyParts).first()) + "/" + badSetName + ".zip";
-				}
-				labelStatus->setText(tr("Repairing set '%1' - %2").arg(badSetName).arg(badList.count() - counter));
-				log(tr("check-sum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
-				qApp->processEvents();
-
-				if ( targetType == tr("ROM") ) {
-					// save ROM image
-					if ( targetPath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
-						bool copyTargetData = false;
-						QMap <QString, QByteArray> targetDataMap;
-						QMap <QString, QString> targetFileMap;
-						QFile f(targetPath);
-						int appendType = APPEND_STATUS_ADDINZIP;
-						if ( f.exists() ) {
-							log(tr("check-sum wizard: target ZIP exists, loading complete data and structure"));
-							QStringList fileNameList;
-							if ( readAllZipData(targetPath, &targetDataMap, &targetFileMap, &fileNameList) ) {
-								log(tr("check-sum wizard: target ZIP successfully loaded"));
-								bool crcExists = targetDataMap.contains(sourceCRC);
-								bool fileExists = fileNameList.contains(targetFile);
-								if ( crcExists || fileExists ) {
-									if ( crcExists ) {
-										log(tr("check-sum wizard: an entry with the CRC '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(sourceCRC));
-										targetDataMap.remove(sourceCRC);
-										targetFileMap.remove(sourceCRC);
-									}
-									if ( fileExists ) {
-										log(tr("check-sum wizard: an entry with the name '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(targetFile));
-										targetDataMap.remove(targetDataMap.key(targetFile.toUtf8()));
-										targetFileMap.remove(targetFileMap.key(targetFile.toUtf8()));
-									}
-									// we need to make sure that only 'valid' (aka 'accepted') CRCs are reproduced
-									QStringList acceptedCRCs;
-									QList<QTreeWidgetItem *> itemList = treeWidgetChecksums->findItems(badSetName + " ", Qt::MatchStartsWith, QMC2_ROMALYZER_COLUMN_SET);
-									if ( !itemList.isEmpty() ) {
-										QTreeWidgetItem *item = itemList[0];
-										for (int i = 0; i < item->childCount(); i++) {
-											QString crc = item->child(i)->text(QMC2_ROMALYZER_COLUMN_CRC);
-											if ( !crc.isEmpty() )
-												acceptedCRCs << crc;
-										}
-									}
-									QMapIterator<QString, QByteArray> it(targetDataMap);
-									while ( it.hasNext() ) {
-										it.next();
-										QString crc = it.key();
-										if ( !acceptedCRCs.contains(crc) ) {
-											targetDataMap.remove(crc);
-											targetFileMap.remove(crc);
-										}
-									}
-									if ( createBackup(targetPath) ) {
-										copyTargetData = true;
-										appendType = APPEND_STATUS_CREATE;
-									} else {
-										log(tr("check-sum wizard: FATAL: backup creation failed, aborting"));
-										saveOkay = false;
-									}
-								} else {
-									if ( createBackup(targetPath) ) {
-										log(tr("check-sum wizard: no entry with the CRC '%1' or name '%2' was found, adding the missing file to the existing ZIP").arg(sourceCRC).arg(targetFile));
-									} else {
-										log(tr("check-sum wizard: FATAL: backup creation failed, aborting"));
-										saveOkay = false;
-									}
-								}
-							} else {
-								log(tr("check-sum wizard: FATAL: failed to load target ZIP, aborting"));
-								saveOkay = false;
-							}
-						} else {
-							appendType = APPEND_STATUS_CREATE;
-							log(tr("check-sum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file"));
-						}
-
-						zipFile zip = 0;
-					        if ( saveOkay )
-							zip = zipOpen(targetPath.toUtf8().constData(), appendType);
-
-						if ( zip ) {
-							if ( !copyTargetData ) {
-								targetDataMap.clear();
-								targetFileMap.clear();
-							}
-
-							targetDataMap[sourceCRC] = templateData;
-							targetFileMap[sourceCRC] = targetFile;
-
-							zip_fileinfo zipInfo;
-							QDateTime cDT = QDateTime::currentDateTime();
-							zipInfo.tmz_date.tm_sec = cDT.time().second();
-							zipInfo.tmz_date.tm_min = cDT.time().minute();
-							zipInfo.tmz_date.tm_hour = cDT.time().hour();
-							zipInfo.tmz_date.tm_mday = cDT.date().day();
-							zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
-							zipInfo.tmz_date.tm_year = cDT.date().year();
-							zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
-
-							QMapIterator<QString, QByteArray> it(targetDataMap);
-							while ( it.hasNext() ) {
-								it.next();
-								QString tFile = targetFileMap[it.key()];
-								QByteArray tData = it.value();
-								if ( zipOpenNewFileInZip(zip, tFile.toUtf8().constData(), &zipInfo, tFile.toUtf8().constData(), tFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
-									quint64 bytesWritten = 0;
-									progressBarFileIO->setRange(0, tData.length());
-									progressBarFileIO->reset();
-									while ( bytesWritten < (quint64)tData.length() && saveOkay ) {
-										quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
-										if ( bytesWritten + bufferLength > (quint64)tData.length() )
-											bufferLength = tData.length() - bytesWritten;
-										QByteArray writeBuffer = tData.mid(bytesWritten, bufferLength);
-										saveOkay = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
-										if ( saveOkay )
-											bytesWritten += bufferLength;
-										progressBarFileIO->setValue(bytesWritten);
-										progressBarFileIO->update();
-									}
-									progressBarFileIO->reset();
-									qApp->processEvents();
-									zipCloseFileInZip(zip);
-								} else {
-									log(tr("check-sum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
-									saveOkay = false;
-								}
-							}
-							if ( saveOkay )
-								if ( checkBoxSetRewriterAddZipComment->isChecked() ) {
-									if ( appendType == APPEND_STATUS_ADDINZIP )
-										zipClose(zip, tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
-									else
-										zipClose(zip, tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toUtf8().constData());
-								} else
-									zipClose(zip, "");
-							else
-								zipClose(zip, 0);
-						} else {
-							log(tr("check-sum wizard: FATAL: can't open ZIP archive '%1' for writing").arg(targetPath));
-							saveOkay = false;
-						}
-					} else {
-						// FIXME: no support for regular files yet
-						log(tr("check-sum wizard: sorry, no support for regular files yet"));
-						saveOkay = false;
-					}
-				} else {
-					// FIXME: no support for CHDs yet (probably not necessary)
-					log(tr("check-sum wizard: sorry, no support for CHD files yet"));
-					saveOkay = false;
-				}
-
-				if ( saveOkay ) {
-					badItem->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("repaired"));
-					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(0, 255, 0))); // green
-					log(tr("check-sum wizard: successfully repaired %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
-				} else {
-					badItem->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("repair failed"));
-					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(255, 0, 0))); // red
-					log(tr("check-sum wizard: FATAL: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
-				}
-
-				progressBar->setValue(++counter);
-				qApp->processEvents();
-			}
-			labelStatus->setText(tr("Idle"));
-			progressBar->reset();
-		}
-	} else
-		log(tr("check-sum wizard: FATAL: can't find any good set"));
-
-	log(tr("check-sum wizard: done (repairing %n bad set(s))", "", numBadSets));
-	on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
-}
 
 void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p)
 {

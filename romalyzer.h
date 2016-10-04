@@ -41,15 +41,6 @@
 #define QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE	3
 #define QMC2_ROMALYZER_CSWIZ_COLUMN_PATH	4
 
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_0		0
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_NONE		QMC2_ROMALYZER_CSWIZ_AMLVL_0
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_1		1
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT	QMC2_ROMALYZER_CSWIZ_AMLVL_1
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_2		2
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE	QMC2_ROMALYZER_CSWIZ_AMLVL_2
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_3		3
-#define QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR	QMC2_ROMALYZER_CSWIZ_AMLVL_3
-
 #define QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1	0
 #define QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC	1
 
@@ -149,7 +140,6 @@
 #define QMC2_CHD_CURRENT_VERSION		5
 #define QMC2_CHD_CHECK_NULL_SHA1(ba)		((ba).startsWith(QByteArray("00000000000000000000")))
 
-#define wizardAutomationLevel			comboBoxChecksumWizardAutomationLevel->currentIndex()
 #define crcToString(crc)			QString::number((crc), 16).rightJustified(8, '0')
 
 #define QMC2_CHECKSUM_SCANNER_FILE_UNKNOWN	-2
@@ -310,7 +300,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		~ROMAlyzer();
 
 		void saveState() { closeEvent(0); }
-		bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = 0);
 		bool readSevenZipFileData(QString, QString, QString, QByteArray *);
 		bool readZipFileData(QString, QString, QString, QByteArray *);
 		bool readFileData(QString, QString, QByteArray *);
@@ -364,7 +353,6 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		void on_treeWidgetChecksums_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 		void on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
-		void on_pushButtonChecksumWizardRepairBadSets_clicked();
 		void on_tabWidgetAnalysis_currentChanged(int);
 		void on_toolButtonCheckSumDbAddPath_clicked();
 		void on_toolButtonCheckSumDbRemovePath_clicked();

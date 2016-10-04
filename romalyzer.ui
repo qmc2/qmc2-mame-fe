@@ -356,7 +356,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>837</width>
+            <width>825</width>
             <height>993</height>
            </rect>
           </property>
@@ -1756,11 +1756,11 @@
         <normaloff>:/data/img/hash.png</normaloff>:/data/img/hash.png</iconset>
       </attribute>
       <attribute name="title">
-       <string>Check-sum wizard</string>
+       <string>Check-sum finder</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutCheckSumWizard" rowstretch="0,0,1,0">
+      <layout class="QGridLayout" name="gridLayoutCheckSumWizard" rowstretch="0,0,1">
        <item row="0" column="0" colspan="2">
-        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,1,0,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
           <widget class="QComboBox" name="comboBoxChecksumWizardHashType">
            <property name="sizePolicy">
@@ -1819,7 +1819,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonChecksumWizardSearch">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -1839,47 +1839,33 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonChecksumWizardAnalyzeSelectedSets">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Analyze all selected sets in order to qualify them</string>
+           </property>
+           <property name="text">
+            <string>Analyze selected sets</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonChecksumWizardAnalyzeSelectedSets">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Analyze all selected sets in order to qualify them</string>
-         </property>
-         <property name="text">
-          <string>Analyze selected sets</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButtonChecksumWizardRepairBadSets">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Repair selected 'bad' sets using the file from the first selected 'good' set (at least 1 good and 1 bad set must be selected)</string>
-         </property>
-         <property name="text">
-          <string>Repair bad sets</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
        </item>
        <item row="2" column="0" colspan="2">
         <widget class="QTreeWidget" name="treeWidgetChecksumWizardSearchResult">
@@ -1939,50 +1925,6 @@
           </property>
          </column>
         </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLabel" name="labelChecksumWizardAutomationLevel">
-           <property name="text">
-            <string>Level of automation</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBoxChecksumWizardAutomationLevel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Choose the level of automated wizard operations</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Do nothing automatically</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Automatically select matches</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Automatically select matches and analyze sets</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Automatically select matches, analyze sets and repair bad ones</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -2168,10 +2110,7 @@
   <tabstop>comboBoxChecksumWizardHashType</tabstop>
   <tabstop>lineEditChecksumWizardHash</tabstop>
   <tabstop>pushButtonChecksumWizardSearch</tabstop>
-  <tabstop>pushButtonChecksumWizardAnalyzeSelectedSets</tabstop>
-  <tabstop>pushButtonChecksumWizardRepairBadSets</tabstop>
   <tabstop>treeWidgetChecksumWizardSearchResult</tabstop>
-  <tabstop>comboBoxChecksumWizardAutomationLevel</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>
