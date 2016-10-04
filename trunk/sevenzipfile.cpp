@@ -266,7 +266,7 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
 		ms[1] = 29;
 	for (mon = 1; mon <= 12; mon++) {
 		unsigned s = ms[mon - 1];
-		if (v < s)
+		if ( v < s )
 			break;
 		v -= s;
 	}
@@ -299,7 +299,7 @@ void SevenZipFile::createEntryList()
 		QDateTime dateTime;
 		if ( fileItem->MTimeDefined )
 			dateTime = convertFileTime(&fileItem->MTime);
-		QString crc = "00000000";
+		QString crc("00000000");
 		if ( fileItem->CrcDefined ) {
 			crc = QString::number(fileItem->Crc, 16).rightJustified(8, '0');
 			m_crcToIndexCache.insert(crc, i);
