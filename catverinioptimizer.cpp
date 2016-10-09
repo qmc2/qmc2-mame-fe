@@ -104,14 +104,21 @@ bool CatverIniOptimizer::loadCatverIni()
 							m_versionNames.insert(token1, new QString(token1));
 						m_versionMap.insert(tokens.at(0).trimmed(), m_versionNames.value(token1));
 						break;
+					default:
+						break;
 				}
 			} else {
-				if ( catVerSwitch != 1 ) {
-					if ( catverLine.indexOf(m_categoryStr) >= 0 )
-						catVerSwitch = 1;
-				} else if ( catVerSwitch != 2 ) {
-					if ( catverLine.indexOf(m_verAddedStr) >= 0 )
-						catVerSwitch = 2;
+				switch ( catVerSwitch ) {
+					case 0:
+						if ( catverLine.indexOf(m_categoryStr) >= 0 )
+							catVerSwitch = 1;
+						break;
+					case 1:
+						if ( catverLine.indexOf(m_verAddedStr) >= 0 )
+							catVerSwitch = 2;
+						break;
+					default:
+						break;
 				}
 			}
 		}
