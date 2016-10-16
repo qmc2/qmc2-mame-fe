@@ -87,6 +87,10 @@
 			<description lang="us" text="Path to language files"/>
 			<description lang="de" text="Suchpfad für Sprachdateien"/>
 		</option>
+		<option default="software" name="swpath" type="directory">
+			<description lang="us" text="Path to loose software"/>
+			<description lang="de" text="Suchpfad für sonstige Software"/>
+		</option>
 	</section>
 	<section name="output_directories">
 		<description lang="us" text="Output directories"/>
