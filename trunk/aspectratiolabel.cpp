@@ -8,12 +8,12 @@
 
 #include "aspectratiolabel.h"
 
-AspectRatioLabel::AspectRatioLabel(QWidget *parent, qreal scale)
-	: QLabel(parent)
+AspectRatioLabel::AspectRatioLabel(QWidget *parent, qreal scale) :
+	QLabel(parent),
+	m_scale(scale)
 {
 	setAlignment(Qt::AlignCenter);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	m_scale = scale;
 }
 
 void AspectRatioLabel::adjustMovieSize()
@@ -49,7 +49,13 @@ void AspectRatioLabel::setLabelText(QString text)
 void AspectRatioLabel::resizeEvent(QResizeEvent *e)
 {
 	QLabel::resizeEvent(e);
+	if ( movie() )
+		adjustMovieSize();
+}
 
+void AspectRatioLabel::showEvent(QShowEvent *e)
+{
+	QLabel::showEvent(e);
 	if ( movie() )
 		adjustMovieSize();
 }
@@ -57,7 +63,6 @@ void AspectRatioLabel::resizeEvent(QResizeEvent *e)
 void AspectRatioLabel::paintEvent(QPaintEvent *e)
 {
 	QLabel::paintEvent(e);
-
 	if ( !m_labelText.isEmpty() ) {
 		m_painter.begin(this);
 		m_painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
