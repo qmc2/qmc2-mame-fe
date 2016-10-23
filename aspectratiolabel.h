@@ -25,6 +25,7 @@ class AspectRatioLabel : public QLabel
 	protected:
 		void resizeEvent(QResizeEvent *);
 		void paintEvent(QPaintEvent *);
+		void showEvent(QShowEvent *);
 
 	private:
 		QString m_labelText;
