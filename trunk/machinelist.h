@@ -137,6 +137,9 @@ class MachineList : public QObject
 		void enableWidgets(bool enable = true);
 		void filter(bool initial = false);
 
+	signals:
+		void widgetsEnabled(bool);
+
 	private:
 		XmlDatabaseManager *m_xmlDb;
 		UserDataDatabaseManager *m_userDataDb;
