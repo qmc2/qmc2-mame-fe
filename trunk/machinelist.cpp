@@ -295,7 +295,6 @@ void MachineList::enableWidgets(bool enable)
 	if ( lastEnable == enable )
 		return;
 	lastEnable = enable;
-	emit widgetsEnabled(enable);
 #if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
 	qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
@@ -346,17 +345,19 @@ void MachineList::enableWidgets(bool enable)
 	qmc2MainWindow->toolButtonSelectRomFilter->setEnabled(enable);
 	qmc2MainWindow->actionLaunchArcade->setEnabled(enable);
 	qmc2MainWindow->actionArcadeSetup->setEnabled(enable);
+	emit widgetsEnabled(enable);
 }
 
 void MachineList::load()
 {
+	qmc2ReloadActive = qmc2EarlyReloadActive = true;
+	qmc2LoadingInterrupted = false;
 	QString machineName;
 	if ( qmc2CurrentItem )
 		machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
-	qmc2ReloadActive = qmc2EarlyReloadActive = true;
-	qmc2LoadingInterrupted = false;
+	QTimer::singleShot(0, this, SLOT(disableWidgets()));
 	machineStatusHash.clear();
 	qmc2MachineListItemHash.clear();
 	qmc2HierarchyItemHash.clear();
@@ -369,7 +370,6 @@ void MachineList::load()
 	qmc2MainWindow->rankItemWidgets().clear();
 	userDataDb()->clearRankCache();
 	userDataDb()->clearCommentCache();
-	enableWidgets(false);
 	qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 	numMachines = numTotalMachines = numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numUnknownMachines = numNotFoundMachines = -1;
 	numTaggedSets = numMatchedMachines = 0;
@@ -520,14 +520,14 @@ void MachineList::load()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 				qmc2ReloadActive = qmc2EarlyReloadActive = false;
 				qmc2LoadingInterrupted = true;
-				enableWidgets(true);
+				enableWidgets();
 				return;
 			}
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start %1 executable, file '%2' does not exist").arg(QMC2_EMU_NAME).arg(execFile));
 			qmc2ReloadActive = qmc2EarlyReloadActive = false;
 			qmc2LoadingInterrupted = true;
-			enableWidgets(true);
+			enableWidgets();
 			return;
 		}
 		if ( commandProcStarted ) {
@@ -594,7 +594,7 @@ void MachineList::load()
 		else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
 			qmc2ReloadActive = false;
-			enableWidgets(true);
+			enableWidgets();
 			return;
 		}
 		if ( numTotalMachines > 0 ) {
@@ -604,7 +604,7 @@ void MachineList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
 			qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines");
 			qmc2ReloadActive = false;
-			enableWidgets(true);
+			enableWidgets();
 			return;
 		}
 		if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
@@ -638,7 +638,7 @@ void MachineList::load()
 	if ( qmc2LoadingInterrupted ) {
 		mainProgressBar->reset();
 		qmc2ReloadActive = false;
-		enableWidgets(true);
+		enableWidgets();
 		return;
 	}
 	if ( !initialLoad ) {
@@ -743,7 +743,7 @@ void MachineList::verify(bool currentOnly)
 	verifyCurrentOnly = currentOnly;
 	qmc2VerifyActive = true;
 	qmc2LoadingInterrupted = false;
-	enableWidgets(false);
+	QTimer::singleShot(0, this, SLOT(disableWidgets()));
 	verifiedList.clear();
 	verifyLastLine.clear();
 	verifyTimer.start();
@@ -755,7 +755,7 @@ void MachineList::verify(bool currentOnly)
 		if ( !romStateCache.isOpen() ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romStateCache.fileName()));
 			qmc2VerifyActive = false;
-			enableWidgets(true);
+			enableWidgets();
 			return;
 		} else {
 			tsRomCache.setDevice(&romStateCache);
@@ -793,7 +793,7 @@ void MachineList::verify(bool currentOnly)
 		if ( !romStateCache.isOpen() ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romStateCache.fileName()));
 			qmc2VerifyActive = false;
-			enableWidgets(true);
+			enableWidgets();
 			return;
 		} else {
 			tsRomCache.setDevice(&romStateCache);
@@ -1153,7 +1153,7 @@ void MachineList::parse()
 {
 	if ( qmc2LoadingInterrupted ) {
 		qmc2ReloadActive = false;
-		enableWidgets(true);
+		enableWidgets();
 		return;
 	}
 	QWidget *fW = qApp->focusWidget();
@@ -1869,7 +1869,7 @@ void MachineList::parse()
 		QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
 	else if ( !qmc2LoadingInterrupted && qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() )
 		filter(true);
-	enableWidgets(true);
+	QTimer::singleShot(0, this, SLOT(enableWidgets()));
 	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
 		v->setEnabled(true);
 		QTimer::singleShot(0, v->toolButtonUpdateView, SLOT(animateClick()));
@@ -1942,7 +1942,7 @@ void MachineList::filter(bool initial)
 	QTime elapsedTime(0, 0, 0, 0);
 	qmc2LoadingInterrupted = false;
 	qmc2FilterActive = true;
-	enableWidgets(false);
+	QTimer::singleShot(0, this, SLOT(disableWidgets()));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("applying ROM state filter"));
 	parseTimer.start();
 	mainProgressBar->reset();
@@ -2030,7 +2030,7 @@ void MachineList::filter(bool initial)
 	elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	mainProgressBar->reset();
-	enableWidgets(true);
+	QTimer::singleShot(0, this, SLOT(enableWidgets()));
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	qmc2StatesTogglesEnabled = true;
 }
