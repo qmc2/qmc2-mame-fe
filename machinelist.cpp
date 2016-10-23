@@ -239,6 +239,8 @@ MachineList::MachineList(QObject *parent) :
 	m_machineListDb = new MachineListDatabaseManager(this);
 	machineListDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 	machineListDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+
+	connect(this, SIGNAL(widgetsEnabled(bool)), qmc2Options, SLOT(enableWidgets(bool)));
 }
 
 MachineList::~MachineList()
@@ -293,11 +295,11 @@ void MachineList::enableWidgets(bool enable)
 	if ( lastEnable == enable )
 		return;
 	lastEnable = enable;
+	emit widgetsEnabled(enable);
 #if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
 	qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
 #endif
-	qmc2Options->enableWidgets(enable);
 	if ( qmc2ROMStatusExporter )
 		qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
 	if ( qmc2SystemROMAlyzer ) {
@@ -1840,13 +1842,13 @@ void MachineList::parse()
 			machineListDb()->recreateDatabase();
 		}
 	}
-	QString sL(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark);
-	QString sC(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark);
-	QString sM(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark);
-	QString sI(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark);
-	QString sN(numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark);
-	QString sU(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark);
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").
+					       arg(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark).
+					       arg(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark).
+					       arg(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark).
+					       arg(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark).
+					       arg(numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark).
+					       arg(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark));
 	mainProgressBar->reset();
 	qmc2ReloadActive = qmc2StartingUp = false;
 	if ( qmc2LoadingInterrupted ) {
@@ -2618,13 +2620,13 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	if ( romStateCache.isOpen() )
 		romStateCache.close();
-	QString sL(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark);
-	QString sC(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark);
-	QString sM(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark);
-	QString sI(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark);
-	QString sN(numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark);
-	QString sU(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark);
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(sL).arg(sC).arg(sM).arg(sI).arg(sN).arg(sU));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").
+					       arg(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark).
+					       arg(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark).
+					       arg(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark).
+					       arg(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark).
+					       arg(numNotFoundMachines >= 0 ? QString::number(numNotFoundMachines) : trQuestionMark).
+					       arg(numUnknownMachines >= 0 ? QString::number(numUnknownMachines) : trQuestionMark));
 	mainProgressBar->reset();
 	if ( verifyProc ) {
 		delete verifyProc;
@@ -3580,16 +3582,14 @@ QString MachineList::lookupDriverName(const QString &systemName)
 void MachineList::clearCategoryNames()
 {
 	foreach (QString *category, categoryNames)
-		if ( category )
-			delete category;
+		delete category;
 	categoryNames.clear();
 }
 
 void MachineList::clearVersionNames()
 {
 	foreach (QString *version, versionNames)
-		if ( version )
-			delete version;
+		delete version;
 	versionNames.clear();
 }
 
