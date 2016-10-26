@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>About</name>
     <message>
@@ -285,7 +285,7 @@
         <source>Project details</source>
         <translation>Detalhes do projeto</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="71"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1408,7 +1408,7 @@ p, li { white-space: pre-wrap; }
         <source>Angle</source>
         <translation>Ângulo</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../brusheditor.ui" line="940"/>
         <source>°</source>
         <translation></translation>
@@ -19460,7 +19460,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romalyzer.ui" line="1759"/>
         <source>Check-sum finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscador de código de verificação</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1796"/>
@@ -19599,7 +19599,7 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../romalyzer.ui" line="771"/>
         <location filename="../../romalyzer.ui" line="825"/>
         <source>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually (recommended) or just the first one?</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando um conjunto tem múltiplos arquivos com o mesmo CRC, o arquivo ZIP produzido deve incluir todos os arquivos (recomendado) ou apenas o primeiro?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1631"/>
@@ -20166,22 +20166,22 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../romstatusexport.ui" line="159"/>
         <source>Export only favorite sets?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar somente conjuntos favoritos?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="162"/>
         <source>Only favorite sets</source>
-        <translation type="unfinished">Somente conjuntos favoritos</translation>
+        <translation>Somente conjuntos favoritos</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="169"/>
         <source>Export only sets that are tagged?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar somente conjuntos etiquetados?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="172"/>
         <source>Only tagged sets</source>
-        <translation type="unfinished">Somente conjuntos etiquetados</translation>
+        <translation>Somente conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="313"/>
