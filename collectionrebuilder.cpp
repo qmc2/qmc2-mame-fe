@@ -1637,7 +1637,10 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 				fn = names.at(0);
 			if ( unzLocateFile(zipFile, fn.toUtf8().constData(), 0) == UNZ_OK ) {
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
-					emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
+					if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK )
+						emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(ROMAlyzer::humanReadable(zipInfo.uncompressed_size)));
+					else
+						emit log(tr("reading '%1' from ZIP archive '%2' (uncompressed size: %3)").arg(fn).arg(fileName).arg(tr("unknown")));
 					qint64 len;
 					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 && !exitThread )
 						data->append(QByteArray((const char *)ioBuffer, len));

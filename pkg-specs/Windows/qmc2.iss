@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{DB53A3CB-C0CA-494E-AFD4-11C8B66A7B67}
 AppName=QMC2 - M.A.M.E. Catalog Launcher II
-AppVerName=QMC2 0.69
+AppVerName=QMC2 0.70
 AppPublisher=The QMC2 Development Team
 AppPublisherURL=http://qmc2.batcom-it.net/
 AppSupportURL=http://qmc2.batcom-it.net/
@@ -17,7 +17,7 @@ DefaultGroupName=QMC2
 AllowNoIcons=yes
 LicenseFile=c:\projects\gpl-2.0.txt
 OutputDir=c:\projects\InstallerOutput
-OutputBaseFilename=qmc2-win32-0.69
+OutputBaseFilename=qmc2-win32-0.70
 Compression=lzma2/max
 SolidCompression=yes
 InfoAfterFile=c:\projects\qmc2\package\doc\install-en.rtf
