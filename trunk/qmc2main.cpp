@@ -199,7 +199,6 @@ int qmc2MachineListResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = 0;
 QFile *qmc2EmulatorLogFile = 0;
-QFile *qmc2FifoFile = 0;
 QTextStream qmc2FrontendLogStream;
 QTextStream qmc2EmulatorLogStream;
 QTranslator *qmc2Translator = 0;
@@ -265,7 +264,10 @@ QHash<QString, QKeySequence> qmc2QtKeyHash;
 QHash<QString, QString> qmc2JoystickFunctionHash;
 bool qmc2JoystickIsCalibrating = false;
 #endif
+/*
+QFile *qmc2FifoFile = 0;
 QSocketNotifier *qmc2FifoNotifier = 0;
+*/
 bool qmc2ShowGameName = false;
 bool qmc2ShowGameNameOnlyWhenRequired = true;
 QMutex qmc2LogFrontendMutex;
@@ -6008,6 +6010,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	} else 
 		delete qmc2ProcessManager;
 
+/*
 #if defined(QMC2_SDLMAME)
 	if ( qmc2FifoFile ) {
 		if ( qmc2FifoNotifier )
@@ -6018,6 +6021,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		// ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
 	}
 #endif
+*/
 
 	if ( qmc2NetworkAccessManager ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying network access manager"));
@@ -6109,13 +6113,13 @@ void MainWindow::init()
 	phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
 	listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
 	listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
+	QStringList psl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList());
 	listWidgetAudioPlaylist->addItems(psl);
-	QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
-	if ( sl.count() > 0 ) {
-		listWidgetAudioPlaylist->setCurrentItem(sl[0]);
-		listWidgetAudioPlaylist->scrollToItem(sl[0], qmc2CursorPositioningMode);
-		qmc2AudioLastIndividualTrack = sl[0]->text();
+	int row = psl.indexOf(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString());
+	if ( row >= 0 ) {
+		listWidgetAudioPlaylist->setCurrentRow(row);
+		listWidgetAudioPlaylist->scrollToItem(listWidgetAudioPlaylist->item(row), qmc2CursorPositioningMode);
+		qmc2AudioLastIndividualTrack = psl.at(row);
 	}
 	checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", false).toBool());
 	checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", false).toBool());
@@ -6150,13 +6154,13 @@ void MainWindow::init()
 	mediaPlayer = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
 	listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
 	listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
+	QStringList psl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList());
 	listWidgetAudioPlaylist->addItems(psl);
-	QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
-	if ( sl.count() > 0 ) {
-		listWidgetAudioPlaylist->setCurrentItem(sl.at(0));
-		listWidgetAudioPlaylist->scrollToItem(sl.at(0), qmc2CursorPositioningMode);
-		qmc2AudioLastIndividualTrack = sl.at(0)->text();
+	int row = psl.indexOf(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString());
+	if ( row >= 0 ) {
+		listWidgetAudioPlaylist->setCurrentRow(row);
+		listWidgetAudioPlaylist->scrollToItem(listWidgetAudioPlaylist->item(row), qmc2CursorPositioningMode);
+		qmc2AudioLastIndividualTrack = psl.at(row);
 	}
 	checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", false).toBool());
 	checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", false).toBool());
@@ -6212,7 +6216,7 @@ void MainWindow::init()
 	qmc2GhostImagePixmap.load(":/data/img/ghost.png");
 	qmc2GhostImagePixmap.isGhost = true;
 
-	createFifo();
+	//createFifo();
 
 	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -7312,6 +7316,9 @@ void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int /*state*/)
 
 void MainWindow::createFifo(bool logFifoCreation)
 {
+	// FIXME: just return and do nothing... SDLMAME no longer works this way 
+	return;
+/*
 #if defined(QMC2_OS_WIN)
 	// FIXME: implement Windows specific notifier FIFO support
 #elif defined(QMC2_SDLMAME)
@@ -7348,10 +7355,14 @@ void MainWindow::createFifo(bool logFifoCreation)
 		qmc2FifoIsOpen = qmc2FifoFile->isOpen();
 	else
 		qmc2FifoIsOpen = false;
+*/
 }
 
 void MainWindow::processFifoData()
 {
+	// FIXME: just return and do nothing... SDLMAME no longer works this way 
+	return;
+/*
 	if ( qmc2CleaningUp )
 		return;
 	if ( !qmc2FifoIsOpen )
@@ -7490,6 +7501,7 @@ void MainWindow::processFifoData()
 		}
 	}
 #endif
+*/
 }
 
 void MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex)

@@ -1,8 +1,8 @@
 #include <qglobal.h>
 #include <QtGui>
 #include <QFile>
-#include <QSocketNotifier>
 #include <QMap>
+//#include <QSocketNotifier>
 
 #include "settings.h"
 #include "processmanager.h"
@@ -21,8 +21,10 @@ extern QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 extern Settings *qmc2Config;
+/*
 extern QFile *qmc2FifoFile;
 extern QSocketNotifier *qmc2FifoNotifier;
+*/
 
 ProcessManager::ProcessManager(QWidget *parent)
 	: QObject(parent)
@@ -257,6 +259,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( !qmc2AutoMinimizedWidgets.isEmpty() )
 		qmc2MainWindow->setWindowState(qmc2AutoMinimizedWidgets[qmc2MainWindow]);
 
+/*
 #if defined(QMC2_SDLMAME)
 	if ( qmc2FifoFile && qmc2FifoFile->isOpen() ) {
 		if ( qmc2FifoNotifier ) {
@@ -272,6 +275,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 		qmc2MainWindow->createFifo(false);
 	}
 #endif
+*/
 }
 
 void ProcessManager::started()
