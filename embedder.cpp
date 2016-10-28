@@ -18,7 +18,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-extern bool qmc2FifoIsOpen;
+//extern bool qmc2FifoIsOpen;
 
 #if defined(QMC2_OS_WIN)
 #define QMC2_EMBEDDED_STYLE		(LONG)(WS_VISIBLE | WS_POPUP | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_MAXIMIZE)
@@ -68,6 +68,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
 	connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
 
+	/*
 	if ( icon.isNull() ) {
 		iconRunning = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png"));
 		iconPaused = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png"));
@@ -116,6 +117,8 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 		p.end();
 		iconUnknown = QIcon(pm);
 	}
+	*/
+	iconUnknown = icon;
 #elif defined(QMC2_OS_WIN)
 	windowHandle = embeddedWinId;
 	embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
@@ -145,14 +148,9 @@ void Embedder::embed()
 	// serious hack to access the tab bar without sub-classing from QTabWidget ;)
 	QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
 	int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-	if ( tabBar ) {
-#if defined(QMC2_OS_UNIX)
-		tabBar->setTabIcon(index, iconUnknown);
-#elif defined(QMC2_OS_WIN)
+	if ( tabBar )
 		if ( !iconUnknown.isNull() )
 			tabBar->setTabIcon(index, iconUnknown);
-#endif
-	}
 
 #if defined(QMC2_OS_UNIX)
 	nativeResolution = QPixmap::grabWindow(embeddedWinId).size();
@@ -233,10 +231,10 @@ void Embedder::showEvent(QShowEvent *e)
 	if ( embedded )
 		QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
 
-	if ( !qmc2FifoIsOpen ) {
+//	if ( !qmc2FifoIsOpen ) {
 		int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
 		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
-	}
+//	}
 #endif
 
 	QWidget::showEvent(e);
@@ -426,12 +424,14 @@ void Embedder::clientEmbedded()
 
 	int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
 
+	/*
 	if ( qmc2FifoIsOpen ) {
 		if ( isPaused )
 			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconPaused);
 		else
 			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconRunning);
 	} else
+	*/
 		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
 
 	forceFocus();
