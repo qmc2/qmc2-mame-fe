@@ -29,7 +29,7 @@ class UserDataDatabaseManager : public QObject
 		QString comment(QString id);
 		QString comment(int rowid);
 		void setComment(QString id, QString comment);
-		QString id(int rowid);
+		QString &id(int rowid);
 		bool exists(QString id);
 		void cleanUp();
 		void remove(QString id);
@@ -85,6 +85,7 @@ class UserDataDatabaseManager : public QObject
 		QString m_tableBasenameSL;
 		QString m_oldTableBasenameSL;
 		QString m_connectionName;
+		QString m_idString;
 		bool m_logActive;
 		QList<qint64> m_rowIdList;
 		qint64 m_lastRowId;
