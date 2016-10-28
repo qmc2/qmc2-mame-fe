@@ -45,17 +45,16 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
 class EmulatorOption
 {
 	public:
-		QString name, shortname, dvalue, description, value, part, relativeTo;
+		QString name, dvalue, description, value, part, relativeTo;
 		QStringList choices;
-		bool valid, visible;
+		bool valid, visible, wip;
 		int type;
 		int decimals;
 		QTreeWidgetItem *item;
 
 		EmulatorOption() { valid = false; }
-		EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QString p, QTreeWidgetItem *i, bool va, int dec = QMC2_EMUOPT_DFLT_DECIMALS, QStringList c = QStringList(), bool vis = true, QString relTo = QString()) {
+		EmulatorOption(const QString &n, const QString &t, const QString &dv, const QString &d, const QString &v, const QString &p, QTreeWidgetItem *i, bool va, int dec = QMC2_EMUOPT_DFLT_DECIMALS, QStringList c = QStringList(), bool vis = true, QString relTo = QString(), bool isWip = false) {
 			name = n;
-			shortname = sn;
 			type = QMC2_EMUOPT_TYPE_UNKNOWN;
 			switch ( t.at(0).toLatin1() ) {
 				case 'b':
@@ -100,6 +99,7 @@ class EmulatorOption
 			visible = vis;
 			decimals = dec;
 			relativeTo = relTo;
+			wip = isWip;
 		}
 		static bool lessThan(const EmulatorOption &a, const EmulatorOption &b) {
 			return a.name.compare(b.name) < 0;
