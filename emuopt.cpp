@@ -63,8 +63,8 @@ QString optionRelativeTo;
 #define _MIN (-2 * 1024 * 1024)
 #define _MAX (2 * 1024 * 1024)
 
-EmulatorOptionDelegate::EmulatorOptionDelegate(QTreeWidget *treeWidget, QObject *parent)
-	: QStyledItemDelegate(parent)
+EmulatorOptionDelegate::EmulatorOptionDelegate(QTreeWidget *treeWidget, QObject *parent) :
+	QStyledItemDelegate(parent)
 {
 	mTreeWidget = treeWidget;
 }
@@ -433,8 +433,8 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 	QStyledItemDelegate::paint(painter, option, index);
 }
 
-EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
-	: QTreeWidget(parent)
+EmulatorOptions::EmulatorOptions(QString group, QWidget *parent) :
+	QTreeWidget(parent)
 {
 	if ( typeNameToIndexHash.isEmpty() ) {
 		typeNameToIndexHash.insert("checkBoxEditor", QMC2_EMUOPT_TYPE_BOOL);
