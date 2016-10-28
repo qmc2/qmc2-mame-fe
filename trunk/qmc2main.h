@@ -387,14 +387,12 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void closeEmbeddedEmuTab();
 		void toolButtonEmbedderMaximizeToggle_toggled(bool);
 		void embedderOptionsMenu_KillEmulator_activated();
-		void embedderOptionsMenu_TerminateEmulator_activated();
 		void embedderOptionsMenu_ToFavorites_activated();
 		void embedderOptionsMenu_CopyCommand_activated();
 #if defined(QMC2_OS_UNIX)
 		void action_embedderScanPauseKey_triggered();
 #endif
 #endif
-		void action_terminateEmulator_triggered();
 		void action_killEmulator_triggered();
 		void action_copyEmulatorCommand_triggered();
 		void action_removeFromFavorites_triggered();

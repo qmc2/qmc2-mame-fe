@@ -190,7 +190,6 @@ bool qmc2StatesTogglesEnabled = true;
 bool qmc2DestroyingArcadeView = false;
 bool qmc2IgnoreItemActivation = false;
 bool qmc2StartEmbedded = false;
-bool qmc2FifoIsOpen = false;
 bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
@@ -267,6 +266,7 @@ bool qmc2JoystickIsCalibrating = false;
 /*
 QFile *qmc2FifoFile = 0;
 QSocketNotifier *qmc2FifoNotifier = 0;
+bool qmc2FifoIsOpen = false;
 */
 bool qmc2ShowGameName = false;
 bool qmc2ShowGameNameOnlyWhenRequired = true;
@@ -512,9 +512,6 @@ MainWindow::MainWindow(QWidget *parent)
 	floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
 	tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
 
-#if defined(QMC2_OS_WIN)
-	treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
-#endif
 	comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
 	setWindowTitle(windowTitle() + " [Qt " + qVersion() + "]");
 
@@ -618,13 +615,15 @@ MainWindow::MainWindow(QWidget *parent)
 		treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
 		treeWidgetVersionView->setColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION, true);
 		treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
-#if defined(QMC2_OS_WIN)
-		// output notifiers are not supported on Windows
+//#if defined(QMC2_OS_WIN)
+		// output notifiers are not supported on Windows (FIXME: They aren't supported at all at the moment!)
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
 		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED2);
-#endif
+		treeWidgetEmulators->setRootIsDecorated(false);
+		treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
+//#endif
 		actionFullscreenToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false).toBool());
 		tabWidgetMachineList->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::North).toInt());
 		tabWidgetMachineDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
@@ -659,24 +658,18 @@ MainWindow::MainWindow(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(action_embedEmulator_triggered()));
-	qmc2EmulatorMenu->addSeparator();
 #endif
-	s = tr("Terminate selected emulator(s) (sends TERM signal to emulator process(es))");
-	action = qmc2EmulatorMenu->addAction(tr("&Terminate"));
-	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/terminate.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(action_terminateEmulator_triggered()));
-	s = tr("Kill selected emulator(s) (sends KILL signal to emulator process(es))");
-	action = qmc2EmulatorMenu->addAction(tr("&Kill"));
-	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(action_killEmulator_triggered()));
-	qmc2EmulatorMenu->addSeparator();
 	s = tr("Copy emulator command line to clipboard");
 	action = qmc2EmulatorMenu->addAction(tr("&Copy command"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(action_copyEmulatorCommand_triggered()));
+	qmc2EmulatorMenu->addSeparator();
+	s = tr("Kill selected emulator(s) (sends KILL signal to emulator process(es))");
+	action = qmc2EmulatorMenu->addAction(tr("&Kill"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(action_killEmulator_triggered()));
 
 	qmc2ForeignIDsMenu = new QMenu(0);
 	s = tr("Play selected machine");
@@ -827,7 +820,7 @@ MainWindow::MainWindow(QWidget *parent)
 	s = tr("Clear all favorites");
 	action = qmc2FavoritesMenu->addAction(tr("&Clear"));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/broom.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(action_clearAllFavorites_triggered()));
 	s = tr("Save favorites now");
 	action = qmc2FavoritesMenu->addAction(tr("&Save"));
@@ -886,7 +879,7 @@ MainWindow::MainWindow(QWidget *parent)
 	s = tr("Clear all played");
 	action = qmc2PlayedMenu->addAction(tr("&Clear"));
 	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/broom.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(action_clearAllPlayed_triggered()));
 	s = tr("Save play-history now");
 	action = qmc2PlayedMenu->addAction(tr("&Save"));
@@ -5007,23 +5000,17 @@ void MainWindow::action_embedEmulator_triggered()
 				action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
 				action->setToolTip(s); action->setStatusTip(s);
 				connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_ToFavorites_activated()));
-				optionsMenu->addSeparator();
-				s = tr("Terminate emulator");
-				action = optionsMenu->addAction(tr("&Terminate emulator"));
-				action->setIcon(QIcon(QString::fromUtf8(":/data/img/terminate.png")));
-				action->setToolTip(s); action->setStatusTip(s);
-				connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_TerminateEmulator_activated()));
-				s = tr("Kill emulator");
-				action = optionsMenu->addAction(tr("&Kill emulator"));
-				action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
-				action->setToolTip(s); action->setStatusTip(s);
-				connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_KillEmulator_activated()));
-				optionsMenu->addSeparator();
 				s = tr("Copy emulator command line to clipboard");
 				action = optionsMenu->addAction(tr("&Copy command"));
 				action->setToolTip(s); action->setStatusTip(s);
 				action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 				connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_CopyCommand_activated()));
+				optionsMenu->addSeparator();
+				s = tr("Kill emulator");
+				action = optionsMenu->addAction(tr("&Kill emulator"));
+				action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
+				action->setToolTip(s); action->setStatusTip(s);
+				connect(action, SIGNAL(triggered()), this, SLOT(embedderOptionsMenu_KillEmulator_activated()));
 
 				optionsButton->setMenu(optionsMenu);
 
@@ -5154,18 +5141,6 @@ void MainWindow::embedderOptionsMenu_KillEmulator_activated()
 		qmc2ProcessManager->kill(embedder->machineId.toInt());
 }
 
-void MainWindow::embedderOptionsMenu_TerminateEmulator_activated()
-{
-	// serious hack to access the corresponding embedder ;)
-	QAction *action = (QAction *)sender();
-	QMenu *menu = (QMenu *)action->parent();
-	QToolButton *toolButton = (QToolButton *)menu->parent();
-	QTabBar *tabBar = (QTabBar *)toolButton->parent();
-	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
-	if ( embedder )
-		qmc2ProcessManager->terminate(embedder->machineId.toInt());
-}
-
 void MainWindow::embedderOptionsMenu_ToFavorites_activated()
 {
 	// serious hack to access the corresponding embedder ;)
@@ -5200,25 +5175,6 @@ void MainWindow::embedderOptionsMenu_CopyCommand_activated()
 	}
 }
 #endif
-
-void MainWindow::action_terminateEmulator_triggered()
-{
-	QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
-	for (int i = 0; i < sl.count(); i++) {
-		QTreeWidgetItem *item = sl[i];
-		while ( item->parent() )
-			item = item->parent();
-		qmc2ProcessManager->terminate(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
-	}
-
-	if ( sl.count() == 0 )
-		if ( treeWidgetEmulators->currentItem() ) {
-			QTreeWidgetItem *item = treeWidgetEmulators->currentItem();
-			while ( item->parent() )
-				item = item->parent();
-			qmc2ProcessManager->terminate(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
-		}
-}
 
 void MainWindow::action_killEmulator_triggered()
 {
