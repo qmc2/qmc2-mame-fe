@@ -340,20 +340,18 @@ qint64 UserDataDatabaseManager::nextRowId(bool refreshRowIds)
 	return -1;
 }
 
-QString UserDataDatabaseManager::id(int rowid)
+QString &UserDataDatabaseManager::id(int rowid)
 {
 	QSqlQuery query(m_db);
 	query.prepare(QString("SELECT id FROM %1 WHERE rowid=:rowid").arg(m_tableBasename));
 	query.bindValue(":rowid", rowid);
+	m_idString.clear();
 	if ( query.exec() ) {
 		if ( query.first() )
-			return query.value(0).toString();
-		else
-			return QString();
-	} else {
+			m_idString = query.value(0).toString();
+	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
-		return QString();
-	}
+	return m_idString;
 }
 
 bool UserDataDatabaseManager::exists(QString id)
@@ -376,7 +374,7 @@ void UserDataDatabaseManager::cleanUp()
 	qint64 row = nextRowId(true);
 	beginTransaction();
 	while ( row > 0 ) {
-		QString idOfCurrentRow = id(row);
+		QString idOfCurrentRow(id(row));
 		if ( !idOfCurrentRow.isEmpty() ) {
 			if ( !qmc2MachineList->xmlDb()->exists(idOfCurrentRow) ) {
 				QSqlQuery query(m_db);
@@ -513,7 +511,7 @@ void UserDataDatabaseManager::fillUpRankCache()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("filling up rank cache from user data database '%1'").arg(m_db.databaseName()));
 	qint64 row = nextRowId(true);
 	while ( row > 0 ) {
-		QString idString = id(row);
+		QString idString(id(row));
 		if ( !m_rankCache.contains(idString) ) {
 			int rankInt = rank(row);
 			m_rankCache.insert(idString, rankInt);
