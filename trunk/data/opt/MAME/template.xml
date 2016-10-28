@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="MAME" format="0.2.8" version="0.179">
+<template emulator="MAME" format="0.2.9" version="0.179">
 	<section name="search_paths">
 		<description lang="us" text="Search paths"/>
 		<description lang="de" text="Suchpfade"/>
@@ -954,7 +954,7 @@
 			<description lang="us" text="LUA script to execute after machine boot"/>
 			<description lang="de" text="Nach dem Boot der Maschine auszuführendes LUA-Skript"/>
 		</option>
-		<option default="false" name="console" type="bool">
+		<option default="false" name="console" type="bool" wip="true">
 			<description lang="us" text="Enable emulator LUA console"/>
 			<description lang="de" text="Emulator LUA Konsole aktivieren"/>
 		</option>

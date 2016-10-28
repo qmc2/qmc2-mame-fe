@@ -713,7 +713,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 				if ( sectionExpansionMap.value(sectionTitle) )
 					expandItem(sectionItemMap.value(sectionTitle));
 		}
-		int optCount = optionsMap[sectionTitle].count();
+		int optCount = optionsMap.value(sectionTitle).count();
 		for (int i = 0; i < optCount; i++) {
 			EmulatorOption option = optionsMap.value(sectionTitle).at(i);
 			if ( !optName.isEmpty() )
@@ -1071,6 +1071,7 @@ void EmulatorOptions::createMap()
 	sectionItemMap.clear();
 	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
 	setUpdatesEnabled(false);
+	QIcon wipIcon(QIcon(QString::fromUtf8(":/data/img/wip.png")));
 	while ( it.hasNext() ) {
 		it.next();
 		QString sectionTitle(it.key());
@@ -1086,6 +1087,8 @@ void EmulatorOptions::createMap()
 			optionItem->setHidden(!emulatorOption.visible);
 			optionsMap[sectionTitle][i].item = optionItem;
 			optionItem->setText(0, emulatorOption.name);
+			if ( emulatorOption.wip )
+				optionItem->setIcon(0, wipIcon);
 			optionType = emulatorOption.type;
 			optionDecimals = emulatorOption.decimals;
 			QTreeWidgetItem *childItem = new QTreeWidgetItem(optionItem);
@@ -1125,11 +1128,6 @@ void EmulatorOptions::createMap()
 					childItem->setText(1, trUnknown);
 					break;
 			}
-			if ( !emulatorOption.shortname.isEmpty() ) {
-				childItem = new QTreeWidgetItem(optionItem);
-				childItem->setText(0, trShortName);
-				childItem->setText(1, emulatorOption.shortname);
-			}
 			if ( !emulatorOption.dvalue.isEmpty() ) {
 				childItem = new QTreeWidgetItem(optionItem);
 				childItem->setText(0, trDefault);
@@ -1147,13 +1145,15 @@ void EmulatorOptions::createMap()
 			}
 			if ( !emulatorOption.description.isEmpty() ) {
 				optionDescription = emulatorOption.description;
+				if ( emulatorOption.wip )
+					optionDescription += " (" + tr("WIP") + ")";
 				optionChoices = emulatorOption.choices;
 				optionPart = emulatorOption.part;
 				optionRelativeTo = emulatorOption.relativeTo;
 				optionItem->setToolTip(0, optionDescription);
 				childItem = new QTreeWidgetItem(optionItem);
 				childItem->setText(0, trDescription);
-				childItem->setText(1, emulatorOption.description);
+				childItem->setText(1, optionDescription);
 			} else
 				optionDescription.clear();
 			openPersistentEditor(optionItem, QMC2_EMUOPT_COLUMN_VALUE);
@@ -1269,15 +1269,15 @@ void EmulatorOptions::createTemplateMap()
 					if ( optionEntity.compare(elementType) == 0 ) {
 						bool ignore = false;
 						bool visible = true;
+						bool wip = false;
 						int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
-						QString shortName;
 						if ( xmlReader.attributes().hasAttribute("ignore") )
 							ignore = xmlReader.attributes().value("ignore").compare("true") == 0;
 						if ( xmlReader.attributes().hasAttribute(ignoreOS) )
 							ignore |= xmlReader.attributes().value(ignoreOS).compare("true") == 0;
+						if ( xmlReader.attributes().hasAttribute("wip") )
+							wip = xmlReader.attributes().value("wip").compare("true") == 0;
 						if ( !ignore ) {
-							if ( xmlReader.attributes().hasAttribute("shortname") )
-								shortName = xmlReader.attributes().value("shortname").toString();
 							if ( xmlReader.attributes().hasAttribute("visible") )
 								visible = xmlReader.attributes().value("visible").compare("true") == 0;
 							if ( xmlReader.attributes().hasAttribute("decimals") )
@@ -1290,7 +1290,7 @@ void EmulatorOptions::createTemplateMap()
 								defaultValue = xmlReader.attributes().value("default").toString();
 							QString optionDescription(readDescription(&xmlReader, lang, &readNext));
 							optionChoices.clear();
-							if ( type.compare("combo") == 0 && xmlReader.name().toString().compare("choice") == 0 )
+							if ( type.compare("combo") == 0 && xmlReader.name().compare("choice") == 0 )
 								optionChoices = readChoices(&xmlReader);
 							optionPart.clear();
 							optionRelativeTo.clear();
@@ -1306,7 +1306,7 @@ void EmulatorOptions::createTemplateMap()
 										optionDescription.append(" (" + tr("relative to the path specified in '%1'").arg(optionRelativeTo) + ")");
 								}
 							}
-							templateMap[sectionTitle].append(EmulatorOption(name, shortName, type, defaultValue, optionDescription, QString::null, optionPart, 0, false, decimals, optionChoices, visible, optionRelativeTo));
+							templateMap[sectionTitle].append(EmulatorOption(name, type, defaultValue, optionDescription, QString::null, optionPart, 0, false, decimals, optionChoices, visible, optionRelativeTo, wip));
 						} else
 							ignoredOptions << name;
 						continue;
