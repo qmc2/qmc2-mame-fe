@@ -519,11 +519,9 @@ void UserDataDatabaseManager::fillUpRankCache()
 			m_rankCache.insert(idString, rankInt);
 			QString rankString(QString::number(rankInt));
 			QTreeWidgetItem *item = qmc2MachineListItemHash.value(idString);
-			if ( item )
-				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
+			item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 			item = qmc2HierarchyItemHash.value(idString);
-			if ( item)
-				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
+			item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 			item = qmc2CategoryItemHash.value(idString);
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
@@ -531,7 +529,7 @@ void UserDataDatabaseManager::fillUpRankCache()
 			if ( item )
 				item->setWhatsThis(QMC2_MACHINELIST_COLUMN_RANK, rankString);
 		}
-		if ( row % 25 == 0 )
+		if ( row % QMC2_RANKCACHE_FILLUP_RESPONSE == 0 )
 			qApp->processEvents();
 		row = nextRowId();
 	}

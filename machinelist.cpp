@@ -1785,11 +1785,10 @@ void MachineList::parse()
 		elapsedTime = elapsedTime.addMSecs(miscTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	}
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteriaName(qmc2SortCriteria)).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 	mainProgressBar->setValue(mainProgressBar->maximum());
-	qApp->processEvents();
 	if ( !qmc2MachineList->userDataDb()->rankCacheComplete() )
 		qmc2MachineList->userDataDb()->fillUpRankCache();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteriaName(qmc2SortCriteria)).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 	qmc2MainWindow->treeWidgetMachineList->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 	qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 	QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetMachineList->currentItem();
