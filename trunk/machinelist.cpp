@@ -146,6 +146,15 @@ MachineList::MachineList(QObject *parent) :
 	mergeCategories = autoRomCheck = verifyCurrentOnly = dtdBufferReady = false;
 	initialLoad = true;
 
+	m_trL = tr("L:");
+	m_trC = tr("C:");
+	m_trM = tr("M:");
+	m_trI = tr("I:");
+	m_trN = tr("N:");
+       	m_trU = tr("U:");
+       	m_trS = tr("S:");
+	m_trT = tr("T:");
+
 	qmc2UnknownImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue.png"));
 	qmc2UnknownBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue_bios.png"));
 	qmc2UnknownDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_blue_device.png"));
@@ -1793,9 +1802,9 @@ void MachineList::parse()
 	qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 	QTreeWidgetItem *ci = qmc2MainWindow->treeWidgetMachineList->currentItem();
 	if ( ci ) {
-		if ( ci->isSelected() ) {
+		if ( ci->isSelected() )
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-		} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
+		else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
 			QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString());
 			if ( !selectedMachine.isEmpty() ) {
 				QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
@@ -2036,16 +2045,19 @@ void MachineList::filter(bool initial)
 
 void MachineList::loadFavorites()
 {
+	qmc2MainWindow->listWidgetFavorites->setUpdatesEnabled(false);
 	qmc2MainWindow->listWidgetFavorites->clear();
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString());
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&f);
+		QList<QListWidgetItem *> itemList;
 		while ( !ts.atEnd() ) {
-			QString machineName = ts.readLine();
+			QString machineName(ts.readLine());
 			if ( !machineName.isEmpty() ) {
 				QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(machineName);
 				if ( machineItem ) {
-					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetFavorites);
+					QListWidgetItem *item = new QListWidgetItem();
+					itemList << item;
 					item->setText(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 					item->setWhatsThis(machineItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 					if ( machineItem->isSelected() )
@@ -2054,8 +2066,11 @@ void MachineList::loadFavorites()
 			}
 		}
 		f.close();
+		foreach (QListWidgetItem *item, itemList)
+			qmc2MainWindow->listWidgetFavorites->addItem(item);
 	}
 	qmc2MainWindow->listWidgetFavorites->sortItems();
+	qmc2MainWindow->listWidgetFavorites->setUpdatesEnabled(true);
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabFavorites) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentFavoritesSelection()));
 	else
@@ -2077,16 +2092,19 @@ void MachineList::saveFavorites()
 
 void MachineList::loadPlayHistory()
 {
+	qmc2MainWindow->listWidgetPlayed->setUpdatesEnabled(false);
 	qmc2MainWindow->listWidgetPlayed->clear();
 	QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString());
 	if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&f);
+		QList<QListWidgetItem *> itemList;
 		while ( !ts.atEnd() ) {
-			QString machineName = ts.readLine();
+			QString machineName(ts.readLine());
 			if ( !machineName.isEmpty() ) {
 				QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(machineName);
 				if ( machineItem ) {
-					QListWidgetItem *item = new QListWidgetItem(qmc2MainWindow->listWidgetPlayed);
+					QListWidgetItem *item = new QListWidgetItem();
+					itemList << item;
 					item->setText(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 					item->setWhatsThis(machineItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 					if ( machineItem->isSelected() )
@@ -2095,7 +2113,10 @@ void MachineList::loadPlayHistory()
 			}
 		}
 		f.close();
+		foreach (QListWidgetItem *item, itemList)
+			qmc2MainWindow->listWidgetPlayed->addItem(item);
 	}
+	qmc2MainWindow->listWidgetPlayed->setUpdatesEnabled(true);
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabPlayed) == qmc2MainWindow->tabWidgetMachineList->currentIndex() )
 		QTimer::singleShot(50, qmc2MainWindow, SLOT(checkCurrentPlayedSelection()));
 	else
@@ -2118,14 +2139,14 @@ void MachineList::savePlayHistory()
 QString &MachineList::status()
 {
 	static QLocale locale;
-	statusString = "<b><font color=\"black\">" + tr("L:") + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#00cc00\">" + tr("C:") + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#799632\">" + tr("M:") + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#f90000\">" + tr("I:") + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#7f7f7f\">" + tr("N:") + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#0000f9\">" + tr("U:") + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"chocolate\">" + tr("S:") + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"sandybrown\">" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark) + "</font></b>";
+	statusString = "<b><font color=\"black\">" + m_trL + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#00cc00\">" + m_trC + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#799632\">" + m_trM + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#f90000\">" + m_trI + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#7f7f7f\">" + m_trN + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"#0000f9\">" + m_trU + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"chocolate\">" + m_trS + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark) + "</font>&nbsp;"
+		"<font color=\"sandybrown\">" + m_trT + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark) + "</font></b>";
 	return statusString;
 }
 
