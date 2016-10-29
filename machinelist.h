@@ -146,6 +146,7 @@ class MachineList : public QObject
 		UserDataDatabaseManager *m_userDataDb;
 		DatInfoDatabaseManager *m_datInfoDb;
 		MachineListDatabaseManager *m_machineListDb;
+		QString m_trL, m_trC, m_trM, m_trI, m_trN, m_trU, m_trS, m_trT;
 };
 
 class MachineListItem : public QTreeWidgetItem
