@@ -1213,7 +1213,7 @@ void MachineList::parse()
 			while ( line.startsWith('#') && !tsMachineListCache.atEnd() )
 				line = tsMachineListCache.readLine();
 			QStringList words(line.split(columnSplitChar));
-			if ( words.count() >= 2 ) {
+			if ( words.count() > 1 ) {
 				if ( words.at(0).compare("MAME_VERSION") == 0 )
 					romStateCacheUpdate = reparseMachineList = (words.at(1).compare(emulatorVersion) != 0);
 				else
@@ -3618,43 +3618,30 @@ bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
 	switch ( qmc2SortCriteria ) {
 		case QMC2_SORT_BY_DESCRIPTION:
 			return (text(QMC2_MACHINELIST_COLUMN_MACHINE).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_ROM_STATE:
 			return (qmc2MachineList->machineStatusHash.value(text(QMC2_MACHINELIST_COLUMN_NAME)) < qmc2MachineList->machineStatusHash.value(otherItem.text(QMC2_MACHINELIST_COLUMN_NAME)));
-
 		case QMC2_SORT_BY_TAG:
 			return (int(checkState(QMC2_MACHINELIST_COLUMN_TAG)) < int(otherItem.checkState(QMC2_MACHINELIST_COLUMN_TAG)));
-
 		case QMC2_SORT_BY_YEAR:
 			return (text(QMC2_MACHINELIST_COLUMN_YEAR).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_YEAR), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_MANUFACTURER:
 			return (text(QMC2_MACHINELIST_COLUMN_MANU).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_MANU), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_NAME:
 			return (text(QMC2_MACHINELIST_COLUMN_NAME).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_NAME), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_ROMTYPES:
 			return (text(QMC2_MACHINELIST_COLUMN_RTYPES).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_RTYPES), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_PLAYERS:
 			return (text(QMC2_MACHINELIST_COLUMN_PLAYERS).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_PLAYERS), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_DRVSTAT:
 			return (text(QMC2_MACHINELIST_COLUMN_DRVSTAT).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_DRVSTAT), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_SRCFILE:
 			return (text(QMC2_MACHINELIST_COLUMN_SRCFILE).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_SRCFILE), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_RANK:
 			return (whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt() > otherItem.whatsThis(QMC2_MACHINELIST_COLUMN_RANK).toInt());
-
 		case QMC2_SORT_BY_CATEGORY:
 			return (text(QMC2_MACHINELIST_COLUMN_CATEGORY).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_CATEGORY), Qt::CaseInsensitive) < 0);
-
 		case QMC2_SORT_BY_VERSION:
 			return (text(QMC2_MACHINELIST_COLUMN_VERSION).compare(otherItem.text(QMC2_MACHINELIST_COLUMN_VERSION), Qt::CaseInsensitive) < 0);
-
 		default:
 			return false;
 	}
