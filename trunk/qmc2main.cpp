@@ -377,7 +377,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	comboBoxToolbarSearch->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
 	widgetActionToolbarSearch = new QWidgetAction(this);
 	widgetActionToolbarSearch->setDefaultWidget(comboBoxToolbarSearch);
-	widgetActionToolbarSearch->setObjectName("widgetActionToolbarSearch");
+	widgetActionToolbarSearch->setObjectName("WATS");
 	toolbar->addSeparator();
 	toolbar->addAction(widgetActionToolbarSearch);
 	connect(comboBoxToolbarSearch, SIGNAL(activated(const QString &)), this, SLOT(comboBoxToolbarSearch_activated(const QString &)));
