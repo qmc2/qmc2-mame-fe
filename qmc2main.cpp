@@ -307,8 +307,8 @@ extern QMap<HWND, QString> winWindowMap;
 #endif
 extern QHash<QString, QString> softwareParentHash;
 
-MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0),
+MainWindow::MainWindow(QWidget *parent) :
+	QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0),
 	m_ignoreSelectionChange(false),
 	m_lastMlvSender(0)
 {
@@ -536,14 +536,14 @@ MainWindow::MainWindow(QWidget *parent)
 
 	qmc2Options->checkBoxShowGameName->setText(tr("Show machine/software titles"));
 	qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine- or software-titles at the bottom of all images"));
-	qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine titles only when the machine list is not visible due to the current layout"));
+	qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine- or software-titles only when the machine list is not visible due to the current layout"));
 
 	qmc2MachineList = new MachineList(this);
 	labelMachineListStatus->setText(qmc2MachineList->status());
 
 	statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar").toBool());
 
-	// game/machine image widgets
+	// machine image widgets
 	QHBoxLayout *previewLayout = new QHBoxLayout, 
 		    *flyerLayout = new QHBoxLayout,
 		    *cabinetLayout = new QHBoxLayout,
@@ -1309,7 +1309,7 @@ void MainWindow::log(int logTarget, const QString &msg)
 	if ( !qmc2GuiReady )
 		return;
 	QString message(msg);
-	QString timeString(QTime::currentTime().toString("hh:mm:ss.zzz"));
+	QString timeString(QTime::currentTime().toString("hh:mm:ss.zzz") + ": ");
 	switch ( logTarget ) {
 		case QMC2_LOG_FRONTEND:
 			if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) )
@@ -1321,7 +1321,7 @@ void MainWindow::log(int logTarget, const QString &msg)
 			} else {
 				qmc2LastFrontendLogMessage = message;
 				if ( qmc2FrontendLogMessageRepeatCount > 0 )
-					message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastFrontendLogMessage;
+					message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + '\n' + timeString + qmc2LastFrontendLogMessage;
 				qmc2FrontendLogMessageRepeatCount = 0;
 			}
 			break;
@@ -1335,14 +1335,14 @@ void MainWindow::log(int logTarget, const QString &msg)
 			} else {
 				qmc2LastEmulatorLogMessage = message;
 				if ( qmc2EmulatorLogMessageRepeatCount > 0 )
-					message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastEmulatorLogMessage;
+					message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + '\n' + timeString + qmc2LastEmulatorLogMessage;
 				qmc2EmulatorLogMessageRepeatCount = 0;
 			}
 			break;
 		default:
 			return;
 	}
-	message.prepend(timeString + ": ");
+	message.prepend(timeString);
 	switch ( logTarget ) {
 		case QMC2_LOG_FRONTEND:
 			textBrowserFrontendLog->appendPlainText(message);
@@ -1367,7 +1367,7 @@ void MainWindow::log(int logTarget, const QString &msg)
 					return;
 				}
 			}
-			qmc2FrontendLogStream << message << "\n";
+			qmc2FrontendLogStream << message << '\n';
 			qmc2FrontendLogStream.flush();
 			qmc2LogFrontendMutex.unlock();
 			break;
@@ -1387,7 +1387,7 @@ void MainWindow::log(int logTarget, const QString &msg)
 					return;
 				}
 			}
-			qmc2EmulatorLogStream << message << "\n";
+			qmc2EmulatorLogStream << message << '\n';
 			qmc2EmulatorLogStream.flush();
 			qmc2LogEmulatorMutex.unlock();
 			break;
@@ -2016,9 +2016,9 @@ void MainWindow::on_actionPlay_triggered(bool)
 		}
 	}
 
-	QString command = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString();
-	QString workingDirectory = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
-	QStringList argsResolved = Settings::stResolve(args);
+	QString command(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
+	QString workingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
+	QStringList argsResolved(Settings::stResolve(args));
 
 	// start machine
 	qmc2ProcessManager->process(qmc2ProcessManager->start(command, argsResolved, true, workingDirectory, softwareLists, softwareNames));
@@ -2123,13 +2123,13 @@ void MainWindow::on_actionToFavorites_triggered(bool)
 	if ( !qmc2CurrentItem )
 		return;
 
-	QString itemText = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
-	QString itemName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+	QString itemText(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+	QString itemName(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 
 	if ( itemText == MachineList::trWaitingForData )
 		return;
 
-	QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(itemText, Qt::MatchExactly);
+	QList<QListWidgetItem *> matches(listWidgetFavorites->findItems(itemText, Qt::MatchExactly));
 	if ( matches.count() <= 0 ) {
 		QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
 		item->setText(itemText);
@@ -2444,11 +2444,11 @@ void MainWindow::on_actionRunRomTool_triggered(bool)
 	if ( qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 
-	QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", QString()).toString();
-	QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", QString()).toString().split(" ");
-	QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", QString()).toString();
-	QString machineId = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	QString gameDescription = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+	QString command(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", QString()).toString());
+	QStringList args(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", QString()).toString().split(' '));
+	QString wd(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", QString()).toString());
+	QString machineId(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+	QString gameDescription(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 	QStringList newArgs;
 	foreach (QString argument, args)
 		newArgs << argument.replace("$ID$", machineId).replace("$DESCRIPTION$", gameDescription);
@@ -2562,7 +2562,7 @@ void MainWindow::on_actionClearIconCache_triggered(bool)
 
 void MainWindow::on_actionClearProjectMESSCache_triggered(bool)
 {
-	QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2ProjectMESSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2ProjectMESSCache.count()));
+	QString cacheStatus(tr("freed %n byte(s) in %1", "", qmc2ProjectMESSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2ProjectMESSCache.count())));
 	qmc2ProjectMESSCache.clear();
 	log(QMC2_LOG_FRONTEND, tr("ProjectMESS in-memory cache cleared (%1)").arg(cacheStatus));
 }
@@ -2571,8 +2571,7 @@ void MainWindow::on_actionClearProjectMESSCache_triggered(bool)
 void MainWindow::on_actionClearYouTubeCache_triggered(bool)
 {
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
-	quint64 removedBytes = 0;
-	quint64 removedFiles = 0;
+	quint64 removedBytes = 0, removedFiles = 0;
 	if ( youTubeCacheDir.exists() ) {
 		QStringList youTubeCacheFiles = youTubeCacheDir.entryList(QStringList("*"));
 		foreach (QString youTubeCacheFile, youTubeCacheFiles) {
@@ -2585,7 +2584,7 @@ void MainWindow::on_actionClearYouTubeCache_triggered(bool)
 			qApp->processEvents();
 		}
 	}
-	QString removalInfo = tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles));
+	QString removalInfo(tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles)));
 	log(QMC2_LOG_FRONTEND, tr("YouTube on-disk cache cleared (%1)").arg(removalInfo));
 }
 #endif
@@ -2838,8 +2837,7 @@ void MainWindow::on_actionDocumentation_triggered(bool)
 	if ( !qmc2DocBrowser ) {
 		qmc2DocBrowser = new DocBrowser(this);
 		qmc2DocBrowser->browser->spinBoxZoom->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Zoom", 100).toInt());
-		QString searchPath;
-		searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "doc/html/" + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString();
+		QString searchPath(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "doc/html/" + qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString());
 		QFileInfo fi(searchPath + "/index.html");
 		if ( !fi.exists() || !fi.isFile() || fi.isSymLink() ) // fall back to US English if there's no language-specific index file
 			searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() + "doc/html/us";
@@ -2851,7 +2849,6 @@ void MainWindow::on_actionDocumentation_triggered(bool)
 #endif
 		qmc2DocBrowser->browser->webViewBrowser->load(docUrl);
 	}
-
 	if ( qmc2DocBrowser->isMinimized() )
 		qmc2DocBrowser->showNormal();
 	else
@@ -2864,7 +2861,6 @@ void MainWindow::on_actionAbout_triggered(bool)
 {
 	if ( !qmc2About )
 		qmc2About = new About(this);
-
 	qmc2About->show();
 	qmc2About->raise();
 }
@@ -2928,9 +2924,9 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 			args << "-debugjoy";
 	}
 
-	QString commandString = QDir::toNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString());
+	QString commandString(QDir::toNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString()));
 	foreach (QString arg, args)
-		commandString += " " + arg;
+		commandString += ' ' + arg;
 
 	log(QMC2_LOG_FRONTEND, tr("arcade mode: launching QMC2 Arcade, command = '%1'").arg(commandString));
 
@@ -2945,10 +2941,8 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 	comboBoxToolbarSearch->lineEdit()->setText(text);
 	comboBoxToolbarSearch->lineEdit()->setCursorPosition(cPos);
 	comboBoxToolbarSearch->lineEdit()->blockSignals(false);
-
 	if ( searchActive )
 		stopSearch = true;
-
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
@@ -2975,7 +2969,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		if ( treeWidgetMachineList->topLevelItem(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			return;
 
-	QString pattern = comboBoxSearch->currentText();
+	QString pattern(comboBoxSearch->currentText());
 	bool includeBioses = actionSearchIncludeBiosSets->isChecked();
 	bool includeDevices = actionSearchIncludeDeviceSets->isChecked();
 
@@ -2995,7 +2989,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch && lastIncludeBioses == includeBioses && lastIncludeDevices == includeDevices )
 		return;
 
-	QString patternCopy = pattern;
+	QString patternCopy(pattern);
 
 	// easy pattern match
 	int pos = 0;
@@ -3029,7 +3023,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 	listWidgetSearch->clear();
 
-	QRegExp patternRx = QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
+	QRegExp patternRx(QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp2));
 	if ( !patternRx.isValid() ) {
 		lastSearchText.clear();
 		lastNegatedMatch = negatedMatch;
@@ -3151,9 +3145,9 @@ void MainWindow::on_listWidgetSearch_itemPressed(QListWidgetItem *current)
 
 void MainWindow::on_listWidgetSearch_itemSelectionChanged()
 {
-	QList<QListWidgetItem *> selected = listWidgetSearch->selectedItems();
-	if ( selected.count() > 0 )
-		on_listWidgetSearch_currentItemChanged(selected[0], 0);
+	QList<QListWidgetItem *> selected(listWidgetSearch->selectedItems());
+	if ( !selected.isEmpty() )
+		on_listWidgetSearch_currentItemChanged(selected.first(), 0);
 }
 
 void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
@@ -3195,9 +3189,9 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 
 void MainWindow::on_listWidgetFavorites_itemSelectionChanged()
 {
-	QList<QListWidgetItem *> selected = listWidgetFavorites->selectedItems();
-	if ( selected.count() > 0 )
-		on_listWidgetSearch_currentItemChanged(selected[0], 0);
+	QList<QListWidgetItem *> selected(listWidgetFavorites->selectedItems());
+	if ( !selected.isEmpty() )
+		on_listWidgetSearch_currentItemChanged(selected.first(), 0);
 }
 
 void MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item)
@@ -3207,9 +3201,9 @@ void MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item)
 
 void MainWindow::on_listWidgetPlayed_itemSelectionChanged()
 {
-	QList<QListWidgetItem *> selected = listWidgetPlayed->selectedItems();
-	if ( selected.count() > 0 )
-		on_listWidgetSearch_currentItemChanged(selected[0], 0);
+	QList<QListWidgetItem *> selected(listWidgetPlayed->selectedItems());
+	if ( !selected.isEmpty() )
+		on_listWidgetSearch_currentItemChanged(selected.first(), 0);
 }
 
 void MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item)
@@ -3390,7 +3384,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 
 	ImageWidget::updateArtwork();
 
-	// show / hide game status indicator
+	// show / hide machine status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
 			if ( componentInfo->appliedFeatureList().at(currentIndex) != QMC2_MACHINELIST_INDEX )
