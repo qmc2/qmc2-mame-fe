@@ -548,11 +548,11 @@ void MachineList::load()
 			QStringList versionWords(versionLines.first().split(' '));
 			if ( versionWords.count() > 1 ) {
 				emulatorVersion = versionWords[1].remove('v');
-				if ( emulatorIdentifiers.contains(versionWords.at(0)) )
+				if ( emulatorIdentifiers.contains(versionWords.first()) )
 					emulatorType = "MAME";
 				else {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
-					emulatorType = versionWords.at(0);
+					emulatorType = versionWords.first();
 				}
 			} else {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the selected emulator executable cannot be identified as MAME"));
@@ -1191,7 +1191,7 @@ void MachineList::parse()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n cached ROM state(s) loaded", "", machineStatusHash.count()));
 		romStateCache.close();
 	} else if ( !autoRomCheck )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open ROM state cache, please check ROMs"));
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
 	parseTimer.start();
 	qmc2MainWindow->treeWidgetMachineList->clear();
