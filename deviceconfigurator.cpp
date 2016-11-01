@@ -1204,7 +1204,7 @@ void DeviceConfigurator::updateSlotBiosSelections()
 			QString slotOption = cb->currentText().split(" ", QString::SkipEmptyParts)[0];
 			QString slotDeviceName = slotDeviceNames[slotOption];
 			QString defaultChoice;
-			QStringList biosChoices = qmc2MainWindow->getXmlChoices(slotDeviceName, "rom", "bios", &defaultChoice);
+			QStringList biosChoices(qmc2MainWindow->getXmlChoices(slotDeviceName, "rom", "bios", &defaultChoice));
 			QComboBox *cbBIOS = 0;
 			bool isNewCB = false;
 			if ( item )

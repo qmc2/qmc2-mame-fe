@@ -164,7 +164,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		int sortCriteriaLogicalIndex();
 		QPoint adjustedWidgetPosition(QPoint, QWidget *);
-		QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString(), QString *defaultChoice = 0);
+		QStringList &getXmlChoices(const QString &, const QString &, const QString &optionAttribute = QString(), QString *defaultChoice = 0);
 		static bool qStringListLessThan(const QString &, const QString &);
 		SoftwareListXmlDatabaseManager *swlDb;
 		RomStateFilter *romStateFilter;
