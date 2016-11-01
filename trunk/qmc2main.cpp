@@ -3745,13 +3745,9 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 		return;
 	if ( !ci->isSelected() )
 		return;
-	QTreeWidgetItem *topLevelItem = ci;
-	while ( topLevelItem->parent() )
-		topLevelItem = topLevelItem->parent();
-	if ( topLevelItem )
-		qmc2CurrentItem = topLevelItem;
-	else
-		return;
+	while ( ci->parent() )
+		ci = ci->parent();
+	qmc2CurrentItem = ci;
 	if ( qmc2CurrentItem->childCount() <= 0 )
 		return;
  
@@ -3781,19 +3777,15 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 		case 'C':
 			labelMachineStatus->setPalette(qmc2StatusColorGreen);
 			break;
-
 		case 'M':
 			labelMachineStatus->setPalette(qmc2StatusColorYellowGreen);
 			break;
-
 		case 'I':
 			labelMachineStatus->setPalette(qmc2StatusColorRed);
 			break;
-
 		case 'N':
 			labelMachineStatus->setPalette(qmc2StatusColorGrey);
 			break;
-
 		case 'U':
 		default:
 			labelMachineStatus->setPalette(qmc2StatusColorBlue);
@@ -4066,8 +4058,8 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2EmulatorOptions->load();
 
 				QString defaultChoice;
-				QStringList biosSets = getXmlChoices(machineName, "biosset", "name", &defaultChoice);
-				QStringList biosDescriptions = getXmlChoices(machineName, "biosset", "description");
+				QStringList biosSets(getXmlChoices(machineName, "biosset", "name", &defaultChoice));
+				QStringList biosDescriptions(getXmlChoices(machineName, "biosset", "description"));
 				for (int i = 0; i < biosSets.count(); i++) {
 					biosDescriptions[i] = biosSets[i] + " - " + biosDescriptions[i];
 					if ( biosSets[i] == defaultChoice )
@@ -4075,7 +4067,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				}
 				qmc2EmulatorOptions->addChoices("bios", biosSets, biosDescriptions, defaultChoice);
 
-				QStringList ramSizes = getXmlChoices(machineName, "ramoption", QString(), &defaultChoice);
+				QStringList ramSizes(getXmlChoices(machineName, "ramoption", QString(), &defaultChoice));
 				std::sort(ramSizes.begin(), ramSizes.end(), MainWindow::qStringListLessThan);
 				QStringList humanReadableRamSizes;
 				for (int i = 0; i < ramSizes.count(); i++) {
@@ -4494,41 +4486,39 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 
 bool MainWindow::qStringListLessThan(const QString &s1, const QString &s2)
 {
-	quint64 n1, n2;
-	bool n1Ok, n2Ok;
-       	n1 = s1.toULong(&n1Ok);
-       	n2 = s2.toULong(&n2Ok);
-	if ( n1Ok && n2Ok )
+	bool n1_ok, n2_ok;
+       	quint64 n1 = s1.toULong(&n1_ok);
+       	quint64 n2 = s2.toULong(&n2_ok);
+	if ( n1_ok && n2_ok )
 		return n1 < n2;
 	else
 		return s1.toLower() < s2.toLower();
 }
 
-QStringList &MainWindow::getXmlChoices(QString machineName, QString optionElement, QString optionAttribute, QString *defaultChoice)
+QStringList &MainWindow::getXmlChoices(const QString &machineName, const QString &optionElement, const QString &optionAttribute, QString *defaultChoice)
 {
 	static QStringList xmlChoices;
 	xmlChoices.clear();
-
 	if ( machineName.isEmpty() )
 		return xmlChoices;
-
 	if ( defaultChoice )
 		defaultChoice->clear();
-
-	QStringList xmlLines = qmc2MachineList->xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts);
+	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machineName).split('\n', QString::SkipEmptyParts));
+	QString defaultYes("default=\"yes\"");
+	QString defaultOne("default=\"1\"");
 	int i = 0;
 	while ( i < xmlLines.count() ) {
-		QString xmlLine = xmlLines[i++].simplified();
-		int index = xmlLine.indexOf("<" + optionElement);
+		QString xmlLine(xmlLines.at(i++).simplified());
+		int index = xmlLine.indexOf('<' + optionElement);
 		if ( index >= 0 ) {
 			if ( optionAttribute.isEmpty() ) {
-				index = xmlLine.indexOf(">", index);
+				index = xmlLine.indexOf('>', index);
 				if ( index >= 0 ) {
 					xmlLine.remove(0, index + 1);
 					bool isDefaultChoice = false;
-					if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
+					if ( defaultChoice && (xmlLine.indexOf(defaultYes) >= 0 || xmlLine.indexOf(defaultOne) >= 0 || defaultChoice->isEmpty()) )
 						isDefaultChoice = true;
-					xmlLine.replace("</" + optionElement + ">", "");
+					xmlLine.replace("</" + optionElement + '>', "");
 					QTextDocument doc;
 					doc.setHtml(xmlLine);
 					xmlLine = doc.toPlainText();
@@ -4537,24 +4527,23 @@ QStringList &MainWindow::getXmlChoices(QString machineName, QString optionElemen
 						*defaultChoice = xmlLine;
 				}
 			} else {
-				QString prefix = optionAttribute + "=\"";
+				QString prefix(optionAttribute + "=\"");
 				index = xmlLine.indexOf(prefix);
 				if ( index >= 0 ) {
 					xmlLine.remove(0, index + prefix.length());
-					index = xmlLine.indexOf("\"");
+					index = xmlLine.indexOf('\"');
 					if ( index >= 0 ) {
 						QTextDocument doc;
 						doc.setHtml(xmlLine.left(index));
 						QString choice = doc.toPlainText();
 						xmlChoices << choice;
-						if ( defaultChoice && (xmlLine.indexOf("default=\"yes\"") >= 0 || xmlLine.indexOf("default=\"1\"") >= 0 || defaultChoice->isEmpty()) )
+						if ( defaultChoice && (xmlLine.indexOf(defaultYes) >= 0 || xmlLine.indexOf(defaultOne) >= 0 || defaultChoice->isEmpty()) )
 							*defaultChoice = choice;
 					}
 				}
 			}
 		}
 	}
-
 	return xmlChoices;
 }
 
