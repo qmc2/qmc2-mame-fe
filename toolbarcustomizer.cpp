@@ -7,8 +7,8 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 
-ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
-	: QDialog(parent)
+ToolBarCustomizer::ToolBarCustomizer(QWidget *parent) :
+	QDialog(parent)
 {
 	setupUi(this);
 
@@ -29,9 +29,8 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent)
 	separatorAction = new QAction(this);
 	separatorAction->setSeparator(true);
 	separatorAction->setObjectName("--");
-
 	activeActions.clear();
-	refreshAvailableActions();
+	QTimer::singleShot(0, this, SLOT(refreshAvailableActions()));
 }
 
 void ToolBarCustomizer::refreshAvailableActions()
@@ -80,30 +79,38 @@ void ToolBarCustomizer::refreshActiveActions()
 	}
 	if ( activeActions.isEmpty() )
 		activeActions = defaultToolBarActions;
+	QStringList actionNames(QStringList() << "--" << "WATS" << "widgetActionToolbarSearch");
+	QListWidgetItem *item;
+	QAction *action;
 	foreach (QString actionName, activeActions) {
-		if ( actionName == "--" ) {
-			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
-			item->setText(tr("-- Separator --"));
-			activeToolBarActions[item] = separatorAction;
-		} else if ( actionName == "widgetActionToolbarSearch" ) {
-			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
-			item->setText(tr("Tool-bar search box"));
-			item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
-			activeToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
-		} else if ( availableActionsByName.contains(actionName) ) {
-			QListWidgetItem *item = new QListWidgetItem(listWidgetActiveActions);
-			QAction *action = availableActionsByName[actionName];
-			item->setText(action->statusTip());
-			item->setIcon(action->icon());
-			activeToolBarActions[item] = action;
+		switch ( actionNames.indexOf(actionName) ) {
+			case 0:
+				item = new QListWidgetItem(listWidgetActiveActions);
+				item->setText(tr("-- Separator --"));
+				activeToolBarActions.insert(item, separatorAction);
+				break;
+			case 1:
+			case 2: // for backward-compatibility
+				item = new QListWidgetItem(listWidgetActiveActions);
+				item->setText(tr("Tool-bar search box"));
+				item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
+				activeToolBarActions.insert(item, qmc2MainWindow->widgetActionToolbarSearch);
+				break;
+			default:
+				if ( availableActionsByName.contains(actionName) ) {
+					item = new QListWidgetItem(listWidgetActiveActions);
+					action = availableActionsByName.value(actionName);
+					item->setText(action->statusTip());
+					item->setIcon(action->icon());
+					activeToolBarActions.insert(item, action);
+				}
+				break;
 		}
 	}
-
 	if ( firstRefresh ) {
 		on_pushButtonApply_clicked();
 		firstRefresh = false;
 	}
-
 	resetToDefault = false;
 }
 
@@ -112,8 +119,7 @@ void ToolBarCustomizer::adjustIconSizes()
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFontMetrics fm(f);
-	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
-
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	pushButtonOk->setIconSize(iconSize);
 	pushButtonApply->setIconSize(iconSize);
 	pushButtonCancel->setIconSize(iconSize);
@@ -260,4 +266,3 @@ void ToolBarCustomizer::on_listWidgetActiveActions_itemSelectionChanged()
 		pushButtonActionDown->setEnabled(false);
 	}
 }
-
