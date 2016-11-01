@@ -117,32 +117,32 @@ void ImageWidget::reloadArtworkFormats()
 void ImageWidget::openSource()
 {
 	if ( useZip() ) {
-		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+		foreach (QString filePath, imageZip().split(';', QString::SkipEmptyParts)) {
 			unzFile imageFile = unzOpen(filePath.toUtf8().constData());
 			if ( imageFile == 0 )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else
-				imageFileMap[filePath] = imageFile;
+				imageFileMap.insert(filePath, imageFile);
 		}
 	} else if ( useSevenZip() ) {
-		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+		foreach (QString filePath, imageZip().split(';', QString::SkipEmptyParts)) {
 			SevenZipFile *imageFile = new SevenZipFile(filePath);
 			if ( !imageFile->open() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else {
 				connect(imageFile, SIGNAL(dataReady()), this, SLOT(sevenZipDataReady()));
-				imageFileMap7z[filePath] = imageFile;
+				imageFileMap7z.insert(filePath, imageFile);
 			}
 		}
 	}
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 	else if ( useArchive() ) {
-		foreach (QString filePath, imageZip().split(";", QString::SkipEmptyParts)) {
+		foreach (QString filePath, imageZip().split(';', QString::SkipEmptyParts)) {
 			ArchiveFile *imageFile = new ArchiveFile(filePath);
 			if ( !imageFile->open() )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open %1 file, please check access permissions for %2").arg(imageType()).arg(imageZip()));
 			else
-				imageArchiveMap[filePath] = imageFile;
+				imageArchiveMap.insert(filePath, imageFile);
 		}
 	}
 #endif
@@ -191,15 +191,15 @@ void ImageWidget::reloadActiveFormats()
 	if ( imgFmts.isEmpty() )
 		activeFormats << QMC2_IMAGE_FORMAT_INDEX_PNG;
 	else for (int i = 0; i < imgFmts.count(); i++)
-		activeFormats << imgFmts[i].toInt();
+		activeFormats << imgFmts.at(i).toInt();
 }
 
 QString ImageWidget::cleanDir(QString dirs)
 {
 	QStringList dirList;
-	foreach (QString dir, dirs.split(";", QString::SkipEmptyParts)) {
-		if ( !dir.endsWith("/") )
-			dir += "/";
+	foreach (QString dir, dirs.split(';', QString::SkipEmptyParts)) {
+		if ( !dir.endsWith('/') )
+			dir += '/';
 		dirList << dir;
 	}
 	return dirList.join(";");
@@ -223,12 +223,12 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 	while ( topLevelItem->parent() )
 		topLevelItem = topLevelItem->parent();
 
-	QString gameName = topLevelItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-	cacheKey = cachePrefix() + "_" + gameName;
+	QString machineName(topLevelItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+	cacheKey = cachePrefix() + '_' + machineName;
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 	if ( !cpm ) {
 		qmc2CurrentItem = topLevelItem;
-		loadImage(gameName, gameName);
+		loadImage(machineName, machineName);
 	} else {
 		currentPixmap = *cpm;
 		currentPixmap.imagePath = cpm->imagePath;
@@ -304,7 +304,7 @@ void ImageWidget::enableWidgets(bool enable)
 	}
 }
 
-bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
+bool ImageWidget::loadImage(const QString &machineName, const QString &onBehalfOf, bool checkOnly, QString *fileName, bool loadImages)
 {
 	ImagePixmap pm;
 	char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
@@ -317,13 +317,13 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 		QByteArray imageData;
 		int len;
 		foreach (int format, activeFormats) {
-			QString formatName = formatNames[format];
-			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-				QString gameFile = gameName + "." + extension;
+			QString formatName(formatNames.value(format));
+			foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+				QString machineFile(machineName + '.' + extension);
 				if ( fileName )
-					*fileName = gameFile;
+					*fileName = machineFile;
 				foreach (unzFile imageFile, imageFileMap) {
-					if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
+					if ( unzLocateFile(imageFile, machineFile.toUtf8().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
 							while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
 								imageData.append(imageBuffer, len);
@@ -349,7 +349,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
-						QString parentName = qmc2ParentHash.value(gameName);
+						QString parentName(qmc2ParentHash.value(machineName));
 						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
@@ -372,14 +372,14 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 		// try loading image from (semicolon-separated) 7z archive(s)
 		QByteArray imageData;
 		foreach (int format, activeFormats) {
-			QString formatName = formatNames[format];
-			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-				QString gameFile = gameName + "." + extension;
+			QString formatName(formatNames.value(format));
+			foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+				QString machineFile(machineName + '.' + extension);
 				if ( fileName )
-					*fileName = gameFile;
+					*fileName = machineFile;
 				bool isFillingDictionary = false;
 				foreach (SevenZipFile *imageFile, imageFileMap7z) {
-					int index = imageFile->indexOfName(gameFile);
+					int index = imageFile->indexOfName(machineFile);
 					if ( index >= 0 ) {
 						m_async = true;
 						quint64 readLength = imageFile->read(index, &imageData, &m_async);
@@ -408,7 +408,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
-						QString parentName = qmc2ParentHash.value(gameName);
+						QString parentName = qmc2ParentHash.value(machineName);
 						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
@@ -455,13 +455,13 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 		// try loading image from (semicolon-separated) archive(s)
 		QByteArray imageData;
 		foreach (int format, activeFormats) {
-			QString formatName = formatNames[format];
-			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-				QString gameFile = gameName + "." + extension;
+			QString formatName(formatNames.value(format));
+			foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+				QString machineFile(machineName + '.' + extension);
 				if ( fileName )
-					*fileName = gameFile;
+					*fileName = machineFile;
 				foreach (ArchiveFile *imageFile, imageArchiveMap) {
-					if ( imageFile->seekEntry(gameFile) )
+					if ( imageFile->seekEntry(machineFile) )
 						fileOk = imageFile->readEntry(imageData) > 0;
 					else
 						fileOk = false;
@@ -478,7 +478,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 						qmc2ImagePixmapCache.insert(cacheKey, new ImagePixmap(pm), pm.toImage().byteCount());
 						currentPixmap = pm;
 					} else {
-						QString parentName = qmc2ParentHash.value(gameName);
+						QString parentName(qmc2ParentHash.value(machineName));
 						if ( parentFallback() && !parentName.isEmpty() ) {
 							fileOk = loadImage(parentName, onBehalfOf);
 						} else {
@@ -501,12 +501,12 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 #endif
 	else {
 		// try loading image from (semicolon-separated) folder(s)
-		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
-			QString imgDir = QDir::cleanPath(baseDirectory + "/" + gameName);
+		foreach (QString baseDirectory, imageDir().split(';', QString::SkipEmptyParts)) {
+			QString imgDir(QDir::cleanPath(baseDirectory + '/' + machineName));
 			foreach (int format, activeFormats) {
-				QString formatName = formatNames[format];
-				foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-					QString imagePath = imgDir + "." + extension;
+				QString formatName(formatNames.value(format));
+				foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+					QString imagePath(imgDir + '.' + extension);
 					if ( fileName )
 						*fileName = imagePath;
 					QFile f(imagePath);
@@ -517,7 +517,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							nameFilter << "*." + extension;
 							QStringList dirEntries = dir.entryList(nameFilter, QDir::Files | QDir::NoDotAndDotDot | QDir::Readable | QDir::CaseSensitive, QDir::Name | QDir::Reversed);
 							if ( dirEntries.count() > 0 ) {
-								imagePath = imgDir + "/" + dirEntries[0];
+								imagePath = imgDir + '/' + dirEntries.first();
 								if ( fileName )
 									*fileName = imagePath;
 							}
@@ -530,7 +530,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							QFile f(imagePath);
 							fileOk = f.exists();
 							if ( !fileOk ) {
-								QString parentName = qmc2ParentHash.value(gameName);
+								QString parentName(qmc2ParentHash.value(machineName));
 								if ( parentFallback() && !parentName.isEmpty() )
 									fileOk = loadImage(parentName, onBehalfOf, checkOnly, fileName, false);
 							}
@@ -545,7 +545,7 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 							currentPixmap = pm;
 							fileOk = true;
 						} else {
-							QString parentName = qmc2ParentHash.value(gameName);
+							QString parentName(qmc2ParentHash.value(machineName));
 							if ( parentFallback() && !parentName.isEmpty() ) {
 								fileOk = loadImage(parentName, onBehalfOf);
 							} else {
@@ -572,22 +572,22 @@ bool ImageWidget::loadImage(QString gameName, QString onBehalfOf, bool checkOnly
 	return fileOk;
 }
 
-QString ImageWidget::primaryPathFor(QString gameName)
+QString ImageWidget::primaryPathFor(QString machineName)
 {
 	if ( !useZip() && !useSevenZip() ) {
-		QStringList fl = imageDir().split(";", QString::SkipEmptyParts);
+		QStringList fl(imageDir().split(';', QString::SkipEmptyParts));
 		QString baseDirectory;
-		if ( fl.count() > 0 )
-			baseDirectory = fl[0];
-		return QDir::toNativeSeparators(QDir::cleanPath(baseDirectory + "/" + gameName + ".png"));
+		if ( !fl.isEmpty() )
+			baseDirectory = fl.first();
+		return QDir::toNativeSeparators(QDir::cleanPath(baseDirectory + '/' + machineName + ".png"));
 	} else // we don't support on-the-fly image replacement for zipped images yet!
 		return QString();
 }
 
-bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
+bool ImageWidget::replaceImage(QString machineName, QPixmap &pixmap)
 {
 	if ( !useZip() && !useSevenZip() ) {
-		QString savePath = primaryPathFor(gameName);
+		QString savePath = primaryPathFor(machineName);
 		if ( !savePath.isEmpty() ) {
 			bool goOn = true;
 			if ( QFile::exists(savePath) ) {
@@ -624,9 +624,9 @@ bool ImageWidget::replaceImage(QString gameName, QPixmap &pixmap)
 }
 
 #if defined(QMC2_LIBARCHIVE_ENABLED)
-bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZip, ArchiveFile *archiveFile, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
+bool ImageWidget::checkImage(QString machineName, unzFile zip, SevenZipFile *sevenZip, ArchiveFile *archiveFile, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
 #else
-bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
+bool ImageWidget::checkImage(QString machineName, unzFile zip, SevenZipFile *sevenZip, QSize *sizeReturn, int *bytesUsed, QString *fileName, QString *readerError, bool *async, bool *isFillingDict)
 #endif
 {
 	QImage image;
@@ -640,14 +640,14 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 		QByteArray imageData;
 		int len;
 		foreach (int format, activeFormats) {
-			QString formatName = formatNames[format];
-			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-				QString gameFile = gameName + "." + extension;
+			QString formatName(formatNames.value(format));
+			foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+				QString machineFile(machineName + '.' + extension);
 				if ( fileName )
-					*fileName = gameFile;
+					*fileName = machineFile;
 				if ( zip == 0 ) {
 					foreach (unzFile imageFile, imageFileMap) {
-						if ( unzLocateFile(imageFile, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
+						if ( unzLocateFile(imageFile, machineFile.toUtf8().constData(), 0) == UNZ_OK ) {
 							if ( unzOpenCurrentFile(imageFile) == UNZ_OK ) {
 								while ( (len = unzReadCurrentFile(imageFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
 									imageData.append(imageBuffer, len);
@@ -663,7 +663,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							imageData.clear();
 					}
 				} else {
-					if ( unzLocateFile(zip, gameFile.toUtf8().constData(), 0) == UNZ_OK ) {
+					if ( unzLocateFile(zip, machineFile.toUtf8().constData(), 0) == UNZ_OK ) {
 						if ( unzOpenCurrentFile(zip) == UNZ_OK ) {
 							while ( (len = unzReadCurrentFile(zip, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 )
 								imageData.append(imageBuffer, len);
@@ -696,16 +696,16 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 		// try loading image from (semicolon-separated) 7z archive(s)
 		QByteArray imageData;
 		foreach (int format, activeFormats) {
-			QString formatName = formatNames[format];
-			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-				QString gameFile = gameName + "." + extension;
+			QString formatName(formatNames.value(format));
+			foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+				QString machineFile(machineName + '.' + extension);
 				if ( fileName )
-					*fileName = gameFile;
+					*fileName = machineFile;
 				if ( isFillingDict )
 					*isFillingDict = false;
 				if ( sevenZip == 0 ) {
 					foreach (SevenZipFile *imageFile, imageFileMap7z) {
-						int index = imageFile->indexOfName(gameFile);
+						int index = imageFile->indexOfName(machineFile);
 						if ( index >= 0 ) {
 							m_async = true;
 							quint64 readLength = imageFile->read(index, &imageData, &m_async);
@@ -723,7 +723,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							imageData.clear();
 					}
 				} else {
-					int index = sevenZip->indexOfName(gameFile);
+					int index = sevenZip->indexOfName(machineFile);
 					if ( index >= 0 ) {
 						if ( async )
 							*async = true;
@@ -764,14 +764,14 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 		// try loading image from (semicolon-separated) archive(s)
 		QByteArray imageData;
 		foreach (int format, activeFormats) {
-			QString formatName = formatNames[format];
-			foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-				QString gameFile = gameName + "." + extension;
+			QString formatName(formatNames.value(format));
+			foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+				QString machineFile(machineName + '.' + extension);
 				if ( fileName )
-					*fileName = gameFile;
+					*fileName = machineFile;
 				if ( archiveFile == 0 ) {
 					foreach (ArchiveFile *imageFile, imageArchiveMap) {
-						if ( imageFile->seekEntry(gameFile) )
+						if ( imageFile->seekEntry(machineFile) )
 							fileOk = imageFile->readEntry(imageData) > 0;
 						else
 							fileOk = false;
@@ -779,7 +779,7 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 							break;
 					}
 				} else {
-					if ( archiveFile->seekEntry(gameFile) )
+					if ( archiveFile->seekEntry(machineFile) )
 						fileOk = archiveFile->readEntry(imageData) > 0;
 					else
 						fileOk = false;
@@ -806,12 +806,12 @@ bool ImageWidget::checkImage(QString gameName, unzFile zip, SevenZipFile *sevenZ
 #endif
 	else {
 		// try loading image from (semicolon-separated) folder(s)
-		foreach (QString baseDirectory, imageDir().split(";", QString::SkipEmptyParts)) {
-			QString imgDir = baseDirectory + gameName;
+		foreach (QString baseDirectory, imageDir().split(';', QString::SkipEmptyParts)) {
+			QString imgDir(baseDirectory + machineName);
 			foreach (int format, activeFormats) {
-				QString formatName = formatNames[format];
-				foreach (QString extension, formatExtensions[format].split(", ", QString::SkipEmptyParts)) {
-					QString localImagePath = imgDir + "." + extension;
+				QString formatName(formatNames.value(format));
+				foreach (QString extension, formatExtensions.value(format).split(", ", QString::SkipEmptyParts)) {
+					QString localImagePath(imgDir + '.' + extension);
 					if ( fileName )
 						*fileName = QDir::toNativeSeparators(localImagePath);
 					QImageReader imageReader(localImagePath, formatName.toUtf8().constData());

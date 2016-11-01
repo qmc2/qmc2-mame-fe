@@ -63,7 +63,7 @@ class SoftwareImageWidget : public QWidget
 		void init();
 		void drawCenteredImage(QPixmap *, QPainter *);
 		void drawScaledImage(QPixmap *, QPainter *);
-		bool loadImage(QString, QString, bool fromParent = false);
+		bool loadImage(const QString &, const QString &, bool fromParent = false);
 		void copyToClipboard();
 		void copyPathToClipboard();
 		void refresh();
