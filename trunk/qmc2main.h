@@ -413,7 +413,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void setupPalette(QString);
 		void viewFullDetail();
 		void viewParentClones();
-		void loadGameInfoDB();
+		void loadMachineInfoDB();
 		void loadEmuInfoDB();
 		void loadSoftwareInfoDB();
 #if defined(QMC2_YOUTUBE_ENABLED)

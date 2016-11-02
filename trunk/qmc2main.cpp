@@ -2176,7 +2176,7 @@ void MainWindow::on_actionReload_triggered(bool)
 		qmc2LoadingInterrupted = false;
 		qmc2MachineList->enableWidgets(false);
 		if ( !qmc2LoadingInterrupted && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameHistoryDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessSysinfoDat", false).toBool()) )
-			loadGameInfoDB();
+			loadMachineInfoDB();
 		if ( !qmc2LoadingInterrupted && (qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMameInfoDat", false).toBool() || qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/ProcessMessInfoDat", false).toBool()) )
 			loadEmuInfoDB();
 		if ( !qmc2LoadingInterrupted && qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessSoftwareInfoDB", false).toBool() )
@@ -6561,7 +6561,7 @@ void MainWindow::loadYouTubeVideoInfoMap()
 }
 #endif
 
-void MainWindow::loadGameInfoDB()
+void MainWindow::loadMachineInfoDB()
 {
 	QStringList pathList;
 	QStringList emulatorList;
@@ -10267,30 +10267,23 @@ void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QStrin
 {
 	if ( qmc2SuppressQtMessages )
 		return;
-
 	QString msgString;
-
 	switch ( type ) {
 		case QtDebugMsg:
 			msgString = "QtDebugMsg: " + QString(msg);
 			break;
-
 		case QtWarningMsg:
 			msgString = "QtWarningMsg: " + QString(msg);
 			break;
-
 		case QtCriticalMsg:
 			msgString = "QtCriticalMsg: " + QString(msg);
 			break;
-
 		case QtFatalMsg:
 			msgString = "QtFatalMsg: " + QString(msg);
 			break;
-
 		default:
 			return;
 	}
-
 	if ( qmc2GuiReady )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, msgString);
 	else {
@@ -10451,14 +10444,14 @@ void MainWindow::prepareShortcuts()
 	qmc2QtKeyHash["Ctrl+O"] = QKeySequence("Ctrl+O", QKeySequence::PortableText);
 #endif
 
-	qmc2Options->setupShortcutActions();
+	QTimer::singleShot(0, qmc2Options, SLOT(setupShortcutActions()));
 }
 
 #if defined(QMC2_MINGW)
 #undef main
 #endif
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 #if defined(QMC2_OS_MAC)
 	// this hack ensures that we're using the bundled plugins rather than the ones from a Qt SDK installation
@@ -10512,13 +10505,14 @@ int main(int argc, char *argv[])
 		checkReturn = qmc2Welcome->exec();
 		qmc2TemplateCheck = false;
 	}
+	if ( checkReturn != QDialog::Accepted )
+		return 1;
+
 	bool showSplashScreen = qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool() && !qmc2TemplateCheck;
-	QFont splashFont = qApp->font();
+	QFont splashFont(qApp->font());
 	if ( !qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
 		splashFont.fromString(qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	delete qmc2Welcome;
-	if ( checkReturn != QDialog::Accepted )
-		return 1;
 
 	// setup splash screen
 	if ( showSplashScreen ) {
@@ -10554,13 +10548,12 @@ int main(int argc, char *argv[])
 	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
 
-	// create & show greeting string
-	QString greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
-			   QString(XSTR(QMC2_VERSION)) +
+	// create & show the greeting string
+	QString greeting(QObject::tr("M.A.M.E. Catalog / Launcher II v") + QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
 			   ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
-			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + QMC2_OS_NAME + " " + QMC2_MACHINE_ARCHITECTURE + ")";
+			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + QMC2_OS_NAME + " " + QMC2_MACHINE_ARCHITECTURE + ")");
 	qmc2StartupTimer.start();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, greeting);
 
