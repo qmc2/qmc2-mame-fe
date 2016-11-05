@@ -107,8 +107,8 @@ extern bool qmc2UsePCBFile;
 extern bool qmc2UseSoftwareSnapFile;
 extern bool qmc2AutomaticReload;
 extern bool qmc2SuppressQtMessages;
-extern bool qmc2ShowGameName;
-extern bool qmc2ShowGameNameOnlyWhenRequired;
+extern bool qmc2ShowMachineName;
+extern bool qmc2ShowMachineNameOnlyWhenRequired;
 extern bool qmc2StatesTogglesEnabled;
 extern int qmc2MachineListResponsiveness;
 extern int qmc2UpdateDelay;
@@ -175,7 +175,7 @@ extern bool qmc2CategoryInfoUsed;
 extern bool qmc2VersionInfoUsed;
 extern bool qmc2LoadingSoftwareInfoDB;
 extern bool qmc2LoadingEmuInfoDB;
-extern bool qmc2LoadingGameInfoDB;
+extern bool qmc2LoadingMachineInfoDB;
 
 QBrush Options::greenBrush(QColor(0, 255, 0));
 QBrush Options::yellowBrush(QColor(255, 255, 0));
@@ -817,8 +817,8 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 	qmc2MainWindow->setUnifiedTitleAndToolBarOnMac(checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 #endif
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", checkBoxSaveGameSelection->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", checkBoxRestoreGameSelection->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", checkBoxSaveMachineSelection->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", checkBoxRestoreMachineSelection->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", checkBoxStatusbar->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", checkBoxStandardColorPalette->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", checkBoxProgressTexts->isChecked());
@@ -902,15 +902,15 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", checkBoxShowSplashScreen->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", checkBoxShowLoadingAnimation->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SetWorkDirFromExec", checkBoxSetWorkDirFromExec->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", checkBoxGameStatusIndicator->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", checkBoxGameStatusIndicatorOnlyWhenRequired->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", checkBoxShowGameName->isChecked());
-	qmc2ShowGameName = checkBoxShowGameName->isChecked();
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired", checkBoxShowGameNameOnlyWhenRequired->isChecked());
-	qmc2ShowGameNameOnlyWhenRequired = checkBoxShowGameNameOnlyWhenRequired->isChecked();
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator", checkBoxMachineStatusIndicator->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicatorOnlyWhenRequired", checkBoxMachineStatusIndicatorOnlyWhenRequired->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMachineName", checkBoxShowMachineName->isChecked());
+	qmc2ShowMachineName = checkBoxShowMachineName->isChecked();
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMachineNameOnlyWhenRequired", checkBoxShowMachineNameOnlyWhenRequired->isChecked());
+	qmc2ShowMachineNameOnlyWhenRequired = checkBoxShowMachineNameOnlyWhenRequired->isChecked();
 	// show / hide game status indicator
-	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
-		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
+	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator").toBool() ) {
+		if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicatorOnlyWhenRequired").toBool() ) {
 			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_MACHINELIST_INDEX )
 				qmc2MainWindow->labelMachineStatus->setVisible(true);
 			else
@@ -1737,8 +1737,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_OS_MAC)
 	checkBoxUnifiedTitleAndToolBarOnMac->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
 #endif
-	checkBoxSaveGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool());
-	checkBoxRestoreGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", true).toBool());
+	checkBoxSaveMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", true).toBool());
+	checkBoxRestoreMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", true).toBool());
 	checkBoxStatusbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 	checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
 	checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", false).toBool());
@@ -1802,12 +1802,12 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		QDir::setCurrent(QCoreApplication::applicationDirPath());
 	else
 		QDir::setCurrent(standardWorkDir());
-	checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", true).toBool());
-	checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", false).toBool());
-	checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", true).toBool());
-	qmc2ShowGameName = checkBoxShowGameName->isChecked();
-	checkBoxShowGameNameOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired", false).toBool());
-	qmc2ShowGameNameOnlyWhenRequired = checkBoxShowGameNameOnlyWhenRequired->isChecked();
+	checkBoxMachineStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator", true).toBool());
+	checkBoxMachineStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicatorOnlyWhenRequired", false).toBool());
+	checkBoxShowMachineName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMachineName", true).toBool());
+	qmc2ShowMachineName = checkBoxShowMachineName->isChecked();
+	checkBoxShowMachineNameOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMachineNameOnlyWhenRequired", false).toBool());
+	qmc2ShowMachineNameOnlyWhenRequired = checkBoxShowMachineNameOnlyWhenRequired->isChecked();
 	spinBoxFrontendLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/FrontendLogSize", 0).toInt());
 	spinBoxEmulatorLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", 0).toInt());
 #if defined(QMC2_OS_MAC)
@@ -2464,14 +2464,14 @@ void Options::on_toolButtonImportGameInfo_clicked()
 			emulatorList << "MESS";
 	}
 
-	qmc2LoadingGameInfoDB = true;
+	qmc2LoadingMachineInfoDB = true;
 	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
 	qApp->processEvents();
 	qmc2MachineList->datInfoDb()->importMachineInfo(pathList, emulatorList);
 	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
-	qmc2LoadingGameInfoDB = false;
+	qmc2LoadingMachineInfoDB = false;
 }
 
 void Options::on_toolButtonImportMachineInfo_clicked()
@@ -2490,14 +2490,14 @@ void Options::on_toolButtonImportMachineInfo_clicked()
 			emulatorList << "MESS";
 	}
 
-	qmc2LoadingGameInfoDB = true;
+	qmc2LoadingMachineInfoDB = true;
 	qmc2Options->toolButtonImportGameInfo->setEnabled(false);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(false);
 	qApp->processEvents();
 	qmc2MachineList->datInfoDb()->importMachineInfo(pathList, emulatorList);
 	qmc2Options->toolButtonImportGameInfo->setEnabled(true);
 	qmc2Options->toolButtonImportMachineInfo->setEnabled(true);
-	qmc2LoadingGameInfoDB = false;
+	qmc2LoadingMachineInfoDB = false;
 }
 
 void Options::on_toolButtonImportMameInfo_clicked()

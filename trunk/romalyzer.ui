@@ -994,7 +994,7 @@
                  </widget>
                 </item>
                 <item row="4" column="0">
-                 <widget class="QCheckBox" name="checkBoxSelectGame">
+                 <widget class="QCheckBox" name="checkBoxSelectMachine">
                   <property name="toolTip">
                    <string>Select machine in machine list if selected in analysis report?</string>
                   </property>
@@ -2056,7 +2056,7 @@
   <tabstop>scrollAreaSettings</tabstop>
   <tabstop>checkBoxAppendReport</tabstop>
   <tabstop>checkBoxAutoScroll</tabstop>
-  <tabstop>checkBoxSelectGame</tabstop>
+  <tabstop>checkBoxSelectMachine</tabstop>
   <tabstop>checkBoxExpandFiles</tabstop>
   <tabstop>checkBoxExpandChecksums</tabstop>
   <tabstop>checkBoxCalculateSHA1</tabstop>

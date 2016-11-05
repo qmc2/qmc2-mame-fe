@@ -26,8 +26,8 @@ extern Options *qmc2Options;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
-extern bool qmc2ShowGameName;
-extern bool qmc2ShowGameNameOnlyWhenRequired;
+extern bool qmc2ShowMachineName;
+extern bool qmc2ShowMachineNameOnlyWhenRequired;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QHash<QString, QString> qmc2ParentHash;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
@@ -856,8 +856,8 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 	p->drawPixmap(posx, posy, *pm);
 
 	bool drawGameName = false;
-	if ( qmc2ShowGameName ) {
-		if ( qmc2ShowGameNameOnlyWhenRequired ) {
+	if ( qmc2ShowMachineName ) {
+		if ( qmc2ShowMachineNameOnlyWhenRequired ) {
 			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_MACHINELIST_INDEX ) {
 				drawGameName = true;
 			} else {

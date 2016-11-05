@@ -13,7 +13,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
-extern QString qmc2DemoGame;
+extern QString qmc2DemoMachine;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
@@ -148,7 +148,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		demoModeRunning = false;
 		pushButtonRunDemo->setText(tr("Run &demo"));
 		pushButtonRunDemo->setToolTip(tr("Run demo now"));
-		qmc2DemoGame.clear();
+		qmc2DemoMachine.clear();
 		qmc2DemoArgs.clear();
 		seqNum = -1;
 		if ( emuProcess ) {
@@ -173,7 +173,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 		}
 		saveCategoryFilter();
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", checkBoxSequential->isChecked());
-		selectedGames.clear();
+		selectedMachines.clear();
 		if ( checkBoxTagged->isChecked() ) {
 			foreach (QString game, qmc2MachineListItemHash.keys()) {
 				if ( qmc2MachineList->isDevice(game) )
@@ -182,7 +182,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				if ( !gameItem )
 					continue;
 				if ( gameItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
-					selectedGames << game;
+					selectedMachines << game;
 			}
 		} else if ( checkBoxFavorites->isChecked() ) {
 			foreach (QString game, qmc2MachineListItemHash.keys()) {
@@ -192,7 +192,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				if ( gameItem ) {
 					QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(gameItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 					if ( !favoritesMatches.isEmpty() )
-						selectedGames << game;
+						selectedMachines << game;
 				}
 			}
 		} else {
@@ -233,35 +233,35 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 				switch ( qmc2MachineList->romState(game) ) {
 					case 'C':
 						if ( toolButtonSelectC->isChecked() )
-							selectedGames << game;
+							selectedMachines << game;
 						break;
 					case 'M':
 						if ( toolButtonSelectM->isChecked() )
-							selectedGames << game;
+							selectedMachines << game;
 						break;
 					case 'I':
 						if ( toolButtonSelectI->isChecked() )
-							selectedGames << game;
+							selectedMachines << game;
 						break;
 					case 'N':
 						if ( toolButtonSelectN->isChecked() )
-							selectedGames << game;
+							selectedMachines << game;
 						break;
 					case 'U':
 					default:
 						if ( toolButtonSelectU->isChecked() )
-							selectedGames << game;
+							selectedMachines << game;
 						break;
 				}
 			}
 		}
-		if ( selectedGames.count() > 0 )
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n machine(s) selected by filter", "", selectedGames.count()));
+		if ( selectedMachines.count() > 0 )
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n machine(s) selected by filter", "", selectedMachines.count()));
 		else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode cannot start -- no machine selected by filter"));
 			return;
 		}
-		std::sort(selectedGames.begin(), selectedGames.end(), MainWindow::qStringListLessThan);
+		std::sort(selectedMachines.begin(), selectedMachines.end(), MainWindow::qStringListLessThan);
 		demoModeRunning = true;
 		seqNum = -1;
 		pushButtonRunDemo->setText(tr("Stop &demo"));
@@ -288,7 +288,7 @@ void DemoModeDialog::emuFinished(int /*exitCode*/, QProcess::ExitStatus /*exitSt
 	setFocus();
 
 	qmc2DemoArgs.clear();
-	qmc2DemoGame.clear();
+	qmc2DemoMachine.clear();
 	emuProcess = 0;
 
 	if ( demoModeRunning ) {
@@ -315,12 +315,12 @@ void DemoModeDialog::startNextEmu()
 	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Sequential", false).toBool() ) {
 		seqNum++;
-		if ( seqNum > selectedGames.count() - 1 )
+		if ( seqNum > selectedMachines.count() - 1 )
 			seqNum = 0;
-		qmc2DemoGame = selectedGames[seqNum];
+		qmc2DemoMachine = selectedMachines[seqNum];
 	} else
-		qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-	QString gameDescription = qmc2MachineListItemHash.value(qmc2DemoGame)->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+		qmc2DemoMachine = selectedMachines[qrand() % selectedMachines.count()];
+	QString gameDescription = qmc2MachineListItemHash.value(qmc2DemoMachine)->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
 	setStatus(gameDescription);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)

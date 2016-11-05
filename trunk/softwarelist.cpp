@@ -42,7 +42,6 @@ extern int qmc2SoftwareSnapPosition;
 extern bool qmc2IgnoreItemActivation;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
-extern bool qmc2ShowGameName;
 extern int qmc2UpdateDelay;
 extern int qmc2DefaultLaunchMode;
 extern bool qmc2LoadingInterrupted;

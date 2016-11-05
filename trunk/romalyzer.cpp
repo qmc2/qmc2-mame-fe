@@ -411,7 +411,8 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CalculateCRC", checkBoxCalculateCRC->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CalculateSHA1", checkBoxCalculateSHA1->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CalculateMD5", checkBoxCalculateMD5->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SelectGame", checkBoxSelectGame->isChecked());
+	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SelectMachine", checkBoxSelectMachine->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxFileSize", spinBoxMaxFileSize->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", spinBoxMaxLogSize->value());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxReports", spinBoxMaxReports->value());
@@ -490,7 +491,8 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	checkBoxCalculateCRC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CalculateCRC", true).toBool());
 	checkBoxCalculateSHA1->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CalculateSHA1", true).toBool());
 	checkBoxCalculateMD5->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CalculateMD5", false).toBool());
-	checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SelectGame", true).toBool());
+	if ( mode() == QMC2_ROMALYZER_MODE_SYSTEM )
+		checkBoxSelectMachine->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SelectMachine", true).toBool());
 	spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxFileSize", 0).toInt());
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", 10000).toInt());
 	spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxReports", 1000).toInt());
@@ -2291,20 +2293,21 @@ void ROMAlyzer::setMode(int mode)
 			m_settingsKey = "SoftwareROMAlyzer";
 			lineEditSoftwareLists->setVisible(true);
 			toolButtonToolsMenu->setVisible(false);
-			checkBoxSelectGame->setVisible(false);
+			checkBoxSelectMachine->setChecked(false);
+			checkBoxSelectMachine->setVisible(false);
 			break;
 		case QMC2_ROMALYZER_MODE_SYSTEM:
 		default:
 			m_currentMode = QMC2_ROMALYZER_MODE_SYSTEM;
-			checkBoxSelectGame->setText(tr("Select machine"));
-			checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
+			checkBoxSelectMachine->setText(tr("Select machine"));
+			checkBoxSelectMachine->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
 			checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
 			tabWidgetAnalysis->setTabText(QMC2_ROMALYZER_PAGE_RCR, tr("ROM collection rebuilder"));
 			setWindowTitle(tr("ROMAlyzer") + " [" + tr("system mode") + "]");
 			m_settingsKey = "ROMAlyzer";
 			lineEditSoftwareLists->setVisible(false);
 			toolButtonToolsMenu->setVisible(true);
-			checkBoxSelectGame->setVisible(true);
+			checkBoxSelectMachine->setVisible(true);
 			break;
 	}
 }
@@ -2328,7 +2331,7 @@ void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 
 void ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()
 {
-	if ( checkBoxSelectGame->isChecked() ) {
+	if ( checkBoxSelectMachine->isChecked() ) {
 		QList<QTreeWidgetItem *> items = treeWidgetChecksums->selectedItems();
 		if ( items.count() > 0 ) {
 			QTreeWidgetItem *item = items[0];

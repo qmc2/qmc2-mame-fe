@@ -39,7 +39,7 @@ QString InfoProvider::requestInfo(const QString &id, InfoClass infoClass)
 	QString infoText;
 
 	switch ( infoClass ) {
-	case InfoProvider::InfoClassGame:
+	case InfoProvider::InfoClassMachine:
 		if ( datInfoDb()->existsMachineInfo(id) ) {
 			QString newGameInfo = datInfoDb()->machineInfo(id);
 			if ( !newGameInfo.isEmpty() ) {

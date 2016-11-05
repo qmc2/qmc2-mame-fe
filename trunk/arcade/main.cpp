@@ -178,6 +178,7 @@ void showHelp()
 
 void upgradeSettings()
 {
+	/*
 	QStringList verList = globalConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
@@ -197,6 +198,7 @@ void upgradeSettings()
 			}
 		}
 	}
+	*/
 }
 
 #if defined(QMC2_ARCADE_OS_WIN)

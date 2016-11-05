@@ -694,7 +694,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	int itemCount = 0;
 	QString nameFilter = lineEditNameFilter->text();
 	QRegExp nameFilterRegExp(nameFilter);
-	QList<MachineListItem *> selectedGames;
+	QList<MachineListItem *> selectedMachines;
 
 	if ( !nameFilter.isEmpty() && !nameFilterRegExp.isValid() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: arcade mode: the name filter regular expression is invalid"));
@@ -716,7 +716,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		// tagged sets only?
 		if ( checkBoxTaggedSetsOnly->isChecked() ) {
 			if ( machineItem->checkState(QMC2_MACHINELIST_COLUMN_TAG) == Qt::Checked )
-				selectedGames << machineItem;
+				selectedMachines << machineItem;
 			continue;
 		}
 
@@ -725,7 +725,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 			MachineListItem *machineItem = (MachineListItem *)qmc2MachineListItemHash.value(game);
 			QList<QListWidgetItem *> favoritesMatches = qmc2MainWindow->listWidgetFavorites->findItems(machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE), Qt::MatchExactly);
 			if ( !favoritesMatches.isEmpty() )
-				selectedGames << machineItem;
+				selectedMachines << machineItem;
 			continue;
 		}
 
@@ -770,41 +770,41 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 		switch ( qmc2MachineList->romState(game) ) {
 			case 'C':
 				if ( toolButtonSelectC->isChecked() )
-					selectedGames << machineItem;
+					selectedMachines << machineItem;
 				break;
 			case 'M':
 				if ( toolButtonSelectM->isChecked() )
-					selectedGames << machineItem;
+					selectedMachines << machineItem;
 				break;
 			case 'I':
 				if ( toolButtonSelectI->isChecked() )
-					selectedGames << machineItem;
+					selectedMachines << machineItem;
 				break;
 			case 'N':
 				if ( toolButtonSelectN->isChecked() )
-					selectedGames << machineItem;
+					selectedMachines << machineItem;
 				break;
 			case 'U':
 			default:
 				if ( toolButtonSelectU->isChecked() )
-					selectedGames << machineItem;
+					selectedMachines << machineItem;
 				break;
 		}
 	}
 
-	progressBarFilter->setRange(0, selectedGames.count());
+	progressBarFilter->setRange(0, selectedMachines.count());
 	progressBarFilter->setFormat(tr("Sorting"));
 	progressBarFilter->setValue(0);
 	qApp->processEvents();
 	qmc2ArcadeModeSortCriteria = comboBoxSortCriteria->currentIndex();
 	qmc2ArcadeModeSortOrder = comboBoxSortOrder->currentIndex();
-	std::sort(selectedGames.begin(), selectedGames.end(), ArcadeModeSetup::lessThan);
+	std::sort(selectedMachines.begin(), selectedMachines.end(), ArcadeModeSetup::lessThan);
 
 	progressBarFilter->setValue(0);
 	progressBarFilter->setFormat(tr("Exporting"));
-	for (int i = 0; i < selectedGames.count(); i++) {
+	for (int i = 0; i < selectedMachines.count(); i++) {
 		progressBarFilter->setValue(i + 1);
-		MachineListItem *machineItem = selectedGames[i];
+		MachineListItem *machineItem = selectedMachines[i];
 		QString machineName = machineItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 		ts << machineName << "\t"
 		   << machineItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) << "\t"
@@ -824,7 +824,7 @@ void ArcadeModeSetup::on_pushButtonExport_clicked()
 	progressBarFilter->setValue(0);
 	progressBarFilter->setFormat(tr("Idle"));
 	filteredListFile.close();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("arcade mode: exported %n filtered set(s) to '%1'", "", selectedGames.count()).arg(QFileInfo(lineEditFilteredListFile->text()).absoluteFilePath()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("arcade mode: exported %n filtered set(s) to '%1'", "", selectedMachines.count()).arg(QFileInfo(lineEditFilteredListFile->text()).absoluteFilePath()));
 }
 
 void ArcadeModeSetup::on_lineEditFilteredListFile_textChanged(QString text)
