@@ -855,20 +855,20 @@ void ImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 	p->drawPixmap(posx, posy, *pm);
 
-	bool drawGameName = false;
+	bool drawMachineName = false;
 	if ( qmc2ShowMachineName ) {
 		if ( qmc2ShowMachineNameOnlyWhenRequired ) {
 			if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_MACHINELIST_INDEX ) {
-				drawGameName = true;
+				drawMachineName = true;
 			} else {
-				drawGameName = false;
+				drawMachineName = false;
 			}
 		} else
-			drawGameName = true;
+			drawMachineName = true;
 	} else
-		drawGameName = false;
+		drawMachineName = false;
 
-	if ( drawGameName ) {
+	if ( drawMachineName ) {
 		// draw game/machine title
 		p->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 		QString title = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
