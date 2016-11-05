@@ -1488,7 +1488,7 @@
               <number>2</number>
              </property>
              <item row="0" column="0">
-              <widget class="QTextBrowser" name="textBrowserGameInfo">
+              <widget class="QTextBrowser" name="textBrowserMachineInfo">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -4751,7 +4751,7 @@
   <tabstop>listWidgetPlayed</tabstop>
   <tabstop>tabWidgetEmbeddedEmulators</tabstop>
   <tabstop>tabWidgetMachineDetail</tabstop>
-  <tabstop>textBrowserGameInfo</tabstop>
+  <tabstop>textBrowserMachineInfo</tabstop>
   <tabstop>textBrowserEmuInfo</tabstop>
   <tabstop>tabWidgetLogsAndEmulators</tabstop>
   <tabstop>textBrowserFrontendLog</tabstop>

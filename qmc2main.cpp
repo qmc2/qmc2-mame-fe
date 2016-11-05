@@ -4144,13 +4144,13 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 					if ( !gameInfoText.isEmpty() ) {
 						QString emulator = qmc2MachineList->datInfoDb()->machineInfoEmulator(machineInfoKey);
 						if ( emulator == "MESS" )
-							textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
+							textBrowserMachineInfo->setHtml(messWikiToHtml(gameInfoText));
 						else
-							textBrowserGameInfo->setHtml(gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+							textBrowserMachineInfo->setHtml(gameInfoText.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
 					} else
-						textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash.value(machineName)->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
+						textBrowserMachineInfo->setHtml("<h2>" + qmc2MachineListItemHash.value(machineName)->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
 				} else
-					textBrowserGameInfo->setHtml("<h2>" + qmc2MachineListItemHash.value(machineName)->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
+					textBrowserMachineInfo->setHtml("<h2>" + qmc2MachineListItemHash.value(machineName)->text(QMC2_MACHINELIST_COLUMN_MACHINE) + "</h2>" + tr("<p>No data available</p>"));
 				qmc2LastMachineInfoItem = qmc2CurrentItem;
 				tabGameInfo->setUpdatesEnabled(true);
 			}

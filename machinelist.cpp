@@ -389,7 +389,7 @@ void MachineList::load()
 	qmc2MainWindow->listWidgetSearch->clear();
 	qmc2MainWindow->listWidgetFavorites->clear();
 	qmc2MainWindow->listWidgetPlayed->clear();
-	qmc2MainWindow->textBrowserGameInfo->clear();
+	qmc2MainWindow->textBrowserMachineInfo->clear();
 	qmc2MainWindow->textBrowserEmuInfo->clear();
 	qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 	qmc2CurrentItem = 0;
@@ -1514,12 +1514,12 @@ void MachineList::parse()
 						if ( (isBIOS && !showBiosSets) || (isDev && !showDeviceSets) )
 							hiddenItemHash.insert(machineItem, true);
 						// find year & manufacturer and determine ROM/CHD requirements
-						bool endGame = false;
+						bool endMachine = false;
 						int i = lineCounter;
 						QString machineYear(trQuestionMark), machineManufacturer(trQuestionMark), machinePlayers(trQuestionMark), machineDrvStat(trQuestionMark);
 						bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
 						QString endMark("</machine>");
-						while ( !endGame ) {
+						while ( !endMachine ) {
 							QString xmlLine(xmlLines.at(i));
 							if ( xmlLine.contains("<year>") ) {
 								machineYear = xmlLine.simplified().remove("<year>").remove("</year>");
@@ -1544,7 +1544,7 @@ void MachineList::parse()
 									statusFound = true;
 								}
 							}
-							endGame = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
+							endMachine = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
 							i++;
 						}
 						if ( machineCloneOf.isEmpty() ) {
@@ -2371,17 +2371,17 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			mainProgressBar->setFormat(tr("ROM check - %p%"));
 		QSet<QString> gameSet(QSet<QString>::fromList(qmc2MachineListItemHash.uniqueKeys()));
-		QList<QString> remainingGames(gameSet.subtract(QSet<QString>::fromList(verifiedList)).values());
+		QList<QString> remainingMachines(gameSet.subtract(QSet<QString>::fromList(verifiedList)).values());
 		int counter = mainProgressBar->value();
 		if ( qmc2LoadingInterrupted || !cleanExit ) {
-			for (int i = 0; i < remainingGames.count(); i++) {
+			for (int i = 0; i < remainingMachines.count(); i++) {
 				counter++;
-				if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingGames.count() - 1 ) {
+				if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingMachines.count() - 1 ) {
 					mainProgressBar->setValue(counter);
 					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
-				QString machineName(remainingGames.at(i));
+				QString machineName(remainingMachines.at(i));
 				QTreeWidgetItem *romItem = qmc2MachineListItemHash.value(machineName);
 				QTreeWidgetItem *hierarchyItem = qmc2HierarchyItemHash.value(machineName);
 				if ( romItem && hierarchyItem ) {
@@ -2428,16 +2428,16 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					qmc2MainWindow->labelMachineStatus->setPalette(MainWindow::qmc2StatusColorBlue);
 			}
 		} else {
-			if ( !remainingGames.isEmpty() && !qmc2LoadingInterrupted )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking real status of %n set(s) not mentioned during full audit", "", remainingGames.count()));
-			for (int i = 0; i < remainingGames.count() && !qmc2LoadingInterrupted; i++) {
+			if ( !remainingMachines.isEmpty() && !qmc2LoadingInterrupted )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking real status of %n set(s) not mentioned during full audit", "", remainingMachines.count()));
+			for (int i = 0; i < remainingMachines.count() && !qmc2LoadingInterrupted; i++) {
 				counter++;
-				if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingGames.count() - 1 ) {
+				if ( i % QMC2_REMAINING_SETS_CHECK_RSP == 0 || i == remainingMachines.count() - 1 ) {
 					mainProgressBar->setValue(counter);
 					qmc2MainWindow->labelMachineListStatus->setText(status());
 					qApp->processEvents();
 				}
-				QString machineName = remainingGames[i];
+				QString machineName(remainingMachines.at(i));
 				bool isBIOS = isBios(machineName);
 				bool isDev = isDevice(machineName);
 				QTreeWidgetItem *romItem = qmc2MachineListItemHash.value(machineName);
@@ -2547,8 +2547,8 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					}
 				}
 			}
-			if ( !remainingGames.isEmpty() && !qmc2LoadingInterrupted )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking real status of %n set(s) not mentioned during full audit)", "", remainingGames.count()));
+			if ( !remainingMachines.isEmpty() && !qmc2LoadingInterrupted )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking real status of %n set(s) not mentioned during full audit)", "", remainingMachines.count()));
 		}
 		qmc2MainWindow->labelMachineListStatus->setText(status());
 	}
