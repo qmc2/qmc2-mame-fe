@@ -519,7 +519,7 @@ QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QStrin
 
 	switch ( infoClasses.indexOf(infoClass) ) {
 	case QMC2_ARCADE_INFO_CLASS_MACHINE:
-		infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassGame);
+		infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassMachine);
 		break;
 	case QMC2_ARCADE_INFO_CLASS_EMU:
 		infoText = infoProvider->requestInfo(id, InfoProvider::InfoClassEmu);
@@ -537,7 +537,7 @@ QString TweakedQmlApplicationViewer::requestInfo(const QString &id, const QStrin
 		if ( !pI.isEmpty() ) {
 			switch ( infoClasses.indexOf(infoClass) ) {
 			case QMC2_ARCADE_INFO_CLASS_MACHINE:
-				infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassGame);
+				infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassMachine);
 				break;
 			case QMC2_ARCADE_INFO_CLASS_EMU:
 				infoText = infoProvider->requestInfo(pI, InfoProvider::InfoClassEmu);

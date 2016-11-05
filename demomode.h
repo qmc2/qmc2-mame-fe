@@ -9,7 +9,7 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
 	Q_OBJECT
 
 	public:
-		QStringList selectedGames;
+		QStringList selectedMachines;
 		QProcess *emuProcess;
 		bool demoModeRunning;
 		int seqNum;

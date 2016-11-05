@@ -85,7 +85,7 @@ extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
-extern QTreeWidgetItem *qmc2LastGameInfoItem;
+extern QTreeWidgetItem *qmc2LastMachineInfoItem;
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
@@ -446,7 +446,7 @@ void MachineList::load()
 	SoftwareList::swlSupported = true;
 	systemSoftwareListHash.clear();
 	systemSoftwareFilterHash.clear();
-	qmc2LastGameInfoItem = 0;
+	qmc2LastMachineInfoItem = 0;
 	qmc2LastEmuInfoItem = 0;
 	if ( qmc2ProjectMESSLookup ) {
 		qmc2ProjectMESSLookup->setVisible(false);
@@ -1804,8 +1804,8 @@ void MachineList::parse()
 	if ( ci ) {
 		if ( ci->isSelected() )
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
-		else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-			QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString());
+		else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection").toBool() ) {
+			QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedMachine", QString()).toString());
 			if ( !selectedMachine.isEmpty() ) {
 				QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
 				if ( mlItem ) {
@@ -1817,8 +1817,8 @@ void MachineList::parse()
 			} else
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
 		}
-	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-		QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString());
+	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection").toBool() ) {
+		QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedMachine", QString()).toString());
 		if ( !selectedMachine.isEmpty() ) {
 			QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
 			if ( mlItem ) {

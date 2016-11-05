@@ -75,7 +75,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QComboBox *comboBoxEmuSelector;
 		QMenu *menuRomStatusFilter;
 		QMenu *menuTabWidgetMachineList;
-		QMenu *menuTabWidgetGameDetail;
+		QMenu *menuTabWidgetMachineDetail;
 		QMenu *menuTabWidgetLogsAndEmulators;
 		QMenu *menuTabWidgetSoftwareDetail;
 		QMenu *menuHorizontalSplitter;
@@ -333,11 +333,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void menuTabWidgetMachineList_West_activated();
 		void menuTabWidgetMachineList_East_activated();
 		void menuTabWidgetMachineList_Setup_activated();
-		void menuTabWidgetGameDetail_North_activated();
-		void menuTabWidgetGameDetail_South_activated();
-		void menuTabWidgetGameDetail_West_activated();
-		void menuTabWidgetGameDetail_East_activated();
-		void menuTabWidgetGameDetail_Setup_activated();
+		void menuTabWidgetMachineDetail_North_activated();
+		void menuTabWidgetMachineDetail_South_activated();
+		void menuTabWidgetMachineDetail_West_activated();
+		void menuTabWidgetMachineDetail_East_activated();
+		void menuTabWidgetMachineDetail_Setup_activated();
 		void menuTabWidgetLogsAndEmulators_North_activated();
 		void menuTabWidgetLogsAndEmulators_South_activated();
 		void menuTabWidgetLogsAndEmulators_West_activated();

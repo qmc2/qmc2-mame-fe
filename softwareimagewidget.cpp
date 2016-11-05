@@ -18,7 +18,7 @@ extern MainWindow *qmc2MainWindow;
 extern Options *qmc2Options;
 extern Settings *qmc2Config;
 extern QHash<QString, QString> softwareParentHash;
-extern bool qmc2ShowGameName;
+extern bool qmc2ShowMachineName;
 extern bool qmc2SmoothScaling;
 extern bool qmc2ParentImageFallback;
 extern bool qmc2RetryLoadingImages;
@@ -433,7 +433,7 @@ void SoftwareImageWidget::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 	p->drawPixmap(posx, posy, *pm);
 
-	if ( qmc2ShowGameName ) {
+	if ( qmc2ShowMachineName ) {
 		// draw entry title
 		p->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing | QPainter::SmoothPixmapTransform);
 		QString title = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);

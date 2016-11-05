@@ -161,7 +161,7 @@
                   </widget>
                  </item>
                  <item row="18" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxShowGameName">
+                  <widget class="QCheckBox" name="checkBoxShowMachineName">
                    <property name="toolTip">
                     <string>Show machine's description at the bottom of any images</string>
                    </property>
@@ -171,7 +171,7 @@
                   </widget>
                  </item>
                  <item row="18" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxShowGameNameOnlyWhenRequired">
+                  <widget class="QCheckBox" name="checkBoxShowMachineNameOnlyWhenRequired">
                    <property name="enabled">
                     <bool>false</bool>
                    </property>
@@ -244,7 +244,7 @@
                   </widget>
                  </item>
                  <item row="17" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxGameStatusIndicatorOnlyWhenRequired">
+                  <widget class="QCheckBox" name="checkBoxMachineStatusIndicatorOnlyWhenRequired">
                    <property name="enabled">
                     <bool>false</bool>
                    </property>
@@ -297,7 +297,7 @@
                   </widget>
                  </item>
                  <item row="6" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
+                  <widget class="QCheckBox" name="checkBoxRestoreMachineSelection">
                    <property name="toolTip">
                     <string>Restore saved machine selection at start and after reloading the machine list</string>
                    </property>
@@ -500,7 +500,7 @@
                   </layout>
                  </item>
                  <item row="17" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
+                  <widget class="QCheckBox" name="checkBoxMachineStatusIndicator">
                    <property name="toolTip">
                     <string>Show vertical machine status indicator in machine details</string>
                    </property>
@@ -733,7 +733,7 @@
                   </widget>
                  </item>
                  <item row="6" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxSaveGameSelection">
+                  <widget class="QCheckBox" name="checkBoxSaveMachineSelection">
                    <property name="toolTip">
                     <string>Save machine selection on exit and before reloading the machine list</string>
                    </property>
@@ -5984,8 +5984,8 @@
   <tabstop>spinBoxPixmapCacheSize</tabstop>
   <tabstop>pushButtonComponentSetup</tabstop>
   <tabstop>pushButtonCustomizeToolBar</tabstop>
-  <tabstop>checkBoxSaveGameSelection</tabstop>
-  <tabstop>checkBoxRestoreGameSelection</tabstop>
+  <tabstop>checkBoxSaveMachineSelection</tabstop>
+  <tabstop>checkBoxRestoreMachineSelection</tabstop>
   <tabstop>checkBoxScaledPreview</tabstop>
   <tabstop>checkBoxScaledFlyer</tabstop>
   <tabstop>checkBoxScaledCabinet</tabstop>
@@ -6007,10 +6007,10 @@
   <tabstop>checkBoxProgressTexts</tabstop>
   <tabstop>checkBoxMinimizeOnEmuLaunch</tabstop>
   <tabstop>checkBoxNativeFileDialogs</tabstop>
-  <tabstop>checkBoxGameStatusIndicator</tabstop>
-  <tabstop>checkBoxGameStatusIndicatorOnlyWhenRequired</tabstop>
-  <tabstop>checkBoxShowGameName</tabstop>
-  <tabstop>checkBoxShowGameNameOnlyWhenRequired</tabstop>
+  <tabstop>checkBoxMachineStatusIndicator</tabstop>
+  <tabstop>checkBoxMachineStatusIndicatorOnlyWhenRequired</tabstop>
+  <tabstop>checkBoxShowMachineName</tabstop>
+  <tabstop>checkBoxShowMachineNameOnlyWhenRequired</tabstop>
   <tabstop>checkBoxCheckSingleInstance</tabstop>
   <tabstop>checkBoxSuppressQtMessages</tabstop>
   <tabstop>checkBoxShowSplashScreen</tabstop>
@@ -6357,9 +6357,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkBoxGameStatusIndicator</sender>
+   <sender>checkBoxMachineStatusIndicator</sender>
    <signal>toggled(bool)</signal>
-   <receiver>checkBoxGameStatusIndicatorOnlyWhenRequired</receiver>
+   <receiver>checkBoxMachineStatusIndicatorOnlyWhenRequired</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -6373,9 +6373,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>checkBoxShowGameName</sender>
+   <sender>checkBoxShowMachineName</sender>
    <signal>toggled(bool)</signal>
-   <receiver>checkBoxShowGameNameOnlyWhenRequired</receiver>
+   <receiver>checkBoxShowMachineNameOnlyWhenRequired</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
