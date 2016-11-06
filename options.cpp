@@ -212,6 +212,10 @@ Options::Options(QWidget *parent) :
 
 	setupUi(this);
 
+#if !defined(QMC2_WIP_ENABLED)
+	toolButtonSetupIconDatabase->setVisible(false);
+#endif
+
 #if !defined(QMC2_LIBARCHIVE_ENABLED)
 	comboBoxPreviewFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 	comboBoxFlyerFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
@@ -505,6 +509,7 @@ void Options::apply()
 	toolButtonImportMessInfo->setIconSize(iconSize);
 	toolButtonImportSoftwareInfo->setIconSize(iconSize);
 	toolButtonOptimizeCatverIni->setIconSize(iconSize);
+	toolButtonSetupIconDatabase->setIconSize(iconSize);
 	qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSizeMiddle);
 	checkBoxUseCategoryIni->setIconSize(iconSize);
 	toolButtonBrowseCategoryIniFile->setIconSize(iconSize);
@@ -2553,6 +2558,11 @@ void Options::on_toolButtonOptimizeCatverIni_clicked()
 	optimizer.exec();
 }
 
+void Options::on_toolButtonSetupIconDatabase_clicked()
+{
+	// FIXME
+}
+
 void Options::on_toolButtonBrowseStyleSheet_clicked()
 {
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose Qt style sheet file"), lineEditStyleSheet->text(), tr("Qt Style Sheets (*.qss)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
@@ -3809,6 +3819,7 @@ void Options::enableWidgets(bool enable)
 	toolButtonImportMessInfo->setEnabled(enable);
 	toolButtonImportSoftwareInfo->setEnabled(enable);
 	toolButtonOptimizeCatverIni->setEnabled(enable);
+	toolButtonSetupIconDatabase->setEnabled(enable);
 	toolButtonBrowseCatverIniFile->setEnabled(enable);
 	checkBoxUseCatverIni->setEnabled(enable);
 	toolButtonBrowseCategoryIniFile->setEnabled(enable);

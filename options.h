@@ -216,6 +216,7 @@ class Options : public QDialog, public Ui::Options
 		void on_toolButtonImportMessInfo_clicked();
 		void on_toolButtonImportSoftwareInfo_clicked();
 		void on_toolButtonOptimizeCatverIni_clicked();
+		void on_toolButtonSetupIconDatabase_clicked();
 
 		// joystick setup callbacks
 #if QMC2_JOYSTICK == 1

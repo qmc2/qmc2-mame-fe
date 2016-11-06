@@ -1683,22 +1683,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonIconSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying an icon directory or a compressed icon file</string>
-                   </property>
-                   <property name="text">
-                    <string>Icon directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="24" column="2">
                   <widget class="QLineEdit" name="lineEditSystemNotesTemplate">
                    <property name="sizePolicy">
@@ -3056,6 +3040,39 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="15" column="0">
+                  <widget class="QRadioButton" name="radioButtonIconSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying an icon directory or a compressed icon file</string>
+                   </property>
+                   <property name="text">
+                    <string>Icon directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="15" column="1">
+                  <widget class="QToolButton" name="toolButtonSetupIconDatabase">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Setup the icon cache database</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/setup_database.png</normaloff>:/data/img/setup_database.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -3086,7 +3103,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>575</width>
-                <height>487</height>
+                <height>297</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3741,8 +3758,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>259</width>
+                <height>52</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3863,8 +3880,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>428</width>
+                <height>270</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4332,7 +4349,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
+                <width>383</width>
                 <height>698</height>
                </rect>
               </property>
@@ -4873,8 +4890,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>584</height>
+                <width>467</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -6070,6 +6087,7 @@
   <tabstop>comboBoxFlyerFileType</tabstop>
   <tabstop>toolButtonBrowseFlyerFile</tabstop>
   <tabstop>radioButtonIconSelect</tabstop>
+  <tabstop>toolButtonSetupIconDatabase</tabstop>
   <tabstop>lineEditIconDirectory</tabstop>
   <tabstop>toolButtonBrowseIconDirectory</tabstop>
   <tabstop>lineEditIconFile</tabstop>
@@ -6251,8 +6269,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>476</x>
-     <y>635</y>
+     <x>469</x>
+     <y>633</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -6267,8 +6285,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>561</x>
-     <y>635</y>
+     <x>559</x>
+     <y>633</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -6283,12 +6301,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>129</x>
-     <y>79</y>
+     <x>142</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
-     <x>545</x>
-     <y>81</y>
+     <x>539</x>
+     <y>112</y>
     </hint>
    </hints>
   </connection>
@@ -6299,12 +6317,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>101</x>
-     <y>79</y>
+     <x>114</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
-     <x>285</x>
-     <y>107</y>
+     <x>376</x>
+     <y>147</y>
     </hint>
    </hints>
   </connection>
@@ -6315,8 +6333,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>87</x>
-     <y>79</y>
+     <x>100</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
      <x>129</x>
@@ -6331,12 +6349,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>139</x>
-     <y>79</y>
+     <x>152</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
-     <x>89</x>
-     <y>107</y>
+     <x>98</x>
+     <y>147</y>
     </hint>
    </hints>
   </connection>
@@ -6347,12 +6365,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
-     <y>188</y>
+     <x>152</x>
+     <y>239</y>
     </hint>
     <hint type="destinationlabel">
-     <x>199</x>
-     <y>189</y>
+     <x>249</x>
+     <y>244</y>
     </hint>
    </hints>
   </connection>
@@ -6363,12 +6381,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>197</x>
-     <y>435</y>
+     <x>210</x>
+     <y>631</y>
     </hint>
     <hint type="destinationlabel">
-     <x>531</x>
-     <y>435</y>
+     <x>519</x>
+     <y>631</y>
     </hint>
    </hints>
   </connection>
@@ -6379,12 +6397,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>206</x>
-     <y>460</y>
+     <x>219</x>
+     <y>657</y>
     </hint>
     <hint type="destinationlabel">
-     <x>531</x>
-     <y>460</y>
+     <x>519</x>
+     <y>657</y>
     </hint>
    </hints>
   </connection>
@@ -6395,12 +6413,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>111</x>
-     <y>225</y>
+     <x>133</x>
+     <y>305</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
-     <y>232</y>
+     <x>510</x>
+     <y>311</y>
     </hint>
    </hints>
   </connection>
@@ -6411,12 +6429,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>131</x>
-     <y>232</y>
+     <x>153</x>
+     <y>305</y>
     </hint>
     <hint type="destinationlabel">
-     <x>243</x>
-     <y>223</y>
+     <x>350</x>
+     <y>311</y>
     </hint>
    </hints>
   </connection>
@@ -6427,12 +6445,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>255</x>
-     <y>335</y>
+     <x>252</x>
+     <y>521</y>
     </hint>
     <hint type="destinationlabel">
-     <x>531</x>
-     <y>335</y>
+     <x>519</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
@@ -6443,12 +6461,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
-     <y>299</y>
+     <x>149</x>
+     <y>484</y>
     </hint>
     <hint type="destinationlabel">
-     <x>324</x>
-     <y>299</y>
+     <x>519</x>
+     <y>490</y>
     </hint>
    </hints>
   </connection>
