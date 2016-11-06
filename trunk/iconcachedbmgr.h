@@ -11,6 +11,9 @@
 #include <QHash>
 #include <QByteArray>
 
+#define QMC2_ICDB_INDEX_ID		0
+#define QMC2_ICDB_INDEX_ICON_DATA	1
+
 class IconCacheDatabaseManager : public QObject
 {
 	Q_OBJECT
@@ -23,18 +26,19 @@ class IconCacheDatabaseManager : public QObject
 		void setEmulatorVersion(QString emu_version);
 		QString qmc2Version();
 		void setQmc2Version(QString qmc2_version);
-		int iconVersion();
-		void setIconVersion(int icon_version);
+		int iconCacheVersion();
+		void setIconCacheVersion(int icon_cache_version);
 
 		bool exists(const QString &id);
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 		bool isEmpty();
-
-		qint64 iconRowCount(bool reset = false);
-		qint64 nextRowId(bool refreshRowIds = false);
+		bool importRequired(const QStringList &pathList);
+		qint64 iconCacheRowCount(bool reset = false);
 
 		void setIconData(const QString &id, const QByteArray &icon_data);
+		void queryIconData();
+		bool nextIconData(QString *id, QByteArray *icon_data);
 		
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
@@ -54,11 +58,10 @@ class IconCacheDatabaseManager : public QObject
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
 		QString m_connectionName;
-		QList<qint64> m_rowIdList;
-		qint64 m_lastRowId;
 		bool m_logActive;
 		bool m_resetRowCount;
 		qint64 m_lastRowCount;
+		QSqlQuery *m_query;
 };
 
 #endif

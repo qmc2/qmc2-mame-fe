@@ -10,6 +10,7 @@
 #include "xmldbmgr.h"
 #include "userdatadbmgr.h"
 #include "datinfodbmgr.h"
+#include "iconcachedbmgr.h"
 #include "machinelistdbmgr.h"
 #include "macros.h"
 
@@ -104,6 +105,7 @@ class MachineList : public QObject
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }
 		DatInfoDatabaseManager *datInfoDb() { return m_datInfoDb; }
 		MachineListDatabaseManager *machineListDb() { return m_machineListDb; }
+		IconCacheDatabaseManager *iconCacheDb() { return m_iconCacheDb; }
 
 		MachineList(QObject *parent = 0);
 		~MachineList();
@@ -146,6 +148,7 @@ class MachineList : public QObject
 		UserDataDatabaseManager *m_userDataDb;
 		DatInfoDatabaseManager *m_datInfoDb;
 		MachineListDatabaseManager *m_machineListDb;
+		IconCacheDatabaseManager *m_iconCacheDb;
 		QString m_trL, m_trC, m_trM, m_trI, m_trN, m_trU, m_trS, m_trT;
 };
 
