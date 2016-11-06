@@ -149,6 +149,12 @@
 // number of rows added to the machine list database in *one* transaction
 #define QMC2_MACHINELIST_COMMIT			1000
 
+// current format version of the icon cache database schema
+#define QMC2_ICONCACHE_DB_VERSION		1
+
+// number of rows added to the icon cache database in *one* transaction
+#define QMC2_ICONCACHE_COMMIT			1000
+
 // check-sum DB status updates
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_SHORT	1000
 #define QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG	60000
