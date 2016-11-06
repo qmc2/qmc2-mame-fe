@@ -84,6 +84,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			machinelistdbmgr.cpp \
 			machinelistmodel.cpp \
 			machinelistviewer.cpp \
+			iconcachedbmgr.cpp \
 			processmanager.cpp \
 			imagewidget.cpp \
 			preview.cpp \
@@ -199,6 +200,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			machinelistdbmgr.h \
 			machinelistmodel.h \
 			machinelistviewer.h \
+			iconcachedbmgr.h \
 			processmanager.h \
 			imagewidget.h \
 			preview.h \
