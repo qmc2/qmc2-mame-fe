@@ -202,6 +202,16 @@ MachineList::MachineList(QObject *parent) :
 	// identifier strings (see "mame -help") that we support - others will produce a warning
 	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HBMAME" << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 
+	// status string template
+	m_statusTemplate = "<b><font color=\"black\">%1</font>&nbsp;"
+			   "<font color=\"#00cc00\">%2</font>&nbsp;"
+			   "<font color=\"#799632\">%3</font>&nbsp;"
+			   "<font color=\"#f90000\">%4</font>&nbsp;"
+			   "<font color=\"#7f7f7f\">%5</font>&nbsp;"
+			   "<font color=\"#0000f9\">%6</font>&nbsp;"
+			   "<font color=\"chocolate\">%7</font>&nbsp;"
+			   "<font color=\"sandybrown\">%8</font></b>";
+
 	switch ( qmc2Options->iconFileType() ) {
 		case QMC2_ICON_FILETYPE_ZIP:
 			foreach (QString filePath, qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconFile").toString().split(";", QString::SkipEmptyParts)) {
@@ -2145,15 +2155,15 @@ void MachineList::savePlayHistory()
 QString &MachineList::status()
 {
 	static QLocale locale;
-	statusString = "<b><font color=\"black\">" + m_trL + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#00cc00\">" + m_trC + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#799632\">" + m_trM + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#f90000\">" + m_trI + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#7f7f7f\">" + m_trN + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"#0000f9\">" + m_trU + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"chocolate\">" + m_trS + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark) + "</font>&nbsp;"
-		"<font color=\"sandybrown\">" + m_trT + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark) + "</font></b>";
-	return statusString;
+	m_statusString = m_statusTemplate.arg(m_trL + QString(numMachines > -1 ? locale.toString(numMachines) : trQuestionMark))
+					 .arg(m_trC + QString(numCorrectMachines > -1 ? locale.toString(numCorrectMachines) : trQuestionMark))
+					 .arg(m_trM + QString(numMostlyCorrectMachines > -1 ? locale.toString(numMostlyCorrectMachines) : trQuestionMark))
+					 .arg(m_trI + QString(numIncorrectMachines > -1 ? locale.toString(numIncorrectMachines) : trQuestionMark))
+					 .arg(m_trN + QString(numNotFoundMachines > -1 ? locale.toString(numNotFoundMachines) : trQuestionMark))
+					 .arg(m_trU + QString(numUnknownMachines > -1 ? locale.toString(numUnknownMachines) : trQuestionMark))
+					 .arg(m_trS + QString(numMatchedMachines > -1 ? locale.toString(numMatchedMachines) : trQuestionMark))
+					 .arg(m_trT + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : trQuestionMark));
+	return m_statusString;
 }
 
 void MachineList::loadStarted()

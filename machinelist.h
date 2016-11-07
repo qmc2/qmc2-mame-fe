@@ -65,7 +65,6 @@ class MachineList : public QObject
 		QString emulatorVersion;
 		QString verifyLastLine;
 		QString xmlLineBuffer;
-		QString statusString;
 		QStringList emulatorIdentifiers;
 		QStringList verifiedList;
 		QHash<QString, QString> driverNameHash;
@@ -151,6 +150,7 @@ class MachineList : public QObject
 		MachineListDatabaseManager *m_machineListDb;
 		IconCacheDatabaseManager *m_iconCacheDb;
 		QString m_trL, m_trC, m_trM, m_trI, m_trN, m_trU, m_trS, m_trT;
+		QString m_statusString, m_statusTemplate;
 };
 
 class MachineListItem : public QTreeWidgetItem
