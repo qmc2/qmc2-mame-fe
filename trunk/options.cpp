@@ -938,6 +938,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UsePreviewFile", qmc2UsePreviewFile);
 	config->setValue("MAME/FilesAndDirectories/PreviewDirectory", lineEditPreviewDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/PreviewFile", lineEditPreviewFile->text());
+	needReopenPreviewFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewFileType").toInt() != comboBoxPreviewFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/PreviewFileType", comboBoxPreviewFileType->currentIndex());
 	needReopenFlyerFile = (qmc2UseFlyerFile != (stackedWidgetFlyer->currentIndex() == 1)) || (initialCall && qmc2UseFlyerFile);
 	needReopenFlyerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFile").toString() != lineEditFlyerFile->text());
@@ -945,6 +946,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseFlyerFile", qmc2UseFlyerFile);
 	config->setValue("MAME/FilesAndDirectories/FlyerDirectory", lineEditFlyerDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/FlyerFile", lineEditFlyerFile->text());
+	needReopenFlyerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/FlyerFileType").toInt() != comboBoxFlyerFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/FlyerFileType", comboBoxFlyerFileType->currentIndex());
 	needReopenIconFile = (qmc2UseIconFile != (stackedWidgetIcon->currentIndex() == 1)) || (initialCall && qmc2UseIconFile);
 	needReopenIconFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFile").toString() != lineEditIconFile->text());
@@ -952,6 +954,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseIconFile", qmc2UseIconFile);
 	config->setValue("MAME/FilesAndDirectories/IconDirectory", lineEditIconDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/IconFile", lineEditIconFile->text());
+	needReopenIconFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/IconFileType").toInt() != comboBoxIconFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/IconFileType", comboBoxIconFileType->currentIndex());
 	needReopenCabinetFile = (qmc2UseCabinetFile != (stackedWidgetCabinet->currentIndex() == 1)) || (initialCall && qmc2UseCabinetFile);
 	needReopenCabinetFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFile").toString() != lineEditCabinetFile->text());
@@ -959,6 +962,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseCabinetFile", qmc2UseCabinetFile);
 	config->setValue("MAME/FilesAndDirectories/CabinetDirectory", lineEditCabinetDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/CabinetFile", lineEditCabinetFile->text());
+	needReopenCabinetFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/CabinetFileType").toInt() != comboBoxCabinetFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/CabinetFileType", comboBoxCabinetFileType->currentIndex());
 	needReopenControllerFile = (qmc2UseControllerFile != (stackedWidgetController->currentIndex() == 1)) || (initialCall && qmc2UseControllerFile);
 	needReopenControllerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFile").toString() != lineEditControllerFile->text());
@@ -966,6 +970,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseControllerFile", qmc2UseControllerFile);
 	config->setValue("MAME/FilesAndDirectories/ControllerDirectory", lineEditControllerDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/ControllerFile", lineEditControllerFile->text());
+	needReopenControllerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/ControllerFileType").toInt() != comboBoxControllerFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/ControllerFileType", comboBoxControllerFileType->currentIndex());
 	needReopenMarqueeFile = (qmc2UseMarqueeFile != (stackedWidgetMarquee->currentIndex() == 1)) || (initialCall && qmc2UseMarqueeFile);
 	needReopenMarqueeFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFile").toString() != lineEditMarqueeFile->text());
@@ -973,6 +978,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseMarqueeFile", qmc2UseMarqueeFile);
 	config->setValue("MAME/FilesAndDirectories/MarqueeDirectory", lineEditMarqueeDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/MarqueeFile", lineEditMarqueeFile->text());
+	needReopenControllerFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/MarqueeFileType").toInt() != comboBoxMarqueeFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/MarqueeFileType", comboBoxMarqueeFileType->currentIndex());
 	needReopenTitleFile = (qmc2UseTitleFile != (stackedWidgetTitle->currentIndex() == 1)) || (initialCall && qmc2UseTitleFile);
 	needReopenTitleFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFile").toString() != lineEditTitleFile->text());
@@ -980,6 +986,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
 	config->setValue("MAME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+	needReopenTitleFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/TitleFileType").toInt() != comboBoxTitleFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/TitleFileType", comboBoxTitleFileType->currentIndex());
 	needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1)) || (initialCall && qmc2UsePCBFile);
 	needReopenPCBFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
@@ -987,6 +994,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
 	config->setValue("MAME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+	needReopenPCBFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PCBFileType").toInt() != comboBoxPCBFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/PCBFileType", comboBoxPCBFileType->currentIndex());
 	needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1)) || (initialCall && qmc2UseSoftwareSnapFile);
 	needReopenSoftwareSnapFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
@@ -994,6 +1002,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
 	config->setValue("MAME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
 	config->setValue("MAME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+	needReopenSoftwareSnapFile |= (QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareSnapFileType").toInt() != comboBoxSoftwareSnapFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/SoftwareSnapFileType", comboBoxSoftwareSnapFileType->currentIndex());
 	config->setValue("MAME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
 	config->setValue("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
