@@ -467,6 +467,7 @@
 
 // responsiveness while pre-caching icons or loading icons from the cache DB
 #define QMC2_ICONCACHE_RESPONSIVENESS		500
+#define QMC2_ICONCACHE_DB_RESPONSIVENESS	1000
 
 // responsiveness while loading the YouTube video info map
 #define QMC2_YOUTUBE_VIDEO_INFO_RSP		50
