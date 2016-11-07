@@ -465,7 +465,7 @@
 // default machine list responsiveness
 #define QMC2_DEFAULT_MACHINELIST_RESPONSE	2500
 
-// responsiveness while pre-caching icons
+// responsiveness while pre-caching icons or loading icons from the cache DB
 #define QMC2_ICONCACHE_RESPONSIVENESS		500
 
 // responsiveness while loading the YouTube video info map

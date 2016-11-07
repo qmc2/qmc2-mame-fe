@@ -24,7 +24,7 @@ IconCacheDatabaseManager::IconCacheDatabaseManager(QObject *parent) :
 {
 	m_connectionName = QString("icon-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
-	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconCacheDatabase", QString(Options::configPath() + "/%1-icon-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
+	m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/IconCacheDatabase", QString(Options::configPath() + "/%1-icon-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_icon_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);

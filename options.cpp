@@ -73,6 +73,7 @@
 #include "cryptedbytearray.h"
 #include "individualfallbacksettings.h"
 #include "catverinioptimizer.h"
+#include "iconcachesetupdialog.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -211,10 +212,6 @@ Options::Options(QWidget *parent) :
 	QWebSettings::enablePersistentStorage(userScopePath);
 
 	setupUi(this);
-
-#if !defined(QMC2_WIP_ENABLED)
-	toolButtonSetupIconDatabase->setVisible(false);
-#endif
 
 #if !defined(QMC2_LIBARCHIVE_ENABLED)
 	comboBoxPreviewFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
@@ -2560,7 +2557,8 @@ void Options::on_toolButtonOptimizeCatverIni_clicked()
 
 void Options::on_toolButtonSetupIconDatabase_clicked()
 {
-	// FIXME
+	IconCacheSetupDialog icsd(this);
+	icsd.exec();
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
