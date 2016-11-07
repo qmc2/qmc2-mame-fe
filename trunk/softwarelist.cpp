@@ -3966,30 +3966,30 @@ QString SoftwareList::softwareStatus(QString listName, QString softwareName, boo
 QString &SoftwareList::status(SoftwareListXmlHandler *handler)
 {
 	static QLocale locale;
-	statusString = "<b>";
+	m_statusString = "<b>";
 	if ( handler ) {
-		statusString += "<font color=black>" + m_trL + locale.toString(numSoftwareTotal + handler->numTotal) + "</font>&nbsp;";
+		m_statusString += "<font color=black>" + m_trL + locale.toString(numSoftwareTotal + handler->numTotal) + "</font>&nbsp;";
 		if ( toolButtonSoftwareStates->isChecked() ) {
-			statusString += "<font color=\"#00cc00\">" + m_trC + locale.toString(numSoftwareCorrect + handler->numCorrect) + "</font>&nbsp;"
-				"<font color=\"#799632\">" + m_trM + locale.toString(numSoftwareMostlyCorrect + handler->numMostlyCorrect) + "</font>&nbsp;"
-				"<font color=\"#f90000\">" + m_trI + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font>&nbsp;"
-				"<font color=\"#7f7f7f\">" + m_trN + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font>&nbsp;"
-				"<font color=\"#0000f9\">" + m_trU + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font>&nbsp;"
-				"<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
+			m_statusString += "<font color=\"#00cc00\">" + m_trC + locale.toString(numSoftwareCorrect + handler->numCorrect) + "</font>&nbsp;"
+					  "<font color=\"#799632\">" + m_trM + locale.toString(numSoftwareMostlyCorrect + handler->numMostlyCorrect) + "</font>&nbsp;"
+					  "<font color=\"#f90000\">" + m_trI + locale.toString(numSoftwareIncorrect + handler->numIncorrect) + "</font>&nbsp;"
+					  "<font color=\"#7f7f7f\">" + m_trN + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font>&nbsp;"
+					  "<font color=\"#0000f9\">" + m_trU + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font>&nbsp;"
+					  "<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
 		}
 	} else {
-		statusString += "<font color=black>" + m_trL + locale.toString(numSoftwareTotal) + "</font>&nbsp;";
+		m_statusString += "<font color=black>" + m_trL + locale.toString(numSoftwareTotal) + "</font>&nbsp;";
 		if ( toolButtonSoftwareStates->isChecked() ) {
-			statusString += "<font color=\"#00cc00\">" + m_trC + locale.toString(numSoftwareCorrect) + "</font>&nbsp;"
-				"<font color=\"#799632\">" + m_trM + locale.toString(numSoftwareMostlyCorrect) + "</font>&nbsp;"
-				"<font color=\"#f90000\">" + m_trI + locale.toString(numSoftwareIncorrect) + "</font>&nbsp;"
-				"<font color=\"#7f7f7f\">" + m_trN + locale.toString(numSoftwareNotFound) + "</font>&nbsp;"
-				"<font color=\"#0000f9\">" + m_trU + locale.toString(numSoftwareUnknown) + "</font>&nbsp;"
-				"<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
+			m_statusString += "<font color=\"#00cc00\">" + m_trC + locale.toString(numSoftwareCorrect) + "</font>&nbsp;"
+					  "<font color=\"#799632\">" + m_trM + locale.toString(numSoftwareMostlyCorrect) + "</font>&nbsp;"
+					  "<font color=\"#f90000\">" + m_trI + locale.toString(numSoftwareIncorrect) + "</font>&nbsp;"
+					  "<font color=\"#7f7f7f\">" + m_trN + locale.toString(numSoftwareNotFound) + "</font>&nbsp;"
+					  "<font color=\"#0000f9\">" + m_trU + locale.toString(numSoftwareUnknown) + "</font>&nbsp;"
+					  "<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
 		}
 	}
-	statusString += "</b>";
-	return statusString;
+	m_statusString += "</b>";
+	return m_statusString;
 }
 
 void SoftwareList::updateStats(SoftwareListXmlHandler *handler)

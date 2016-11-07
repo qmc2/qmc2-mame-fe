@@ -234,7 +234,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString swlLastLine;
 		QString softwareListName;
 		QString oldFmt;
-		QString statusString;
 		QStringList successfulLookups;
 		QStringList mountedSoftware;
 		QStringList swlLines;
@@ -396,6 +395,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 	private:
 		bool m_viewTree;
 		QString m_trL, m_trC, m_trM, m_trI, m_trN, m_trU, m_trS;
+		QString m_statusString;
 };
 
 #endif
