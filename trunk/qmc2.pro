@@ -39,6 +39,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			comboboxwidget.ui \
 			componentsetup.ui \
 			machinelistviewer.ui \
+			iconcachesetupdialog.ui \
 			miniwebbrowser.ui \
 			youtubevideoplayer.ui \
 			videoitemwidget.ui \
@@ -85,6 +86,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			machinelistmodel.cpp \
 			machinelistviewer.cpp \
 			iconcachedbmgr.cpp \
+			iconcachesetupdialog.cpp \
 			processmanager.cpp \
 			imagewidget.cpp \
 			preview.cpp \
@@ -201,6 +203,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			machinelistmodel.h \
 			machinelistviewer.h \
 			iconcachedbmgr.h \
+			iconcachesetupdialog.h \
 			processmanager.h \
 			imagewidget.h \
 			preview.h \

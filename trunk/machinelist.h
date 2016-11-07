@@ -97,6 +97,7 @@ class MachineList : public QObject
 		int rank(const QString &systemName) { return userDataDb()->rank(systemName); }
 		QString comment(const QString systemName) { return userDataDb()->comment(systemName); }
 
+		void reopenIconCacheDb();
 		bool loadIcon(const QString &, QTreeWidgetItem *);
 		void clearCategoryNames();
 		void clearVersionNames();
