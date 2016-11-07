@@ -17,6 +17,7 @@ inf: informational only
 <p><b>v0.70, 07-NOV-2016:</b></p>
 <ul>
 	<li>fix: ROMAlyzer / collection rebuilder: corrected the logged uncompressed size of a dump when reading from a ZIP archive through minizip (minor)</li>
+	<li>fix: image or icon sources weren't refreshed correctly when the decompressor setup (zip, 7z or libarchive) was changed on-the-fly</li>
 	<li>imp: removed all 'terminate emulator' actions as they don't work with modern MAME ('kill emulator' actions still work and got a nicer icon)</li>
 	<li>imp: disabled all code relevant for former (SDL)MAME output notifications (does no longer work this way in modern MAME)</li>
  	<li>imp: updated template format to v0.2.9 which adds an optional 'wip' attribute for emulator options</li>
