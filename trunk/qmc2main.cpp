@@ -263,11 +263,6 @@ QHash<QString, QKeySequence> qmc2QtKeyHash;
 QHash<QString, QString> qmc2JoystickFunctionHash;
 bool qmc2JoystickIsCalibrating = false;
 #endif
-/*
-QFile *qmc2FifoFile = 0;
-QSocketNotifier *qmc2FifoNotifier = 0;
-bool qmc2FifoIsOpen = false;
-*/
 bool qmc2ShowMachineName = false;
 bool qmc2ShowMachineNameOnlyWhenRequired = true;
 QMutex qmc2LogFrontendMutex;
@@ -615,15 +610,6 @@ MainWindow::MainWindow(QWidget *parent) :
 		treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
 		treeWidgetVersionView->setColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION, true);
 		treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
-//#if defined(QMC2_OS_WIN)
-		// output notifiers are not supported on Windows (FIXME: They aren't supported at all at the moment!)
-		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
-		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
-		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
-		treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED2);
-		treeWidgetEmulators->setRootIsDecorated(false);
-		treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
-//#endif
 		actionFullscreenToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false).toBool());
 		tabWidgetMachineList->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineList/TabPosition", QTabWidget::North).toInt());
 		tabWidgetMachineDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineDetail/TabPosition", QTabWidget::North).toInt());
@@ -1293,6 +1279,9 @@ MainWindow::MainWindow(QWidget *parent) :
 		on_actionRankImageGradient_triggered(true);
 	connect(menuRank, SIGNAL(aboutToShow()), this, SLOT(menuRank_aboutToShow()));
 
+	// prepare to receive MAME output notifications from the process manager
+	connect(qmc2ProcessManager, SIGNAL(mameOutputNotifier(int, const QString &, const QString &)), this, SLOT(processOutputNotifier(int, const QString &, const QString &)));
+
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -1816,6 +1805,9 @@ void MainWindow::on_actionPlay_triggered(bool)
 				args << negOpt;
 		}
 	}
+
+	if ( qmc2Options->outputNotifiersEnabled() )
+		args << "-output" << "console";
 
 	args << machineName;
 
@@ -5635,7 +5627,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 	log(QMC2_LOG_FRONTEND, tr("cleaning up"));
 	qmc2CleaningUp = true;
-  
+
 	if ( runningDownloads > 0 )
 		log(QMC2_LOG_FRONTEND, tr("aborting running downloads"));
 	foreach (int i, indexList) {
@@ -6154,8 +6146,6 @@ void MainWindow::init()
 
 	qmc2GhostImagePixmap.load(":/data/img/ghost.png");
 	qmc2GhostImagePixmap.isGhost = true;
-
-	//createFifo();
 
 	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -7253,194 +7243,81 @@ void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int /*state*/)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
 }
 
-void MainWindow::createFifo(bool logFifoCreation)
+void MainWindow::processOutputNotifier(int emuId, const QString &name, const QString &value)
 {
-	// FIXME: just return and do nothing... SDLMAME no longer works this way 
-	return;
-/*
-#if defined(QMC2_OS_WIN)
-	// FIXME: implement Windows specific notifier FIFO support
-#elif defined(QMC2_SDLMAME)
-	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) ) {
-		mode_t oum = ::umask(0000);
-		::mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
-		::umask(oum);
-	}
-	if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) ) {
-		log(QMC2_LOG_FRONTEND, tr("WARNING: can't create SDLMAME output notifier FIFO, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
-	} else {
-		qmc2FifoFile = new QFile(QMC2_SDLMAME_OUTPUT_FIFO);
-#if defined(O_ASYNC)
-		int fd = ::open(QMC2_SDLMAME_OUTPUT_FIFO, O_ASYNC | O_NONBLOCK);
-#else
-		int fd = ::open(QMC2_SDLMAME_OUTPUT_FIFO, O_NONBLOCK);
-#endif
-		if ( fd >= 0 ) {
-			if ( qmc2FifoFile->open(fd, QIODevice::ReadOnly | QIODevice::Text) ) {
-				qmc2FifoNotifier = new QSocketNotifier(qmc2FifoFile->handle(), QSocketNotifier::Read);
-				connect(qmc2FifoNotifier, SIGNAL(activated(int)), this, SLOT(processFifoData()));
-				qmc2FifoNotifier->setEnabled(true);
-				if ( logFifoCreation )
-					log(QMC2_LOG_FRONTEND, tr("SDLMAME output notifier FIFO created"));
-			} else {
-				delete qmc2FifoFile;
-				qmc2FifoFile = 0;
-				log(QMC2_LOG_FRONTEND, tr("WARNING: can't open SDLMAME output notifier FIFO for reading, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
-			}
-		}
-	}
-#endif
-	if ( qmc2FifoFile && qmc2FifoNotifier )
-		qmc2FifoIsOpen = qmc2FifoFile->isOpen();
-	else
-		qmc2FifoIsOpen = false;
-*/
-}
-
-void MainWindow::processFifoData()
-{
-	// FIXME: just return and do nothing... SDLMAME no longer works this way 
-	return;
-/*
 	if ( qmc2CleaningUp )
 		return;
-	if ( !qmc2FifoIsOpen )
-		return;
-#if defined(QMC2_SDLMAME)
-	QTextStream ts(qmc2FifoFile);
-	QString data = ts.readAll();
-	if ( data.isEmpty() )
-		return;
-	QStringList sl = data.split("\n", QString::SkipEmptyParts);
-	QChar splitChar(' ');
-	for (int i = 0; i < sl.count(); i++) { 
-		if ( !sl[i].isEmpty() ) {
-			QString msgClass, msgPid, msgWhat, msgState;
-			QStringList words = sl[i].trimmed().split(splitChar);
-			if ( words.count() > 0 )
-				msgClass = words[0];
-			if ( words.count() > 1 )
-				msgPid = words[1];
-			if ( words.count() > 2 )
-				msgWhat = words[2];
-			if ( words.count() > 3 )
-				msgState = words[3];
-			if ( !msgPid.isEmpty() ) {
-				QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(msgPid, Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_PID);
-				if ( il.count() > 0 ) {
-					if ( msgClass == "MAME" ) {
-						if ( msgWhat == "START" ) {
-							il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
+
+	QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(QString::number(emuId), Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_ID);
+	if ( il.count() > 0 ) {
+		if ( name == "pause" ) {
 #if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
-							Embedder *embedder = 0;
-							int embedderIndex = -1;
-							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
-								if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
-									embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
-									embedderIndex = j;
-								}
-							}
-							if ( embedder ) {
-								embedder->isPaused = false;
-								tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconRunning);
-							}
-#endif
-						} else if ( msgWhat == "STOP" ) {
-							il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("stopped"));
-#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
-							Embedder *embedder = 0;
-							int embedderIndex = -1;
-							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
-								if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
-									embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
-									embedderIndex = j;
-								}
-							}
-							if ( embedder ) {
-								embedder->isPaused = false;
-								tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconStopped);
-							}
-#endif
-						} else
-							log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_MACHINE)).arg(msgClass).arg(msgWhat).arg(msgState));
-					} else if ( msgClass == "OUT" ) {
-						// refresh static output notifiers
-						if ( msgWhat == "led0" ) {
-							if ( msgState == "1" )
-								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
-							else
-								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
-						} else if ( msgWhat == "led1" ) {
-							if ( msgState == "1" )
-								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
-							else
-								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
-						} else if ( msgWhat == "led2" ) {
-							if ( msgState == "1" )
-								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
-							else
-								il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
-						} else if ( msgWhat == "pause" ) {
-#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
-							Embedder *embedder = 0;
-							int embedderIndex = -1;
-							for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
-								if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
-									embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
-									embedderIndex = j;
-								}
-							}
-							if ( msgState == "1" ) {
-								il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
-								if ( embedder ) {
-									embedder->isPaused = true;
-									tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconPaused);
-								}
-							} else {
-								il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
-								if ( embedder ) {
-									embedder->isPaused = false;
-									tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconRunning);
-								}
-							}
-#else
-							if ( msgState == "1" )
-								il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
-							else
-								il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
-#endif
-						} else {
-							// add or refresh dynamic output notifiers
-							QTreeWidgetItem *itemFound = 0;
-							int i;
-							for (i = 0; i < il[0]->childCount() && itemFound == 0; i++) {
-								QTreeWidgetItem *item = il[0]->child(i);
-								if ( item->text(QMC2_EMUCONTROL_COLUMN_MACHINE) == msgWhat )
-									itemFound = item;
-							}
-							if ( itemFound != 0 )
-								itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, msgState);
-							else {
-								itemFound = new QTreeWidgetItem(il[0]);
-								itemFound->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, msgWhat);
-								itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, msgState);
-								if ( il[0]->childCount() == 1 ) {
-									// this is a workaround for a minor Qt bug: the root decoration
-									// isn't updated correctly on the first child item insertion
-									treeWidgetEmulators->setRootIsDecorated(false);
-									treeWidgetEmulators->setRootIsDecorated(true);
-								}
-							}
-						}
-					} else
-						log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_MACHINE)).arg(msgClass).arg(msgWhat).arg(msgState));
+			Embedder *embedder = 0;
+			int embedderIndex = -1;
+			for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
+				if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(emuId)) ) {
+					embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
+					embedderIndex = j;
 				}
-				treeWidgetEmulators->update();
+			}
+			if ( value == "0" ) {
+				il.first()->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
+				if ( embedder ) {
+					embedder->isPaused = false;
+					tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconRunning);
+				}
+			} else {
+				il.first()->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
+				if ( embedder ) {
+					embedder->isPaused = true;
+					tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconPaused);
+				}
+			}
+#else
+			if ( value == "0" )
+				il.first()->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
+			else
+				il.first()->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
+#endif
+		} else if ( name == "led0" ) {
+			if ( value == "0" )
+				il.first()->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
+			else
+				il.first()->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
+		} else if ( name == "led1" ) {
+			if ( value == "0" )
+				il.first()->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
+			else
+				il.first()->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
+		} else if ( name == "led2" ) {
+			if ( value == "0" )
+				il.first()->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
+			else
+				il.first()->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_on.png")));
+		} else {
+			// add or refresh dynamic output notifiers
+			QTreeWidgetItem *itemFound = 0;
+			for (int i = 0; i < il.first()->childCount() && itemFound == 0; i++) {
+				QTreeWidgetItem *item = il.first()->child(i);
+				if ( item->text(QMC2_EMUCONTROL_COLUMN_MACHINE) == name )
+					itemFound = item;
+			}
+			if ( itemFound != 0 )
+				itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, value);
+			else {
+				itemFound = new QTreeWidgetItem(il[0]);
+				itemFound->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, name);
+				itemFound->setText(QMC2_EMUCONTROL_COLUMN_STATUS, value);
+				if ( il.first()->childCount() == 1 ) {
+					// this is a workaround for a minor Qt bug: the root decoration
+					// isn't updated correctly on the first child item insertion
+					treeWidgetEmulators->setRootIsDecorated(false);
+					treeWidgetEmulators->setRootIsDecorated(true);
+				}
 			}
 		}
+		treeWidgetEmulators->update();
 	}
-#endif
-*/
 }
 
 void MainWindow::treeWidgetMachineList_headerSectionClicked(int logicalIndex)
@@ -10312,14 +10189,20 @@ void MainWindow::processGlobalEmuConfig()
 	buttonLayout->addWidget(pushButtonGlobalEmulatorOptionsExportToFile);
 	buttonLayout->addWidget(pushButtonGlobalEmulatorOptionsImportFromFile);
 	layout->addLayout(buttonLayout);
+	qmc2Options->checkBoxEnableOutputNotifiers = new QCheckBox(qmc2Options);
+	qmc2Options->checkBoxEnableOutputNotifiers->setText(tr("Enable processing of MAME output notifiers (this forces '-output console')"));
+	qmc2Options->checkBoxEnableOutputNotifiers->setToolTip(tr("Enable processing of MAME output notifiers (this forces '-output console')"));
+	qmc2Options->checkBoxEnableOutputNotifiers->setChecked(qmc2Config->value(QMC2_EMULATOR_PREFIX + "EnableOutputNotifiers", true).toBool());
+	qmc2Options->setEnableOutputNotifiers(qmc2Options->checkBoxEnableOutputNotifiers->isChecked());
+	layout->addWidget(qmc2Options->checkBoxEnableOutputNotifiers);
 	qmc2Options->tabGlobalConfiguration->setLayout(layout);
 	selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(pushButtonGlobalEmulatorOptionsExportToFile);
-	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
-	QObject::connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
+	connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
+	connect(selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
 	pushButtonGlobalEmulatorOptionsExportToFile->setMenu(selectMenuGlobalEmulatorOptionsExportToFile);
 	selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(pushButtonGlobalEmulatorOptionsImportFromFile);
-	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
-	QObject::connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
+	connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/mame.ini")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
+	connect(selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), this, SLOT(pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));
 	pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(selectMenuGlobalEmulatorOptionsImportFromFile);
 }
 

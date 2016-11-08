@@ -14,11 +14,12 @@
 #endif
 #include "embedder.h"
 #include "qmc2main.h"
+#include "options.h"
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
-//extern bool qmc2FifoIsOpen;
+extern Options *qmc2Options;
 
 #if defined(QMC2_OS_WIN)
 #define QMC2_EMBEDDED_STYLE		(LONG)(WS_VISIBLE | WS_POPUP | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_MAXIMIZE)
@@ -63,12 +64,6 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	gridLayout->addWidget(embedContainer, 1, 0);
 	setLayout(gridLayout);
 
-#if defined(QMC2_OS_UNIX)
-	connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
-	connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
-	connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
-
-	/*
 	if ( icon.isNull() ) {
 		iconRunning = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png"));
 		iconPaused = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png"));
@@ -117,13 +112,16 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 		p.end();
 		iconUnknown = QIcon(pm);
 	}
-	*/
 	iconUnknown = icon;
+
+#if defined(QMC2_OS_UNIX)
+	connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
+	connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
+	connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
 #elif defined(QMC2_OS_WIN)
 	windowHandle = embeddedWinId;
 	embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
 	connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkWindow()));
-	iconUnknown = icon;
 	RECT wR, cR;
 	GetWindowRect(windowHandle, &wR);
 	GetClientRect(windowHandle, &cR);
@@ -230,12 +228,16 @@ void Embedder::showEvent(QShowEvent *e)
 #if defined(QMC2_OS_UNIX)
 	if ( embedded )
 		QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
-
-//	if ( !qmc2FifoIsOpen ) {
-		int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
-//	}
 #endif
+
+	int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+	if ( qmc2Options->outputNotifiersEnabled() ) {
+		if ( isPaused )
+			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconPaused);
+		else
+			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconRunning);
+	} else
+		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
 
 	QWidget::showEvent(e);
 }
@@ -423,15 +425,12 @@ void Embedder::clientEmbedded()
 	QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
 
 	int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-
-	/*
-	if ( qmc2FifoIsOpen ) {
+	if ( qmc2Options->outputNotifiersEnabled() ) {
 		if ( isPaused )
 			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconPaused);
 		else
 			qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconRunning);
 	} else
-	*/
 		qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
 
 	forceFocus();

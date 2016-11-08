@@ -3,6 +3,7 @@
 
 #include <QProcess>
 #include <QMap>
+#include <QRegExp>
 #include <QString>
 #include <QStringList>
 #include "macros.h"
@@ -53,6 +54,12 @@ class ProcessManager : public QObject
 		void readyReadStandardError();
 		void error(QProcess::ProcessError);
 		void stateChanged(QProcess::ProcessState);
+
+	signals:
+		void mameOutputNotifier(int emuId, const QString &name, const QString &value);
+
+	private:
+		QRegExp m_rxOutputNotifier;
 };
 
 #endif
