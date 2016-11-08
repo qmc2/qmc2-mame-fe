@@ -288,11 +288,11 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 68, osr, 7768) ) {
+		if ( QMC2_TEST_VERSION(omv, 69, osr, 7768) ) {
 			startupConfig->remove(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel");
 			startupConfig->remove(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/ChecksumWizardAutomationLevel");
 		}
-		if ( QMC2_TEST_VERSION(omv, 69, osr, 7815) ) {
+		if ( QMC2_TEST_VERSION(omv, 70, osr, 7815) ) {
 			// more "Game" => "Machine" transitions
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator") ) {
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", true).toBool());
@@ -331,6 +331,10 @@ bool Welcome::checkConfig()
 				startupConfig->remove(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame");
 			}
 			startupConfig->remove(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/SelectGame");
+		}
+		if ( QMC2_TEST_VERSION(omv, 70, osr, 7829) ) {
+			// we need to reset the emulator control panel's header state to ensure all columns are shown on all OSs from now on
+			startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState");
 		}
 	}
 

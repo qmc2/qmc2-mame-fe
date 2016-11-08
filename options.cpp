@@ -187,10 +187,11 @@ QBrush Options::lightgreyBrush(QColor(200, 200, 200));
 
 Options::Options(QWidget *parent) :
 #if defined(QMC2_OS_WIN)
-	QDialog(parent, Qt::Dialog)
+	QDialog(parent, Qt::Dialog),
 #else
-	QDialog(parent, Qt::Dialog | Qt::SubWindow)
+	QDialog(parent, Qt::Dialog | Qt::SubWindow),
 #endif
+	m_enableOutputNotifiers(true)
 {
 	qmc2Filter.resize(QMC2_ROMSTATE_COUNT);
 
@@ -1365,6 +1366,8 @@ void Options::on_pushButtonApply_clicked()
 			}
 		}
 	}
+	m_enableOutputNotifiers = checkBoxEnableOutputNotifiers->isChecked();
+	config->setValue(QMC2_EMULATOR_PREFIX + "EnableOutputNotifiers", m_enableOutputNotifiers);
 
 	QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(updateAllEmuOptActions()));
 

@@ -94,6 +94,8 @@ class Options : public QDialog, public Ui::Options
 		static QBrush yellowBrush;
 		static QBrush blueBrush;
 
+		QCheckBox *checkBoxEnableOutputNotifiers;
+
 		Options(QWidget *parent = 0);
 		~Options();
 
@@ -110,6 +112,8 @@ class Options : public QDialog, public Ui::Options
 		QString &standardWorkDir() { return m_standardWorkDir; }
 		void setCurrentStyleName(const QString &s) { m_currentStyleName = s; }
 		QString &currentStyleName() { return m_currentStyleName; }
+		bool outputNotifiersEnabled() { return m_enableOutputNotifiers; }
+		void setEnableOutputNotifiers(bool enable) { m_enableOutputNotifiers = enable; }
 
 		static QString configPath();
 
@@ -256,6 +260,7 @@ class Options : public QDialog, public Ui::Options
 	private:
 		QString m_standardWorkDir;
 		QString m_currentStyleName;
+		bool m_enableOutputNotifiers;
 };
 
 #endif

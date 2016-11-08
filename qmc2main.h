@@ -445,8 +445,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void projectMessSystemLoadFinished(bool);
 		void projectMessLoadStarted();
 		void projectMessLoadFinished(bool);
-		void createFifo(bool logFifoCreation = true);
-		void processFifoData();
+		void processOutputNotifier(int, const QString &, const QString &);
 		void on_hSplitter_splitterMoved(int, int);
 		void on_vSplitter_splitterMoved(int, int);
 		void on_comboBoxViewSelect_currentIndexChanged(int);

@@ -2,17 +2,18 @@
 #include <QtGui>
 #include <QFile>
 #include <QMap>
-//#include <QSocketNotifier>
 
 #include "settings.h"
 #include "processmanager.h"
 #include "qmc2main.h"
 #include "embedder.h"
+#include "options.h"
 #include "youtubevideoplayer.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
+extern Options *qmc2Options;
 extern bool qmc2GuiReady;
 extern bool qmc2StartEmbedded;
 extern QString qmc2DriverName;
@@ -21,13 +22,9 @@ extern QMap<QWidget *, Qt::WindowStates> qmc2AutoMinimizedWidgets;
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 extern Settings *qmc2Config;
-/*
-extern QFile *qmc2FifoFile;
-extern QSocketNotifier *qmc2FifoNotifier;
-*/
 
-ProcessManager::ProcessManager(QWidget *parent)
-	: QObject(parent)
+ProcessManager::ProcessManager(QWidget *parent) :
+	QObject(parent)
 {
 	procCount = 0;
 #if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
@@ -37,6 +34,7 @@ ProcessManager::ProcessManager(QWidget *parent)
 	videoWasPlaying = true;
 #endif
 	launchForeignID = false;
+	m_rxOutputNotifier = QRegExp("^\\S+ = \\S+$", Qt::CaseSensitive, QRegExp::RegExp2);
 }
 
 int ProcessManager::start(QString &command, QStringList &arguments, bool autoConnect, QString workDir, QStringList softwareLists, QStringList softwareNames)
@@ -81,7 +79,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 #endif
 		QStringList fullArgs = QStringList() << command;
 		for (int i = 0; i < arguments.count(); i++) {
-			QString arg = arguments[i];
+			QString arg(arguments.at(i));
 			if ( !launchForeignID ) {
 #if defined(QMC2_OS_WIN)
 				if ( arg == "-snapname" )
@@ -103,7 +101,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 		}
 		loggedCommandLine = fullArgs.join(" ");
 #if defined(QMC2_OS_WIN)
-		QString emuCommandLine = loggedCommandLine;
+		QString emuCommandLine(loggedCommandLine);
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(emuCommandLine.replace('/', '\\').replace("$QMC2FWSL$", "/")));
 #else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(loggedCommandLine));
@@ -115,9 +113,9 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 		connect(proc, SIGNAL(started()), this, SLOT(started()));
 		connect(proc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(stateChanged(QProcess::ProcessState)));
 	}
-	procMap[proc] = procCount++;
-	softwareListsMap[proc] = softwareLists;
-	softwareNamesMap[proc] = softwareNames;
+	procMap.insert(proc, procCount++);
+	softwareListsMap.insert(proc, softwareLists);
+	softwareNamesMap.insert(proc, softwareNames);
 	proc->start(command, arguments);
 	return procCount - 1;
 }
@@ -133,7 +131,7 @@ QProcess *ProcessManager::process(ushort index)
 
 void ProcessManager::terminate(QProcess *proc)
 {
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("terminating emulator #%1, PID = %2").arg(procMap[proc]).arg((quint64)proc->pid()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("terminating emulator #%1, PID = %2").arg(procMap.value(proc)).arg((quint64)proc->pid()));
 	proc->terminate();
 }
 
@@ -157,7 +155,7 @@ void ProcessManager::terminate(ushort index)
 
 void ProcessManager::kill(QProcess *proc)
 {
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("killing emulator #%1, PID = %2").arg(procMap[proc]).arg((quint64)proc->pid()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("killing emulator #%1, PID = %2").arg(procMap.value(proc)).arg((quint64)proc->pid()));
 	proc->kill();
 }
 
@@ -173,58 +171,66 @@ void ProcessManager::kill(ushort index)
 void ProcessManager::readyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
-	QString s = stdoutBuffer[proc] + proc->readAllStandardOutput();
+	QString s(stdoutBuffer.value(proc) + proc->readAllStandardOutput());
 #if defined(QMC2_OS_WIN)
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-	bool endsWithNewLine = s.endsWith("\n");
-	QStringList sl = s.split("\n");
+	bool endsWithNewLine = s.endsWith('\n');
+	QStringList sl(s.split('\n'));
 	int lc = endsWithNewLine ? sl.count() : sl.count() - 1;
-	int i;
-	for (i = 0; i < lc; i++) {
-		s = sl[i];
-		if ( !s.isEmpty() )
-			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stdout[#%1]:").arg(procMap[proc]) + " " + s);
+	for (int i = 0; i < lc; i++) {
+		s = sl.at(i);
+		if ( !s.isEmpty() ) {
+			if ( qmc2Options->outputNotifiersEnabled() ) {
+				if ( m_rxOutputNotifier.indexIn(s) == 0 ) { // MAME output notifier
+					QStringList notifierWords(s.split(" = "));
+					QString name(notifierWords.at(0));
+					QString value(notifierWords.at(1));
+					emit mameOutputNotifier(procMap.value(proc), name, value);
+				} else
+					qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stdout[#%1]:").arg(procMap.value(proc)) + ' ' + s);
+			} else
+				qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stdout[#%1]:").arg(procMap.value(proc)) + ' ' + s);
+		}
 	}
 	if ( endsWithNewLine )
-		stdoutBuffer[proc].clear();
+		stdoutBuffer.insert(proc, QString());
 	else
-		stdoutBuffer[proc] = sl.last();
+		stdoutBuffer.insert(proc, sl.last());
 }
 
 void ProcessManager::readyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
-	QString s = stderrBuffer[proc] + proc->readAllStandardError();
+	QString s(stderrBuffer.value(proc) + proc->readAllStandardError());
 #if defined(QMC2_OS_WIN)
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-	bool endsWithNewLine = s.endsWith("\n");
-	QStringList sl = s.split("\n");
+	bool endsWithNewLine = s.endsWith('\n');
+	QStringList sl(s.split('\n'));
 	int lc = endsWithNewLine ? sl.count() : sl.count() - 1;
-	int i;
-	for (i = 0; i < lc; i++) {
-		s = sl[i];
+	for (int i = 0; i < lc; i++) {
+		s = sl.at(i);
 		if ( !s.isEmpty() )
-			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stderr[#%1]:").arg(procMap[proc]) + " " + s);
+			qmc2MainWindow->log(QMC2_LOG_EMULATOR, tr("stderr[#%1]:").arg(procMap.value(proc)) + ' ' + s);
 	}
 	if ( endsWithNewLine )
-		stderrBuffer[proc].clear();
+		stderrBuffer.insert(proc, QString());
 	else
-		stderrBuffer[proc] = sl.last();
+		stderrBuffer.insert(proc, sl.last());
 }
 
 void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 	QProcess *proc = (QProcess *)sender();
-	QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetEmulators->findItems(QString::number(procMap[proc]), Qt::MatchStartsWith);
+	QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetEmulators->findItems(QString::number(procMap.value(proc)), Qt::MatchStartsWith);
 	if ( il.count() > 0 ) {
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetEmulators->takeTopLevelItem(qmc2MainWindow->treeWidgetEmulators->indexOfTopLevelItem(il[0]));
 		if ( item ) {
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			Embedder *embedder = 0;
 			for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
-				if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) )
+				if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(item->text(QMC2_EMUCONTROL_COLUMN_ID))) )
 					embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(j);
 			}
 			if ( embedder )
@@ -235,7 +241,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::finished(...): trying to remove a null item"));
 	}
 
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap.value(proc)).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
 	procMap.remove(proc);
 	stdoutBuffer.remove(proc);
 	stderrBuffer.remove(proc);
@@ -258,32 +264,15 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 
 	if ( !qmc2AutoMinimizedWidgets.isEmpty() )
 		qmc2MainWindow->setWindowState(qmc2AutoMinimizedWidgets[qmc2MainWindow]);
-
-/*
-#if defined(QMC2_SDLMAME)
-	if ( qmc2FifoFile && qmc2FifoFile->isOpen() ) {
-		if ( qmc2FifoNotifier ) {
-			qmc2FifoNotifier->setEnabled(false);
-			qmc2FifoNotifier->disconnect();
-			delete qmc2FifoNotifier;
-			qmc2FifoNotifier = 0;
-		}
-		if ( qmc2FifoFile->isOpen() )
-			qmc2FifoFile->close();
-		delete qmc2FifoFile;
-		qmc2FifoFile = 0;
-		qmc2MainWindow->createFifo(false);
-	}
-#endif
-*/
 }
 
 void ProcessManager::started()
 {
 	QProcess *proc = (QProcess *)sender();
 	QTreeWidgetItem *procItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetEmulators);
-	procItem->setText(QMC2_EMUCONTROL_COLUMN_NUMBER, QString::number(procMap[proc]));
+	procItem->setText(QMC2_EMUCONTROL_COLUMN_ID, QString::number(procMap.value(proc)));
 	procItem->setText(QMC2_EMUCONTROL_COLUMN_PID, QString::number((quint64)(proc->pid())));
+	procItem->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
 	procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
 	procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
 	procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED2, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
@@ -302,7 +291,7 @@ void ProcessManager::started()
 	if ( qmc2MainWindow->treeWidgetEmulators->header()->visualIndex(QMC2_EMUCONTROL_COLUMN_COMMAND) == QMC2_EMUCONTROL_COLUMN_COMMAND ) 
 		qmc2MainWindow->treeWidgetEmulators->resizeColumnToContents(QMC2_EMUCONTROL_COLUMN_COMMAND);
 
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 started, PID = %2, running emulators = %3").arg(procMap[proc]).arg((quint64)proc->pid()).arg(procMap.count()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 started, PID = %2, running emulators = %3").arg(procMap.value(proc)).arg((quint64)proc->pid()).arg(procMap.count()));
 
 #if QMC2_USE_PHONON_API
 	if ( qmc2MainWindow->phononAudioPlayer->state() == Phonon::PlayingState && procMap.count() == 1 ) {
@@ -363,7 +352,7 @@ void ProcessManager::error(QProcess::ProcessError processError)
 	QProcess *proc = (QProcess *)sender();
 	switch ( processError ) {
 		case QProcess::FailedToStart:
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: failed to start emulator #%1").arg(procMap[proc]));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: failed to start emulator #%1").arg(procMap.value(proc)));
 			procMap.remove(proc);
 			stdoutBuffer.remove(proc);
 			stderrBuffer.remove(proc);
@@ -371,16 +360,16 @@ void ProcessManager::error(QProcess::ProcessError processError)
 			softwareNamesMap.remove(proc);
 			break;
 		case QProcess::Crashed:
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator #%1 crashed").arg(procMap[proc]));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator #%1 crashed").arg(procMap.value(proc)));
 			break;
 		case QProcess::WriteError:
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to write to emulator #%1").arg(procMap[proc]));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to write to emulator #%1").arg(procMap.value(proc)));
 			break;
 		case QProcess::ReadError:
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to read from emulator #%1").arg(procMap[proc]));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to read from emulator #%1").arg(procMap.value(proc)));
 			break;
 		default:
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: unhandled error for emulator #%1, error code = %2").arg(procMap[proc]).arg(processError));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: unhandled error for emulator #%1, error code = %2").arg(procMap.value(proc)).arg(processError));
 			break;
 	}
 }
