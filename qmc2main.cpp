@@ -6184,15 +6184,15 @@ void MainWindow::init()
 	setVisible(true);
 	qApp->processEvents();
 
-	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
-
 	// make sure the logs are scrolled to their maxima
 	logScrollToEnd(QMC2_LOG_FRONTEND);
 	logScrollToEnd(QMC2_LOG_EMULATOR);
 
 	// trigger initial load
+	QTimer::singleShot(0, this, SLOT(updateTabWidgets()));
 	QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
-	QTimer::singleShot(50, this, SLOT(updateTabWidgets()));
+
+	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
 
 void MainWindow::setupStyle(QString styleName)
@@ -7985,7 +7985,7 @@ void MainWindow::projectMessLoadFinished(bool ok)
 
 void MainWindow::projectMessSystemLoadStarted()
 {
-    // NOP
+	// NOP
 }
 
 void MainWindow::projectMessSystemLoadFinished(bool ok)
