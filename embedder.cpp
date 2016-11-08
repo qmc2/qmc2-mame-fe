@@ -269,6 +269,8 @@ void Embedder::resizeEvent(QResizeEvent *e)
 #if defined(QMC2_OS_UNIX)
 void Embedder::showEventDelayed()
 {
+	if ( !qmc2Options->outputNotifiersEnabled() )
+		return;
 	if ( isVisible() ) {
   		// gain focus
 		QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
@@ -281,6 +283,8 @@ void Embedder::showEventDelayed()
 
 void Embedder::hideEventDelayed()
 {
+	if ( !qmc2Options->outputNotifiersEnabled() )
+		return;
 	if ( !isVisible() ) {
 		if ( qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
 			pausing = true;
