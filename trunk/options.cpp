@@ -1303,19 +1303,32 @@ void Options::on_pushButtonApply_clicked()
 	if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
 		config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEWMACHINELIST_INDEX);
 
+	// make sure the current view is visible / set tab icon accordingly
 	qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEWMACHINELIST_INDEX).toInt());
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
+	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
+		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
+			index--;
+#endif
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
+		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators) < 0 )
+			index--;
 	switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
 		case QMC2_VIEWMACHINELIST_INDEX:
-			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/flat.png")));
 			break;
 		case QMC2_VIEWHIERARCHY_INDEX:
-			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/clone.png")));
 			break;
 		case QMC2_VIEWCATEGORY_INDEX:
-			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
 			break;
 		case QMC2_VIEWVERSION_INDEX:
-			qmc2MainWindow->tabWidgetMachineList->setTabIcon(QMC2_MACHINELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+			qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
 			break;
 	}
 
