@@ -58,7 +58,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>507</width>
-                <height>725</height>
+                <height>699</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_1">
@@ -210,6 +210,12 @@
                   <layout class="QHBoxLayout" name="horizontalLayout_4">
                    <item>
                     <widget class="QPushButton" name="pushButtonComponentSetup">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="toolTip">
                       <string>Open the component setup dialog</string>
                      </property>
@@ -223,6 +229,12 @@
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButtonCustomizeToolBar">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="toolTip">
                       <string>Customize the tool-bar</string>
                      </property>
@@ -754,6 +766,12 @@
                  </item>
                  <item row="13" column="3" colspan="4">
                   <widget class="QPushButton" name="pushButtonEditPalette">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="toolTip">
                     <string>Edit the color palette</string>
                    </property>
@@ -839,6 +857,12 @@
                   <widget class="QPushButton" name="pushButtonIndividualFallbackSettings">
                    <property name="enabled">
                     <bool>false</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
                    </property>
                    <property name="toolTip">
                     <string>Select individual fallback settings per artwork class</string>
@@ -3103,7 +3127,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>575</width>
-                <height>297</height>
+                <height>487</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_7">
@@ -3758,8 +3782,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>259</width>
-                <height>52</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3880,8 +3904,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>428</width>
-                <height>270</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4349,7 +4373,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>383</width>
+                <width>507</width>
                 <height>698</height>
                </rect>
               </property>
@@ -4890,8 +4914,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>467</width>
-                <height>583</height>
+                <width>507</width>
+                <height>584</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5548,8 +5572,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>362</width>
-                <height>272</height>
+                <width>527</width>
+                <height>507</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26">
