@@ -10411,37 +10411,22 @@ void MainWindow::prepareShortcuts()
 	qmc2ShortcutHash["Alt+PgDown"].second = actionDecreaseRank;
 
 	// special keys
-	qmc2ShortcutHash["+"].second = 0;
-	qmc2QtKeyHash["+"] = QKeySequence("+", QKeySequence::PortableText);
-	qmc2ShortcutHash["-"].second = 0;
-	qmc2QtKeyHash["-"] = QKeySequence("-", QKeySequence::PortableText);
-	qmc2ShortcutHash["Down"].second = 0;
-	qmc2QtKeyHash["Down"] = QKeySequence("Down", QKeySequence::PortableText);
-	qmc2ShortcutHash["End"].second = 0;
-	qmc2QtKeyHash["End"] = QKeySequence("End", QKeySequence::PortableText);
-	qmc2ShortcutHash["Esc"].second = 0;
-	qmc2QtKeyHash["Esc"] = QKeySequence("Esc", QKeySequence::PortableText);
-	qmc2ShortcutHash["Left"].second = 0;
-	qmc2QtKeyHash["Left"] = QKeySequence("Left", QKeySequence::PortableText);
-	qmc2ShortcutHash["Home"].second = 0;
-	qmc2QtKeyHash["Home"] = QKeySequence("Home", QKeySequence::PortableText);
-	qmc2ShortcutHash["PgDown"].second = 0;
-	qmc2QtKeyHash["PgDown"] = QKeySequence("PgDown", QKeySequence::PortableText);
-	qmc2ShortcutHash["PgUp"].second = 0;
-	qmc2QtKeyHash["PgUp"] = QKeySequence("PgUp", QKeySequence::PortableText);
-	qmc2ShortcutHash["Return"].second = 0;
-	qmc2QtKeyHash["Return"] = QKeySequence("Return", QKeySequence::PortableText);
-	qmc2ShortcutHash["Enter"].second = 0;
-	qmc2QtKeyHash["Enter"] = QKeySequence("Enter", QKeySequence::PortableText);
-	qmc2ShortcutHash["Right"].second = 0;
-	qmc2QtKeyHash["Right"] = QKeySequence("Right", QKeySequence::PortableText);
-	qmc2ShortcutHash["Tab"].second = 0;
-	qmc2QtKeyHash["Tab"] = QKeySequence("Tab", QKeySequence::PortableText);
-	qmc2ShortcutHash["Up"].second = 0;
-	qmc2QtKeyHash["Up"] = QKeySequence("Up", QKeySequence::PortableText);
+	qmc2QtKeyHash.insert("+", QKeySequence("+", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("-", QKeySequence("-", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Down", QKeySequence("Down", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("End", QKeySequence("End", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Esc", QKeySequence("Esc", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Left", QKeySequence("Left", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Home", QKeySequence("Home", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("PgDown", QKeySequence("PgDown", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("PgUp", QKeySequence("PgUp", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Return", QKeySequence("Return", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Enter", QKeySequence("Enter", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Right", QKeySequence("Right", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Tab", QKeySequence("Tab", QKeySequence::PortableText));
+	qmc2QtKeyHash.insert("Up", QKeySequence("Up", QKeySequence::PortableText));
 #if defined(QMC2_OS_MAC)
-	qmc2ShortcutHash["Ctrl+O"].second = 0;
-	qmc2QtKeyHash["Ctrl+O"] = QKeySequence("Ctrl+O", QKeySequence::PortableText);
+	qmc2QtKeyHash.insert("Ctrl+O", QKeySequence("Ctrl+O", QKeySequence::PortableText));
 #endif
 
 	QTimer::singleShot(0, qmc2Options, SLOT(setupShortcutActions()));
