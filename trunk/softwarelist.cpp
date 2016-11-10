@@ -68,8 +68,8 @@ QString SoftwareList::swStatesLastLine;
 
 #define swlDb	qmc2MainWindow->swlDb
 
-SoftwareList::SoftwareList(QString sysName, QWidget *parent)
-	: QWidget(parent)
+SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
+	QWidget(parent)
 {
 	if ( !swlDb ) {
 		swlDb = new SoftwareListXmlDatabaseManager(qmc2MainWindow);
@@ -154,6 +154,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonToggleSoftwareInfo->setIconSize(iconSize);
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
 	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
+	toolButtonToggleStatenameAdjustment->setIconSize(iconSize);
 	toolButtonSoftwareStates->setIconSize(iconSize);
 	toolButtonAnalyzeSoftware->setIconSize(iconSize);
 	toolButtonRebuildSoftware->setIconSize(iconSize);
@@ -176,6 +177,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonToggleSoftwareInfo->setEnabled(false);
 	toolButtonCompatFilterToggle->setEnabled(false);
 	toolButtonToggleSnapnameAdjustment->setEnabled(false);
+	toolButtonToggleStatenameAdjustment->setEnabled(false);
 	toolButtonSoftwareStates->setEnabled(false);
 	toolButtonAnalyzeSoftware->setEnabled(false);
 	toolButtonRebuildSoftware->setEnabled(false);
@@ -288,6 +290,15 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(action, SIGNAL(triggered()), this, SLOT(adjustSnapnamePattern()));
 	toolButtonToggleSnapnameAdjustment->setMenu(menuSnapnameAdjustment);
 
+	// statename adjustment menu
+	menuStatenameAdjustment = new QMenu(this);
+	s = tr("Adjust pattern...");
+	action = menuStatenameAdjustment->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/configure.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(adjustStatenamePattern()));
+	toolButtonToggleStatenameAdjustment->setMenu(menuStatenameAdjustment);
+
 	// software-states menu
 	menuSoftwareStates = new QMenu(this);
 	s = tr("Check software-states");
@@ -332,6 +343,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonCompatFilterToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", true).toBool());
 	toolButtonCompatFilterToggle->blockSignals(false);
 	toolButtonToggleSnapnameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", false).toBool());
+	toolButtonToggleStatenameAdjustment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustStatename", false).toBool());
 	toolButtonSoftwareStates->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates", true).toBool());
 	if ( toolButtonSoftwareStates->isChecked() )
 		toolButtonSoftwareStates->setMenu(menuSoftwareStates);
@@ -504,6 +516,7 @@ SoftwareList::~SoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareInfo", toolButtonToggleSoftwareInfo->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/CompatFilter", toolButtonCompatFilterToggle->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustSnapname", toolButtonToggleSnapnameAdjustment->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AdjustStatename", toolButtonToggleStatenameAdjustment->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ShowSoftwareStates", toolButtonSoftwareStates->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/NegateSearch", actionNegateSearch->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/ViewTree", viewTree());
@@ -515,18 +528,31 @@ void SoftwareList::adjustSnapnamePattern()
 	bool ok;
 	QStringList items;
 	items << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$" << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$/%i";
-	QString storedPattern = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString();
+	QString storedPattern(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString());
 	int index = items.indexOf(storedPattern);
 	if ( index < 0 ) {
 		items << storedPattern;
 		index = 2;
 	}
-	QString pattern = QInputDialog::getItem(this,
-						tr("Snapname adjustment pattern"),
-						tr("Enter the pattern used for snapname adjustment:\n(Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)"),
-						items, index, true, &ok);
+	QString pattern(QInputDialog::getItem(this, tr("Snapname adjustment pattern"), tr("Enter the pattern used for snapname adjustment:\n(Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)"), items, index, true, &ok));
 	if ( ok )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", pattern);
+}
+
+void SoftwareList::adjustStatenamePattern()
+{
+	bool ok;
+	QStringList items;
+	items << "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$";
+	QString storedPattern(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/StatenamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString());
+	int index = items.indexOf(storedPattern);
+	if ( index < 0 ) {
+		items << storedPattern;
+		index = 2;
+	}
+	QString pattern(QInputDialog::getItem(this, tr("Statename adjustment pattern"), tr("Enter the pattern used for statename adjustment:\n(Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)"), items, index, true, &ok));
+	if ( ok )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/StatenamePattern", pattern);
 }
 
 void SoftwareList::clearSoftwareSelection()
@@ -1461,6 +1487,7 @@ bool SoftwareList::load()
 	toolButtonToggleSoftwareInfo->setEnabled(true);
 	toolButtonCompatFilterToggle->setEnabled(toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_KNOWN_SW_PAGE || !viewTree());
 	toolButtonToggleSnapnameAdjustment->setEnabled(true);
+	toolButtonToggleStatenameAdjustment->setEnabled(true);
 	if ( hasSoftwareLists ) {
 		toolButtonSoftwareStates->setEnabled(true);
 		toolButtonAnalyzeSoftware->setEnabled(true);
@@ -2278,6 +2305,14 @@ void SoftwareList::on_toolButtonToggleSnapnameAdjustment_clicked(bool checked)
 		comboBoxSnapnameDevice->hide();
 }
 
+void SoftwareList::on_toolButtonToggleStatenameAdjustment_clicked(bool checked)
+{
+	if ( checked && mountedSoftware.count() > 1 )
+		comboBoxSnapnameDevice->show();
+	else
+		comboBoxSnapnameDevice->hide();
+}
+
 void SoftwareList::on_toolButtonSoftwareStates_toggled(bool checked)
 {
 	QString itemText = toolBoxSoftwareList->itemText(QMC2_SWLIST_KNOWN_SW_PAGE);
@@ -2509,6 +2544,7 @@ void SoftwareList::on_toolButtonReload_clicked(bool)
 	toolButtonToggleSoftwareInfo->setEnabled(false);
 	toolButtonCompatFilterToggle->setEnabled(false);
 	toolButtonToggleSnapnameAdjustment->setEnabled(false);
+	toolButtonToggleStatenameAdjustment->setEnabled(false);
 	toolButtonSoftwareStates->setEnabled(false);
 	toolButtonAnalyzeSoftware->setEnabled(false);
 	toolButtonRebuildSoftware->setEnabled(false);
@@ -3544,10 +3580,17 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 	}
 
 	if ( toolButtonToggleSnapnameAdjustment->isChecked() && !snapnameList.isEmpty() ) {
-		QString snapnamePattern = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString();
+		QString snapnamePattern(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SnapnamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString());
 		snapnamePattern.replace("$SOFTWARE_LIST$", snapnameList).replace("$SOFTWARE_NAME$", snapnameSoftware);
 		swlArgs.prepend(snapnamePattern);
 		swlArgs.prepend("-snapname");
+	}
+
+	if ( toolButtonToggleStatenameAdjustment->isChecked() && !snapnameList.isEmpty() ) {
+		QString statenamePattern(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/StatenamePattern", "soft-lists/$SOFTWARE_LIST$/$SOFTWARE_NAME$").toString());
+		statenamePattern.replace("$SOFTWARE_LIST$", snapnameList).replace("$SOFTWARE_NAME$", snapnameSoftware);
+		swlArgs.prepend(statenamePattern);
+		swlArgs.prepend("-statename");
 	}
 
 	return swlArgs;
@@ -3779,7 +3822,7 @@ void SoftwareList::checkMountDeviceSelection()
 		autoMounted = false;
 	}
 
-	if ( toolButtonToggleSnapnameAdjustment->isChecked() ) {
+	if ( toolButtonToggleSnapnameAdjustment->isChecked() || toolButtonToggleStatenameAdjustment->isChecked() ) {
 		if ( !autoMounted && mountedSoftware.count() > 1 ) {
 			comboBoxSnapnameDevice->setUpdatesEnabled(false);
 			comboBoxSnapnameDevice->clear();
@@ -4370,8 +4413,8 @@ bool SoftwareListXmlHandler::characters(const QString &str)
 	return true;
 }
 
-SoftwareSnap::SoftwareSnap(QWidget *parent)
-	: QWidget(parent, Qt::ToolTip)
+SoftwareSnap::SoftwareSnap(QWidget *parent) :
+	QWidget(parent, Qt::ToolTip)
 {
 	setAttribute(Qt::WA_TranslucentBackground);
 	setFocusPolicy(Qt::NoFocus);

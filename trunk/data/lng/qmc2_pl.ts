@@ -4853,43 +4853,43 @@ Czy wybrać inną nazwę?</translation>
         <translation>emulator nr %1 uwolniony, ID okna = %2</translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="443"/>
+        <location filename="../../embedder.cpp" line="447"/>
         <source>WARNING: invalid window ID %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="447"/>
+        <location filename="../../embedder.cpp" line="451"/>
         <source>WARNING: unknown error, window ID = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="468"/>
+        <location filename="../../embedder.cpp" line="472"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
         <translation>zgubiono ID okna emulatora nr %1, poszukiwanie zastęczego</translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="488"/>
+        <location filename="../../embedder.cpp" line="492"/>
         <source>using replacement window ID %1 for emulator #%2</source>
         <translation>używanie zastępczego ID okna %1 dla emulatora nr %2</translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="496"/>
+        <location filename="../../embedder.cpp" line="500"/>
         <source>no replacement window ID found for emulator #%1, closing embedder</source>
         <translation>nie znaleniono zastępczego ID okna dla emulatora nr %1, zamykanie osadzania</translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="506"/>
+        <location filename="../../embedder.cpp" line="510"/>
         <source>embedded emulator #%1 is returning from full-screen</source>
         <translation>osadzony emulator nr %1 powraca z trybu pełnoekranowego</translation>
     </message>
     <message>
-        <location filename="../../embedder.cpp" line="516"/>
+        <location filename="../../embedder.cpp" line="520"/>
         <source>embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3</source>
         <translation>osadzony emulator %1 przechodzi w tryb pełnoekranowy używając rozdzielczości pulpitu %2x%3</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="160"/>
-        <location filename="../../embedder.cpp" line="422"/>
+        <location filename="../../embedder.cpp" line="426"/>
         <source>emulator #%1 embedded, window ID = %2</source>
         <translation>emulator nr %1 osadzony, ID okna = %2</translation>
     </message>
@@ -17277,126 +17277,126 @@ Are you sure you want to do this?</source>
         <translation>odtwarzacz filmów: błąd XML: fatalny błąd w linii %1, kolumna %2: %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1187"/>
-        <location filename="../../softwarelist.cpp" line="3702"/>
-        <location filename="../../softwarelist.cpp" line="3765"/>
-        <location filename="../../softwarelist.cpp" line="5244"/>
+        <location filename="../../softwarelist.cpp" line="1219"/>
+        <location filename="../../softwarelist.cpp" line="3751"/>
+        <location filename="../../softwarelist.cpp" line="3814"/>
+        <location filename="../../softwarelist.cpp" line="5293"/>
         <source>Auto mount</source>
         <translation>Automatyczne montowanie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1192"/>
-        <location filename="../../softwarelist.cpp" line="3718"/>
-        <location filename="../../softwarelist.cpp" line="3739"/>
-        <location filename="../../softwarelist.cpp" line="3745"/>
-        <location filename="../../softwarelist.cpp" line="3769"/>
-        <location filename="../../softwarelist.cpp" line="5249"/>
-        <location filename="../../softwarelist.cpp" line="5253"/>
+        <location filename="../../softwarelist.cpp" line="1224"/>
+        <location filename="../../softwarelist.cpp" line="3767"/>
+        <location filename="../../softwarelist.cpp" line="3788"/>
+        <location filename="../../softwarelist.cpp" line="3794"/>
+        <location filename="../../softwarelist.cpp" line="3818"/>
+        <location filename="../../softwarelist.cpp" line="5298"/>
+        <location filename="../../softwarelist.cpp" line="5302"/>
         <source>Not mounted</source>
         <translation>Niezamontowane</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1194"/>
-        <location filename="../../softwarelist.cpp" line="3720"/>
-        <location filename="../../softwarelist.cpp" line="3773"/>
-        <location filename="../../softwarelist.cpp" line="5255"/>
+        <location filename="../../softwarelist.cpp" line="1226"/>
+        <location filename="../../softwarelist.cpp" line="3769"/>
+        <location filename="../../softwarelist.cpp" line="3822"/>
+        <location filename="../../softwarelist.cpp" line="5304"/>
         <source>Mounted on:</source>
         <translation>Zamontowane pod:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1186"/>
-        <location filename="../../softwarelist.cpp" line="3726"/>
-        <location filename="../../softwarelist.cpp" line="5243"/>
+        <location filename="../../softwarelist.cpp" line="1218"/>
+        <location filename="../../softwarelist.cpp" line="3775"/>
+        <location filename="../../softwarelist.cpp" line="5292"/>
         <source>Don&apos;t mount</source>
         <translation>Nie montuj</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5207"/>
-        <location filename="../../softwarelist.cpp" line="5209"/>
+        <location filename="../../softwarelist.cpp" line="5256"/>
+        <location filename="../../softwarelist.cpp" line="5258"/>
         <source>Searching</source>
         <translation>Szukanie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5221"/>
+        <location filename="../../softwarelist.cpp" line="5270"/>
         <source>Updating</source>
         <translation>Aktualizacja</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5233"/>
+        <location filename="../../softwarelist.cpp" line="5282"/>
         <source>Part:</source>
         <translation>Element:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1196"/>
-        <location filename="../../softwarelist.cpp" line="5260"/>
+        <location filename="../../softwarelist.cpp" line="1228"/>
+        <location filename="../../softwarelist.cpp" line="5309"/>
         <source>No mount device</source>
         <translation>Nie montuj urządzenia</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1197"/>
-        <location filename="../../softwarelist.cpp" line="5261"/>
+        <location filename="../../softwarelist.cpp" line="1229"/>
+        <location filename="../../softwarelist.cpp" line="5310"/>
         <source>Unmanaged</source>
         <translation>Niezarządzane</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1366"/>
+        <location filename="../../softwarelist.cpp" line="1398"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>informacje o stanach listy oprogramowania &apos;%1&apos;: W:%2 P:%3 Wp:%4 Np:%5 Nz:%6 Nn:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4192"/>
+        <location filename="../../softwarelist.cpp" line="4241"/>
         <source>yes</source>
         <translation>tak</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4194"/>
+        <location filename="../../softwarelist.cpp" line="4243"/>
         <source>no</source>
         <translation>nie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4196"/>
+        <location filename="../../softwarelist.cpp" line="4245"/>
         <source>partially</source>
         <translation>częściowo</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5281"/>
+        <location filename="../../softwarelist.cpp" line="5330"/>
         <source>Requirement:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5287"/>
+        <location filename="../../softwarelist.cpp" line="5336"/>
         <source>Compatibility:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5297"/>
+        <location filename="../../softwarelist.cpp" line="5346"/>
         <source>Data area:</source>
         <translation>Obszar danych:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5300"/>
-        <location filename="../../softwarelist.cpp" line="5312"/>
-        <location filename="../../softwarelist.cpp" line="5326"/>
+        <location filename="../../softwarelist.cpp" line="5349"/>
+        <location filename="../../softwarelist.cpp" line="5361"/>
+        <location filename="../../softwarelist.cpp" line="5375"/>
         <source>Size:</source>
         <translation>Rozmiar:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5309"/>
+        <location filename="../../softwarelist.cpp" line="5358"/>
         <source>Disk area:</source>
         <translation>Obszar dysku:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5329"/>
+        <location filename="../../softwarelist.cpp" line="5378"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5344"/>
+        <location filename="../../softwarelist.cpp" line="5393"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5353"/>
+        <location filename="../../softwarelist.cpp" line="5402"/>
         <source>Info:</source>
         <translation>Informacje:</translation>
     </message>
@@ -21005,64 +21005,62 @@ Are you sure you want to do this?</source>
         <translation>Przeładuj wszysktie informacje</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="187"/>
-        <location filename="../../softwarelist.ui" line="190"/>
         <source>Select the software for which the snapname should be adjusted</source>
-        <translation>Wybierz oprogramowanie, dla którego nazwa zrzutu ekranu powinna zostać dopasowana</translation>
+        <translation type="obsolete">Wybierz oprogramowanie, dla którego nazwa zrzutu ekranu powinna zostać dopasowana</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="203"/>
-        <location filename="../../softwarelist.ui" line="206"/>
+        <location filename="../../softwarelist.ui" line="240"/>
+        <location filename="../../softwarelist.ui" line="243"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
         <translation>Wybierz predefiniowaną konfigurację urządzeń do dodania do ustawień oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="300"/>
-        <location filename="../../softwarelist.ui" line="303"/>
+        <location filename="../../softwarelist.ui" line="337"/>
+        <location filename="../../softwarelist.ui" line="340"/>
         <source>Remove the currently selected favorite software configuration</source>
         <translation>Usuń obecnie wybraną ulubioną konfigurację oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="320"/>
-        <location filename="../../softwarelist.ui" line="323"/>
+        <location filename="../../softwarelist.ui" line="357"/>
+        <location filename="../../softwarelist.ui" line="360"/>
         <source>Play the selected software configuration</source>
         <translation>Uruchom używając wybranej konfiguracji oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="340"/>
-        <location filename="../../softwarelist.ui" line="343"/>
+        <location filename="../../softwarelist.ui" line="377"/>
+        <location filename="../../softwarelist.ui" line="380"/>
         <source>Play the selected software configuration (embedded)</source>
         <translation>Uruchom używając wybranej konfiguracji oprogramowania (tryb osadzony)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="375"/>
-        <location filename="../../softwarelist.cpp" line="431"/>
-        <location filename="../../softwarelist.cpp" line="1145"/>
-        <location filename="../../softwarelist.cpp" line="1313"/>
-        <location filename="../../softwarelist.cpp" line="1527"/>
+        <location filename="../../softwarelist.ui" line="412"/>
+        <location filename="../../softwarelist.cpp" line="443"/>
+        <location filename="../../softwarelist.cpp" line="1177"/>
+        <location filename="../../softwarelist.cpp" line="1345"/>
+        <location filename="../../softwarelist.cpp" line="1560"/>
         <source>Known software</source>
         <translation>Znane oprogramowanie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="378"/>
+        <location filename="../../softwarelist.ui" line="415"/>
         <source>Complete list of known software for the current system</source>
         <translation>Pełna lista znanego oprogramowania na bieżący system</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="560"/>
+        <location filename="../../softwarelist.ui" line="597"/>
         <source>View / manage your favorite software list for the current system</source>
         <translation>Zobacz / zarządzaj listą ulubionego oprogramowania bieżącego systemu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="658"/>
+        <location filename="../../softwarelist.ui" line="695"/>
         <source>Search within the list of known software for the current system</source>
         <translation>Szukanie wśród listy znanego oprogramowania bieżącego systemu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="403"/>
-        <location filename="../../softwarelist.ui" line="406"/>
-        <location filename="../../softwarelist.ui" line="478"/>
-        <location filename="../../softwarelist.ui" line="481"/>
+        <location filename="../../softwarelist.ui" line="440"/>
+        <location filename="../../softwarelist.ui" line="443"/>
+        <location filename="../../softwarelist.ui" line="515"/>
+        <location filename="../../softwarelist.ui" line="518"/>
         <source>List of known software</source>
         <translation>Lista znanego oprogramowania</translation>
     </message>
@@ -21079,208 +21077,220 @@ Are you sure you want to do this?</source>
         <translation>Przełącz szczegółowe informacje o oprogramowaniu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="101"/>
-        <location filename="../../softwarelist.ui" line="104"/>
+        <location filename="../../softwarelist.ui" line="171"/>
+        <location filename="../../softwarelist.ui" line="174"/>
         <source>Toggle automatic adjustment of the snapname parameter (hold down for menu)</source>
         <translation>Wybierz automatyczne dopasowywanie parametru nazwy zrzutu ekranu (przytrzymaj dla menu)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="124"/>
+        <location filename="../../softwarelist.ui" line="101"/>
         <source>Toggle checking / displaying software-states (hold down for menu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="147"/>
+        <location filename="../../softwarelist.ui" line="124"/>
         <source>Analyze software menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="167"/>
+        <location filename="../../softwarelist.ui" line="144"/>
         <source>Rebuild software menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="210"/>
-        <location filename="../../softwarelist.cpp" line="2517"/>
-        <location filename="../../softwarelist.cpp" line="3443"/>
+        <location filename="../../softwarelist.ui" line="194"/>
+        <location filename="../../softwarelist.ui" line="197"/>
+        <source>Toggle automatic adjustment of the statename parameter (hold down for menu)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.ui" line="217"/>
+        <location filename="../../softwarelist.ui" line="220"/>
+        <source>Select the software for which the snapname and/or statename should be adjusted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.ui" line="247"/>
+        <location filename="../../softwarelist.cpp" line="2559"/>
+        <location filename="../../softwarelist.cpp" line="3485"/>
         <source>Default configuration</source>
         <translation>Domyślna konfiguracja</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="237"/>
+        <location filename="../../softwarelist.ui" line="274"/>
         <source>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</source>
         <translation>Eksportuj bieżącą listę oprogramowania do pliku ASCII bądź CVS (lub do schowka)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="240"/>
+        <location filename="../../softwarelist.ui" line="277"/>
         <source>Export</source>
         <translation>Eksport</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="260"/>
+        <location filename="../../softwarelist.ui" line="297"/>
         <source>Open options menu for the favorites list</source>
         <translation>Otwórz menu opcji dla listy ulubionych</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="280"/>
-        <location filename="../../softwarelist.ui" line="283"/>
+        <location filename="../../softwarelist.ui" line="317"/>
+        <location filename="../../softwarelist.ui" line="320"/>
         <source>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</source>
         <translation>Dodaj obecnie wybrane oprogramowanie i ustawienia urządzeń do listy ulubionych (lub nadpisz istniejące)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="422"/>
-        <location filename="../../softwarelist.ui" line="497"/>
-        <location filename="../../softwarelist.ui" line="594"/>
-        <location filename="../../softwarelist.ui" line="711"/>
-        <location filename="../../softwarelist.cpp" line="350"/>
-        <location filename="../../softwarelist.cpp" line="376"/>
-        <location filename="../../softwarelist.cpp" line="401"/>
+        <location filename="../../softwarelist.ui" line="459"/>
+        <location filename="../../softwarelist.ui" line="534"/>
+        <location filename="../../softwarelist.ui" line="631"/>
+        <location filename="../../softwarelist.ui" line="748"/>
+        <location filename="../../softwarelist.cpp" line="362"/>
+        <location filename="../../softwarelist.cpp" line="388"/>
+        <location filename="../../softwarelist.cpp" line="413"/>
         <source>Title</source>
         <translation>Tytuł</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="427"/>
-        <location filename="../../softwarelist.ui" line="502"/>
-        <location filename="../../softwarelist.ui" line="599"/>
-        <location filename="../../softwarelist.ui" line="716"/>
-        <location filename="../../softwarelist.cpp" line="352"/>
-        <location filename="../../softwarelist.cpp" line="378"/>
-        <location filename="../../softwarelist.cpp" line="403"/>
+        <location filename="../../softwarelist.ui" line="464"/>
+        <location filename="../../softwarelist.ui" line="539"/>
+        <location filename="../../softwarelist.ui" line="636"/>
+        <location filename="../../softwarelist.ui" line="753"/>
+        <location filename="../../softwarelist.cpp" line="364"/>
+        <location filename="../../softwarelist.cpp" line="390"/>
+        <location filename="../../softwarelist.cpp" line="415"/>
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="432"/>
-        <location filename="../../softwarelist.ui" line="507"/>
-        <location filename="../../softwarelist.ui" line="604"/>
-        <location filename="../../softwarelist.ui" line="721"/>
-        <location filename="../../softwarelist.cpp" line="354"/>
-        <location filename="../../softwarelist.cpp" line="380"/>
-        <location filename="../../softwarelist.cpp" line="405"/>
+        <location filename="../../softwarelist.ui" line="469"/>
+        <location filename="../../softwarelist.ui" line="544"/>
+        <location filename="../../softwarelist.ui" line="641"/>
+        <location filename="../../softwarelist.ui" line="758"/>
+        <location filename="../../softwarelist.cpp" line="366"/>
+        <location filename="../../softwarelist.cpp" line="392"/>
+        <location filename="../../softwarelist.cpp" line="417"/>
         <source>Publisher</source>
         <translation>Wydawca</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="437"/>
-        <location filename="../../softwarelist.ui" line="512"/>
-        <location filename="../../softwarelist.ui" line="609"/>
-        <location filename="../../softwarelist.ui" line="726"/>
-        <location filename="../../softwarelist.cpp" line="356"/>
-        <location filename="../../softwarelist.cpp" line="382"/>
-        <location filename="../../softwarelist.cpp" line="407"/>
+        <location filename="../../softwarelist.ui" line="474"/>
+        <location filename="../../softwarelist.ui" line="549"/>
+        <location filename="../../softwarelist.ui" line="646"/>
+        <location filename="../../softwarelist.ui" line="763"/>
+        <location filename="../../softwarelist.cpp" line="368"/>
+        <location filename="../../softwarelist.cpp" line="394"/>
+        <location filename="../../softwarelist.cpp" line="419"/>
         <source>Year</source>
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="442"/>
-        <location filename="../../softwarelist.ui" line="517"/>
-        <location filename="../../softwarelist.ui" line="614"/>
-        <location filename="../../softwarelist.ui" line="731"/>
-        <location filename="../../softwarelist.cpp" line="358"/>
-        <location filename="../../softwarelist.cpp" line="384"/>
-        <location filename="../../softwarelist.cpp" line="409"/>
+        <location filename="../../softwarelist.ui" line="479"/>
+        <location filename="../../softwarelist.ui" line="554"/>
+        <location filename="../../softwarelist.ui" line="651"/>
+        <location filename="../../softwarelist.ui" line="768"/>
+        <location filename="../../softwarelist.cpp" line="370"/>
+        <location filename="../../softwarelist.cpp" line="396"/>
+        <location filename="../../softwarelist.cpp" line="421"/>
         <source>Part</source>
         <translation>Element</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="447"/>
-        <location filename="../../softwarelist.ui" line="522"/>
-        <location filename="../../softwarelist.ui" line="619"/>
-        <location filename="../../softwarelist.ui" line="736"/>
-        <location filename="../../softwarelist.cpp" line="360"/>
-        <location filename="../../softwarelist.cpp" line="386"/>
-        <location filename="../../softwarelist.cpp" line="411"/>
+        <location filename="../../softwarelist.ui" line="484"/>
+        <location filename="../../softwarelist.ui" line="559"/>
+        <location filename="../../softwarelist.ui" line="656"/>
+        <location filename="../../softwarelist.ui" line="773"/>
+        <location filename="../../softwarelist.cpp" line="372"/>
+        <location filename="../../softwarelist.cpp" line="398"/>
+        <location filename="../../softwarelist.cpp" line="423"/>
         <source>Interface</source>
         <translation>Interfejs</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="452"/>
-        <location filename="../../softwarelist.ui" line="527"/>
-        <location filename="../../softwarelist.ui" line="624"/>
-        <location filename="../../softwarelist.ui" line="741"/>
-        <location filename="../../softwarelist.cpp" line="362"/>
-        <location filename="../../softwarelist.cpp" line="388"/>
-        <location filename="../../softwarelist.cpp" line="413"/>
+        <location filename="../../softwarelist.ui" line="489"/>
+        <location filename="../../softwarelist.ui" line="564"/>
+        <location filename="../../softwarelist.ui" line="661"/>
+        <location filename="../../softwarelist.ui" line="778"/>
+        <location filename="../../softwarelist.cpp" line="374"/>
+        <location filename="../../softwarelist.cpp" line="400"/>
+        <location filename="../../softwarelist.cpp" line="425"/>
         <source>List</source>
         <translation>Lista</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="457"/>
-        <location filename="../../softwarelist.ui" line="532"/>
-        <location filename="../../softwarelist.ui" line="629"/>
-        <location filename="../../softwarelist.ui" line="746"/>
-        <location filename="../../softwarelist.cpp" line="364"/>
-        <location filename="../../softwarelist.cpp" line="390"/>
-        <location filename="../../softwarelist.cpp" line="415"/>
+        <location filename="../../softwarelist.ui" line="494"/>
+        <location filename="../../softwarelist.ui" line="569"/>
+        <location filename="../../softwarelist.ui" line="666"/>
+        <location filename="../../softwarelist.ui" line="783"/>
+        <location filename="../../softwarelist.cpp" line="376"/>
+        <location filename="../../softwarelist.cpp" line="402"/>
+        <location filename="../../softwarelist.cpp" line="427"/>
         <source>Supported</source>
         <translation>Obsługiwane</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="557"/>
-        <location filename="../../softwarelist.cpp" line="1146"/>
-        <location filename="../../softwarelist.cpp" line="1314"/>
-        <location filename="../../softwarelist.cpp" line="1528"/>
+        <location filename="../../softwarelist.ui" line="594"/>
+        <location filename="../../softwarelist.cpp" line="1178"/>
+        <location filename="../../softwarelist.cpp" line="1346"/>
+        <location filename="../../softwarelist.cpp" line="1561"/>
         <source>Favorites</source>
         <translation>Ulubione</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="575"/>
-        <location filename="../../softwarelist.ui" line="578"/>
+        <location filename="../../softwarelist.ui" line="612"/>
+        <location filename="../../softwarelist.ui" line="615"/>
         <source>Favorite software configurations</source>
         <translation>Ulubione konfiguracje oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="634"/>
-        <location filename="../../softwarelist.cpp" line="392"/>
+        <location filename="../../softwarelist.ui" line="671"/>
+        <location filename="../../softwarelist.cpp" line="404"/>
         <source>Device configuration</source>
         <translation>Konfiguracja urządzeń</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="655"/>
-        <location filename="../../softwarelist.cpp" line="1147"/>
-        <location filename="../../softwarelist.cpp" line="1315"/>
-        <location filename="../../softwarelist.cpp" line="1529"/>
+        <location filename="../../softwarelist.ui" line="692"/>
+        <location filename="../../softwarelist.cpp" line="1179"/>
+        <location filename="../../softwarelist.cpp" line="1347"/>
+        <location filename="../../softwarelist.cpp" line="1562"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="673"/>
-        <location filename="../../softwarelist.ui" line="676"/>
+        <location filename="../../softwarelist.ui" line="710"/>
+        <location filename="../../softwarelist.ui" line="713"/>
         <source>Search for known software (not case-sensitive)</source>
         <translation>Szukaj znanego oprogramowania (bez uwzględniania wielkości liter)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="692"/>
-        <location filename="../../softwarelist.ui" line="695"/>
+        <location filename="../../softwarelist.ui" line="729"/>
+        <location filename="../../softwarelist.ui" line="732"/>
         <source>Search results</source>
         <translation>Wyniki wyszukiwania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="754"/>
-        <location filename="../../softwarelist.ui" line="757"/>
+        <location filename="../../softwarelist.ui" line="791"/>
+        <location filename="../../softwarelist.ui" line="794"/>
         <source>Search progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="763"/>
+        <location filename="../../softwarelist.ui" line="800"/>
         <source>Searching software - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="786"/>
-        <location filename="../../softwarelist.cpp" line="1254"/>
+        <location filename="../../softwarelist.ui" line="823"/>
+        <location filename="../../softwarelist.cpp" line="1286"/>
         <source>Loading software-lists, please wait...</source>
         <translation>Wczytywanie list oprogramowania, proszę czekać...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="804"/>
-        <location filename="../../softwarelist.ui" line="807"/>
+        <location filename="../../softwarelist.ui" line="841"/>
+        <location filename="../../softwarelist.ui" line="844"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.ui" line="826"/>
-        <location filename="../../softwarelist.cpp" line="1889"/>
+        <location filename="../../softwarelist.ui" line="863"/>
+        <location filename="../../softwarelist.cpp" line="1922"/>
         <source>Checking software-states - %p%</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21290,249 +21300,250 @@ Are you sure you want to do this?</source>
         <translation>Wpisz szukany ciąg</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="186"/>
+        <location filename="../../softwarelist.cpp" line="188"/>
         <source>Play selected software</source>
         <translation>Uruchom wybrane oprogramowanie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="187"/>
+        <location filename="../../softwarelist.cpp" line="189"/>
         <source>&amp;Play</source>
         <translation>&amp;Graj</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="192"/>
+        <location filename="../../softwarelist.cpp" line="194"/>
         <source>Play selected software (embedded)</source>
         <translation>Uruchom wybrane oprogramowanie (tryb osadzony)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="193"/>
+        <location filename="../../softwarelist.cpp" line="195"/>
         <source>Play &amp;embedded</source>
         <translation>Graj osad&amp;zając</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="199"/>
+        <location filename="../../softwarelist.cpp" line="201"/>
         <source>Add to favorite software list</source>
         <translation>Dodaj do listy ulubionego oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="200"/>
+        <location filename="../../softwarelist.cpp" line="202"/>
         <source>&amp;Add to favorites</source>
         <translation>&amp;Dodaj do ulubionych</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="204"/>
+        <location filename="../../softwarelist.cpp" line="206"/>
         <source>Remove from favorite software list</source>
         <translation>Usuń z listy ulubionego oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="205"/>
+        <location filename="../../softwarelist.cpp" line="207"/>
         <source>&amp;Remove from favorites</source>
         <translation>&amp;Usuń z ulubionych</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="216"/>
+        <location filename="../../softwarelist.cpp" line="218"/>
         <source>Analyze the currently selected software with the ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="221"/>
+        <location filename="../../softwarelist.cpp" line="223"/>
         <source>Analyze the currently selected software&apos;s list with the ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="226"/>
+        <location filename="../../softwarelist.cpp" line="228"/>
         <source>Analyze all relevant software-lists for the current system with the ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="261"/>
+        <location filename="../../softwarelist.cpp" line="263"/>
         <source>Clear software selection</source>
         <translation>Wyczyść wybór oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="262"/>
+        <location filename="../../softwarelist.cpp" line="264"/>
         <source>&amp;Clear selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="269"/>
+        <location filename="../../softwarelist.cpp" line="271"/>
         <source>Load favorites from a file...</source>
         <translation>Wczytaj ulubione z pliku...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="274"/>
+        <location filename="../../softwarelist.cpp" line="276"/>
         <source>Save favorites to a file...</source>
         <translation>Zapisz ulubione do pliku...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="284"/>
+        <location filename="../../softwarelist.cpp" line="286"/>
+        <location filename="../../softwarelist.cpp" line="295"/>
         <source>Adjust pattern...</source>
         <translation>Dostosuj wzór...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="293"/>
+        <location filename="../../softwarelist.cpp" line="304"/>
         <source>Check software-states</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="310"/>
+        <location filename="../../softwarelist.cpp" line="321"/>
         <source>Negate search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="367"/>
-        <location filename="../../softwarelist.cpp" line="395"/>
-        <location filename="../../softwarelist.cpp" line="418"/>
+        <location filename="../../softwarelist.cpp" line="379"/>
+        <location filename="../../softwarelist.cpp" line="407"/>
+        <location filename="../../softwarelist.cpp" line="430"/>
         <source>Reset</source>
         <translation type="unfinished">Zresetuj</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="455"/>
+        <location filename="../../softwarelist.cpp" line="467"/>
         <source>Click to open the view menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="464"/>
+        <location filename="../../softwarelist.cpp" line="476"/>
         <source>View flat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="465"/>
+        <location filename="../../softwarelist.cpp" line="477"/>
         <source>View known software as a flat list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="471"/>
+        <location filename="../../softwarelist.cpp" line="483"/>
         <source>View tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="472"/>
+        <location filename="../../softwarelist.cpp" line="484"/>
         <source>View known software as a parent/clone tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="525"/>
+        <location filename="../../softwarelist.cpp" line="538"/>
         <source>Snapname adjustment pattern</source>
         <translation>Wzór dostosowywania nazw zrzutów ekranu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="526"/>
+        <location filename="../../softwarelist.cpp" line="539"/>
         <source>Enter the pattern used for snapname adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
         <translation>Podaj wzór używany do dopasowywania nazw zrzutów ekranu:
 (Dozwolone makra: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="563"/>
-        <location filename="../../softwarelist.cpp" line="635"/>
-        <location filename="../../softwarelist.cpp" line="702"/>
+        <location filename="../../softwarelist.cpp" line="595"/>
+        <location filename="../../softwarelist.cpp" line="667"/>
+        <location filename="../../softwarelist.cpp" line="734"/>
         <source>please wait for ROMAlyzer to finish the current rebuild and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="932"/>
-        <location filename="../../softwarelist.cpp" line="1974"/>
+        <location filename="../../softwarelist.cpp" line="964"/>
+        <location filename="../../softwarelist.cpp" line="2007"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATALNIE: nie udało się uruchomienie emulatora w sensownym czasie, poddanie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="932"/>
-        <location filename="../../softwarelist.cpp" line="1974"/>
+        <location filename="../../softwarelist.cpp" line="964"/>
+        <location filename="../../softwarelist.cpp" line="2007"/>
         <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="966"/>
-        <location filename="../../softwarelist.cpp" line="971"/>
+        <location filename="../../softwarelist.cpp" line="998"/>
+        <location filename="../../softwarelist.cpp" line="1003"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
         <translation>FATALNIE: uzyskano nieprawidłowe dane XML dla &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1526"/>
-        <location filename="../../softwarelist.cpp" line="2284"/>
-        <location filename="../../softwarelist.cpp" line="2290"/>
+        <location filename="../../softwarelist.cpp" line="1559"/>
+        <location filename="../../softwarelist.cpp" line="2325"/>
+        <location filename="../../softwarelist.cpp" line="2331"/>
         <source>filtered</source>
         <translation>filtrowane</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1264"/>
-        <location filename="../../softwarelist.cpp" line="1738"/>
+        <location filename="../../softwarelist.cpp" line="1296"/>
+        <location filename="../../softwarelist.cpp" line="1771"/>
         <source>SWL data - %p%</source>
         <translation>Dane LOp - %p%</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1346"/>
+        <location filename="../../softwarelist.cpp" line="1378"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
         <translation>Wczytywanie listy oprogramowania &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1364"/>
+        <location filename="../../softwarelist.cpp" line="1396"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
         <translation>FATALNIE: błąd podczas parsowania danych XML listy oprogramowania &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1476"/>
+        <location filename="../../softwarelist.cpp" line="1509"/>
         <source>Visible software lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1478"/>
+        <location filename="../../softwarelist.cpp" line="1511"/>
         <source>Select software lists to be shown / hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1494"/>
+        <location filename="../../softwarelist.cpp" line="1527"/>
         <source>Toggle visibility of software list &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1750"/>
+        <location filename="../../softwarelist.cpp" line="1783"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>UWAGA: zewnętrzny proces wezwany do wczytania listy oprogramowania MAME nie zakończył się czysto -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1750"/>
-        <location filename="../../softwarelist.cpp" line="2008"/>
+        <location filename="../../softwarelist.cpp" line="1783"/>
+        <location filename="../../softwarelist.cpp" line="2041"/>
         <source>normal</source>
         <translation>normalny</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1750"/>
-        <location filename="../../softwarelist.cpp" line="2008"/>
+        <location filename="../../softwarelist.cpp" line="1783"/>
+        <location filename="../../softwarelist.cpp" line="2041"/>
         <source>crashed</source>
         <translation>przestał działać</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1831"/>
+        <location filename="../../softwarelist.cpp" line="1864"/>
         <source>WARNING: software-list XML bug: the software name &apos;%1&apos; is used multiple times within software-list &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1871"/>
+        <location filename="../../softwarelist.cpp" line="1904"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
         <translation>UWAGA: obecnie wybrany emulator MAME nie obsługuje list oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1878"/>
+        <location filename="../../softwarelist.cpp" line="1911"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
         <translation>UWAGA: zewnętrzny proces uruchomiony do wczytania list oprogramowania MAME spowodował błąd -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1939"/>
+        <location filename="../../softwarelist.cpp" line="1972"/>
         <source>WARNING: can&apos;t open software state cache file &apos;%1&apos; for writing, please check access permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2008"/>
+        <location filename="../../softwarelist.cpp" line="2041"/>
         <source>WARNING: the external process called to verify the states for software-list &apos;%1&apos; didn&apos;t exit cleanly -- exitCode = %2, exitStatus = %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2693"/>
-        <location filename="../../softwarelist.cpp" line="2722"/>
-        <location filename="../../softwarelist.cpp" line="2751"/>
-        <location filename="../../softwarelist.cpp" line="2780"/>
+        <location filename="../../softwarelist.cpp" line="2735"/>
+        <location filename="../../softwarelist.cpp" line="2764"/>
+        <location filename="../../softwarelist.cpp" line="2793"/>
+        <location filename="../../softwarelist.cpp" line="2822"/>
         <source>FATAL: couldn&apos;t find XML data for software list entry &apos;%1:%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21567,229 +21578,240 @@ Are you sure you want to do this?</source>
         <translation type="unfinished">Nn:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1899"/>
+        <location filename="../../softwarelist.cpp" line="1932"/>
         <source>Checking software-states, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="214"/>
+        <location filename="../../softwarelist.cpp" line="216"/>
         <source>Analy&amp;ze</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="217"/>
-        <location filename="../../softwarelist.cpp" line="240"/>
+        <location filename="../../softwarelist.cpp" line="219"/>
+        <location filename="../../softwarelist.cpp" line="242"/>
         <source>Current &amp;software...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="222"/>
-        <location filename="../../softwarelist.cpp" line="245"/>
+        <location filename="../../softwarelist.cpp" line="224"/>
+        <location filename="../../softwarelist.cpp" line="247"/>
         <source>Current software-lis&amp;t...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="227"/>
-        <location filename="../../softwarelist.cpp" line="250"/>
+        <location filename="../../softwarelist.cpp" line="229"/>
+        <location filename="../../softwarelist.cpp" line="252"/>
         <source>All supported software-&amp;lists...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="237"/>
+        <location filename="../../softwarelist.cpp" line="239"/>
         <source>&amp;Rebuild</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="239"/>
+        <location filename="../../softwarelist.cpp" line="241"/>
         <source>Rebuild the currently selected software with the ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="244"/>
+        <location filename="../../softwarelist.cpp" line="246"/>
         <source>Rebuild the currently selected software&apos;s list with the ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="249"/>
+        <location filename="../../softwarelist.cpp" line="251"/>
         <source>Rebuild all relevant software-lists for the current system with the ROMAlyzer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1145"/>
-        <location filename="../../softwarelist.cpp" line="1146"/>
-        <location filename="../../softwarelist.cpp" line="1147"/>
-        <location filename="../../softwarelist.cpp" line="1313"/>
-        <location filename="../../softwarelist.cpp" line="1314"/>
-        <location filename="../../softwarelist.cpp" line="1315"/>
+        <location filename="../../softwarelist.cpp" line="557"/>
+        <source>Statename adjustment pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="558"/>
+        <source>Enter the pattern used for statename adjustment:
+(Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="1177"/>
+        <location filename="../../softwarelist.cpp" line="1178"/>
+        <location filename="../../softwarelist.cpp" line="1179"/>
+        <location filename="../../softwarelist.cpp" line="1345"/>
+        <location filename="../../softwarelist.cpp" line="1346"/>
+        <location filename="../../softwarelist.cpp" line="1347"/>
         <source>no data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1262"/>
+        <location filename="../../softwarelist.cpp" line="1294"/>
         <source>loading XML software list data and recreating cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1482"/>
+        <location filename="../../softwarelist.cpp" line="1515"/>
         <source>Individual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1500"/>
+        <location filename="../../softwarelist.cpp" line="1533"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1501"/>
+        <location filename="../../softwarelist.cpp" line="1534"/>
         <source>show all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1502"/>
+        <location filename="../../softwarelist.cpp" line="1535"/>
         <source>Show all software lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1508"/>
+        <location filename="../../softwarelist.cpp" line="1541"/>
         <source>Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1511"/>
+        <location filename="../../softwarelist.cpp" line="1544"/>
         <source>Show only software list &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1515"/>
+        <location filename="../../softwarelist.cpp" line="1548"/>
         <source>Except</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1518"/>
+        <location filename="../../softwarelist.cpp" line="1551"/>
         <source>Show all software lists except &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1755"/>
+        <location filename="../../softwarelist.cpp" line="1788"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2093"/>
+        <location filename="../../softwarelist.cpp" line="2126"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation type="unfinished">informacje o stanach listy oprogramowania &apos;%1&apos;: W:%2 P:%3 Wp:%4 Np:%5 Nz:%6 Nn:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2268"/>
+        <location filename="../../softwarelist.cpp" line="2301"/>
         <source>WARNING: the external process called to verify software-states caused an error -- processError = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2685"/>
-        <location filename="../../softwarelist.cpp" line="2714"/>
-        <location filename="../../softwarelist.cpp" line="2743"/>
-        <location filename="../../softwarelist.cpp" line="2772"/>
+        <location filename="../../softwarelist.cpp" line="2727"/>
+        <location filename="../../softwarelist.cpp" line="2756"/>
+        <location filename="../../softwarelist.cpp" line="2785"/>
+        <location filename="../../softwarelist.cpp" line="2814"/>
         <source>Searching</source>
         <translation>Szukanie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2690"/>
-        <location filename="../../softwarelist.cpp" line="2719"/>
-        <location filename="../../softwarelist.cpp" line="2748"/>
-        <location filename="../../softwarelist.cpp" line="2777"/>
+        <location filename="../../softwarelist.cpp" line="2732"/>
+        <location filename="../../softwarelist.cpp" line="2761"/>
+        <location filename="../../softwarelist.cpp" line="2790"/>
+        <location filename="../../softwarelist.cpp" line="2819"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATALNIE: błąd podczas parsowania danych XML rekordu listy oprogramowania &apos;%1:%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3803"/>
+        <location filename="../../softwarelist.cpp" line="3852"/>
         <source>Choose file to merge favorites from</source>
         <translation>Wybierz plik, z którego mają być dołączone ulubione</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3803"/>
-        <location filename="../../softwarelist.cpp" line="3883"/>
+        <location filename="../../softwarelist.cpp" line="3852"/>
+        <location filename="../../softwarelist.cpp" line="3932"/>
         <source>All files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3816"/>
+        <location filename="../../softwarelist.cpp" line="3865"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>wczytywanie ulubionego oprogramowania na &apos;%1&apos; z &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3860"/>
+        <location filename="../../softwarelist.cpp" line="3909"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>rekord &apos;%1:%2 zaimportowano pomyślnie</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3862"/>
+        <location filename="../../softwarelist.cpp" line="3911"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>UWAGA: nie udało się powiązać rekordu &apos;%1:%2&apos; z żadnym znanym oprogramowaniem na ten system (linię %3 zignorowano)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3864"/>
+        <location filename="../../softwarelist.cpp" line="3913"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>UWAGA: wpis ulubionych dla &apos;%1:%2&apos; już istnieje (linię %3 zignorowano)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3866"/>
+        <location filename="../../softwarelist.cpp" line="3915"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>UWAGA: błąd składni w linii %1 (zignorowano)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3870"/>
+        <location filename="../../softwarelist.cpp" line="3919"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>ukończono (wczytywanie ulubionego oprogramowania na &apos;%1&apos; z &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3872"/>
+        <location filename="../../softwarelist.cpp" line="3921"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATALNIE: nie można otworzyć &apos;%1&apos; do odczytu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3883"/>
+        <location filename="../../softwarelist.cpp" line="3932"/>
         <source>Choose file to store favorites to</source>
         <translation>Proszę wybrać plik do zapisania ulubionych</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3894"/>
+        <location filename="../../softwarelist.cpp" line="3943"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>zapisywanie ulubionego oprogramowania na &apos;%1&apos; do &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3909"/>
+        <location filename="../../softwarelist.cpp" line="3958"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>ukończono (zapisywanie ulubionego oprogramowania na &apos;%1&apos; do &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3911"/>
+        <location filename="../../softwarelist.cpp" line="3960"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>FATALNIE: nie można otworzyć &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3922"/>
+        <location filename="../../softwarelist.cpp" line="3971"/>
         <source>correct</source>
         <translation>poprawne</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3928"/>
+        <location filename="../../softwarelist.cpp" line="3977"/>
         <source>mostly correct</source>
         <translation>w większości poprawne</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3934"/>
+        <location filename="../../softwarelist.cpp" line="3983"/>
         <source>incorrect</source>
         <translation>niepoprawne</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3940"/>
+        <location filename="../../softwarelist.cpp" line="3989"/>
         <source>not found</source>
         <translation>nieznalezione</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3947"/>
-        <location filename="../../softwarelist.cpp" line="3954"/>
-        <location filename="../../softwarelist.cpp" line="3960"/>
+        <location filename="../../softwarelist.cpp" line="3996"/>
+        <location filename="../../softwarelist.cpp" line="4003"/>
+        <location filename="../../softwarelist.cpp" line="4009"/>
         <source>unknown</source>
         <translation>nieznane</translation>
     </message>
@@ -22222,81 +22244,81 @@ Are you sure you want to do this?</source>
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4389"/>
+        <location filename="../../softwarelist.cpp" line="4438"/>
         <source>Copy image to clipboard</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4395"/>
+        <location filename="../../softwarelist.cpp" line="4444"/>
         <source>Copy file path to clipboard</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4404"/>
+        <location filename="../../softwarelist.cpp" line="4453"/>
         <source>Zoom in (+10%)</source>
         <translation>Powiększ (+10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4410"/>
+        <location filename="../../softwarelist.cpp" line="4459"/>
         <source>Zoom out (-10%)</source>
         <translation>Pomniejsz (-10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4416"/>
+        <location filename="../../softwarelist.cpp" line="4465"/>
         <source>Reset zoom (100%)</source>
         <translation>Rzeczywisty rozmiar (100%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4424"/>
+        <location filename="../../softwarelist.cpp" line="4473"/>
         <source>Refresh cache slot</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4446"/>
-        <location filename="../../softwarelist.cpp" line="4783"/>
+        <location filename="../../softwarelist.cpp" line="4495"/>
+        <location filename="../../softwarelist.cpp" line="4832"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATALNIE: nie można otworzyć pliku zrzutu ekranu oprogramowania, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4452"/>
-        <location filename="../../softwarelist.cpp" line="4465"/>
-        <location filename="../../softwarelist.cpp" line="4830"/>
+        <location filename="../../softwarelist.cpp" line="4501"/>
+        <location filename="../../softwarelist.cpp" line="4514"/>
+        <location filename="../../softwarelist.cpp" line="4879"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4452"/>
-        <location filename="../../softwarelist.cpp" line="4830"/>
+        <location filename="../../softwarelist.cpp" line="4501"/>
+        <location filename="../../softwarelist.cpp" line="4879"/>
         <source>7z error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4465"/>
+        <location filename="../../softwarelist.cpp" line="4514"/>
         <source>libarchive error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4523"/>
+        <location filename="../../softwarelist.cpp" line="4572"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATALNIE: nie udało się zapisać kopii istniejącego pliku obrazu &apos;%1&apos; jako &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4538"/>
+        <location filename="../../softwarelist.cpp" line="4587"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATALNIE: nie można utworzyć pliku obrazu &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4544"/>
+        <location filename="../../softwarelist.cpp" line="4593"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATALNIE: nie można ustalić podstawowej ścieżku dla typu obrazów &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4544"/>
+        <location filename="../../softwarelist.cpp" line="4593"/>
         <source>software snapshot</source>
         <translation>zrzut ekranu oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4865"/>
+        <location filename="../../softwarelist.cpp" line="4914"/>
         <source>Decompressing archive, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
