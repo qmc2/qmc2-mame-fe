@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>648</width>
+    <width>825</width>
     <height>346</height>
    </rect>
   </property>
@@ -90,29 +90,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonToggleSnapnameAdjustment">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
-       </property>
-       <property name="statusTip">
-        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QToolButton" name="toolButtonSoftwareStates">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -176,6 +153,59 @@
       </widget>
      </item>
      <item>
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonToggleSnapnameAdjustment">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
+       </property>
+       <property name="statusTip">
+        <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonToggleStatenameAdjustment">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Toggle automatic adjustment of the statename parameter (hold down for menu)</string>
+       </property>
+       <property name="statusTip">
+        <string>Toggle automatic adjustment of the statename parameter (hold down for menu)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/checkpoint.png</normaloff>:/data/img/checkpoint.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QComboBox" name="comboBoxSnapnameDevice">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -184,10 +214,17 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Select the software for which the snapname should be adjusted</string>
+        <string>Select the software for which the snapname and/or statename should be adjusted</string>
        </property>
        <property name="statusTip">
-        <string>Select the software for which the snapname should be adjusted</string>
+        <string>Select the software for which the snapname and/or statename should be adjusted</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
       </widget>
      </item>
@@ -363,8 +400,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>638</width>
-        <height>192</height>
+        <width>825</width>
+        <height>186</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -545,8 +582,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>86</width>
-        <height>67</height>
+        <width>825</width>
+        <height>186</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -643,8 +680,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>87</width>
-        <height>117</height>
+        <width>825</width>
+        <height>186</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -836,7 +873,6 @@
   <tabstop>toolButtonReload</tabstop>
   <tabstop>toolButtonCompatFilterToggle</tabstop>
   <tabstop>toolButtonToggleSoftwareInfo</tabstop>
-  <tabstop>toolButtonToggleSnapnameAdjustment</tabstop>
   <tabstop>toolButtonSoftwareStates</tabstop>
   <tabstop>toolButtonAnalyzeSoftware</tabstop>
   <tabstop>toolButtonRebuildSoftware</tabstop>

@@ -224,6 +224,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QMenu *menuFavoriteSoftwareHeader;
 		QMenu *menuSearchResultsHeader;
 		QMenu *menuSnapnameAdjustment;
+		QMenu *menuStatenameAdjustment;
 		QMenu *menuSoftwareStates;
 		QMenu *menuSearchOptions;
 		QMenu *knownSoftwareMenu;
@@ -290,6 +291,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_toolButtonToggleSoftwareInfo_clicked(bool);
 		void on_toolButtonCompatFilterToggle_clicked(bool);
 		void on_toolButtonToggleSnapnameAdjustment_clicked(bool);
+		void on_toolButtonToggleStatenameAdjustment_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);
@@ -360,6 +362,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void checkSoftwareSnap();
 		void updateDetail();
 		void adjustSnapnamePattern();
+		void adjustStatenamePattern();
 		void clearSoftwareSelection();
 		void negateSearchTriggered(bool);
 		void rebuildSoftware();
