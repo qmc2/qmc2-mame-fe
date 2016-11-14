@@ -7,6 +7,10 @@
 		<description lang="pl" text="Przeszukiwane ścieżki"/>
 		<description lang="fr" text="Répertoires de recherche"/>
 		<description lang="pt" text="Caminhos de busca"/>
+		<option default="." name="homepath" type="directory">
+			<description lang="us" text="Path to home directory (read/write) location"/>
+			<description lang="de" text="Pfad zum Basisverzeichnis (lesen/schreiben)"/>
+		</option>
 		<option default="roms" name="rompath" type="directory">
 			<description lang="es" text="Ruta a sets de ROMs e imágenes de disco"/>
 			<description lang="us" text="Path to ROM sets and hard disk images"/>
