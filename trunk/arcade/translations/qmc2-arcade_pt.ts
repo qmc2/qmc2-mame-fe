@@ -600,67 +600,67 @@
         <translation>Arcade QMC2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="283"/>
+        <location filename="../main.cpp" line="285"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation>%1 não é um sistema gráfico válido - sistemas gráficos disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="299"/>
+        <location filename="../main.cpp" line="301"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation>%1 não é um modo de emulador válido - modos de emulador disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="317"/>
+        <location filename="../main.cpp" line="319"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation>%1 não é um modo de console válido - modos de console disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="341"/>
+        <location filename="../main.cpp" line="343"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation>%1 não é um tema válido - temas disponíveis: %2</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="356"/>
+        <location filename="../main.cpp" line="358"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation>%1 não é um tema de %2 válido - temas %2 disponíveis: %3</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="356"/>
+        <location filename="../main.cpp" line="358"/>
         <source>(none)</source>
         <translation>(nenhum)</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="412"/>
+        <location filename="../main.cpp" line="414"/>
         <source>emulator-mode: %1</source>
         <translation>modo de emulador: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="417"/>
+        <location filename="../main.cpp" line="419"/>
         <source>language: %1</source>
         <translation>língua: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="420"/>
         <source>theme: %1</source>
         <translation>tema: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="415"/>
+        <location filename="../main.cpp" line="417"/>
         <source>graphics-system: %1</source>
         <translation>sistema gráfico: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="413"/>
+        <location filename="../main.cpp" line="415"/>
         <source>console-mode: %1</source>
         <translation>modo de console: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="450"/>
+        <location filename="../main.cpp" line="452"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Iniciando visualizador QML usando o tema &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="492"/>
+        <location filename="../main.cpp" line="494"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation>Visualizador QML não iniciado - por favor feche a janela do console para sair</translation>
     </message>
