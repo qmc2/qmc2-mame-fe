@@ -43,6 +43,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	embedContainer = new QX11EmbedContainer(this);
 #elif defined(QMC2_OS_WIN)
 	embedContainer = new QWidget(this);
+	isPaused = currentlyPaused;
 #endif
 
 	embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
