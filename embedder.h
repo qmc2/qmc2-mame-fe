@@ -38,6 +38,7 @@ class Embedder : public QWidget
 		bool pausing;
 		QX11EmbedContainer *embedContainer;
 #elif defined(QMC2_OS_WIN)
+		bool isPaused;
 		QWidget *embedContainer;
 #endif
 		QIcon iconRunning;
