@@ -12,8 +12,8 @@ extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern bool qmc2JoystickIsCalibrating;
 
-Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay)
-	: QObject(parent)
+Joystick::Joystick(QObject *parent, int joystickEventTimeout, bool doAutoRepeat, int repeatDelay) :
+	QObject(parent)
 {
 	if ( SDL_Init(SDL_INIT_JOYSTICK) == 0 ) {
 		QRegExp rx("(\\b.*\\b)\\1");

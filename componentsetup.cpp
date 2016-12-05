@@ -46,7 +46,11 @@ ComponentSetup::ComponentSetup(QWidget *parent)
 
 ComponentSetup::~ComponentSetup()
 {
-	// NOP
+	QHashIterator<QString, ComponentInfo *>	iter(m_componentInfoHash);
+	while ( iter.hasNext() ) {
+		iter.next();
+		delete iter.value();
+	}
 }
 
 ComponentInfo *ComponentSetup::initComponent1()
