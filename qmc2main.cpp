@@ -304,6 +304,10 @@ extern QHash<QString, QString> softwareParentHash;
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0),
+#if QMC2_USE_PHONON_API
+	phononAudioPlayer(0),
+	phononAudioOutput(0),
+#endif
 	m_ignoreSelectionChange(false),
 	m_lastMlvSender(0)
 {
@@ -5676,12 +5680,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2AudioEffectDialog->close();
 		delete qmc2AudioEffectDialog;
 	}
-	if ( !qmc2TemplateCheck ) {
-		if ( phononAudioOutput )
-			delete phononAudioOutput;
-		if ( phononAudioPlayer )
-			delete phononAudioPlayer;
-	}
+	if ( phononAudioOutput )
+		delete phononAudioOutput;
+	if ( phononAudioPlayer )
+		delete phononAudioPlayer;
 #endif
 #if QMC2_MULTIMEDIA_ENABLED
 	if ( mediaPlayer ) {
