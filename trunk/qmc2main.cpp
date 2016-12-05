@@ -5676,6 +5676,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		qmc2AudioEffectDialog->close();
 		delete qmc2AudioEffectDialog;
 	}
+	if ( phononAudioOutput )
+		delete phononAudioOutput;
+	if ( phononAudioPlayer )
+		delete phononAudioPlayer;
 #endif
 #if QMC2_MULTIMEDIA_ENABLED
 	if ( mediaPlayer ) {
