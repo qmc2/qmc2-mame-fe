@@ -2735,7 +2735,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1643"/>
         <source>unknown</source>
-        <translation type="unfinished">desconhecido</translation>
+        <translation>desconhecido</translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.cpp" line="1689"/>
@@ -5185,7 +5185,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../emuopt.cpp" line="1149"/>
         <source>WIP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1221"/>
@@ -6335,7 +6335,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="34"/>
         <source>WARNING: failed to open icon cache database &apos;%1&apos;: error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao abrir base de dados de cache de ícones &apos;%1&apos;. erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="55"/>
@@ -6346,7 +6346,7 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../iconcachedbmgr.cpp" line="153"/>
         <location filename="../../iconcachedbmgr.cpp" line="254"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from icon cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao carregar &apos;%1&apos; da base de dados do cache de ícones: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="69"/>
@@ -6354,45 +6354,45 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../iconcachedbmgr.cpp" line="143"/>
         <location filename="../../iconcachedbmgr.cpp" line="243"/>
         <source>WARNING: failed to add &apos;%1&apos; to icon cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao adicionar &apos;%1&apos; à base de dados do cache de ícones: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="75"/>
         <location filename="../../iconcachedbmgr.cpp" line="112"/>
         <location filename="../../iconcachedbmgr.cpp" line="149"/>
         <source>WARNING: failed to update &apos;%1&apos; in icon cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao atualizar &apos;%1&apos; na base de dados do cache de ícones: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="167"/>
         <source>WARNING: failed to fetch row count from icon cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao ler quantidade de linhas da base de dados do cache de ícones: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="284"/>
         <location filename="../../iconcachedbmgr.cpp" line="294"/>
         <location filename="../../iconcachedbmgr.cpp" line="304"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the icon cache database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao alterar a configuração de &apos;%1&apos; da base de dados do cache de ícones: consulta = &apos;%2&apos;, erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="311"/>
         <location filename="../../iconcachedbmgr.cpp" line="316"/>
         <location filename="../../iconcachedbmgr.cpp" line="321"/>
         <source>WARNING: failed to remove icon cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao remover base de dados do cache ícones: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="329"/>
         <location filename="../../iconcachedbmgr.cpp" line="334"/>
         <location filename="../../iconcachedbmgr.cpp" line="339"/>
         <source>WARNING: failed to create icon cache database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao criar base de dados do cache de ícones: consulta = &apos;%1&apos;, erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../iconcachedbmgr.cpp" line="343"/>
         <source>icon cache database &apos;%1&apos; initialized</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados do cache de ícones &apos;%1&apos; inicializado</translation>
     </message>
 </context>
 <context>
@@ -6400,68 +6400,68 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="14"/>
         <source>Icon cache database setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração da base de dados de cache de ícones</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="20"/>
         <location filename="../../iconcachesetupdialog.ui" line="23"/>
         <source>Enable the icon cache database</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar base de dados de cache de ícones</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="35"/>
         <source>Icon cache database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados de cache de ícones</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="48"/>
         <source>Icon cache database file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo da base de dados de cache de ícones (escrita)</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="64"/>
         <source>Browse icon cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo da base de dados de cache de ícones</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="92"/>
         <source>Apply changes and close dialog</source>
-        <translation type="unfinished">Aplicar mudanças e fechar diálogo</translation>
+        <translation>Aplicar mudanças e fechar diálogo</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="95"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="102"/>
         <source>Revert changes and close dialog</source>
-        <translation type="unfinished">Reverter mudanças e fechar diálogo</translation>
+        <translation>Reverter mudanças e fechar diálogo</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="105"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="140"/>
         <source>Reimport icons to the cache database now</source>
-        <translation type="unfinished"></translation>
+        <translation>Reimportar ícones para a base de dados do cache agora</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.ui" line="143"/>
         <source>Reimport icons now</source>
-        <translation type="unfinished"></translation>
+        <translation>Reimportar ícones agora</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.cpp" line="46"/>
         <source>Choose icon cache database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo da base de dados de cache de ícones</translation>
     </message>
     <message>
         <location filename="../../iconcachesetupdialog.cpp" line="46"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
 </context>
 <context>
@@ -9266,12 +9266,12 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
     <message>
         <location filename="../../machinelist.cpp" line="3182"/>
         <source>loading icons from cache database</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando ícones da base de dados do cache</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3201"/>
         <source>done (loading icons from cache database, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando ícones da base de dados do cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="3224"/>
@@ -10388,7 +10388,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="534"/>
         <source>Show machine- or software-titles only when the machine list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar títulos de máquina ou software somente quando a lista de máquinas não está visível devido ao layout atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5682"/>
@@ -10519,7 +10519,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="7264"/>
         <location filename="../../qmc2main.cpp" line="7278"/>
         <source>running</source>
-        <translation type="unfinished"></translation>
+        <translation>executando</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8391"/>
@@ -10664,7 +10664,7 @@ Por favor verifique a opção &apos;rompath&apos; nas configurações globais de
         <location filename="../../qmc2main.cpp" line="10193"/>
         <location filename="../../qmc2main.cpp" line="10194"/>
         <source>Enable processing of MAME output notifiers (this forces &apos;-output console&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar processamento dos notificadores de saída do MAME (força &apos;-output console&apos;)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10200"/>
@@ -15862,7 +15862,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../options.ui" line="3092"/>
         <source>Setup the icon cache database</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar base de dados de cache de ícones</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3110"/>
@@ -16919,7 +16919,7 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../processmanager.cpp" line="275"/>
         <source>running</source>
-        <translation type="unfinished"></translation>
+        <translation>executando</translation>
     </message>
     <message>
         <location filename="../../processmanager.cpp" line="294"/>
@@ -21065,13 +21065,13 @@ Tem certeza que deseja fazer isso?</translation>
         <location filename="../../softwarelist.ui" line="194"/>
         <location filename="../../softwarelist.ui" line="197"/>
         <source>Toggle automatic adjustment of the statename parameter (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar ajuste automático do parâmetro statename (segure pressionado para abrir o menu)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="217"/>
         <location filename="../../softwarelist.ui" line="220"/>
         <source>Select the software for which the snapname and/or statename should be adjusted</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar o software para o qual os parâmetros snapname e/ou statename devem ser ajustados</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="247"/>
@@ -21592,13 +21592,14 @@ Tem certeza que deseja fazer isso?</translation>
     <message>
         <location filename="../../softwarelist.cpp" line="553"/>
         <source>Statename adjustment pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão de ajuste do statename</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="553"/>
         <source>Enter the pattern used for statename adjustment:
 (Allowed macros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o padrão usado para ajustar o statename:
+(Macros permitidas:$SOFTWARE_LIST$, $SOFTWARE_NAME$) </translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1171"/>
