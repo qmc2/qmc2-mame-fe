@@ -341,7 +341,10 @@ endif
 
 # >>> SYSTEM_MINIZIP <<<
 #
-# Build using system minizip (for distro packagers)
+# Build using the system's minizip installation (for distro packagers, 1) or the
+# bundled source code (default, 0)?
+#
+# If set to 1, pkg-config will be used to setup compiler- and linker-flags!
 #
 ifndef SYSTEM_MINIZIP
 SYSTEM_MINIZIP = 0
@@ -349,9 +352,11 @@ endif
 
 # >>> SYSTEM_ZLIB <<<
 #
-# Build using system zlib (for distro packagers)
+# Build using the system's zlib installation (for distro packagers, 1) or the
+# bundled source code (default, 0)?
 #
-
+# If set to 1, pkg-config will be used to setup compiler- and linker-flags.
+#
 ifndef SYSTEM_ZLIB
 SYSTEM_ZLIB = 0
 endif
