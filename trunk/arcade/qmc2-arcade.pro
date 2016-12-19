@@ -93,6 +93,8 @@ HEADERS += \
     ../settings.h \
     ../sevenzipfile.h
 
+INCLUDEPATH += ../lzma
+
 contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
     SOURCES += ../archivefile.cpp
     HEADERS += ../archivefile.h
@@ -100,6 +102,7 @@ contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
 }
 
 contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
+    INCLUDEPATH += ../minizip
     SOURCES += ../minizip/zip.c \
                ../minizip/unzip.c \
                ../minizip/ioapi.c
@@ -109,6 +112,7 @@ contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
 }
 
 contains(DEFINES, QMC2_ARCADE_BUNDLED_ZLIB) {
+    INCLUDEPATH += ../zlib
     SOURCES += ../zlib/zutil.c \
                ../zlib/uncompr.c \
                ../zlib/trees.c \
@@ -230,5 +234,3 @@ macx {
         RC_FILE = qmc2-arcade.rc
     }
 }
-
-INCLUDEPATH += ../minizip ../zlib ../lzma
