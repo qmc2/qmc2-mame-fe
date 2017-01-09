@@ -2275,4 +2275,20 @@
 			<choice name="auto"/>
 		</option>
 	</section>
+	<section name="http_server_options">
+		<description lang="us" text="HTTP server options"/>
+		<description lang="de" text="HTTP Server Optionen"/>
+		<option default="false" name="http" type="bool">
+			<description lang="us" text="Enable HTTP server"/>
+			<description lang="de" text="HTTP Server aktivieren"/>
+		</option>
+		<option default="web" name="http_root" type="directory">
+			<description lang="us" text="HTTP server document root"/>
+			<description lang="de" text="Basis-Verzeichnis des HTTP Servers (Document Root)"/>
+		</option>
+		<option default="8080" name="http_port" type="int">
+			<description lang="us" text="HTTP server port"/>
+			<description lang="de" text="HTTP Server Port"/>
+		</option>
+	</section>
 </template>
