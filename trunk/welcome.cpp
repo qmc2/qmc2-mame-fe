@@ -39,16 +39,16 @@ Welcome::Welcome(QWidget *parent)
 		comboBoxStyle->blockSignals(true);
 		comboBoxStyle->addItem(QObject::tr("Default"));
 		comboBoxStyle->addItems(QStyleFactory::keys());
-		QString myStyle = QObject::tr((const char *)startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString().toUtf8());
+		QString myStyle(QObject::tr((const char *)startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString().toUtf8()));
 		int styleIndex = comboBoxStyle->findText(myStyle, Qt::MatchFixedString);
 		if ( styleIndex < 0 )
 			styleIndex = 0;
 		comboBoxStyle->setCurrentIndex(styleIndex);
 		comboBoxStyle->blockSignals(false);
-		QStringList emuHistory = startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList();
+		QStringList emuHistory(startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList());
 		emuHistory.sort();
 		for (int i = 0; i < emuHistory.count(); i++) {
-			QString emuPath = emuHistory[i];
+			QString emuPath(emuHistory.at(i));
 			QFileInfo fi(emuPath);
 			if ( fi.exists() && fi.isReadable() && fi.isExecutable() && fi.isFile() )
 				comboBoxExecutableFile->insertItem(i, emuPath);
@@ -92,7 +92,7 @@ void Welcome::on_pushButtonOkay_clicked()
 				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", emuHistory);
 			}
 			if ( !lineEditWorkingDirectory->text().isEmpty() ) {
-				QString s = lineEditWorkingDirectory->text();
+				QString s(lineEditWorkingDirectory->text());
 				if ( !s.endsWith("/") )
 					s += "/";
 				startupConfig->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", s);
@@ -103,7 +103,7 @@ void Welcome::on_pushButtonOkay_clicked()
 				startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
 			if ( !lineEditHashPath->text().isEmpty() )
 				startupConfig->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
-			QString styleName = comboBoxStyle->currentText();
+			QString styleName(comboBoxStyle->currentText());
 			if ( styleName == tr("Default") )
 				styleName = "Default";
 			startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", styleName);
@@ -131,14 +131,14 @@ void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 
 void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
 {
-	QString workingDirectory = lineEditWorkingDirectory->text();
-	QString executableFile = comboBoxExecutableFile->lineEdit()->text();
-	QString suggestion = workingDirectory;
+	QString workingDirectory(lineEditWorkingDirectory->text());
+	QString executableFile(comboBoxExecutableFile->lineEdit()->text());
+	QString suggestion(workingDirectory);
 	if ( workingDirectory.isEmpty() && !executableFile.isEmpty() ) {
 		QFileInfo fi(executableFile);
 		suggestion = fi.dir().absolutePath();
 	}
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), suggestion, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose working directory"), suggestion, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isNull() )
 		lineEditWorkingDirectory->setText(s);
 	raise();
@@ -146,7 +146,7 @@ void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
 
 void Welcome::on_toolButtonBrowseROMPath_clicked()
 {
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose ROM path"), lineEditROMPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose ROM path"), lineEditROMPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isNull() )
 		lineEditROMPath->setText(s);
 	raise();
@@ -154,7 +154,7 @@ void Welcome::on_toolButtonBrowseROMPath_clicked()
 
 void Welcome::on_toolButtonBrowseSamplePath_clicked()
 {
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isNull() )
 		lineEditSamplePath->setText(s);
 	raise();
@@ -162,7 +162,7 @@ void Welcome::on_toolButtonBrowseSamplePath_clicked()
 
 void Welcome::on_toolButtonBrowseHashPath_clicked()
 {
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isNull() )
 		lineEditHashPath->setText(s);
 	raise();
