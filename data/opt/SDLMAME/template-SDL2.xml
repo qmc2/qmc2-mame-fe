@@ -2074,6 +2074,24 @@
 			<description lang="de" text="HTTP Server Port"/>
 		</option>
 	</section>
+	<section name="pa_options">
+		<description lang="us" text="PortAudio options"/>
+		<description lang="de" text="PortAudio Optionen"/>
+		<option default="none" name="pa_api" type="combo">
+			<description lang="us" text="PortAudio API"/>
+			<description lang="de" text="PortAudio API"/>
+			<choice name="none"/>
+		</option>
+		<option default="none" name="pa_device" type="combo">
+			<description lang="us" text="PortAudio device"/>
+			<description lang="de" text="PortAudio device"/>
+			<choice name="none"/>
+		</option>
+		<option default="0.0" name="pa_latency" type="float">
+			<description lang="us" text="Suggested latency in seconds, 0 for default"/>
+			<description lang="de" text="Angepeilte Latenz in Sekunden, 0 für Standard"/>
+		</option>
+	</section>
 	<section ignore.Linux="true" ignore.Windows="true" name="core_audio">
 		<description lang="us" text="CoreAudio options"/>
 		<description lang="de" text="CoreAudio Optionen"/>
