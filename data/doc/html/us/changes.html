@@ -38,7 +38,7 @@ inf: informational only
 	<li>imp: updated minizip to a newer git revision (as of 14-NOV-2016)</li>
 	<li>new: added a new 'icon cache database' which stores decompressed icon data already <i>mapped</i> to machine IDs (this should speed up icon loading for everyone but can be disabled if not)</li>
 	<li>new: reimplemented the support for MAME output notifiers in a platform independent way (this requires a <i>modern</i> version of MAME)</li>
- 	<li>new: software-lists: added optional automatic adjustment of the emulator's <i>-statename</i> parameter for easier state-file separation -- see also <a href="http://tracker.batcom-it.net/view.php?id=129" target="_blank">bug tracker ID #129</a></li>
+ 	<li>new: software-lists: added optional automatic adjustment of the emulator's <i>-statename</i> parameter for easier state-file separation -- see also <a href="http://tracker.batcom-it.net/view.php?id=129" target="_blank">BT #129</a></li>
 </ul>
 <p><b>v0.69, 27-OCT-2016:</b></p>
 <ul>
@@ -94,7 +94,7 @@ inf: informational only
 	<li>imp: updated PDF.js to a newer git revision (as of 11-JUN-2016)</li>
 	<li>imp: hide the splash-screen as soon as the initial start-up is done (in case it's still open by that time - which is likely)</li>
 	<li>imp: added a new alternative system-notes template contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a> (data/gmn/Concise.html)</li>
-	<li>new: ROMAlyzer / collection rebuilder: CHD files are now optionally included in the reproduction process (automatically renaming them if required); you can choose between creating hard links, symbolic links and real copies, or to omit CHD reproduction completely (which is the default) -- see also <a href="http://tracker.batcom-it.net/view.php?id=114" target="_blank">bug tracker ID #114</a></li>
+	<li>new: ROMAlyzer / collection rebuilder: CHD files are now optionally included in the reproduction process (automatically renaming them if required); you can choose between creating hard links, symbolic links and real copies, or to omit CHD reproduction completely (which is the default) -- see also <a href="http://tracker.batcom-it.net/view.php?id=114" target="_blank">BT #114</a></li>
 	<li>new: added a catver.ini optimizer to potentially speed up loading slightly</li>
 	<li>new: emulator identification is now skipped when the binary's modification time hasn't changed - this generally speeds up loading greatly (but can be disabled in case it causes any trouble)</li>
 </ul>
@@ -103,7 +103,7 @@ inf: informational only
 	<li>imp: updated category.ini to MAME 0.174</li>
 	<li>imp: using a cleaner base image for the loading animation (rotating circle-arrow)</li>
 	<li>imp: updated PDF.js to a newer git revision (as of 08-MAY-2016)</li>
- 	<li>imp: ported the built-in audio player to Qt 5 / QtMultimedia (the AudioEffectDialog is deprecated now, it isn't available for Qt 5 builds and will be dropped as soon as we switch to Qt 5 completely; the make option <code>FORCE_PHONON</code> has been removed in favour of the new option <code>MULTMEDIA</code> for Qt 5 builds) -- see also <a href="http://tracker.batcom-it.net/view.php?id=94" target="_blank">bug tracker ID #94</a></li>
+ 	<li>imp: ported the built-in audio player to Qt 5 / QtMultimedia (the AudioEffectDialog is deprecated now, it isn't available for Qt 5 builds and will be dropped as soon as we switch to Qt 5 completely; the make option <code>FORCE_PHONON</code> has been removed in favour of the new option <code>MULTMEDIA</code> for Qt 5 builds) -- see also <a href="http://tracker.batcom-it.net/view.php?id=94" target="_blank">BT #94</a></li>
 	<li>imp: added info about using semicolon (to separate multiple items) to the tool-tips of all front-end artwork options</li>
 	<li>imp: emulator configuration templates updated to MAME 0.174 (changed default value for HLSL option 'vector_length_ratio')</li>
 </ul>
@@ -158,7 +158,7 @@ inf: informational only
 </ul>
 <p><b>v0.59, 30-DEC-2015:</b></p>
 <ul>
-	<li>fix: custom software artwork wasn't updated / displayed correctly when more than one additional software artwork class was defined -- see also <a href="http://tracker.batcom-it.net/view.php?id=127" target="_blank">bug tracker ID #127</a></li>
+	<li>fix: custom software artwork wasn't updated / displayed correctly when more than one additional software artwork class was defined -- see also <a href="http://tracker.batcom-it.net/view.php?id=127" target="_blank">BT #127</a></li>
 	<li>fix: main GUI didn't quit until the last independent browser window was closed</li>
 	<li>fix: corrected query error logging for all database managers</li>
 	<li>fix: avoid high CPU load by constantly updating software detail</li>
@@ -168,7 +168,7 @@ inf: informational only
 	<li>imp: slightly speeded up loading the ROM state cache</li>
 	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.169</li>
 	<li>imp: emulator configuration templates updated to MAME 0.169 (added new HLSL options 'bloom_blend_mode' and 'shadow_mask_tile_mode')</li>
-	<li>new: added optional support for <a href="http://www.libarchive.org/" target="_blank">libarchive</a> (use <code>make LIBARCHIVE=1</code> to enable it at build time) -- see also <a href="http://tracker.batcom-it.net/view.php?id=93" target="_blank">bug tracker ID #93</a></li>
+	<li>new: added optional support for <a href="http://www.libarchive.org/" target="_blank">libarchive</a> (use <code>make LIBARCHIVE=1</code> to enable it at build time) -- see also <a href="http://tracker.batcom-it.net/view.php?id=93" target="_blank">BT #93</a></li>
 	<li>new: software-list loading and checking also display a rotating circle animation now (unless the animation is switched off)</li>
  	<li>inf: the French translation has a new maintainer -- thanks to <a href="credits.html#Yu">Y&ucirc; Voskoboinikov</a></li>
 	<li>inf: SDL2 is now preferred - if you still need/want to build for SDL1 and both SDL versions are installed, specifiy <code>SDL=1</code> on the make command line to forcibly use it</li>
@@ -182,14 +182,14 @@ inf: informational only
 	<li>imp: MinGW builds: added support for new MAME build tools as of 01-NOV-2015 (older tools are no longer supported!)</li>
 	<li>imp: emulator configuration templates updated to MAME 0.168 (removed options 'console', 'http', 'http_port' and 'http_path' due to MAME's mongoose removal, updated many HLSL option defaults, removed 'hlsl_preset')</li>
 	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.168</li>
-	<li>imp: welcome dialog: added a GUI style selector to allow for avoiding style-related crashes by switching to a <b>working</b> style before actual start-up -- see also <a href="http://tracker.batcom-it.net/view.php?id=121" target="_blank">bug tracker ID #121</a></li>
+	<li>imp: welcome dialog: added a GUI style selector to allow for avoiding style-related crashes by switching to a <b>working</b> style before actual start-up -- see also <a href="http://tracker.batcom-it.net/view.php?id=121" target="_blank">BT #121</a></li>
 	<li>imp: changed some defaults for front-end / GUI related settings to more modern and recommended values</li>
 	<li>imp: ROMAlyzer / check-sum scanner: rearranged the scanner's UI controls</li>
 	<li>imp: removed optional / experimental support for drawing images through OpenGL by the main GUI (this wasn't very useful anyway)</li>
 	<li>imp: software images that are stored folder-based can now also follow the pattern <code>&lt;software-list-name&gt;/&lt;software-name&gt;/&lt;xxxx&gt;.&lt;fmt&gt;</code> to be found (&lt;xxxx&gt; = 0000 .. 9999, &lt;fmt&gt; = any active image format - the highest number will be found first)</li>
 	<li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
-	<li>new: added support for user-defined additional system- and software-artwork -- see also <a href="http://tracker.batcom-it.net/view.php?id=49" target="_blank">bug tracker ID #49</a></li>
-	<li>new: added support for customizing parent fallback individually per artwork class -- see also <a href="http://tracker.batcom-it.net/view.php?id=125" target="_blank">bug tracker ID #125</a></li>
+	<li>new: added support for user-defined additional system- and software-artwork -- see also <a href="http://tracker.batcom-it.net/view.php?id=49" target="_blank">BT #49</a></li>
+	<li>new: added support for customizing parent fallback individually per artwork class -- see also <a href="http://tracker.batcom-it.net/view.php?id=125" target="_blank">BT #125</a></li>
 </ul>
 <p><b>v0.57, 28-OCT-2015:</b></p>
 <ul>
@@ -198,7 +198,7 @@ inf: informational only
 	<li>fix: system web-search: corrected the handling of '&amp;' in the generated URL</li>
 	<li>fix: collection rebuilder: corrected dump mapping for cases where only the SHA-1 is unique</li>
 	<li>fix: collection rebuilder: the missing dumps viewer wasn't updated correctly under certain circumstances</li>
-	<li>fix: corrected style sheet handling in order to allow for overwriting fonts through style sheets -- see also <a href="http://tracker.batcom-it.net/view.php?id=120" target="_blank">bug tracker ID #120</a></li>
+	<li>fix: corrected style sheet handling in order to allow for overwriting fonts through style sheets -- see also <a href="http://tracker.batcom-it.net/view.php?id=120" target="_blank">BT #120</a></li>
 	<li>fix: ROMAlyzer / check-sum scanner: when rows are removed from the database during incremental scan preparation, their keys also need to be removed from the (life) hash cache</li>
 	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.167</li>
  	<li>imp: help menu: added QMC2 homepage link (opened in the default browser)</li>
@@ -219,14 +219,14 @@ inf: informational only
 </ul>
 <p><b>v0.56, 30-SEP-2015:</b></p>
 <ul>
-	<li>fix: corrected build on Linux x86 (32 bit) when using <code>CFLAGS=-fPIC</code> -- see also <a href="http://tracker.batcom-it.net/view.php?id=115" target="_blank">bug tracker ID #115</a> (thanks to <i>pullmoll</i>)</li>
+	<li>fix: corrected build on Linux x86 (32 bit) when using <code>CFLAGS=-fPIC</code> -- see also <a href="http://tracker.batcom-it.net/view.php?id=115" target="_blank">BT #115</a> (thanks to <i>pullmoll</i>)</li>
 	<li>fix: welcome dialog: make the file browser pre-select the executable file if it exists (minor)</li>
 	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.166</li>
  	<li>imp: updated redistributed Qt translations from Qt 4.8.7</li>
 	<li>imp: compacted the main GUI's layout to save vertical space for machine list views (memory indicator removed)</li>
 	<li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
 	<li>new: about dialog: added memory info on Windows (system information tab)</li>
-	<li>new: QMC2 Arcade: added support for video snaps and a new back-end &amp; CLI option to enable/disable it (<code>-video on/off</code>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=117" target="_blank">bug tracker ID #117</a></li>
+	<li>new: QMC2 Arcade: added support for video snaps and a new back-end &amp; CLI option to enable/disable it (<code>-video on/off</code>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=117" target="_blank">BT #117</a></li>
 	<li>new: QMC2 Arcade: added new <code>-fullscreen</code> and <code>-windowed</code> CLI options to overwrite the stored setting</li>
 	<li>new: ROMAlyzer / check-sum scanner: added a 'cache' option which will speed up scanning <b>enormously</b> when enabled (consumes about 35 MB additional memory per 100K scanned objects, released after scan completion)</li>
 	<li>new: ROMAlyzer / check-sum scanner: added display of the scan timer during active scans</li>
@@ -266,7 +266,7 @@ inf: informational only
 	<li>imp: replaced minizip 1.1 with the actively maintained minizip code from <a href="http://github.com/nmoinvaz/minizip" target="_blank">http://github.com/nmoinvaz/minizip</a> which also fixes support for very large ZIP archives</li>
 	<li>imp: improved catver.ini loading performance (about twice as fast now) and category/version lookups (QMap =&gt; QHash)</li>
 	<li>new: software-lists: added a 'matched items' counter for the current search pattern to the software-list statistics</li>
-	<li>new: video player: added support for <a href="http://www.progettosnaps.net/videosnaps/" target="_blank">video snaps</a> (<a href="http://tracker.batcom-it.net/view.php?id=110" target="_blank">bug tracker ID #110</a>)</li>
+	<li>new: video player: added support for <a href="http://www.progettosnaps.net/videosnaps/" target="_blank">video snaps</a> (<a href="http://tracker.batcom-it.net/view.php?id=110" target="_blank">BT #110</a>)</li>
 	<li>new: system-notes templates: added support for video snaps by providing their file URLs to the template (can be used in an HTML5 &lt;video&gt; container for example)</li>
 </ul>
 <p><b>v0.53, 24-JUN-2015:</b></p>
@@ -275,7 +275,7 @@ inf: informational only
 	<li>fix: the <i>GeneralSoftwareFolder</i> setting was neither restored nor used (unification bug)</li>
 	<li>fix: ROMAlyzer: corrected the delta counter (for <i>objects in database</i>) when both the system- and software-mode's check-sum scanners are running in parallel</li>
 	<li>fix: corrected glitches in splash screen image that were only visible on PowerPC Macs</li>
-	<li>fix: version- and category-column visibility wasn't correctly restored in both the master list and the hierarchical parent/clone view (<a href="http://tracker.batcom-it.net/view.php?id=106" target="_blank">bug tracker ID #106</a>)</li>
+	<li>fix: version- and category-column visibility wasn't correctly restored in both the master list and the hierarchical parent/clone view (<a href="http://tracker.batcom-it.net/view.php?id=106" target="_blank">BT #106</a>)</li>
 	<li>fix: restoring the last machine selection didn't work correctly with active ROM state filtering</li>
 	<li>fix: software-lists: individual software-list state counters weren't correctly logged upon checking</li>
 	<li>fix: correctly handle view-switching while the category- or version-views are being created</li>
@@ -293,7 +293,7 @@ inf: informational only
 	<li>imp: improved generation of command line arguments passed to foreign emulators</li>
 	<li>new: added command line option '-r' (<i>reconfigure</i>) which will run the setup wizard / welcome dialog before starting</li>
 	<li>new: device configurator: suggest actual MIDI ports (from -listmidi) for midiin/midiout devices</li>
-	<li>wip: adding support for launching emulators in movie recording mode (<a href="http://tracker.batcom-it.net/view.php?id=107" target="_blank">bug tracker ID #107</a>)</li>
+	<li>wip: adding support for launching emulators in movie recording mode (<a href="http://tracker.batcom-it.net/view.php?id=107" target="_blank">BT #107</a>)</li>
 </ul>
 <p><b>v0.52, 27-MAY-2015:</b></p>
 <ul>
@@ -303,7 +303,7 @@ inf: informational only
  	<li>imp: updated category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MAME 0.162</li>
 	<li>imp: ROMAlyzer: removed the extra frame around the scanner status and centered it vertically</li>
 	<li>imp: when the emulator binary cannot be identified as MAME this will no longer stop game list processing, instead QMC2 will log a warning and try to continue as if it were MAME (note: bad things can happen if this is not the case!)</li>
-	<li>imp: added new software notes-template macro <i>$SOFTWARE_PARENT_ID$</i> (<a href="http://tracker.batcom-it.net/view.php?id=105" target="_blank">bug tracker ID #105</a>)</li>
+	<li>imp: added new software notes-template macro <i>$SOFTWARE_PARENT_ID$</i> (<a href="http://tracker.batcom-it.net/view.php?id=105" target="_blank">BT #105</a>)</li>
 	<li>imp: updated the alternative system- and software-notes templates contributed by <a href="credits.html#Shideravan">Jos&eacute; Marcio Rezende Franco</a></li>
 	<li>imp: category view: BIOS and device sets that aren't available in catver.ini and/or category.ini will now still be inserted as sub-items of their respective categories when the view is created</li>
 	<li>imp: system- and software-notes templates: added a new JavaScript-usable function to open URLs in the system's default browser (<i>qmc2NEO.openLinkInDefaultBrowser(linkUrl)</i>)</li>
@@ -327,20 +327,20 @@ inf: informational only
 	<li>fix: corrected the audio player's progress indication when tracks are <i>stopped</i></li>
 	<li>fix: ensure that the software-detail widget is visible when 'undocked' initially</li>
 	<li>fix: ROMAlyzer: corrected the <i>calculated size</i> shown when dumps are indicated as <i>available in the check-sum database</i> (but missing in the expected files within the ROM path)</li>
-	<li>fix: corrected the use of the right file-dialog for selecting output files in the 'ROM status export' dialog (<a href="http://tracker.batcom-it.net/view.php?id=102" target="_blank">bug tracker ID #102</a>)</li>
+	<li>fix: corrected the use of the right file-dialog for selecting output files in the 'ROM status export' dialog (<a href="http://tracker.batcom-it.net/view.php?id=102" target="_blank">BT #102</a>)</li>
  	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.160</li>
-	<li>imp: software-lists: added parent image &amp; info fallback (<a href="http://tracker.batcom-it.net/view.php?id=92" target="_blank">bug tracker ID #92</a>)</li>
-	<li>imp: added support for using '<a href="http://www.arcade-history.com/index.php?page=download" target="_blank">history.dat</a>' as 'sysinfo.dat' (<a href="http://tracker.batcom-it.net/view.php?id=91" target="_blank">bug tracker ID #91</a>)</li>
+	<li>imp: software-lists: added parent image &amp; info fallback (<a href="http://tracker.batcom-it.net/view.php?id=92" target="_blank">BT #92</a>)</li>
+	<li>imp: added support for using '<a href="http://www.arcade-history.com/index.php?page=download" target="_blank">history.dat</a>' as 'sysinfo.dat' (<a href="http://tracker.batcom-it.net/view.php?id=91" target="_blank">BT #91</a>)</li>
 	<li>imp: software-lists: software favorites are no longer stored in qmc2.ini but in the user data database (auto-migrated on demand)</li>
 	<li>imp: main GUI: slightly snappier start-up</li>
 	<li>imp: main GUI: folder based icons are no longer limited to PNGs (every supported image format can be used now, same as with ZIP-/7z-archived icons)</li>
  	<li>imp: MAME/MESS/UME emulator templates updated to 0.160 (added OpenGL section and the new 'opengl' choice for -video to all Windows OSD templates)</li>
-	<li>imp: added players and driver-status columns to the 'ROM status export' feature (<a href="http://tracker.batcom-it.net/view.php?id=103" target="_blank">bug tracker ID #103</a>)</li>
-	<li>new: software-lists: added a parent/clone hierarchy view (<a href="http://tracker.batcom-it.net/view.php?id=81" target="_blank">bug tracker ID #81</a>)</li>
-	<li>new: software-lists: added per system software-list visibility toggling (<a href="http://tracker.batcom-it.net/view.php?id=85" target="_blank">bug tracker ID #85</a>)</li>
+	<li>imp: added players and driver-status columns to the 'ROM status export' feature (<a href="http://tracker.batcom-it.net/view.php?id=103" target="_blank">BT #103</a>)</li>
+	<li>new: software-lists: added a parent/clone hierarchy view (<a href="http://tracker.batcom-it.net/view.php?id=81" target="_blank">BT #81</a>)</li>
+	<li>new: software-lists: added per system software-list visibility toggling (<a href="http://tracker.batcom-it.net/view.php?id=85" target="_blank">BT #85</a>)</li>
  	<li>new: reimplemented the former 'detail setup' feature as a general 'component setup' to allow for changing the order and visibility of all features in all <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Components" target="_blank">main GUI components</a></li>
 	<li>new: the arrangement of all main GUI components can now be defined through the new 'component setup' dialog as well (this replaces the old method and its related settings)</li>
-	<li>new: added 'parent-only filtering' to the arcade mode setup (<a href="http://tracker.batcom-it.net/view.php?id=96" target="_blank">bug tracker ID #96</a>) and the demo mode</li>
+	<li>new: added 'parent-only filtering' to the arcade mode setup (<a href="http://tracker.batcom-it.net/view.php?id=96" target="_blank">BT #96</a>) and the demo mode</li>
 </ul>
 <p><b>v0.49, 25-FEB-2015:</b></p>
 <ul>
@@ -349,7 +349,7 @@ inf: informational only
 	<li>fix: process manager: keep white-space characters in (formatted) emulator log messages</li>
 	<li>fix: Max OS X: avoid crash on initial load (after recreating the emulator caches)</li>
         <li>fix: QMC2 Arcade (Mac OS X): ensure that plugins are always loaded from the app bundle and not from a probably installed Qt SDK (which would cause a serious crash)</li>
-	<li>fix: corrected software-info retrieval -- see also <a href="http://tracker.batcom-it.net/view.php?id=87" target="_blank">bug tracker ID #87</a></li>
+	<li>fix: corrected software-info retrieval -- see also <a href="http://tracker.batcom-it.net/view.php?id=87" target="_blank">BT #87</a></li>
 	<li>fix: avoid that the software-list tab can be moved while it's being created initially (could result in unwanted/uncontrolled tab moves)</li>
 	<li>imp: Mac OS X build: using MKSPEC=macx-g++ as default Qt mkspec which allows it to build with binary Qt packages (hurray!)</li>
  	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.159 (also added French translation contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=6599" target="_blank">remax</a>)</li>
@@ -394,11 +394,11 @@ inf: informational only
  	<li>imp: ROMAlyzer: added a reproduction option to toggle the creation of a ZIP comment (may be annoying)</li>
  	<li>imp: the main GUI no longer restores the visibility of certain sub-windows as it's prone to trouble and wasn't consequently implemented anyway (i.e. not all sub-windows were restored)</li>
  	<li>imp: software-lists: utilizing the same (much faster) algorithm for searching within known software as used by the system search</li>
- 	<li>new: ROMAlyzer: added support for software / software-lists (there are two instances of the ROMAlyzer now, one for 'systems' and one for 'software') -- see also <a href="http://tracker.batcom-it.net/view.php?id=61" target="_blank">bug tracker ID #61</a></li>
+ 	<li>new: ROMAlyzer: added support for software / software-lists (there are two instances of the ROMAlyzer now, one for 'systems' and one for 'software') -- see also <a href="http://tracker.batcom-it.net/view.php?id=61" target="_blank">BT #61</a></li>
 </ul>
 <p><b>v0.46, 26-NOV-2014:</b></p>
 <ul>
- 	<li>fix: image-checker: corrected obsoleteness check for free-standing image files on Windows -- see also <a href="http://tracker.batcom-it.net/view.php?id=78" target="_blank">bug tracker ID #78</a></li>
+ 	<li>fix: image-checker: corrected obsoleteness check for free-standing image files on Windows -- see also <a href="http://tracker.batcom-it.net/view.php?id=78" target="_blank">BT #78</a></li>
  	<li>fix: corrected the HTML encoding of links in software-info DB entries so they actually work now</li>
  	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.156</li>
  	<li>imp: ROMAlyzer / check-sum wizard: temporarily set the 'searched check-sum hash' to <i>read-only</i> instead of disabling the widget in order to allow for copying the check-sum while it's being searched</li>
@@ -410,8 +410,8 @@ inf: informational only
  	<li>imp: check-sum scanner: lowered the algorithmic complexity of steps 1 and 3 when preparing incremental scans, so this works remarkably faster now</li>
  	<li>imp: slightly darkened the text-color for ROM-/software-state 'mostly correct' for better readability</li>
  	<li>new: ROMAlyzer: added a second 'copy to clipboard' function that only copies the bad or missing dumps from a given set and excludes columns that aren't important for this purpose</li>
- 	<li>new: revised the software-list XML cache to be stored in / retrieved from an SQLite 3 database in order to save memory, speed up software-list loading and allow for ROMAlyzer support -- see also <a href="http://tracker.batcom-it.net/view.php?id=63" target="_blank">bug tracker ID #63</a></li>
- 	<li>new: added a new combined database for all supported DAT-info sources (emu-info, game/machine-info and software-info) -- see also <a href="http://tracker.batcom-it.net/view.php?id=80" target="_blank">bug tracker ID #80</a></li>
+ 	<li>new: revised the software-list XML cache to be stored in / retrieved from an SQLite 3 database in order to save memory, speed up software-list loading and allow for ROMAlyzer support -- see also <a href="http://tracker.batcom-it.net/view.php?id=63" target="_blank">BT #63</a></li>
+ 	<li>new: added a new combined database for all supported DAT-info sources (emu-info, game/machine-info and software-info) -- see also <a href="http://tracker.batcom-it.net/view.php?id=80" target="_blank">BT #80</a></li>
 </ul>
 <p><b>v0.45, 15-OCT-2014:</b></p>
 <ul>
@@ -420,7 +420,7 @@ inf: informational only
  	<li>fix: ROMAlyzer: corrected set rewriter issues with data read from regular files (their CRCs couldn't be correlated)</li>
  	<li>fix: ROMAlyzer: the default ZIP compression level (Z_DEFAULT_COMPRESSION) is -1, corresponding to level 6, but the spin-box only supported values from 0 to 9 so the default level was actually 0</li>
  	<li>fix: avoid crash when checking an individual set's ROM status (probably only seen on slow systems)</li>
- 	<li>fix: avoid start-up crash on gcc 4.9+ builds -- see also <a href="http://tracker.batcom-it.net/view.php?id=77" target="_blank">bug tracker ID #77</a> (thanks to <i>Pulfer</i>)</li>
+ 	<li>fix: avoid start-up crash on gcc 4.9+ builds -- see also <a href="http://tracker.batcom-it.net/view.php?id=77" target="_blank">BT #77</a> (thanks to <i>Pulfer</i>)</li>
  	<li>imp: ROMAlyzer: major UI and logic overhaul (the settings page has been redesigned completely)</li>
  	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to MESS 0.155</li>
  	<li>imp: ROMAlyzer: allow set repairing from 7-zip archived reproduction templates</li>
@@ -429,9 +429,9 @@ inf: informational only
  	<li>imp: MAME/MESS/UME emulator templates updated to 0.155 (added new templates for SDL2 builds)</li>
  	<li>imp: updated template format to v0.2.8 which adds support for ignoring &lt;choice&gt; nodes on certain platforms (or generally)</li>
  	<li>imp: improved mouse event handling of rank-item widgets (also fixes a minor UI bug)</li>
- 	<li>new: ROMAlyzer: added a check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (aka support for <i>unstructured additional ROM paths</i>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=62" target="_blank">bug tracker ID #62</a></li>
- 	<li>new: ROMAlyzer: added a <i>ROM Collection Rebuilder</i> which uses the check-sum database to rebuild a complete ROM path from 'any' given XML (including XML from foreign emulators as long as it's MAME/MESS/UME-compatible) -- see also <a href="http://tracker.batcom-it.net/view.php?id=71" target="_blank">bug tracker ID #71</a></li>
- 	<li>new: ROMAlyzer: added a new 'create backups' option that will create backup copies of all existing files that are going to be modified / overwritten -- see also <a href="http://tracker.batcom-it.net/view.php?id=73" target="_blank">bug tracker ID #73</a></li>
+ 	<li>new: ROMAlyzer: added a check-sum database for storing/retrieving paths to dumps available in your file-system by SHA-1 and/or CRC (aka support for <i>unstructured additional ROM paths</i>) -- see also <a href="http://tracker.batcom-it.net/view.php?id=62" target="_blank">BT #62</a></li>
+ 	<li>new: ROMAlyzer: added a <i>ROM Collection Rebuilder</i> which uses the check-sum database to rebuild a complete ROM path from 'any' given XML (including XML from foreign emulators as long as it's MAME/MESS/UME-compatible) -- see also <a href="http://tracker.batcom-it.net/view.php?id=71" target="_blank">BT #71</a></li>
+ 	<li>new: ROMAlyzer: added a new 'create backups' option that will create backup copies of all existing files that are going to be modified / overwritten -- see also <a href="http://tracker.batcom-it.net/view.php?id=73" target="_blank">BT #73</a></li>
  	<li>doc: symbolic links to the English HTML docs are no longer required (falls back to English automatically when a language-specific index.html doesn't exist)</li>
 </ul>
 <p><b>v0.44, 23-JUL-2014:</b></p>
@@ -452,7 +452,7 @@ inf: informational only
  	<li>imp: consecutive duplicate words in SDL joystick names are now cleaned up -- i.e. "Logitech Logitech Extreme 3D" becomes "Logitech Extreme 3D"</li>
  	<li>imp: QMC2 Arcade: added support for theme-specific default values used by certain settings -- i.e. <i>darkone</i> uses a 'sortByName' setting with an expected default value of 'true', <i>ToxicWaste</i> doesn't (want to) support this setting and uses the global default value of 'false' instead</li>
  	<li>imp: QMC2 Arcade: be more responsive while loading data from file (especially interesting when using a console window)</li>
- 	<li>imp: updated minizip to version 1.1 which adds support for zip64 (zip archives can now be larger than 4 GB) -- see also <a href="http://tracker.batcom-it.net/view.php?id=45" target="_blank">bug tracker ID #45</a></li>
+ 	<li>imp: updated minizip to version 1.1 which adds support for zip64 (zip archives can now be larger than 4 GB) -- see also <a href="http://tracker.batcom-it.net/view.php?id=45" target="_blank">BT #45</a></li>
  	<li>imp: made category.ini translatable (caution: the new format is <b>not</b> backward-compatible (!) - however, you can use older category.ini's with the new code because translations are optional)</li>
  	<li>imp: revised slot-info cache creation/loading to be more responsive and faster</li>
  	<li>imp: changed default paths for 'category.ini' and 'catver.ini' (using the 'data/cat' folder now)</li>
@@ -462,20 +462,20 @@ inf: informational only
  	<li>imp: QMC2 Arcade (Windows): when started from a command prompt, console-mode 'terminal' now causes QMC2 Arcade to use this console for logging</li>
  	<li>imp: QMC2 Arcade / ToxicWaste theme: load icons asynchronously (in a separate thread) in order to not affect flicking performance</li>
  	<li>new: added a 'user data' database (SQLite 3) to store &amp; retrieve rank information and personal comments per game/machine</li>
- 	<li>new: added a new ranking system and a corresponding 'rank' column to all game/machine lists -- see also <a href="http://tracker.batcom-it.net/view.php?id=46" target="_blank">bug tracker ID #46</a></li>
+ 	<li>new: added a new ranking system and a corresponding 'rank' column to all game/machine lists -- see also <a href="http://tracker.batcom-it.net/view.php?id=46" target="_blank">BT #46</a></li>
  	<li>new: added missing 'restore' feature to the image format setup dialog</li>
- 	<li>new: replaced the foreign IDs menu with a new (tree-)view for foreign emulators and their custom IDs (if any) shown as sub-items of each emulator; the view will only be shown when there <b>are</b> any registered (foreign) emulators -- see also <a href="http://tracker.batcom-it.net/view.php?id=53" target="_blank">bug tracker ID #53</a></li>
+ 	<li>new: replaced the foreign IDs menu with a new (tree-)view for foreign emulators and their custom IDs (if any) shown as sub-items of each emulator; the view will only be shown when there <b>are</b> any registered (foreign) emulators -- see also <a href="http://tracker.batcom-it.net/view.php?id=53" target="_blank">BT #53</a></li>
  	<li>new: icons for foreign emulators and their custom IDs can now be selected individually</li>
  	<li>new: eye-candy: pepped up the static loading &amp; filtering texts with an animation (also used for <i>mass tagging</i>)</li>
  	<li>new: automatically clear all emulator caches when the output of '-listfull' changes (optional, enabled per default) -- something users often forget is using QMC2's -cc command line switch when updating their MAME/MESS/UME SVN builds; this feature is supposed to automate that as far as possible (changes to devices and software-lists aren't recognized automatically)</li>
  	<li>new: added command line option '-tc' which will check the emulator configuration template (printing results to <i>stdout</i>) and exit before actual start-up occurs</li>
- 	<li>new: ROMAlyzer: added support for CMP-compatible fix.dat exports -- see also <a href="http://tracker.batcom-it.net/view.php?id=51" target="_blank">bug tracker ID #51</a></li>
+ 	<li>new: ROMAlyzer: added support for CMP-compatible fix.dat exports -- see also <a href="http://tracker.batcom-it.net/view.php?id=51" target="_blank">BT #51</a></li>
  	<li>new: QMC2 Arcade: added support for <b>multiple</b> image/icon files (per artwork category), supporting the main GUI's <i>ParentImageFallback</i> setting as well</li>
  	<li>new: icons of game/machine clones now fall back to the parent set's icon when the <i>ParentImageFallback</i> setting is enabled (and an individual icon for the clone isn't available)</li>
 </ul>
 <p><b>v0.43, 07-APR-2014:</b></p>
 <ul>
- 	<li>fix: avoid crash upon game/machine launch when <i>double-click activation</i> is enabled -- see also <a href="http://tracker.batcom-it.net/view.php?id=44" target="_blank">bug tracker ID #44</a></li>
+ 	<li>fix: avoid crash upon game/machine launch when <i>double-click activation</i> is enabled -- see also <a href="http://tracker.batcom-it.net/view.php?id=44" target="_blank">BT #44</a></li>
  	<li>fix: ROM status exporter: corrected mix up of certain sort criteria indexes</li>
  	<li>fix: MinGW build: corrected compiler &amp; linker flags for QMC2 Arcade to not open a console window</li>
  	<li>fix: MiniWebBrowser: corrected a signal/slot auto-connection that caused a Qt warning with Qt 5 (minor)</li>
@@ -485,7 +485,7 @@ inf: informational only
  	<li>fix: main GUI / key- &amp; joy-mapping: don't trigger <i>disabled</i> actions</li>
  	<li>fix: MESS device configurator: avoid crash (seen on Windows) when the selected system changes while the available devices and slot-options are currently being determined for another system</li>
  	<li>fix: initial ROM path check: corrected handling of <i>relative</i> ROM paths</li>
- 	<li>fix: updated the handling of character encoding in software-lists on Windows to modern MAME/MESS/UME -- see also <a href="http://tracker.batcom-it.net/view.php?id=65" target="_blank">bug tracker ID #65</a></li>
+ 	<li>fix: updated the handling of character encoding in software-lists on Windows to modern MAME/MESS/UME -- see also <a href="http://tracker.batcom-it.net/view.php?id=65" target="_blank">BT #65</a></li>
  	<li>fix: corrected the working directory the emulator would use when scanning software-lists (so that a <i>relative</i> hash path would actually be found)</li>
  	<li>fix: demo-mode (minor): corrected the produced command line when 'maximize' is disabled</li>
  	<li>imp: updated MESS category.ini contributed by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> to 0.153</li>
@@ -499,7 +499,7 @@ inf: informational only
  	<li>imp: separated MAME &amp; MESS emulator-info DBs as well as their game-/machine-info counterparts in order to allow for merging them in case of UME</li>
  	<li>imp: MAME/MESS/UME emulator templates updated to 0.153</li>
  	<li>imp: system- and software-notes templates: new template macros ($IS_BIOS$ and $IS_DEVICE$) and JS functions (isBios(), isDevice() and romStatus())</li>
- 	<li>imp: Windows: the FileSystemModel's directory scanner thread now uses native Win32 API calls instead of Qt classes -- see also <a href="http://tracker.batcom-it.net/view.php?id=56" target="_blank">bug tracker ID #56</a></li>
+ 	<li>imp: Windows: the FileSystemModel's directory scanner thread now uses native Win32 API calls instead of Qt classes -- see also <a href="http://tracker.batcom-it.net/view.php?id=56" target="_blank">BT #56</a></li>
  	<li>imp: added a FileIconProvider wrapper class for QFileIconProvider that uses native Win32 API calls on Windows for better performance (also caches the icons internally)</li>
  	<li>imp: updated template format to v0.2.7 which adds support for a new <i>relativeTo</i> attribute (valid only for file-type options) which - if set - will be used to generate a path relative to the current value of the referenced directory-type option when using a file-picker; note that this will only work correctly when the referenced directory-type option consists of a <b>single</b> path (i.e. not for semicolon-seperated paths, in which case you'd have to edit the corresponding file-type option manually to reflect relative file paths)</li>
  	<li>imp: replaced some icons in the <i>classic</i> image-set</li>
@@ -608,7 +608,7 @@ inf: informational only
  	<li>fix: avoid crash of the front-end when 'mame/mess/ume -listxml' crashes</li>
  	<li>fix: minor: don't issue an actual search when no game/machine list data has been loaded yet</li>
  	<li>fix: key-sequence scanner: avoid <i>X Error: BadWindow invalid window parameter</i> warning when grabbing the keyboard -- on X11, the window must the 'mapped' (shown) first</li>
- 	<li>fix: corrected joystick support on Mac OS X by implementing <i>real</i> calibration / axis value normalization -- see also <a href="http://tracker.batcom-it.net/view.php?id=39" target="_blank">bug tracker ID #39</a></li>
+ 	<li>fix: corrected joystick support on Mac OS X by implementing <i>real</i> calibration / axis value normalization -- see also <a href="http://tracker.batcom-it.net/view.php?id=39" target="_blank">BT #39</a></li>
  	<li>imp: added tool-buttons to select/deselect all categories in the demo- and arcade-mode setup dialogs</li>
  	<li>imp: software-list export: added the 'supported' column to the software-list export feature</li>
  	<li>imp: software-lists: added a 'clear selection' item to the software-list's context-menu</li>
@@ -680,7 +680,7 @@ inf: informational only
  	<li>new: ROMAlyzer: the set rewriter and checksum wizard now also load repro-data from regular files (when they are stored in expected folders and have the correct file names / CRCs), the set rewriter can also reproduce sets in individual sub-directories (see 'reproduction type' in ROMAlyzer settings)</li>
  	<li>new: demo-mode: added filtering by category, driver-status and set-names when selecting eligible sets for the demo</li>
  	<li>new: image-checker: <i>bad</i> image files (subset of the <i>missing</i> ones) can now be filtered and removed by means of the GUI (so searching for bad image files in the log and manually removing them is no longer required)</li>
- 	<li>new: made a complete rewrite of the sample-checker which wasn't working correctly for ages -- see also <a href="http://tracker.batcom-it.net/view.php?id=31" target="_blank">bug tracker ID #31</a></li>
+ 	<li>new: made a complete rewrite of the sample-checker which wasn't working correctly for ages -- see also <a href="http://tracker.batcom-it.net/view.php?id=31" target="_blank">BT #31</a></li>
  	<li>new: MiniWebBrowser: added a search widget to find arbitrary text in web-pages</li>
  	<li>new: MiniWebBrowser: added support for persistent cookies (stored in / retrieved from an SQLite database)</li>
  	<li>new: added <a href="http://wiki.mozilla.org/PDF.js" target="_blank">PDF.js</a> -- a JavaScript / HTML5 PDF rendering library</li>
@@ -704,7 +704,7 @@ inf: informational only
  	<li>fix: don't allow tagging/untagging of parent-items in category- and version-views</li>
  	<li>fix: file-browsers in emulator configuration dialogs used the wrong standard file-dialog so non-existing file names weren't accepted</li>
  	<li>fix: ZIP-archived image files weren't correctly opened initially</li>
- 	<li>fix: full-screen switching on Ubuntu 12.04 (<i>Unity</i> desktop) didn't work correctly -- see <a href="http://tracker.batcom-it.net/view.php?id=26" target="_blank">bug tracker ID #26</a></li>
+ 	<li>fix: full-screen switching on Ubuntu 12.04 (<i>Unity</i> desktop) didn't work correctly -- see <a href="http://tracker.batcom-it.net/view.php?id=26" target="_blank">BT #26</a></li>
  	<li>fix: don't pass <i>empty</i> arguments when launching foreign emulators</li>
  	<li>fix: non-Windows: the optional memory indicator wasn't updated because the corresponding timer didn't fire</li>
  	<li>fix: MESS device configurator: when a configuration made with the file-chooser was saved, the current slot setup wasn't stored together with it -- rendering the stored item useless when slot customizations were required</li>
@@ -747,14 +747,14 @@ inf: informational only
  	<li>imp: the menu-bar on Mac OS X is no longer 'native' because this misbehaves with <i>multiple</i> menu-bars that we have now</li>
  	<li>imp: emulator configuration widgets are now initially hidden and shown after all options were loaded, which speeds up this process a little bit (you won't see a <i>visual</i> difference, though)</li>
  	<li>imp: added OS detection for Windows 8 and Mac OS X 10.8 to the about dialog when Qt 4.8.3 or higher is used</li>
- 	<li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://tracker.batcom-it.net/view.php?id=22" target="_blank">bug tracker ID #22</a></li>
+ 	<li>new: added support for <a href="http://mamedev.emulab.it/haze/" target="_blank">David Haywood's (Haze)</a> <i>Universal Machine Emulator</i> (MAME/MESS unification project) in the form of an additional variant called 'qmc2-ume' or 'qmc2-sdlume' -- see <a href="http://tracker.batcom-it.net/view.php?id=22" target="_blank">BT #22</a></li>
  	<li>new: the YouTube video-player now supports local movie files as well</li>
  	<li>new: added support for tool-bar customization</li>
  	<li>new: allow the specification of semicolon-separated lists of folders for ALL image types</li>
  	<li>new: added support for system- and manufacturer-logo images (i. e. <a href="http://www.progettosnaps.net/mess/" target="_blank">AntoPISA's new <i>MESS marquees</i></a>)</li>
  	<li>new: added support for the new MESS category.ini from <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=5387" target="_blank">ASH</a> (UME targets merge the info with data from catver.ini, if applicable)</li>
- 	<li>new: added a check for the ROM path setting (a warning message will pop up when the ROM path hasn't been set or isn't available) -- see <a href="http://tracker.batcom-it.net/view.php?id=28" target="_blank">bug tracker ID #28</a></li>
- 	<li>new: made a complete rewrite of the image-checker dialog, which now allows checks of ALL image types in a multi-threaded way -- this also fixes a long-standing bug on Windows, BTW (see <a href="http://tracker.batcom-it.net/view.php?id=5" target="_blank">bug tracker ID #5</a>)</li>
+ 	<li>new: added a check for the ROM path setting (a warning message will pop up when the ROM path hasn't been set or isn't available) -- see <a href="http://tracker.batcom-it.net/view.php?id=28" target="_blank">BT #28</a></li>
+ 	<li>new: made a complete rewrite of the image-checker dialog, which now allows checks of ALL image types in a multi-threaded way -- this also fixes a long-standing bug on Windows, BTW (see <a href="http://tracker.batcom-it.net/view.php?id=5" target="_blank">BT #5</a>)</li>
  	<li>new: MESS device configurator: added support for <i>nested</i> slots, including real slot recursion</li>
  	<li>new: software-lists: available mount-devices are dynamically updated whenever the device/slot setup changes</li>
  	<li>new: added 3 new actions to tag / untag / invert tags of all <i>visible</i> sets (according to the current ROM state filter)</li>
@@ -846,7 +846,7 @@ inf: informational only
  	<li>fix: YouTube video-player: attached videos could get lost when changing the current game/machine very quickly</li>
  	<li>fix: ROMAlyzer: correctly 'remove' the progress-bar item-widget before deleting it (worked w/o until Qt 4.7.x, crashed since Qt 4.8.0)</li>
  	<li>fix: corrected restoration of main-widget's layout when the front-end was showing a maximized embedded emulator during clean up on the previous run</li>
- 	<li>fix: corrected Windows 64-bit builds with DEBUG=2 (see <a href="http://tracker.batcom-it.net/view.php?id=21" target="_blank">bug tracker ID #21</a>)</li>
+ 	<li>fix: corrected Windows 64-bit builds with DEBUG=2 (see <a href="http://tracker.batcom-it.net/view.php?id=21" target="_blank">BT #21</a>)</li>
  	<li>fix: file-chooser: the underlying item model now produces correct minimum widths for icon-less columns (size and modification date)</li>
  	<li>fix: embedder on X11: corrected initial input focus after launching a new embedded emulator</li>
  	<li>imp: ROM status exporter: additional output-format choice ('all formats') to export the ROM states to all three formats at once</li>
