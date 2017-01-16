@@ -1,5 +1,5 @@
 /* LzFindMt.h -- multithreaded Match finder for LZ algorithms
-2009-02-07 : Igor Pavlov : Public domain */
+2015-05-03 : Igor Pavlov : Public domain */
 
 #ifndef __LZ_FIND_MT_H
 #define __LZ_FIND_MT_H
@@ -7,9 +7,7 @@
 #include "LzFind.h"
 #include "Threads.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_BEGIN
 
 #define kMtHashBlockSize (1 << 13)
 #define kMtHashNumBlocks (1 << 3)
@@ -21,10 +19,10 @@ extern "C" {
 
 typedef struct _CMtSync
 {
-  Bool7z wasCreated;
-  Bool7z needStart;
-  Bool7z exit;
-  Bool7z stopWriting;
+  Bool_7z wasCreated;
+  Bool_7z needStart;
+  Bool_7z exit;
+  Bool_7z stopWriting;
 
   CThread thread;
   CAutoResetEvent canStart;
@@ -32,8 +30,8 @@ typedef struct _CMtSync
   CAutoResetEvent wasStopped;
   CSemaphore freeSemaphore;
   CSemaphore filledSemaphore;
-  Bool7z csWasInitialized;
-  Bool7z csWasEntered;
+  Bool_7z csWasInitialized;
+  Bool_7z csWasEntered;
   CCriticalSection cs;
   UInt32_7z numProcessedBlocks;
 } CMtSync;
@@ -77,7 +75,7 @@ typedef struct _CMatchFinderMt
   UInt32_7z matchMaxLen;
   UInt32_7z numHashBytes;
   UInt32_7z pos;
-  Byte *buffer;
+  const Byte *buffer;
   UInt32_7z cyclicBufferPos;
   UInt32_7z cyclicBufferSize; /* it must be historySize + 1 */
   UInt32_7z cutValue;
@@ -98,8 +96,6 @@ SRes MatchFinderMt_Create(CMatchFinderMt *p, UInt32_7z historySize, UInt32_7z ke
 void MatchFinderMt_CreateVTable(CMatchFinderMt *p, IMatchFinder *vTable);
 void MatchFinderMt_ReleaseStream(CMatchFinderMt *p);
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 #endif

@@ -1,8 +1,10 @@
 /* Ppmd7.c -- PPMdH codec
-2010-03-12 : Igor Pavlov : Public domain
+2016-05-21 : Igor Pavlov : Public domain
 This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 
-#include <memory.h>
+#include "Precomp.h"
+
+#include <string.h>
 
 #include "Ppmd7.h"
 
@@ -64,7 +66,7 @@ void Ppmd7_Construct(CPpmd7 *p)
   for (i = 0, k = 0; i < PPMD_NUM_INDEXES; i++)
   {
     unsigned step = (i >= 12 ? 4 : (i >> 2) + 1);
-    do { p->Units2Indx[k++] = (Byte)i; } while(--step);
+    do { p->Units2Indx[k++] = (Byte)i; } while (--step);
     p->Indx2Units[i] = (Byte)k;
   }
 
@@ -93,7 +95,7 @@ void Ppmd7_Free(CPpmd7 *p, ISzAlloc *alloc)
   p->Base = 0;
 }
 
-Bool7z Ppmd7_Alloc(CPpmd7 *p, UInt32_7z size, ISzAlloc *alloc)
+Bool_7z Ppmd7_Alloc(CPpmd7 *p, UInt32_7z size, ISzAlloc *alloc)
 {
   if (p->Base == 0 || p->Size != size)
   {
@@ -255,7 +257,7 @@ static void *AllocUnits(CPpmd7 *p, unsigned indx)
 
 #define MyMem12Cpy(dest, src, num) \
   { UInt32_7z *d = (UInt32_7z *)dest; const UInt32_7z *s = (const UInt32_7z *)src; UInt32_7z n = num; \
-    do { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; s += 3; d += 3; } while(--n); }
+    do { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; s += 3; d += 3; } while (--n); }
 
 static void *ShrinkUnits(CPpmd7 *p, void *oldPtr, unsigned oldNU, unsigned newNU)
 {
@@ -338,7 +340,7 @@ void Ppmd7_Init(CPpmd7 *p, unsigned maxOrder)
   p->DummySee.Count = 64; /* unused */
 }
 
-static CTX_PTR CreateSuccessors(CPpmd7 *p, Bool7z skip)
+static CTX_PTR CreateSuccessors(CPpmd7 *p, Bool_7z skip)
 {
   CPpmd_State upState;
   CTX_PTR c = p->MinContext;
@@ -637,10 +639,10 @@ CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, UInt32_7z *escFreq)
   unsigned nonMasked = p->MinContext->NumStats - numMasked;
   if (p->MinContext->NumStats != 256)
   {
-    see = p->See[p->NS2Indx[nonMasked - 1]] +
+    see = p->See[(unsigned)p->NS2Indx[nonMasked - 1]] +
         (nonMasked < (unsigned)SUFFIX(p->MinContext)->NumStats - p->MinContext->NumStats) +
-        2 * (p->MinContext->SummFreq < 11 * p->MinContext->NumStats) +
-        4 * (numMasked > nonMasked) +
+        2 * (unsigned)(p->MinContext->SummFreq < 11 * p->MinContext->NumStats) +
+        4 * (unsigned)(numMasked > nonMasked) +
         p->HiBitsFlag;
     {
       unsigned r = (see->Summ >> see->Shift);

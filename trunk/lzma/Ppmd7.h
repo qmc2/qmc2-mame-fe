@@ -1,5 +1,5 @@
 /* Ppmd7.h -- PPMdH compression codec
-2010-03-12 : Igor Pavlov : Public domain
+2016-05-21 : Igor Pavlov : Public domain
 This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 
 /* This code supports virtual RangeDecoder and includes the implementation
@@ -60,7 +60,7 @@ typedef struct
 } CPpmd7;
 
 void Ppmd7_Construct(CPpmd7 *p);
-Bool7z Ppmd7_Alloc(CPpmd7 *p, UInt32_7z size, ISzAlloc *alloc);
+Bool_7z Ppmd7_Alloc(CPpmd7 *p, UInt32_7z size, ISzAlloc *alloc);
 void Ppmd7_Free(CPpmd7 *p, ISzAlloc *alloc);
 void Ppmd7_Init(CPpmd7 *p, unsigned maxOrder);
 #define Ppmd7_WasAllocated(p) ((p)->Base != NULL)
@@ -86,10 +86,10 @@ void Ppmd7_Update2(CPpmd7 *p);
 void Ppmd7_UpdateBin(CPpmd7 *p);
 
 #define Ppmd7_GetBinSumm(p) \
-    &p->BinSumm[Ppmd7Context_OneState(p->MinContext)->Freq - 1][p->PrevSuccess + \
+    &p->BinSumm[(unsigned)Ppmd7Context_OneState(p->MinContext)->Freq - 1][p->PrevSuccess + \
     p->NS2BSIndx[Ppmd7_GetContext(p, p->MinContext->Suffix)->NumStats - 1] + \
     (p->HiBitsFlag = p->HB2Flag[p->FoundState->Symbol]) + \
-    2 * p->HB2Flag[Ppmd7Context_OneState(p->MinContext)->Symbol] + \
+    2 * p->HB2Flag[(unsigned)Ppmd7Context_OneState(p->MinContext)->Symbol] + \
     ((p->RunLength >> 26) & 0x20)]
 
 CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, UInt32_7z *scale);
@@ -113,7 +113,7 @@ typedef struct
 } CPpmd7z_RangeDec;
 
 void Ppmd7z_RangeDec_CreateVTable(CPpmd7z_RangeDec *p);
-Bool7z Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p);
+Bool_7z Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p);
 #define Ppmd7z_RangeDec_IsFinishedOK(p) ((p)->Code == 0)
 
 int Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc);

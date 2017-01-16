@@ -285,27 +285,26 @@ void SevenZipFile::createEntryList()
 	m_crcDuplicates.clear();
 	if ( !isOpen() )
 		return;
-	for (uint i = 0; i < db()->db.NumFiles; i++)
+	for (uint i = 0; i < db()->NumFiles; i++)
 	{
-		const CSzFileItem *fileItem = db()->db.Files + i;
-		if ( fileItem->IsDir )
+		if ( SzArEx_IsDir(db(), i) )
 			continue;
 		int fileItemLength = SzArEx_GetFileNameUtf16(db(), i, 0);
 		UInt16 *tempFileName = (UInt16 *)SzAlloc(0, fileItemLength * sizeof(UInt16));
 		SzArEx_GetFileNameUtf16(db(), i, tempFileName);
-		QString fileItemName = QString::fromUtf16(tempFileName, fileItemLength - 1);
+		QString fileItemName(QString::fromUtf16(tempFileName, fileItemLength - 1));
 		m_nameToIndexCache.insert(fileItemName, i);
 		SzFree(0, tempFileName);
 		QDateTime dateTime;
-		if ( fileItem->MTimeDefined )
-			dateTime = convertFileTime(&fileItem->MTime);
+		if ( SzBitWithVals_Check(&db()->MTime, i) )
+			dateTime = convertFileTime(&db()->MTime.Vals[i]);
 		QString crc("00000000");
-		if ( fileItem->CrcDefined ) {
-			crc = QString::number(fileItem->Crc, 16).rightJustified(8, '0');
+		if ( SzBitWithVals_Check(&db()->CRCs, i) ) {
+			crc = QString::number(db()->CRCs.Vals[i], 16).rightJustified(8, '0');
 			m_crcToIndexCache.insert(crc, i);
 			m_crcDuplicates.insert(crc, m_crcDuplicates.contains(crc));
 		}
-		entryList() << SevenZipMetaData(fileItemName, fileItem->Size, dateTime, crc);
+		entryList() << SevenZipMetaData(fileItemName, SzArEx_GetFileSize(db(), i), dateTime, crc);
 	}
 }
 
