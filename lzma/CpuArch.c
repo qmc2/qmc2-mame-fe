@@ -1,14 +1,18 @@
 /* CpuArch.c -- CPU specific code
-2010-10-26: Igor Pavlov : Public domain */
+2016-02-25: Igor Pavlov : Public domain */
+
+#include "Precomp.h"
 
 #include "CpuArch.h"
 
 #ifdef MY_CPU_X86_OR_AMD64
 
-#if (defined(_MSC_VER) && !defined(MY_CPU_AMD64)) || defined(__GNUC__) && !defined(__APPLE__)
+#if (defined(_MSC_VER) && !defined(MY_CPU_AMD64)) || defined(__GNUC__)
 #define USE_ASM
-#elif defined(__APPLE__)
-static void __cpuid(int *cpuinfo, UInt32_7z function) {}
+#endif
+
+#if !defined(USE_ASM) && _MSC_VER >= 1500
+#include <intrin.h>
 #endif
 
 #if defined(USE_ASM) && !defined(MY_CPU_AMD64)
@@ -41,7 +45,8 @@ static UInt32_7z CheckFlag(UInt32_7z flag)
     "push %%EDX\n\t"
     "popf\n\t"
     "andl %%EAX, %0\n\t":
-    "=c" (flag) : "c" (flag));
+    "=c" (flag) : "c" (flag) :
+    "%eax", "%edx");
   #endif
   return flag;
 }
@@ -50,7 +55,7 @@ static UInt32_7z CheckFlag(UInt32_7z flag)
 #define CHECK_CPUID_IS_SUPPORTED
 #endif
 
-static void MyCPUID(UInt32_7z function, UInt32_7z *a, UInt32_7z *b, UInt32_7z *c, UInt32_7z *d)
+void MyCPUID(UInt32_7z function, UInt32_7z *a, UInt32_7z *b, UInt32_7z *c, UInt32_7z *d)
 {
   #ifdef USE_ASM
 
@@ -75,7 +80,13 @@ static void MyCPUID(UInt32_7z function, UInt32_7z *a, UInt32_7z *b, UInt32_7z *c
   #else
 
   __asm__ __volatile__ (
-  #if defined(MY_CPU_X86) && defined(__PIC__)
+  #if defined(MY_CPU_AMD64) && defined(__PIC__)
+    "mov %%rbx, %%rdi;"
+    "cpuid;"
+    "xchg %%rbx, %%rdi;"
+    : "=a" (*a) ,
+      "=D" (*b) ,
+  #elif defined(MY_CPU_X86) && defined(__PIC__)
     "mov %%ebx, %%edi;"
     "cpuid;"
     "xchgl %%ebx, %%edi;"
@@ -104,7 +115,7 @@ static void MyCPUID(UInt32_7z function, UInt32_7z *a, UInt32_7z *b, UInt32_7z *c
   #endif
 }
 
-Bool7z x86cpuid_CheckAndRead(Cx86cpuid *p)
+Bool_7z x86cpuid_CheckAndRead(Cx86cpuid *p)
 {
   CHECK_CPUID_IS_SUPPORTED
   MyCPUID(0, &p->maxFunc, &p->vendor[0], &p->vendor[2], &p->vendor[1]);
@@ -112,7 +123,7 @@ Bool7z x86cpuid_CheckAndRead(Cx86cpuid *p)
   return True;
 }
 
-static UInt32_7z kVendors[][3] =
+static const UInt32_7z kVendors[][3] =
 {
   { 0x756E6547, 0x49656E69, 0x6C65746E},
   { 0x68747541, 0x69746E65, 0x444D4163},
@@ -133,19 +144,29 @@ int x86cpuid_GetFirm(const Cx86cpuid *p)
   return -1;
 }
 
-Bool7z CPU_Is_InOrder()
+Bool_7z CPU_Is_InOrder()
 {
   Cx86cpuid p;
   int firm;
   UInt32_7z family, model;
   if (!x86cpuid_CheckAndRead(&p))
     return True;
-  family = x86cpuid_GetFamily(&p);
-  model = x86cpuid_GetModel(&p);
+
+  family = x86cpuid_GetFamily(p.ver);
+  model = x86cpuid_GetModel(p.ver);
+  
   firm = x86cpuid_GetFirm(&p);
+
   switch (firm)
   {
-    case CPU_FIRM_INTEL: return (family < 6 || (family == 6 && model == 0x100C));
+    case CPU_FIRM_INTEL: return (family < 6 || (family == 6 && (
+        /* In-Order Atom CPU */
+           model == 0x1C  /* 45 nm, N4xx, D4xx, N5xx, D5xx, 230, 330 */
+        || model == 0x26  /* 45 nm, Z6xx */
+        || model == 0x27  /* 32 nm, Z2460 */
+        || model == 0x35  /* 32 nm, Z2760 */
+        || model == 0x36  /* 32 nm, N2xxx, D2xxx */
+        )));
     case CPU_FIRM_AMD: return (family < 5 || (family == 5 && (model < 6 || model == 0xA)));
     case CPU_FIRM_VIA: return (family < 6 || (family == 6 && model < 0xF));
   }
@@ -153,7 +174,8 @@ Bool7z CPU_Is_InOrder()
 }
 
 #if !defined(MY_CPU_AMD64) && defined(_WIN32)
-static Bool7z CPU_Sys_Is_SSE_Supported()
+#include <windows.h>
+static Bool_7z CPU_Sys_Is_SSE_Supported()
 {
   OSVERSIONINFO vi;
   vi.dwOSVersionInfoSize = sizeof(vi);
@@ -166,7 +188,7 @@ static Bool7z CPU_Sys_Is_SSE_Supported()
 #define CHECK_SYS_SSE_SUPPORT
 #endif
 
-Bool7z CPU_Is_Aes_Supported()
+Bool_7z CPU_Is_Aes_Supported()
 {
   Cx86cpuid p;
   CHECK_SYS_SSE_SUPPORT

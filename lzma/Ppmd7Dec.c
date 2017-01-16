@@ -2,11 +2,13 @@
 2010-03-12 : Igor Pavlov : Public domain
 This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 
+#include "Precomp.h"
+
 #include "Ppmd7.h"
 
 #define kTopValue (1 << 24)
 
-Bool7z Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
+Bool_7z Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
 {
   unsigned i;
   p->Code = 0;

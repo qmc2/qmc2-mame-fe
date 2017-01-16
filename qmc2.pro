@@ -166,7 +166,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			lzma/7zCrcOpt.c \
 			lzma/7zDec.c \
 			lzma/7zFile.c \
-			lzma/7zIn.c \
+			lzma/7zArcIn.c \
 			lzma/7zStream.c \
 			lzma/Alloc.c \
 			lzma/Bcj2.c \

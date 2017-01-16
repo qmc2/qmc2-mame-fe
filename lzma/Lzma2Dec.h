@@ -1,14 +1,12 @@
 /* Lzma2Dec.h -- LZMA2 Decoder
-2009-05-03 : Igor Pavlov : Public domain */
+2015-05-13 : Igor Pavlov : Public domain */
 
 #ifndef __LZMA2_DEC_H
 #define __LZMA2_DEC_H
 
 #include "LzmaDec.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_BEGIN
 
 /* ---------- State Interface ---------- */
 
@@ -17,11 +15,11 @@ typedef struct
   CLzmaDec decoder;
   UInt32_7z packSize;
   UInt32_7z unpackSize;
-  int state;
+  unsigned state;
   Byte control;
-  Bool7z needInitDic;
-  Bool7z needInitState;
-  Bool7z needInitProp;
+  Bool_7z needInitDic;
+  Bool_7z needInitState;
+  Bool_7z needInitProp;
 } CLzma2Dec;
 
 #define Lzma2Dec_Construct(p) LzmaDec_Construct(&(p)->decoder)
@@ -77,8 +75,6 @@ Returns:
 SRes Lzma2Decode(Byte *dest, SizeT *destLen, const Byte *src, SizeT *srcLen,
     Byte prop, ELzmaFinishMode finishMode, ELzmaStatus *status, ISzAlloc *alloc);
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 #endif
