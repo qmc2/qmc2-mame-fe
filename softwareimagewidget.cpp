@@ -164,25 +164,23 @@ bool SoftwareImageWidget::parentFallback()
 void SoftwareImageWidget::paintEvent(QPaintEvent *e)
 {
 	QPainter p(this);
-
 	if ( !qmc2SoftwareList->currentItem ) {
 		drawCenteredImage(0, &p); // clear snapshot widget
 		myCacheKey.clear();
 		return;
 	}
-
-	QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
-	QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+	QString listName(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST));
+	QString entryName(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME));
 	myCacheKey = cachePrefix() + "_" + listName + "_" + entryName;
-
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
-	if ( !cpm )
+	if ( !cpm ) {
 		loadImage(listName, entryName);
-	else {
+		cpm = qmc2ImagePixmapCache.object(myCacheKey);
+	}
+	if ( cpm ) {
 		currentPixmap = *cpm;
 		currentPixmap.imagePath = cpm->imagePath;
 	}
-
 	if ( scaledImage() || currentPixmap.isGhost )
 		drawScaledImage(&currentPixmap, &p);
 	else
