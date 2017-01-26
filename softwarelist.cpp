@@ -1797,25 +1797,30 @@ void SoftwareList::loadReadyReadStandardOutput()
 	static QString currentSetName;
 	static QString setXmlBuffer;
 	static bool dtdReady = false;
+	static bool processEventsActive = false;
 
+	// this avoids a possible crash caused by repeatedly calling qApp->processEvents() below (while qApp->processEvents() possibly hasn't returned yet which would cause the call stack to grow... and finally blow up)
+	if ( processEventsActive )
+		return;
+	processEventsActive = true;
 	if ( qmc2MainWindow->progressBarMachineList->minimum() != 0 || qmc2MainWindow->progressBarMachineList->maximum() != 0 ) {
 		qmc2MainWindow->progressBarMachineList->setRange(0, 0);
 		qmc2MainWindow->progressBarMachineList->reset();
 	}
-
 	// this makes the GUI much more responsive, but is HAS to be called before proc->readAllStandardOutput()!
 	if ( !qmc2VerifyActive )
 		qApp->processEvents();
+	processEventsActive = false;
 
 #if defined(QMC2_OS_WIN)
-	QString readBuffer = swlLastLine + QString::fromUtf8(proc->readAllStandardOutput());
+	QString readBuffer(swlLastLine + QString::fromUtf8(proc->readAllStandardOutput()));
 #else
-	QString readBuffer = swlLastLine + proc->readAllStandardOutput();
+	QString readBuffer(swlLastLine + proc->readAllStandardOutput());
 #endif
 
-	QStringList lines = readBuffer.split("\n");
+	QStringList lines(readBuffer.split('\n'));
 
-	if ( readBuffer.endsWith("\n") )
+	if ( readBuffer.endsWith('\n') )
 		swlLastLine.clear();
 	else {
 		swlLastLine = lines.last();
@@ -1887,7 +1892,7 @@ void SoftwareList::loadReadyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
 
-	QString data = proc->readAllStandardError();
+	QString data(proc->readAllStandardError());
 	data = data.trimmed();
 
 #ifdef QMC2_DEBUG
