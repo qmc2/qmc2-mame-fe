@@ -229,11 +229,12 @@ void ImageWidget::paintEvent(QPaintEvent *e)
 	if ( !cpm ) {
 		qmc2CurrentItem = topLevelItem;
 		loadImage(machineName, machineName);
-	} else {
+		cpm = qmc2ImagePixmapCache.object(cacheKey);
+	}
+	if ( cpm ) {
 		currentPixmap = *cpm;
 		currentPixmap.imagePath = cpm->imagePath;
 	}
-
 	if ( scaledImage() || currentPixmap.isGhost )
 		drawScaledImage(&currentPixmap, &p);
 	else
