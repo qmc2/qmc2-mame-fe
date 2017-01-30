@@ -55,7 +55,7 @@ ImageWidget::~ImageWidget()
 	closeSource();
 }
 
-ImageWidget *ImageWidget::customArtworkWidget(QString name)
+ImageWidget *ImageWidget::customArtworkWidget(const QString &name)
 {
 	foreach (ImageWidget *imw, artworkHash)
 		if ( imw->customArtwork() )
