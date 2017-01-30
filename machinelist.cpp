@@ -1823,10 +1823,13 @@ void MachineList::parse()
 		else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection").toBool() ) {
 			QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedMachine", QString()).toString());
 			if ( !selectedMachine.isEmpty() ) {
-				QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
-				if ( mlItem ) {
+				QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(selectedMachine);
+				if ( machineItem ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(mlItem);
+					qmc2MainWindow->blockSignals(true);
+					qmc2CurrentItem = machineItem;
+					qmc2MainWindow->treeWidgetMachineList->setCurrentItem(machineItem);
+					qmc2MainWindow->blockSignals(false);
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 				} else
 					QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
@@ -1836,10 +1839,13 @@ void MachineList::parse()
 	} else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection").toBool() ) {
 		QString selectedMachine(qmc2Config->value(QMC2_EMULATOR_PREFIX + "SelectedMachine", QString()).toString());
 		if ( !selectedMachine.isEmpty() ) {
-			QTreeWidgetItem *mlItem = qmc2MachineListItemHash.value(selectedMachine);
-			if ( mlItem ) {
+			QTreeWidgetItem *machineItem = qmc2MachineListItemHash.value(selectedMachine);
+			if ( machineItem ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
-				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(mlItem);
+				qmc2MainWindow->blockSignals(true);
+				qmc2CurrentItem = machineItem;
+				qmc2MainWindow->treeWidgetMachineList->setCurrentItem(machineItem);
+				qmc2MainWindow->blockSignals(false);
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 			} else
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
@@ -2038,7 +2044,7 @@ void MachineList::filter(bool initial)
 			}
 			if ( i % filterResponse == 0 ) {
 				mainProgressBar->setValue(i);
-				qApp->processEvents();
+				//qApp->processEvents();
 			}
 		}
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
@@ -3296,6 +3302,7 @@ void MachineList::createCategoryView()
 			QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
 		return;
 	}
+	QTreeWidgetItem *currentlySelectedItem = qmc2CurrentItem;
 	creatingCatView = true;
 	qmc2MainWindow->treeWidgetCategoryView->setColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY, true);
 	if ( !qmc2LoadingInterrupted ) {
@@ -3339,13 +3346,13 @@ void MachineList::createCategoryView()
 					category = trSystemDevice;
 					break;
 			}
-			QTreeWidgetItem *categoryItem = itemHash[category];
+			QTreeWidgetItem *categoryItem = itemHash.value(category);
 			if ( !categoryItem ) {
 				categoryItem = new QTreeWidgetItem();
 				categoryItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, category);
 				itemList.append(categoryItem);
-				itemHash[category] = categoryItem;
-				childCountHash[categoryItem] = 0;
+				itemHash.insert(category, categoryItem);
+				childCountHash.insert(categoryItem, 0);
 			}
 			QTreeWidgetItem *machineItem = new MachineListItem(categoryItem);
 			childCountHash[categoryItem]++;
@@ -3440,14 +3447,14 @@ void MachineList::createCategoryView()
 		}
 		foreach (QTreeWidgetItem *item, itemList) {
 			if ( childCountHash.contains(item) ) {
-				if ( childCountHash[item] <= 0 )
+				if ( childCountHash.value(item) <= 0 )
 					hideList.append(item);
 			} else
 				hideList.append(item);
 		}
 		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		for (int i = 0; i < hideList.count(); i++)
-			hideList[i]->setHidden(true);
+			hideList.at(i)->setHidden(true);
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		mainProgressBar->reset();
 		mainProgressBar->setFormat(oldFormat);
@@ -3457,6 +3464,8 @@ void MachineList::createCategoryView()
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingCategoryView->setVisible(false);
 	qmc2MainWindow->treeWidgetCategoryView->setVisible(true);
+	if ( currentlySelectedItem )
+		qmc2CurrentItem = currentlySelectedItem;
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	qmc2MainWindow->treeWidgetCategoryView->setFocus();
 	creatingCatView = false;
@@ -3556,6 +3565,7 @@ void MachineList::createVersionView()
 			QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
 		return;
 	}
+	QTreeWidgetItem *currentlySelectedItem = qmc2CurrentItem;
 	creatingVerView = true;
 	qmc2MainWindow->treeWidgetVersionView->setColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION, true);
 	if ( !qmc2LoadingInterrupted ) {
@@ -3585,12 +3595,12 @@ void MachineList::createVersionView()
 			QTreeWidgetItem *baseItem = qmc2MainWindow->treeWidgetMachineList->topLevelItem(i);
 			QString machineName = baseItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 			QString version = baseItem->text(QMC2_MACHINELIST_COLUMN_VERSION);
-			QTreeWidgetItem *versionItem = itemHash[version];
+			QTreeWidgetItem *versionItem = itemHash.value(version);
 			if ( !versionItem ) {
 				versionItem = new QTreeWidgetItem();
 				versionItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, version);
 				itemList.append(versionItem);
-				itemHash[version] = versionItem;
+				itemHash.insert(version, versionItem);
 			}
 			QTreeWidgetItem *machineItem = new MachineListItem(versionItem);
 			int machineType = int(isBios(machineName)) + int(isDevice(machineName)) * 2; // 0: normal, 1: BIOS, 2: device
@@ -3686,14 +3696,14 @@ void MachineList::createVersionView()
 		}
 		foreach (QTreeWidgetItem *item, itemList) {
 			if ( childCountHash.contains(item) ) {
-				if ( childCountHash[item] <= 0 )
+				if ( childCountHash.value(item) <= 0 )
 					hideList.append(item);
 			} else
 				hideList.append(item);
 		}
 		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		for (int i = 0; i < hideList.count(); i++)
-			hideList[i]->setHidden(true);
+			hideList.at(i)->setHidden(true);
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		mainProgressBar->reset();
 		mainProgressBar->setFormat(oldFormat);
@@ -3703,6 +3713,8 @@ void MachineList::createVersionView()
 	qmc2MainWindow->loadAnimMovie->setPaused(true);
 	qmc2MainWindow->labelCreatingVersionView->setVisible(false);
 	qmc2MainWindow->treeWidgetVersionView->setVisible(true);
+	if ( currentlySelectedItem )
+		qmc2CurrentItem = currentlySelectedItem;
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 	qmc2MainWindow->treeWidgetVersionView->setFocus();
 	creatingVerView = false;
