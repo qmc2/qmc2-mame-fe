@@ -6200,14 +6200,14 @@ void MainWindow::init()
 	machineSearchHistory.removeDuplicates();
 	while ( machineSearchHistory.count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 		machineSearchHistory.removeLast();
-	//comboBoxToolbarSearch->blockSignals(true);
+	comboBoxToolbarSearch->blockSignals(true);
 	comboBoxToolbarSearch->addItems(machineSearchHistory);
 	comboBoxToolbarSearch->lineEdit()->setText(QString());
-	//comboBoxToolbarSearch->blockSignals(false);
-	//comboBoxSearch->blockSignals(true);
+	comboBoxToolbarSearch->blockSignals(false);
+	comboBoxSearch->blockSignals(true);
 	comboBoxSearch->addItems(machineSearchHistory);
 	comboBoxSearch->lineEdit()->setText(QString());
-	//comboBoxSearch->blockSignals(false);
+	comboBoxSearch->blockSignals(false);
 
 	// ... and process the queued events
 	setUpdatesEnabled(true);
