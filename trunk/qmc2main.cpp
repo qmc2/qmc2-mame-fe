@@ -3600,9 +3600,10 @@ void MainWindow::scrollToCurrentItem()
 	if ( ci ) {
 		if ( ci->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			return;
+		QString machineName(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
 		switch ( stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWHIERARCHY_INDEX:
-				ci = qmc2HierarchyItemHash.value(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
+				ci = qmc2HierarchyItemHash.value(machineName);
 				if ( ci ) {
 					treeWidgetHierarchy->clearSelection();
 					treeWidgetHierarchy->setCurrentItem(ci);
@@ -3610,7 +3611,7 @@ void MainWindow::scrollToCurrentItem()
 				}
 				break;
 			case QMC2_VIEWCATEGORY_INDEX:
-				ci = qmc2CategoryItemHash.value(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
+				ci = qmc2CategoryItemHash.value(machineName);
 				if ( ci ) {
 					treeWidgetCategoryView->clearSelection();
 					treeWidgetCategoryView->setCurrentItem(ci);
@@ -3618,7 +3619,7 @@ void MainWindow::scrollToCurrentItem()
 				}
 				break;
 			case QMC2_VIEWVERSION_INDEX:
-				ci = qmc2VersionItemHash.value(ci->text(QMC2_MACHINELIST_COLUMN_NAME));
+				ci = qmc2VersionItemHash.value(machineName);
 				if ( ci ) {
 					treeWidgetVersionView->clearSelection();
 					treeWidgetVersionView->setCurrentItem(ci);
