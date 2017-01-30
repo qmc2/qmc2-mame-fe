@@ -896,4 +896,7 @@
 #define QMC2_RANKCACHE_FILLUP_RESPONSE		500
 #define QMC2_COMMENTCACHE_FILLUP_RESPONSE	500
 
+// number of machine search strings that get (re)stored - i.e. the last 10 items
+#define QMC2_MACHINE_SEARCH_HISTORY_LENGTH	10
+
 #endif
