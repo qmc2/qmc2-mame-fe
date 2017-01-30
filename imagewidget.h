@@ -106,7 +106,7 @@ class ImageWidget : public QWidget
 		bool parentFallback();
 		static void updateArtwork();
 		static void reloadArtworkFormats();
-		static ImageWidget *customArtworkWidget(QString);
+		static ImageWidget *customArtworkWidget(const QString &);
 
 		// these pure virtual functions MUST be reimplemented in the concrete image classes
 		virtual QString cachePrefix() = 0;

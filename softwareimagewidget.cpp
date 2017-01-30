@@ -36,7 +36,7 @@ SoftwareImageWidget::~SoftwareImageWidget()
 	closeSource();
 }
 
-SoftwareImageWidget *SoftwareImageWidget::customArtworkWidget(QString name)
+SoftwareImageWidget *SoftwareImageWidget::customArtworkWidget(const QString &name)
 {
 	foreach (SoftwareImageWidget *imw, artworkHash)
 		if ( imw->customArtwork() )
