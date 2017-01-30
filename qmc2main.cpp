@@ -369,6 +369,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	comboBoxToolbarSearch = new QComboBox(this);
 	comboBoxToolbarSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxToolbarSearch));
 	comboBoxToolbarSearch->setEditable(true);
+	comboBoxToolbarSearch->setInsertPolicy(QComboBox::InsertAtTop);
 	comboBoxToolbarSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
 	comboBoxToolbarSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
 	comboBoxToolbarSearch->setStatusTip(tr("Search for machines"));
@@ -3105,13 +3106,20 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	searchActive = false;
 }
 
-void MainWindow::on_comboBoxSearch_activated(const QString &/*pattern*/)
+void MainWindow::on_comboBoxSearch_activated(const QString &text)
 {
 	if ( tabWidgetMachineList->currentWidget() != tabSearch ) {
 		tabWidgetMachineList->blockSignals(true);
 		tabWidgetMachineList->setCurrentWidget(tabSearch);
 		tabWidgetMachineList->blockSignals(false);
 	}
+	if ( comboBoxToolbarSearch->findText(text) < 0 ) {
+		comboBoxToolbarSearch->insertItem(0, text);
+		if ( comboBoxToolbarSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
+			comboBoxToolbarSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
+	}
+	if ( comboBoxSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
+		comboBoxSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
 	searchTimer.start(QMC2_SEARCH_DELAY/10);
 	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
 }
@@ -5644,6 +5652,14 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		}
 	}
 
+	QStringList searchStrings;
+	for (int index = 0; index < comboBoxSearch->count(); index++)
+		searchStrings << comboBoxSearch->itemText(index);
+	if ( searchStrings.isEmpty() )
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "MachineSearchHistory");
+	else
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineSearchHistory", searchStrings);
+
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( !qmc2YouTubeVideoInfoHash.isEmpty() && qmc2YouTubeVideoInfoHashChanged ) {
 		log(QMC2_LOG_FRONTEND, tr("saving YouTube video info map"));
@@ -6179,6 +6195,21 @@ void MainWindow::init()
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 		loadAnimMovie->start();
 
+	// restore machine search history
+	QStringList machineSearchHistory(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineSearchHistory", QStringList()).toStringList());
+	machineSearchHistory.removeDuplicates();
+	while ( machineSearchHistory.count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
+		machineSearchHistory.removeLast();
+	//comboBoxToolbarSearch->blockSignals(true);
+	comboBoxToolbarSearch->addItems(machineSearchHistory);
+	comboBoxToolbarSearch->lineEdit()->setText(QString());
+	//comboBoxToolbarSearch->blockSignals(false);
+	//comboBoxSearch->blockSignals(true);
+	comboBoxSearch->addItems(machineSearchHistory);
+	comboBoxSearch->lineEdit()->setText(QString());
+	//comboBoxSearch->blockSignals(false);
+
+	// ... and process the queued events
 	setUpdatesEnabled(true);
 	setVisible(true);
 	qApp->processEvents();
@@ -9473,6 +9504,13 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 {
 	comboBoxSearch->lineEdit()->setText(text);
+	if ( comboBoxSearch->findText(text) < 0 ) {
+		comboBoxSearch->insertItem(0, text);
+		if ( comboBoxSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
+			comboBoxSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
+	}
+	if ( comboBoxToolbarSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
+		comboBoxToolbarSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
 	if ( tabWidgetMachineList->currentWidget() != tabSearch ) {
 		tabWidgetMachineList->blockSignals(true);
 		tabWidgetMachineList->setCurrentWidget(tabSearch);
