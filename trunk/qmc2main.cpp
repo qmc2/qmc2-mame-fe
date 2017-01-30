@@ -3113,10 +3113,24 @@ void MainWindow::on_comboBoxSearch_activated(const QString &text)
 		tabWidgetMachineList->setCurrentWidget(tabSearch);
 		tabWidgetMachineList->blockSignals(false);
 	}
-	if ( comboBoxToolbarSearch->findText(text) < 0 ) {
+	int index = comboBoxToolbarSearch->findText(text);
+	if ( index < 0 ) {
 		comboBoxToolbarSearch->insertItem(0, text);
+		comboBoxToolbarSearch->setCurrentIndex(0);
 		if ( comboBoxToolbarSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 			comboBoxToolbarSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
+	} else {
+		comboBoxToolbarSearch->blockSignals(true);
+		comboBoxToolbarSearch->removeItem(index);
+		comboBoxToolbarSearch->insertItem(0, text);
+		comboBoxToolbarSearch->setCurrentIndex(0);
+		comboBoxToolbarSearch->blockSignals(false);
+	}
+	index = comboBoxSearch->findText(text);
+	if ( index >= 0 ) {
+		comboBoxSearch->removeItem(index);
+		comboBoxSearch->insertItem(0, text);
+		comboBoxSearch->setCurrentIndex(0);
 	}
 	if ( comboBoxSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 		comboBoxSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
@@ -9504,10 +9518,24 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 {
 	comboBoxSearch->lineEdit()->setText(text);
-	if ( comboBoxSearch->findText(text) < 0 ) {
+	int index = comboBoxSearch->findText(text);
+	if ( index < 0 ) {
 		comboBoxSearch->insertItem(0, text);
+		comboBoxSearch->setCurrentIndex(0);
 		if ( comboBoxSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 			comboBoxSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
+	} else {
+		comboBoxSearch->blockSignals(true);
+		comboBoxSearch->removeItem(index);
+		comboBoxSearch->insertItem(0, text);
+		comboBoxSearch->setCurrentIndex(0);
+		comboBoxSearch->blockSignals(false);
+	}
+	index = comboBoxToolbarSearch->findText(text);
+	if ( index >= 0 ) {
+		comboBoxToolbarSearch->removeItem(index);
+		comboBoxToolbarSearch->insertItem(0, text);
+		comboBoxToolbarSearch->setCurrentIndex(0);
 	}
 	if ( comboBoxToolbarSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 		comboBoxToolbarSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
