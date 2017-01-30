@@ -2956,10 +2956,7 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 	}
 	if ( qmc2IconsPreloaded ) {
 		// an icon wasn't found
-		if ( item ) {
-			qmc2IconHash.insert(machineName, QIcon());
-			item->setIcon(QMC2_MACHINELIST_COLUMN_ICON, QIcon());
-		} else
+		if ( !item )
 			qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(true);
 		return false;
 	}
@@ -3197,10 +3194,8 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 			QPixmap iconPixmap;
 			if ( iconPixmap.loadFromData(imageData, "ICO") )
 				qmc2IconHash.insert(id, QIcon(iconPixmap));
-			if ( ++iconCount % QMC2_ICONCACHE_DB_RESPONSIVENESS == 0 ) {
+			if ( ++iconCount % QMC2_ICONCACHE_DB_RESPONSIVENESS == 0 )
 				mainProgressBar->setValue(iconCount);
-				qApp->processEvents();
-			}
 		}
 		mainProgressBar->setValue(mainProgressBar->maximum());
 		elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
