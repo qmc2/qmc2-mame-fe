@@ -9564,8 +9564,7 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
-	if ( tabWidgetMachineList->indexOf(tabSearch) == tabWidgetMachineList->currentIndex() )
-		comboBoxSearch->lineEdit()->setText(text);
+	comboBoxSearch->lineEdit()->setText(text);
 }
 
 void MainWindow::treeWidgetMachineList_verticalScrollChanged(int)
