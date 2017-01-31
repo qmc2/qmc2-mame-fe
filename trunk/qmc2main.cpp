@@ -6391,12 +6391,19 @@ void MainWindow::viewByCategory()
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
 	QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
 	if ( item ) {
-		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData ) {
+			treeWidgetCategoryView->setVisible(false);
+			((AspectRatioLabel *)labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+			labelCreatingCategoryView->setVisible(true);
 			QTimer::singleShot(0, qmc2MachineList, SLOT(createCategoryView()));
-		else
+		} else
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
-	} else
+	} else {
+		treeWidgetCategoryView->setVisible(false);
+		((AspectRatioLabel *)labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+		labelCreatingCategoryView->setVisible(true);
 		QTimer::singleShot(0, qmc2MachineList, SLOT(createCategoryView()));
+	}
 	treeWidgetCategoryView->setFocus();
 	stackedWidgetView->update();
 	qApp->processEvents();
@@ -6425,12 +6432,19 @@ void MainWindow::viewByVersion()
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
 	QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
 	if ( item ) {
-		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
+		if ( item->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData ) {
+			treeWidgetVersionView->setVisible(false);
+			((AspectRatioLabel *)labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+			labelCreatingVersionView->setVisible(true);
 			QTimer::singleShot(0, qmc2MachineList, SLOT(createVersionView()));
-		else
+		} else
 			QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
-	} else
+	} else {
+		treeWidgetVersionView->setVisible(false);
+		((AspectRatioLabel *)labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+		labelCreatingVersionView->setVisible(true);
 		QTimer::singleShot(0, qmc2MachineList, SLOT(createVersionView()));
+	}
 	treeWidgetVersionView->setFocus();
 	stackedWidgetView->update();
 	qApp->processEvents();
