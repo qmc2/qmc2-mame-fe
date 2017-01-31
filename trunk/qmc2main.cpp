@@ -5666,14 +5666,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		}
 	}
 
-	QStringList searchStrings;
-	for (int index = 0; index < comboBoxSearch->count(); index++)
-		searchStrings << comboBoxSearch->itemText(index);
-	if ( searchStrings.isEmpty() )
-		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "MachineSearchHistory");
-	else
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineSearchHistory", searchStrings);
-
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( !qmc2YouTubeVideoInfoHash.isEmpty() && qmc2YouTubeVideoInfoHashChanged ) {
 		log(QMC2_LOG_FRONTEND, tr("saving YouTube video info map"));
@@ -5745,6 +5737,14 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 		if ( listWidgetPlayed->count() > 0 )
 			qmc2MachineList->savePlayHistory();
+
+		QStringList searchStrings;
+		for (int index = 0; index < comboBoxSearch->count(); index++)
+			searchStrings << comboBoxSearch->itemText(index);
+		if ( searchStrings.isEmpty() )
+			qmc2Config->remove(QMC2_FRONTEND_PREFIX + "MachineSearchHistory");
+		else
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineSearchHistory", searchStrings);
 
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", comboBoxViewSelect->currentIndex());
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection").toBool() ) {
