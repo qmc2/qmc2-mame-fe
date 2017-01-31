@@ -3134,8 +3134,8 @@ void MainWindow::on_comboBoxSearch_activated(const QString &text)
 	}
 	if ( comboBoxSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 		comboBoxSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
-	searchTimer.start(QMC2_SEARCH_DELAY/10);
-	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
+	comboBoxSearch_editTextChanged_delayed();
+	listWidgetSearch->setFocus();
 }
 
 void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
@@ -9559,7 +9559,7 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 		tabWidgetMachineList->blockSignals(false);
 	}
 	comboBoxSearch_editTextChanged_delayed();
-	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
+	listWidgetSearch->setFocus();
 }
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
