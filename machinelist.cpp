@@ -3452,8 +3452,7 @@ void MachineList::createCategoryView()
 		qmc2MainWindow->treeWidgetCategoryView->insertTopLevelItems(0, itemList);
 		for (int i = 0; i < hideList.count(); i++)
 			hideList.at(i)->setHidden(true);
-		if ( qmc2MainWindow->sortCriteriaLogicalIndex() != QMC2_MACHINELIST_COLUMN_MACHINE )
-			qmc2MainWindow->treeWidgetCategoryView->sortItems(QMC2_MACHINELIST_COLUMN_MACHINE, Qt::AscendingOrder);
+		qmc2MainWindow->treeWidgetCategoryView->sortItems(QMC2_MACHINELIST_COLUMN_MACHINE, Qt::AscendingOrder); // we want the top-level items to be sorted in any case
 		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		mainProgressBar->reset();
 		mainProgressBar->setFormat(oldFormat);
@@ -3703,8 +3702,7 @@ void MachineList::createVersionView()
 		qmc2MainWindow->treeWidgetVersionView->insertTopLevelItems(0, itemList);
 		for (int i = 0; i < hideList.count(); i++)
 			hideList.at(i)->setHidden(true);
-		if ( qmc2MainWindow->sortCriteriaLogicalIndex() != QMC2_MACHINELIST_COLUMN_MACHINE )
-			qmc2MainWindow->treeWidgetVersionView->sortItems(QMC2_MACHINELIST_COLUMN_MACHINE, Qt::AscendingOrder);
+		qmc2MainWindow->treeWidgetVersionView->sortItems(QMC2_MACHINELIST_COLUMN_MACHINE, Qt::AscendingOrder); // we want the top-level items to be sorted in any case
 		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
 		mainProgressBar->reset();
 		mainProgressBar->setFormat(oldFormat);
