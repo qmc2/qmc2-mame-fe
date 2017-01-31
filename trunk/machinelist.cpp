@@ -3289,9 +3289,11 @@ void MachineList::createCategoryView()
 	if ( creatingCatView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEWCATEGORY_INDEX )
 		return;
 	qmc2CategoryItemHash.clear();
-	qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
+	if ( qmc2MainWindow->treeWidgetCategoryView->isVisible() ) {
+		qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
+	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 		qmc2MainWindow->loadAnimMovie->start();
 	if ( qmc2ReloadActive ) {
@@ -3553,9 +3555,11 @@ void MachineList::createVersionView()
 	if ( creatingVerView || qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEWVERSION_INDEX )
 		return;
 	qmc2VersionItemHash.clear();
-	qmc2MainWindow->treeWidgetVersionView->setVisible(false);
-	((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
-	qmc2MainWindow->labelCreatingVersionView->setVisible(true);
+	if ( qmc2MainWindow->treeWidgetVersionView->isVisible() ) {
+		qmc2MainWindow->treeWidgetVersionView->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelCreatingVersionView->setVisible(true);
+	}
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 		qmc2MainWindow->loadAnimMovie->start();
 	if ( qmc2ReloadActive ) {
