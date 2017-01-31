@@ -3440,7 +3440,7 @@ void MachineList::createCategoryView()
 						break;
 				}
 			}
-			qmc2CategoryItemHash[machineName] = machineItem;
+			qmc2CategoryItemHash.insert(machineName, machineItem);
 		}
 		foreach (QTreeWidgetItem *item, itemList) {
 			if ( childCountHash.contains(item) ) {
@@ -3689,7 +3689,7 @@ void MachineList::createVersionView()
 						break;
 				}
 			}
-			qmc2VersionItemHash[machineName] = machineItem;
+			qmc2VersionItemHash.insert(machineName, machineItem);
 		}
 		foreach (QTreeWidgetItem *item, itemList) {
 			if ( childCountHash.contains(item) ) {
