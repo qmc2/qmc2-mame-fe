@@ -3638,6 +3638,16 @@ void MainWindow::scrollToCurrentItem()
 					treeWidgetCategoryView->clearSelection();
 					treeWidgetCategoryView->setCurrentItem(ci);
 					treeWidgetCategoryView->scrollToItem(ci, qmc2CursorPositioningMode);
+				} else if ( qmc2CurrentItem ) {
+					// the category view hasn't been loaded (completely) yet, so select the item in the hierarchical view instead to avoid displaying the wrong machine detail temporarily
+					// (this will only happen when the selected machine is hidden in the main view and the category view is active inititally)
+					ci = qmc2HierarchyItemHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+					if ( ci ) {
+						treeWidgetHierarchy->clearSelection();
+						treeWidgetHierarchy->setCurrentItem(ci);
+						treeWidgetHierarchy->scrollToItem(ci, qmc2CursorPositioningMode);
+						treeWidgetHierarchy->horizontalScrollBar()->setValue(0); // hidden views act strangley...
+					}
 				}
 				break;
 			case QMC2_VIEWVERSION_INDEX:
@@ -3646,6 +3656,16 @@ void MainWindow::scrollToCurrentItem()
 					treeWidgetVersionView->clearSelection();
 					treeWidgetVersionView->setCurrentItem(ci);
 					treeWidgetVersionView->scrollToItem(ci, qmc2CursorPositioningMode);
+				} else if ( qmc2CurrentItem ) {
+					// the version view hasn't been loaded (completely) yet, so select the item in the hierarchical view instead to avoid displaying the wrong machine detail temporarily
+					// (this will only happen when the selected machine is hidden in the main view and the version view is active inititally)
+					ci = qmc2HierarchyItemHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+					if ( ci ) {
+						treeWidgetHierarchy->clearSelection();
+						treeWidgetHierarchy->setCurrentItem(ci);
+						treeWidgetHierarchy->scrollToItem(ci, qmc2CursorPositioningMode);
+						treeWidgetHierarchy->horizontalScrollBar()->setValue(0); // hidden views act strangley...
+					}
 				}
 				break;
 			case QMC2_VIEWMACHINELIST_INDEX:
