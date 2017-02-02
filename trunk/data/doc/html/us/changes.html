@@ -17,6 +17,7 @@ inf: informational only
 <p><b>v0.183, 02-FEB-2017:</b></p>
 <ul>
 	<li>fix: corrected the start-up restoration of the currently selected machine when said machine is hidden in the main view (aka 'full detail view') due to ROM state filtering</li>
+	<li>fix: template check: when a (presumably) boolean type option changes its semantic, make sure that the check at least sees the changed default (example: the 'sound' option changes in MAME 0.182)</li>
 	<li>imp: updated category.ini to MAME 'git latest'</li>
 	<li>imp: updated PDF.js to a newer git revision (as of 30-JAN-2017), now pre-built with <code>gulp</code></li>
 	<li>imp: changed the category- and version-views to do an ascending sort of the category or version column before running the actual sort on the current criteria upon creation</li>

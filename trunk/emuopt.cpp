@@ -1507,7 +1507,7 @@ void EmulatorOptions::checkTemplateMap()
 						break;
 					case QMC2_EMUOPT_TYPE_BOOL: {
 						assumedType = "bool";
-						QString emuOpt(emuOptions[option.name] == "0" ? "false" : "true");
+						QString emuOpt(emuOptions[option.name] == "0" ? "false" : (emuOptions[option.name] == "1" ? "true" : emuOptions[option.name]));
 						if ( option.dvalue != emuOpt ) {
 							diffCount++;
 							if ( qmc2TemplateCheck ) {
