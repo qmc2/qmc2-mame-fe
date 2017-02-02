@@ -1307,7 +1307,8 @@ void MachineList::parse()
 										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2CorrectImageIcon);
 									break;
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
@@ -1338,7 +1339,8 @@ void MachineList::parse()
 										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2MostlyCorrectImageIcon);
 									break;
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
@@ -1369,7 +1371,8 @@ void MachineList::parse()
 										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2IncorrectImageIcon);
 									break;
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
@@ -1400,7 +1403,8 @@ void MachineList::parse()
 										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2NotFoundImageIcon);
 									break;
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )
@@ -1432,7 +1436,8 @@ void MachineList::parse()
 										QString *categoryString = categoryHash.value(machineName);
 										machineItem->setText(QMC2_MACHINELIST_COLUMN_CATEGORY, categoryString ? *categoryString : trQuestionMark);
 									}
-									machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
+									if ( showROMStatusIcons )
+										machineItem->setIcon(QMC2_MACHINELIST_COLUMN_MACHINE, qmc2UnknownImageIcon);
 									break;
 								case QMC2_MACHINETYPE_BIOS:
 									if ( showROMStatusIcons )

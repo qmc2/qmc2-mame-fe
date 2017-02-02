@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>567</width>
-    <height>641</height>
+    <width>570</width>
+    <height>580</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
+                <width>510</width>
                 <height>699</height>
                </rect>
               </property>
@@ -903,8 +903,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>507</width>
+                <y>-657</y>
+                <width>510</width>
                 <height>1103</height>
                </rect>
               </property>
@@ -3105,9 +3105,9 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tabFrontendMachineList">
+         <widget class="QWidget" name="tabFrontendMachineAndSoftwareLists">
           <attribute name="title">
-           <string>Machine &amp;list</string>
+           <string>Machine- / Software-&amp;lists</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
            <property name="margin">
@@ -3126,634 +3126,640 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>575</width>
-                <height>487</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout_7">
-               <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_8">
-                 <item row="0" column="0">
-                  <widget class="QCheckBox" name="checkBoxRomStateFilter">
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="0" column="0" colspan="3">
+                <widget class="QLabel" name="labelGeneralFlags">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Common settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="3">
+                <widget class="Line" name="line_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Launch emulation on double-click events (may be annoying)</string>
+                 </property>
+                 <property name="text">
+                  <string>Double-click activation</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="labelCursorPosition">
+                 <property name="text">
+                  <string>Cursor position</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QComboBox" name="comboBoxCursorPosition">
+                 <property name="toolTip">
+                  <string>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</string>
+                 </property>
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Visible</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Top</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Bottom</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Center</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</string>
+                 </property>
+                 <property name="text">
+                  <string>Play on sub-list activation</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="labelDefaultLaunchMode">
+                 <property name="text">
+                  <string>Default launch-mode</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QComboBox" name="comboBoxDefaultLaunchMode">
+                 <property name="toolTip">
+                  <string>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>independent</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>embedded</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="3">
+                <widget class="QLabel" name="labelGeneralFlags_3">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Machine lists&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0" colspan="3">
+                <widget class="Line" name="line_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QCheckBox" name="checkBoxShowBiosSets">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Display (or hide) BIOS sets in master lists?</string>
+                 </property>
+                 <property name="text">
+                  <string>Show BIOS sets</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QCheckBox" name="checkBoxRomStateFilter">
+                 <property name="toolTip">
+                  <string>Enable ROM state filtering?</string>
+                 </property>
+                 <property name="text">
+                  <string>ROM state filter</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <widget class="QToolButton" name="toolButtonShowC">
                    <property name="toolTip">
-                    <string>Enable ROM state filtering?</string>
-                   </property>
-                   <property name="text">
-                    <string>ROM state filter</string>
+                    <string>Show ROM state C (correct)?</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                     <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" colspan="4">
-                  <spacer name="verticalSpacer">
+                 <item>
+                  <widget class="QToolButton" name="toolButtonShowM">
+                   <property name="toolTip">
+                    <string>Show ROM state M (mostly correct)?</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonShowI">
+                   <property name="toolTip">
+                    <string>Show ROM state I (incorrect)?</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonShowN">
+                   <property name="toolTip">
+                    <string>Show ROM state N (not found)?</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="toolButtonShowU">
+                   <property name="toolTip">
+                    <string>Show ROM state U (unknown)?</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
                    <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>20</width>
-                     <height>40</height>
+                     <width>40</width>
+                     <height>20</height>
                     </size>
                    </property>
                   </spacer>
                  </item>
-                 <item row="9" column="0" colspan="4">
-                  <layout class="QHBoxLayout" name="layout8_2">
-                   <item>
-                    <widget class="QLabel" name="labelLegend5Pic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Option requires a reload of the machine list to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelLegendFrontendMachineList">
-                     <property name="toolTip">
-                      <string>Option requires a reload of the machine list to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string>reload required</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                </layout>
+               </item>
+               <item row="7" column="0">
+                <widget class="QCheckBox" name="checkBoxShowDeviceSets">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Display (or hide) device sets in master lists?</string>
+                 </property>
+                 <property name="text">
+                  <string>Show device sets</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QLabel" name="labelSortCriteria">
+                 <property name="text">
+                  <string>Sort criteria</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="2">
+                <widget class="QComboBox" name="comboBoxSortCriteria">
+                 <property name="toolTip">
+                  <string>Select sort criteria</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Machine description</string>
+                  </property>
                  </item>
-                 <item row="3" column="2">
-                  <widget class="QLabel" name="labelUpdateDelay">
-                   <property name="text">
-                    <string>Update delay</string>
-                   </property>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>ROM state</string>
+                  </property>
                  </item>
-                 <item row="6" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxAutoDisableSoftwareSnap">
-                   <property name="toolTip">
-                    <string>Automatically disable SW snaps when software-detail is visible (may be annoying)</string>
-                   </property>
-                   <property name="text">
-                    <string>No SW snaps for visible details</string>
-                   </property>
-                  </widget>
+                 <item>
+                  <property name="text">
+                   <string>Tag</string>
+                  </property>
                  </item>
-                 <item row="2" column="1">
-                  <widget class="QComboBox" name="comboBoxSortCriteria">
+                 <item>
+                  <property name="text">
+                   <string>Year</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Manufacturer</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Machine name</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>ROM types</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Players</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Driver status</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Source file</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Rank</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="8" column="0">
+                <widget class="QCheckBox" name="checkBoxShowROMStatusIcons">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Display ROM status icons in master lists?</string>
+                 </property>
+                 <property name="text">
+                  <string>Show ROM status icons</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <widget class="QLabel" name="labelSortOrder">
+                 <property name="text">
+                  <string>Sort order</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="2">
+                <widget class="QComboBox" name="comboBoxSortOrder">
+                 <property name="toolTip">
+                  <string>Select sort order</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Ascending</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Descending</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QCheckBox" name="checkBoxAutoTriggerROMCheck">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Automatically trigger a ROM check if necessary</string>
+                 </property>
+                 <property name="text">
+                  <string>Auto-trigger ROM check</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QLabel" name="labelResponsiveness">
+                 <property name="text">
+                  <string>Responsiveness</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="2">
+                <widget class="QSpinBox" name="spinBoxResponsiveness">
+                 <property name="toolTip">
+                  <string>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>immediate</string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>99999</number>
+                 </property>
+                 <property name="value">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="0" colspan="2">
+                <widget class="QLabel" name="labelUpdateDelay">
+                 <property name="text">
+                  <string>Update delay</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="2">
+                <widget class="QSpinBox" name="spinBoxUpdateDelay">
+                 <property name="toolTip">
+                  <string>Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>none</string>
+                 </property>
+                 <property name="suffix">
+                  <string> ms</string>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>500</number>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="0" colspan="3">
+                <widget class="QLabel" name="labelGeneralFlags_2">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Software lists&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="12" column="0" colspan="3">
+                <widget class="Line" name="line_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="13" column="0">
+                <widget class="QCheckBox" name="checkBoxAutoDisableSoftwareSnap">
+                 <property name="toolTip">
+                  <string>Automatically disable SW snaps when software-detail is visible (may be annoying)</string>
+                 </property>
+                 <property name="text">
+                  <string>No SW snaps for visible details</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="13" column="1">
+                <widget class="QLabel" name="labelSoftwareSnapPosition">
+                 <property name="text">
+                  <string>SW snap position</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="13" column="2">
+                <widget class="QComboBox" name="comboBoxSoftwareSnapPosition">
+                 <property name="toolTip">
+                  <string>Select the position where sofware snap-shots are displayed within software lists</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Above / Left</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Above / Center</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Above / Right</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Below / Left</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Below / Center</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Below / Right</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Disable snaps</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="14" column="0">
+                <widget class="QCheckBox" name="checkBoxSoftwareSnapOnMouseHover">
+                 <property name="toolTip">
+                  <string>Display software snap-shots when hovering the software list with the mouse cursor</string>
+                 </property>
+                 <property name="text">
+                  <string>SW snaps on mouse hover</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="16" column="0" colspan="3">
+                <layout class="QHBoxLayout" name="layout8_2">
+                 <item>
+                  <widget class="QLabel" name="labelLegend5Pic">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Select sort criteria</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Machine description</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>ROM state</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Tag</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Year</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Manufacturer</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Machine name</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>ROM types</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Players</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Driver status</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Source file</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Rank</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="5" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxSoftwareSnapOnMouseHover">
-                   <property name="toolTip">
-                    <string>Display software snap-shots when hovering the software list with the mouse cursor</string>
+                    <string>Option requires a reload of the machine list to take effect</string>
                    </property>
                    <property name="text">
-                    <string>SW snaps on mouse hover</string>
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="2">
-                  <widget class="QLabel" name="labelSortOrder">
-                   <property name="text">
-                    <string>Sort order</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="3">
-                  <widget class="QComboBox" name="comboBoxSortOrder">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
+                 <item>
+                  <widget class="QLabel" name="labelLegendFrontendMachineList">
                    <property name="toolTip">
-                    <string>Select sort order</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Ascending</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Descending</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="7" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</string>
+                    <string>Option requires a reload of the machine list to take effect</string>
                    </property>
                    <property name="text">
-                    <string>Play on sub-list activation</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxShowROMStatusIcons">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Display ROM status icons in master lists?</string>
-                   </property>
-                   <property name="text">
-                    <string>Show ROM status icons</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="labelCursorPosition">
-                   <property name="text">
-                    <string>Cursor position</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QComboBox" name="comboBoxCursorPosition">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</string>
-                   </property>
-                   <property name="currentIndex">
-                    <number>1</number>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Visible</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Top</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Bottom</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Center</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="labelResponsiveness">
-                   <property name="text">
-                    <string>Responsiveness</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QSpinBox" name="spinBoxResponsiveness">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</string>
-                   </property>
-                   <property name="specialValueText">
-                    <string>immediate</string>
-                   </property>
-                   <property name="minimum">
-                    <number>1</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                   <property name="value">
-                    <number>100</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_7">
-                   <item>
-                    <widget class="QToolButton" name="toolButtonShowC">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Show ROM state C (correct)?</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
-                     </property>
-                     <property name="checkable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="toolButtonShowM">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Show ROM state M (mostly correct)?</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
-                     </property>
-                     <property name="checkable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="toolButtonShowI">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Show ROM state I (incorrect)?</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
-                     </property>
-                     <property name="checkable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="toolButtonShowN">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Show ROM state N (not found)?</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
-                     </property>
-                     <property name="checkable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="toolButtonShowU">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Show ROM state U (unknown)?</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
-                     </property>
-                     <property name="checkable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="labelSortCriteria">
-                   <property name="text">
-                    <string>Sort criteria</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="3">
-                  <widget class="QComboBox" name="comboBoxDefaultLaunchMode">
-                   <property name="toolTip">
-                    <string>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>independent</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>embedded</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="qmc2.qrc">
-                      <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="5" column="1">
-                  <widget class="QComboBox" name="comboBoxSoftwareSnapPosition">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Select the position where sofware snap-shots are displayed within software lists</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Above / Left</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Above / Center</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Above / Right</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Below / Left</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Below / Center</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Below / Right</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Disable snaps</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item row="3" column="3">
-                  <widget class="QSpinBox" name="spinBoxUpdateDelay">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?</string>
-                   </property>
-                   <property name="specialValueText">
-                    <string>none</string>
-                   </property>
-                   <property name="suffix">
-                    <string> ms</string>
-                   </property>
-                   <property name="minimum">
-                    <number>0</number>
-                   </property>
-                   <property name="maximum">
-                    <number>500</number>
-                   </property>
-                   <property name="value">
-                    <number>10</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Launch emulation on double-click events (may be annoying)</string>
-                   </property>
-                   <property name="text">
-                    <string>Double-click activation</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="labelSoftwareSnapPosition">
-                   <property name="text">
-                    <string>SW snap position</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="2">
-                  <widget class="QLabel" name="labelDefaultLaunchMode">
-                   <property name="text">
-                    <string>Default launch-mode</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxAutoTriggerROMCheck">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Automatically trigger a ROM check if necessary</string>
-                   </property>
-                   <property name="text">
-                    <string>Auto-trigger ROM check</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxShowDeviceSets">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Display (or hide) device sets in master lists?</string>
-                   </property>
-                   <property name="text">
-                    <string>Show device sets</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxShowBiosSets">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Display (or hide) BIOS sets in master lists?</string>
-                   </property>
-                   <property name="text">
-                    <string>Show BIOS sets</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                    <string>reload required</string>
                    </property>
                   </widget>
                  </item>
                 </layout>
+               </item>
+               <item row="15" column="0" colspan="3">
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>139</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </widget>
@@ -3782,8 +3788,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3904,8 +3910,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4372,8 +4378,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>507</width>
+                <y>-252</y>
+                <width>510</width>
                 <height>698</height>
                </rect>
               </property>
@@ -4913,8 +4919,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>507</width>
+                <y>-138</y>
+                <width>510</width>
                 <height>584</height>
                </rect>
               </property>
@@ -5572,8 +5578,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>507</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26">
@@ -6167,27 +6173,27 @@
   <tabstop>toolButtonBrowseSoftwareNotesTemplate</tabstop>
   <tabstop>lineEditVideoSnapFolder</tabstop>
   <tabstop>toolButtonBrowseVideoSnapFolder</tabstop>
+  <tabstop>checkBoxDoubleClickActivation</tabstop>
+  <tabstop>comboBoxCursorPosition</tabstop>
+  <tabstop>checkBoxPlayOnSublistActivation</tabstop>
+  <tabstop>comboBoxDefaultLaunchMode</tabstop>
+  <tabstop>checkBoxShowBiosSets</tabstop>
   <tabstop>checkBoxRomStateFilter</tabstop>
   <tabstop>toolButtonShowC</tabstop>
   <tabstop>toolButtonShowM</tabstop>
   <tabstop>toolButtonShowI</tabstop>
   <tabstop>toolButtonShowN</tabstop>
   <tabstop>toolButtonShowU</tabstop>
-  <tabstop>checkBoxShowROMStatusIcons</tabstop>
   <tabstop>checkBoxShowDeviceSets</tabstop>
-  <tabstop>checkBoxShowBiosSets</tabstop>
   <tabstop>comboBoxSortCriteria</tabstop>
+  <tabstop>checkBoxShowROMStatusIcons</tabstop>
   <tabstop>comboBoxSortOrder</tabstop>
+  <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>spinBoxResponsiveness</tabstop>
   <tabstop>spinBoxUpdateDelay</tabstop>
-  <tabstop>comboBoxCursorPosition</tabstop>
-  <tabstop>comboBoxDefaultLaunchMode</tabstop>
+  <tabstop>checkBoxAutoDisableSoftwareSnap</tabstop>
   <tabstop>comboBoxSoftwareSnapPosition</tabstop>
   <tabstop>checkBoxSoftwareSnapOnMouseHover</tabstop>
-  <tabstop>checkBoxAutoDisableSoftwareSnap</tabstop>
-  <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
-  <tabstop>checkBoxDoubleClickActivation</tabstop>
-  <tabstop>checkBoxPlayOnSublistActivation</tabstop>
   <tabstop>pushButtonRedefineKeySequence</tabstop>
   <tabstop>pushButtonResetShortcut</tabstop>
   <tabstop>treeWidgetShortcuts</tabstop>
@@ -6226,7 +6232,6 @@
   <tabstop>lineEditRomToolArguments</tabstop>
   <tabstop>checkBoxCopyToolOutput</tabstop>
   <tabstop>checkBoxCloseToolDialog</tabstop>
-  <tabstop>tabWidgetGlobalMAMESetup</tabstop>
   <tabstop>lineEditExecutableFile</tabstop>
   <tabstop>toolButtonBrowseExecutableFile</tabstop>
   <tabstop>lineEditWorkingDirectory</tabstop>
@@ -6273,13 +6278,14 @@
   <tabstop>pushButtonDefault</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
-  <tabstop>scrollAreaFrontendShortcuts</tabstop>
   <tabstop>scrollAreaFrontendJoystick</tabstop>
-  <tabstop>scrollAreaFrontendTools</tabstop>
-  <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
+  <tabstop>scrollAreaFrontendShortcuts</tabstop>
   <tabstop>scrollAreaAdditionalEmulators</tabstop>
   <tabstop>scrollAreaGUI</tabstop>
+  <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
+  <tabstop>tabWidgetGlobalMAMESetup</tabstop>
+  <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
+  <tabstop>scrollAreaFrontendTools</tabstop>
   <tabstop>scrollAreaFrontendMachineList</tabstop>
  </tabstops>
  <resources>
@@ -6293,8 +6299,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>469</x>
-     <y>633</y>
+     <x>736</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -6309,8 +6315,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>559</x>
-     <y>633</y>
+     <x>826</x>
+     <y>601</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -6329,7 +6335,7 @@
      <y>106</y>
     </hint>
     <hint type="destinationlabel">
-     <x>539</x>
+     <x>699</x>
      <y>112</y>
     </hint>
    </hints>
@@ -6405,12 +6411,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>210</x>
-     <y>631</y>
+     <x>223</x>
+     <y>605</y>
     </hint>
     <hint type="destinationlabel">
-     <x>519</x>
-     <y>631</y>
+     <x>679</x>
+     <y>605</y>
     </hint>
    </hints>
   </connection>
@@ -6421,12 +6427,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>219</x>
-     <y>657</y>
+     <x>232</x>
+     <y>631</y>
     </hint>
     <hint type="destinationlabel">
-     <x>519</x>
-     <y>657</y>
+     <x>679</x>
+     <y>631</y>
     </hint>
    </hints>
   </connection>
@@ -6469,12 +6475,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>521</y>
+     <x>265</x>
+     <y>501</y>
     </hint>
     <hint type="destinationlabel">
-     <x>519</x>
-     <y>527</y>
+     <x>679</x>
+     <y>501</y>
     </hint>
    </hints>
   </connection>
@@ -6485,12 +6491,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>149</x>
-     <y>484</y>
+     <x>162</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>519</x>
-     <y>490</y>
+     <x>679</x>
+     <y>475</y>
     </hint>
    </hints>
   </connection>
