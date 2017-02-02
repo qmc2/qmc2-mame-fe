@@ -577,13 +577,13 @@
 		<description lang="fr" text="Son"/>
 		<description lang="pt" text="Som"/>
 		<description lang="es" text="Sonido"/>
-		<option default="true" name="sound" type="bool">
-			<description lang="us" text="Enable sound output"/>
-			<description lang="de" text="Sound-Ausgabe aktivieren"/>
-			<description lang="pl" text="Włącz wyjście dźwięku"/>
-			<description lang="fr" text="Active les sons"/>
-			<description lang="pt" text="Ativar sons"/>
-			<description lang="es" text="Activar sonido"/>
+		<option default="auto" name="sound" type="combo">
+			<description lang="us" text="Sound output method"/>
+			<description lang="de" text="Sound Ausgabe Methode"/>
+			<choice name="auto"/>
+			<choice name="dsound"/>
+			<choice name="portaudio"/>
+			<choice name="none"/>
 		</option>
 		<option default="48000" name="samplerate" type="int">
 			<description lang="us" text="Sound output sample rate"/>
