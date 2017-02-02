@@ -2618,6 +2618,8 @@
     <addaction name="menuAudioPlayer"/>
     <addaction name="separator"/>
     <addaction name="menuCleanUp"/>
+    <addaction name="separator"/>
+    <addaction name="actionRelaunchSetupWizard"/>
    </widget>
    <widget class="QMenu" name="menuGame">
     <property name="title">
@@ -4736,6 +4738,27 @@
    </property>
    <property name="statusTip">
     <string>Create a new filtered machine list view</string>
+   </property>
+  </action>
+  <action name="actionRelaunchSetupWizard">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/wizard.png</normaloff>:/data/img/wizard.png</iconset>
+   </property>
+   <property name="text">
+    <string>Relaunch setup wizard...</string>
+   </property>
+   <property name="iconText">
+    <string>Relaunch setup wizard (this will stop and restart QMC2 with the command line option -r)</string>
+   </property>
+   <property name="toolTip">
+    <string>Relaunch setup wizard (this will stop and restart QMC2 with the command line option -r)</string>
+   </property>
+   <property name="statusTip">
+    <string>Relaunch setup wizard (this will stop and restart QMC2 with the command line option -r)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>
