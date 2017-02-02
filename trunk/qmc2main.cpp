@@ -194,6 +194,7 @@ bool qmc2SuppressQtMessages = false;
 bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
 bool qmc2ForceCacheRefresh = false;
+bool qmc2ReconfigureRestartRequested = false;
 int qmc2MachineListResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = 0;
@@ -2716,6 +2717,12 @@ void MainWindow::on_actionOptions_triggered(bool)
 	else if ( qmc2Options->isMinimized() )
 		qmc2Options->showNormal();
 	QTimer::singleShot(0, qmc2Options, SLOT(raise()));
+}
+
+void MainWindow::on_actionRelaunchSetupWizard_triggered(bool)
+{
+	qmc2ReconfigureRestartRequested = true;
+	QTimer::singleShot(0, this, SLOT(close()));
 }
 
 void MainWindow::on_actionFullscreenToggle_triggered(bool)
@@ -6000,19 +6007,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	} else 
 		delete qmc2ProcessManager;
 
-/*
-#if defined(QMC2_SDLMAME)
-	if ( qmc2FifoFile ) {
-		if ( qmc2FifoNotifier )
-			delete qmc2FifoNotifier;
-		if ( qmc2FifoFile->isOpen() )
-			qmc2FifoFile->close();
-		delete qmc2FifoFile;
-		// ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
-	}
-#endif
-*/
-
 	if ( qmc2NetworkAccessManager ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying network access manager"));
 		delete qmc2NetworkAccessManager;
@@ -6034,6 +6028,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 	delete qmc2Options;
 	e->accept();
+
+	// reconfigure restart requested?
+	if ( qmc2ReconfigureRestartRequested ) {
+		QStringList args(qApp->arguments());
+		args << "-r";
+		QProcess::startDetached(args.at(0), args);
+	}
 }
 
 void MainWindow::showEvent(QShowEvent *e)

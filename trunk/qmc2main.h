@@ -242,6 +242,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionClearSoftwareListCache_triggered(bool checked = false);
 		void on_actionClearAllEmulatorCaches_triggered(bool complete = false);
 		void on_actionOptions_triggered(bool checked = false);
+		void on_actionRelaunchSetupWizard_triggered(bool checked = false);
 
 		// display menu
 		void on_actionFullscreenToggle_triggered(bool checked = false);
