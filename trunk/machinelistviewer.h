@@ -27,6 +27,8 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void adjustIconSizes();
 		void on_toolButtonToggleMenu_clicked();
 		void on_toolButtonConfigureFilters_clicked();
+		void on_toolButtonVisibleColumns_clicked();
+		void on_toolButtonEditQuery_clicked();
 		void on_toolButtonUpdateView_clicked();
 		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
 		void romStatusChanged(const QString &id, char status);

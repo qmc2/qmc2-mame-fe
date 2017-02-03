@@ -9491,73 +9491,84 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="41"/>
-        <location filename="../../machinelistviewer.ui" line="44"/>
-        <location filename="../../machinelistviewer.ui" line="47"/>
+        <source>Query</source>
+        <translation>Abfrage</translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="147"/>
+        <source>Columns</source>
+        <translation>Spalten</translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="202"/>
+        <source>Filters</source>
+        <translation>Filter</translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="222"/>
+        <location filename="../../machinelistviewer.ui" line="225"/>
+        <location filename="../../machinelistviewer.ui" line="228"/>
         <source>Clone view</source>
         <translation>Ansicht klonen</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="70"/>
-        <location filename="../../machinelistviewer.ui" line="73"/>
+        <location filename="../../machinelistviewer.ui" line="251"/>
+        <location filename="../../machinelistviewer.ui" line="254"/>
         <source>Toggle flat / tree view mode</source>
         <translation>Zwischen Baum und flacher Liste umschalten</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="76"/>
+        <location filename="../../machinelistviewer.ui" line="257"/>
         <source>Flat</source>
         <translation>Flach</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="90"/>
-        <location filename="../../machinelistviewer.ui" line="93"/>
+        <location filename="../../machinelistviewer.ui" line="141"/>
+        <location filename="../../machinelistviewer.ui" line="144"/>
         <source>Setup visible columns</source>
         <translation>Sichtbare Spalten einstellen</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="96"/>
-        <source>Visible columns</source>
-        <translation>Sichtbare Spalten</translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="116"/>
-        <location filename="../../machinelistviewer.ui" line="119"/>
+        <location filename="../../machinelistviewer.ui" line="196"/>
+        <location filename="../../machinelistviewer.ui" line="199"/>
         <source>Configure view filters</source>
         <translation>Ansichtsfilter konfigurieren</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="122"/>
-        <source>Configure filters</source>
-        <translation>Filter konfigurieren</translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="145"/>
-        <location filename="../../machinelistviewer.ui" line="148"/>
-        <location filename="../../machinelistviewer.ui" line="151"/>
+        <location filename="../../machinelistviewer.ui" line="170"/>
+        <location filename="../../machinelistviewer.ui" line="173"/>
+        <location filename="../../machinelistviewer.ui" line="176"/>
         <source>Save view</source>
         <translation>Ansicht speichern</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="171"/>
-        <location filename="../../machinelistviewer.ui" line="174"/>
+        <location filename="../../machinelistviewer.ui" line="128"/>
+        <location filename="../../machinelistviewer.ui" line="131"/>
         <source>Enter a unique name for this view or select an existing one</source>
         <translation>Einen Namen für diese Ansicht eingeben oder eine existierende Ansicht auswählen</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="190"/>
-        <location filename="../../machinelistviewer.ui" line="193"/>
-        <location filename="../../machinelistviewer.ui" line="196"/>
+        <location filename="../../machinelistviewer.ui" line="61"/>
+        <location filename="../../machinelistviewer.ui" line="64"/>
+        <location filename="../../machinelistviewer.ui" line="67"/>
         <source>Update view</source>
         <translation>Ansicht aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="232"/>
-        <location filename="../../machinelistviewer.ui" line="235"/>
+        <location filename="../../machinelistviewer.ui" line="35"/>
+        <location filename="../../machinelistviewer.ui" line="38"/>
+        <source>Customize the SQL query (i.e. to pre-filter on database level)</source>
+        <translation>SQL Abfrage anpassen (z. B. um schon auf Datenbank-Ebene vorzufiltern)</translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="103"/>
+        <location filename="../../machinelistviewer.ui" line="106"/>
         <source>Number of records in view</source>
         <translation>Anzahl der Einträge in dieser Ansicht</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="272"/>
-        <location filename="../../machinelistviewer.ui" line="275"/>
+        <location filename="../../machinelistviewer.ui" line="306"/>
+        <location filename="../../machinelistviewer.ui" line="309"/>
         <source>Toggle menu</source>
         <translation>Werkzeug Menü ein-/ausschalten</translation>
     </message>
