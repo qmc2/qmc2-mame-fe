@@ -920,17 +920,6 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 	qmc2CriticalSection = true;
 
-	QString userScopePath = Options::configPath();
-	QProcess commandProc;
-#if defined(QMC2_SDLMAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-#if !defined(QMC2_OS_WIN)
-	commandProc.setStandardErrorFile("/dev/null");
-#endif
-
 	QStringList args;
 	args << systemName << swlArgs << "-listxml";
 
@@ -940,13 +929,13 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 
 	bool commandProcStarted = false;
 	int retries = 0;
+	QProcess commandProc;
 	commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
 	bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 		qApp->processEvents();
 	}
-
 	if ( started ) {
 		commandProcStarted = true;
 		bool commandProcRunning = (commandProc.state() == QProcess::Running);
@@ -959,22 +948,11 @@ QString &SoftwareList::getXmlDataWithEnabledSlots(QStringList swlArgs)
 		qmc2CriticalSection = false;
 		return xmlBuffer;
 	}
-
-#if defined(QMC2_SDLMAME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-	QFile qmc2TempXml(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-
-	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
-		QTextStream ts(&qmc2TempXml);
-		ts.setCodec(QTextCodec::codecForName("UTF-8"));
-		xmlBuffer = ts.readAll();
+	if ( commandProcStarted ) {
+		xmlBuffer = commandProc.readAllStandardOutput();
 #if defined(QMC2_OS_WIN)
 		xmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
-		qmc2TempXml.close();
-		qmc2TempXml.remove();
 		if ( !xmlBuffer.isEmpty() ) {
 			QStringList xmlLines = xmlBuffer.split("\n");
 			qApp->processEvents();
@@ -1044,7 +1022,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace("~", "$HOME");
 #endif
 		}
-		foreach (QString line, getXmlDataWithEnabledSlots(swlArgs).split("\n", QString::SkipEmptyParts))
+		foreach (QString line, getXmlDataWithEnabledSlots(swlArgs).split('\n', QString::SkipEmptyParts))
 			dynamicXmlData << line.trimmed();
 		xmlData = &dynamicXmlData;
 #ifdef QMC2_DEBUG
