@@ -337,6 +337,17 @@ void MachineListDatabaseManager::setJournalMode(uint journalMode)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the machine list database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
+void MachineListDatabaseManager::queryColumnInfo()
+{
+	QSqlQuery query(m_db);
+	columnInfoHash().clear();
+	if ( query.exec(QString("PRAGMA TABLE_INFO(%1)").arg(m_tableBasename)) ) {
+		while ( query.next() )
+			// cid, name, type, notnull, dflt_value, pk
+			columnInfoHash().insert(query.value(1).toString(), DbColumnInfo(query.value(0).toULongLong(), query.value(1).toString(), query.value(2).toString(), query.value(4).toString(), query.value(3).toBool(), query.value(5).toBool()));
+	}
+}
+
 void MachineListDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);

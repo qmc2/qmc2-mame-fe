@@ -276,6 +276,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			catverinioptimizer.h \
 			filterconfigurationdialog.h \
 			rankitemdelegate.h \
+			dbcolumninfo.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

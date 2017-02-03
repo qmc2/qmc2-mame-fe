@@ -11,6 +11,8 @@
 #include <QHash>
 #include <QMutex>
 
+#include "dbcolumninfo.h"
+
 #define QMC2_MLDB_INDEX_ID			0
 #define QMC2_MLDB_INDEX_DESCRIPTION		1
 #define QMC2_MLDB_INDEX_MANUFACTURER		2
@@ -62,6 +64,9 @@ class MachineListDatabaseManager : public QObject
 
 		QSqlDatabase &db() { return m_db; }
 
+		QHash<QString, DbColumnInfo> &columnInfoHash() { return m_columnInfoHash; }
+		void queryColumnInfo();
+
 	public slots:
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
@@ -77,6 +82,7 @@ class MachineListDatabaseManager : public QObject
 		bool m_resetRowCount;
 		qint64 m_lastRowCount;
 		QMutex m_queryMutex;
+		QHash<QString, DbColumnInfo> m_columnInfoHash;
 };
 
 #endif
