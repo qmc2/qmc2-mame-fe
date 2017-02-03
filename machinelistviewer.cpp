@@ -112,6 +112,16 @@ void MachineListViewer::on_toolButtonConfigureFilters_clicked()
 	filterConfigurationDialog()->exec();
 }
 
+void MachineListViewer::on_toolButtonVisibleColumns_clicked()
+{
+	// FIXME: there's no way to customize column visibility yet
+}
+
+void MachineListViewer::on_toolButtonEditQuery_clicked()
+{
+	// FIXME: there's no query editor yet
+}
+
 void MachineListViewer::on_toolButtonUpdateView_clicked()
 {
 	int currentSortColumn = treeView->header()->sortIndicatorSection();
