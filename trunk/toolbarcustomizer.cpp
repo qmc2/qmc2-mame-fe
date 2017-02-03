@@ -47,14 +47,14 @@ void ToolBarCustomizer::refreshAvailableActions()
 					if ( subAction->isSeparator() || !subAction->isVisible() || subAction->icon().isNull() )
 						continue;
 					QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
-					item->setText(subAction->statusTip());
+					item->setText(subAction->iconText());
 					item->setIcon(subAction->icon());
 					availableToolBarActions[item] = subAction;
 					availableActionsByName[subAction->objectName()] = subAction;
 				}
 			} else {
 				QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
-				item->setText(action->statusTip());
+				item->setText(action->iconText());
 				item->setIcon(action->icon());
 				availableToolBarActions[item] = action;
 				availableActionsByName[action->objectName()] = action;
@@ -100,7 +100,7 @@ void ToolBarCustomizer::refreshActiveActions()
 				if ( availableActionsByName.contains(actionName) ) {
 					item = new QListWidgetItem(listWidgetActiveActions);
 					action = availableActionsByName.value(actionName);
-					item->setText(action->statusTip());
+					item->setText(action->iconText());
 					item->setIcon(action->icon());
 					activeToolBarActions.insert(item, action);
 				}

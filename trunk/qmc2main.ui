@@ -2836,10 +2836,6 @@
    <addaction name="actionFullscreenToggle"/>
    <addaction name="separator"/>
    <addaction name="actionLaunchArcade"/>
-   <addaction name="separator"/>
-   <addaction name="actionLaunchQMC2MAME"/>
-   <addaction name="actionLaunchQMC2MESS"/>
-   <addaction name="actionLaunchQMC2UME"/>
   </widget>
   <action name="actionCheckSamples">
    <property name="icon">
@@ -2870,6 +2866,9 @@
    <property name="text">
     <string>Check &amp;images / icons...</string>
    </property>
+   <property name="iconText">
+    <string>Check images and icons</string>
+   </property>
    <property name="toolTip">
     <string>Check images and icons</string>
    </property>
@@ -2890,6 +2889,9 @@
    </property>
    <property name="text">
     <string>&amp;Play</string>
+   </property>
+   <property name="iconText">
+    <string>Play current machine</string>
    </property>
    <property name="toolTip">
     <string>Play current machine</string>
@@ -2912,6 +2914,9 @@
    <property name="text">
     <string>&amp;Documentation...</string>
    </property>
+   <property name="iconText">
+    <string>View offline documentation</string>
+   </property>
    <property name="toolTip">
     <string>View offline documentation</string>
    </property>
@@ -2932,6 +2937,9 @@
    </property>
    <property name="text">
     <string>A&amp;bout...</string>
+   </property>
+   <property name="iconText">
+    <string>About QMC2</string>
    </property>
    <property name="toolTip">
     <string>About M.A.M.E. Catalog / Launcher II</string>
@@ -2972,6 +2980,9 @@
    <property name="text">
     <string>Check &amp;ROMs...</string>
    </property>
+   <property name="iconText">
+    <string>Check ROM collection</string>
+   </property>
    <property name="toolTip">
     <string>Check ROM collection</string>
    </property>
@@ -2994,7 +3005,7 @@
     <string>&amp;Options...</string>
    </property>
    <property name="iconText">
-    <string>Options</string>
+    <string>Frontend setup</string>
    </property>
    <property name="toolTip">
     <string>Frontend setup and global emulator configuration</string>
@@ -3016,6 +3027,9 @@
    </property>
    <property name="text">
     <string>&amp;Reload</string>
+   </property>
+   <property name="iconText">
+    <string>Reload entire machine list</string>
    </property>
    <property name="toolTip">
     <string>Reload entire machine list</string>
@@ -3091,7 +3105,7 @@
      <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
    </property>
    <property name="text">
-    <string>Full detail</string>
+    <string>Full detail view</string>
    </property>
    <property name="toolTip">
     <string>View machine list with full detail</string>
@@ -3112,7 +3126,7 @@
      <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
    </property>
    <property name="text">
-    <string>Hierarchical</string>
+    <string>Hierarchical view</string>
    </property>
    <property name="toolTip">
     <string>View parent / clone hierarchy</string>
@@ -3147,10 +3161,10 @@
      <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
    </property>
    <property name="text">
-    <string>ROM state</string>
+    <string>Check ROM state</string>
    </property>
    <property name="iconText">
-    <string>ROM state</string>
+    <string>Check ROM state</string>
    </property>
    <property name="toolTip">
     <string>Check current machine's ROM state</string>
@@ -3221,6 +3235,9 @@
    <property name="text">
     <string>ROMAlyzer (system mode)...</string>
    </property>
+   <property name="iconText">
+    <string>Open ROMAlyzer (system mode)</string>
+   </property>
    <property name="toolTip">
     <string>Open ROMAlyzer (system mode)</string>
    </property>
@@ -3241,6 +3258,9 @@
    </property>
    <property name="text">
     <string>&amp;Setup...</string>
+   </property>
+   <property name="iconText">
+    <string>Setup arcade mode</string>
    </property>
    <property name="toolTip">
     <string>Setup arcade mode</string>
@@ -3265,6 +3285,9 @@
    </property>
    <property name="text">
     <string>&amp;Launch...</string>
+   </property>
+   <property name="iconText">
+    <string>Launch arcade mode</string>
    </property>
    <property name="toolTip">
     <string>Launch arcade mode</string>
@@ -3513,69 +3536,6 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionLaunchQMC2MAME">
-   <property name="icon">
-    <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/mame.png</normaloff>:/data/img/mame.png</iconset>
-   </property>
-   <property name="text">
-    <string>QMC2 for SDLMAME</string>
-   </property>
-   <property name="toolTip">
-    <string>Launch QMC2 for SDLMAME</string>
-   </property>
-   <property name="statusTip">
-    <string>Launch QMC2 for SDLMAME</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Alt+1</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
-  <action name="actionLaunchQMC2MESS">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/data/img/mess.png</normaloff>:/data/img/mess.png</iconset>
-   </property>
-   <property name="text">
-    <string>QMC2 for SDLMESS</string>
-   </property>
-   <property name="toolTip">
-    <string>Launch QMC2 for SDLMESS</string>
-   </property>
-   <property name="statusTip">
-    <string>Launch QMC2 for SDLMESS</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Alt+2</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
-  <action name="actionLaunchQMC2UME">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/data/img/ume.png</normaloff>:/data/img/ume.png</iconset>
-   </property>
-   <property name="text">
-    <string>QMC2 for SDLUME</string>
-   </property>
-   <property name="toolTip">
-    <string>Launch QMC2 for SDLUME</string>
-   </property>
-   <property name="statusTip">
-    <string>Launch QMC2 for SDLUME</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Alt+3</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
   <action name="actionClearProjectMESSCache">
    <property name="text">
     <string>Clear ProjectMESS cache</string>
@@ -3652,7 +3612,7 @@
      <normaloff>:/data/img/category.png</normaloff>:/data/img/category.png</iconset>
    </property>
    <property name="text">
-    <string>By category</string>
+    <string>View by category</string>
    </property>
    <property name="toolTip">
     <string>View machines by category</string>
@@ -3673,7 +3633,7 @@
      <normaloff>:/data/img/version.png</normaloff>:/data/img/version.png</iconset>
    </property>
    <property name="text">
-    <string>By version</string>
+    <string>View by version</string>
    </property>
    <property name="toolTip">
     <string>View machines by version they were added to the emulator</string>
@@ -3836,6 +3796,9 @@
    <property name="text">
     <string>Play (tagged)</string>
    </property>
+   <property name="iconText">
+    <string>Play all tagged machines</string>
+   </property>
    <property name="toolTip">
     <string>Play all tagged machines</string>
    </property>
@@ -3891,7 +3854,7 @@
      <normaloff>:/data/img/rom_multiple.png</normaloff>:/data/img/rom_multiple.png</iconset>
    </property>
    <property name="text">
-    <string>ROM state (tagged)</string>
+    <string>Check ROM state (tagged)</string>
    </property>
    <property name="toolTip">
     <string>Check ROM states of all tagged sets</string>
@@ -3935,6 +3898,9 @@
    <property name="text">
     <string>Set tag</string>
    </property>
+   <property name="iconText">
+    <string>Set tag mark</string>
+   </property>
    <property name="toolTip">
     <string>Set tag mark</string>
    </property>
@@ -3956,6 +3922,9 @@
    <property name="text">
     <string>Unset tag</string>
    </property>
+   <property name="iconText">
+    <string>Unset tag mark</string>
+   </property>
    <property name="toolTip">
     <string>Unset tag mark</string>
    </property>
@@ -3976,6 +3945,9 @@
    </property>
    <property name="text">
     <string>Toggle tag</string>
+   </property>
+   <property name="iconText">
+    <string>Toggle tag mark</string>
    </property>
    <property name="toolTip">
     <string>Toggle tag mark</string>
@@ -4244,6 +4216,9 @@
    <property name="text">
     <string>Google</string>
    </property>
+   <property name="iconText">
+    <string>Search with Google</string>
+   </property>
    <property name="toolTip">
     <string>Search with Google</string>
    </property>
@@ -4258,6 +4233,9 @@
    </property>
    <property name="text">
     <string>Wikipedia</string>
+   </property>
+   <property name="iconText">
+    <string>Search with Wikipedia</string>
    </property>
    <property name="toolTip">
     <string>Search with Wikipedia</string>
@@ -4277,6 +4255,9 @@
    <property name="text">
     <string>Internal browser</string>
    </property>
+   <property name="iconText">
+    <string>Use internal (or external) browser?</string>
+   </property>
    <property name="toolTip">
     <string>Use internal (or external) browser?</string>
    </property>
@@ -4292,6 +4273,9 @@
    <property name="text">
     <string>DuckDuckGo</string>
    </property>
+   <property name="iconText">
+    <string>Search with DuckDuckGo</string>
+   </property>
    <property name="toolTip">
     <string>Search with DuckDuckGo</string>
    </property>
@@ -4306,6 +4290,9 @@
    </property>
    <property name="text">
     <string>Yandex</string>
+   </property>
+   <property name="iconText">
+    <string>Search with Yandex</string>
    </property>
    <property name="toolTip">
     <string>Search with Yandex</string>
@@ -4376,10 +4363,13 @@
    <property name="text">
     <string>Flat</string>
    </property>
-   <property name="statusTip">
+   <property name="iconText">
     <string>Use flat rank image</string>
    </property>
-   <property name="whatsThis">
+   <property name="toolTip">
+    <string>Use flat rank image</string>
+   </property>
+   <property name="statusTip">
     <string>Use flat rank image</string>
    </property>
    <property name="shortcutContext">
@@ -4400,6 +4390,9 @@
    <property name="text">
     <string>Gradient</string>
    </property>
+   <property name="iconText">
+    <string>Use gradient rank image</string>
+   </property>
    <property name="toolTip">
     <string>Use gradient rank image</string>
    </property>
@@ -4417,6 +4410,9 @@
    </property>
    <property name="text">
     <string>Overlay color...</string>
+   </property>
+   <property name="iconText">
+    <string>Choose overlay color for rank image</string>
    </property>
    <property name="toolTip">
     <string>Choose overlay color for rank image</string>
@@ -4439,10 +4435,13 @@
    <property name="text">
     <string>Color</string>
    </property>
-   <property name="statusTip">
+   <property name="iconText">
     <string>Use plain color rank image</string>
    </property>
-   <property name="whatsThis">
+   <property name="toolTip">
+    <string>Use plain color rank image</string>
+   </property>
+   <property name="statusTip">
     <string>Use plain color rank image</string>
    </property>
    <property name="shortcutContext">
@@ -4670,6 +4669,9 @@
    <property name="text">
     <string>ROMAlyzer (software mode)...</string>
    </property>
+   <property name="iconText">
+    <string>Open ROMAlyzer (software mode)</string>
+   </property>
    <property name="toolTip">
     <string>Open ROMAlyzer (software mode)</string>
    </property>
@@ -4749,7 +4751,7 @@
     <string>Relaunch setup wizard...</string>
    </property>
    <property name="iconText">
-    <string>Relaunch setup wizard (this will stop and restart QMC2 with the command line option -r)</string>
+    <string>Relaunch setup wizard</string>
    </property>
    <property name="toolTip">
     <string>Relaunch setup wizard (this will stop and restart QMC2 with the command line option -r)</string>
