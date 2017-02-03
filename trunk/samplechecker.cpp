@@ -201,24 +201,14 @@ void SampleChecker::verify()
 	QString emuWorkDir = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString();
 	for (int i = 0; i < sampleSets.count() && !qmc2LoadingInterrupted; i++) {
 		progressBar->setValue(i + 1);
-		QString sampleSet = sampleSets[i];
+		QString sampleSet(sampleSets.at(i));
 		QProcess commandProc;
-#if defined(QMC2_SDLMAME)
-		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-		commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-		commandProc.setStandardErrorFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-
 		if ( !emuWorkDir.isEmpty() )
 			commandProc.setWorkingDirectory(emuWorkDir);
-
 		QStringList args;
 		if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath") )
 			args << "-samplepath" << qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath").toString().replace("~", "$HOME");
 		args << "-verifysamples" << sampleSet;
-
 		bool commandProcStarted = false;
 		int retries = 0;
 		commandProc.start(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString(), args);
@@ -227,7 +217,6 @@ void SampleChecker::verify()
 			started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 			qApp->processEvents();
 		}
-
 		if ( started ) {
 			commandProcStarted = true;
 			bool commandProcRunning = (commandProc.state() == QProcess::Running);
@@ -239,23 +228,15 @@ void SampleChecker::verify()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 			break;
 		}
-
-#if defined(QMC2_SDLMAME)
-		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
-#elif defined(QMC2_MAME)
-		QFile sampleTemp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
-#endif
-
-		if ( commandProcStarted && sampleTemp.open(QFile::ReadOnly) ) {
-			QTextStream ts(&sampleTemp);
-			QString buffer = ts.readAll();
+		if ( commandProcStarted ) {
+			QString buffer(commandProc.readAllStandardOutput());
 #if defined(QMC2_OS_WIN)
 			buffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 			if ( !buffer.isEmpty() ) {
-				QStringList bufferLines = buffer.split("\n", QString::SkipEmptyParts);
+				QStringList bufferLines(buffer.split('\n', QString::SkipEmptyParts));
 				if ( !bufferLines.isEmpty() ) {
-					QString bufferLine = bufferLines[0].simplified().replace("\"", "");
+					QString bufferLine(bufferLines.at(0).simplified().replace('\"', ""));
 					if ( bufferLine.endsWith("is good") ) {
 						listWidgetSamplesGood->addItem(sampleSet);
 						labelSamplesGood->setText(tr("Good: %1").arg(listWidgetSamplesGood->count()));
@@ -273,7 +254,6 @@ void SampleChecker::verify()
 			} else
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: received no output when checking the sample status of '%1'").arg(sampleSet));
 		}
-		sampleTemp.remove();
 	}
 
 	if ( !qmc2LoadingInterrupted )
