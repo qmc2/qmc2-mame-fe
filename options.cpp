@@ -487,7 +487,6 @@ void Options::apply()
 	toolButtonBrowseStyleSheet->setIconSize(iconSize);
 	toolButtonBrowseFont->setIconSize(iconSize);
 	toolButtonBrowseLogFont->setIconSize(iconSize);
-	toolButtonBrowseTemporaryFile->setIconSize(iconSize);
 	toolButtonBrowseFrontendLogFile->setIconSize(iconSize);
 	toolButtonBrowseFavoritesFile->setIconSize(iconSize);
 	toolButtonBrowseHistoryFile->setIconSize(iconSize);
@@ -929,7 +928,6 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", checkBoxNativeFileDialogs->isChecked());
 
 	// Files and directories
-	config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", lineEditTemporaryFile->text());
 	config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", lineEditFrontendLogFile->text());
 	config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", lineEditDataDirectory->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/DatInfoDatabase", lineEditDatInfoDatabase->text());
@@ -1854,10 +1852,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditDataDirectory->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", QMC2_DEFAULT_DATA_PATH + "/").toString());
 	lineEditDatInfoDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/DatInfoDatabase", QString(userScopePath + "/%1-dat-info.db").arg(QMC2_EMU_NAME.toLower())).toString());
 #if defined(QMC2_SDLMAME)
-	lineEditTemporaryFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
 	lineEditFrontendLogFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmame.log").toString());
 #elif defined(QMC2_MAME)
-	lineEditTemporaryFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
 	lineEditFrontendLogFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-mame.log").toString());
 #endif
 	lineEditPreviewDirectory->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
@@ -2591,14 +2587,6 @@ void Options::on_toolButtonBrowseStyleSheet_clicked()
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose Qt style sheet file"), lineEditStyleSheet->text(), tr("Qt Style Sheets (*.qss)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditStyleSheet->setText(s);
-	raise();
-}
-
-void Options::on_toolButtonBrowseTemporaryFile_clicked()
-{
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose temporary work file"), lineEditTemporaryFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditTemporaryFile->setText(s);
 	raise();
 }
 
@@ -3820,7 +3808,6 @@ void Options::enableWidgets(bool enable)
 	toolButtonBrowseStyleSheet->setEnabled(enable);
 	toolButtonBrowseFont->setEnabled(enable);
 	toolButtonBrowseLogFont->setEnabled(enable);
-	toolButtonBrowseTemporaryFile->setEnabled(enable);
 	toolButtonBrowseFrontendLogFile->setEnabled(enable);
 	toolButtonBrowsePreviewDirectory->setEnabled(enable);
 	toolButtonBrowsePreviewFile->setEnabled(enable);

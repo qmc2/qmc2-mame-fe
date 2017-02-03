@@ -336,6 +336,10 @@ bool Welcome::checkConfig()
 			// we need to reset the emulator control panel's header state to ensure all columns are shown on all OSs from now on
 			startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState");
 		}
+		if ( QMC2_TEST_VERSION(omv, 183, osr, 7910) ) {
+			// we got rid of using a temporary file *completely* in this revision
+			startupConfig->remove(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile");
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();

@@ -904,365 +904,14 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>360</width>
-                <height>1103</height>
+                <width>540</width>
+                <height>1065</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_5">
-                 <item row="16" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonCabinetSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a cabinet directory or a compressed cabinet file</string>
-                   </property>
-                   <property name="text">
-                    <string>Cabinet directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="24" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxUseSystemNotesTemplate">
-                   <property name="toolTip">
-                    <string>Enable the use of a template for (empty) system notes</string>
-                   </property>
-                   <property name="text">
-                    <string>System notes template</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="25" column="0" colspan="2">
-                  <widget class="QLabel" name="labelSoftwareNotesFolder">
-                   <property name="text">
-                    <string>Software notes folder</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0" colspan="2">
-                  <widget class="QLabel" name="labelDataDirectory">
-                   <property name="text">
-                    <string>Data directory</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0" colspan="2">
-                  <widget class="QLabel" name="labelFavoritesFile">
-                   <property name="text">
-                    <string>Favorites file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="26" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxUseSoftwareNotesTemplate">
-                   <property name="toolTip">
-                    <string>Enable the use of a template for (empty) software notes</string>
-                   </property>
-                   <property name="text">
-                    <string>Software notes template</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0" colspan="2">
-                  <widget class="QLabel" name="labelFrontendLogFile">
-                   <property name="text">
-                    <string>Front end log file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="9" column="1">
-                  <widget class="QToolButton" name="toolButtonImportMessInfo">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Import MESS emulator information to DAT-info database</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="14" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonFlyerSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a flyer directory or a compressed flyer file</string>
-                   </property>
-                   <property name="text">
-                    <string>Flyer directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="12" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxUseCategoryIni">
-                   <property name="toolTip">
-                    <string>Enable the use of category.ini</string>
-                   </property>
-                   <property name="text">
-                    <string>Use category.ini</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0" colspan="2">
-                  <widget class="QLabel" name="labelHistoryFile">
-                   <property name="text">
-                    <string>Play history file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="1">
-                  <widget class="QToolButton" name="toolButtonImportGameInfo">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Import MAME machine information to DAT-info database</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="19" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonTitleSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a title directory or a compressed title file</string>
-                   </property>
-                   <property name="text">
-                    <string>Title directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="8" column="1">
-                  <widget class="QToolButton" name="toolButtonImportMameInfo">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Import MAME emulator information to DAT-info database</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="1">
-                  <widget class="QToolButton" name="toolButtonImportMachineInfo">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Import MESS machine information to DAT-info database</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="13" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonPreviewSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a preview directory or a compressed preview file</string>
-                   </property>
-                   <property name="text">
-                    <string>Preview directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="20" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonPCBSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a PCB directory or a compressed PCB file</string>
-                   </property>
-                   <property name="text">
-                    <string>PCB directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="23" column="0" colspan="2">
-                  <widget class="QLabel" name="labelSystemNotesFolder">
-                   <property name="text">
-                    <string>System notes folder</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0" colspan="2">
-                  <widget class="QLabel" name="labelTemporaryFile">
-                   <property name="text">
-                    <string>Temporary file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="18" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonMarqueeSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a marquee directory or a compressed marquee file</string>
-                   </property>
-                   <property name="text">
-                    <string>Marquee directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0" colspan="2">
-                  <widget class="QLabel" name="labelDatInfoDatabase">
-                   <property name="text">
-                    <string>DAT-info database file</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="21" column="0" colspan="2">
-                  <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a software snap directory or a compressed software snap file</string>
-                   </property>
-                   <property name="text">
-                    <string>SW snap folder</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="10" column="2">
-                  <widget class="QLineEdit" name="lineEditSoftwareInfoDB">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Software information database - history.dat (read)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="3">
-                  <widget class="QToolButton" name="toolButtonBrowseMessSysinfoDat">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse MESS machine information database (sysinfo.dat)</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="3">
-                  <widget class="QToolButton" name="toolButtonBrowseFavoritesFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse machine favorites file</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="3">
-                  <widget class="QToolButton" name="toolButtonBrowseDatInfoDatabase">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse DAT-info database file</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="3">
-                  <widget class="QToolButton" name="toolButtonBrowseDataDirectory">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse frontend data directory</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="20" column="2" colspan="2">
+                 <item row="19" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetPCB">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1389,7 +1038,351 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="21" column="2" colspan="2">
+                 <item row="6" column="1">
+                  <widget class="QToolButton" name="toolButtonImportMachineInfo">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Import MESS machine information to DAT-info database</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="12" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonPreviewSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a preview directory or a compressed preview file</string>
+                   </property>
+                   <property name="text">
+                    <string>Preview directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="19" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonPCBSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a PCB directory or a compressed PCB file</string>
+                   </property>
+                   <property name="text">
+                    <string>PCB directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="22" column="0" colspan="2">
+                  <widget class="QLabel" name="labelSystemNotesFolder">
+                   <property name="text">
+                    <string>System notes folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="25" column="0" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxUseSoftwareNotesTemplate">
+                   <property name="toolTip">
+                    <string>Enable the use of a template for (empty) software notes</string>
+                   </property>
+                   <property name="text">
+                    <string>Software notes template</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="3">
+                  <widget class="QToolButton" name="toolButtonBrowseDatInfoDatabase">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse DAT-info database file</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="3">
+                  <widget class="QToolButton" name="toolButtonBrowseDataDirectory">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse frontend data directory</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="15" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonCabinetSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a cabinet directory or a compressed cabinet file</string>
+                   </property>
+                   <property name="text">
+                    <string>Cabinet directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="23" column="0" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxUseSystemNotesTemplate">
+                   <property name="toolTip">
+                    <string>Enable the use of a template for (empty) system notes</string>
+                   </property>
+                   <property name="text">
+                    <string>System notes template</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="24" column="0" colspan="2">
+                  <widget class="QLabel" name="labelSoftwareNotesFolder">
+                   <property name="text">
+                    <string>Software notes folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="13" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonFlyerSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a flyer directory or a compressed flyer file</string>
+                   </property>
+                   <property name="text">
+                    <string>Flyer directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="11" column="0" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxUseCategoryIni">
+                   <property name="toolTip">
+                    <string>Enable the use of category.ini</string>
+                   </property>
+                   <property name="text">
+                    <string>Use category.ini</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0" colspan="2">
+                  <widget class="QLabel" name="labelHistoryFile">
+                   <property name="text">
+                    <string>Play history file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QToolButton" name="toolButtonImportGameInfo">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Import MAME machine information to DAT-info database</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="18" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonTitleSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a title directory or a compressed title file</string>
+                   </property>
+                   <property name="text">
+                    <string>Title directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QToolButton" name="toolButtonImportMameInfo">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Import MAME emulator information to DAT-info database</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="17" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonMarqueeSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a marquee directory or a compressed marquee file</string>
+                   </property>
+                   <property name="text">
+                    <string>Marquee directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0" colspan="2">
+                  <widget class="QLabel" name="labelDatInfoDatabase">
+                   <property name="text">
+                    <string>DAT-info database file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="20" column="0" colspan="2">
+                  <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a software snap directory or a compressed software snap file</string>
+                   </property>
+                   <property name="text">
+                    <string>SW snap folder</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="2">
+                  <widget class="QLineEdit" name="lineEditSoftwareInfoDB">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Software information database - history.dat (read)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="3">
+                  <widget class="QToolButton" name="toolButtonBrowseMessSysinfoDat">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse MESS machine information database (sysinfo.dat)</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QToolButton" name="toolButtonBrowseFavoritesFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse machine favorites file</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0" colspan="2">
+                  <widget class="QLabel" name="labelDataDirectory">
+                   <property name="text">
+                    <string>Data directory</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0" colspan="2">
+                  <widget class="QLabel" name="labelFavoritesFile">
+                   <property name="text">
+                    <string>Favorites file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0" colspan="2">
+                  <widget class="QLabel" name="labelFrontendLogFile">
+                   <property name="text">
+                    <string>Front end log file</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="1">
+                  <widget class="QToolButton" name="toolButtonImportMessInfo">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Import MESS emulator information to DAT-info database</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="20" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetSWSnap">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1516,7 +1509,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="6" column="2">
+                 <item row="5" column="2">
                   <widget class="QLineEdit" name="lineEditMameHistoryDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1529,7 +1522,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="3">
+                 <item row="2" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseHistoryFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -1546,7 +1539,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="2" colspan="2">
+                 <item row="15" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetCabinet">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1673,7 +1666,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="9" column="3">
+                 <item row="8" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseMessInfoDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -1690,7 +1683,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="3">
+                 <item row="9" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareInfoDB">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -1707,7 +1700,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="24" column="2">
+                 <item row="23" column="2">
                   <widget class="QLineEdit" name="lineEditSystemNotesTemplate">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1720,7 +1713,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="24" column="3">
+                 <item row="23" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseSystemNotesTemplate">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -1737,7 +1730,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="2">
+                 <item row="0" column="2">
                   <widget class="QLineEdit" name="lineEditFrontendLogFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1750,7 +1743,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="2">
+                 <item row="4" column="2">
                   <widget class="QLineEdit" name="lineEditDatInfoDatabase">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1763,7 +1756,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="2">
+                 <item row="3" column="2">
                   <widget class="QLineEdit" name="lineEditDataDirectory">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1776,7 +1769,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="25" column="2">
+                 <item row="24" column="2">
                   <widget class="QLineEdit" name="lineEditSoftwareNotesFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1789,7 +1782,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="25" column="3">
+                 <item row="24" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareNotesFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -1806,7 +1799,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="26" column="2">
+                 <item row="25" column="2">
                   <widget class="QLineEdit" name="lineEditSoftwareNotesTemplate">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1819,7 +1812,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="2">
+                 <item row="10" column="2">
                   <widget class="QLineEdit" name="lineEditCatverIniFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1832,7 +1825,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="3">
+                 <item row="10" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseCatverIniFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -1849,7 +1842,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="2">
+                 <item row="11" column="2">
                   <widget class="QLineEdit" name="lineEditCategoryIniFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -1862,24 +1855,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="3">
-                  <widget class="QToolButton" name="toolButtonBrowseTemporaryFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse temporary work file</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="18" column="2" colspan="2">
+                 <item row="17" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetMarquee">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2006,7 +1982,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="19" column="2" colspan="2">
+                 <item row="18" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetTitle">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2133,7 +2109,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="7" column="2">
+                 <item row="6" column="2">
                   <widget class="QLineEdit" name="lineEditMessSysinfoDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2146,7 +2122,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="3">
+                 <item row="11" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseCategoryIniFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2163,7 +2139,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="2" colspan="2">
+                 <item row="12" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetPreview">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2290,7 +2266,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="17" column="0" colspan="2">
+                 <item row="16" column="0" colspan="2">
                   <widget class="QRadioButton" name="radioButtonControllerSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a controller directory or a compressed controller file</string>
@@ -2306,7 +2282,20 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="3">
+                 <item row="27" column="0" colspan="4">
+                  <spacer name="spacer5">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="7" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseMameInfoDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2323,7 +2312,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="2">
+                 <item row="8" column="2">
                   <widget class="QLineEdit" name="lineEditMessInfoDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2336,20 +2325,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="28" column="0" colspan="4">
-                  <spacer name="spacer5">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="26" column="3">
+                 <item row="25" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseSoftwareNotesTemplate">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2366,7 +2342,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="29" column="0" colspan="4">
+                 <item row="28" column="0" colspan="4">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -2402,7 +2378,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="3" column="2">
+                 <item row="2" column="2">
                   <widget class="QLineEdit" name="lineEditHistoryFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2415,7 +2391,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="3">
+                 <item row="0" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseFrontendLogFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2432,7 +2408,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="2" colspan="2">
+                 <item row="13" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetFlyer">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2559,7 +2535,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="15" column="2" colspan="2">
+                 <item row="14" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetIcon">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2686,20 +2662,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="0" column="2">
-                  <widget class="QLineEdit" name="lineEditTemporaryFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Temporary work file (write)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="17" column="2" colspan="2">
+                 <item row="16" column="2" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetController">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2826,7 +2789,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="8" column="2">
+                 <item row="7" column="2">
                   <widget class="QLineEdit" name="lineEditMameInfoDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2839,7 +2802,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="2">
+                 <item row="1" column="2">
                   <widget class="QLineEdit" name="lineEditFavoritesFile">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2852,7 +2815,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="4">
+                 <item row="21" column="0" colspan="4">
                   <layout class="QHBoxLayout" name="horizontalLayout_8">
                    <item>
                     <widget class="QPushButton" name="pushButtonAdditionalArtworkSetup">
@@ -2882,7 +2845,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="23" column="2">
+                 <item row="22" column="2">
                   <widget class="QLineEdit" name="lineEditSystemNotesFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -2895,7 +2858,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="23" column="3">
+                 <item row="22" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseSystemNotesFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2912,7 +2875,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0">
+                 <item row="5" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessMameHistoryDat">
                    <property name="toolTip">
                     <string>Load MAME machine information database (history.dat)</string>
@@ -2922,7 +2885,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0">
+                 <item row="6" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessMessSysinfoDat">
                    <property name="toolTip">
                     <string>Load MESS machine information database (sysinfo.dat)</string>
@@ -2932,7 +2895,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0">
+                 <item row="7" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessMameInfoDat">
                    <property name="toolTip">
                     <string>Load MAME emulator information database (mameinfo.dat)</string>
@@ -2942,7 +2905,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0">
+                 <item row="8" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessMessInfoDat">
                    <property name="toolTip">
                     <string>Load MESS emulator information database (messinfo.dat)</string>
@@ -2952,7 +2915,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="0">
+                 <item row="9" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessSoftwareInfoDB">
                    <property name="toolTip">
                     <string>Load software information database (from history.dat)</string>
@@ -2962,7 +2925,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="10" column="1">
+                 <item row="9" column="1">
                   <widget class="QToolButton" name="toolButtonImportSoftwareInfo">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2979,7 +2942,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="3">
+                 <item row="5" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseMameHistoryDat">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -2996,14 +2959,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="27" column="0" colspan="2">
+                 <item row="26" column="0" colspan="2">
                   <widget class="QLabel" name="labelVideoSnapFolder">
                    <property name="text">
                     <string>Video snap folder</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="27" column="2">
+                 <item row="26" column="2">
                   <widget class="QLineEdit" name="lineEditVideoSnapFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -3016,7 +2979,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="27" column="3">
+                 <item row="26" column="3">
                   <widget class="QToolButton" name="toolButtonBrowseVideoSnapFolder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -3033,7 +2996,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0">
+                 <item row="10" column="0">
                   <widget class="QCheckBox" name="checkBoxUseCatverIni">
                    <property name="toolTip">
                     <string>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</string>
@@ -3047,7 +3010,24 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="1">
+                 <item row="14" column="1">
+                  <widget class="QToolButton" name="toolButtonSetupIconDatabase">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Setup the icon cache database</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/setup_database.png</normaloff>:/data/img/setup_database.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="1">
                   <widget class="QToolButton" name="toolButtonOptimizeCatverIni">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -3064,7 +3044,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0">
+                 <item row="14" column="0">
                   <widget class="QRadioButton" name="radioButtonIconSelect">
                    <property name="toolTip">
                     <string>Switch between specifying an icon directory or a compressed icon file</string>
@@ -3077,23 +3057,6 @@
                    </property>
                    <property name="autoExclusive">
                     <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="15" column="1">
-                  <widget class="QToolButton" name="toolButtonSetupIconDatabase">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Setup the icon cache database</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/setup_database.png</normaloff>:/data/img/setup_database.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -3126,8 +3089,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>560</width>
-                <height>446</height>
+                <width>530</width>
+                <height>438</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout">
@@ -4921,7 +4884,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>467</width>
-                <height>584</height>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -6065,8 +6028,6 @@
   <tabstop>checkBoxOneEmulatorOnly</tabstop>
   <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
   <tabstop>checkBoxSetWorkDirFromExec</tabstop>
-  <tabstop>lineEditTemporaryFile</tabstop>
-  <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
   <tabstop>toolButtonBrowseFrontendLogFile</tabstop>
   <tabstop>lineEditFavoritesFile</tabstop>
