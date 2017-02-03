@@ -324,6 +324,7 @@ void MachineList::enableWidgets(bool enable)
 	qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
 	qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
 #endif
+	qmc2MainWindow->actionRelaunchSetupWizard->setEnabled(enable);
 	if ( qmc2ROMStatusExporter )
 		qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
 	if ( qmc2SystemROMAlyzer ) {
