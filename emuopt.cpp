@@ -1369,6 +1369,8 @@ void EmulatorOptions::checkTemplateMap()
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
+#else
+	commandProc.setStandardErrorFile("NUL");
 #endif
 	args << "-noreadconfig" << "-showconfig";
 	bool commandProcStarted = false;

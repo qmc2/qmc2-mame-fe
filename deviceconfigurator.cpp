@@ -151,6 +151,8 @@ void DeviceItemDelegate::loadMidiInterfaces()
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
+#else
+	commandProc.setStandardErrorFile("NUL");
 #endif
 	QStringList args;
 	args << "-listmidi";
@@ -553,6 +555,8 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
+#else
+	commandProc.setStandardErrorFile("NUL");
 #endif
 
 	QStringList args;
@@ -690,6 +694,8 @@ bool DeviceConfigurator::readSystemSlots()
 		commandProc.setStandardOutputFile(slotInfoCachePath, QIODevice::Append);
 #if !defined(QMC2_OS_WIN)
 		commandProc.setStandardErrorFile("/dev/null");
+#else
+		commandProc.setStandardErrorFile("NUL");
 #endif
 		QStringList args;
 		args << "-listslots";
