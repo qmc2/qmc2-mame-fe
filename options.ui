@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>570</width>
     <height>580</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>540</width>
+                <width>510</width>
                 <height>699</height>
                </rect>
               </property>
@@ -843,16 +843,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxSetWorkDirFromExec">
-                   <property name="toolTip">
-                    <string>Force QMC2's working directory to be the same as the executable's path</string>
-                   </property>
-                   <property name="text">
-                    <string>Set working directory from executable</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="12" column="3" colspan="4">
                   <widget class="QPushButton" name="pushButtonIndividualFallbackSettings">
                    <property name="enabled">
@@ -872,6 +862,16 @@
                    </property>
                    <property name="autoDefault">
                     <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="22" column="0" colspan="7">
+                  <widget class="QCheckBox" name="checkBoxSetWorkDirFromExec">
+                   <property name="toolTip">
+                    <string>Force QMC2's working directory to be the same as the executable's path</string>
+                   </property>
+                   <property name="text">
+                    <string>Set working directory from executable</string>
                    </property>
                   </widget>
                  </item>
@@ -903,8 +903,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>540</width>
+                <y>-619</y>
+                <width>510</width>
                 <height>1065</height>
                </rect>
               </property>
@@ -3090,7 +3090,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>530</width>
-                <height>438</height>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout">
@@ -3751,8 +3751,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>259</width>
-                <height>52</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3873,8 +3873,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>428</width>
-                <height>270</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4342,7 +4342,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>383</width>
+                <width>510</width>
                 <height>698</height>
                </rect>
               </property>
@@ -4883,8 +4883,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>467</width>
-                <height>583</height>
+                <width>510</width>
+                <height>584</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5541,8 +5541,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>362</width>
-                <height>272</height>
+                <width>530</width>
+                <height>446</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26">
