@@ -4736,11 +4736,13 @@ void SoftwareSnap::loadImage(bool fromParent)
 	// check if the mouse cursor is still on a software item
 	QTreeWidgetItem *item = 0;
 	QTreeWidget *treeWidget = 0;
+	bool mouseOnView = false;
 	QRect rect;
 
 	switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			if ( qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->underMouse() ) {
+				mouseOnView = true;
 				item = qmc2SoftwareList->treeWidgetKnownSoftware->itemAt(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapFromGlobal(QCursor::pos()));
 				if ( item ) {
 					rect = qmc2SoftwareList->treeWidgetKnownSoftware->visualItemRect(item);
@@ -4757,6 +4759,7 @@ void SoftwareSnap::loadImage(bool fromParent)
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
 			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->underMouse() ) {
+				mouseOnView = true;
 				item = qmc2SoftwareList->treeWidgetFavoriteSoftware->itemAt(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapFromGlobal(QCursor::pos()));
 				if ( item ) {
 					rect = qmc2SoftwareList->treeWidgetFavoriteSoftware->visualItemRect(item);
@@ -4770,6 +4773,7 @@ void SoftwareSnap::loadImage(bool fromParent)
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
 			if ( qmc2SoftwareList->treeWidgetSearchResults->viewport()->underMouse() ) {
+				mouseOnView = true;
 				item = qmc2SoftwareList->treeWidgetSearchResults->itemAt(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapFromGlobal(QCursor::pos()));
 				if ( item ) {
 					rect = qmc2SoftwareList->treeWidgetSearchResults->visualItemRect(item);
@@ -4784,7 +4788,7 @@ void SoftwareSnap::loadImage(bool fromParent)
 	}
 
 	// try to fall back to 'selected item' if applicable (no mouse hover)
-	if ( !item || qmc2SoftwareList->snapForced ) {
+	if ( (!item || qmc2SoftwareList->snapForced) && mouseOnView ) {
 		if ( qmc2SoftwareList->snapForced && myItem != 0 ) {
 			item = myItem;
 			switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
@@ -4826,7 +4830,7 @@ void SoftwareSnap::loadImage(bool fromParent)
 	}
 
 	// if we can't figure out which item we're on, let's escape from here...
-	if ( !item || !treeWidget ) {
+	if ( !item || !treeWidget || !mouseOnView ) {
 		myItem = 0;
 		resetSnapForced();
 		qmc2SoftwareList->cancelSoftwareSnap();
