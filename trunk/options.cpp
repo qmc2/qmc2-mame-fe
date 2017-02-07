@@ -819,8 +819,6 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 	qmc2MainWindow->setUnifiedTitleAndToolBarOnMac(checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 #endif
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", checkBoxSaveMachineSelection->isChecked());
-	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", checkBoxRestoreMachineSelection->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", checkBoxStatusbar->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", checkBoxStandardColorPalette->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", checkBoxProgressTexts->isChecked());
@@ -1208,6 +1206,10 @@ void Options::on_pushButtonApply_clicked()
 			needFilter = false;
 		}
 	}
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", checkBoxSaveMachineSelection->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", checkBoxRestoreMachineSelection->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveSoftwareSelection", checkBoxSaveSoftwareSelection->isChecked());
+	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreSoftwareSelection", checkBoxRestoreSoftwareSelection->isChecked());
 
 	// Shortcuts / Keys
 	QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);
@@ -1762,8 +1764,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_OS_MAC)
 	checkBoxUnifiedTitleAndToolBarOnMac->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
 #endif
-	checkBoxSaveMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", true).toBool());
-	checkBoxRestoreMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", true).toBool());
 	checkBoxStatusbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 	checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
 	checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", false).toBool());
@@ -2030,6 +2030,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		if ( !qmc2EarlyStartup )
 			qmc2StatesTogglesEnabled = true;
 	}
+	checkBoxSaveMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", true).toBool());
+	checkBoxRestoreMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", true).toBool());
+	checkBoxSaveSoftwareSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveSoftwareSelection", true).toBool());
+	checkBoxRestoreSoftwareSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreSoftwareSelection", true).toBool());
 
 	// Shortcuts / Keys
 	QHashIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutHash);

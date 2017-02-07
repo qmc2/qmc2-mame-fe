@@ -233,7 +233,7 @@ bool SoftwareImageWidget::loadImage(const QString &listName, const QString &eN, 
 	myCacheKey = cachePrefix() + '_' + listName + '_' + entryName;
 	if ( fromParent ) {
 		QString parentKey(softwareParentHash.value(listName + ':' + entryName));
-		if ( !parentKey.isEmpty() && parentKey != "<no_parent>" ) {
+		if ( !parentKey.isEmpty() && parentKey != "<np>" ) {
 			QString parentName(parentKey.split(':', QString::SkipEmptyParts).at(1));
 			entryName = parentName;
 		}

@@ -46,6 +46,8 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 			addSoftListFavoritesColumn();
 		if ( columns.count() < 4 || !columns.contains("device_configs") )
 			addSoftListDeviceConfigsColumn();
+		if ( columns.count() < 5 || !columns.contains("selected_software") )
+			addSoftListSelectedSoftwareColumn();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open user data database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 	m_lastRowId = -1;
@@ -578,7 +580,7 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( query.first() )
-			hidden_lists = query.value(0).toString().split(",", QString::SkipEmptyParts);
+			hidden_lists = query.value(0).toString().split(',', QString::SkipEmptyParts);
 		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("hidden_lists").arg(query.lastQuery()).arg(query.lastError().text()));
@@ -588,7 +590,7 @@ QStringList UserDataDatabaseManager::hiddenLists(QString id)
 void UserDataDatabaseManager::removeHiddenLists(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (favorites IS NULL OR favorites = '') AND (device_configs IS NULL OR device_configs='') AND (selected_software IS NULL OR selected_software='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
@@ -631,7 +633,7 @@ QStringList UserDataDatabaseManager::listFavorites(QString id)
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( query.first() )
-			favorites = query.value(0).toString().split(",", QString::SkipEmptyParts);
+			favorites = query.value(0).toString().split(',', QString::SkipEmptyParts);
 		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("favorites").arg(query.lastQuery()).arg(query.lastError().text()));
@@ -641,7 +643,7 @@ QStringList UserDataDatabaseManager::listFavorites(QString id)
 void UserDataDatabaseManager::removeListFavorites(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (device_configs IS NULL OR device_configs='') AND (selected_software IS NULL OR selected_software='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
@@ -671,7 +673,6 @@ void UserDataDatabaseManager::setDeviceConfigs(QString id, QStringList device_co
 		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(query.lastError().text()));
-
 	if ( device_configs.isEmpty() )
 		removeDeviceConfigs(id);
 }
@@ -684,7 +685,7 @@ QStringList UserDataDatabaseManager::deviceConfigs(QString id)
 	query.bindValue(":id", id);
 	if ( query.exec() ) {
 		if ( query.first() )
-			device_configs = query.value(0).toString().split(",");
+			device_configs = query.value(0).toString().split(',');
 		query.finish();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("device_configs").arg(query.lastQuery()).arg(query.lastError().text()));
@@ -694,7 +695,70 @@ QStringList UserDataDatabaseManager::deviceConfigs(QString id)
 void UserDataDatabaseManager::removeDeviceConfigs(QString id)
 {
 	QSqlQuery query(m_db);
-	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='')").arg(m_tableBasenameSL));
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='') AND (selected_software IS NULL OR selected_software='')").arg(m_tableBasenameSL));
+	query.bindValue(":id", id);
+	if ( !query.exec() )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
+void UserDataDatabaseManager::setSelectedSoftware(QString id, QString softwareList, QString softwareName)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT selected_software FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( !query.next() ) {
+			query.finish();
+			query.prepare(QString("INSERT INTO %1 (id, selected_software) VALUES (:id, :selected_software)").arg(m_tableBasenameSL));
+			query.bindValue(":id", id);
+			query.bindValue(":selected_software", softwareList + ':' + softwareName);
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("selected_software").arg(query.lastQuery()).arg(query.lastError().text()));
+		} else {
+			query.finish();
+			query.prepare(QString("UPDATE %1 SET selected_software=:selected_software WHERE id=:id").arg(m_tableBasenameSL));
+			query.bindValue(":id", id);
+			query.bindValue(":selected_software", softwareList + ':' + softwareName);
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("selected_software").arg(query.lastQuery()).arg(query.lastError().text()));
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("selected_software").arg(query.lastQuery()).arg(query.lastError().text()));
+
+	if ( softwareList.isEmpty() || softwareName.isEmpty() )
+		removeSelectedSoftware(id);
+}
+
+bool UserDataDatabaseManager::getSelectedSoftware(QString id, QString *softwareList, QString *softwareName)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT selected_software FROM %1 WHERE id=:id").arg(m_tableBasenameSL));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() ) {
+			QStringList sl(query.value(0).toString().split(':'));
+			if ( sl.count() >= 2 ) {
+				*softwareList = sl.at(0);
+				*softwareName = sl.at(1);
+				return true;
+			} else
+				return false;
+		} else {
+			softwareList->clear();
+			softwareName->clear();
+			return true;
+		}
+	} else {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("selected_software").arg(query.lastQuery()).arg(query.lastError().text()));
+		return false;
+	}
+}
+
+void UserDataDatabaseManager::removeSelectedSoftware(QString id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("DELETE FROM %1 WHERE id=:id AND (hidden_lists IS NULL OR hidden_lists='') AND (favorites IS NULL OR favorites='') AND (device_configs IS NULL OR device_configs='')").arg(m_tableBasenameSL));
 	query.bindValue(":id", id);
 	if ( !query.exec() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
@@ -738,6 +802,13 @@ void UserDataDatabaseManager::addSoftListDeviceConfigsColumn()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN device_configs TEXT").arg(m_tableBasenameSL)) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
+void UserDataDatabaseManager::addSoftListSelectedSoftwareColumn()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("ALTER TABLE %1 ADD COLUMN selected_software TEXT").arg(m_tableBasenameSL)) )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 

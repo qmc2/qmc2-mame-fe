@@ -283,6 +283,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void checkSoftwareStates();
 		void updateStats(SoftwareListXmlHandler *handler = 0);
 		void loadTree();
+		void scrollToItem(const QString &listName, const QString &softwareName);
 
 		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);
@@ -399,6 +400,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool m_viewTree;
 		QString m_trL, m_trC, m_trM, m_trI, m_trN, m_trU, m_trS;
 		QString m_statusString;
+		QString m_selectedSoftwareList, m_selectedSoftwareName;
 };
 
 #endif

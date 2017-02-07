@@ -126,7 +126,7 @@
 #define QMC2_XMLCACHE_COMMIT			1000
 
 // current format version of the user data database schema
-#define QMC2_USERDATA_VERSION			2
+#define QMC2_USERDATA_VERSION			3
 
 // current format version of the check-sum database schema
 #define QMC2_CHECKSUM_DB_VERSION		1
