@@ -46,6 +46,10 @@ class UserDataDatabaseManager : public QObject
 		QStringList deviceConfigs(QString id);
 		void removeDeviceConfigs(QString id);
 
+		void setSelectedSoftware(QString id, QString softwareList, QString softwareName);
+		bool getSelectedSoftware(QString id, QString *softwareList, QString *softwareName);
+		void removeSelectedSoftware(QString id);
+
 		bool logActive() { return m_logActive; }
 		void setLogActive(bool enable) { m_logActive = enable; }
 
@@ -77,6 +81,7 @@ class UserDataDatabaseManager : public QObject
 		void recreateSoftListVisibilityTable();
 		void addSoftListFavoritesColumn();
 		void addSoftListDeviceConfigsColumn();
+		void addSoftListSelectedSoftwareColumn();
 		void renameSoftListTable();
 
 	private:

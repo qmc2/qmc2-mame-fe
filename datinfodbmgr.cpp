@@ -135,8 +135,8 @@ void DatInfoDatabaseManager::setDatInfoVersion(int datinfo_version)
 QString DatInfoDatabaseManager::softwareInfo(QString list, QString id, bool fromParent)
 {
 	if ( fromParent ) {
-		QString parentKey = softwareParentHash[list + ":" + id];
-		if ( !parentKey.isEmpty() && parentKey != "<no_parent>" )
+		QString parentKey(softwareParentHash.value(list + ':' + id));
+		if ( !parentKey.isEmpty() && parentKey != "<np>" )
 			id = parentKey.split(":", QString::SkipEmptyParts)[1];
 	}
 	QString infotext;
