@@ -78,17 +78,21 @@ class UserDataDatabaseManager : public QObject
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
 		void clearRankCache() { m_rankCache.clear(); }
 		void clearCommentCache() { m_commentCache.clear(); }
+
+	private:
 		void recreateSoftListVisibilityTable();
 		void addSoftListFavoritesColumn();
 		void addSoftListDeviceConfigsColumn();
 		void addSoftListSelectedSoftwareColumn();
 		void renameSoftListTable();
+		void recreateSystemAndSoftwareManualTables();
 
-	private:
 		mutable QSqlDatabase m_db;
 		QString m_tableBasename;
 		QString m_tableBasenameSL;
 		QString m_oldTableBasenameSL;
+		QString m_tableBasenameSystemManuals;
+		QString m_tableBasenameSoftwareManuals;
 		QString m_connectionName;
 		QString m_idString;
 		bool m_logActive;
