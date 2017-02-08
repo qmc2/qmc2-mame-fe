@@ -211,6 +211,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_actionSearchInternalBrowser_triggered(bool checked = false);
 		void on_actionRebuildROM_triggered(bool) { actionRebuildRom_triggered(); }
 		void on_actionRebuildROMTagged_triggered(bool checked = false);
+		void on_actionManualOpenInViewer_triggered(bool checked = false);
+		void on_actionManualInternalViewer_triggered(bool checked = false);
 
 		// arcade menu
 		void on_actionLaunchArcade_triggered(bool checked = false);
