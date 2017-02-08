@@ -578,20 +578,11 @@ void UserDataDatabaseManager::setSystemManualPath(const QString &id, const QStri
 
 QString UserDataDatabaseManager::systemManualPath(const QString &id)
 {
-	QString path;
-	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE id=:id").arg(m_tableBasenameSystemManuals));
-	query.bindValue(":id", id);
-	if ( query.exec() ) {
-		if ( query.first() ) {
-			QStringList sl(query.value(0).toString().split(';', QString::SkipEmptyParts));
-			if ( !sl.isEmpty() )
-				path = sl.first();
-		}
-		query.finish();
-	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
-	return path;
+	QStringList pathList(systemManualPaths(id));
+	if ( !pathList.isEmpty() )
+		return pathList.first();
+	else
+		return QString();
 }
 
 QStringList UserDataDatabaseManager::systemManualPaths(const QString &id)
@@ -640,21 +631,11 @@ void UserDataDatabaseManager::setSoftwareManualPath(const QString &list, const Q
 
 QString UserDataDatabaseManager::softwareManualPath(const QString &list, const QString &id)
 {
-	QString path;
-	QSqlQuery query(m_db);
-	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE list=:list AND id=:id").arg(m_tableBasenameSoftwareManuals));
-	query.bindValue(":list", list);
-	query.bindValue(":id", id);
-	if ( query.exec() ) {
-		if ( query.first() ) {
-			QStringList sl(query.value(0).toString().split(';', QString::SkipEmptyParts));
-			if ( !sl.isEmpty() )
-				path = sl.first();
-		}
-		query.finish();
-	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
-	return path;
+	QStringList pathList(softwareManualPaths(list, id));
+	if ( !pathList.isEmpty() )
+		return pathList.first();
+	else
+		return QString();
 }
 
 QStringList UserDataDatabaseManager::softwareManualPaths(const QString &list, const QString &id)
