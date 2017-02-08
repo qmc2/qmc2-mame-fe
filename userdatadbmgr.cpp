@@ -550,6 +550,129 @@ void UserDataDatabaseManager::fillUpCommentCache()
 	// FIXME
 }
 
+void UserDataDatabaseManager::setSystemManualPath(const QString &id, const QString &path)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE id=:id").arg(m_tableBasenameSystemManuals));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( !query.next() ) {
+			query.finish();
+			query.prepare(QString("INSERT INTO %1 (id, pdf_manual_paths) VALUES (:id, :pdf_manual_paths)").arg(m_tableBasenameSystemManuals));
+			query.bindValue(":id", id);
+			query.bindValue(":pdf_manual_paths", path);
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+		} else {
+			query.finish();
+			query.prepare(QString("UPDATE %1 SET pdf_manual_paths=:pdf_manual_paths WHERE id=:id").arg(m_tableBasenameSystemManuals));
+			query.bindValue(":id", id);
+			query.bindValue(":pdf_manual_paths", path);
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
+QString UserDataDatabaseManager::systemManualPath(const QString &id)
+{
+	QString path;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE id=:id").arg(m_tableBasenameSystemManuals));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() ) {
+			QStringList sl(query.value(0).toString().split(';', QString::SkipEmptyParts));
+			if ( !sl.isEmpty() )
+				path = sl.first();
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+	return path;
+}
+
+QStringList UserDataDatabaseManager::systemManualPaths(const QString &id)
+{
+	QStringList paths;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE id=:id").arg(m_tableBasenameSystemManuals));
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() )
+			paths = query.value(0).toString().split(';', QString::SkipEmptyParts);
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+	return paths;
+}
+
+void UserDataDatabaseManager::setSoftwareManualPath(const QString &list, const QString &id, const QString &path)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE list=:list AND id=:id").arg(m_tableBasenameSoftwareManuals));
+	query.bindValue(":list", list);
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( !query.next() ) {
+			query.finish();
+			query.prepare(QString("INSERT INTO %1 (list, id, pdf_manual_paths) VALUES (:list, :id, :pdf_manual_paths)").arg(m_tableBasenameSoftwareManuals));
+			query.bindValue(":list", list);
+			query.bindValue(":id", id);
+			query.bindValue(":pdf_manual_paths", path);
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+		} else {
+			query.finish();
+			query.prepare(QString("UPDATE %1 SET pdf_manual_paths=:pdf_manual_paths WHERE list=:list AND id=:id").arg(m_tableBasenameSoftwareManuals));
+			query.bindValue(":list", list);
+			query.bindValue(":id", id);
+			query.bindValue(":pdf_manual_paths", path);
+			if ( !query.exec() )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
+QString UserDataDatabaseManager::softwareManualPath(const QString &list, const QString &id)
+{
+	QString path;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE list=:list AND id=:id").arg(m_tableBasenameSoftwareManuals));
+	query.bindValue(":list", list);
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() ) {
+			QStringList sl(query.value(0).toString().split(';', QString::SkipEmptyParts));
+			if ( !sl.isEmpty() )
+				path = sl.first();
+		}
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+	return path;
+}
+
+QStringList UserDataDatabaseManager::softwareManualPaths(const QString &list, const QString &id)
+{
+	QStringList paths;
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT pdf_manual_paths FROM %1 WHERE list=:list AND id=:id").arg(m_tableBasenameSoftwareManuals));
+	query.bindValue(":list", list);
+	query.bindValue(":id", id);
+	if ( query.exec() ) {
+		if ( query.first() )
+			paths = query.value(0).toString().split(';', QString::SkipEmptyParts);
+		query.finish();
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from user data database: query = '%2', error = '%3'").arg("pdf_manual_paths").arg(query.lastQuery()).arg(query.lastError().text()));
+	return paths;
+}
+
 void UserDataDatabaseManager::setHiddenLists(QString id, QStringList hidden_lists)
 {
 	QSqlQuery query(m_db);

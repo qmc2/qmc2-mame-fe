@@ -63,6 +63,13 @@ class UserDataDatabaseManager : public QObject
 		void fillUpCommentCache();
 		QHash<QString, QString> &commentCache() { return m_commentCache; }
 
+		void setSystemManualPath(const QString &id, const QString &path);
+		QString systemManualPath(const QString &id);
+		QStringList systemManualPaths(const QString &id);
+		void setSoftwareManualPath(const QString &list, const QString &id, const QString &path);
+		QString softwareManualPath(const QString &list, const QString &id);
+		QStringList softwareManualPaths(const QString &list, const QString &id);
+
 		QString connectionName() { return m_connectionName; }
 		QString databasePath() { return m_db.databaseName(); }
 		quint64 databaseSize();
