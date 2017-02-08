@@ -2750,6 +2750,18 @@
      <addaction name="actionRunRomTool"/>
      <addaction name="actionRunRomToolTagged"/>
     </widget>
+    <widget class="QMenu" name="menuManual">
+     <property name="title">
+      <string>Manual</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/book.png</normaloff>:/data/img/book.png</iconset>
+     </property>
+     <addaction name="actionManualOpenInViewer"/>
+     <addaction name="separator"/>
+     <addaction name="actionManualInternalViewer"/>
+    </widget>
     <addaction name="actionPlay"/>
     <addaction name="actionPlayTagged"/>
     <addaction name="separator"/>
@@ -2767,6 +2779,7 @@
     <addaction name="separator"/>
     <addaction name="menuRank"/>
     <addaction name="menuSearchWeb"/>
+    <addaction name="menuManual"/>
     <addaction name="separator"/>
     <addaction name="actionExitStop"/>
    </widget>
@@ -4761,6 +4774,45 @@
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionManualOpenInViewer">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/book.png</normaloff>:/data/img/book.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open in PDF viewer...</string>
+   </property>
+   <property name="iconText">
+    <string>Open manual in PDF viewer</string>
+   </property>
+   <property name="toolTip">
+    <string>Open manual in PDF viewer</string>
+   </property>
+   <property name="statusTip">
+    <string>Open manual in PDF viewer</string>
+   </property>
+  </action>
+  <action name="actionManualInternalViewer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/pdf.png</normaloff>:/data/img/pdf.png</iconset>
+   </property>
+   <property name="text">
+    <string>Internal PDF viewer</string>
+   </property>
+   <property name="iconText">
+    <string>Use internal (or external) PDF viewer?</string>
+   </property>
+   <property name="toolTip">
+    <string>Use internal (or external) PDF viewer?</string>
+   </property>
+   <property name="statusTip">
+    <string>Use internal (or external) PDF viewer?</string>
    </property>
   </action>
  </widget>

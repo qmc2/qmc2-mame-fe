@@ -337,6 +337,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #if !defined(QMC2_WIP_ENABLED)
 	actionNewFilteredView->setVisible(false);
+	// FIXME: remove the following when the support for system-manuals works
+	menuManual->setVisible(false);
 #endif
 
 	criticalActions << actionRebuildROM << actionRebuildROMTagged;
@@ -636,8 +638,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	on_actionFullscreenToggle_triggered();
 	update_rebuildRomActions_visibility();
 
-	actionSearchInternalBrowser->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", true).toBool());
+	actionSearchInternalBrowser->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", false).toBool());
 	on_actionSearchInternalBrowser_triggered(actionSearchInternalBrowser->isChecked());
+	actionManualInternalViewer->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "PdfViewer/Internal", false).toBool());
+	on_actionManualInternalViewer_triggered(actionManualInternalViewer->isChecked());
 
 	// context menus
 	QAction *action;
@@ -721,6 +725,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	qmc2MachineMenu->addSeparator();
 	qmc2MachineMenu->addMenu(menuRank);
 	qmc2MachineMenu->addMenu(menuSearchWeb);
+	qmc2MachineMenu->addMenu(menuManual);
 
 	qmc2SearchMenu = new QMenu(0);
 	s = tr("Play selected machine");
@@ -765,6 +770,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	qmc2SearchMenu->addSeparator();
 	qmc2SearchMenu->addMenu(menuRank);
 	qmc2SearchMenu->addMenu(menuSearchWeb);
+	qmc2SearchMenu->addMenu(menuManual);
 
 	qmc2FavoritesMenu = new QMenu(0);
 	s = tr("Play selected machine");
@@ -803,6 +809,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	qmc2FavoritesMenu->addSeparator();
 	qmc2FavoritesMenu->addMenu(menuRank);
 	qmc2FavoritesMenu->addMenu(menuSearchWeb);
+	qmc2FavoritesMenu->addMenu(menuManual);
 	qmc2FavoritesMenu->addSeparator();
 	s = tr("Remove from favorites");
 	action = qmc2FavoritesMenu->addAction(tr("&Remove"));
@@ -862,6 +869,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	qmc2PlayedMenu->addSeparator();
 	qmc2PlayedMenu->addMenu(menuRank);
 	qmc2PlayedMenu->addMenu(menuSearchWeb);
+	qmc2PlayedMenu->addMenu(menuManual);
 	qmc2PlayedMenu->addSeparator();
 	s = tr("Remove from played");
 	action = qmc2PlayedMenu->addAction(tr("&Remove"));
@@ -9209,6 +9217,15 @@ void MainWindow::on_actionSearchInternalBrowser_triggered(bool checked)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebSearch/InternalBrowser", checked);
 }
 
+void MainWindow::on_actionManualInternalViewer_triggered(bool checked)
+{
+	if ( checked )
+		actionManualInternalViewer->setText(tr("Internal PDF viewer"));
+	else
+		actionManualInternalViewer->setText(tr("External PDF viewer"));
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "PdfViewer/Internal", checked);
+}
+
 void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 {
 	if ( qmc2MachineList->numTaggedSets <= 0 )
@@ -9267,6 +9284,11 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 			cr->plainTextEditLog->clear();
 		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
 	}
+}
+
+void MainWindow::on_actionManualOpenInViewer_triggered(bool)
+{
+	QMC2_PRINT_TXT(FIXME: MainWindow::on_actionManualOpenInViewer_triggered());
 }
 
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
