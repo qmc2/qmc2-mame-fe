@@ -67,6 +67,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			individualfallbacksettings.ui \
 			catverinioptimizer.ui \
 			filterconfigurationdialog.ui \
+			manualscanner.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -157,6 +158,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			catverinioptimizer.cpp \
 			filterconfigurationdialog.cpp \
 			rankitemdelegate.cpp \
+			manualscanner.cpp \
 			htmleditor/htmleditor.cpp \
 			htmleditor/highlighter.cpp \
 			lzma/7zAlloc.c \
@@ -276,6 +278,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			catverinioptimizer.h \
 			filterconfigurationdialog.h \
 			rankitemdelegate.h \
+			manualscanner.h \
 			dbcolumninfo.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \

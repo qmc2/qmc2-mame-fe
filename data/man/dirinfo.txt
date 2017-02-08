@@ -1,0 +1,9 @@
+The "man" directory is the default place (and base directory) for storing
+system- and software-manuals (in their respective sub-dirs systems/ and
+software/).
+
+Valid paths for system manuals:
+<system-manual-folder>/<system-name>.pdf
+
+Valid paths for software manuals:
+<software-manual-folder>/<software-list>/<software-name>.pdf

@@ -74,6 +74,7 @@
 #include "individualfallbacksettings.h"
 #include "catverinioptimizer.h"
 #include "iconcachesetupdialog.h"
+#include "manualscanner.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -213,6 +214,18 @@ Options::Options(QWidget *parent) :
 	QWebSettings::enablePersistentStorage(userScopePath);
 
 	setupUi(this);
+
+#if !defined(QMC2_WIP_ENABLED)
+	// FIXME: remove this when the support for system- and software-manuals works
+	labelSystemManualFolder->setVisible(false);
+	toolButtonScanSystemManuals->setVisible(false);
+	lineEditSystemManualFolder->setVisible(false);
+	toolButtonBrowseSystemManualFolder->setVisible(false);
+	labelSoftwareManualFolder->setVisible(false);
+	toolButtonScanSoftwareManuals->setVisible(false);
+	lineEditSoftwareManualFolder->setVisible(false);
+	toolButtonBrowseSoftwareManualFolder->setVisible(false);
+#endif
 
 #if !defined(QMC2_LIBARCHIVE_ENABLED)
 	comboBoxPreviewFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
@@ -410,6 +423,8 @@ Options::Options(QWidget *parent) :
 	lineEditSoftwareSnapDirectory->setToolTip(lineEditSoftwareSnapDirectory->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
 	lineEditSoftwareSnapFile->setToolTip(lineEditSoftwareSnapFile->toolTip() + " - " + tr("use semicolon (;) to separate multiple files"));
 	lineEditVideoSnapFolder->setToolTip(lineEditVideoSnapFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditSystemManualFolder->setToolTip(lineEditSystemManualFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
+	lineEditSoftwareManualFolder->setToolTip(lineEditSoftwareManualFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
 
 	checkPlaceholderStatus();
 	restoreCurrentConfig();
@@ -542,9 +557,13 @@ void Options::apply()
 	comboBoxSoftwareSnapFileType->setIconSize(iconSize);
 	toolButtonBrowseSoftwareNotesFolder->setIconSize(iconSize);
 	toolButtonBrowseSoftwareNotesTemplate->setIconSize(iconSize);
-	toolButtonBrowseVideoSnapFolder->setIconSize(iconSize);
 	toolButtonBrowseSystemNotesFolder->setIconSize(iconSize);
 	toolButtonBrowseSystemNotesTemplate->setIconSize(iconSize);
+	toolButtonBrowseVideoSnapFolder->setIconSize(iconSize);
+	toolButtonScanSystemManuals->setIconSize(iconSize);
+	toolButtonBrowseSystemManualFolder->setIconSize(iconSize);
+	toolButtonScanSoftwareManuals->setIconSize(iconSize);
+	toolButtonBrowseSoftwareManualFolder->setIconSize(iconSize);
 	toolButtonShowC->setIconSize(iconSize);
 	toolButtonShowM->setIconSize(iconSize);
 	toolButtonShowI->setIconSize(iconSize);
@@ -1008,6 +1027,8 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("MAME/FilesAndDirectories/UseSystemNotesTemplate", checkBoxUseSystemNotesTemplate->isChecked());
 	config->setValue("MAME/FilesAndDirectories/SystemNotesTemplate", lineEditSystemNotesTemplate->text());
 	config->setValue("MAME/FilesAndDirectories/VideoSnapFolder", lineEditVideoSnapFolder->text());
+	config->setValue("MAME/FilesAndDirectories/SystemManualFolder", lineEditSystemManualFolder->text());
+	config->setValue("MAME/FilesAndDirectories/SoftwareManualFolder", lineEditSoftwareManualFolder->text());
 	s = lineEditMameHistoryDat->text();
 	needManualReload |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
 	invalidateGameInfoDB |= (QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat").toString() != s);
@@ -1970,6 +1991,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditSystemNotesFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemNotesFolder", QMC2_DEFAULT_DATA_PATH + "/gmn/").toString());
 	lineEditSystemNotesTemplate->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/gmn/template.html").toString());
 	lineEditVideoSnapFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/VideoSnapFolder", QMC2_DEFAULT_DATA_PATH + "/vdo/").toString());
+	lineEditSystemManualFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SystemManualFolder", QMC2_DEFAULT_DATA_PATH + "/man/systems/").toString());
+	lineEditSoftwareManualFolder->setText(QMC2_QSETTINGS_CAST(config)->value("MAME/FilesAndDirectories/SoftwareManualFolder", QMC2_DEFAULT_DATA_PATH + "/man/software/").toString());
 	checkBoxUseSystemNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSystemNotesTemplate", false).toBool());
 	lineEditMameHistoryDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MameHistoryDat", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
 	lineEditMessSysinfoDat->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/MessSysinfoDat", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
@@ -2584,6 +2607,18 @@ void Options::on_toolButtonSetupIconDatabase_clicked()
 {
 	IconCacheSetupDialog icsd(this);
 	icsd.exec();
+}
+
+void Options::on_toolButtonScanSystemManuals_clicked()
+{
+	ManualScanner manualScanner(QMC2_MANUALSCANNER_MODE_SYSTEMS, this);
+	manualScanner.exec();
+}
+
+void Options::on_toolButtonScanSoftwareManuals_clicked()
+{
+	ManualScanner manualScanner(QMC2_MANUALSCANNER_MODE_SOFTWARE, this);
+	manualScanner.exec();
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
@@ -3293,6 +3328,28 @@ void Options::on_toolButtonBrowseVideoSnapFolder_clicked()
 	raise();
 }
 
+void Options::on_toolButtonBrowseSystemManualFolder_clicked()
+{
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose system manual folder"), lineEditSystemManualFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") )
+			s += "/";
+		lineEditSystemManualFolder->setText(s);
+	}
+	raise();
+}
+
+void Options::on_toolButtonBrowseSoftwareManualFolder_clicked()
+{
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose software manual folder"), lineEditSoftwareManualFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") )
+			s += "/";
+		lineEditSoftwareManualFolder->setText(s);
+	}
+	raise();
+}
+
 void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 {
 	if ( !item )
@@ -3890,6 +3947,10 @@ void Options::enableWidgets(bool enable)
 	toolButtonBrowseSystemNotesFolder->setEnabled(enable);
 	toolButtonBrowseSystemNotesTemplate->setEnabled(enable);
 	toolButtonBrowseVideoSnapFolder->setEnabled(enable);
+	toolButtonScanSystemManuals->setEnabled(enable);
+	toolButtonBrowseSystemManualFolder->setEnabled(enable);
+	toolButtonScanSoftwareManuals->setEnabled(enable);
+	toolButtonBrowseSoftwareManualFolder->setEnabled(enable);
 	toolButtonShowC->setEnabled(enable);
 	toolButtonShowM->setEnabled(enable);
 	toolButtonShowI->setEnabled(enable);

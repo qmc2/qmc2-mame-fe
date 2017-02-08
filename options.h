@@ -159,6 +159,10 @@ class Options : public QDialog, public Ui::Options
 		void on_toolButtonBrowseSystemNotesFolder_clicked();
 		void on_toolButtonBrowseSystemNotesTemplate_clicked();
 		void on_toolButtonBrowseVideoSnapFolder_clicked();
+		void on_toolButtonScanSystemManuals_clicked();
+		void on_toolButtonBrowseSystemManualFolder_clicked();
+		void on_toolButtonScanSoftwareManuals_clicked();
+		void on_toolButtonBrowseSoftwareManualFolder_clicked();
 		void on_toolButtonBrowseExecutableFile_clicked();
 		void on_toolButtonBrowseCookieDatabase_clicked();
 		void on_toolButtonBrowseDataDirectory_clicked();
