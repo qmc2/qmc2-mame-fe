@@ -36,15 +36,17 @@ UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
 	m_tableBasenameSystemManuals = QString("%1_system_manuals").arg(QMC2_EMU_NAME.toLower());
 	m_tableBasenameSoftwareManuals = QString("%1_software_manuals").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 		if ( tables.contains(m_oldTableBasenameSL) )
 			renameSoftListTable();
 		if ( tables.count() < 3 || !tables.contains(m_tableBasenameSL))
-			recreateSoftListVisibilityTable();
-		if ( tables.count() < 5 || !tables.contains(m_tableBasenameSystemManuals) || !tables.contains(m_tableBasenameSoftwareManuals) )
-			recreateSystemAndSoftwareManualTables();
+			recreateSoftListTable();
+		if ( tables.count() < 4 || !tables.contains(m_tableBasenameSystemManuals) )
+			recreateSystemManualTable();
+		if ( tables.count() < 5 || !tables.contains(m_tableBasenameSoftwareManuals) )
+			recreateSoftwareManualTable();
 		QStringList columns(columnNames(m_tableBasenameSL));
 		if ( columns.count() < 3 || !columns.contains("favorites") )
 			addSoftListFavoritesColumn();
@@ -506,8 +508,9 @@ void UserDataDatabaseManager::recreateDatabase()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
-	recreateSoftListVisibilityTable();
-	recreateSystemAndSoftwareManualTables();
+	recreateSoftListTable();
+	recreateSystemManualTable();
+	recreateSoftwareManualTable();
 	if ( logActive() )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("user data database '%1' initialized").arg(m_db.databaseName()));
 }
@@ -768,7 +771,7 @@ void UserDataDatabaseManager::removeSelectedSoftware(QString id)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove '%1' from user data database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
-void UserDataDatabaseManager::recreateSoftListVisibilityTable()
+void UserDataDatabaseManager::recreateSoftListTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSL)) ) {
@@ -823,7 +826,7 @@ void UserDataDatabaseManager::renameSoftListTable()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
-void UserDataDatabaseManager::recreateSystemAndSoftwareManualTables()
+void UserDataDatabaseManager::recreateSystemManualTable()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSystemManuals)) ) {
@@ -832,16 +835,6 @@ void UserDataDatabaseManager::recreateSystemAndSoftwareManualTables()
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSystemManuals)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-		return;
-	}
-	query.finish();
-	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSoftwareManuals)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
-		return;
-	}
-	query.finish();
-	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSoftwareManuals)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
@@ -858,6 +851,23 @@ void UserDataDatabaseManager::recreateSystemAndSoftwareManualTables()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
+}
+
+void UserDataDatabaseManager::recreateSoftwareManualTable()
+{
+	QSqlQuery query(m_db);
+	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasenameSoftwareManuals)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		return;
+	}
+	query.finish();
+	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasenameSoftwareManuals)) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		return;
+	}
+	query.finish();
+	// vaccum'ing the database frees all disk-space previously used
+	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (list TEXT, id TEXT, pdf_manual_paths TEXT, PRIMARY KEY (list, id), CONSTRAINT %1_unique_list_id UNIQUE (list, id))").arg(m_tableBasenameSoftwareManuals)) ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create user data database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
