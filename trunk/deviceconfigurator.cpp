@@ -51,8 +51,8 @@ DeviceItemDelegate::DeviceItemDelegate(QObject *parent)
 QWidget *DeviceItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
 {
 	QModelIndex sibling = index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_EXT);
-	QStringList extensions = sibling.data(Qt::EditRole).toString().split("/", QString::SkipEmptyParts);
-	QString filterString = tr("All files") + " (*)";
+	QStringList extensions(sibling.data(Qt::EditRole).toString().split('/', QString::SkipEmptyParts));
+	QString filterString(tr("All files") + " (*)");
 	if ( extensions.count() > 0 ) {
 #if defined(QMC2_OS_WIN)
 		filterString = tr("Valid device files") + " (*.zip";
@@ -60,7 +60,7 @@ QWidget *DeviceItemDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 		filterString = tr("Valid device files") + " (*.[zZ][iI][pP]";
 #endif
 		for (int i = 0; i < extensions.count(); i++) {
-			QString ext = extensions[i];
+			QString ext(extensions.at(i));
 #if !defined(QMC2_OS_WIN)
 			QString altExt;
 			for (int j = 0; j < ext.length(); j++) {
@@ -177,13 +177,13 @@ void DeviceItemDelegate::loadMidiInterfaces()
 			buffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 			if ( !buffer.isEmpty() ) {
-				QStringList lines = buffer.split("\n", QString::SkipEmptyParts);
-				QStringList midiInOutMarks = QStringList() << "MIDI input ports:" << "MIDI output ports:";
+				QStringList lines(buffer.split('\n', QString::SkipEmptyParts));
+				QStringList midiInOutMarks(QStringList() << "MIDI input ports:" << "MIDI output ports:");
 				bool midiIn = false;
 				bool midiOut = false;
 				int i = 0;
 				while ( i < lines.count() ) {
-					QString line = lines[i++];
+					QString line(lines.at(i++));
 					line = line.replace("(default)", "").trimmed();
 					if ( midiInOutMarks.contains(line) ) {
 						midiIn = midiInOutMarks.indexOf(line) == 0;
@@ -574,9 +574,9 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	foreach (QTreeWidgetItem *item, allSlotItems) {
 		if ( forceQuit )
 			break;
-		QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
+		QString slotName(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT));
 		if ( !slotName.isEmpty() ) {
-			bool isNestedSlot = !systemSlotHash[currentMachineName].contains(slotName);
+			bool isNestedSlot = !systemSlotHash.value(currentMachineName).contains(slotName);
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 			if ( cb ) {
 				int defaultIndex = -1;
@@ -734,15 +734,15 @@ bool DeviceConfigurator::readSystemSlots()
 	if ( (fromCache || commandProcStarted) && slotInfoFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&slotInfoFile);
 
-		QString slotLine = ts.readLine(); // comment line
+		QString slotLine(ts.readLine()); // comment line
 		slotLine = ts.readLine();
 
-		QStringList versionWords = slotLine.split("\t");
+		QStringList versionWords(slotLine.split('\t'));
 		bool sameVersion = false;
 
 		if ( versionWords.count() >= 2 ) {
-			if ( versionWords[0] == "MAME_VERSION" )
-				sameVersion = (versionWords[1] == qmc2MachineList->emulatorVersion);
+			if ( versionWords.at(0) == "MAME_VERSION" )
+				sameVersion = (versionWords.at(1) == qmc2MachineList->emulatorVersion);
 		}
 
 		if ( !sameVersion ) {
@@ -753,69 +753,59 @@ bool DeviceConfigurator::readSystemSlots()
 
 		if ( fromCache ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots from cache"));
+			ts.readLine(); // ignore -listslots header lines
+			ts.readLine();
 			loadTimer.start();
 		}
 
 		QString systemName, slotName, slotOption, slotDeviceName;
 		QRegExp rxSlotDev1("^\\S+\\s+\\S+\\s+\\S+\\s+");
-		QRegExp rxSlotDev2("^\\S+\\s+");
-		QRegExp rxSlotDev3("^\\S+\\s+\\S+\\s+");
+		QRegExp rxSlotDev2("^\\S+\\s+\\S+\\s+");
+		QRegExp rxSlotDev3("^\\S+\\s+");
 		QString strNone("[none]");
 		QString strUnused("QMC2_UNUSED_SLOTS");
 
 		int lineCounter = 0;
 		while ( !ts.atEnd() ) {
 			slotLine = ts.readLine();
-			QString slotLineTrimmed = slotLine.trimmed();
+			QString slotLineTrimmed(slotLine.trimmed());
 			if ( lineCounter++ % QMC2_SLOTINFO_READ_RESPONSE == 0 )
 				qApp->processEvents();
 			if ( !slotLineTrimmed.isEmpty() ) {
-				if ( !slotLine.startsWith(" ") ) {
-					QStringList slotWords = slotLineTrimmed.split(" ", QString::SkipEmptyParts);
-					if ( slotWords.count() >= 4 ) {
-						systemName = slotWords[0];
-						slotName = slotWords[1];
-						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 2 ) {
-							slotOption = slotWords[2];
-							if ( slotOption != strNone ) {
-								slotDeviceName = slotLineTrimmed;
-								slotDeviceName.remove(rxSlotDev1);
-								slotNameHash[slotOption] = slotDeviceName;
-								systemSlotHash[systemName][slotName] << slotOption;
-							} else
-								systemSlotHash[systemName][strUnused] << slotName;
+				QStringList slotWords(slotLineTrimmed.split(' ', QString::SkipEmptyParts));
+				if ( !slotLine.startsWith(' ') ) {
+					if ( slotWords.count() > 3 ) {
+						systemName = slotWords.at(0);
+						slotName = slotWords.at(1);
+						slotOption = slotWords.at(2);
+						if ( slotOption != strNone ) {
+							slotDeviceName = slotLineTrimmed;
+							slotDeviceName.remove(rxSlotDev1);
+							slotNameHash.insert(slotOption, slotDeviceName);
+							systemSlotHash[systemName][slotName] << slotOption;
 						} else
-							systemSlotHash[systemName].remove(slotName);
-					} else {
-						systemName = slotWords[0];
-						systemSlotHash[systemName].clear();
+							systemSlotHash[systemName][strUnused] << slotName;
 					}
 				} else {
-					QStringList slotWords = slotLineTrimmed.split(" ", QString::SkipEmptyParts);
-					if ( slotLine[13] == ' ' ) { // this isn't nice, but I see no other way at the moment...
-						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 ) {
-							slotOption = slotWords[0];
-							if ( slotOption != strNone ) {
-								slotDeviceName = slotLineTrimmed;
-								slotDeviceName.remove(rxSlotDev2);
-								slotNameHash[slotOption] = slotDeviceName;
-								systemSlotHash[systemName][slotName] << slotOption;
-							} else
-								systemSlotHash[systemName][strUnused] << slotName;
-						}
-					} else {
-						slotName = slotWords[0];
-						if ( slotName.split(":", QString::SkipEmptyParts).count() < 3 && slotWords.count() > 1 ) {
-							slotOption = slotWords[1];
-							if ( slotOption != strNone ) {
-								slotDeviceName = slotLineTrimmed;
-								slotDeviceName.remove(rxSlotDev3);
-								slotNameHash[slotOption] = slotDeviceName;
-								systemSlotHash[systemName][slotName] << slotOption;
-							} else
-								systemSlotHash[systemName][strUnused] << slotName;
+					if ( slotWords.count() > 2 && slotLine[17] != ' ' ) { // this is not nice, but I see no easier way
+						slotName = slotWords.at(0);
+						slotOption = slotWords.at(1);
+						if ( slotOption != strNone ) {
+							slotDeviceName = slotLineTrimmed;
+							slotDeviceName.remove(rxSlotDev2);
+							slotNameHash.insert(slotOption, slotDeviceName);
+							systemSlotHash[systemName][slotName] << slotOption;
 						} else
-							systemSlotHash[systemName].remove(slotName);
+							systemSlotHash[systemName][strUnused] << slotName;
+					} else if ( slotWords.count() > 1 ) {
+						slotOption = slotWords.at(0);
+						if ( slotOption != strNone ) {
+							slotDeviceName = slotLineTrimmed;
+							slotDeviceName.remove(rxSlotDev3);
+							slotNameHash.insert(slotOption, slotDeviceName);
+							systemSlotHash[systemName][slotName] << slotOption;
+						} else
+							systemSlotHash[systemName][strUnused] << slotName;
 					}
 				}
 			}
@@ -897,18 +887,15 @@ void DeviceConfigurator::addNestedSlot(QString slotName, QStringList slotOptionN
 	}
 	foreach (QTreeWidgetItem *item, allSlotItems) {
 		if ( slotName.startsWith(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT)) ) {
-			QStringList parentSlotParts = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT).split(":", QString::SkipEmptyParts);
-			if ( parentSlotParts.count() >= slotName.split(":", QString::SkipEmptyParts).count() - 2 ) {
-				parentItem = item;
-				break;
-			}
+			parentItem = item;
+			break;
 		}
 	}
 	if ( parentItem == 0 ) {
 		foreach (QTreeWidgetItem *item, allSlotItems) {
 			QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 			if ( cb ) {
-				if ( slotName.startsWith(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT) + ":" + cb->currentText().split(" ")[0]) ) {
+				if ( slotName.startsWith(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT) + ':' + cb->currentText().split(' ').at(0)) ) {
 					parentItem = item;
 					break;
 				}
@@ -1003,8 +990,7 @@ bool DeviceConfigurator::refreshDeviceMap()
 
 	refreshRunning = true;
 
-	QString xmlBuffer = getXmlDataWithEnabledSlots(currentMachineName);
-
+	QString xmlBuffer(getXmlDataWithEnabledSlots(currentMachineName));
 	if ( xmlBuffer.isEmpty() ) {
 		refreshRunning = false;
 		return false;
@@ -1341,7 +1327,7 @@ bool DeviceConfigurator::load()
 	listWidgetDeviceConfigurations->setSortingEnabled(false);
 	listWidgetDeviceConfigurations->clear();
 
-	QString xmlBuffer = getXmlData(currentMachineName);
+	QString xmlBuffer(getXmlData(currentMachineName));
   
 	QXmlInputSource xmlInputSource;
 	xmlInputSource.setData(xmlBuffer);
@@ -1415,7 +1401,7 @@ bool DeviceConfigurator::load()
 		QString slotName = it.key();
 		if ( slotName == "QMC2_UNUSED_SLOTS" )
 			continue;
-		bool isNestedSlot = !systemSlotHash[currentMachineName].contains(slotName);
+		bool isNestedSlot = !systemSlotHash.value(currentMachineName).contains(slotName);
 		QStringList slotOptions;
 		QStringList slotOptionsShort;
 		foreach (QString s, it.value()) {
@@ -1861,7 +1847,7 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 							QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemMap[valuePair.first[i]], QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
 								int index = -1;
-								bool isNestedSlot = !systemSlotHash[currentMachineName].contains(valuePair.first[i]);
+								bool isNestedSlot = !systemSlotHash.value(currentMachineName).contains(valuePair.first[i]);
 								if ( valuePair.second[i] != "\"\"" ) {
 									if ( isNestedSlot )
 										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
