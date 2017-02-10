@@ -49,23 +49,23 @@ void ToolBarCustomizer::refreshAvailableActions()
 					QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 					item->setText(subAction->iconText());
 					item->setIcon(subAction->icon());
-					availableToolBarActions[item] = subAction;
-					availableActionsByName[subAction->objectName()] = subAction;
+					availableToolBarActions.insert(item, subAction);
+					availableActionsByName.insert(subAction->objectName(), subAction);
 				}
 			} else {
 				QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 				item->setText(action->iconText());
 				item->setIcon(action->icon());
-				availableToolBarActions[item] = action;
-				availableActionsByName[action->objectName()] = action;
+				availableToolBarActions.insert(item, action);
+				availableActionsByName.insert(action->objectName(), action);
 			}
 		}
 	}
 	QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 	item->setText(tr("Tool-bar search box"));
 	item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
-	availableToolBarActions[item] = qmc2MainWindow->widgetActionToolbarSearch;
-	availableActionsByName[qmc2MainWindow->widgetActionToolbarSearch->objectName()] = qmc2MainWindow->widgetActionToolbarSearch;
+	availableToolBarActions.insert(item, qmc2MainWindow->widgetActionToolbarSearch);
+	availableActionsByName.insert(qmc2MainWindow->widgetActionToolbarSearch->objectName(), qmc2MainWindow->widgetActionToolbarSearch);
 	refreshActiveActions();
 }
 
@@ -183,7 +183,7 @@ void ToolBarCustomizer::on_pushButtonActivateActions_clicked()
 			QListWidgetItem *activeItem = new QListWidgetItem(listWidgetActiveActions);
 			activeItem->setText(item->text());
 			activeItem->setIcon(item->icon());
-			activeToolBarActions[activeItem] = action;
+			activeToolBarActions.insert(activeItem, action);
 		}
 	}
 }
@@ -241,7 +241,7 @@ void ToolBarCustomizer::on_pushButtonInsertSeparator_clicked()
 	listWidgetActiveActions->reset();
 	listWidgetActiveActions->setCurrentItem(item);
 	listWidgetActiveActions->scrollToItem(item);
-	activeToolBarActions[item] = separatorAction;
+	activeToolBarActions.insert(item, separatorAction);
 }
 
 void ToolBarCustomizer::on_listWidgetAvailableActions_itemSelectionChanged()
