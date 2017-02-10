@@ -546,6 +546,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void machineListViewer_selectionChanged(const QString &id);
 		void machineListViewer_tagChanged(const QString &id, bool tagged);
 
+		// related to system manuals
+		void checkSystemManualAvailability();
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
