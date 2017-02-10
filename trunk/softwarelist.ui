@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>825</width>
+    <width>867</width>
     <height>346</height>
    </rect>
   </property>
@@ -250,6 +250,29 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonManualOpenInViewer">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Open manual in PDF viewer</string>
+       </property>
+       <property name="statusTip">
+        <string>Open manual in PDF viewer</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/no_book.png</normaloff>:/data/img/no_book.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -400,7 +423,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>825</width>
+        <width>867</width>
         <height>186</height>
        </rect>
       </property>
@@ -582,8 +605,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>825</width>
-        <height>186</height>
+        <width>96</width>
+        <height>74</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -680,8 +703,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>825</width>
-        <height>186</height>
+        <width>96</width>
+        <height>138</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -876,8 +899,11 @@
   <tabstop>toolButtonSoftwareStates</tabstop>
   <tabstop>toolButtonAnalyzeSoftware</tabstop>
   <tabstop>toolButtonRebuildSoftware</tabstop>
+  <tabstop>toolButtonToggleSnapnameAdjustment</tabstop>
+  <tabstop>toolButtonToggleStatenameAdjustment</tabstop>
   <tabstop>comboBoxSnapnameDevice</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
+  <tabstop>toolButtonManualOpenInViewer</tabstop>
   <tabstop>toolButtonExport</tabstop>
   <tabstop>toolButtonFavoritesOptions</tabstop>
   <tabstop>toolButtonAddToFavorites</tabstop>

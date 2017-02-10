@@ -11,12 +11,14 @@
 
 #include "manualscanner.h"
 #include "machinelist.h"
+#include "softwarelist.h"
 #include "settings.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
 extern MachineList *qmc2MachineList;
+extern SoftwareList *qmc2SoftwareList;
 extern MainWindow *qmc2MainWindow;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 
@@ -112,18 +114,23 @@ void ManualScanner::scan()
 			QFileInfo fi(file);
 			if ( fi.suffix().toLower() == "pdf" ) {
 				if ( fi.isReadable() ) {
+					QString entryName(fi.baseName().toLower());
 					if ( m_mode == QMC2_MANUALSCANNER_MODE_SYSTEMS ) {
-						QString baseName(fi.baseName().toLower());
-						if ( qmc2MachineListItemHash.contains(baseName) ) {
-							log(tr("adding '%1' as a manual for '%2'").arg(file).arg(baseName));
+						if ( qmc2MachineListItemHash.contains(entryName) ) {
+							log(tr("adding '%1' as a manual for '%2'").arg(file).arg(entryName));
 							numStoredInDb++;
-							pdfManualHash[baseName] << file;
+							pdfManualHash[entryName] << file;
 						} else {
 							log(tr("ignoring '%1' because its name doesn't match any machine").arg(file));
 							numIgnored++;
 						}
 					} else {
-						// FIXME: software-manuals
+						QString listName(fi.absolutePath());
+						listName.remove(path + '/');
+						QString setKey(listName + ':' + entryName);
+						log(tr("adding '%1' as a manual for '%2'").arg(file).arg(setKey));
+						numStoredInDb++;
+						pdfManualHash[setKey] << file;
 					}
 				} else {
 					log(tr("can't read '%1' - please check access permissions").arg(file));
@@ -152,12 +159,14 @@ void ManualScanner::scan()
 	quint64 fileCount = 0;
 	while ( pdfManualHashIterator.hasNext() ) {
 		pdfManualHashIterator.next();
+		QStringList keyWords;
 		switch ( m_mode ) {
 			case QMC2_MANUALSCANNER_MODE_SYSTEMS:
 				userDataDb->setSystemManualPath(pdfManualHashIterator.key(), pdfManualHashIterator.value().join(";"));
 				break;
 			case QMC2_MANUALSCANNER_MODE_SOFTWARE:
-				// FIXME
+				keyWords = pdfManualHashIterator.key().split(':', QString::SkipEmptyParts);
+				userDataDb->setSoftwareManualPath(keyWords.at(0), keyWords.at(1), pdfManualHashIterator.value().join(";"));
 				break;
 		}
 		if ( fileCount++ % QMC2_MANUALSCANNER_DB_COMMIT == 0 ) {
@@ -173,7 +182,8 @@ void ManualScanner::scan()
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(checkSystemManualAvailability()));
 			break;
 		case QMC2_MANUALSCANNER_MODE_SOFTWARE:
-			// FIXME
+			if ( qmc2SoftwareList )
+				QTimer::singleShot(0, qmc2SoftwareList, SLOT(checkSoftwareManualAvailability()));
 			break;
 	}
 }

@@ -10,6 +10,7 @@
 #include <QLocale>
 #include <QPainterPath>
 #include <QAbstractButton>
+#include <QDesktopServices>
 #include <QHash>
 #include <QLabel>
 #include <QChar>
@@ -25,6 +26,7 @@
 #include "romalyzer.h"
 #include "processmanager.h"
 #include "aspectratiolabel.h"
+#include "itemselect.h"
 #include "macros.h"
 
 // external global variables
@@ -66,7 +68,8 @@ bool SoftwareList::isInitialLoad = true;
 bool SoftwareList::swlSupported = true;
 QString SoftwareList::swStatesLastLine;
 
-#define swlDb	qmc2MainWindow->swlDb
+#define swlDb		qmc2MainWindow->swlDb
+#define userDataDb      qmc2MachineList->userDataDb()
 
 SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
 	QWidget(parent)
@@ -155,6 +158,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
 	toolButtonToggleSnapnameAdjustment->setIconSize(iconSize);
 	toolButtonToggleStatenameAdjustment->setIconSize(iconSize);
+	toolButtonManualOpenInViewer->setIconSize(iconSize);
 	toolButtonSoftwareStates->setIconSize(iconSize);
 	toolButtonAnalyzeSoftware->setIconSize(iconSize);
 	toolButtonRebuildSoftware->setIconSize(iconSize);
@@ -860,7 +864,7 @@ void SoftwareList::toggleSoftwareList()
 				newHiddenList << a->text();
 		}
 	}
-	qmc2MachineList->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	userDataDb->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -872,7 +876,7 @@ void SoftwareList::showAllSoftwareLists()
 				a->setChecked(true);
 		}
 	}
-	qmc2MachineList->userDataDb()->setHiddenLists(systemName, QStringList());
+	userDataDb->setHiddenLists(systemName, QStringList());
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -886,7 +890,7 @@ void SoftwareList::showOnlyThisSoftwareList()
 				newHiddenList << a->text();
 		}
 	}
-	qmc2MachineList->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	userDataDb->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -902,7 +906,7 @@ void SoftwareList::showAllExceptThisSoftwareList()
 			}
 		}
 	}
-	qmc2MachineList->userDataDb()->setHiddenLists(systemName, newHiddenList);
+	userDataDb->setHiddenLists(systemName, newHiddenList);
 	QTimer::singleShot(0, toolButtonReload, SLOT(animateClick()));
 }
 
@@ -1244,8 +1248,8 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
-	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
-	qmc2MachineList->userDataDb()->getSelectedSoftware(systemName, &m_selectedSoftwareList, &m_selectedSoftwareName);
+	QStringList hiddenLists(userDataDb->hiddenLists(systemName));
+	userDataDb->getSelectedSoftware(systemName, &m_selectedSoftwareList, &m_selectedSoftwareName);
 
 	bool swlCacheOkay = (swlDb->swlRowCount() > 0) && (qmc2MachineList->emulatorVersion == swlDb->emulatorVersion());
 
@@ -1396,14 +1400,14 @@ bool SoftwareList::load()
 			softwareNames = qmc2Config->value(oldSettingsKey).toStringList();
 			qmc2Config->remove(oldSettingsKey);
 		} else
-			softwareNames = qmc2MachineList->userDataDb()->listFavorites(systemName);
+			softwareNames = userDataDb->listFavorites(systemName);
 		QStringList configNames;
 		oldSettingsKey = QString(QMC2_EMULATOR_PREFIX + "Favorites/%1/DeviceConfigs").arg(systemName);
 		if ( qmc2Config->contains(oldSettingsKey) ) {
 			configNames = qmc2Config->value(oldSettingsKey).toStringList();
 			qmc2Config->remove(oldSettingsKey);
 		} else
-			configNames = qmc2MachineList->userDataDb()->deviceConfigs(systemName);
+			configNames = userDataDb->deviceConfigs(systemName);
 
 		QStringList compatFilters(systemSoftwareFilterHash.value(systemName));
 		QTreeWidgetItem *selectionItem = 0;
@@ -1580,7 +1584,7 @@ void SoftwareList::loadTree()
 	QHash<QString, SoftwareItem *> parentItemHash;
 	QList<QTreeWidgetItem *> itemList;
 	QList<QTreeWidgetItem *> hideList;
-	QStringList hiddenLists = qmc2MachineList->userDataDb()->hiddenLists(systemName);
+	QStringList hiddenLists = userDataDb->hiddenLists(systemName);
 	foreach (QString setKey, softwareParentHash.keys()) {
 		if ( interruptLoad )
 			break;
@@ -1693,6 +1697,62 @@ void SoftwareList::scrollToItem(const QString &listName, const QString &software
 	}
 }
 
+void SoftwareList::on_toolButtonManualOpenInViewer_clicked()
+{
+	if ( !currentItem )
+		return;
+	QStringList manualPaths(userDataDb->softwareManualPaths(currentItem->text(QMC2_SWLIST_COLUMN_LIST), currentItem->text(QMC2_SWLIST_COLUMN_NAME)));
+	if ( manualPaths.isEmpty() ) {
+		QString parentKey(softwareParentHash.value(currentItem->text(QMC2_SWLIST_COLUMN_LIST) + ':' + currentItem->text(QMC2_SWLIST_COLUMN_NAME)));
+		if ( !parentKey.isEmpty() && parentKey != "<np>" ) {
+			QStringList parentWords(parentKey.split(':', QString::SkipEmptyParts));
+			manualPaths = userDataDb->softwareManualPaths(parentWords.at(0), parentWords.at(1));
+		}
+	}
+	if ( manualPaths.count() > 1 ) {
+		ItemSelector itemSelector(this, manualPaths);
+		itemSelector.setWindowTitle(tr("Manual selection"));
+		itemSelector.labelMessage->setText(tr("Multiple PDF manuals exist. Select the ones you want to open:"));
+		itemSelector.listWidgetItems->setSelectionMode(QAbstractItemView::ExtendedSelection);
+		if ( itemSelector.exec() != QDialog::Rejected ) {
+			QList<QListWidgetItem *> itemList(itemSelector.listWidgetItems->selectedItems());
+			for (int i = 0; i < itemList.count(); i++) {
+				if ( qmc2MainWindow->actionManualInternalViewer->isChecked() )
+					qmc2MainWindow->viewPdf(itemList.at(i)->text());
+				else
+					QDesktopServices::openUrl(QUrl::fromUserInput(itemList.at(i)->text()));
+			}
+		}
+	} else if ( manualPaths.count() > 0 ) {
+		if ( qmc2MainWindow->actionManualInternalViewer->isChecked() )
+			qmc2MainWindow->viewPdf(manualPaths.at(0));
+		else
+			QDesktopServices::openUrl(QUrl::fromUserInput(manualPaths.at(0)));
+	}
+}
+
+void SoftwareList::checkSoftwareManualAvailability()
+{
+	if ( !currentItem ) {
+		toolButtonManualOpenInViewer->setEnabled(false);
+		toolButtonManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
+		return;
+	}
+	bool enable = !userDataDb->softwareManualPaths(currentItem->text(QMC2_SWLIST_COLUMN_LIST), currentItem->text(QMC2_SWLIST_COLUMN_NAME)).isEmpty();
+	if ( !enable ) {
+		QString parentKey(softwareParentHash.value(currentItem->text(QMC2_SWLIST_COLUMN_LIST) + ':' + currentItem->text(QMC2_SWLIST_COLUMN_NAME)));
+		if ( !parentKey.isEmpty() && parentKey != "<np>" ) {
+			QStringList parentWords(parentKey.split(':', QString::SkipEmptyParts));
+			enable = !userDataDb->softwareManualPaths(parentWords.at(0), parentWords.at(1)).isEmpty();
+		}
+	}
+	toolButtonManualOpenInViewer->setEnabled(enable);
+	if ( enable )
+		toolButtonManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+	else
+		toolButtonManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
+}
+
 bool SoftwareList::save()
 {
 	if ( !fullyLoaded ) {
@@ -1715,7 +1775,7 @@ bool SoftwareList::save()
 
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveSoftwareSelection", true).toBool() ) {
 		if ( currentItem )
-			qmc2MachineList->userDataDb()->setSelectedSoftware(systemName, currentItem->text(QMC2_SWLIST_COLUMN_LIST), currentItem->text(QMC2_SWLIST_COLUMN_NAME));
+			userDataDb->setSelectedSoftware(systemName, currentItem->text(QMC2_SWLIST_COLUMN_LIST), currentItem->text(QMC2_SWLIST_COLUMN_NAME));
 		else {
 			QTreeWidgetItem *item = 0;
 			if ( toolBoxSoftwareList->currentIndex() == QMC2_SWLIST_FAVORITES_PAGE ) {
@@ -1728,17 +1788,17 @@ bool SoftwareList::save()
 					item = sl.at(0);
 			}
 			if ( item )
-				qmc2MachineList->userDataDb()->setSelectedSoftware(systemName, item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
+				userDataDb->setSelectedSoftware(systemName, item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME));
 			else
-				qmc2MachineList->userDataDb()->setSelectedSoftware(systemName, QString(), QString());
+				userDataDb->setSelectedSoftware(systemName, QString(), QString());
 		}
 	}
 
-	qmc2MachineList->userDataDb()->setListFavorites(systemName, softwareNames);
+	userDataDb->setListFavorites(systemName, softwareNames);
 	if ( allConfigsEmpty )
-		qmc2MachineList->userDataDb()->setDeviceConfigs(systemName, QStringList());
+		userDataDb->setDeviceConfigs(systemName, QStringList());
 	else
-		qmc2MachineList->userDataDb()->setDeviceConfigs(systemName, configNames);
+		userDataDb->setDeviceConfigs(systemName, configNames);
 
 	currentItem = enteredItem = 0;
 	return true;
@@ -2499,7 +2559,7 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 {
 	QStringList compatFilters(systemSoftwareFilterHash.value(systemName));
-	QStringList hiddenLists(qmc2MachineList->userDataDb()->hiddenLists(systemName));
+	QStringList hiddenLists(userDataDb->hiddenLists(systemName));
 	for (int count = 0; count < treeWidgetKnownSoftware->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(count);
 		QStringList compatList = item->whatsThis(QMC2_SWLIST_COLUMN_TITLE).split(",", QString::SkipEmptyParts);
@@ -2643,7 +2703,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool)
 		si = selectedItems.at(0);
 
 	QStringList compatFilters(systemSoftwareFilterHash.value(systemName));
-	QStringList hiddenLists(qmc2MachineList->userDataDb()->hiddenLists(systemName));
+	QStringList hiddenLists(userDataDb->hiddenLists(systemName));
 	if ( si ) {
 		if ( viewTree() ) {
 			while ( si->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && si->parent() )
@@ -2926,6 +2986,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
+		QTimer::singleShot(0, this, SLOT(checkSoftwareManualAvailability()));
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
@@ -2963,6 +3024,7 @@ void SoftwareList::on_treeWidgetKnownSoftwareTree_itemSelectionChanged()
 			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
+		QTimer::singleShot(0, this, SLOT(checkSoftwareManualAvailability()));
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
@@ -3001,6 +3063,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
+		QTimer::singleShot(0, this, SLOT(checkSoftwareManualAvailability()));
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
@@ -3051,6 +3114,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 			currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
 			detailUpdateTimer.start(qmc2UpdateDelay);
+		QTimer::singleShot(0, this, SLOT(checkSoftwareManualAvailability()));
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
@@ -3412,7 +3476,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
         QList<SoftwareItem *> itemList;
 	QList<SoftwareItem *> hideList;
 	QStringList compatFilters(systemSoftwareFilterHash.value(systemName));
-	QStringList hiddenLists(qmc2MachineList->userDataDb()->hiddenLists(systemName));
+	QStringList hiddenLists(userDataDb->hiddenLists(systemName));
 	numSoftwareMatches = 0;
 	for (int i = 0; i < treeWidgetKnownSoftware->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetKnownSoftware->topLevelItem(i);
@@ -3909,7 +3973,7 @@ void SoftwareList::loadFavoritesFromFile()
 		// import software-list favorites
 		QFile favoritesFile(filePath);
 		QStringList compatFilters(systemSoftwareFilterHash.value(systemName));
-		QStringList hiddenLists(qmc2MachineList->userDataDb()->hiddenLists(systemName));
+		QStringList hiddenLists(userDataDb->hiddenLists(systemName));
 		if ( favoritesFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading software-favorites for '%1' from '%2'").arg(systemName).arg(filePath));
 			QTextStream ts(&favoritesFile);
