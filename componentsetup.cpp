@@ -653,18 +653,20 @@ void ComponentSetup::on_listWidgetAvailableFeatures_itemSelectionChanged()
 void ComponentSetup::on_listWidgetActiveFeatures_itemSelectionChanged()
 {
 	if ( listWidgetActiveFeatures->selectedItems().count() > 0 ) {
-		pushButtonDeactivateFeatures->setEnabled(true);
 		if ( listWidgetActiveFeatures->selectedItems().count() == 1 ) {
 			pushButtonFeatureUp->setEnabled(true);
 			pushButtonFeatureDown->setEnabled(true);
+			ComponentInfo *componentInfo = componentInfoHash().value(m_components.at(comboBoxComponents->currentIndex()));
+			pushButtonDeactivateFeatures->setEnabled(componentInfo->removable(listWidgetActiveFeatures->selectedItems().at(0)->data(Qt::UserRole).toInt()));
 		} else {
 			pushButtonFeatureUp->setEnabled(false);
 			pushButtonFeatureDown->setEnabled(false);
+			pushButtonDeactivateFeatures->setEnabled(true);
 		}
 	} else {
-		pushButtonDeactivateFeatures->setEnabled(false);
 		pushButtonFeatureUp->setEnabled(false);
 		pushButtonFeatureDown->setEnabled(false);
+		pushButtonDeactivateFeatures->setEnabled(false);
 	}
 }
 
