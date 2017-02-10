@@ -3437,22 +3437,22 @@ p, li { white-space: pre-wrap; }
         <translation>Software Info Eintrag</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="706"/>
+        <location filename="../../componentsetup.cpp" line="708"/>
         <source>Choose the YouTube cache directory</source>
         <translation>YouTube Cache Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="716"/>
+        <location filename="../../componentsetup.cpp" line="718"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
         <translation>FATAL: kann neues YouTube Cache Verzeichnis nicht anlegen, Pfad = %1</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="798"/>
+        <location filename="../../componentsetup.cpp" line="800"/>
         <source>Question</source>
         <translation>Frage</translation>
     </message>
     <message>
-        <location filename="../../componentsetup.cpp" line="798"/>
+        <location filename="../../componentsetup.cpp" line="800"/>
         <source>The current component&apos;s setup hasn&apos;t been applied yet. Apply it now?</source>
         <translation>Die Änderungen an der aktuellen Komponente wurde noch nicht angewendet. Jetzt anwenden?</translation>
     </message>
@@ -4467,14 +4467,14 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1579"/>
-        <location filename="../../deviceconfigurator.cpp" line="1581"/>
+        <location filename="../../deviceconfigurator.cpp" line="1565"/>
+        <location filename="../../deviceconfigurator.cpp" line="1567"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1947"/>
-        <location filename="../../deviceconfigurator.cpp" line="2517"/>
+        <location filename="../../deviceconfigurator.cpp" line="1933"/>
+        <location filename="../../deviceconfigurator.cpp" line="2503"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
@@ -4493,7 +4493,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="237"/>
-        <location filename="../../deviceconfigurator.cpp" line="1335"/>
+        <location filename="../../deviceconfigurator.cpp" line="1321"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
@@ -4567,7 +4567,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="397"/>
-        <location filename="../../deviceconfigurator.cpp" line="2297"/>
+        <location filename="../../deviceconfigurator.cpp" line="2283"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Archiv öffnen</translation>
     </message>
@@ -4608,10 +4608,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="523"/>
-        <location filename="../../deviceconfigurator.cpp" line="1133"/>
-        <location filename="../../deviceconfigurator.cpp" line="1392"/>
-        <location filename="../../deviceconfigurator.cpp" line="2073"/>
-        <location filename="../../deviceconfigurator.cpp" line="2507"/>
+        <location filename="../../deviceconfigurator.cpp" line="1119"/>
+        <location filename="../../deviceconfigurator.cpp" line="1378"/>
+        <location filename="../../deviceconfigurator.cpp" line="2059"/>
+        <location filename="../../deviceconfigurator.cpp" line="2493"/>
         <source>No devices available</source>
         <translation>Keine Geräte verfügbar</translation>
     </message>
@@ -4641,8 +4641,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="690"/>
         <location filename="../../deviceconfigurator.cpp" line="723"/>
         <location filename="../../deviceconfigurator.cpp" line="725"/>
-        <location filename="../../deviceconfigurator.cpp" line="826"/>
-        <location filename="../../deviceconfigurator.cpp" line="828"/>
+        <location filename="../../deviceconfigurator.cpp" line="816"/>
+        <location filename="../../deviceconfigurator.cpp" line="818"/>
         <source>Failed to read slot info</source>
         <translation>Fehler beim Lesen der Slot-Infos</translation>
     </message>
@@ -4657,35 +4657,35 @@ p, li { white-space: pre-wrap; }
         <translation>WARNUNG: das externe Kommando zum Laden verfügbarer System-Slots ist abgebrochen, Slot-Optionen sind möglicherweise unvollständig</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="835"/>
+        <location filename="../../deviceconfigurator.cpp" line="825"/>
         <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
         <translation>Fertig (Lade verfügbare System-Slots und erzeuge den Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1028"/>
+        <location filename="../../deviceconfigurator.cpp" line="1014"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="868"/>
-        <location filename="../../deviceconfigurator.cpp" line="876"/>
-        <location filename="../../deviceconfigurator.cpp" line="1432"/>
-        <location filename="../../deviceconfigurator.cpp" line="1442"/>
+        <location filename="../../deviceconfigurator.cpp" line="858"/>
+        <location filename="../../deviceconfigurator.cpp" line="866"/>
+        <location filename="../../deviceconfigurator.cpp" line="1418"/>
+        <location filename="../../deviceconfigurator.cpp" line="1428"/>
         <source>not used</source>
         <translation>nicht verwendet</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="674"/>
         <location filename="../../deviceconfigurator.cpp" line="236"/>
-        <location filename="../../deviceconfigurator.cpp" line="1016"/>
-        <location filename="../../deviceconfigurator.cpp" line="1480"/>
-        <location filename="../../deviceconfigurator.cpp" line="1505"/>
+        <location filename="../../deviceconfigurator.cpp" line="1002"/>
+        <location filename="../../deviceconfigurator.cpp" line="1466"/>
+        <location filename="../../deviceconfigurator.cpp" line="1491"/>
+        <location filename="../../deviceconfigurator.cpp" line="1538"/>
+        <location filename="../../deviceconfigurator.cpp" line="1550"/>
         <location filename="../../deviceconfigurator.cpp" line="1552"/>
-        <location filename="../../deviceconfigurator.cpp" line="1564"/>
-        <location filename="../../deviceconfigurator.cpp" line="1566"/>
-        <location filename="../../deviceconfigurator.cpp" line="1803"/>
-        <location filename="../../deviceconfigurator.cpp" line="1914"/>
-        <location filename="../../deviceconfigurator.cpp" line="1963"/>
+        <location filename="../../deviceconfigurator.cpp" line="1789"/>
+        <location filename="../../deviceconfigurator.cpp" line="1900"/>
+        <location filename="../../deviceconfigurator.cpp" line="1949"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
@@ -4695,60 +4695,60 @@ p, li { white-space: pre-wrap; }
         <translation>Lade verfügbare System-Slots aus dem Cache</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="833"/>
+        <location filename="../../deviceconfigurator.cpp" line="823"/>
         <source>done (loading available system slots from cache, elapsed time = %1)</source>
         <translation>Fertig (Lade verfügbare System-Slots aus dem Cache, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="868"/>
-        <location filename="../../deviceconfigurator.cpp" line="883"/>
-        <location filename="../../deviceconfigurator.cpp" line="1238"/>
-        <location filename="../../deviceconfigurator.cpp" line="1264"/>
-        <location filename="../../deviceconfigurator.cpp" line="1432"/>
-        <location filename="../../deviceconfigurator.cpp" line="1451"/>
-        <location filename="../../deviceconfigurator.cpp" line="1673"/>
-        <location filename="../../deviceconfigurator.cpp" line="1883"/>
+        <location filename="../../deviceconfigurator.cpp" line="858"/>
+        <location filename="../../deviceconfigurator.cpp" line="873"/>
+        <location filename="../../deviceconfigurator.cpp" line="1224"/>
+        <location filename="../../deviceconfigurator.cpp" line="1250"/>
+        <location filename="../../deviceconfigurator.cpp" line="1418"/>
+        <location filename="../../deviceconfigurator.cpp" line="1437"/>
+        <location filename="../../deviceconfigurator.cpp" line="1659"/>
+        <location filename="../../deviceconfigurator.cpp" line="1869"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1228"/>
-        <location filename="../../deviceconfigurator.cpp" line="1247"/>
-        <location filename="../../deviceconfigurator.cpp" line="1291"/>
+        <location filename="../../deviceconfigurator.cpp" line="1214"/>
+        <location filename="../../deviceconfigurator.cpp" line="1233"/>
+        <location filename="../../deviceconfigurator.cpp" line="1277"/>
+        <location filename="../../deviceconfigurator.cpp" line="1637"/>
         <location filename="../../deviceconfigurator.cpp" line="1651"/>
-        <location filename="../../deviceconfigurator.cpp" line="1665"/>
-        <location filename="../../deviceconfigurator.cpp" line="1675"/>
-        <location filename="../../deviceconfigurator.cpp" line="2564"/>
+        <location filename="../../deviceconfigurator.cpp" line="1661"/>
+        <location filename="../../deviceconfigurator.cpp" line="2550"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2017"/>
+        <location filename="../../deviceconfigurator.cpp" line="2003"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2297"/>
+        <location filename="../../deviceconfigurator.cpp" line="2283"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Archiv schließen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2519"/>
+        <location filename="../../deviceconfigurator.cpp" line="2505"/>
         <source>Choose a unique configuration name</source>
         <translation>Eindeutiger Name für Geräte-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2519"/>
+        <location filename="../../deviceconfigurator.cpp" line="2505"/>
         <source>Unique configuration name:</source>
         <translation>Eindeutiger Name der Geräte-Konfiguration:</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2522"/>
+        <location filename="../../deviceconfigurator.cpp" line="2508"/>
         <source>Name conflict</source>
         <translation>Namenskonflikt</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2522"/>
+        <location filename="../../deviceconfigurator.cpp" line="2508"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -12891,19 +12891,9 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
 <context>
     <name>ManualScanner</name>
     <message>
-        <location filename="../../manualscanner.ui" line="20"/>
+        <location filename="../../manualscanner.ui" line="72"/>
         <source>Scanner log</source>
         <translation>Scanner Log</translation>
-    </message>
-    <message>
-        <location filename="../../manualscanner.ui" line="33"/>
-        <source>Scanner status / progress</source>
-        <translation>Fortschritss- und Statusanzeige des Scanners</translation>
-    </message>
-    <message>
-        <location filename="../../manualscanner.ui" line="39"/>
-        <source>Idle</source>
-        <translation>Leerlauf</translation>
     </message>
     <message>
         <location filename="../../manualscanner.ui" line="46"/>
@@ -12916,34 +12906,114 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Jetzt scannen</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.ui" line="59"/>
+        <location filename="../../manualscanner.ui" line="33"/>
         <source>Close this dialog</source>
         <translation>Dialog schließen</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.ui" line="62"/>
+        <location filename="../../manualscanner.ui" line="36"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="17"/>
+        <location filename="../../manualscanner.cpp" line="30"/>
         <source>System manual scanner</source>
         <translation>System Handbuch Scanner</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="21"/>
+        <location filename="../../manualscanner.cpp" line="34"/>
         <source>Software manual scanner</source>
         <translation>Software Handbuch Scanner</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="39"/>
+        <location filename="../../manualscanner.cpp" line="52"/>
         <source>scanner started</source>
         <translation>Scannen gestartet</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="41"/>
+        <location filename="../../manualscanner.cpp" line="54"/>
         <source>scanner ended</source>
         <translation>Scannen beendet</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="103"/>
+        <source>reading file list for path &apos;%1&apos;</source>
+        <translation>lese Dateiliste für Pfad &apos;%1&apos;</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../manualscanner.cpp" line="106"/>
+        <source>scanning %n file(s)</source>
+        <translation>
+            <numerusform>scanne %n Datei</numerusform>
+            <numerusform>scanne %n Dateien</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="115"/>
+        <source>adding &apos;%1&apos; as a manual for &apos;%2&apos;</source>
+        <translation>füge &apos;%1&apos; als Handbuch für &apos;%2&apos; hinzu</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="119"/>
+        <source>ignoring &apos;%1&apos; because its name doesn&apos;t match any machine</source>
+        <translation>ignoriere &apos;%1&apos; weil der Dateiname zu keiner Maschine passt</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="126"/>
+        <source>can&apos;t read &apos;%1&apos; - please check access permissions</source>
+        <translation>kann &apos;%1&apos; nicht lesen - bitte Zugriffsrechte prüfen</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="130"/>
+        <source>ignoring &apos;%1&apos; because it doesn&apos;t appear to be a PDF document</source>
+        <translation>ignoriere &apos;%1&apos; weil der Dateiname nicht auf ein PDF Dokument schließen lässt</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="136"/>
+        <source>scan statistics for path &apos;%1&apos;</source>
+        <translation>Scan-Statistik für Pfad &apos;%1&apos;</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../manualscanner.cpp" line="136"/>
+        <source>%n file(s) scanned</source>
+        <translation>
+            <numerusform>%n Datei gescannt</numerusform>
+            <numerusform>%n Dateien gescannt</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../manualscanner.cpp" line="136"/>
+        <source>%n manual(s) stored in database</source>
+        <translation>
+            <numerusform>%n Handbuch in Datenbank gespeichert</numerusform>
+            <numerusform>%n Handbücher in Datenbank gespeichert</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../manualscanner.cpp" line="136"/>
+        <source>%n file(s) ignored</source>
+        <translation>
+            <numerusform>%n Datei ignoriert</numerusform>
+            <numerusform>%n Dateien ignoriert</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../manualscanner.cpp" line="136"/>
+        <source>%n file(s) inaccessible</source>
+        <translation>
+            <numerusform>%n Datei nicht zugreifbar</numerusform>
+            <numerusform>%n Dateien nicht zugreifbar</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="138"/>
+        <source>updating the database</source>
+        <translation>Datenbank wird aktualisiert</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="167"/>
+        <source>database update finished</source>
+        <translation>Datenbank Aktualisierung abgeschlossen</translation>
     </message>
 </context>
 <context>
@@ -22721,153 +22791,161 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>UserDataDatabaseManager</name>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="56"/>
+        <location filename="../../userdatadbmgr.cpp" line="58"/>
         <source>WARNING: failed to open user data database &apos;%1&apos;: error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank &apos;%1&apos; konnte nicht geöffnet werden: Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="76"/>
-        <location filename="../../userdatadbmgr.cpp" line="100"/>
-        <location filename="../../userdatadbmgr.cpp" line="113"/>
-        <location filename="../../userdatadbmgr.cpp" line="137"/>
-        <location filename="../../userdatadbmgr.cpp" line="150"/>
-        <location filename="../../userdatadbmgr.cpp" line="174"/>
-        <location filename="../../userdatadbmgr.cpp" line="191"/>
-        <location filename="../../userdatadbmgr.cpp" line="206"/>
-        <location filename="../../userdatadbmgr.cpp" line="239"/>
-        <location filename="../../userdatadbmgr.cpp" line="256"/>
-        <location filename="../../userdatadbmgr.cpp" line="271"/>
-        <location filename="../../userdatadbmgr.cpp" line="304"/>
-        <location filename="../../userdatadbmgr.cpp" line="359"/>
-        <location filename="../../userdatadbmgr.cpp" line="371"/>
-        <location filename="../../userdatadbmgr.cpp" line="573"/>
-        <location filename="../../userdatadbmgr.cpp" line="590"/>
-        <location filename="../../userdatadbmgr.cpp" line="626"/>
-        <location filename="../../userdatadbmgr.cpp" line="643"/>
-        <location filename="../../userdatadbmgr.cpp" line="679"/>
-        <location filename="../../userdatadbmgr.cpp" line="695"/>
-        <location filename="../../userdatadbmgr.cpp" line="731"/>
-        <location filename="../../userdatadbmgr.cpp" line="757"/>
-        <location filename="../../userdatadbmgr.cpp" line="886"/>
+        <location filename="../../userdatadbmgr.cpp" line="78"/>
+        <location filename="../../userdatadbmgr.cpp" line="102"/>
+        <location filename="../../userdatadbmgr.cpp" line="115"/>
+        <location filename="../../userdatadbmgr.cpp" line="139"/>
+        <location filename="../../userdatadbmgr.cpp" line="152"/>
+        <location filename="../../userdatadbmgr.cpp" line="176"/>
+        <location filename="../../userdatadbmgr.cpp" line="193"/>
+        <location filename="../../userdatadbmgr.cpp" line="208"/>
+        <location filename="../../userdatadbmgr.cpp" line="241"/>
+        <location filename="../../userdatadbmgr.cpp" line="258"/>
+        <location filename="../../userdatadbmgr.cpp" line="273"/>
+        <location filename="../../userdatadbmgr.cpp" line="306"/>
+        <location filename="../../userdatadbmgr.cpp" line="361"/>
+        <location filename="../../userdatadbmgr.cpp" line="373"/>
+        <location filename="../../userdatadbmgr.cpp" line="576"/>
+        <location filename="../../userdatadbmgr.cpp" line="599"/>
+        <location filename="../../userdatadbmgr.cpp" line="629"/>
+        <location filename="../../userdatadbmgr.cpp" line="653"/>
+        <location filename="../../userdatadbmgr.cpp" line="680"/>
+        <location filename="../../userdatadbmgr.cpp" line="697"/>
+        <location filename="../../userdatadbmgr.cpp" line="733"/>
+        <location filename="../../userdatadbmgr.cpp" line="750"/>
+        <location filename="../../userdatadbmgr.cpp" line="786"/>
+        <location filename="../../userdatadbmgr.cpp" line="802"/>
+        <location filename="../../userdatadbmgr.cpp" line="838"/>
+        <location filename="../../userdatadbmgr.cpp" line="864"/>
+        <location filename="../../userdatadbmgr.cpp" line="1000"/>
         <source>WARNING: failed to fetch &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht von der Benutzerdaten Datenbank gelesen werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="90"/>
-        <location filename="../../userdatadbmgr.cpp" line="127"/>
-        <location filename="../../userdatadbmgr.cpp" line="164"/>
-        <location filename="../../userdatadbmgr.cpp" line="228"/>
-        <location filename="../../userdatadbmgr.cpp" line="293"/>
-        <location filename="../../userdatadbmgr.cpp" line="562"/>
-        <location filename="../../userdatadbmgr.cpp" line="615"/>
-        <location filename="../../userdatadbmgr.cpp" line="668"/>
-        <location filename="../../userdatadbmgr.cpp" line="720"/>
+        <location filename="../../userdatadbmgr.cpp" line="92"/>
+        <location filename="../../userdatadbmgr.cpp" line="129"/>
+        <location filename="../../userdatadbmgr.cpp" line="166"/>
+        <location filename="../../userdatadbmgr.cpp" line="230"/>
+        <location filename="../../userdatadbmgr.cpp" line="295"/>
+        <location filename="../../userdatadbmgr.cpp" line="565"/>
+        <location filename="../../userdatadbmgr.cpp" line="617"/>
+        <location filename="../../userdatadbmgr.cpp" line="669"/>
+        <location filename="../../userdatadbmgr.cpp" line="722"/>
+        <location filename="../../userdatadbmgr.cpp" line="775"/>
+        <location filename="../../userdatadbmgr.cpp" line="827"/>
         <source>WARNING: failed to add &apos;%1&apos; to user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht zur Benutzerdaten Datenbank hinzugefügt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="96"/>
-        <location filename="../../userdatadbmgr.cpp" line="133"/>
-        <location filename="../../userdatadbmgr.cpp" line="170"/>
-        <location filename="../../userdatadbmgr.cpp" line="235"/>
-        <location filename="../../userdatadbmgr.cpp" line="300"/>
-        <location filename="../../userdatadbmgr.cpp" line="569"/>
-        <location filename="../../userdatadbmgr.cpp" line="622"/>
-        <location filename="../../userdatadbmgr.cpp" line="675"/>
-        <location filename="../../userdatadbmgr.cpp" line="727"/>
+        <location filename="../../userdatadbmgr.cpp" line="98"/>
+        <location filename="../../userdatadbmgr.cpp" line="135"/>
+        <location filename="../../userdatadbmgr.cpp" line="172"/>
+        <location filename="../../userdatadbmgr.cpp" line="237"/>
+        <location filename="../../userdatadbmgr.cpp" line="302"/>
+        <location filename="../../userdatadbmgr.cpp" line="572"/>
+        <location filename="../../userdatadbmgr.cpp" line="625"/>
+        <location filename="../../userdatadbmgr.cpp" line="676"/>
+        <location filename="../../userdatadbmgr.cpp" line="729"/>
+        <location filename="../../userdatadbmgr.cpp" line="782"/>
+        <location filename="../../userdatadbmgr.cpp" line="834"/>
         <source>WARNING: failed to update &apos;%1&apos; in user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht in der Benutzerdaten Datenbank geändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="316"/>
+        <location filename="../../userdatadbmgr.cpp" line="318"/>
         <source>WARNING: failed to fetch row count from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Anzahl der Tabellenzeilen konnte nicht aus der Benutzerdaten Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="336"/>
+        <location filename="../../userdatadbmgr.cpp" line="338"/>
         <source>WARNING: failed to fetch row IDs from user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Tabellenzeilen IDs konnten nicht aus der Benutzerdaten Datenbank ermittelt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="378"/>
+        <location filename="../../userdatadbmgr.cpp" line="380"/>
         <source>cleaning up user data database &apos;%1&apos;</source>
         <translation>Säubere Benutzerdaten Datenbank &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="390"/>
+        <location filename="../../userdatadbmgr.cpp" line="392"/>
         <source>removed obsolete ID &apos;%1&apos;</source>
         <translation>Überflüssige ID &apos;%1&apos; entfernt</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="392"/>
-        <location filename="../../userdatadbmgr.cpp" line="401"/>
-        <location filename="../../userdatadbmgr.cpp" line="421"/>
-        <location filename="../../userdatadbmgr.cpp" line="600"/>
-        <location filename="../../userdatadbmgr.cpp" line="653"/>
-        <location filename="../../userdatadbmgr.cpp" line="705"/>
-        <location filename="../../userdatadbmgr.cpp" line="768"/>
+        <location filename="../../userdatadbmgr.cpp" line="394"/>
+        <location filename="../../userdatadbmgr.cpp" line="403"/>
+        <location filename="../../userdatadbmgr.cpp" line="423"/>
+        <location filename="../../userdatadbmgr.cpp" line="707"/>
+        <location filename="../../userdatadbmgr.cpp" line="760"/>
+        <location filename="../../userdatadbmgr.cpp" line="812"/>
+        <location filename="../../userdatadbmgr.cpp" line="875"/>
         <source>WARNING: failed to remove &apos;%1&apos; from user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: &apos;%1&apos; konnte nicht aus der Benutzerdaten Datenbank entfernt werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="399"/>
+        <location filename="../../userdatadbmgr.cpp" line="401"/>
         <source>removed ID &apos;%1&apos; due to no data</source>
         <translation>ID &apos;%1&apos; entfernt, weil keine Daten vorliegen</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="412"/>
+        <location filename="../../userdatadbmgr.cpp" line="414"/>
         <source>done (cleaning up user data database &apos;%1&apos;)</source>
         <translation>Fertig (Säubere Benutzerdaten Datenbank &apos;%1&apos;)</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="451"/>
-        <location filename="../../userdatadbmgr.cpp" line="461"/>
-        <location filename="../../userdatadbmgr.cpp" line="471"/>
+        <location filename="../../userdatadbmgr.cpp" line="453"/>
+        <location filename="../../userdatadbmgr.cpp" line="463"/>
+        <location filename="../../userdatadbmgr.cpp" line="473"/>
         <source>WARNING: failed to change the &apos;%1&apos; setting for the user data database: query = &apos;%2&apos;, error = &apos;%3&apos;</source>
         <translation>WARNUNG: Die Einstellung &apos;%1&apos; konnte in der Benutzerdaten Datenbank nicht verändert werden: Abfrage = &apos;%2&apos;, Fehler = &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="478"/>
-        <location filename="../../userdatadbmgr.cpp" line="483"/>
-        <location filename="../../userdatadbmgr.cpp" line="488"/>
-        <location filename="../../userdatadbmgr.cpp" line="775"/>
-        <location filename="../../userdatadbmgr.cpp" line="780"/>
-        <location filename="../../userdatadbmgr.cpp" line="830"/>
-        <location filename="../../userdatadbmgr.cpp" line="835"/>
-        <location filename="../../userdatadbmgr.cpp" line="840"/>
-        <location filename="../../userdatadbmgr.cpp" line="845"/>
+        <location filename="../../userdatadbmgr.cpp" line="480"/>
+        <location filename="../../userdatadbmgr.cpp" line="485"/>
+        <location filename="../../userdatadbmgr.cpp" line="490"/>
+        <location filename="../../userdatadbmgr.cpp" line="882"/>
+        <location filename="../../userdatadbmgr.cpp" line="887"/>
+        <location filename="../../userdatadbmgr.cpp" line="937"/>
+        <location filename="../../userdatadbmgr.cpp" line="942"/>
+        <location filename="../../userdatadbmgr.cpp" line="964"/>
+        <location filename="../../userdatadbmgr.cpp" line="969"/>
         <source>WARNING: failed to remove user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank konnte nicht entfernt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="496"/>
-        <location filename="../../userdatadbmgr.cpp" line="501"/>
-        <location filename="../../userdatadbmgr.cpp" line="506"/>
-        <location filename="../../userdatadbmgr.cpp" line="788"/>
-        <location filename="../../userdatadbmgr.cpp" line="793"/>
-        <location filename="../../userdatadbmgr.cpp" line="802"/>
-        <location filename="../../userdatadbmgr.cpp" line="809"/>
-        <location filename="../../userdatadbmgr.cpp" line="816"/>
-        <location filename="../../userdatadbmgr.cpp" line="823"/>
-        <location filename="../../userdatadbmgr.cpp" line="853"/>
-        <location filename="../../userdatadbmgr.cpp" line="858"/>
-        <location filename="../../userdatadbmgr.cpp" line="863"/>
-        <location filename="../../userdatadbmgr.cpp" line="868"/>
+        <location filename="../../userdatadbmgr.cpp" line="498"/>
+        <location filename="../../userdatadbmgr.cpp" line="503"/>
+        <location filename="../../userdatadbmgr.cpp" line="508"/>
+        <location filename="../../userdatadbmgr.cpp" line="895"/>
+        <location filename="../../userdatadbmgr.cpp" line="900"/>
+        <location filename="../../userdatadbmgr.cpp" line="909"/>
+        <location filename="../../userdatadbmgr.cpp" line="916"/>
+        <location filename="../../userdatadbmgr.cpp" line="923"/>
+        <location filename="../../userdatadbmgr.cpp" line="930"/>
+        <location filename="../../userdatadbmgr.cpp" line="950"/>
+        <location filename="../../userdatadbmgr.cpp" line="955"/>
+        <location filename="../../userdatadbmgr.cpp" line="977"/>
+        <location filename="../../userdatadbmgr.cpp" line="982"/>
         <source>WARNING: failed to create user data database: query = &apos;%1&apos;, error = &apos;%2&apos;</source>
         <translation>WARNUNG: Benutzerdaten Datenbank konnte nicht erstellt werden: Abfrage = &apos;%1&apos;, Fehler = &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="512"/>
+        <location filename="../../userdatadbmgr.cpp" line="515"/>
         <source>user data database &apos;%1&apos; initialized</source>
         <translation>Benutzerdaten Datenbank &apos;%1&apos; initialisiert</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="517"/>
+        <location filename="../../userdatadbmgr.cpp" line="520"/>
         <source>filling up rank cache from user data database &apos;%1&apos;</source>
         <translation>Lese Rang-Informationen aus Benutzerdaten Datenbank &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../userdatadbmgr.cpp" line="542"/>
+        <location filename="../../userdatadbmgr.cpp" line="545"/>
         <source>done (filling up rank cache from user data database &apos;%1&apos;)</source>
         <translation>Fertig (Lese Rang-Informationen aus Benutzerdaten Datenbank &apos;%1&apos;)</translation>
     </message>
