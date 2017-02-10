@@ -12926,22 +12926,27 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Software Handbuch Scanner</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="52"/>
+        <location filename="../../manualscanner.cpp" line="38"/>
+        <source>click &apos;scan now&apos; to start</source>
+        <translation>Auf &apos;Jetzt scannen&apos; klicken, um zu beginnen</translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="53"/>
         <source>scanner started</source>
         <translation>Scannen gestartet</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="54"/>
+        <location filename="../../manualscanner.cpp" line="55"/>
         <source>scanner ended</source>
         <translation>Scannen beendet</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="103"/>
+        <location filename="../../manualscanner.cpp" line="104"/>
         <source>reading file list for path &apos;%1&apos;</source>
         <translation>lese Dateiliste für Pfad &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="106"/>
+        <location filename="../../manualscanner.cpp" line="107"/>
         <source>scanning %n file(s)</source>
         <translation>
             <numerusform>scanne %n Datei</numerusform>
@@ -12949,32 +12954,32 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         </translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="115"/>
+        <location filename="../../manualscanner.cpp" line="116"/>
         <source>adding &apos;%1&apos; as a manual for &apos;%2&apos;</source>
         <translation>füge &apos;%1&apos; als Handbuch für &apos;%2&apos; hinzu</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="119"/>
+        <location filename="../../manualscanner.cpp" line="120"/>
         <source>ignoring &apos;%1&apos; because its name doesn&apos;t match any machine</source>
         <translation>ignoriere &apos;%1&apos; weil der Dateiname zu keiner Maschine passt</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="126"/>
+        <location filename="../../manualscanner.cpp" line="127"/>
         <source>can&apos;t read &apos;%1&apos; - please check access permissions</source>
         <translation>kann &apos;%1&apos; nicht lesen - bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="130"/>
+        <location filename="../../manualscanner.cpp" line="131"/>
         <source>ignoring &apos;%1&apos; because it doesn&apos;t appear to be a PDF document</source>
         <translation>ignoriere &apos;%1&apos; weil der Dateiname nicht auf ein PDF Dokument schließen lässt</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>scan statistics for path &apos;%1&apos;</source>
         <translation>Scan-Statistik für Pfad &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n file(s) scanned</source>
         <translation>
             <numerusform>%n Datei gescannt</numerusform>
@@ -12982,7 +12987,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n manual(s) stored in database</source>
         <translation>
             <numerusform>%n Handbuch in Datenbank gespeichert</numerusform>
@@ -12990,7 +12995,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n file(s) ignored</source>
         <translation>
             <numerusform>%n Datei ignoriert</numerusform>
@@ -12998,7 +13003,7 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n file(s) inaccessible</source>
         <translation>
             <numerusform>%n Datei nicht zugreifbar</numerusform>
@@ -13006,12 +13011,12 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         </translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="138"/>
+        <location filename="../../manualscanner.cpp" line="139"/>
         <source>updating the database</source>
         <translation>Datenbank wird aktualisiert</translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="167"/>
+        <location filename="../../manualscanner.cpp" line="168"/>
         <source>database update finished</source>
         <translation>Datenbank Aktualisierung abgeschlossen</translation>
     </message>

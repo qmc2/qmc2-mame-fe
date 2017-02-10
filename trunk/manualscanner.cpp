@@ -35,6 +35,7 @@ ManualScanner::ManualScanner(int mode, QWidget *parent) :
 			m_settingsKey = "SoftwareManualScanner";
 			break;
 	}
+	log(tr("click 'scan now' to start"));
 }
 
 ManualScanner::~ManualScanner()
