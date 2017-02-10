@@ -12,10 +12,12 @@
 #include "manualscanner.h"
 #include "machinelist.h"
 #include "settings.h"
+#include "qmc2main.h"
 #include "macros.h"
 
 extern Settings *qmc2Config;
 extern MachineList *qmc2MachineList;
+extern MainWindow *qmc2MainWindow;
 extern QHash<QString, QTreeWidgetItem *> qmc2MachineListItemHash;
 
 #define userDataDb	qmc2MachineList->userDataDb()
@@ -166,6 +168,14 @@ void ManualScanner::scan()
 	}
 	userDataDb->commitTransaction();
 	log(tr("database update finished"));
+	switch ( m_mode ) {
+		case QMC2_MANUALSCANNER_MODE_SYSTEMS:
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(checkSystemManualAvailability()));
+			break;
+		case QMC2_MANUALSCANNER_MODE_SOFTWARE:
+			// FIXME
+			break;
+	}
 }
 
 void ManualScanner::recursiveFileList(const QString &sDir, QStringList *fileNames)
