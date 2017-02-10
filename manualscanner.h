@@ -8,6 +8,9 @@
 #define QMC2_MANUALSCANNER_MODE_SYSTEMS		0
 #define QMC2_MANUALSCANNER_MODE_SOFTWARE	1
 
+#define QMC2_MANUALSCANNER_SCAN_RESPONSE	10
+#define QMC2_MANUALSCANNER_DB_COMMIT 		100
+
 class ManualScanner : public QDialog, public Ui::ManualScanner
 {
 	Q_OBJECT
@@ -27,6 +30,7 @@ class ManualScanner : public QDialog, public Ui::ManualScanner
 
 	private:
 		void scan();
+		void recursiveFileList(const QString &, QStringList *);
 
 		int m_mode;
 		QString m_settingsKey;
