@@ -101,6 +101,7 @@
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 #include "archivefile.h"
 #endif
+#include "itemselect.h"
 
 #if defined(QMC2_OS_MAC)
 #include <ApplicationServices/ApplicationServices.h>
@@ -9238,10 +9239,24 @@ void MainWindow::on_actionManualOpenInViewer_triggered(bool)
 		return;
 
 	QStringList manualPaths(userDataDb->systemManualPaths(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)));
-	if ( actionManualInternalViewer->isChecked() )
-		viewPdf(manualPaths.at(0));
-	else {
-		if ( !manualPaths.isEmpty() )
+	if ( manualPaths.count() > 1 ) {
+		ItemSelector itemSelector(this, manualPaths);
+		itemSelector.setWindowTitle(tr("Manual selection"));
+		itemSelector.labelMessage->setText(tr("Multiple PDF manuals exist. Select the ones you want to open:"));
+		itemSelector.listWidgetItems->setSelectionMode(QAbstractItemView::ExtendedSelection);
+		if ( itemSelector.exec() != QDialog::Rejected ) {
+			QList<QListWidgetItem *> itemList(itemSelector.listWidgetItems->selectedItems());
+			for (int i = 0; i < itemList.count(); i++) {
+				if ( actionManualInternalViewer->isChecked() )
+					viewPdf(itemList.at(i)->text());
+				else
+					QDesktopServices::openUrl(QUrl::fromUserInput(itemList.at(i)->text()));
+			}
+		}
+	} else if ( manualPaths.count() > 0 ) {
+		if ( actionManualInternalViewer->isChecked() )
+			viewPdf(manualPaths.at(0));
+		else
 			QDesktopServices::openUrl(QUrl::fromUserInput(manualPaths.at(0)));
 	}
 }
