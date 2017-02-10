@@ -12945,22 +12945,27 @@ Tentar novamente?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="52"/>
+        <location filename="../../manualscanner.cpp" line="38"/>
+        <source>click &apos;scan now&apos; to start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../manualscanner.cpp" line="53"/>
         <source>scanner started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="54"/>
+        <location filename="../../manualscanner.cpp" line="55"/>
         <source>scanner ended</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="103"/>
+        <location filename="../../manualscanner.cpp" line="104"/>
         <source>reading file list for path &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="106"/>
+        <location filename="../../manualscanner.cpp" line="107"/>
         <source>scanning %n file(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -12968,32 +12973,32 @@ Tentar novamente?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="115"/>
+        <location filename="../../manualscanner.cpp" line="116"/>
         <source>adding &apos;%1&apos; as a manual for &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="119"/>
+        <location filename="../../manualscanner.cpp" line="120"/>
         <source>ignoring &apos;%1&apos; because its name doesn&apos;t match any machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="126"/>
+        <location filename="../../manualscanner.cpp" line="127"/>
         <source>can&apos;t read &apos;%1&apos; - please check access permissions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="130"/>
+        <location filename="../../manualscanner.cpp" line="131"/>
         <source>ignoring &apos;%1&apos; because it doesn&apos;t appear to be a PDF document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>scan statistics for path &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n file(s) scanned</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -13001,7 +13006,7 @@ Tentar novamente?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n manual(s) stored in database</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -13009,7 +13014,7 @@ Tentar novamente?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n file(s) ignored</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -13017,7 +13022,7 @@ Tentar novamente?</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../manualscanner.cpp" line="136"/>
+        <location filename="../../manualscanner.cpp" line="137"/>
         <source>%n file(s) inaccessible</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -13025,12 +13030,12 @@ Tentar novamente?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="138"/>
+        <location filename="../../manualscanner.cpp" line="139"/>
         <source>updating the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../manualscanner.cpp" line="167"/>
+        <location filename="../../manualscanner.cpp" line="168"/>
         <source>database update finished</source>
         <translation type="unfinished"></translation>
     </message>
