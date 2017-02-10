@@ -303,6 +303,8 @@ extern QMap<HWND, QString> winWindowMap;
 #endif
 extern QHash<QString, QString> softwareParentHash;
 
+#define userDataDb	qmc2MachineList->userDataDb()
+
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent, qmc2TemplateCheck ? Qt::Tool | Qt::FramelessWindowHint : (Qt::WindowFlags)0),
 #if QMC2_USE_PHONON_API
@@ -4855,6 +4857,7 @@ void MainWindow::treeWidgetMachineList_itemSelectionChanged_delayed()
 	} else
 		qmc2CurrentItem = 0;
 	qmc2HierarchySelectedItem = 0;
+	QTimer::singleShot(0, this, SLOT(checkSystemManualAvailability()));
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
@@ -6251,6 +6254,9 @@ void MainWindow::init()
 	comboBoxSearch->addItems(machineSearchHistory);
 	comboBoxSearch->lineEdit()->setText(QString());
 	comboBoxSearch->blockSignals(false);
+
+	// disables the system manual actions initially
+	checkSystemManualAvailability();
 
 	// ... and process the queued events
 	setUpdatesEnabled(true);
@@ -9226,6 +9232,34 @@ void MainWindow::on_actionManualInternalViewer_triggered(bool checked)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "PdfViewer/Internal", checked);
 }
 
+void MainWindow::on_actionManualOpenInViewer_triggered(bool)
+{
+	if ( !qmc2CurrentItem )
+		return;
+
+	QStringList manualPaths(userDataDb->systemManualPaths(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)));
+	if ( actionManualInternalViewer->isChecked() )
+		viewPdf(manualPaths.at(0));
+	else {
+		if ( !manualPaths.isEmpty() )
+			QDesktopServices::openUrl(QUrl::fromUserInput(manualPaths.at(0)));
+	}
+}
+
+void MainWindow::checkSystemManualAvailability()
+{
+	if ( !qmc2CurrentItem ) {
+		actionManualOpenInViewer->setEnabled(false);
+		return;
+	}
+	bool enable = !userDataDb->systemManualPaths(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)).isEmpty();
+	actionManualOpenInViewer->setEnabled(enable);
+	if ( enable )
+		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+	else
+		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
+}
+
 void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 {
 	if ( qmc2MachineList->numTaggedSets <= 0 )
@@ -9284,11 +9318,6 @@ void MainWindow::on_actionRebuildROMTagged_triggered(bool)
 			cr->plainTextEditLog->clear();
 		QTimer::singleShot(0, cr->pushButtonStartStop, SLOT(click()));
 	}
-}
-
-void MainWindow::on_actionManualOpenInViewer_triggered(bool)
-{
-	QMC2_PRINT_TXT(FIXME: MainWindow::on_actionManualOpenInViewer_triggered());
 }
 
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
