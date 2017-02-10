@@ -215,18 +215,6 @@ Options::Options(QWidget *parent) :
 
 	setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-	// FIXME: remove this when the support for system- and software-manuals works
-	labelSystemManualFolder->setVisible(false);
-	toolButtonScanSystemManuals->setVisible(false);
-	lineEditSystemManualFolder->setVisible(false);
-	toolButtonBrowseSystemManualFolder->setVisible(false);
-	labelSoftwareManualFolder->setVisible(false);
-	toolButtonScanSoftwareManuals->setVisible(false);
-	lineEditSoftwareManualFolder->setVisible(false);
-	toolButtonBrowseSoftwareManualFolder->setVisible(false);
-#endif
-
 #if !defined(QMC2_LIBARCHIVE_ENABLED)
 	comboBoxPreviewFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);
 	comboBoxFlyerFileType->removeItem(QMC2_IMG_FILETYPE_ARCHIVE);

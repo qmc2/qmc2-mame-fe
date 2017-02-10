@@ -340,8 +340,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #if !defined(QMC2_WIP_ENABLED)
 	actionNewFilteredView->setVisible(false);
-	// FIXME: remove the following when the support for system-manuals works
-	menuManual->setVisible(false);
 #endif
 
 	criticalActions << actionRebuildROM << actionRebuildROMTagged;
@@ -9237,8 +9235,12 @@ void MainWindow::on_actionManualOpenInViewer_triggered(bool)
 {
 	if ( !qmc2CurrentItem )
 		return;
-
 	QStringList manualPaths(userDataDb->systemManualPaths(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)));
+	if ( manualPaths.isEmpty() ) {
+		QString parentName(qmc2ParentHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)));
+		if ( !parentName.isEmpty() )
+			manualPaths = userDataDb->systemManualPaths(parentName);
+	}
 	if ( manualPaths.count() > 1 ) {
 		ItemSelector itemSelector(this, manualPaths);
 		itemSelector.setWindowTitle(tr("Manual selection"));
@@ -9265,9 +9267,15 @@ void MainWindow::checkSystemManualAvailability()
 {
 	if ( !qmc2CurrentItem ) {
 		actionManualOpenInViewer->setEnabled(false);
+		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
 		return;
 	}
 	bool enable = !userDataDb->systemManualPaths(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)).isEmpty();
+	if ( !enable ) {
+		QString parentName(qmc2ParentHash.value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)));
+		if ( !parentName.isEmpty() )
+			enable = !userDataDb->systemManualPaths(parentName).isEmpty();
+	}
 	actionManualOpenInViewer->setEnabled(enable);
 	if ( enable )
 		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
