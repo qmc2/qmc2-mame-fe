@@ -262,6 +262,14 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
 
 	updateRebuildSoftwareMenuVisibility();
 
+	// open manual in PDF viewer item
+	softwareListMenu->addSeparator();
+	s = tr("Open manual in PDF viewer");
+	actionManualOpenInViewer = softwareListMenu->addAction(tr("Open in PDF viewer..."));
+	actionManualOpenInViewer->setToolTip(s);actionManualOpenInViewer->setStatusTip(s);
+	actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+	connect(actionManualOpenInViewer, SIGNAL(triggered()), this, SLOT(on_toolButtonManualOpenInViewer_clicked()));
+
 	// clear selection item
 	softwareListMenu->addSeparator();
 	s = tr("Clear software selection");
@@ -1736,6 +1744,8 @@ void SoftwareList::checkSoftwareManualAvailability()
 	if ( !currentItem ) {
 		toolButtonManualOpenInViewer->setEnabled(false);
 		toolButtonManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
+		actionManualOpenInViewer->setEnabled(false);
+		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
 		return;
 	}
 	bool enable = !userDataDb->softwareManualPaths(currentItem->text(QMC2_SWLIST_COLUMN_LIST), currentItem->text(QMC2_SWLIST_COLUMN_NAME)).isEmpty();
@@ -1747,10 +1757,14 @@ void SoftwareList::checkSoftwareManualAvailability()
 		}
 	}
 	toolButtonManualOpenInViewer->setEnabled(enable);
-	if ( enable )
+	actionManualOpenInViewer->setEnabled(enable);
+	if ( enable ) {
 		toolButtonManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
-	else
+		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+	} else {
 		toolButtonManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
+		actionManualOpenInViewer->setIcon(QIcon(QString::fromUtf8(":/data/img/no_book.png")));
+	}
 }
 
 bool SoftwareList::save()

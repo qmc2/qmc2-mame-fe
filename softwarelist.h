@@ -216,6 +216,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *rebuildMenuAction;
 		QAction *viewFlatAction;
 		QAction *viewTreeAction;
+		QAction *actionManualOpenInViewer;
 		QFile softwareStateFile;
 		QList<QTreeWidgetItem *> softwareListItems, favoritesListItems, searchListItems;
 		QMenu *softwareListMenu;
