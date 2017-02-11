@@ -48,7 +48,10 @@ void ToolBarCustomizer::refreshAvailableActions()
 						continue;
 					QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 					item->setText(subAction->iconText());
-					item->setIcon(subAction->icon());
+					if ( subAction == qmc2MainWindow->actionManualOpenInViewer )
+						item->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+					else
+						item->setIcon(subAction->icon());
 					availableToolBarActions.insert(item, subAction);
 					availableActionsByName.insert(subAction->objectName(), subAction);
 				}
@@ -101,7 +104,10 @@ void ToolBarCustomizer::refreshActiveActions()
 					item = new QListWidgetItem(listWidgetActiveActions);
 					action = availableActionsByName.value(actionName);
 					item->setText(action->iconText());
-					item->setIcon(action->icon());
+					if ( action == qmc2MainWindow->actionManualOpenInViewer )
+						item->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+					else
+						item->setIcon(action->icon());
 					activeToolBarActions.insert(item, action);
 				}
 				break;
