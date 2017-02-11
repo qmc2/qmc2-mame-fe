@@ -4,6 +4,7 @@
 #include <QList>
 #include <QMap>
 #include <QAction>
+#include <QIcon>
 
 #include "ui_toolbarcustomizer.h"
 
@@ -42,6 +43,10 @@ class ToolBarCustomizer : public QDialog, public Ui::ToolBarCustomizer
 
 	protected:
 		void showEvent(QShowEvent *);
+
+	private:
+		QIcon m_bookIcon;
+		QIcon m_findIcon;
 };
 
 #endif

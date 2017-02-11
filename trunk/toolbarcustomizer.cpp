@@ -30,6 +30,8 @@ ToolBarCustomizer::ToolBarCustomizer(QWidget *parent) :
 	separatorAction->setSeparator(true);
 	separatorAction->setObjectName("--");
 	activeActions.clear();
+	m_bookIcon = QIcon(QString::fromUtf8(":/data/img/book.png"));
+	m_findIcon = QIcon(QString::fromUtf8(":/data/img/find.png"));
 	QTimer::singleShot(0, this, SLOT(refreshAvailableActions()));
 }
 
@@ -49,7 +51,7 @@ void ToolBarCustomizer::refreshAvailableActions()
 					QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 					item->setText(subAction->iconText());
 					if ( subAction == qmc2MainWindow->actionManualOpenInViewer )
-						item->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+						item->setIcon(m_bookIcon);
 					else
 						item->setIcon(subAction->icon());
 					availableToolBarActions.insert(item, subAction);
@@ -66,7 +68,7 @@ void ToolBarCustomizer::refreshAvailableActions()
 	}
 	QListWidgetItem *item = new QListWidgetItem(listWidgetAvailableActions);
 	item->setText(tr("Tool-bar search box"));
-	item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
+	item->setIcon(m_findIcon);
 	availableToolBarActions.insert(item, qmc2MainWindow->widgetActionToolbarSearch);
 	availableActionsByName.insert(qmc2MainWindow->widgetActionToolbarSearch->objectName(), qmc2MainWindow->widgetActionToolbarSearch);
 	refreshActiveActions();
@@ -96,7 +98,7 @@ void ToolBarCustomizer::refreshActiveActions()
 			case 2: // for backward-compatibility
 				item = new QListWidgetItem(listWidgetActiveActions);
 				item->setText(tr("Tool-bar search box"));
-				item->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
+				item->setIcon(m_findIcon);
 				activeToolBarActions.insert(item, qmc2MainWindow->widgetActionToolbarSearch);
 				break;
 			default:
@@ -105,7 +107,7 @@ void ToolBarCustomizer::refreshActiveActions()
 					action = availableActionsByName.value(actionName);
 					item->setText(action->iconText());
 					if ( action == qmc2MainWindow->actionManualOpenInViewer )
-						item->setIcon(QIcon(QString::fromUtf8(":/data/img/book.png")));
+						item->setIcon(m_bookIcon);
 					else
 						item->setIcon(action->icon());
 					activeToolBarActions.insert(item, action);
