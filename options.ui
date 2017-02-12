@@ -3181,7 +3181,7 @@
                 <height>542</height>
                </rect>
               </property>
-              <layout class="QGridLayout" name="gridLayout">
+              <layout class="QGridLayout" name="gridLayout_8">
                <item row="17" column="0" colspan="3">
                 <widget class="QCheckBox" name="checkBoxSaveSoftwareSelection">
                  <property name="toolTip">
