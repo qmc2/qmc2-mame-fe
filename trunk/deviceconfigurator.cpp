@@ -151,8 +151,6 @@ void DeviceItemDelegate::loadMidiInterfaces()
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
-#else
-	commandProc.setStandardErrorFile("NUL");
 #endif
 	QStringList args;
 	args << "-listmidi";
@@ -555,8 +553,6 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
-#else
-	commandProc.setStandardErrorFile("NUL");
 #endif
 
 	QStringList args;
@@ -694,8 +690,6 @@ bool DeviceConfigurator::readSystemSlots()
 		commandProc.setStandardOutputFile(slotInfoCachePath, QIODevice::Append);
 #if !defined(QMC2_OS_WIN)
 		commandProc.setStandardErrorFile("/dev/null");
-#else
-		commandProc.setStandardErrorFile("NUL");
 #endif
 		QStringList args;
 		args << "-listslots";
@@ -718,7 +712,7 @@ bool DeviceConfigurator::readSystemSlots()
 				commandProcRunning = (commandProc.state() == QProcess::Running);
 			}
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 			lineEditConfigurationName->blockSignals(true);
 			lineEditConfigurationName->setText(tr("Failed to read slot info"));
 			lineEditConfigurationName->blockSignals(false);
