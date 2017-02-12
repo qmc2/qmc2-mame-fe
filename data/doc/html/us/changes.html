@@ -19,6 +19,7 @@ inf: informational only
 	<li>fix: corrected the start-up restoration of the currently selected machine when said machine is hidden in the main view (aka 'full detail view') due to ROM state filtering</li>
 	<li>fix: template check: when a (presumably) boolean type option changes its semantic, make sure that the check at least sees the changed default (example: the 'sound' option changes in MAME 0.182)</li>
 	<li>fix: correctly honor the <i>ShowROMStatusIcons</i> setting in the main view when the machine list is loaded from cache</li>
+	<li>fix: system-notes: got rid of some MAME/MESS/UME leftovers (OMG!) which prevented titles from being displayed in system-notes</li>
 	<li>imp: updated category.ini to MAME 'git latest'</li>
 	<li>imp: updated PDF.js to a newer git revision (as of 30-JAN-2017), now pre-built with <code>gulp</code></li>
 	<li>imp: changed the category- and version-views to do an ascending sort of the category or version column before running the actual sort on the current criteria upon creation</li>
