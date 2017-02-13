@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.183, 12-FEB-2017</h3>
+<h3>CHANGES - v0.183, 13-FEB-2017</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,17 +14,17 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.183, 12-FEB-2017:</b></p>
+<p><b>v0.183, 13-FEB-2017:</b></p>
 <ul>
 	<li>fix: corrected the start-up restoration of the currently selected machine when said machine is hidden in the main view (aka 'full detail view') due to ROM state filtering</li>
-	<li>fix: template check: when a (presumably) boolean type option changes its semantic, make sure that the check at least sees the changed default (example: the 'sound' option changes in MAME 0.182)</li>
+	<li>fix: template check: when a (presumably) boolean type option changes its semantic, make sure that the check at least sees the changed default (example: the 'sound' option in current MAME)</li>
 	<li>fix: correctly honor the <i>ShowROMStatusIcons</i> setting in the main view when the machine list is loaded from cache</li>
 	<li>fix: system-notes: got rid of some MAME/MESS/UME leftovers (OMG!) which prevented titles from being displayed in system-notes when they were (7-)zipped</li>
 	<li>imp: updated category.ini to MAME 'git latest'</li>
 	<li>imp: updated PDF.js to a newer git revision (as of 30-JAN-2017), now pre-built with <code>gulp</code></li>
 	<li>imp: changed the category- and version-views to do an ascending sort of the category or version column before running the actual sort on the current criteria upon creation</li>
 	<li>imp: avoid UI flicker when initially creating the category- or version-views</li>
-	<li>imp: updated the emulator configuration templates to MAME 'git latest' (adopted the 'sound' option changes from MAME 0.182)</li>
+	<li>imp: updated the emulator configuration templates to MAME 'git latest' (changed the 'sound' option to correspond with current MAME)</li>
 	<li>imp: improved the main setup dialog's (former) <i>Machine-list</i> tab (now called <i>Machine- / Software-lists</i>) by reorganizing the different options in separate sections</li>
 	<li>imp: software-lists: get rid of using a temporary file for looking up mountable devices for the current slot setup, use the standard input channel instead (we actually got rid of using a temporary file <b>completely</b>, so the corresponding setting has been removed as well)</li>
 	<li>imp: device configurator: adopted MAME's new formatting of the <code>-listslots</code> output (this means that <b>MAME 'git latest' is required now!</b>)</li>
