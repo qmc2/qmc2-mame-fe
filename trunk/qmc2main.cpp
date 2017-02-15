@@ -7567,9 +7567,12 @@ void MainWindow::menuTabWidgetMachineList_Setup_activated()
 
 void MainWindow::on_tabWidgetMachineList_customContextMenuRequested(const QPoint &p)
 {
-	if ( !tabWidgetMachineList->currentWidget()->childrenRect().contains(p, true) ) {
-		menuTabWidgetMachineList->move(adjustedWidgetPosition(tabWidgetMachineList->mapToGlobal(p), menuTabWidgetMachineList));
-		menuTabWidgetMachineList->show();
+	QTabBar *tabBar = tabWidgetMachineList->findChild<QTabBar *>();
+	if ( tabBar ) {
+		if ( tabBar->geometry().contains(p) ) {
+			menuTabWidgetMachineList->move(adjustedWidgetPosition(tabWidgetMachineList->mapToGlobal(p), menuTabWidgetMachineList));
+			menuTabWidgetMachineList->show();
+		}
 	}
 }
 
@@ -7618,14 +7621,12 @@ void MainWindow::menuTabWidgetMachineDetail_Setup_activated()
 
 void MainWindow::on_tabWidgetMachineDetail_customContextMenuRequested(const QPoint &p)
 {
-	if ( tabWidgetMachineDetail->currentWidget() ) {
-		if ( !tabWidgetMachineDetail->currentWidget()->childrenRect().contains(p, true) ) {
+	QTabBar *tabBar = tabWidgetMachineDetail->findChild<QTabBar *>();
+	if ( tabBar ) {
+		if ( tabBar->geometry().contains(p) ) {
 			menuTabWidgetMachineDetail->move(adjustedWidgetPosition(tabWidgetMachineDetail->mapToGlobal(p), menuTabWidgetMachineDetail));
 			menuTabWidgetMachineDetail->show();
 		}
-	} else {
-		menuTabWidgetMachineDetail->move(adjustedWidgetPosition(tabWidgetMachineDetail->mapToGlobal(p), menuTabWidgetMachineDetail));
-		menuTabWidgetMachineDetail->show();
 	}
 }
 
@@ -7675,9 +7676,12 @@ void MainWindow::menuTabWidgetLogsAndEmulators_Setup_activated()
 
 void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &p)
 {
-	if ( !tabWidgetLogsAndEmulators->currentWidget()->childrenRect().contains(p, true) ) {
-		menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
-		menuTabWidgetLogsAndEmulators->show();
+	QTabBar *tabBar = tabWidgetLogsAndEmulators->findChild<QTabBar *>();
+	if ( tabBar ) {
+		if ( tabBar->geometry().contains(p) ) {
+			menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
+			menuTabWidgetLogsAndEmulators->show();
+		}
 	}
 }
 
@@ -7726,9 +7730,12 @@ void MainWindow::menuTabWidgetSoftwareDetail_Setup_activated()
 
 void MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p)
 {
-	if ( !tabWidgetSoftwareDetail->currentWidget()->childrenRect().contains(p, true) ) {
-		menuTabWidgetSoftwareDetail->move(adjustedWidgetPosition(tabWidgetSoftwareDetail->mapToGlobal(p), menuTabWidgetSoftwareDetail));
-		menuTabWidgetSoftwareDetail->show();
+	QTabBar *tabBar = tabWidgetSoftwareDetail->findChild<QTabBar *>();
+	if ( tabBar ) {
+		if ( tabBar->geometry().contains(p) ) {
+			menuTabWidgetSoftwareDetail->move(adjustedWidgetPosition(tabWidgetSoftwareDetail->mapToGlobal(p), menuTabWidgetSoftwareDetail));
+			menuTabWidgetSoftwareDetail->show();
+		}
 	}
 }
 
