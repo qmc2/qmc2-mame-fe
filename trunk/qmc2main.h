@@ -281,9 +281,13 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_listWidgetPlayed_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetEmulators_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetMachineList_customContextMenuRequested(const QPoint &);
+		void tabWidgetMachineList_actionSwitchTab_triggered(bool checked = false);
 		void on_tabWidgetMachineDetail_customContextMenuRequested(const QPoint &);
+		void tabWidgetMachineDetail_actionSwitchTab_triggered(bool checked = false);
 		void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
+		void tabWidgetLogsAndEmulators_actionSwitchTab_triggered(bool checked = false);
 		void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p);
+		void tabWidgetSoftwareDetail_actionSwitchTab_triggered(bool checked = false);
 
 		// joystick functions
 #if QMC2_JOYSTICK == 1

@@ -888,115 +888,129 @@ MainWindow::MainWindow(QWidget *parent) :
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesave.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(action_savePlayed_triggered()));
 
+	QMenu *m;
+
 	// tab widget position menus
 	menuTabWidgetMachineList = new QMenu(0);
+	m = new QMenu(tr("Tab position"), 0);
+	m->setIcon(QIcon(QString::fromUtf8(":/data/img/tabwidget.png")));
+	menuTabWidgetMachineList->addMenu(m);
 	s = tr("Set tab position north");
-	action = menuTabWidgetMachineList->addAction(tr("&North"));
+	action = m->addAction(tr("&North"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_North_activated()));
 	s = tr("Set tab position south");
-	action = menuTabWidgetMachineList->addAction(tr("&South"));
+	action = m->addAction(tr("&South"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_South_activated()));
 	s = tr("Set tab position west");
-	action = menuTabWidgetMachineList->addAction(tr("&West"));
+	action = m->addAction(tr("&West"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_West_activated()));
 	s = tr("Set tab position east");
-	action = menuTabWidgetMachineList->addAction(tr("&East"));
+	action = m->addAction(tr("&East"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_East_activated()));
 	menuTabWidgetMachineList->addSeparator();
-	s = tr("Feature setup");
-	action = menuTabWidgetMachineList->addAction(tr("Set&up..."));
+	s = tr("Component setup");
+	action = menuTabWidgetMachineList->addAction(tr("Component setup..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineList_Setup_activated()));
 
 	menuTabWidgetMachineDetail = new QMenu(0);
+	m = new QMenu(tr("Tab position"), 0);
+	m->setIcon(QIcon(QString::fromUtf8(":/data/img/tabwidget.png")));
+	menuTabWidgetMachineDetail->addMenu(m);
 	s = tr("Set tab position north");
-	action = menuTabWidgetMachineDetail->addAction(tr("&North"));
+	action = m->addAction(tr("&North"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineDetail_North_activated()));
 	s = tr("Set tab position south");
-	action = menuTabWidgetMachineDetail->addAction(tr("&South"));
+	action = m->addAction(tr("&South"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineDetail_South_activated()));
 	s = tr("Set tab position west");
-	action = menuTabWidgetMachineDetail->addAction(tr("&West"));
+	action = m->addAction(tr("&West"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineDetail_West_activated()));
 	s = tr("Set tab position east");
-	action = menuTabWidgetMachineDetail->addAction(tr("&East"));
+	action = m->addAction(tr("&East"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineDetail_East_activated()));
 	menuTabWidgetMachineDetail->addSeparator();
-	s = tr("Feature setup");
-	action = menuTabWidgetMachineDetail->addAction(tr("Set&up..."));
+	s = tr("Component setup");
+	action = menuTabWidgetMachineDetail->addAction(tr("Component setup..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetMachineDetail_Setup_activated()));
 
 	menuTabWidgetLogsAndEmulators = new QMenu(0);
+	m = new QMenu(tr("Tab position"), 0);
+	m->setIcon(QIcon(QString::fromUtf8(":/data/img/tabwidget.png")));
+	menuTabWidgetLogsAndEmulators->addMenu(m);
 	s = tr("Set tab position north");
-	action = menuTabWidgetLogsAndEmulators->addAction(tr("&North"));
+	action = m->addAction(tr("&North"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_North_activated()));
 	s = tr("Set tab position south");
-	action = menuTabWidgetLogsAndEmulators->addAction(tr("&South"));
+	action = m->addAction(tr("&South"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_South_activated()));
 	s = tr("Set tab position west");
-	action = menuTabWidgetLogsAndEmulators->addAction(tr("&West"));
+	action = m->addAction(tr("&West"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_West_activated()));
 	s = tr("Set tab position east");
-	action = menuTabWidgetLogsAndEmulators->addAction(tr("&East"));
+	action = m->addAction(tr("&East"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_East_activated()));
 	menuTabWidgetLogsAndEmulators->addSeparator();
-	s = tr("Feature setup");
-	action = menuTabWidgetLogsAndEmulators->addAction(tr("Set&up..."));
+	s = tr("Component setup");
+	action = menuTabWidgetLogsAndEmulators->addAction(tr("Component setup..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetLogsAndEmulators_Setup_activated()));
 
 	menuTabWidgetSoftwareDetail = new QMenu(0);
+	m = new QMenu(tr("Tab position"), 0);
+	m->setIcon(QIcon(QString::fromUtf8(":/data/img/tabwidget.png")));
+	menuTabWidgetSoftwareDetail->addMenu(m);
 	s = tr("Set tab position north");
-	action = menuTabWidgetSoftwareDetail->addAction(tr("&North"));
+	action = m->addAction(tr("&North"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_North_activated()));
 	s = tr("Set tab position south");
-	action = menuTabWidgetSoftwareDetail->addAction(tr("&South"));
+	action = m->addAction(tr("&South"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_South_activated()));
 	s = tr("Set tab position west");
-	action = menuTabWidgetSoftwareDetail->addAction(tr("&West"));
+	action = m->addAction(tr("&West"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_West_activated()));
 	s = tr("Set tab position east");
-	action = menuTabWidgetSoftwareDetail->addAction(tr("&East"));
+	action = m->addAction(tr("&East"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_East_activated()));
 	menuTabWidgetSoftwareDetail->addSeparator();
-	s = tr("Feature setup");
-	action = menuTabWidgetSoftwareDetail->addAction(tr("Set&up..."));
+	s = tr("Component setup");
+	action = menuTabWidgetSoftwareDetail->addAction(tr("Component setup..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(menuTabWidgetSoftwareDetail_Setup_activated()));
@@ -7570,10 +7584,32 @@ void MainWindow::on_tabWidgetMachineList_customContextMenuRequested(const QPoint
 	QTabBar *tabBar = tabWidgetMachineList->findChild<QTabBar *>();
 	if ( tabBar ) {
 		if ( tabBar->geometry().contains(p) ) {
+			while ( menuTabWidgetMachineList->actions().count() > 3 ) {
+				QAction *a = menuTabWidgetMachineList->actions().at(2);
+				menuTabWidgetMachineList->removeAction(a);
+				a->disconnect();
+				delete a;
+			}
+			QAction *insAct = menuTabWidgetMachineList->actions().last();
+			for (int i = 0; i < tabBar->count(); i++) {
+				QAction *a = new QAction(tabBar->tabIcon(i), tabBar->tabText(i).replace("&", ""), menuTabWidgetMachineList);
+				a->setData(i);
+				connect(a, SIGNAL(triggered(bool)), this, SLOT(tabWidgetMachineList_actionSwitchTab_triggered(bool)));
+				menuTabWidgetMachineList->insertAction(insAct, a);
+			}
+			QAction *a = new QAction(menuTabWidgetMachineList);
+			a->setSeparator(true);
+			menuTabWidgetMachineList->insertAction(menuTabWidgetMachineList->actions().last(), a);
 			menuTabWidgetMachineList->move(adjustedWidgetPosition(tabWidgetMachineList->mapToGlobal(p), menuTabWidgetMachineList));
 			menuTabWidgetMachineList->show();
 		}
 	}
+}
+
+void MainWindow::tabWidgetMachineList_actionSwitchTab_triggered(bool)
+{
+	QAction *a = (QAction *)sender();
+	tabWidgetMachineList->setCurrentIndex(a->data().toInt());
 }
 
 void MainWindow::menuTabWidgetMachineDetail_North_activated()
@@ -7624,10 +7660,32 @@ void MainWindow::on_tabWidgetMachineDetail_customContextMenuRequested(const QPoi
 	QTabBar *tabBar = tabWidgetMachineDetail->findChild<QTabBar *>();
 	if ( tabBar ) {
 		if ( tabBar->geometry().contains(p) ) {
+			while ( menuTabWidgetMachineDetail->actions().count() > 3 ) {
+				QAction *a = menuTabWidgetMachineDetail->actions().at(2);
+				menuTabWidgetMachineDetail->removeAction(a);
+				a->disconnect();
+				delete a;
+			}
+			QAction *insAct = menuTabWidgetMachineDetail->actions().last();
+			for (int i = 0; i < tabBar->count(); i++) {
+				QAction *a = new QAction(tabBar->tabIcon(i), tabBar->tabText(i).replace("&", ""), menuTabWidgetMachineDetail);
+				a->setData(i);
+				connect(a, SIGNAL(triggered(bool)), this, SLOT(tabWidgetMachineDetail_actionSwitchTab_triggered(bool)));
+				menuTabWidgetMachineDetail->insertAction(insAct, a);
+			}
+			QAction *a = new QAction(menuTabWidgetMachineDetail);
+			a->setSeparator(true);
+			menuTabWidgetMachineDetail->insertAction(menuTabWidgetMachineDetail->actions().last(), a);
 			menuTabWidgetMachineDetail->move(adjustedWidgetPosition(tabWidgetMachineDetail->mapToGlobal(p), menuTabWidgetMachineDetail));
 			menuTabWidgetMachineDetail->show();
 		}
 	}
+}
+
+void MainWindow::tabWidgetMachineDetail_actionSwitchTab_triggered(bool)
+{
+	QAction *a = (QAction *)sender();
+	tabWidgetMachineDetail->setCurrentIndex(a->data().toInt());
 }
 
 void MainWindow::menuTabWidgetLogsAndEmulators_North_activated()
@@ -7679,10 +7737,32 @@ void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const Q
 	QTabBar *tabBar = tabWidgetLogsAndEmulators->findChild<QTabBar *>();
 	if ( tabBar ) {
 		if ( tabBar->geometry().contains(p) ) {
+			while ( menuTabWidgetLogsAndEmulators->actions().count() > 3 ) {
+				QAction *a = menuTabWidgetLogsAndEmulators->actions().at(2);
+				menuTabWidgetLogsAndEmulators->removeAction(a);
+				a->disconnect();
+				delete a;
+			}
+			QAction *insAct = menuTabWidgetLogsAndEmulators->actions().last();
+			for (int i = 0; i < tabBar->count(); i++) {
+				QAction *a = new QAction(tabBar->tabIcon(i), tabBar->tabText(i).replace("&", ""), menuTabWidgetLogsAndEmulators);
+				a->setData(i);
+				connect(a, SIGNAL(triggered(bool)), this, SLOT(tabWidgetLogsAndEmulators_actionSwitchTab_triggered(bool)));
+				menuTabWidgetLogsAndEmulators->insertAction(insAct, a);
+			}
+			QAction *a = new QAction(menuTabWidgetLogsAndEmulators);
+			a->setSeparator(true);
+			menuTabWidgetLogsAndEmulators->insertAction(menuTabWidgetLogsAndEmulators->actions().last(), a);
 			menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
 			menuTabWidgetLogsAndEmulators->show();
 		}
 	}
+}
+
+void MainWindow::tabWidgetLogsAndEmulators_actionSwitchTab_triggered(bool)
+{
+	QAction *a = (QAction *)sender();
+	tabWidgetLogsAndEmulators->setCurrentIndex(a->data().toInt());
 }
 
 void MainWindow::menuTabWidgetSoftwareDetail_North_activated()
@@ -7733,10 +7813,32 @@ void MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPo
 	QTabBar *tabBar = tabWidgetSoftwareDetail->findChild<QTabBar *>();
 	if ( tabBar ) {
 		if ( tabBar->geometry().contains(p) ) {
+			while ( menuTabWidgetSoftwareDetail->actions().count() > 3 ) {
+				QAction *a = menuTabWidgetSoftwareDetail->actions().at(2);
+				menuTabWidgetSoftwareDetail->removeAction(a);
+				a->disconnect();
+				delete a;
+			}
+			QAction *insAct = menuTabWidgetSoftwareDetail->actions().last();
+			for (int i = 0; i < tabBar->count(); i++) {
+				QAction *a = new QAction(tabBar->tabIcon(i), tabBar->tabText(i).replace("&", ""), menuTabWidgetSoftwareDetail);
+				a->setData(i);
+				connect(a, SIGNAL(triggered(bool)), this, SLOT(tabWidgetSoftwareDetail_actionSwitchTab_triggered(bool)));
+				menuTabWidgetSoftwareDetail->insertAction(insAct, a);
+			}
+			QAction *a = new QAction(menuTabWidgetSoftwareDetail);
+			a->setSeparator(true);
+			menuTabWidgetSoftwareDetail->insertAction(menuTabWidgetSoftwareDetail->actions().last(), a);
 			menuTabWidgetSoftwareDetail->move(adjustedWidgetPosition(tabWidgetSoftwareDetail->mapToGlobal(p), menuTabWidgetSoftwareDetail));
 			menuTabWidgetSoftwareDetail->show();
 		}
 	}
+}
+
+void MainWindow::tabWidgetSoftwareDetail_actionSwitchTab_triggered(bool)
+{
+	QAction *a = (QAction *)sender();
+	tabWidgetSoftwareDetail->setCurrentIndex(a->data().toInt());
 }
 
 void MainWindow::treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
