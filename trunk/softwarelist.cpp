@@ -3668,7 +3668,8 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 							while ( item->parent() )
 								item = item->parent();
 						}
-						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_PART));
+						//swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_PART));
+						swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
 						if ( softwareLists )
 							*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
 						if ( softwareNames )
@@ -3702,7 +3703,8 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
 				if ( !mountDev.isEmpty() ) {
 					swlArgs << QString("-%1").arg(mountDev);
-					swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(parts[i]);
+					//swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(parts[i]);
+					swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
 				}
 			}
 			if ( softwareLists )
