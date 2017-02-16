@@ -1008,31 +1008,31 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	QMap<QString, QStringList> deviceInstanceMap;
 	softwareListDeviceName.clear();
 
-	QStringList xmlLines = qmc2MachineList->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
+	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(systemName).split('\n', QString::SkipEmptyParts));
 	QStringList *xmlData = &xmlLines;
 	QStringList dynamicXmlData;
 	if ( comboBoxDeviceConfiguration->currentIndex() > 0 ) {
 		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(comboBoxDeviceConfiguration->currentText()));
-		QStringList instances = qmc2Config->value("Instances").toStringList();
-		QStringList files = qmc2Config->value("Files").toStringList();
-		QStringList slotNames = qmc2Config->value("Slots").toStringList();
-		QStringList slotOptions = qmc2Config->value("SlotOptions").toStringList();
-		QStringList slotBIOSs = qmc2Config->value("SlotBIOSs").toStringList();
+		QStringList instances(qmc2Config->value("Instances").toStringList());
+		QStringList files(qmc2Config->value("Files").toStringList());
+		QStringList slotNames(qmc2Config->value("Slots").toStringList());
+		QStringList slotOptions(qmc2Config->value("SlotOptions").toStringList());
+		QStringList slotBIOSs(qmc2Config->value("SlotBIOSs").toStringList());
 		qmc2Config->endGroup();
 		QStringList swlArgs;
 		for (int j = 0; j < slotNames.count(); j++) {
-			if ( !slotOptions[j].isEmpty() ) {
-				QString slotOpt = slotOptions[j];
-				if ( !slotBIOSs[j].isEmpty() )
-					slotOpt += ",bios=" + slotBIOSs[j];
-				swlArgs << QString("-%1").arg(slotNames[j]) << slotOpt;
+			if ( !slotOptions.at(j).isEmpty() ) {
+				QString slotOpt = slotOptions.at(j);
+				if ( !slotBIOSs.at(j).isEmpty() )
+					slotOpt += ",bios=" + slotBIOSs.at(j);
+				swlArgs << QString("-%1").arg(slotNames.at(j)) << slotOpt;
 			}
 		}
 		for (int j = 0; j < instances.count(); j++) {
 #if defined(QMC2_OS_WIN)
-			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace('/', '\\');
+			swlArgs << QString("-%1").arg(instances.at(j)) << files[j].replace('/', '\\');
 #else
-			swlArgs << QString("-%1").arg(instances[j]) << files[j].replace("~", "$HOME");
+			swlArgs << QString("-%1").arg(instances.at(j)) << files[j].replace("~", "$HOME");
 #endif
 		}
 		foreach (QString line, getXmlDataWithEnabledSlots(swlArgs).split('\n', QString::SkipEmptyParts))
@@ -1047,11 +1047,8 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	}
 
 	int i = 0;
-	QString s = "<machine name=\"" + systemName + "\"";
-	while ( i < xmlData->count() && !(*xmlData)[i].contains(s) )
-		i++;
-	while ( i < xmlData->count() && !(*xmlData)[i].contains("</machine>") ) {
-		QString line = (*xmlData)[i++].simplified();
+	while ( i < xmlData->count() && !xmlData->at(i).contains("</machine>") ) {
+		QString line(xmlData->at(i++).simplified());
 		if ( line.startsWith("<device type=\"") ) {
 			int startIndex = line.indexOf("interface=\"");
 			int endIndex = -1;
@@ -1059,8 +1056,8 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 			if ( startIndex >= 0 ) {
 				startIndex += 11;
 				endIndex = line.indexOf("\"", startIndex);
-				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
-				line = (*xmlData)[i++].simplified();
+				QStringList devInterfaces(line.mid(startIndex, endIndex - startIndex).split(',', QString::SkipEmptyParts));
+				line = xmlData->at(i++).simplified();
 				startIndex = line.indexOf("briefname=\"");
 				if ( startIndex >= 0 ) {
 					startIndex += 11;
@@ -1069,9 +1066,9 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 				}
 				if ( !devName.isEmpty() )
 					foreach (QString devIf, devInterfaces)
-						deviceInstanceMap[devIf] << devName;
+						deviceInstanceMap[devIf.replace(":", "")] << devName; // the replace(":", "") is a workaround for coleco (probably others as well)
 			} else {
-				line = (*xmlData)[i++].simplified();
+				line = xmlData->at(i++).simplified();
 				startIndex = line.indexOf("briefname=\"");
 				if ( startIndex >= 0 ) {
 					startIndex += 11;
@@ -1084,13 +1081,13 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 		}
 	}
 
-	QStringList briefNames = deviceInstanceMap[deviceInterface];
+	QStringList briefNames(deviceInstanceMap.value(deviceInterface));
 	briefNames.sort();
 
 	if ( briefNames.contains(device) )
 		softwareListDeviceName = device;
 	else for (int i = 0; i < briefNames.count() && softwareListDeviceName.isEmpty(); i++) {
-			softwareListDeviceName = briefNames[i];
+			softwareListDeviceName = briefNames.at(i);
 			if ( successfulLookups.contains(softwareListDeviceName) )
 				softwareListDeviceName.clear();
 	}
@@ -1198,7 +1195,7 @@ void SoftwareList::updateMountDevices()
 			comboBox->clear();
 			QStringList mountList;
 			successfulLookups.clear();
-			QString mountDev = lookupMountDevice((*it)->text(QMC2_SWLIST_COLUMN_PART), (*it)->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList);
+			QString mountDev(lookupMountDevice((*it)->text(QMC2_SWLIST_COLUMN_PART), (*it)->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList));
 			if ( mountList.count() > 0 ) {
 				mountList.prepend(QObject::tr("Don't mount"));
 				mountList.prepend(QObject::tr("Auto mount"));
@@ -3608,34 +3605,33 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 	}
 
 	// optionally add arguments for the selected device configuration
-	QString devConfigName = comboBoxDeviceConfiguration->currentText();
+	QString devConfigName(comboBoxDeviceConfiguration->currentText());
 	if ( devConfigName != tr("Default configuration") ) {
 		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(devConfigName));
-		QStringList instances = qmc2Config->value("Instances").toStringList();
-		QStringList files = qmc2Config->value("Files").toStringList();
-		QStringList slotNames = qmc2Config->value("Slots").toStringList();
-		QStringList slotOptions = qmc2Config->value("SlotOptions").toStringList();
-		QStringList slotBIOSs = qmc2Config->value("SlotBIOSs").toStringList();
+		QStringList instances(qmc2Config->value("Instances").toStringList());
+		QStringList files(qmc2Config->value("Files").toStringList());
+		QStringList slotNames(qmc2Config->value("Slots").toStringList());
+		QStringList slotOptions(qmc2Config->value("SlotOptions").toStringList());
+		QStringList slotBIOSs(qmc2Config->value("SlotBIOSs").toStringList());
 		qmc2Config->endGroup();
 		for (int i = 0; i < slotNames.count(); i++) {
-			if ( !slotOptions[i].isEmpty() ) {
-				QString slotOpt = slotOptions[i];
-				if ( !slotBIOSs[i].isEmpty() )
-					slotOpt += ",bios=" + slotBIOSs[i];
-				swlArgs << QString("-%1").arg(slotNames[i]) << slotOpt;
+			if ( !slotOptions.at(i).isEmpty() ) {
+				QString slotOpt(slotOptions.at(i));
+				if ( !slotBIOSs.at(i).isEmpty() )
+					slotOpt += ",bios=" + slotBIOSs.at(i);
+				swlArgs << QString("-%1").arg(slotNames.at(i)) << slotOpt;
 			}
 		}
 		for (int i = 0; i < instances.count(); i++) {
 #if defined(QMC2_OS_WIN)
-			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace('/', '\\');
+			swlArgs << QString("-%1").arg(instances.at(i)) << files[i].replace('/', '\\');
 #else
-			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace("~", "$HOME");
+			swlArgs << QString("-%1").arg(instances.at(i)) << files[i].replace("~", "$HOME");
 #endif
 		}
 	}
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
-
 	QString snapnameList, snapnameSoftware;
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItemIterator it(treeWidget);
@@ -3668,7 +3664,6 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 							while ( item->parent() )
 								item = item->parent();
 						}
-						//swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_PART));
 						swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
 						if ( softwareLists )
 							*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
@@ -3680,7 +3675,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			}
 		} else {
 			// automatically mounted
-			QTreeWidgetItem *item = selectedItems[0];
+			QTreeWidgetItem *item = selectedItems.first();
 			if ( viewTree() ) {
 				while ( item->whatsThis(QMC2_SWLIST_COLUMN_NAME).isEmpty() && item->parent() )
 					item = item->parent();
@@ -3690,20 +3685,13 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 			}
 			snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
 			snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
-			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",", QString::SkipEmptyParts);
-			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",", QString::SkipEmptyParts);
+			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(',', QString::SkipEmptyParts);
+			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(',', QString::SkipEmptyParts);
 			successfulLookups.clear();
-			/*
-			QChar splitChar(' ');
-			foreach (QString requirement, item->whatsThis(QMC2_SWLIST_COLUMN_PART).split("\t", QString::SkipEmptyParts))
-				foreach (QString subarg, requirement.split(splitChar, QString::SkipEmptyParts))
-					swlArgs << QString("%1").arg(subarg);
-			*/
 			for (int i = 0; i < parts.count(); i++) {
-				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
+				QString mountDev(lookupMountDevice(parts.at(i), interfaces.at(i)));
 				if ( !mountDev.isEmpty() ) {
 					swlArgs << QString("-%1").arg(mountDev);
-					//swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(parts[i]);
 					swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
 				}
 			}
@@ -3891,7 +3879,7 @@ void SoftwareList::checkMountDeviceSelection()
 				comboBox->blockSignals(true);
 				comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_AUTO_MOUNT); // => auto mount
 				comboBox->blockSignals(false);
-				QString itemMountDev = lookupMountDevice((*it)->text(QMC2_SWLIST_COLUMN_PART), (*it)->text(QMC2_SWLIST_COLUMN_INTERFACE));
+				QString itemMountDev(lookupMountDevice((*it)->text(QMC2_SWLIST_COLUMN_PART), (*it)->text(QMC2_SWLIST_COLUMN_INTERFACE)));
 				if ( itemMountDev.isEmpty() )
 					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
 				else
@@ -5417,7 +5405,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &/*namespaceURI*/, cons
 			partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
 			partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
 			QStringList mountList;
-			QString mountDev = qmc2SoftwareList->lookupMountDevice(partItem->text(QMC2_SWLIST_COLUMN_PART), partItem->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList);
+			QString mountDev(qmc2SoftwareList->lookupMountDevice(partItem->text(QMC2_SWLIST_COLUMN_PART), partItem->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList));
 			QComboBox *comboBoxMountDevices = 0;
 			if ( mountList.count() > 0 ) {
 				comboBoxMountDevices = new QComboBox;
