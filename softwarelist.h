@@ -392,12 +392,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void actionSearchResultsHeader_triggered();
 
 	protected:
-		void closeEvent(QCloseEvent *);
-		void showEvent(QShowEvent *);
-		void hideEvent(QHideEvent *);
 		void mouseMoveEvent(QMouseEvent *);
 		void leaveEvent(QEvent *);
-		void resizeEvent(QResizeEvent *);
 
 	private:
 		bool m_viewTree;
