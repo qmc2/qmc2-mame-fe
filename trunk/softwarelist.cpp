@@ -1066,7 +1066,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 				}
 				if ( !devName.isEmpty() )
 					foreach (QString devIf, devInterfaces)
-						deviceInstanceMap[devIf.replace(":", "")] << devName; // the replace(":", "") is a workaround for coleco (probably others as well)
+						deviceInstanceMap[devIf.replace(":", "")] << devName; // FIXME: the replace(":", "") is a temporary workaround for coleco
 			} else {
 				line = xmlData->at(i++).simplified();
 				startIndex = line.indexOf("briefname=\"");
