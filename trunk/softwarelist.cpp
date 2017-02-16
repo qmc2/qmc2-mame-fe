@@ -1005,7 +1005,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 {
 	static QString softwareListDeviceName;
 
-	QMap<QString, QStringList> deviceInstanceMap;
+	QHash<QString, QStringList> deviceInstanceHash;
 	softwareListDeviceName.clear();
 
 	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(systemName).split('\n', QString::SkipEmptyParts));
@@ -1066,7 +1066,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 				}
 				if ( !devName.isEmpty() )
 					foreach (QString devIf, devInterfaces)
-						deviceInstanceMap[devIf.replace(":", "")] << devName; // FIXME: the replace(":", "") is a temporary workaround for coleco
+						deviceInstanceHash[devIf.replace(":", "")] << devName; // FIXME: the replace(":", "") is a temporary workaround for coleco
 			} else {
 				line = xmlData->at(i++).simplified();
 				startIndex = line.indexOf("briefname=\"");
@@ -1076,12 +1076,12 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 					devName = line.mid(startIndex, endIndex - startIndex);
 				}
 				if ( !devName.isEmpty() )
-					deviceInstanceMap[devName] << devName;
+					deviceInstanceHash[devName] << devName;
 			}
 		}
 	}
 
-	QStringList briefNames(deviceInstanceMap.value(deviceInterface));
+	QStringList briefNames(deviceInstanceHash.value(deviceInterface));
 	briefNames.sort();
 
 	if ( briefNames.contains(device) )
@@ -1095,7 +1095,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	if ( successfulLookups.contains(softwareListDeviceName) )
 		softwareListDeviceName.clear();
 
-	if ( mountList != 0 )
+	if ( mountList )
 		*mountList = briefNames;
 
 	if ( !softwareListDeviceName.isEmpty() )
