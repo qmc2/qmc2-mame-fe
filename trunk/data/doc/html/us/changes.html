@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.183, 16-FEB-2017</h3>
+<h3>CHANGES - v0.183, 17-FEB-2017</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.183, 16-FEB-2017:</b></p>
+<p><b>v0.183, 17-FEB-2017:</b></p>
 <ul>
 	<li>fix: corrected the start-up restoration of the currently selected machine when said machine is hidden in the main view (aka 'full detail view') due to ROM state filtering</li>
 	<li>fix: template check: when a (presumably) boolean type option changes its semantic, make sure that the check at least sees the changed default (example: the 'sound' option in current MAME)</li>
@@ -31,6 +31,7 @@ inf: informational only
 	<li>imp: component setup: when a feature isn't allowed to be removed (i.e. the per-machine emulator configuration), indicate this by disabling the <i>deactivate</i> button</li>
 	<li>imp: the context-menu of each component's tab-widget is now accessible by right-clicking the header (instead of a small area above it)</li>
 	<li>imp: software-lists: use <code>list:name</code> instead of <code>list:name:part</code> when generating software-specific arguments</li>
+	<li>imp: software-lists: added a (temporary) workaround for launching ColecoVision&trade; cartridge images (see <a href="http://mametesters.org/view.php?id=6504" target="_blank">MT bug #6504</a>)</li>
 	<li>new: the last ten machine search patterns that were added to the drop-down list (i.e. by pressing <i>Return</i> or <i>Enter</i>) are saved and restored now</li>
 	<li>new: added a <i>relaunch setup wizard</i> item to the tools menu which will stop and restart QMC2 with the <code>-r</code> command line option</li>
 	<li>new: software-lists: added support for saving and restoring the last selected software item per system (<a href="http://tracker.batcom-it.net/view.php?id=140" target="_blank">BT #140</a>)</li>
