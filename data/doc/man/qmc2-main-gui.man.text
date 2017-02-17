@@ -38,7 +38,7 @@ FILES
 
   CONFIG_PATH/mame-xml-cache.db  XML cache database (SQLite 3)
 
-  CONFIG_PATH/mame-user-data.db  User data database (SQLite 3) containing rank information and personal comments per machine
+  CONFIG_PATH/mame-user-data.db  User data database (SQLite 3) containing rank information and personal comments per machine as well as paths to system- and software-manuals per machine/software
 
   CONFIG_PATH/mame-machine-list.db  SQLite3 database version of the machine list cache (used by custom views)
 
