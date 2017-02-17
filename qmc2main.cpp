@@ -3588,7 +3588,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qApp->processEvents();
 				}
 				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
-				QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
+				QString ghostPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png"));
 #if defined(QMC2_OS_WIN)
 	      			qmc2SoftwareNotesEditor->templateMap["$GHOST_IMAGE$"] = "file:///" + ghostPath;
 				if ( qmc2SoftwareSnapshot->loadImage(listName, entryName) )
@@ -4318,7 +4318,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2SystemNotesEditor->templateMap["$SOURCE_FILE$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE);
 				QString filePath;
 				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
-				QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
+				QString ghostPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png"));
 #if defined(QMC2_OS_WIN)
 				qmc2SystemNotesEditor->templateMap["$GHOST_IMAGE$"] = "file:///" + ghostPath;
 #else
