@@ -16,3 +16,6 @@ FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
 FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
 FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
 FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
+FilesAndDirectories\VideoSnapFolder=DATADIR/qmc2/vdo/
+FilesAndDirectories\SystemManualFolder=DATADIR/qmc2/man/systems/
+FilesAndDirectories\SoftwareManualFolder=DATADIR/qmc2/man/software/

@@ -1113,6 +1113,7 @@ endif
 	@$(RSYNC) --exclude '*svn*' ./data/ico "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/js "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) --exclude '*svn*' ./data/man "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/mrq "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/opt "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/pcb "$(GLOBAL_DATADIR)/$(PROJECT)/"
