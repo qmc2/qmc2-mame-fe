@@ -479,8 +479,7 @@ void HtmlEditor::fileRevert()
 
 void HtmlEditor::fileOpen()
 {
-	QString fn = QFileDialog::getOpenFileName(this, isEmbeddedEditor ? tr("Select file to load") : tr("Select file to open"), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
-
+	QString fn(QFileDialog::getOpenFileName(this, isEmbeddedEditor ? tr("Select file to load") : tr("Select file to open"), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)")));
 	if ( !fn.isEmpty() ) {
 		load(fn);
 		adjustHTML();
@@ -503,8 +502,7 @@ void HtmlEditor::fileOpenInBrowser()
 		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
 		wysiwygDirty = false;
 	}
-
-	QString data = ui->webView->page()->mainFrame()->toHtml();
+	QString data(ui->webView->page()->mainFrame()->toHtml());
 	webBrowser->webViewBrowser->setHtml(noScript(data));
 	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
 		webBrowser->homeUrl = QUrl::fromUserInput(fileName);
@@ -534,7 +532,7 @@ bool HtmlEditor::fileSave()
 			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
 			wysiwygDirty = false;
 		}
-		QString content = ui->webView->page()->mainFrame()->toHtml();
+		QString content(ui->webView->page()->mainFrame()->toHtml());
 		QTextStream ts(&file);
 		ts << noScript(content);
 		ts.flush();
@@ -548,7 +546,7 @@ bool HtmlEditor::fileSave()
 
 bool HtmlEditor::fileSaveAs()
 {
-	QString fn = QFileDialog::getSaveFileName(this, tr("Save a copy"), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
+	QString fn(QFileDialog::getSaveFileName(this, tr("Save a copy"), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)")));
 
 	if ( fn.isEmpty() )
 		return false;
@@ -566,7 +564,7 @@ bool HtmlEditor::fileSaveAs()
 			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
 			wysiwygDirty = false;
 		}
-		QString content = ui->webView->page()->mainFrame()->toHtml();
+		QString content(ui->webView->page()->mainFrame()->toHtml());
 		QTextStream ts(&file);
 		ts << noScript(content);
 		ts.flush();
@@ -585,7 +583,7 @@ void HtmlEditor::insertImageFromFile()
 	filters += tr("Graphics Interchange Format (GIF) (*.gif);;");
 	filters += tr("All files (*)");
 
-	QString fn = QFileDialog::getOpenFileName(this, tr("Open image..."), QString(), filters);
+	QString fn(QFileDialog::getOpenFileName(this, tr("Open image..."), QString(), filters));
 
 	if ( fn.isEmpty() )
 		return;
@@ -599,7 +597,7 @@ void HtmlEditor::insertImageFromFile()
 
 void HtmlEditor::insertImageFromUrl()
 {
-	QString link = QInputDialog::getText(this, tr("Insert image from URL"), tr("Enter URL:"));
+	QString link(QInputDialog::getText(this, tr("Insert image from URL"), tr("Enter URL:")));
 	if ( !link.isEmpty() ) {
 		QUrl url = guessUrlFromString(link);
 		if ( url.isValid() )
@@ -610,7 +608,7 @@ void HtmlEditor::insertImageFromUrl()
 // shamelessly copied from Qt Demo Browser
 QUrl HtmlEditor::guessUrlFromString(const QString &string)
 {
-	QString urlStr = string.trimmed();
+	QString urlStr(string.trimmed());
 	QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
 
 	// check if it looks like a qualified URL. Try parsing it and see
@@ -629,8 +627,8 @@ QUrl HtmlEditor::guessUrlFromString(const QString &string)
 	if ( !hasSchema ) {
 		int dotIndex = urlStr.indexOf(QLatin1Char('.'));
 		if ( dotIndex != -1 ) {
-			QString prefix = urlStr.left(dotIndex).toLower();
-			QString schema = (prefix == QLatin1String("ftp")) ? prefix : QLatin1String("http");
+			QString prefix(urlStr.left(dotIndex).toLower());
+			QString schema(prefix == QLatin1String("ftp") ? prefix : QLatin1String("http"));
 			QUrl url(schema + QLatin1String("://") + urlStr, QUrl::TolerantMode);
 			if ( url.isValid() )
 				return url;
@@ -643,7 +641,7 @@ QUrl HtmlEditor::guessUrlFromString(const QString &string)
 
 void HtmlEditor::createLink()
 {
-	QString link = QInputDialog::getText(this, tr("Create link"), tr("Enter URL:"));
+	QString link(QInputDialog::getText(this, tr("Create link"), tr("Enter URL:")));
 
 	if ( !link.isEmpty() ) {
 		QUrl url = guessUrlFromString(link);
@@ -689,7 +687,7 @@ void HtmlEditor::insertTable()
 	tablePropertyDialog->adjustSize();
 
 	if ( tablePropertyDialog->exec() == QDialog::Accepted ) {
-		QString properties = ui_tablePropertyDialog->lineEditProperties->text().simplified();
+		QString properties(ui_tablePropertyDialog->lineEditProperties->text().simplified());
 		int rows = ui_tablePropertyDialog->spinBoxRows->value();
 		int cols = ui_tablePropertyDialog->spinBoxColumns->value();
 		QString tableTag;
@@ -748,7 +746,7 @@ void HtmlEditor::editSelectAll()
 void HtmlEditor::execCommand(const QString &cmd)
 {
 	QWebFrame *frame = ui->webView->page()->mainFrame();
-	QString js = QString("document.execCommand(\"%1\", false, null)").arg(cmd);
+	QString js(QString("document.execCommand(\"%1\", false, null)").arg(cmd));
 	frame->evaluateJavaScript(js);
 	localModified = true;
 }
@@ -756,7 +754,7 @@ void HtmlEditor::execCommand(const QString &cmd)
 void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
 {
 	QWebFrame *frame = ui->webView->page()->mainFrame();
-	QString js = QString("document.execCommand(\"%1\", false, \"%2\")").arg(cmd).arg(arg);
+	QString js(QString("document.execCommand(\"%1\", false, \"%2\")").arg(cmd).arg(arg));
 	frame->evaluateJavaScript(js);
 	localModified = true;
 }
@@ -764,7 +762,7 @@ void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
 bool HtmlEditor::queryCommandState(const QString &cmd)
 {
 	QWebFrame *frame = ui->webView->page()->mainFrame();
-	QString js = QString("document.queryCommandState(\"%1\", false, null)").arg(cmd);
+	QString js(QString("document.queryCommandState(\"%1\", false, null)").arg(cmd));
 	QVariant result = frame->evaluateJavaScript(js);
 	return result.toString().simplified().toLower() == "true";
 }
@@ -865,10 +863,9 @@ void HtmlEditor::formatBulletedList()
 
 void HtmlEditor::formatFontName()
 {
-	QStringList families = QFontDatabase().families();
+	QStringList families(QFontDatabase().families());
 	bool ok = false;
-	QString family = QInputDialog::getItem(this, tr("Font"), tr("Select font:"), families, 0, false, &ok);
-
+	QString family(QInputDialog::getItem(this, tr("Font"), tr("Select font:"), families, 0, false, &ok));
 	if ( ok )
 		execCommand("fontName", family);
 }
@@ -878,8 +875,7 @@ void HtmlEditor::formatFontSize()
 	QStringList sizes;
 	sizes << tr("XS") << tr("S") << tr("M") << tr("L") << tr("XL") << tr("XXL");
 	bool ok = false;
-	QString size = QInputDialog::getItem(this, tr("Font size"), tr("Font size:"), sizes, sizes.indexOf(tr("M")), false, &ok);
-
+	QString size(QInputDialog::getItem(this, tr("Font size"), tr("Font size:"), sizes, sizes.indexOf(tr("M")), false, &ok));
 	if ( ok )
 		execCommand("fontSize", QString::number(sizes.indexOf(size) + 1));
 }
@@ -1005,7 +1001,7 @@ bool HtmlEditor::load(const QString &f)
 	if ( !file.open(QFile::ReadOnly) )
 		return false;
 
-	QString data = file.readAll();
+	QString data(file.readAll());
 	file.close();
 
 	noScript(data);
@@ -1070,7 +1066,7 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	QMapIterator<QString, QString> it(templateMap);
 	while ( it.hasNext() ) {
 		it.next();
-		QString replacementString = it.value();
+		QString replacementString(it.value());
 		data.replace(it.key(), replacementString);
 	}
 
@@ -1155,9 +1151,9 @@ QString HtmlEditor::getImageData(QString imageType)
 		case QMC2_IMGTYPE_PCB: imageWidget = qmc2PCB; break;
 		case QMC2_IMGTYPE_SWSNAP:
 			if ( qmc2SoftwareSnapshot ) {
-				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
-				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-				QString cacheKey = "sws_" + listName + "_" + entryName;
+				QString listName(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST));
+				QString entryName(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME));
+				QString cacheKey("sws_" + listName + '_' + entryName);
 				ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 				if ( !cpm )
 					qmc2SoftwareSnapshot->loadImage(listName, entryName);
@@ -1170,11 +1166,11 @@ QString HtmlEditor::getImageData(QString imageType)
 	}
 
 	if ( imageWidget ) {
-		QString gameName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
-		QString cacheKey = imageType + "_" + gameName;
+		QString machineName(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		QString cacheKey(imageType + '_' + machineName);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
-			imageWidget->loadImage(gameName, gameName, false, 0, false);
+			imageWidget->loadImage(machineName, machineName, false, 0, false);
 		else
 			imageWidget->currentPixmap = *cpm;
 		return imageWidget->toBase64();
@@ -1193,7 +1189,7 @@ QString HtmlEditor::getColor(QString currentColor)
 
 QString HtmlEditor::getImage(QString currentImage)
 {
-	QString imageFile = QFileDialog::getOpenFileName(this, tr("Choose image file"), currentImage, tr("All files (*)"));
+	QString imageFile(QFileDialog::getOpenFileName(this, tr("Choose image file"), currentImage, tr("All files (*)")));
 	if ( !imageFile.isEmpty() )
 		return imageFile;
 	else
@@ -1247,7 +1243,7 @@ QString HtmlEditor::comment(QString id)
 
 QString HtmlEditor::systemInfo(QString id)
 {
-	QString sysInfo = qmc2MachineList->datInfoDb()->machineInfo(id);
+	QString sysInfo(qmc2MachineList->datInfoDb()->machineInfo(id));
 	if ( sysInfo.isEmpty() )
 		sysInfo = tr("No data available");
 	else
@@ -1257,7 +1253,7 @@ QString HtmlEditor::systemInfo(QString id)
 
 QString HtmlEditor::emuInfo(QString id)
 {
-	QString emulatorInfo = qmc2MachineList->datInfoDb()->emuInfo(id);
+	QString emulatorInfo(qmc2MachineList->datInfoDb()->emuInfo(id));
 	if ( emulatorInfo.isEmpty() )
 		emulatorInfo = tr("No data available");
 	else
@@ -1272,7 +1268,7 @@ QStringList HtmlEditor::videoSnapUrls(QString id)
 		foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
 			QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + id + formatExtension));
 			if ( fi.exists() && fi.isReadable() ) {
-				QString videoSnapUrl = fi.absoluteFilePath();
+				QString videoSnapUrl(fi.absoluteFilePath());
 #if defined(QMC2_OS_WIN)
 				videoSnapUrl.prepend("file:///");
 #else
@@ -1283,12 +1279,12 @@ QStringList HtmlEditor::videoSnapUrls(QString id)
 		}
 		if ( vsUrls.isEmpty() ) { // parent fallback
 			if ( qmc2ParentImageFallback ) {
-				QString parentId = qmc2ParentHash.value(id);
+				QString parentId(qmc2ParentHash.value(id));
 				if ( !parentId.isEmpty() ) {
 					foreach (QString formatExtension, qmc2MainWindow->videoSnapAllowedFormatExtensions) {
 						QFileInfo fi(QDir::cleanPath(videoSnapFolder + "/" + parentId + formatExtension));
 						if ( fi.exists() && fi.isReadable() ) {
-							QString videoSnapUrl = fi.absoluteFilePath();
+							QString videoSnapUrl(fi.absoluteFilePath());
 #if defined(QMC2_OS_WIN)
 							videoSnapUrl.prepend("file:///");
 #else
@@ -1306,7 +1302,7 @@ QStringList HtmlEditor::videoSnapUrls(QString id)
 
 QString HtmlEditor::softwareInfo(QString list, QString id)
 {
-	QString softInfo = qmc2MachineList->datInfoDb()->softwareInfo(list, id);
+	QString softInfo(qmc2MachineList->datInfoDb()->softwareInfo(list, id));
 	if ( softInfo.isEmpty() )
 		softInfo = tr("No data available");
 	else
@@ -1359,9 +1355,9 @@ QString HtmlEditor::customSystemArtworkUrl(QString id, QString artworkName)
 	}
 	QString filePath;
 	QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
-	QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
+	QString ghostPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png"));
 	if ( imw ) {
-		QString cacheKey = imw->cachePrefix() + "_" + id;
+		QString cacheKey(imw->cachePrefix() + '_' + id);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm ) {
 			if ( imw->loadImage(id, id, true, &filePath, false) )
@@ -1392,7 +1388,7 @@ QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
 		}
 	}
 	if ( imw ) {
-		QString cacheKey = imw->cachePrefix() + "_" + id;
+		QString cacheKey(imw->cachePrefix() + '_' + id);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
 			imw->loadImage(id, id, true, 0, false);
@@ -1414,9 +1410,9 @@ QString HtmlEditor::customSoftwareArtworkUrl(QString listName, QString softwareN
 	}
 	QString filePath;
 	QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
-	QString ghostPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png");
+	QString ghostPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png"));
 	if ( imw ) {
-		QString cacheKey = imw->cachePrefix() + "_" + listName + "_" + softwareName;
+		QString cacheKey(imw->cachePrefix() + '_' + listName + '_' + softwareName);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm ) {
 			if ( imw->loadImage(listName, softwareName) )
@@ -1447,7 +1443,7 @@ QString HtmlEditor::customSoftwareArtworkData(QString listName, QString software
 		}
 	}
 	if ( imw ) {
-		QString cacheKey = imw->cachePrefix() + "_" + listName + "_" + softwareName;
+		QString cacheKey(imw->cachePrefix() + '_' + listName + '_' + softwareName);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm )
 			imw->loadImage(listName, softwareName);
@@ -1499,7 +1495,7 @@ bool HtmlEditor::save()
 	}
 
 	QFileInfo fi(fileName);
-	QString targetPath = QDir::cleanPath(fi.absoluteDir().path());
+	QString targetPath(QDir::cleanPath(fi.absoluteDir().path()));
 
 	if ( !QFile::exists(targetPath) ) {
 		QDir dummyDir;
