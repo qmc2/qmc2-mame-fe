@@ -4,11 +4,13 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QXmlDefaultHandler>
+#include <QMovie>
 #include <QIcon>
 #include <QHash>
 #include <QMap>
 
 #include "filesystemmodel.h"
+#include "aspectratiolabel.h"
 #include "ui_deviceconfigurator.h"
 
 class DeviceItemDelegate : public QItemDelegate
@@ -207,11 +209,18 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		void editorDataChanged(const QString &);
 		void setupFileChooser();
 		void configurationItemChanged(QListWidgetItem *);
+		void showLoadAnim();
+		void hideLoadAnim();
 
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+		void resizeEvent(QResizeEvent *);
+
+	private:
+		AspectRatioLabel *m_loadingAnimationOverlay;
+		QMovie *m_loadAnimMovie;
 };
 
 class FileChooserKeyEventFilter : public QObject
