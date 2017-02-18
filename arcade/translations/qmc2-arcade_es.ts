@@ -655,9 +655,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="452"/>
+        <location filename="../main.cpp" line="464"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Iniciando el visor QML usando tema &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="464"/>
+        <source>video snaps %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="464"/>
+        <source>enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="464"/>
+        <source>disabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="494"/>

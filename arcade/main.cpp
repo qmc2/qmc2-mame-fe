@@ -401,21 +401,21 @@ int main(int argc, char *argv[])
 		// log banner message
 		QString bannerMessage = QString("%1 %2 (%3)").
 				arg(QMC2_ARCADE_APP_TITLE).
-		#if defined(QMC2_ARCADE_SVN_REV)
-		#if QMC2_ARCADE_SVN_REV > 0
+#if defined(QMC2_ARCADE_SVN_REV)
+#if QMC2_ARCADE_SVN_REV > 0
 				arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
-		#else
+#else
 				arg(QMC2_ARCADE_APP_VERSION).
-		#endif
-		#else
+#endif
+#else
 				arg(QMC2_ARCADE_APP_VERSION).
-		#endif
+#endif
 				arg(QString("Qt") + " " + qVersion() + ", " +
 				    QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
 				    QObject::tr("console-mode: %1").arg(consoleModes[TweakedQmlApplicationViewer::consoleMode]) + ", " +
-		    #if QT_VERSION < 0x050000
+#if QT_VERSION < 0x050000
 				    QObject::tr("graphics-system: %1").arg(gSys) + ", " +
-		    #endif
+#endif
 				    QObject::tr("language: %1").arg(language) + ", " +
 				    QObject::tr("theme: %1").arg(theme));
 
@@ -446,10 +446,8 @@ int main(int argc, char *argv[])
 		viewer->setTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
 		viewer->winId(); // see QTBUG-33370 QQuickView does not set icon correctly
 		viewer->setIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
-		viewer->setColor(QColor(0,0,0,255));
+		viewer->setColor(QColor(0, 0, 0, 255));
 #endif
-
-		QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme));
 
 		bool initialFullScreen = globalConfig->fullScreen();
 		if ( QMC2_ARCADE_CLI_FULLSCREEN )
@@ -462,6 +460,8 @@ int main(int argc, char *argv[])
 		viewer->setVideoEnabled(globalConfig->defaultVideo() == "on");
 		if ( QMC2_ARCADE_CLI_VIDEO_VAL )
 			viewer->setVideoEnabled(QMC2_ARCADE_CLI_VIDEO == "on");
+
+		QMC2_ARCADE_LOG_STR(QObject::tr("Starting QML viewer using theme '%1'").arg(theme) + " (" + QObject::tr("video snaps %1").arg(viewer->videoEnabled() ? QObject::tr("enabled") : QObject::tr("disabled")) + ")");
 
 		// load theme
 		QString themeUrl;
