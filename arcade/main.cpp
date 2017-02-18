@@ -80,13 +80,13 @@ void showHelp()
 		winAllocConsole();
 #endif
 
-	QString defTheme = globalConfig->defaultTheme();
-	QString defConsole = globalConfig->defaultConsoleType();
+	QString defTheme(globalConfig->defaultTheme());
+	QString defConsole(globalConfig->defaultConsoleType());
 #if QT_VERSION < 0x050000
-	QString defGSys = globalConfig->defaultGraphicsSystem();
+	QString defGSys(globalConfig->defaultGraphicsSystem());
 #endif
-	QString defLang = globalConfig->defaultLanguage();
-	QString defVideo = globalConfig->defaultVideo();
+	QString defLang(globalConfig->defaultLanguage());
+	QString defVideo(globalConfig->defaultVideo());
 
 	QStringList themeList;
 	foreach (QString theme, arcadeThemes) {
@@ -95,7 +95,7 @@ void showHelp()
 		else
 			themeList << theme;
 	}
-	QString availableThemes = themeList.join(", ");
+	QString availableThemes(themeList.join(", "));
 
 	QStringList consoleList;
 	foreach (QString console, consoleModes) {
@@ -104,7 +104,7 @@ void showHelp()
 		else
 			consoleList << console;
 	}
-	QString availableConsoles = consoleList.join(", ");
+	QString availableConsoles(consoleList.join(", "));
 
 #if QT_VERSION < 0x050000
 	QStringList gSysList;
@@ -114,7 +114,7 @@ void showHelp()
 		else
 			gSysList << gSys;
 	}
-	QString availableGraphicsSystems = gSysList.join(", ");
+	QString availableGraphicsSystems(gSysList.join(", "));
 #endif
 
 	QStringList langList;
@@ -124,7 +124,7 @@ void showHelp()
 		else
 			langList << lang;
 	}
-	QString availableLanguages = langList.join(", ");
+	QString availableLanguages(langList.join(", "));
 
 	QStringList videoList;
 	foreach (QString v, QStringList() << "on" << "off") {
@@ -133,7 +133,7 @@ void showHelp()
 		else
 			videoList << v;
 	}
-	QString availableVideoSettings = videoList.join(", ");
+	QString availableVideoSettings(videoList.join(", "));
 
 	QString helpMessage;
 #if QT_VERSION < 0x050000
@@ -304,7 +304,7 @@ int main(int argc, char *argv[])
 
 	globalConfig = new ArcadeSettings;
 
-	QString console = globalConfig->defaultConsoleType();
+	QString console(globalConfig->defaultConsoleType());
 	if ( QMC2_ARCADE_CLI_CONS_VAL )
 		console = QMC2_ARCADE_CLI_CONS;
 
@@ -335,7 +335,7 @@ int main(int argc, char *argv[])
 		winAllocConsole();
 #endif
 
-	QString theme = globalConfig->defaultTheme();
+	QString theme(globalConfig->defaultTheme());
 	if ( QMC2_ARCADE_CLI_THEME_VAL )
 		theme = QMC2_ARCADE_CLI_THEME;
 
@@ -370,7 +370,7 @@ int main(int argc, char *argv[])
 	globalConfig->setApplicationVersion(QMC2_ARCADE_APP_VERSION);
 
 	// set default font
-	QString font = globalConfig->defaultFont();
+	QString font(globalConfig->defaultFont());
 	if ( !font.isEmpty() ) {
 		QFont f;
 		f.fromString(font);
@@ -378,7 +378,7 @@ int main(int argc, char *argv[])
 	}
 
 	// set language
-	QString language = globalConfig->defaultLanguage();
+	QString language(globalConfig->defaultLanguage());
 	if ( QMC2_ARCADE_CLI_LANG_VAL )
 		language = QMC2_ARCADE_CLI_LANG;
 	if ( !globalConfig->languageMap.contains(language) ) {
