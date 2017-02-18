@@ -42,8 +42,8 @@ QStringList DeviceConfigurator::midiInInterfaces;
 QStringList DeviceConfigurator::midiOutInterfaces;
 bool DeviceConfigurator::reloadMidiInterfaces = true;
 
-DeviceItemDelegate::DeviceItemDelegate(QObject *parent)
-	: QItemDelegate(parent)
+DeviceItemDelegate::DeviceItemDelegate(QObject *parent) :
+	QItemDelegate(parent)
 {
 	// NOP
 }
@@ -147,7 +147,6 @@ void DeviceItemDelegate::loadMidiInterfaces()
 	DeviceConfigurator::midiInInterfaces.clear();
 	DeviceConfigurator::midiOutInterfaces.clear();
 
-	QString userScopePath = Options::configPath();
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
@@ -201,8 +200,10 @@ void DeviceItemDelegate::loadMidiInterfaces()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 }
 
-DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
-	: QWidget(parent)
+DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
+	QWidget(parent),
+	m_loadingAnimationOverlay(0),
+	m_loadAnimMovie(0)
 {
 	setupUi(this);
 
@@ -230,6 +231,9 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 	if ( systemSlotHash.isEmpty() ) {
 		lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 		comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Reading slot info, please wait..."));
+		QFile slotInfoFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
+		if ( !slotInfoFile.exists() )
+			showLoadAnim();
 	} else {
 		lineEditConfigurationName->setText(tr("Default configuration"));
 		comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
@@ -498,7 +502,10 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent)
 
 DeviceConfigurator::~DeviceConfigurator()
 {
-	// NOP
+	if ( m_loadingAnimationOverlay ) {
+		delete m_loadingAnimationOverlay;
+		delete m_loadAnimMovie;
+	}
 }
 
 void DeviceConfigurator::saveSetup()
@@ -549,7 +556,6 @@ QString &DeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	qmc2CriticalSection = true;
 	slotXmlBuffer.clear();
 
-	QString userScopePath = Options::configPath();
 	QProcess commandProc;
 #if !defined(QMC2_OS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
@@ -648,23 +654,47 @@ QString &DeviceConfigurator::getXmlData(QString machineName)
 	return normalXmlBuffer;
 }
 
+void DeviceConfigurator::showLoadAnim()
+{
+	if ( !m_loadingAnimationOverlay ) {
+		m_loadAnimMovie = new QMovie(QString::fromUtf8(":/data/img/loadanim.gif"), QByteArray(), this);
+		m_loadAnimMovie->setCacheMode(QMovie::CacheAll);
+		m_loadAnimMovie->setSpeed(QMC2_LOADANIM_SPEED);
+		m_loadingAnimationOverlay = new AspectRatioLabel(this);
+		m_loadingAnimationOverlay->setLabelText(tr("Reading slot info, please wait..."));
+	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() ) {
+		verticalSpacer->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+		m_loadingAnimationOverlay->resize(size());
+		m_loadingAnimationOverlay->setMovie(m_loadAnimMovie);
+		m_loadingAnimationOverlay->adjustMovieSize();
+		m_loadingAnimationOverlay->show();
+		vSplitter->hide();
+		m_loadAnimMovie->start();
+	}
+}
+
+void DeviceConfigurator::hideLoadAnim()
+{
+	if ( m_loadingAnimationOverlay ) {
+		verticalSpacer->changeSize(0, 0, QSizePolicy::Ignored, QSizePolicy::Ignored);
+		vSplitter->show();
+		m_loadingAnimationOverlay->hide();
+		m_loadAnimMovie->setPaused(true);
+	}
+}
+
 bool DeviceConfigurator::readSystemSlots()
 {
 	QTime elapsedTime(0, 0, 0, 0);
 	QTime loadTimer;
-
-	QString userScopePath = Options::configPath();
-	QString slotInfoCachePath;
-	slotInfoCachePath = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString();
-
+	QString slotInfoCachePath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
 	setEnabled(false);
 	lineEditConfigurationName->blockSignals(true);
 	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 	comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Reading slot info, please wait..."));
 	lineEditConfigurationName->blockSignals(false);
-
 	loadTimer.start();
-
 	bool fromCache = true;
 	bool commandProcStarted = false;
 	QFile slotInfoFile(slotInfoCachePath);
@@ -672,6 +702,7 @@ bool DeviceConfigurator::readSystemSlots()
 	qApp->processEvents();
 	listWidgetDeviceConfigurations->setUpdatesEnabled(false);
 	if ( !slotInfoFile.exists() ) {
+		showLoadAnim();
 		fromCache = false;
 		if ( slotInfoFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) ) {
 			QTextStream ts(&slotInfoFile);
@@ -727,38 +758,31 @@ bool DeviceConfigurator::readSystemSlots()
 	bool retVal = true;
 	if ( (fromCache || commandProcStarted) && slotInfoFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
 		QTextStream ts(&slotInfoFile);
-
 		QString slotLine(ts.readLine()); // comment line
 		slotLine = ts.readLine();
-
 		QStringList versionWords(slotLine.split('\t'));
 		bool sameVersion = false;
-
 		if ( versionWords.count() >= 2 ) {
 			if ( versionWords.at(0) == "MAME_VERSION" )
 				sameVersion = (versionWords.at(1) == qmc2MachineList->emulatorVersion);
 		}
-
 		if ( !sameVersion ) {
 			slotInfoFile.close();
 			slotInfoFile.remove();
 			return readSystemSlots();
 		}
-
 		if ( fromCache ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots from cache"));
 			ts.readLine(); // ignore -listslots header lines
 			ts.readLine();
 			loadTimer.start();
 		}
-
 		QString systemName, slotName, slotOption, slotDeviceName;
 		QRegExp rxSlotDev1("^\\S+\\s+\\S+\\s+\\S+\\s+");
 		QRegExp rxSlotDev2("^\\S+\\s+\\S+\\s+");
 		QRegExp rxSlotDev3("^\\S+\\s+");
 		QString strNone("[none]");
 		QString strUnused("QMC2_UNUSED_SLOTS");
-
 		int lineCounter = 0;
 		while ( !ts.atEnd() ) {
 			slotLine = ts.readLine();
@@ -812,6 +836,7 @@ bool DeviceConfigurator::readSystemSlots()
 		comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Failed to read slot info"));
 		retVal = false;
 	}
+	hideLoadAnim();
 	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	if ( fromCache )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading available system slots from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -2026,6 +2051,16 @@ void DeviceConfigurator::showEvent(QShowEvent *e)
 {
 	if ( e )
 		e->accept();
+}
+
+void DeviceConfigurator::resizeEvent(QResizeEvent *e)
+{
+	QWidget::resizeEvent(e);
+	if ( m_loadingAnimationOverlay ) {
+		m_loadingAnimationOverlay->resize(size());
+		if ( m_loadingAnimationOverlay->movie() )
+			m_loadingAnimationOverlay->adjustMovieSize();
+	}
 }
 
 void DeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)

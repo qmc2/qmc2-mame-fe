@@ -4261,499 +4261,500 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DeviceConfigurator</name>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="15"/>
-        <source>MESS device configuration</source>
-        <translation>MESS Geräte-Konfiguration</translation>
-    </message>
-    <message>
-        <location filename="../../deviceconfigurator.ui" line="50"/>
+        <location filename="../../deviceconfigurator.ui" line="86"/>
         <source>Active device configuration</source>
         <translation>Aktive Geräte-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="578"/>
-        <location filename="../../deviceconfigurator.ui" line="581"/>
+        <location filename="../../deviceconfigurator.ui" line="69"/>
+        <location filename="../../deviceconfigurator.ui" line="72"/>
         <source>Remove current device configuration</source>
         <translation>Aktuelle Geräte-Konfiguration entfernen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="604"/>
-        <location filename="../../deviceconfigurator.ui" line="607"/>
+        <location filename="../../deviceconfigurator.ui" line="102"/>
+        <location filename="../../deviceconfigurator.ui" line="105"/>
         <source>Save current device configuration</source>
         <translation>Aktuelle Geräte-Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="625"/>
+        <location filename="../../deviceconfigurator.ui" line="647"/>
         <source>Stored device configurations</source>
         <translation>Gespeicherte Geräte-Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="638"/>
-        <location filename="../../deviceconfigurator.ui" line="641"/>
+        <location filename="../../deviceconfigurator.ui" line="660"/>
+        <location filename="../../deviceconfigurator.ui" line="663"/>
         <source>Device configuration menu</source>
         <translation>Geräte-Konfigurationsmenü</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="40"/>
-        <location filename="../../deviceconfigurator.ui" line="43"/>
+        <location filename="../../deviceconfigurator.ui" line="148"/>
+        <location filename="../../deviceconfigurator.ui" line="151"/>
         <source>Name of device configuration</source>
         <translation>Name der Geräte-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="84"/>
+        <location filename="../../deviceconfigurator.ui" line="15"/>
+        <source>Device configuration</source>
+        <translation>Geräte Konfiguration</translation>
+    </message>
+    <message>
+        <location filename="../../deviceconfigurator.ui" line="162"/>
         <source>Device mappings</source>
         <translation>Geräte Abbildungen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="96"/>
-        <location filename="../../deviceconfigurator.ui" line="99"/>
+        <location filename="../../deviceconfigurator.ui" line="174"/>
+        <location filename="../../deviceconfigurator.ui" line="177"/>
         <source>Device setup of current configuration</source>
         <translation>Geräte-Setup der aktuellen Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="117"/>
+        <location filename="../../deviceconfigurator.ui" line="195"/>
         <source>Brief name</source>
         <translation>Kurzname</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="146"/>
+        <location filename="../../deviceconfigurator.ui" line="224"/>
         <source>Slot options</source>
         <translation>Slot Optionen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="158"/>
-        <location filename="../../deviceconfigurator.ui" line="161"/>
+        <location filename="../../deviceconfigurator.ui" line="236"/>
+        <location filename="../../deviceconfigurator.ui" line="239"/>
         <source>Available slot options</source>
         <translation>Verfügbare Slot Optionen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="171"/>
+        <location filename="../../deviceconfigurator.ui" line="249"/>
         <source>Slot</source>
         <translation>Slot</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="176"/>
+        <location filename="../../deviceconfigurator.ui" line="254"/>
         <source>Option</source>
         <translation>Option</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="181"/>
+        <location filename="../../deviceconfigurator.ui" line="259"/>
         <source>BIOS</source>
         <translation>BIOS</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="190"/>
+        <location filename="../../deviceconfigurator.ui" line="268"/>
         <source>File chooser</source>
         <translation>Schnellauswahl</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="226"/>
-        <location filename="../../deviceconfigurator.ui" line="229"/>
+        <location filename="../../deviceconfigurator.ui" line="304"/>
+        <location filename="../../deviceconfigurator.ui" line="307"/>
         <source>Save selected instance / file as a new device configuration</source>
         <translation>Ausgewählte Instanz / Datei als neue Geräte-Konfiguration speichern</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="249"/>
-        <location filename="../../deviceconfigurator.ui" line="252"/>
+        <location filename="../../deviceconfigurator.ui" line="327"/>
+        <location filename="../../deviceconfigurator.ui" line="330"/>
         <source>Select the device instance the file is mapped to</source>
         <translation>Geräte-Instanz auswählen, an welche die Datei gebunden werden soll</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="268"/>
-        <location filename="../../deviceconfigurator.ui" line="271"/>
+        <location filename="../../deviceconfigurator.ui" line="346"/>
+        <location filename="../../deviceconfigurator.ui" line="349"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
         <translation>Automatisch die erste gültige Geräte-Instanz auswählen, wenn eine Datei selektiert wird</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="291"/>
-        <location filename="../../deviceconfigurator.ui" line="294"/>
+        <location filename="../../deviceconfigurator.ui" line="369"/>
+        <location filename="../../deviceconfigurator.ui" line="372"/>
         <source>Merge file-chooser mapping with current device-mappings</source>
         <translation>Zuweisung der Schnellauswahl mit den aktuellen Geräte-Abbildungen verbinden</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="661"/>
-        <location filename="../../deviceconfigurator.ui" line="664"/>
+        <location filename="../../deviceconfigurator.ui" line="683"/>
+        <location filename="../../deviceconfigurator.ui" line="686"/>
         <source>List of stored device configurations</source>
         <translation>Liste gespeicherter Geräte-Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="314"/>
-        <location filename="../../deviceconfigurator.ui" line="317"/>
+        <location filename="../../deviceconfigurator.ui" line="392"/>
+        <location filename="../../deviceconfigurator.ui" line="395"/>
         <source>Filter files by allowed extensions for the current device instance</source>
         <translation>Dateinamen nach den für die Geräte-Instanz gültigen Dateiendungen filtern</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="337"/>
-        <location filename="../../deviceconfigurator.ui" line="340"/>
+        <location filename="../../deviceconfigurator.ui" line="415"/>
+        <location filename="../../deviceconfigurator.ui" line="418"/>
         <source>Process ZIP and 7z contents on item activation</source>
         <translation>ZIP- und 7z-Inhalte bei Item-Aktivierung verarbeiten</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="360"/>
+        <location filename="../../deviceconfigurator.ui" line="438"/>
         <source>Folder mode selection</source>
         <translation>Auswahl des Verzeichnis-Modus</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="380"/>
-        <location filename="../../deviceconfigurator.ui" line="383"/>
+        <location filename="../../deviceconfigurator.ui" line="458"/>
+        <location filename="../../deviceconfigurator.ui" line="461"/>
         <source>Enter search string (case-insensitive)</source>
         <translation>Such-Zeichenkette eingeben (Groß-/Kleinschreibung wird nicht beachtet)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="399"/>
-        <location filename="../../deviceconfigurator.ui" line="402"/>
+        <location filename="../../deviceconfigurator.ui" line="477"/>
+        <location filename="../../deviceconfigurator.ui" line="480"/>
         <source>Clear search string</source>
         <translation>Such-Zeichenkette löschen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="419"/>
-        <location filename="../../deviceconfigurator.ui" line="422"/>
+        <location filename="../../deviceconfigurator.ui" line="497"/>
+        <location filename="../../deviceconfigurator.ui" line="500"/>
         <source>Number of files scanned</source>
         <translation>Anzahl ermittelter Dateien</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="441"/>
-        <location filename="../../deviceconfigurator.ui" line="444"/>
+        <location filename="../../deviceconfigurator.ui" line="519"/>
+        <location filename="../../deviceconfigurator.ui" line="522"/>
         <source>Reload directory contents</source>
         <translation>Verzeichnis neu lesen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="461"/>
-        <location filename="../../deviceconfigurator.ui" line="464"/>
+        <location filename="../../deviceconfigurator.ui" line="539"/>
+        <location filename="../../deviceconfigurator.ui" line="542"/>
         <source>Play the selected configuration</source>
         <translation>Ausgewählte Konfiguration starten</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="481"/>
-        <location filename="../../deviceconfigurator.ui" line="484"/>
+        <location filename="../../deviceconfigurator.ui" line="559"/>
+        <location filename="../../deviceconfigurator.ui" line="562"/>
         <source>Play the selected configuration (embedded)</source>
         <translation>Ausgewählte Konfiguration starten (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="112"/>
+        <location filename="../../deviceconfigurator.ui" line="190"/>
         <source>Device instance</source>
         <translation>Geräte-Instanz</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="122"/>
+        <location filename="../../deviceconfigurator.ui" line="200"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="127"/>
+        <location filename="../../deviceconfigurator.ui" line="205"/>
         <source>Tag</source>
         <translation>Markierung</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="132"/>
+        <location filename="../../deviceconfigurator.ui" line="210"/>
         <source>Extensions</source>
         <translation>Erweiterungen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="137"/>
+        <location filename="../../deviceconfigurator.ui" line="215"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="63"/>
-        <location filename="../../deviceconfigurator.ui" line="66"/>
+        <location filename="../../deviceconfigurator.ui" line="125"/>
+        <location filename="../../deviceconfigurator.ui" line="128"/>
         <source>Create a new device configuration</source>
         <translation>Neue Geräte-Konfiguration erzeugen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="552"/>
-        <location filename="../../deviceconfigurator.ui" line="555"/>
+        <location filename="../../deviceconfigurator.ui" line="43"/>
+        <location filename="../../deviceconfigurator.ui" line="46"/>
         <source>Clone current device configuration</source>
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1559"/>
-        <location filename="../../deviceconfigurator.cpp" line="1561"/>
+        <location filename="../../deviceconfigurator.cpp" line="1584"/>
+        <location filename="../../deviceconfigurator.cpp" line="1586"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1927"/>
-        <location filename="../../deviceconfigurator.cpp" line="2497"/>
+        <location filename="../../deviceconfigurator.cpp" line="1952"/>
+        <location filename="../../deviceconfigurator.cpp" line="2532"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="231"/>
         <location filename="../../deviceconfigurator.cpp" line="232"/>
-        <location filename="../../deviceconfigurator.cpp" line="662"/>
-        <location filename="../../deviceconfigurator.cpp" line="663"/>
+        <location filename="../../deviceconfigurator.cpp" line="233"/>
+        <location filename="../../deviceconfigurator.cpp" line="664"/>
+        <location filename="../../deviceconfigurator.cpp" line="694"/>
+        <location filename="../../deviceconfigurator.cpp" line="695"/>
         <source>Reading slot info, please wait...</source>
         <translation>Lese Slot-Infos, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="237"/>
+        <location filename="../../deviceconfigurator.cpp" line="241"/>
         <source>Enter configuration name</source>
         <translation>Konfigurationsname eingeben</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="235"/>
-        <location filename="../../deviceconfigurator.cpp" line="1315"/>
+        <location filename="../../deviceconfigurator.cpp" line="239"/>
+        <location filename="../../deviceconfigurator.cpp" line="1340"/>
         <source>Enter search string</source>
         <translation>Such-Zeichenkette eingeben</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="320"/>
-        <location filename="../../deviceconfigurator.cpp" line="371"/>
+        <location filename="../../deviceconfigurator.cpp" line="324"/>
+        <location filename="../../deviceconfigurator.cpp" line="375"/>
         <source>&amp;Play</source>
         <translation>S&amp;pielen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="310"/>
+        <location filename="../../deviceconfigurator.cpp" line="314"/>
         <source>Select default device directory</source>
         <translation>Standard Geräte-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="311"/>
+        <location filename="../../deviceconfigurator.cpp" line="315"/>
         <source>&amp;Default device directory for &apos;%1&apos;...</source>
         <translation>Stan&amp;dard Geräte-Verzeichnis für &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="319"/>
-        <location filename="../../deviceconfigurator.cpp" line="370"/>
+        <location filename="../../deviceconfigurator.cpp" line="323"/>
+        <location filename="../../deviceconfigurator.cpp" line="374"/>
         <source>Play selected machine</source>
         <translation>Ausgewählte Maschine spielen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="326"/>
-        <location filename="../../deviceconfigurator.cpp" line="378"/>
+        <location filename="../../deviceconfigurator.cpp" line="330"/>
+        <location filename="../../deviceconfigurator.cpp" line="382"/>
         <source>Play &amp;embedded</source>
         <translation>Spielen (&amp;eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="332"/>
+        <location filename="../../deviceconfigurator.cpp" line="336"/>
         <source>Rename configuration</source>
         <translation>Konfiguration umbenennen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="333"/>
+        <location filename="../../deviceconfigurator.cpp" line="337"/>
         <source>Re&amp;name configuration</source>
         <translation>Konfiguration umbe&amp;nennen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="338"/>
+        <location filename="../../deviceconfigurator.cpp" line="342"/>
         <source>Remove configuration</source>
         <translation>Konfiguration entfernen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="339"/>
+        <location filename="../../deviceconfigurator.cpp" line="343"/>
         <source>&amp;Remove configuration</source>
         <translation>&amp;Konfiguration entfernen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="347"/>
+        <location filename="../../deviceconfigurator.cpp" line="351"/>
         <source>Select a file to be mapped to this device instance</source>
         <translation>Datei auswählen, die der Geräte-Instanz zugeordnet werden soll</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="348"/>
+        <location filename="../../deviceconfigurator.cpp" line="352"/>
         <source>Select file...</source>
         <translation>Datei auswählen...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="359"/>
+        <location filename="../../deviceconfigurator.cpp" line="363"/>
         <source>Use as default directory</source>
         <translation>Als Standard Geräte-Verzeichnis verwenden</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="385"/>
+        <location filename="../../deviceconfigurator.cpp" line="389"/>
         <source>&amp;Open folder</source>
         <translation>&amp;Verzeichnis öffnen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="395"/>
-        <location filename="../../deviceconfigurator.cpp" line="2277"/>
+        <location filename="../../deviceconfigurator.cpp" line="399"/>
+        <location filename="../../deviceconfigurator.cpp" line="2312"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Archiv öffnen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="404"/>
+        <location filename="../../deviceconfigurator.cpp" line="408"/>
         <source>View PDF...</source>
         <translation>PDF anzeigen...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="413"/>
+        <location filename="../../deviceconfigurator.cpp" line="417"/>
         <source>View Postscript...</source>
         <translation>Postscript anzeigen...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="422"/>
+        <location filename="../../deviceconfigurator.cpp" line="426"/>
         <source>View HTML...</source>
         <translation>HTML anzeigen...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="432"/>
+        <location filename="../../deviceconfigurator.cpp" line="436"/>
         <source>Open e&amp;xternally...</source>
         <translation>E&amp;xtern öffnen...</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="440"/>
+        <location filename="../../deviceconfigurator.cpp" line="444"/>
         <source>Hide folders</source>
         <translation>Verzeichnisse verstecken</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="445"/>
+        <location filename="../../deviceconfigurator.cpp" line="449"/>
         <source>Show folders</source>
         <translation>Verzeichnisse anzeigen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="450"/>
+        <location filename="../../deviceconfigurator.cpp" line="454"/>
         <source>Show folders first</source>
         <translation>Verzeichnisse zuerst anzeigen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="521"/>
-        <location filename="../../deviceconfigurator.cpp" line="1113"/>
-        <location filename="../../deviceconfigurator.cpp" line="1372"/>
-        <location filename="../../deviceconfigurator.cpp" line="2053"/>
-        <location filename="../../deviceconfigurator.cpp" line="2487"/>
+        <location filename="../../deviceconfigurator.cpp" line="528"/>
+        <location filename="../../deviceconfigurator.cpp" line="1138"/>
+        <location filename="../../deviceconfigurator.cpp" line="1397"/>
+        <location filename="../../deviceconfigurator.cpp" line="2088"/>
+        <location filename="../../deviceconfigurator.cpp" line="2522"/>
         <source>No devices available</source>
         <translation>Keine Geräte verfügbar</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="632"/>
+        <location filename="../../deviceconfigurator.cpp" line="638"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="697"/>
+        <location filename="../../deviceconfigurator.cpp" line="728"/>
         <source>loading available system slots and recreating cache</source>
         <translation>Lade verfügbare System-Slots und erzeuge den Cache neu</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="325"/>
-        <location filename="../../deviceconfigurator.cpp" line="377"/>
+        <location filename="../../deviceconfigurator.cpp" line="329"/>
+        <location filename="../../deviceconfigurator.cpp" line="381"/>
         <source>Play selected machine (embedded)</source>
         <translation>Ausgewählte Maschine spielen (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="682"/>
+        <location filename="../../deviceconfigurator.cpp" line="713"/>
         <source>ERROR: can&apos;t open slot info cache for writing, path = %1</source>
         <translation>FEHLER: Kann Slot-Info Cache nicht zum Schreiben öffnen, Pfad = %1</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="684"/>
-        <location filename="../../deviceconfigurator.cpp" line="686"/>
+        <location filename="../../deviceconfigurator.cpp" line="715"/>
         <location filename="../../deviceconfigurator.cpp" line="717"/>
-        <location filename="../../deviceconfigurator.cpp" line="719"/>
-        <location filename="../../deviceconfigurator.cpp" line="810"/>
-        <location filename="../../deviceconfigurator.cpp" line="812"/>
+        <location filename="../../deviceconfigurator.cpp" line="748"/>
+        <location filename="../../deviceconfigurator.cpp" line="750"/>
+        <location filename="../../deviceconfigurator.cpp" line="834"/>
+        <location filename="../../deviceconfigurator.cpp" line="836"/>
         <source>Failed to read slot info</source>
         <translation>Fehler beim Lesen der Slot-Infos</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="715"/>
+        <location filename="../../deviceconfigurator.cpp" line="746"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare MAME Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="715"/>
+        <location filename="../../deviceconfigurator.cpp" line="746"/>
         <source>error text = %1</source>
         <translation>Fehler Text = %1</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="724"/>
+        <location filename="../../deviceconfigurator.cpp" line="755"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation>WARNUNG: das externe Kommando zum Laden verfügbarer System-Slots ist abgebrochen, Slot-Optionen sind möglicherweise unvollständig</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="819"/>
+        <location filename="../../deviceconfigurator.cpp" line="844"/>
         <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
         <translation>Fertig (Lade verfügbare System-Slots und erzeuge den Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1008"/>
+        <location filename="../../deviceconfigurator.cpp" line="1033"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="852"/>
-        <location filename="../../deviceconfigurator.cpp" line="860"/>
-        <location filename="../../deviceconfigurator.cpp" line="1412"/>
-        <location filename="../../deviceconfigurator.cpp" line="1422"/>
+        <location filename="../../deviceconfigurator.cpp" line="877"/>
+        <location filename="../../deviceconfigurator.cpp" line="885"/>
+        <location filename="../../deviceconfigurator.cpp" line="1437"/>
+        <location filename="../../deviceconfigurator.cpp" line="1447"/>
         <source>not used</source>
         <translation>nicht verwendet</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.ui" line="674"/>
-        <location filename="../../deviceconfigurator.cpp" line="234"/>
-        <location filename="../../deviceconfigurator.cpp" line="996"/>
-        <location filename="../../deviceconfigurator.cpp" line="1460"/>
+        <location filename="../../deviceconfigurator.ui" line="696"/>
+        <location filename="../../deviceconfigurator.cpp" line="238"/>
+        <location filename="../../deviceconfigurator.cpp" line="1021"/>
         <location filename="../../deviceconfigurator.cpp" line="1485"/>
-        <location filename="../../deviceconfigurator.cpp" line="1532"/>
-        <location filename="../../deviceconfigurator.cpp" line="1544"/>
-        <location filename="../../deviceconfigurator.cpp" line="1546"/>
-        <location filename="../../deviceconfigurator.cpp" line="1783"/>
-        <location filename="../../deviceconfigurator.cpp" line="1894"/>
-        <location filename="../../deviceconfigurator.cpp" line="1943"/>
+        <location filename="../../deviceconfigurator.cpp" line="1510"/>
+        <location filename="../../deviceconfigurator.cpp" line="1557"/>
+        <location filename="../../deviceconfigurator.cpp" line="1569"/>
+        <location filename="../../deviceconfigurator.cpp" line="1571"/>
+        <location filename="../../deviceconfigurator.cpp" line="1808"/>
+        <location filename="../../deviceconfigurator.cpp" line="1919"/>
+        <location filename="../../deviceconfigurator.cpp" line="1968"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="749"/>
+        <location filename="../../deviceconfigurator.cpp" line="775"/>
         <source>loading available system slots from cache</source>
         <translation>Lade verfügbare System-Slots aus dem Cache</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="817"/>
+        <location filename="../../deviceconfigurator.cpp" line="842"/>
         <source>done (loading available system slots from cache, elapsed time = %1)</source>
         <translation>Fertig (Lade verfügbare System-Slots aus dem Cache, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="852"/>
-        <location filename="../../deviceconfigurator.cpp" line="867"/>
-        <location filename="../../deviceconfigurator.cpp" line="1218"/>
-        <location filename="../../deviceconfigurator.cpp" line="1244"/>
-        <location filename="../../deviceconfigurator.cpp" line="1412"/>
-        <location filename="../../deviceconfigurator.cpp" line="1431"/>
-        <location filename="../../deviceconfigurator.cpp" line="1653"/>
-        <location filename="../../deviceconfigurator.cpp" line="1863"/>
+        <location filename="../../deviceconfigurator.cpp" line="877"/>
+        <location filename="../../deviceconfigurator.cpp" line="892"/>
+        <location filename="../../deviceconfigurator.cpp" line="1243"/>
+        <location filename="../../deviceconfigurator.cpp" line="1269"/>
+        <location filename="../../deviceconfigurator.cpp" line="1437"/>
+        <location filename="../../deviceconfigurator.cpp" line="1456"/>
+        <location filename="../../deviceconfigurator.cpp" line="1678"/>
+        <location filename="../../deviceconfigurator.cpp" line="1888"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1208"/>
-        <location filename="../../deviceconfigurator.cpp" line="1227"/>
-        <location filename="../../deviceconfigurator.cpp" line="1271"/>
-        <location filename="../../deviceconfigurator.cpp" line="1631"/>
-        <location filename="../../deviceconfigurator.cpp" line="1645"/>
-        <location filename="../../deviceconfigurator.cpp" line="1655"/>
-        <location filename="../../deviceconfigurator.cpp" line="2544"/>
+        <location filename="../../deviceconfigurator.cpp" line="1233"/>
+        <location filename="../../deviceconfigurator.cpp" line="1252"/>
+        <location filename="../../deviceconfigurator.cpp" line="1296"/>
+        <location filename="../../deviceconfigurator.cpp" line="1656"/>
+        <location filename="../../deviceconfigurator.cpp" line="1670"/>
+        <location filename="../../deviceconfigurator.cpp" line="1680"/>
+        <location filename="../../deviceconfigurator.cpp" line="2579"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1997"/>
+        <location filename="../../deviceconfigurator.cpp" line="2022"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2277"/>
+        <location filename="../../deviceconfigurator.cpp" line="2312"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Archiv schließen</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2499"/>
+        <location filename="../../deviceconfigurator.cpp" line="2534"/>
         <source>Choose a unique configuration name</source>
         <translation>Eindeutiger Name für Geräte-Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2499"/>
+        <location filename="../../deviceconfigurator.cpp" line="2534"/>
         <source>Unique configuration name:</source>
         <translation>Eindeutiger Name der Geräte-Konfiguration:</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2502"/>
+        <location filename="../../deviceconfigurator.cpp" line="2537"/>
         <source>Name conflict</source>
         <translation>Namenskonflikt</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2502"/>
+        <location filename="../../deviceconfigurator.cpp" line="2537"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -4777,12 +4778,12 @@ Einen anderen Namen wählen?</translation>
         <translation>Gültige Geräte-Dateien</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="201"/>
+        <location filename="../../deviceconfigurator.cpp" line="200"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="201"/>
+        <location filename="../../deviceconfigurator.cpp" line="200"/>
         <source>error text = %1</source>
         <translation>Fehler Text = %1</translation>
     </message>
@@ -6124,30 +6125,30 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="582"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="580"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
         <translation>Gängige Grafikformate (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="583"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="581"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
         <translation>Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="584"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="582"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
         <translation>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="585"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="583"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
         <translation>Graphics Interchange Format (GIF) (*.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="482"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="551"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="586"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1196"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="549"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="584"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1192"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -6202,7 +6203,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="482"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="551"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="549"/>
         <source>HTML files (*.html *.htm)</source>
         <translation>HTML-Dateien (*.html *.htm)</translation>
     </message>
@@ -6217,101 +6218,101 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <translation>Zu öffnende Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="551"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="549"/>
         <source>Save a copy</source>
         <translation>Kopie speichern</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="588"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="586"/>
         <source>Open image...</source>
         <translation>Bilddatei öffnen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="602"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="600"/>
         <source>Insert image from URL</source>
         <translation>Bild aus URL einfügen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="602"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="646"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="600"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="644"/>
         <source>Enter URL:</source>
         <translation>URL eingeben:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="646"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="644"/>
         <source>Create link</source>
         <translation>Link erzeugen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="870"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="868"/>
         <source>Font</source>
         <translation>Schriftart</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="870"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="868"/>
         <source>Select font:</source>
         <translation>Schriftart auswählen:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="879"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="876"/>
         <source>XS</source>
         <translation>XS</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="879"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="876"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="879"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="881"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="876"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="878"/>
         <source>M</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="879"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="876"/>
         <source>L</source>
         <translation>L</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="879"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="876"/>
         <source>XL</source>
         <translation>XL</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="879"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="876"/>
         <source>XXL</source>
         <translation>XXL</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="881"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="878"/>
         <source>Font size</source>
         <translation>Schriftgröße</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="881"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="878"/>
         <source>Font size:</source>
         <translation>Schriftgröße:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="977"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="973"/>
         <source>Zoom: %1%</source>
         <translation>Zoom: %1%</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1187"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1183"/>
         <source>Select color</source>
         <translation>Farbe auswählen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1196"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1192"/>
         <source>Choose image file</source>
         <translation>Bild Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1252"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1262"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="1311"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1248"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1258"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="1307"/>
         <source>No data available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>
@@ -17498,126 +17499,126 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Videospieler: XML-Fehler: fataler Fehler in Zeile %1, Spalte %2: %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1204"/>
-        <location filename="../../softwarelist.cpp" line="3878"/>
-        <location filename="../../softwarelist.cpp" line="3941"/>
-        <location filename="../../softwarelist.cpp" line="5424"/>
+        <location filename="../../softwarelist.cpp" line="1201"/>
+        <location filename="../../softwarelist.cpp" line="3745"/>
+        <location filename="../../softwarelist.cpp" line="3808"/>
+        <location filename="../../softwarelist.cpp" line="5283"/>
         <source>Auto mount</source>
         <translation>Automatisch</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1209"/>
-        <location filename="../../softwarelist.cpp" line="3894"/>
-        <location filename="../../softwarelist.cpp" line="3915"/>
-        <location filename="../../softwarelist.cpp" line="3921"/>
-        <location filename="../../softwarelist.cpp" line="3945"/>
-        <location filename="../../softwarelist.cpp" line="5429"/>
-        <location filename="../../softwarelist.cpp" line="5433"/>
+        <location filename="../../softwarelist.cpp" line="1206"/>
+        <location filename="../../softwarelist.cpp" line="3761"/>
+        <location filename="../../softwarelist.cpp" line="3782"/>
+        <location filename="../../softwarelist.cpp" line="3788"/>
+        <location filename="../../softwarelist.cpp" line="3812"/>
+        <location filename="../../softwarelist.cpp" line="5288"/>
+        <location filename="../../softwarelist.cpp" line="5292"/>
         <source>Not mounted</source>
         <translation>Nicht zugeordnet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1211"/>
-        <location filename="../../softwarelist.cpp" line="3896"/>
-        <location filename="../../softwarelist.cpp" line="3949"/>
-        <location filename="../../softwarelist.cpp" line="5435"/>
+        <location filename="../../softwarelist.cpp" line="1208"/>
+        <location filename="../../softwarelist.cpp" line="3763"/>
+        <location filename="../../softwarelist.cpp" line="3816"/>
+        <location filename="../../softwarelist.cpp" line="5294"/>
         <source>Mounted on:</source>
         <translation>Zuordnung:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1203"/>
-        <location filename="../../softwarelist.cpp" line="3902"/>
-        <location filename="../../softwarelist.cpp" line="5423"/>
+        <location filename="../../softwarelist.cpp" line="1200"/>
+        <location filename="../../softwarelist.cpp" line="3769"/>
+        <location filename="../../softwarelist.cpp" line="5282"/>
         <source>Don&apos;t mount</source>
         <translation>Nicht zuordnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5387"/>
-        <location filename="../../softwarelist.cpp" line="5389"/>
+        <location filename="../../softwarelist.cpp" line="5246"/>
+        <location filename="../../softwarelist.cpp" line="5248"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5401"/>
+        <location filename="../../softwarelist.cpp" line="5260"/>
         <source>Updating</source>
         <translation>Aktualisierung</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5413"/>
+        <location filename="../../softwarelist.cpp" line="5272"/>
         <source>Part:</source>
         <translation>Teil:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1213"/>
-        <location filename="../../softwarelist.cpp" line="5440"/>
+        <location filename="../../softwarelist.cpp" line="1210"/>
+        <location filename="../../softwarelist.cpp" line="5299"/>
         <source>No mount device</source>
         <translation>Nicht montierbar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1214"/>
-        <location filename="../../softwarelist.cpp" line="5441"/>
+        <location filename="../../softwarelist.cpp" line="1211"/>
+        <location filename="../../softwarelist.cpp" line="5300"/>
         <source>Unmanaged</source>
         <translation>Nicht verwaltet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1386"/>
+        <location filename="../../softwarelist.cpp" line="1383"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4368"/>
+        <location filename="../../softwarelist.cpp" line="4227"/>
         <source>yes</source>
         <translation>ja</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4370"/>
+        <location filename="../../softwarelist.cpp" line="4229"/>
         <source>no</source>
         <translation>nein</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4372"/>
+        <location filename="../../softwarelist.cpp" line="4231"/>
         <source>partially</source>
         <translation>teilweise</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5461"/>
+        <location filename="../../softwarelist.cpp" line="5320"/>
         <source>Requirement:</source>
         <translation>Erforderlich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5467"/>
+        <location filename="../../softwarelist.cpp" line="5326"/>
         <source>Compatibility:</source>
         <translation>Kompatibel:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5477"/>
+        <location filename="../../softwarelist.cpp" line="5336"/>
         <source>Data area:</source>
         <translation>Datenbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5480"/>
-        <location filename="../../softwarelist.cpp" line="5492"/>
-        <location filename="../../softwarelist.cpp" line="5506"/>
+        <location filename="../../softwarelist.cpp" line="5339"/>
+        <location filename="../../softwarelist.cpp" line="5351"/>
+        <location filename="../../softwarelist.cpp" line="5365"/>
         <source>Size:</source>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5489"/>
+        <location filename="../../softwarelist.cpp" line="5348"/>
         <source>Disk area:</source>
         <translation>Diskbereich:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5509"/>
+        <location filename="../../softwarelist.cpp" line="5368"/>
         <source>CRC:</source>
         <translation>CRC:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5524"/>
+        <location filename="../../softwarelist.cpp" line="5383"/>
         <source>SHA1:</source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5533"/>
+        <location filename="../../softwarelist.cpp" line="5392"/>
         <source>Info:</source>
         <translation>Info:</translation>
     </message>
@@ -21240,9 +21241,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <message>
         <location filename="../../softwarelist.ui" line="435"/>
         <location filename="../../softwarelist.cpp" line="455"/>
-        <location filename="../../softwarelist.cpp" line="1162"/>
-        <location filename="../../softwarelist.cpp" line="1333"/>
-        <location filename="../../softwarelist.cpp" line="1559"/>
+        <location filename="../../softwarelist.cpp" line="1159"/>
+        <location filename="../../softwarelist.cpp" line="1330"/>
+        <location filename="../../softwarelist.cpp" line="1556"/>
         <source>Known software</source>
         <translation>Bekannte Software</translation>
     </message>
@@ -21316,8 +21317,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="247"/>
-        <location filename="../../softwarelist.cpp" line="2682"/>
-        <location filename="../../softwarelist.cpp" line="3612"/>
+        <location filename="../../softwarelist.cpp" line="2616"/>
+        <location filename="../../softwarelist.cpp" line="3493"/>
         <source>Default configuration</source>
         <translation>Standard Konfiguration</translation>
     </message>
@@ -21439,9 +21440,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="617"/>
-        <location filename="../../softwarelist.cpp" line="1163"/>
-        <location filename="../../softwarelist.cpp" line="1334"/>
-        <location filename="../../softwarelist.cpp" line="1560"/>
+        <location filename="../../softwarelist.cpp" line="1160"/>
+        <location filename="../../softwarelist.cpp" line="1331"/>
+        <location filename="../../softwarelist.cpp" line="1557"/>
         <source>Favorites</source>
         <translation>Favoriten</translation>
     </message>
@@ -21459,9 +21460,9 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="715"/>
-        <location filename="../../softwarelist.cpp" line="1164"/>
-        <location filename="../../softwarelist.cpp" line="1335"/>
-        <location filename="../../softwarelist.cpp" line="1561"/>
+        <location filename="../../softwarelist.cpp" line="1161"/>
+        <location filename="../../softwarelist.cpp" line="1332"/>
+        <location filename="../../softwarelist.cpp" line="1558"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -21490,7 +21491,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="846"/>
-        <location filename="../../softwarelist.cpp" line="1270"/>
+        <location filename="../../softwarelist.cpp" line="1267"/>
         <source>Loading software-lists, please wait...</source>
         <translation>Lade Software-Listen, bitte warten...</translation>
     </message>
@@ -21502,7 +21503,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="886"/>
-        <location filename="../../softwarelist.cpp" line="2045"/>
+        <location filename="../../softwarelist.cpp" line="2020"/>
         <source>Checking software-states - %p%</source>
         <translation>Prüfe Software-Stati - %p%</translation>
     </message>
@@ -21655,13 +21656,13 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="960"/>
-        <location filename="../../softwarelist.cpp" line="2130"/>
+        <location filename="../../softwarelist.cpp" line="2095"/>
         <source>FATAL: can&apos;t start emulator executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare Emulator Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="960"/>
-        <location filename="../../softwarelist.cpp" line="2130"/>
+        <location filename="../../softwarelist.cpp" line="2095"/>
         <source>error text = %1</source>
         <translation>Fehler Text = %1</translation>
     </message>
@@ -21672,90 +21673,90 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>FATAL: ungültige XML Daten für &apos;%1&apos; erhalten</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1558"/>
-        <location filename="../../softwarelist.cpp" line="2448"/>
-        <location filename="../../softwarelist.cpp" line="2454"/>
+        <location filename="../../softwarelist.cpp" line="1555"/>
+        <location filename="../../softwarelist.cpp" line="2389"/>
+        <location filename="../../softwarelist.cpp" line="2394"/>
         <source>filtered</source>
         <translation>gefiltert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1280"/>
-        <location filename="../../softwarelist.cpp" line="1889"/>
+        <location filename="../../softwarelist.cpp" line="1277"/>
+        <location filename="../../softwarelist.cpp" line="1865"/>
         <source>SWL data - %p%</source>
         <translation>SWL Daten - %p%</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1366"/>
+        <location filename="../../softwarelist.cpp" line="1363"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
         <translation>Lade Software-Liste &apos;%1&apos;, bitte warten...</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1384"/>
+        <location filename="../../softwarelist.cpp" line="1381"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Liste &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1508"/>
+        <location filename="../../softwarelist.cpp" line="1505"/>
         <source>Visible software lists</source>
         <translation>Sichtbare Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1510"/>
+        <location filename="../../softwarelist.cpp" line="1507"/>
         <source>Select software lists to be shown / hidden</source>
         <translation>Software-Listen auswählen, die angezeigt / versteckt werden sollen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1526"/>
+        <location filename="../../softwarelist.cpp" line="1523"/>
         <source>Toggle visibility of software list &apos;%1&apos;</source>
         <translation>Sichtbarkeit von Software-Liste &apos;%1&apos; ein-/ausschalten</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1901"/>
+        <location filename="../../softwarelist.cpp" line="1877"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>WARNUNG: Der externe Prozess, der zum Laden der MAME Softwarelisten gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1901"/>
-        <location filename="../../softwarelist.cpp" line="2164"/>
+        <location filename="../../softwarelist.cpp" line="1877"/>
+        <location filename="../../softwarelist.cpp" line="2127"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1901"/>
-        <location filename="../../softwarelist.cpp" line="2164"/>
+        <location filename="../../softwarelist.cpp" line="1877"/>
+        <location filename="../../softwarelist.cpp" line="2127"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1987"/>
+        <location filename="../../softwarelist.cpp" line="1963"/>
         <source>WARNING: software-list XML bug: the software name &apos;%1&apos; is used multiple times within software-list &apos;%2&apos;</source>
         <translation>WARNUNG: Software-Listen XML Bug: der Software Name &apos;%1&apos; wird in der Software-Liste &apos;%2&apos; mehrfach verwendet</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2027"/>
+        <location filename="../../softwarelist.cpp" line="2003"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
         <translation>WARNUNG: der zur Zeit ausgewählte MAME Emulator unterstützt keine Software-Listen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2034"/>
+        <location filename="../../softwarelist.cpp" line="2010"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Laden der MAME Softwarelisten gestartet wurde, verursachte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2095"/>
+        <location filename="../../softwarelist.cpp" line="2065"/>
         <source>WARNING: can&apos;t open software state cache file &apos;%1&apos; for writing, please check access permissions</source>
         <translation>WARNUNG: kann Software Status Cache Datei &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte prüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2164"/>
+        <location filename="../../softwarelist.cpp" line="2127"/>
         <source>WARNING: the external process called to verify the states for software-list &apos;%1&apos; didn&apos;t exit cleanly -- exitCode = %2, exitStatus = %3</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen des Status der Software-Liste &apos;%1&apos; gestartet wurde, konnte nicht ordentlich beendet werden -- exitCode = %2, exitStatus = %3</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2858"/>
-        <location filename="../../softwarelist.cpp" line="2887"/>
-        <location filename="../../softwarelist.cpp" line="2916"/>
-        <location filename="../../softwarelist.cpp" line="2945"/>
+        <location filename="../../softwarelist.cpp" line="2781"/>
+        <location filename="../../softwarelist.cpp" line="2809"/>
+        <location filename="../../softwarelist.cpp" line="2837"/>
+        <location filename="../../softwarelist.cpp" line="2865"/>
         <source>FATAL: couldn&apos;t find XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: konnte XML Daten für Software-Listen Eintrag &apos;%1:%2&apos; nicht finden</translation>
     </message>
@@ -21790,7 +21791,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>U:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2055"/>
+        <location filename="../../softwarelist.cpp" line="2030"/>
         <source>Checking software-states, please wait...</source>
         <translation>Prüfe Software-Stati, bitte warten...</translation>
     </message>
@@ -21855,191 +21856,191 @@ Bist Du sicher, dass Du das tun willst?</translation>
 (Erlaubte Makros: $SOFTWARE_LIST$, $SOFTWARE_NAME$)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1162"/>
-        <location filename="../../softwarelist.cpp" line="1163"/>
-        <location filename="../../softwarelist.cpp" line="1164"/>
-        <location filename="../../softwarelist.cpp" line="1333"/>
-        <location filename="../../softwarelist.cpp" line="1334"/>
-        <location filename="../../softwarelist.cpp" line="1335"/>
+        <location filename="../../softwarelist.cpp" line="1159"/>
+        <location filename="../../softwarelist.cpp" line="1160"/>
+        <location filename="../../softwarelist.cpp" line="1161"/>
+        <location filename="../../softwarelist.cpp" line="1330"/>
+        <location filename="../../softwarelist.cpp" line="1331"/>
+        <location filename="../../softwarelist.cpp" line="1332"/>
         <source>no data available</source>
         <translation>Keine Daten verfügbar</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1278"/>
+        <location filename="../../softwarelist.cpp" line="1275"/>
         <source>loading XML software list data and recreating cache</source>
         <translation>Lade XML Softwarelisten-Daten und erzeuge Cache neu</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1514"/>
+        <location filename="../../softwarelist.cpp" line="1511"/>
         <source>Individual</source>
         <translation>Einzeln</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1532"/>
+        <location filename="../../softwarelist.cpp" line="1529"/>
         <source>All</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1533"/>
+        <location filename="../../softwarelist.cpp" line="1530"/>
         <source>show all</source>
         <translation>alle anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1534"/>
+        <location filename="../../softwarelist.cpp" line="1531"/>
         <source>Show all software lists</source>
         <translation>Alle Software Listen anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1540"/>
+        <location filename="../../softwarelist.cpp" line="1537"/>
         <source>Only</source>
         <translation>Nur</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1543"/>
+        <location filename="../../softwarelist.cpp" line="1540"/>
         <source>Show only software list &apos;%1&apos;</source>
         <translation>Nur Software Liste &apos;%1&apos; anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1547"/>
+        <location filename="../../softwarelist.cpp" line="1544"/>
         <source>Except</source>
         <translation>Außer</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1550"/>
+        <location filename="../../softwarelist.cpp" line="1547"/>
         <source>Show all software lists except &apos;%1&apos;</source>
         <translation>Alle Software Listen außer &apos;%1&apos; anzeigen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1722"/>
+        <location filename="../../softwarelist.cpp" line="1719"/>
         <source>Manual selection</source>
         <translation>Handbuch auswählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1723"/>
+        <location filename="../../softwarelist.cpp" line="1720"/>
         <source>Multiple PDF manuals exist. Select the ones you want to open:</source>
         <translation>Es existieren mehrere PDF Handbücher. Auswahl zu öffnender Dokumente:</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="1906"/>
+        <location filename="../../softwarelist.cpp" line="1882"/>
         <source>done (loading XML software list data and recreating cache, elapsed time = %1)</source>
         <translation>Fertig (Lade XML Softwarelisten-Daten und erzeuge Cache neu, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2249"/>
+        <location filename="../../softwarelist.cpp" line="2205"/>
         <source>state info for software-list &apos;%1&apos;: L:%2 C:%3 M:%4 I:%5 N:%6 U:%7</source>
         <translation>Status-Info für Software-Liste &apos;%1&apos;: L:%2 K:%3 B:%4 I:%5 N:%6 U:%7</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2424"/>
+        <location filename="../../softwarelist.cpp" line="2366"/>
         <source>WARNING: the external process called to verify software-states caused an error -- processError = %1</source>
         <translation>WARNUNG: Der externe Prozess, welcher zum Überprüfen der Software-Stati gestartet wurde, erzeugte einen Fehler -- processError = %1</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2850"/>
-        <location filename="../../softwarelist.cpp" line="2879"/>
-        <location filename="../../softwarelist.cpp" line="2908"/>
-        <location filename="../../softwarelist.cpp" line="2937"/>
+        <location filename="../../softwarelist.cpp" line="2773"/>
+        <location filename="../../softwarelist.cpp" line="2801"/>
+        <location filename="../../softwarelist.cpp" line="2829"/>
+        <location filename="../../softwarelist.cpp" line="2857"/>
         <source>Searching</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2855"/>
-        <location filename="../../softwarelist.cpp" line="2884"/>
-        <location filename="../../softwarelist.cpp" line="2913"/>
-        <location filename="../../softwarelist.cpp" line="2942"/>
+        <location filename="../../softwarelist.cpp" line="2778"/>
+        <location filename="../../softwarelist.cpp" line="2806"/>
+        <location filename="../../softwarelist.cpp" line="2834"/>
+        <location filename="../../softwarelist.cpp" line="2862"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
         <translation>FATAL: Fehler beim Parsen der XML Daten für Software-Listen Eintrag &apos;%1:%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3979"/>
+        <location filename="../../softwarelist.cpp" line="3843"/>
         <source>Choose file to merge favorites from</source>
         <translation>Datei zum Hinzufügen enthaltener Favoriten auswählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3979"/>
-        <location filename="../../softwarelist.cpp" line="4059"/>
+        <location filename="../../softwarelist.cpp" line="3843"/>
+        <location filename="../../softwarelist.cpp" line="3920"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="3992"/>
+        <location filename="../../softwarelist.cpp" line="3855"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
         <translation>Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4036"/>
+        <location filename="../../softwarelist.cpp" line="3899"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
         <translation>Eintrag &apos;%1:%2&apos; erfolgreich importiert</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4038"/>
+        <location filename="../../softwarelist.cpp" line="3901"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
         <translation>WARNUNG: Eintrag &apos;%1:%2&apos; kann mit keiner bekannten Software für dieses System assoziiert werden (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4040"/>
+        <location filename="../../softwarelist.cpp" line="3903"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
         <translation>WARNUNG: ein Favoriten-Eintrag für &apos;%1:%2&apos; existiert bereits (Zeile %3 ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4042"/>
+        <location filename="../../softwarelist.cpp" line="3905"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
         <translation>WARNUNG: ungültige Syntax in Zeile %1 (ignoriert)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4046"/>
+        <location filename="../../softwarelist.cpp" line="3909"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
         <translation>Fertig (Lade Software-Favoriten für &apos;%1&apos; aus &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4048"/>
+        <location filename="../../softwarelist.cpp" line="3911"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Lesen öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4059"/>
+        <location filename="../../softwarelist.cpp" line="3920"/>
         <source>Choose file to store favorites to</source>
         <translation>Datei zum Speichern der Favoriten wählen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4070"/>
+        <location filename="../../softwarelist.cpp" line="3929"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
         <translation>Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4085"/>
+        <location filename="../../softwarelist.cpp" line="3944"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
         <translation>Fertig (Speichere Software-Favoriten für &apos;%1&apos; in &apos;%2&apos;)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4087"/>
+        <location filename="../../softwarelist.cpp" line="3946"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
         <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen, bitte Zugriffsrechte überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4098"/>
+        <location filename="../../softwarelist.cpp" line="3957"/>
         <source>correct</source>
         <translation>korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4104"/>
+        <location filename="../../softwarelist.cpp" line="3963"/>
         <source>mostly correct</source>
         <translation>beinahe korrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4110"/>
+        <location filename="../../softwarelist.cpp" line="3969"/>
         <source>incorrect</source>
         <translation>inkorrekt</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4116"/>
+        <location filename="../../softwarelist.cpp" line="3975"/>
         <source>not found</source>
         <translation>nicht gefunden</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4123"/>
-        <location filename="../../softwarelist.cpp" line="4130"/>
-        <location filename="../../softwarelist.cpp" line="4136"/>
+        <location filename="../../softwarelist.cpp" line="3982"/>
+        <location filename="../../softwarelist.cpp" line="3989"/>
+        <location filename="../../softwarelist.cpp" line="3995"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -22472,81 +22473,81 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>SoftwareSnap</name>
     <message>
-        <location filename="../../softwarelist.cpp" line="4565"/>
+        <location filename="../../softwarelist.cpp" line="4424"/>
         <source>Copy image to clipboard</source>
         <translation>Bild in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4571"/>
+        <location filename="../../softwarelist.cpp" line="4430"/>
         <source>Copy file path to clipboard</source>
         <translation>Datei-Pfad in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4580"/>
+        <location filename="../../softwarelist.cpp" line="4439"/>
         <source>Zoom in (+10%)</source>
         <translation>Vergrößern (+10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4586"/>
+        <location filename="../../softwarelist.cpp" line="4445"/>
         <source>Zoom out (-10%)</source>
         <translation>Verkleinern (-10%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4592"/>
+        <location filename="../../softwarelist.cpp" line="4451"/>
         <source>Reset zoom (100%)</source>
         <translation>Zoomfaktor zurücksetzen (100%)</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4600"/>
+        <location filename="../../softwarelist.cpp" line="4459"/>
         <source>Refresh cache slot</source>
         <translation>Cache-Slot aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4622"/>
-        <location filename="../../softwarelist.cpp" line="4963"/>
+        <location filename="../../softwarelist.cpp" line="4481"/>
+        <location filename="../../softwarelist.cpp" line="4822"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation>FATAL: kann Software Snapshot Datei nicht öffnen; bitte Zugriffsrechte für %1 überprüfen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4628"/>
-        <location filename="../../softwarelist.cpp" line="4641"/>
-        <location filename="../../softwarelist.cpp" line="5010"/>
+        <location filename="../../softwarelist.cpp" line="4487"/>
+        <location filename="../../softwarelist.cpp" line="4500"/>
+        <location filename="../../softwarelist.cpp" line="4869"/>
         <source>FATAL: can&apos;t open software snap-shot file %1</source>
         <translation>FATAL: kann Software Snapshot Datei %1 nicht öffnen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4628"/>
-        <location filename="../../softwarelist.cpp" line="5010"/>
+        <location filename="../../softwarelist.cpp" line="4487"/>
+        <location filename="../../softwarelist.cpp" line="4869"/>
         <source>7z error</source>
         <translation>7z Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4641"/>
+        <location filename="../../softwarelist.cpp" line="4500"/>
         <source>libarchive error</source>
         <translation>Libarchive Fehler</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4699"/>
+        <location filename="../../softwarelist.cpp" line="4558"/>
         <source>FATAL: can&apos;t create backup of existing image file &apos;%1&apos; as &apos;%2&apos;</source>
         <translation>FATAL: kann Backup der existierenden Bild-Datei &apos;%1&apos; nicht unter &apos;%2&apos; erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4714"/>
+        <location filename="../../softwarelist.cpp" line="4573"/>
         <source>FATAL: can&apos;t create image file &apos;%1&apos;</source>
         <translation>FATAL: kann Bild-Datei &apos;%1&apos; nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4720"/>
+        <location filename="../../softwarelist.cpp" line="4579"/>
         <source>FATAL: can&apos;t determine primary path for image-type &apos;%1&apos;</source>
         <translation>FATAL: kann den primären Pfad für Bild-Typ &apos;%1&apos; nicht ermitteln</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="4720"/>
+        <location filename="../../softwarelist.cpp" line="4579"/>
         <source>software snapshot</source>
         <translation>Software Snap</translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="5045"/>
+        <location filename="../../softwarelist.cpp" line="4904"/>
         <source>Decompressing archive, please wait...</source>
         <translation>Dekomprimiere Archiv, bitte warten...</translation>
     </message>
