@@ -663,15 +663,16 @@ void DeviceConfigurator::showLoadAnim()
 		m_loadingAnimationOverlay = new AspectRatioLabel(this);
 		m_loadingAnimationOverlay->setLabelText(tr("Reading slot info, please wait..."));
 	}
+	m_loadingAnimationOverlay->show();
+	m_loadingAnimationOverlay->resize(size());
+	vSplitter->hide();
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() ) {
 		verticalSpacer->changeSize(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
-		m_loadingAnimationOverlay->resize(size());
 		m_loadingAnimationOverlay->setMovie(m_loadAnimMovie);
 		m_loadingAnimationOverlay->adjustMovieSize();
-		m_loadingAnimationOverlay->show();
-		vSplitter->hide();
 		m_loadAnimMovie->start();
-	}
+	} else
+		m_loadingAnimationOverlay->setMovie(qmc2MainWindow->nullMovie);
 }
 
 void DeviceConfigurator::hideLoadAnim()
