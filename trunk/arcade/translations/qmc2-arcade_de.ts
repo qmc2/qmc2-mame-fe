@@ -655,9 +655,24 @@
         <translation>Konsolen-Modus: %1</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="452"/>
+        <location filename="../main.cpp" line="464"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation>Starte QML Anzeige unter Verwendung des Themes &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="464"/>
+        <source>video snaps %1</source>
+        <translation>Video Snap %1</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="464"/>
+        <source>enabled</source>
+        <translation>aktiviert</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="464"/>
+        <source>disabled</source>
+        <translation>deaktiviert</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="494"/>
