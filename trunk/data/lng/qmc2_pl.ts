@@ -4496,14 +4496,14 @@ p, li { white-space: pre-wrap; }
         <translation>Klonuj bieżącą konfigurację urządzeń</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1584"/>
-        <location filename="../../deviceconfigurator.cpp" line="1586"/>
+        <location filename="../../deviceconfigurator.cpp" line="1585"/>
+        <location filename="../../deviceconfigurator.cpp" line="1587"/>
         <source>%1. copy of </source>
         <translation>%1. kopia</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1952"/>
-        <location filename="../../deviceconfigurator.cpp" line="2532"/>
+        <location filename="../../deviceconfigurator.cpp" line="1953"/>
+        <location filename="../../deviceconfigurator.cpp" line="2533"/>
         <source>%1. variant of </source>
         <translation>%1 wariant</translation>
     </message>
@@ -4511,8 +4511,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../deviceconfigurator.cpp" line="232"/>
         <location filename="../../deviceconfigurator.cpp" line="233"/>
         <location filename="../../deviceconfigurator.cpp" line="664"/>
-        <location filename="../../deviceconfigurator.cpp" line="694"/>
         <location filename="../../deviceconfigurator.cpp" line="695"/>
+        <location filename="../../deviceconfigurator.cpp" line="696"/>
         <source>Reading slot info, please wait...</source>
         <translation>Wczytywanie informacji o slotach, proszę czekać...</translation>
     </message>
@@ -4523,7 +4523,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="239"/>
-        <location filename="../../deviceconfigurator.cpp" line="1340"/>
+        <location filename="../../deviceconfigurator.cpp" line="1341"/>
         <source>Enter search string</source>
         <translation>Proszę podać szukany ciąg</translation>
     </message>
@@ -4597,7 +4597,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="399"/>
-        <location filename="../../deviceconfigurator.cpp" line="2312"/>
+        <location filename="../../deviceconfigurator.cpp" line="2313"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Otwórz archiwum</translation>
     </message>
@@ -4638,10 +4638,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../deviceconfigurator.cpp" line="528"/>
-        <location filename="../../deviceconfigurator.cpp" line="1138"/>
-        <location filename="../../deviceconfigurator.cpp" line="1397"/>
-        <location filename="../../deviceconfigurator.cpp" line="2088"/>
-        <location filename="../../deviceconfigurator.cpp" line="2522"/>
+        <location filename="../../deviceconfigurator.cpp" line="1139"/>
+        <location filename="../../deviceconfigurator.cpp" line="1398"/>
+        <location filename="../../deviceconfigurator.cpp" line="2089"/>
+        <location filename="../../deviceconfigurator.cpp" line="2523"/>
         <source>No devices available</source>
         <translation>Brak dostępnych urządzeń</translation>
     </message>
@@ -4651,7 +4651,7 @@ p, li { white-space: pre-wrap; }
         <translation>FATALNIE: nie udało się uruchomienie emulatora w sensownym czasie, poddanie</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="728"/>
+        <location filename="../../deviceconfigurator.cpp" line="729"/>
         <source>loading available system slots and recreating cache</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4662,128 +4662,128 @@ p, li { white-space: pre-wrap; }
         <translation>Uruchom wybraną maszynę (osadzając)</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="713"/>
+        <location filename="../../deviceconfigurator.cpp" line="714"/>
         <source>ERROR: can&apos;t open slot info cache for writing, path = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="715"/>
-        <location filename="../../deviceconfigurator.cpp" line="717"/>
-        <location filename="../../deviceconfigurator.cpp" line="748"/>
-        <location filename="../../deviceconfigurator.cpp" line="750"/>
-        <location filename="../../deviceconfigurator.cpp" line="834"/>
-        <location filename="../../deviceconfigurator.cpp" line="836"/>
+        <location filename="../../deviceconfigurator.cpp" line="716"/>
+        <location filename="../../deviceconfigurator.cpp" line="718"/>
+        <location filename="../../deviceconfigurator.cpp" line="749"/>
+        <location filename="../../deviceconfigurator.cpp" line="751"/>
+        <location filename="../../deviceconfigurator.cpp" line="835"/>
+        <location filename="../../deviceconfigurator.cpp" line="837"/>
         <source>Failed to read slot info</source>
         <translation>Nie udało się wczytać informacji o slotach</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="746"/>
+        <location filename="../../deviceconfigurator.cpp" line="747"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation type="unfinished">FATALNIE: nie udało się uruchomienie MAME w sensownym czasie, poddanie</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="746"/>
+        <location filename="../../deviceconfigurator.cpp" line="747"/>
         <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="755"/>
+        <location filename="../../deviceconfigurator.cpp" line="756"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
         <translation>UWAGA: zewnętrzne polecenie używane do odczytu dostępnych slotów systemu przestało działać, opcje slotów mogą nie być dostępne</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="844"/>
+        <location filename="../../deviceconfigurator.cpp" line="845"/>
         <source>done (loading available system slots and recreating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1033"/>
+        <location filename="../../deviceconfigurator.cpp" line="1034"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATALNIE: błąd podczas parsowania danych XML dla &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="877"/>
-        <location filename="../../deviceconfigurator.cpp" line="885"/>
-        <location filename="../../deviceconfigurator.cpp" line="1437"/>
-        <location filename="../../deviceconfigurator.cpp" line="1447"/>
+        <location filename="../../deviceconfigurator.cpp" line="878"/>
+        <location filename="../../deviceconfigurator.cpp" line="886"/>
+        <location filename="../../deviceconfigurator.cpp" line="1438"/>
+        <location filename="../../deviceconfigurator.cpp" line="1448"/>
         <source>not used</source>
         <translation>nieużywany</translation>
     </message>
     <message>
         <location filename="../../deviceconfigurator.ui" line="696"/>
         <location filename="../../deviceconfigurator.cpp" line="238"/>
-        <location filename="../../deviceconfigurator.cpp" line="1021"/>
-        <location filename="../../deviceconfigurator.cpp" line="1485"/>
-        <location filename="../../deviceconfigurator.cpp" line="1510"/>
-        <location filename="../../deviceconfigurator.cpp" line="1557"/>
-        <location filename="../../deviceconfigurator.cpp" line="1569"/>
-        <location filename="../../deviceconfigurator.cpp" line="1571"/>
-        <location filename="../../deviceconfigurator.cpp" line="1808"/>
-        <location filename="../../deviceconfigurator.cpp" line="1919"/>
-        <location filename="../../deviceconfigurator.cpp" line="1968"/>
+        <location filename="../../deviceconfigurator.cpp" line="1022"/>
+        <location filename="../../deviceconfigurator.cpp" line="1486"/>
+        <location filename="../../deviceconfigurator.cpp" line="1511"/>
+        <location filename="../../deviceconfigurator.cpp" line="1558"/>
+        <location filename="../../deviceconfigurator.cpp" line="1570"/>
+        <location filename="../../deviceconfigurator.cpp" line="1572"/>
+        <location filename="../../deviceconfigurator.cpp" line="1809"/>
+        <location filename="../../deviceconfigurator.cpp" line="1920"/>
+        <location filename="../../deviceconfigurator.cpp" line="1969"/>
         <source>Default configuration</source>
         <translation>Domyślna konfiguracja</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="775"/>
+        <location filename="../../deviceconfigurator.cpp" line="776"/>
         <source>loading available system slots from cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="842"/>
+        <location filename="../../deviceconfigurator.cpp" line="843"/>
         <source>done (loading available system slots from cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="877"/>
-        <location filename="../../deviceconfigurator.cpp" line="892"/>
-        <location filename="../../deviceconfigurator.cpp" line="1243"/>
-        <location filename="../../deviceconfigurator.cpp" line="1269"/>
-        <location filename="../../deviceconfigurator.cpp" line="1437"/>
-        <location filename="../../deviceconfigurator.cpp" line="1456"/>
-        <location filename="../../deviceconfigurator.cpp" line="1678"/>
-        <location filename="../../deviceconfigurator.cpp" line="1888"/>
+        <location filename="../../deviceconfigurator.cpp" line="878"/>
+        <location filename="../../deviceconfigurator.cpp" line="893"/>
+        <location filename="../../deviceconfigurator.cpp" line="1244"/>
+        <location filename="../../deviceconfigurator.cpp" line="1270"/>
+        <location filename="../../deviceconfigurator.cpp" line="1438"/>
+        <location filename="../../deviceconfigurator.cpp" line="1457"/>
+        <location filename="../../deviceconfigurator.cpp" line="1679"/>
+        <location filename="../../deviceconfigurator.cpp" line="1889"/>
         <source>default</source>
         <translation>domyślny</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="1233"/>
-        <location filename="../../deviceconfigurator.cpp" line="1252"/>
-        <location filename="../../deviceconfigurator.cpp" line="1296"/>
-        <location filename="../../deviceconfigurator.cpp" line="1656"/>
-        <location filename="../../deviceconfigurator.cpp" line="1670"/>
-        <location filename="../../deviceconfigurator.cpp" line="1680"/>
-        <location filename="../../deviceconfigurator.cpp" line="2579"/>
+        <location filename="../../deviceconfigurator.cpp" line="1234"/>
+        <location filename="../../deviceconfigurator.cpp" line="1253"/>
+        <location filename="../../deviceconfigurator.cpp" line="1297"/>
+        <location filename="../../deviceconfigurator.cpp" line="1657"/>
+        <location filename="../../deviceconfigurator.cpp" line="1671"/>
+        <location filename="../../deviceconfigurator.cpp" line="1681"/>
+        <location filename="../../deviceconfigurator.cpp" line="2580"/>
         <source>N/A</source>
         <translation>niedostępne</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2022"/>
+        <location filename="../../deviceconfigurator.cpp" line="2023"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Wybierz domyślny katalog urządzeń &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2312"/>
+        <location filename="../../deviceconfigurator.cpp" line="2313"/>
         <source>&amp;Close archive</source>
         <translation>Za&amp;mknij archiwum</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2534"/>
+        <location filename="../../deviceconfigurator.cpp" line="2535"/>
         <source>Choose a unique configuration name</source>
         <translation>Proszę wybrać unikalną nazwę konfiguracji</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2534"/>
+        <location filename="../../deviceconfigurator.cpp" line="2535"/>
         <source>Unique configuration name:</source>
         <translation>Unikalna nazwa konfiguracji:</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2537"/>
+        <location filename="../../deviceconfigurator.cpp" line="2538"/>
         <source>Name conflict</source>
         <translation>Konflikt nazw</translation>
     </message>
     <message>
-        <location filename="../../deviceconfigurator.cpp" line="2537"/>
+        <location filename="../../deviceconfigurator.cpp" line="2538"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
