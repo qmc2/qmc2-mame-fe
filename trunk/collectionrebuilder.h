@@ -17,6 +17,7 @@
 #include "xmldbmgr.h"
 #include "swldbmgr.h"
 #include "missingdumpsviewer.h"
+#include "bigbytearray.h"
 #include "ui_collectionrebuilder.h"
 
 class CollectionRebuilder;
@@ -87,9 +88,9 @@ class CollectionRebuilderThread : public QThread
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 		bool writeAllArchiveData(QString, QString, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *, QStringList *);
 #endif
-		bool readFileData(QString, QByteArray *);
-		bool readSevenZipFileData(QString, QString, QString, QByteArray *);
-		bool readZipFileData(QString, QString, QString, QByteArray *);
+		bool readFileData(QString, BigByteArray *);
+		bool readSevenZipFileData(QString, QString, QString, BigByteArray *);
+		bool readZipFileData(QString, QString, QString, BigByteArray *);
 		bool hardlinkChds(QString, QString, QStringList *, QStringList *);
 		bool symlinkChds(QString, QString, QStringList *, QStringList *);
 		bool copyChds(QString, QString, QStringList *, QStringList *);

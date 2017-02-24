@@ -13,6 +13,8 @@
 #include <QWaitCondition>
 #include <QMutex>
 
+#include "bigbytearray.h"
+
 extern "C" {
 #include "lzma/7z.h"
 #include "lzma/7zAlloc.h"
@@ -108,6 +110,7 @@ class SevenZipFile : public QObject
 		QList<SevenZipMetaData> &entryList() { return m_entryList; }
 		quint64 read(QString name, QByteArray *buffer);
 		quint64 read(uint index, QByteArray *buffer, bool *async = 0);
+		quint64 readBig(uint index, BigByteArray *buffer, bool *async = 0);
 		int indexOfName(const QString &name) { if ( m_nameToIndexCache.contains(name) ) return m_nameToIndexCache.value(name); else return -1; }
 		int indexOfCrc(const QString &crc) { if ( m_crcToIndexCache.contains(crc) ) return m_crcToIndexCache.value(crc); else return -1; }
 		bool isCrcDuplicate(const QString &crc) { if ( m_crcDuplicates.contains(crc) ) return m_crcDuplicates.value(crc); else return false; }

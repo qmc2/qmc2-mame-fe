@@ -12,6 +12,8 @@
 
 #include <archive.h>
 #include <archive_entry.h>
+
+#include "bigbytearray.h"
 #include "macros.h"
 
 class ArchiveEntryMetaData
@@ -60,7 +62,8 @@ class ArchiveFile : public QObject
 		bool hasWarning() { return errorCode() == ARCHIVE_WARN; }
 		qint64 readEntry(QByteArray &buffer);
 		bool createEntry(QString name, size_t size);
-		qint64 writeEntryData(QByteArray &buffer) { return archive_write_data(m_archive, buffer.constData(), buffer.size()); }
+		qint64 writeEntryData(const QByteArray &buffer) { return archive_write_data(m_archive, buffer.constData(), buffer.size()); }
+		qint64 writeEntryDataBig(const BigByteArray &buffer);
 		void closeEntry();
 		QString errorString() { return isOpen() ? QString(archive_error_string(m_archive)) : QString(); }
 		int errorCode() { return isOpen() ? archive_errno(m_archive) : ARCHIVE_OK; }
