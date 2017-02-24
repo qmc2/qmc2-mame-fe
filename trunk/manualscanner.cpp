@@ -103,7 +103,8 @@ void ManualScanner::scan()
 	}
 	QHash<QString, QStringList> pdfManualHash;
 	foreach (QString path, pathList) {
-		path = QDir::cleanPath(path);
+		QDir d(QDir::cleanPath(path));
+		path = d.absolutePath();
 		QStringList fileList;
 		log(tr("reading file list for path '%1'").arg(path));
 		qApp->processEvents();
