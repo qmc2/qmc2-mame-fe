@@ -12,6 +12,7 @@ class BigByteArray
 		explicit BigByteArray(const char *rawData, quint64 len);
 		~BigByteArray() { clear(); }
 
+		void setRawData(const char *rawData, quint64 len) { *this = BigByteArray(rawData, len); }
 		void clear() { m_concatByteArrays.clear(); }
 		int chunks() const { return m_concatByteArrays.count(); }
 		const QByteArray &chunk(int index) const { return m_concatByteArrays.at(index); }

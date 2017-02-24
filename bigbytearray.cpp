@@ -3,7 +3,7 @@
 #include "bigbytearray.h"
 #include "macros.h"
 
-#define BBA_CHUNK_SIZE	quint64(QMC2_2G)
+#define BBA_CHUNK_SIZE	quint64(QMC2_1G)
 
 BigByteArray::BigByteArray(const BigByteArray &bba)
 {

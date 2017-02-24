@@ -1123,7 +1123,7 @@ bool CollectionRebuilderThread::nextId(QString *id, QStringList *romNameList, QS
 					}
 			}
 		} else {
-			QByteArray line = m_xmlFile.readLine();
+			QByteArray line(m_xmlFile.readLine());
 			while ( !m_xmlFile.atEnd() && line.indexOf(setEntityStartPattern()) < 0 && (rebuilderDialog()->romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ? line.indexOf(listEntityStartPattern()) < 0 : true) && !exitThread )
 				line = m_xmlFile.readLine();
 			if ( m_xmlFile.atEnd() ) {
@@ -1306,7 +1306,7 @@ bool CollectionRebuilderThread::writeAllFileData(QString baseDir, QString id, QS
 		QFile f(fileName);
 		QString errorReason(tr("file error"));
 		if ( success && f.open(QIODevice::WriteOnly) ) {
-			QByteArray data;
+			BigByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
 			if ( checkSumDb()->getData(romSha1List->at(i), romCrcList->at(i), &size, &path, &member, &type) ) {
@@ -1406,8 +1406,8 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 				emit log(tr("skipping '%1'").arg(romNameList->at(i)) + " ("+ tr("a dump with CRC '%1' already exists").arg(romCrcList->at(i)) + ")");
 				continue;
 			}
-			QString file = romNameList->at(i);
-			QByteArray data;
+			QString file(romNameList->at(i));
+			BigByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
 			QString errorReason(tr("file error"));
@@ -1434,7 +1434,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 						quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
 						if ( bytesWritten + bufferLength > (quint64)data.length() )
 							bufferLength = data.length() - bytesWritten;
-						QByteArray writeBuffer = data.mid(bytesWritten, bufferLength);
+						QByteArray writeBuffer(data.mid(bytesWritten, bufferLength));
 						success = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
 						if ( success )
 							bytesWritten += bufferLength;
@@ -1506,7 +1506,7 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 				continue;
 			}
 			QString file(romNameList->at(i));
-			QByteArray data;
+			BigByteArray data;
 			quint64 size = romSizeList->at(i).toULongLong();
 			QString path, member, type;
 			QString errorReason(tr("file error"));
@@ -1528,7 +1528,7 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 				}
 				if ( success && af.createEntry(file, data.size()) ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
-					if ( !af.writeEntryData(data) ) {
+					if ( !af.writeEntryDataBig(data) ) {
 						emit log(tr("FATAL: failed writing '%1' to ZIP archive '%2'").arg(file).arg(fileName));
 						success = false;
 					}
@@ -1563,7 +1563,7 @@ bool CollectionRebuilderThread::writeAllArchiveData(QString baseDir, QString id,
 }
 #endif
 
-bool CollectionRebuilderThread::readFileData(QString fileName, QByteArray *data)
+bool CollectionRebuilderThread::readFileData(QString fileName, BigByteArray *data)
 {
 	QFile file(fileName);
 	data->clear();
@@ -1581,7 +1581,7 @@ bool CollectionRebuilderThread::readFileData(QString fileName, QByteArray *data)
 	}
 }
 
-bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString crc, QString member, QByteArray *data)
+bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString crc, QString member, BigByteArray *data)
 {
 	SevenZipFile sevenZipFile(fileName);
 	if ( sevenZipFile.open() ) {
@@ -1594,7 +1594,7 @@ bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString c
 			}
 			SevenZipMetaData metaData = sevenZipFile.entryList()[index];
 			emit log(tr("reading '%1' from 7Z archive '%2' (uncompressed size: %3)").arg(metaData.name()).arg(fileName).arg(ROMAlyzer::humanReadable(metaData.size())));
-			quint64 readLength = sevenZipFile.read(index, data); // can't be interrupted!
+			quint64 readLength = sevenZipFile.readBig(index, data); // can't be interrupted!
 			if ( sevenZipFile.hasError() ) {
 				emit log(tr("FATAL: failed reading '%1' from 7Z archive '%2'").arg(metaData.name()).arg(fileName));
 				return false;
@@ -1614,7 +1614,7 @@ bool CollectionRebuilderThread::readSevenZipFileData(QString fileName, QString c
 	}
 }
 
-bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, QString member, QByteArray *data)
+bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, QString member, BigByteArray *data)
 {
 	bool success = true;
 	unzFile zipFile = unzOpen(fileName.toUtf8().constData());

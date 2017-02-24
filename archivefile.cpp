@@ -89,6 +89,14 @@ void ArchiveFile::reopen()
 	archive_read_open_filename(m_archive, m_fileName.toUtf8().constData(), QMC2_ARCHIVE_BLOCK_SIZE);
 }
 
+qint64 ArchiveFile::writeEntryDataBig(const BigByteArray &buffer)
+{
+	qint64 len = 0;
+	for (int i = 0; i < buffer.chunks(); i++)
+		len += writeEntryData(buffer.chunk(i));
+	return len;
+}
+
 bool ArchiveFile::seekNextEntry(ArchiveEntryMetaData *metaData, bool *reset)
 {
 	if ( !isOpen() )
