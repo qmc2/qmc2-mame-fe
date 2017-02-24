@@ -9358,17 +9358,19 @@ void MainWindow::on_actionManualOpenInViewer_triggered(bool)
 		if ( itemSelector.exec() != QDialog::Rejected ) {
 			QList<QListWidgetItem *> itemList(itemSelector.listWidgetItems->selectedItems());
 			for (int i = 0; i < itemList.count(); i++) {
+				QFileInfo fi(itemList.at(i)->text());
 				if ( actionManualInternalViewer->isChecked() )
-					viewPdf(itemList.at(i)->text());
+					viewPdf(fi.absoluteFilePath());
 				else
-					QDesktopServices::openUrl(QUrl::fromUserInput(itemList.at(i)->text()));
+					QDesktopServices::openUrl(QUrl::fromUserInput(fi.absoluteFilePath()));
 			}
 		}
 	} else if ( manualPaths.count() > 0 ) {
+		QFileInfo fi(manualPaths.first());
 		if ( actionManualInternalViewer->isChecked() )
-			viewPdf(manualPaths.at(0));
+			viewPdf(fi.absoluteFilePath());
 		else
-			QDesktopServices::openUrl(QUrl::fromUserInput(manualPaths.at(0)));
+			QDesktopServices::openUrl(QUrl::fromUserInput(fi.absoluteFilePath()));
 	}
 }
 
