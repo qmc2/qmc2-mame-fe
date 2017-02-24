@@ -43,6 +43,7 @@
 #define QMC2_512K				512 * QMC2_ONE_KILOBYTE
 #define QMC2_1M					QMC2_ONE_MEGABYTE
 #define QMC2_1G					QMC2_ONE_GIGABYTE
+#define QMC2_2G					2ULL * QMC2_ONE_GIGABYTE
 #define QMC2_1T					QMC2_ONE_TERABYTE
 
 // min/max of two constants
