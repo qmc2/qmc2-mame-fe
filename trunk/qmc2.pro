@@ -151,6 +151,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			missingdumpsviewer.cpp \
 			movierecordersetup.cpp \
 			cryptedbytearray.cpp \
+			bigbytearray.cpp \
 			romstatefilter.cpp \
 			customartwork.cpp \
 			customsoftwareartwork.cpp \
@@ -271,6 +272,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			missingdumpsviewer.h \
 			movierecordersetup.h \
 			cryptedbytearray.h \
+			bigbytearray.h \
 			romstatefilter.h \
 			customartwork.h \
 			customsoftwareartwork.h \
