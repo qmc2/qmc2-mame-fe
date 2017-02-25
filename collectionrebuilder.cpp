@@ -212,6 +212,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 
 CollectionRebuilder::~CollectionRebuilder()
 {
+	hideEvent(0);
 	if ( missingDumpsViewer() )
 		delete missingDumpsViewer();
 	if ( rebuilderThread() )
@@ -842,7 +843,8 @@ void CollectionRebuilder::hideEvent(QHideEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", toolButtonStateU->isChecked());
 	if ( missingDumpsViewer() )
 		missingDumpsViewer()->close();
-	e->ignore();
+	if ( e )
+		e->ignore();
 }
 
 CollectionRebuilderThread::CollectionRebuilderThread(QObject *parent)
