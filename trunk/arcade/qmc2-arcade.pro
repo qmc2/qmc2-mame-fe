@@ -37,6 +37,7 @@ SOURCES += main.cpp \
     datinfodbmgr.cpp \
     ../settings.cpp \
     ../sevenzipfile.cpp \
+    ../bigbytearray.cpp \
     ../lzma/7zAlloc.c \
     ../lzma/7zBuf2.c \
     ../lzma/7zBuf.c \
@@ -91,7 +92,8 @@ HEADERS += \
     joystickmanager.h \
     datinfodbmgr.h \
     ../settings.h \
-    ../sevenzipfile.h
+    ../sevenzipfile.h \
+    ../bigbytearray.h
 
 INCLUDEPATH += ../lzma
 
@@ -104,8 +106,8 @@ contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
 contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
     INCLUDEPATH += ../minizip
     SOURCES += ../minizip/zip.c \
-               ../minizip/unzip.c \
-               ../minizip/ioapi.c
+	       ../minizip/unzip.c \
+	       ../minizip/ioapi.c
 } else {
     CONFIG += link_pkgconfig
     PKGCONFIG += minizip
@@ -114,20 +116,20 @@ contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
 contains(DEFINES, QMC2_ARCADE_BUNDLED_ZLIB) {
     INCLUDEPATH += ../zlib
     SOURCES += ../zlib/zutil.c \
-               ../zlib/uncompr.c \
-               ../zlib/trees.c \
-               ../zlib/inftrees.c \
-               ../zlib/inflate.c \
-               ../zlib/inffast.c \
-               ../zlib/infback.c \
-               ../zlib/gzwrite.c \
-               ../zlib/gzread.c \
-               ../zlib/gzlib.c \
-               ../zlib/gzclose.c \
-               ../zlib/deflate.c \
-               ../zlib/crc32.c \
-               ../zlib/compress.c \
-               ../zlib/adler32.c
+	       ../zlib/uncompr.c \
+	       ../zlib/trees.c \
+	       ../zlib/inftrees.c \
+	       ../zlib/inflate.c \
+	       ../zlib/inffast.c \
+	       ../zlib/infback.c \
+	       ../zlib/gzwrite.c \
+	       ../zlib/gzread.c \
+	       ../zlib/gzlib.c \
+	       ../zlib/gzclose.c \
+	       ../zlib/deflate.c \
+	       ../zlib/crc32.c \
+	       ../zlib/compress.c \
+	       ../zlib/adler32.c
 } else {
     CONFIG += link_pkgconfig
     PKGCONFIG += zlib
@@ -145,18 +147,18 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 evil_hack_to_fool_lupdate {
     SOURCES += qml/ToxicWaste/1.1/ToxicWaste.qml \
 	       qml/ToxicWaste/1.1/ToxicWaste-video.qml \
-               qml/ToxicWaste/1.1/ToxicWaste.js \
-               qml/ToxicWaste/1.1/animations/BackgroundAnimation.qml \
-               qml/ToxicWaste/2.0/ToxicWaste.qml \
-               qml/ToxicWaste/2.0/ToxicWaste-video.qml \
-               qml/ToxicWaste/2.0/ToxicWaste.js \
-               qml/ToxicWaste/2.0/animations/BackgroundAnimation.qml \
-               qml/darkone/1.1/darkone.qml \
-               qml/darkone/1.1/darkone-video.qml \
-               qml/darkone/1.1/darkone.js \
-               qml/darkone/2.0/darkone.qml \
-               qml/darkone/2.0/darkone-video.qml \
-               qml/darkone/2.0/darkone.js
+	       qml/ToxicWaste/1.1/ToxicWaste.js \
+	       qml/ToxicWaste/1.1/animations/BackgroundAnimation.qml \
+	       qml/ToxicWaste/2.0/ToxicWaste.qml \
+	       qml/ToxicWaste/2.0/ToxicWaste-video.qml \
+	       qml/ToxicWaste/2.0/ToxicWaste.js \
+	       qml/ToxicWaste/2.0/animations/BackgroundAnimation.qml \
+	       qml/darkone/1.1/darkone.qml \
+	       qml/darkone/1.1/darkone-video.qml \
+	       qml/darkone/1.1/darkone.js \
+	       qml/darkone/2.0/darkone.qml \
+	       qml/darkone/2.0/darkone-video.qml \
+	       qml/darkone/2.0/darkone.js
 }
 
 TRANSLATIONS += translations/qmc2-arcade_de.ts \
@@ -193,44 +195,44 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 macx {
     greaterThan(SDL, 1) {
-        LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
-        INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
+	LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
+	INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
     } else {
-        OBJECTIVE_SOURCES += ../SDLMain_tmpl.m
-        HEADERS += ../SDLMain_tmpl.h
-        LIBS += -framework SDL -framework Cocoa -F/Library/Frameworks
-        INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
+	OBJECTIVE_SOURCES += ../SDLMain_tmpl.m
+	HEADERS += ../SDLMain_tmpl.h
+	LIBS += -framework SDL -framework Cocoa -F/Library/Frameworks
+	INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
     }
     ICON = images/qmc2-arcade.icns
     contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
     QMAKE_INFO_PLIST = Info.plist
 } else {
     !win32 {
-        greaterThan(SDL, 0) {
-            LIBS += $$system("../scripts/sdl-libs.sh $$SDL")
-            INCLUDEPATH += $$system("../scripts/sdl-includepath.sh $$SDL")
-        } else {
-            LIBS += $$system("../scripts/sdl-libs.sh")
-            INCLUDEPATH += $$system("../scripts/sdl-includepath.sh")
-        }
+	greaterThan(SDL, 0) {
+	    LIBS += $$system("../scripts/sdl-libs.sh $$SDL")
+	    INCLUDEPATH += $$system("../scripts/sdl-includepath.sh $$SDL")
+	} else {
+	    LIBS += $$system("../scripts/sdl-libs.sh")
+	    INCLUDEPATH += $$system("../scripts/sdl-includepath.sh")
+	}
     } else {
-        DEFINES += PSAPI_VERSION=1
-        SOURCES += ../windows_tools.cpp
-        contains(DEFINES, QMC2_ARCADE_MINGW) {
-            CONFIG += windows
-            greaterThan(SDL, 1) {
-                LIBS += -lSDL2.dll -lSDL2 -lole32 -lpsapi
-            } else {
-                LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi
-            }
-            INCLUDEPATH += $$QMC2_ARCADE_INCLUDEPATH
-            QMAKE_CXXFLAGS += -Wl,-subsystem,windows
-            QMAKE_CFLAGS += -Wl,-subsystem,windows
-            QMAKE_LFLAGS += -Wl,-subsystem,windows
-        } else {
-            CONFIG += embed_manifest_exe windows
-            LIBS += psapi.lib ole32.lib
-        }
-        RC_FILE = qmc2-arcade.rc
+	DEFINES += PSAPI_VERSION=1
+	SOURCES += ../windows_tools.cpp
+	contains(DEFINES, QMC2_ARCADE_MINGW) {
+	    CONFIG += windows
+	    greaterThan(SDL, 1) {
+		LIBS += -lSDL2.dll -lSDL2 -lole32 -lpsapi
+	    } else {
+		LIBS += -lSDLmain -lSDL.dll -lSDL -lole32 -lpsapi
+	    }
+	    INCLUDEPATH += $$QMC2_ARCADE_INCLUDEPATH
+	    QMAKE_CXXFLAGS += -Wl,-subsystem,windows
+	    QMAKE_CFLAGS += -Wl,-subsystem,windows
+	    QMAKE_LFLAGS += -Wl,-subsystem,windows
+	} else {
+	    CONFIG += embed_manifest_exe windows
+	    LIBS += psapi.lib ole32.lib
+	}
+	RC_FILE = qmc2-arcade.rc
     }
 }
