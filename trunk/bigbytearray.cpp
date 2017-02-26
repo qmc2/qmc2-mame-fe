@@ -1,9 +1,5 @@
 #include <QDebug>
-
 #include "bigbytearray.h"
-#include "macros.h"
-
-#define BBA_CHUNK_SIZE	quint64(QMC2_1G)
 
 BigByteArray::BigByteArray(const BigByteArray &bba)
 {
@@ -13,10 +9,10 @@ BigByteArray::BigByteArray(const BigByteArray &bba)
 
 BigByteArray::BigByteArray(const char *rawData, quint64 len)
 {
-	int c = int(len / BBA_CHUNK_SIZE) + 1;
+	int c = int(len / QMC2_BBA_CHUNK_SIZE) + 1;
 	for (int i = 0; i < c; i++) {
-		int l = QMC2_MIN(BBA_CHUNK_SIZE, len);
-		m_concatByteArrays.append(QByteArray(rawData + i * BBA_CHUNK_SIZE, l));
+		int l = QMC2_MIN(QMC2_BBA_CHUNK_SIZE, len);
+		m_concatByteArrays.append(QByteArray(rawData + i * QMC2_BBA_CHUNK_SIZE, l));
 		len -= l;
 	}
 }
@@ -29,9 +25,9 @@ void BigByteArray::append(const QByteArray &ba)
 		QByteArray baCopy(ba);
 		quint64 len = baCopy.size();
 		while ( len > 0 ) {
-			int l = QMC2_MIN(BBA_CHUNK_SIZE, len);
-			if ( quint64(l + m_concatByteArrays.last().size()) > BBA_CHUNK_SIZE )
-				l = BBA_CHUNK_SIZE - m_concatByteArrays.last().size();
+			int l = QMC2_MIN(QMC2_BBA_CHUNK_SIZE, len);
+			if ( quint64(l + m_concatByteArrays.last().size()) > QMC2_BBA_CHUNK_SIZE )
+				l = QMC2_BBA_CHUNK_SIZE - m_concatByteArrays.last().size();
 			m_concatByteArrays.last().append(baCopy, l);
 			baCopy.remove(0, l);
 			len = baCopy.size();
@@ -45,11 +41,11 @@ void BigByteArray::append(const QByteArray &ba)
 QByteArray &BigByteArray::mid(quint64 index, int len)
 {
 	m_tempArray.clear();
-	int c = int(index / BBA_CHUNK_SIZE);
+	int c = int(index / QMC2_BBA_CHUNK_SIZE);
 	if ( c < m_concatByteArrays.count() ) {
-		int lc = int((index + len) / BBA_CHUNK_SIZE);
+		int lc = int((index + len) / QMC2_BBA_CHUNK_SIZE);
 		if ( lc < m_concatByteArrays.count() ) {
-			int i = index - c * BBA_CHUNK_SIZE;
+			int i = index - c * QMC2_BBA_CHUNK_SIZE;
 			int l = QMC2_MIN(m_concatByteArrays.at(c).size() - i, len);
 			m_tempArray.append(m_concatByteArrays.at(c).mid(i, l));
 			if ( l < len )
@@ -71,9 +67,9 @@ quint64 BigByteArray::size()
 
 char BigByteArray::at(quint64 index)
 {
-	int c = int(index / BBA_CHUNK_SIZE);
+	int c = int(index / QMC2_BBA_CHUNK_SIZE);
 	if ( c < m_concatByteArrays.count() ) {
-		int i = index - c * BBA_CHUNK_SIZE;
+		int i = index - c * QMC2_BBA_CHUNK_SIZE;
 		if ( i < m_concatByteArrays.at(c).size() )
 			return m_concatByteArrays.at(c).at(i);
 		else {
