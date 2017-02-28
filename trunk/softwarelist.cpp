@@ -1066,7 +1066,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 				}
 				if ( !devName.isEmpty() )
 					foreach (QString devIf, devInterfaces)
-						deviceInstanceHash[devIf.replace(":", "")] << devName; // FIXME: the replace(":", "") is a temporary workaround for coleco
+						deviceInstanceHash[devIf] << devName;
 			} else {
 				line = xmlData->at(i++).simplified();
 				startIndex = line.indexOf("briefname=\"");
