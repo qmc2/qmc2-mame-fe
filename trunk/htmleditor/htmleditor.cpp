@@ -27,6 +27,7 @@
 #include <QTest>
 #include <QMap>
 #include <QHash>
+#include <QList>
 #include <QPixmap>
 #include <QIcon>
 #include <QTreeWidgetItem>
@@ -48,6 +49,7 @@
 #include <QToolTip>
 #include <QtWebKitWidgets/QWebFrame>
 #endif
+#include <QListWidgetItem>
 
 #include <algorithm> // std::sort()
 
@@ -72,10 +74,12 @@
 #include "softwareimagewidget.h"
 #include "customartwork.h"
 #include "customsoftwareartwork.h"
+#include "itemselect.h"
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
 #include "ui_tablepropertydialog.h"
 
+#define userDataDb qmc2MachineList->userDataDb()
 #define FOLLOW_ENABLE(a1, a2) a1->setEnabled(ui->webView->pageAction(a2)->isEnabled())
 #define FOLLOW_CHECK(a1, a2) a1->setChecked(ui->webView->pageAction(a2)->isChecked())
 #define FORWARD_ACTION(action1, action2) \
@@ -103,6 +107,7 @@ extern MachineList *qmc2MachineList;
 extern MainWindow *qmc2MainWindow;
 extern bool qmc2ParentImageFallback;
 extern QHash<QString, QString> qmc2ParentHash;
+extern QHash<QString, QString> softwareParentHash;
 
 HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
 	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
@@ -1450,6 +1455,94 @@ QString HtmlEditor::customSoftwareArtworkData(QString listName, QString software
 		return imw->toBase64();
 	} else
 		return QString();
+}
+
+bool HtmlEditor::systemManualExists(const QString &id)
+{
+	bool exists = !userDataDb->systemManualPaths(id).isEmpty();
+	if ( !exists ) {
+		QString parentName(qmc2ParentHash.value(id));
+		if ( !parentName.isEmpty() )
+			exists = !userDataDb->systemManualPaths(parentName).isEmpty();
+	}
+	return exists;
+}
+
+void HtmlEditor::openSystemManual(const QString &id)
+{
+	QStringList manualPaths(userDataDb->systemManualPaths(id));
+	if ( manualPaths.isEmpty() ) {
+		QString parentName(qmc2ParentHash.value(id));
+		if ( !parentName.isEmpty() )
+			manualPaths = userDataDb->systemManualPaths(parentName);
+	}
+	if ( manualPaths.count() > 1 ) {
+		ItemSelector itemSelector(this, manualPaths);
+		itemSelector.setWindowTitle(tr("Manual selection"));
+		itemSelector.labelMessage->setText(tr("Multiple PDF manuals exist. Select the ones you want to open:"));
+		itemSelector.listWidgetItems->setSelectionMode(QAbstractItemView::ExtendedSelection);
+		if ( itemSelector.exec() != QDialog::Rejected ) {
+			QList<QListWidgetItem *> itemList(itemSelector.listWidgetItems->selectedItems());
+			for (int i = 0; i < itemList.count(); i++) {
+				QFileInfo fi(itemList.at(i)->text());
+				if ( qmc2MainWindow->actionManualInternalViewer->isChecked() )
+					qmc2MainWindow->viewPdf(fi.absoluteFilePath());
+				else
+					QDesktopServices::openUrl(QUrl::fromUserInput(fi.absoluteFilePath()));
+			}
+		}
+	} else if ( manualPaths.count() > 0 ) {
+		QFileInfo fi(manualPaths.first());
+		if ( qmc2MainWindow->actionManualInternalViewer->isChecked() )
+			qmc2MainWindow->viewPdf(fi.absoluteFilePath());
+		else
+			QDesktopServices::openUrl(QUrl::fromUserInput(fi.absoluteFilePath()));
+	}
+}
+
+bool HtmlEditor::softwareManualExists(const QString &list, const QString &id)
+{
+	bool exists = !userDataDb->softwareManualPaths(list, id).isEmpty();
+	if ( !exists ) {
+		QString parentKey(softwareParentHash.value(list + ':' + id));
+		if ( !parentKey.isEmpty() && parentKey != "<np>" ) {
+			QStringList parentWords(parentKey.split(':', QString::SkipEmptyParts));
+			exists = !userDataDb->softwareManualPaths(parentWords.at(0), parentWords.at(1)).isEmpty();
+		}
+	}
+	return exists;
+}
+
+void HtmlEditor::openSoftwareManual(const QString &list, const QString &id)
+{
+	QStringList manualPaths(userDataDb->softwareManualPaths(list, id));
+	if ( manualPaths.isEmpty() ) {
+		QString parentKey(softwareParentHash.value(list + ':' + id));
+		if ( !parentKey.isEmpty() && parentKey != "<np>" ) {
+			QStringList parentWords(parentKey.split(':', QString::SkipEmptyParts));
+			manualPaths = userDataDb->softwareManualPaths(parentWords.at(0), parentWords.at(1));
+		}
+	}
+	if ( manualPaths.count() > 1 ) {
+		ItemSelector itemSelector(this, manualPaths);
+		itemSelector.setWindowTitle(tr("Manual selection"));
+		itemSelector.labelMessage->setText(tr("Multiple PDF manuals exist. Select the ones you want to open:"));
+		itemSelector.listWidgetItems->setSelectionMode(QAbstractItemView::ExtendedSelection);
+		if ( itemSelector.exec() != QDialog::Rejected ) {
+			QList<QListWidgetItem *> itemList(itemSelector.listWidgetItems->selectedItems());
+			for (int i = 0; i < itemList.count(); i++) {
+				if ( qmc2MainWindow->actionManualInternalViewer->isChecked() )
+					qmc2MainWindow->viewPdf(itemList.at(i)->text());
+				else
+					QDesktopServices::openUrl(QUrl::fromUserInput(itemList.at(i)->text()));
+			}
+		}
+	} else if ( manualPaths.count() > 0 ) {
+		if ( qmc2MainWindow->actionManualInternalViewer->isChecked() )
+			qmc2MainWindow->viewPdf(manualPaths.at(0));
+		else
+			QDesktopServices::openUrl(QUrl::fromUserInput(manualPaths.at(0)));
+	}
 }
 
 void HtmlEditor::closeXmlBuffer()
