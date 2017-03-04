@@ -1468,7 +1468,7 @@ bool HtmlEditor::systemManualExists(const QString &id)
 	return exists;
 }
 
-void HtmlEditor::openSystemManual(const QString &id)
+QStringList HtmlEditor::systemManualPaths(const QString &id)
 {
 	QStringList manualPaths(userDataDb->systemManualPaths(id));
 	if ( manualPaths.isEmpty() ) {
@@ -1476,6 +1476,21 @@ void HtmlEditor::openSystemManual(const QString &id)
 		if ( !parentName.isEmpty() )
 			manualPaths = userDataDb->systemManualPaths(parentName);
 	}
+	return manualPaths;
+}
+
+QStringList HtmlEditor::systemManualUrls(const QString &id)
+{
+	QStringList manualPaths(systemManualPaths(id));
+	QStringList manualUrls;
+	foreach (QString path, manualPaths)
+		manualUrls << QUrl::fromUserInput(path).toString();
+	return manualUrls;
+}
+
+void HtmlEditor::openSystemManual(const QString &id)
+{
+	QStringList manualPaths(systemManualPaths(id));
 	if ( manualPaths.count() > 1 ) {
 		ItemSelector itemSelector(this, manualPaths);
 		itemSelector.setWindowTitle(tr("Manual selection"));
@@ -1513,7 +1528,7 @@ bool HtmlEditor::softwareManualExists(const QString &list, const QString &id)
 	return exists;
 }
 
-void HtmlEditor::openSoftwareManual(const QString &list, const QString &id)
+QStringList HtmlEditor::softwareManualPaths(const QString &list, const QString &id)
 {
 	QStringList manualPaths(userDataDb->softwareManualPaths(list, id));
 	if ( manualPaths.isEmpty() ) {
@@ -1523,6 +1538,21 @@ void HtmlEditor::openSoftwareManual(const QString &list, const QString &id)
 			manualPaths = userDataDb->softwareManualPaths(parentWords.at(0), parentWords.at(1));
 		}
 	}
+	return manualPaths;
+}
+
+QStringList HtmlEditor::softwareManualUrls(const QString &list, const QString &id)
+{
+	QStringList manualPaths(softwareManualPaths(list, id));
+	QStringList manualUrls;
+	foreach (QString path, manualPaths)
+		manualUrls << QUrl::fromUserInput(path).toString();
+	return manualUrls;
+}
+
+void HtmlEditor::openSoftwareManual(const QString &list, const QString &id)
+{
+	QStringList manualPaths(softwareManualPaths(list, id));
 	if ( manualPaths.count() > 1 ) {
 		ItemSelector itemSelector(this, manualPaths);
 		itemSelector.setWindowTitle(tr("Manual selection"));

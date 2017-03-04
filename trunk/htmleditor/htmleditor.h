@@ -180,8 +180,12 @@ class HtmlEditor : public QMainWindow
 		QString customSoftwareArtworkUrl(QString listName, QString softwareName, QString artworkName);
 		QString customSoftwareArtworkData(QString listName, QString softwareName, QString artworkName);
 		bool systemManualExists(const QString &id);
+		QStringList systemManualPaths(const QString &id);
+		QStringList systemManualUrls(const QString &id);
 		void openSystemManual(const QString &id);
 		bool softwareManualExists(const QString &list, const QString &id);
+		QStringList softwareManualPaths(const QString &list, const QString &id);
+		QStringList softwareManualUrls(const QString &list, const QString &id);
 		void openSoftwareManual(const QString &list, const QString &id);
 
 	private:
