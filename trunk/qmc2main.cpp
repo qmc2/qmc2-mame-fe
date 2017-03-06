@@ -4549,6 +4549,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	}
 
 	if ( initialCall ) {
+		// this *forces* the tab-header to scroll, which it wouldn't do correctly otherwise when the current tab is far right (for whatever reason)
 		QTabBar *tabBar = tabWidgetMachineDetail->findChild<QTabBar *>();
 		if ( tabBar ) {
 			tabWidgetMachineDetail->setUpdatesEnabled(false);
