@@ -3785,6 +3785,8 @@ void MainWindow::softwareLoadInterrupted()
 
 void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 {
+	static bool initialCall = true;
+
 	// avoids crashes on critical sections
 	if ( qmc2CriticalSection ) {
 		retry_tabWidgetMachineDetail_currentIndex = currentIndex;
@@ -3813,11 +3815,11 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	qmc2CurrentItem = ci;
 	if ( qmc2CurrentItem->childCount() <= 0 )
 		return;
- 
-	// show / hide game status indicator
+
+	// show / hide machine status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator").toBool() ) {
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicatorOnlyWhenRequired").toBool() ) {
-			if ( hSplitter->sizes()[0] == 0 || tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
+			if ( hSplitter->sizes().first() == 0 || tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
 				labelMachineStatus->setVisible(true);
 			else
 				labelMachineStatus->setVisible(false);
@@ -3872,7 +3874,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 	// depending on the codec, an unused YT widget may still cause load on the system, so we destroy it when it's no longer required...
-	if ( componentInfo->appliedFeatureList().at(tabWidgetMachineDetail->currentIndex()) != QMC2_YOUTUBE_INDEX ) {
+	if ( componentInfo->appliedFeatureList().at(currentIndex) != QMC2_YOUTUBE_INDEX ) {
 		if ( qmc2YouTubeWidget && qmc2CurrentItem != qmc2LastYouTubeItem ) {
 			qmc2YouTubeWidget->saveSettings();
 			qmc2YouTubeWidget->forcedExit = true;
@@ -3889,7 +3891,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	}
 #endif
 
-	if ( componentInfo->appliedFeatureList().at(tabWidgetMachineDetail->currentIndex()) != QMC2_SYSTEM_NOTES_INDEX ) {
+	if ( componentInfo->appliedFeatureList().at(currentIndex) != QMC2_SYSTEM_NOTES_INDEX ) {
 		if ( qmc2SystemNotesEditor ) {
 			qmc2SystemNotesEditor->hideTearOffMenus();
 			qmc2SystemNotesEditor->hide();
@@ -4545,6 +4547,19 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 			qmc2LastConfigItem = 0;
 			break;
 	}
+
+	if ( initialCall ) {
+		QTabBar *tabBar = tabWidgetMachineDetail->findChild<QTabBar *>();
+		if ( tabBar ) {
+			tabWidgetMachineDetail->setUpdatesEnabled(false);
+			tabBar->blockSignals(true);
+			tabBar->setCurrentIndex(0);
+			tabBar->setCurrentIndex(currentIndex);
+			tabBar->blockSignals(false);
+			tabWidgetMachineDetail->setUpdatesEnabled(true);
+		}
+	}
+	initialCall = false;
 }
 
 bool MainWindow::qStringListLessThan(const QString &s1, const QString &s2)
@@ -6268,10 +6283,10 @@ void MainWindow::init()
 	comboBoxSearch->lineEdit()->setText(QString());
 	comboBoxSearch->blockSignals(false);
 
-	// disables the system manual actions initially
+	// disable the system manual actions initially
 	checkSystemManualAvailability();
 
-	// ... and process the queued events
+	// process the queued events
 	setUpdatesEnabled(true);
 	setVisible(true);
 	qApp->processEvents();
