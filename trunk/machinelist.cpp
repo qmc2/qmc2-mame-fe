@@ -1989,7 +1989,7 @@ void MachineList::filter(bool initial)
 	int itemCount = qmc2MainWindow->treeWidgetMachineList->topLevelItemCount();
 	mainProgressBar->setRange(0, itemCount - 1);
 	if ( verifyCurrentOnly && checkedItem ) {
-		QString machineName = checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+		QString machineName(checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		if ( !showBiosSets && isBios(machineName) )
 			checkedItem->setHidden(true);
 		else if ( !showDeviceSets && isDevice(machineName) )
