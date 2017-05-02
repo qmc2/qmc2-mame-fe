@@ -1225,12 +1225,10 @@ void EmulatorOptions::createTemplateMap()
 	ignoredOptions.clear();
 	QString trUnknown(tr("unknown"));
 	templateEmulator = templateVersion = templateFormat = trUnknown;
-	QString templateFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile").toString());
-	if ( templateFile.isEmpty() )
 #if defined(QMC2_SDLMAME)
-		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml";
+	QString templateFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml").toString());
 #elif defined(QMC2_MAME)
-		templateFile = QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml";
+	QString templateFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/MAME/template.xml").toString());
 #endif
 	QFile qmc2TemplateFile(templateFile);
 	QString lang(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString());
@@ -1268,16 +1266,16 @@ void EmulatorOptions::createTemplateMap()
 					}
 					if ( optionEntity.compare(elementType) == 0 ) {
 						bool ignore = false;
-						bool visible = true;
-						bool wip = false;
-						int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
 						if ( xmlReader.attributes().hasAttribute("ignore") )
 							ignore = xmlReader.attributes().value("ignore").compare("true") == 0;
 						if ( xmlReader.attributes().hasAttribute(ignoreOS) )
 							ignore |= xmlReader.attributes().value(ignoreOS).compare("true") == 0;
-						if ( xmlReader.attributes().hasAttribute("wip") )
-							wip = xmlReader.attributes().value("wip").compare("true") == 0;
 						if ( !ignore ) {
+							bool visible = true;
+							bool wip = false;
+							int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
+							if ( xmlReader.attributes().hasAttribute("wip") )
+								wip = xmlReader.attributes().value("wip").compare("true") == 0;
 							if ( xmlReader.attributes().hasAttribute("visible") )
 								visible = xmlReader.attributes().value("visible").compare("true") == 0;
 							if ( xmlReader.attributes().hasAttribute("decimals") )
