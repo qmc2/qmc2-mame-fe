@@ -7,6 +7,7 @@
 #include "macros.h"
 
 #define QMC2_BBA_CHUNK_SIZE	quint64(QMC2_1G)
+#define QMC2_QBYTEARRAY_LIMIT	quint64(QMC2_2G)
 
 class BigByteArray
 {
@@ -20,6 +21,7 @@ class BigByteArray
 		void clear() { m_concatByteArrays.clear(); }
 		void setRawData(const char *rawData, quint64 len) { clear(); *this = BigByteArray(rawData, len); }
 		void append(const QByteArray &ba);
+		void append(const BigByteArray &bba);
 		char at(quint64 index);
 		quint64 size();
 		quint64 length() { return size(); }
