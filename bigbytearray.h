@@ -2,6 +2,7 @@
 #define BIGBYTEARRAY_H
 
 #include <QList>
+#include <QString>
 #include <QByteArray>
 #include "macros.h"
 
@@ -28,6 +29,9 @@ class BigByteArray
 		int chunks() const { return m_concatByteArrays.count(); }
 		const QByteArray &chunk(int index) const { return m_concatByteArrays.at(index); }
 		quint64 chunkSize() { return QMC2_BBA_CHUNK_SIZE; }
+		QString crc32();
+		QString sha1();
+		QString md5();
 
 	private:
 		QList<QByteArray> m_concatByteArrays;
