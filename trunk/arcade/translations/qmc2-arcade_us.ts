@@ -893,11 +893,13 @@
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="46"/>
+        <location filename="../../sevenzipfile.cpp" line="130"/>
         <source>archive not open</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../sevenzipfile.cpp" line="51"/>
+        <location filename="../../sevenzipfile.cpp" line="135"/>
         <source>null-buffer not allowed</source>
         <translation></translation>
     </message>
@@ -905,97 +907,100 @@
         <location filename="../../sevenzipfile.cpp" line="77"/>
         <location filename="../../sevenzipfile.cpp" line="98"/>
         <location filename="../../sevenzipfile.cpp" line="116"/>
+        <location filename="../../sevenzipfile.cpp" line="161"/>
+        <location filename="../../sevenzipfile.cpp" line="182"/>
+        <location filename="../../sevenzipfile.cpp" line="200"/>
         <source>extraction of file &apos;%1&apos; (index %2) failed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="130"/>
+        <location filename="../../sevenzipfile.cpp" line="214"/>
         <source>no error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="132"/>
+        <location filename="../../sevenzipfile.cpp" line="216"/>
         <source>incorrect data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="134"/>
+        <location filename="../../sevenzipfile.cpp" line="218"/>
         <source>out of memory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="136"/>
+        <location filename="../../sevenzipfile.cpp" line="220"/>
         <source>incorrect CRC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="138"/>
+        <location filename="../../sevenzipfile.cpp" line="222"/>
         <source>unsupported compression</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="140"/>
+        <location filename="../../sevenzipfile.cpp" line="224"/>
         <source>incorrect properties</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="142"/>
+        <location filename="../../sevenzipfile.cpp" line="226"/>
         <source>premature end-of-file (input)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="144"/>
+        <location filename="../../sevenzipfile.cpp" line="228"/>
         <source>premature end-of-file (output)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="146"/>
+        <location filename="../../sevenzipfile.cpp" line="230"/>
         <source>failed reading</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="148"/>
+        <location filename="../../sevenzipfile.cpp" line="232"/>
         <source>failed writing</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="150"/>
+        <location filename="../../sevenzipfile.cpp" line="234"/>
         <source>failed signalling progress</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="152"/>
+        <location filename="../../sevenzipfile.cpp" line="236"/>
         <source>fatal error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="154"/>
+        <location filename="../../sevenzipfile.cpp" line="238"/>
         <source>thread error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="156"/>
+        <location filename="../../sevenzipfile.cpp" line="240"/>
         <source>invalid archive structure</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="158"/>
+        <location filename="../../sevenzipfile.cpp" line="242"/>
         <source>invalid header structure</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="160"/>
+        <location filename="../../sevenzipfile.cpp" line="244"/>
         <source>unknown error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="175"/>
+        <location filename="../../sevenzipfile.cpp" line="259"/>
         <source>no file name specified</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sevenzipfile.cpp" line="181"/>
-        <location filename="../../sevenzipfile.cpp" line="201"/>
+        <location filename="../../sevenzipfile.cpp" line="265"/>
+        <location filename="../../sevenzipfile.cpp" line="285"/>
         <source>can&apos;t open archive &apos;%1&apos;</source>
         <translation></translation>
     </message>
