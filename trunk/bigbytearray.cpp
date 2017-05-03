@@ -41,9 +41,19 @@ void BigByteArray::append(const QByteArray &ba)
 	}
 }
 
+void BigByteArray::append(const BigByteArray &bba)
+{
+	for (int i = 0; i < bba.chunks(); i++)
+		append(bba.chunk(i));
+}
+
 QByteArray &BigByteArray::mid(quint64 index, int len)
 {
 	m_tempArray.clear();
+	if ( len > QMC2_QBYTEARRAY_LIMIT ){
+		qWarning() << "BigByteArray::mid(): length must not exceed 2 GB";
+		return m_tempArray;
+	}
 	int c = int(index / QMC2_BBA_CHUNK_SIZE);
 	if ( c < m_concatByteArrays.count() ) {
 		int lc = int((index + len) / QMC2_BBA_CHUNK_SIZE);
