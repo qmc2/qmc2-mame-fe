@@ -385,7 +385,7 @@ void MachineList::load()
 		machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
-	QTimer::singleShot(0, this, SLOT(disableWidgets()));
+	disableWidgets();
 	machineStatusHash.clear();
 	qmc2MachineListItemHash.clear();
 	qmc2HierarchyItemHash.clear();
