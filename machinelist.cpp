@@ -308,13 +308,15 @@ void MachineList::enableWidgets(bool enable)
 {
 	static bool lastEnable = true;
 	qmc2WidgetsEnabled = enable;
-	if ( enable && qmc2MainWindow->labelLoadingMachineList->isVisible() ) {
-		// show machine list / hide loading animation
-		qmc2MainWindow->loadAnimMovie->setPaused(true);
-		qmc2MainWindow->labelLoadingMachineList->setVisible(false);
-		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
-		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
-		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+	if ( enable ) {
+		if ( qmc2MainWindow->labelLoadingMachineList->isVisible() || qmc2MainWindow->labelLoadingHierarchy->isVisible() ) {
+			// show machine list / hide loading animation
+			qmc2MainWindow->loadAnimMovie->setPaused(true);
+			qmc2MainWindow->labelLoadingMachineList->setVisible(false);
+			qmc2MainWindow->treeWidgetMachineList->setVisible(true);
+			qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
+			qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+		}
 	}
 	// avoid redundant operations
 	if ( lastEnable == enable )
@@ -519,7 +521,8 @@ void MachineList::load()
 	}
 	QString execFile(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	QFileInfo fi(execFile);
-	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "SkipEmuIdent", true).toBool() || fi.lastModified().toTime_t() != qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Time", 0).toUInt() ) {
+	uint cacheTime = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Time", 0).toUInt();
+	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "SkipEmuIdent", true).toBool() || fi.lastModified().toTime_t() != cacheTime || cacheTime == 0 ) {
 		QTime elapsedTime(0, 0, 0, 0);
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
 		parseTimer.start();

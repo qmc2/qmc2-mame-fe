@@ -2211,8 +2211,7 @@ void MainWindow::on_actionReload_triggered(bool)
 		}
 		if ( !qmc2LoadingInterrupted )
 			qmc2MachineList->load();
-		else
-			qmc2MachineList->enableWidgets(true);
+		QTimer::singleShot(0, qmc2MachineList, SLOT(enableWidgets()));
 	}
 	static bool initialCall = true;
 	if ( initialCall )
