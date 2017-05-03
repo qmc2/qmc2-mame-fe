@@ -1,4 +1,7 @@
 #include <QDebug>
+#include <QCryptographicHash>
+
+#include <zlib.h>
 #include "bigbytearray.h"
 
 BigByteArray::BigByteArray(const BigByteArray &bba)
@@ -80,4 +83,34 @@ char BigByteArray::at(quint64 index)
 		qWarning() << "BigByteArray::at(): index out of range";
 		return (char)0;
 	}
+}
+
+QString BigByteArray::crc32()
+{
+	ulong crc1 = ::crc32(0, 0, 0);
+	for (int i = 0; i < chunks(); i++) {
+		if ( crc1 > 0 ) {
+			ulong crc2 = ::crc32(0, 0, 0);
+			crc2 = ::crc32(crc2, (const Bytef *)chunk(i).data(), chunk(i).size());
+			crc1 = ::crc32_combine(crc1, crc2, chunk(i).size());
+		} else
+			crc1 = ::crc32(crc1, (const Bytef *)chunk(i).data(), chunk(i).size());
+	}
+	return QString::number(crc1, 16).rightJustified(8, '0');
+}
+
+QString BigByteArray::sha1()
+{
+	QCryptographicHash hash(QCryptographicHash::Sha1);
+	for (int i = 0; i < chunks(); i++)
+		hash.addData(chunk(i).data());
+	return hash.result().toHex();
+}
+
+QString BigByteArray::md5()
+{
+	QCryptographicHash hash(QCryptographicHash::Md5);
+	for (int i = 0; i < chunks(); i++)
+		hash.addData(chunk(i).data());
+	return hash.result().toHex();
 }
