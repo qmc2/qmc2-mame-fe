@@ -380,9 +380,6 @@ void MachineList::load()
 {
 	qmc2ReloadActive = qmc2EarlyReloadActive = true;
 	qmc2LoadingInterrupted = false;
-	QString machineName;
-	if ( qmc2CurrentItem )
-		machineName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
 	disableWidgets();
@@ -493,12 +490,12 @@ void MachineList::load()
 		if ( vbl )
 			delete vbl;
 		delete qmc2MainWindow->labelEmuSelector;
-		if ( !machineName.isEmpty() ) {
-			QString selectedEmulator = qmc2MainWindow->comboBoxEmuSelector->currentText();
+		if ( qmc2CurrentItem ) {
+			QString selectedEmulator(qmc2MainWindow->comboBoxEmuSelector->currentText());
 			if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
-				qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(machineName));
+				qmc2Config->remove(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)));
 			else
-				qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(machineName), selectedEmulator);
+				qmc2Config->setValue(QString(QMC2_EMULATOR_PREFIX + "Configuration/%1/SelectedEmulator").arg(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME)), selectedEmulator);
 		}
 		delete qmc2MainWindow->comboBoxEmuSelector;
 		qmc2MainWindow->comboBoxEmuSelector = 0;
