@@ -1437,7 +1437,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 			if ( fi.isReadable() ) {
 				totalSize = fi.size();
 				// load data from a regular file
-				if ( sizeLimited ) {
+				if ( totalSize > QMC2_2G ) {
+					log(tr("size of '%1' is greater than 2 GB -- skipped").arg(filePath));
+					*isZipped = false;
+					progressBarFileIO->reset();
+					effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+					continue;
+				} else if ( sizeLimited ) {
 					if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
 						log(tr("size of '%1' is greater than allowed maximum -- skipped").arg(filePath));
 						*isZipped = false;
@@ -1922,8 +1928,15 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 								if ( nameIndex >= 0 )
 									index = nameIndex;
 							}
-							SevenZipMetaData metaData = sevenZipFile.entryList()[index];
-							if ( sizeLimited ) {
+							SevenZipMetaData metaData = sevenZipFile.entryList().at(index);
+							if ( metaData.size() > QMC2_2G ) {
+								log(tr("size of '%1' from '%2' is greater than 2 GB -- skipped").arg(metaData.name()).arg(filePath));
+								*isSevenZipped = true;
+								effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+								if ( fallbackPath->isEmpty() )
+									*fallbackPath = filePath;
+								continue;
+							} else if ( sizeLimited ) {
 								if ( metaData.size() > (quint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
 									log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(metaData.name()).arg(filePath));
 									*isSevenZipped = true;
@@ -2040,7 +2053,15 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 							totalSize = 0;
 							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
 								totalSize = zipInfo.uncompressed_size;
-							if ( sizeLimited ) {
+							if ( totalSize > QMC2_2G ) {
+								log(tr("size of '%1' from '%2' is greater than 2 GB -- skipped").arg(fn).arg(filePath));
+								*isZipped = true;
+								progressBarFileIO->reset();
+								effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+								if ( fallbackPath->isEmpty() )
+									*fallbackPath = filePath;
+								continue;
+							} else if ( sizeLimited ) {
 								if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
 									log(tr("size of '%1' from '%2' is greater than allowed maximum -- skipped").arg(fn).arg(filePath));
 									*isZipped = true;

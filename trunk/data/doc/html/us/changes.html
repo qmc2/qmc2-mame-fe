@@ -20,6 +20,7 @@ inf: informational only
 	<li>fix: collection rebuilder: the collection rebuilder's specific settings weren't stored under certain circumstances</li>
 	<li>fix: corrected the initial restoration of the tab-header of the current machine-detail when the tab-header has to be scrolled</li>
 	<li>fix: corrected UI behavior when the given emulator executable file's path does not exist during reload (<a href="http://tracker.batcom-it.net/view.php?id=143" target="_blank">BT #143</a>)</li>
+	<li>fix: ROMAlyzer: added a hard limit of 2 GB per analyzed dump (the analyzer will skip individual dumps which are greater than QByteArray's limit, thus avoiding a crash)</li>
 	<li>imp: software-lists: removed the temporary workaround for launching ColecoVision&trade; cartridge images since the issue has been fixed in MAME recently</li>
 	<li>imp: updated category.ini to MAME 'git latest'</li>
 	<li>new: collection rebuilder: added support for rebuilding dumps that are larger than 2 GB individually (e.g. 'hapyfsh2', see <a href="http://tracker.batcom-it.net/view.php?id=142" target="_blank">BT #142</a>)</li>
