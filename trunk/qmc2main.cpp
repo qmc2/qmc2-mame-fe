@@ -8706,6 +8706,15 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
 		return;
 	}
+	if ( qmc2MachineList->numTaggedSets > QMC2_WARN_TAGGED_CHECKS_AMOUNT ) {
+		switch ( QMessageBox::question(this, tr("Confirm"), tr("It's likely much faster to do a full audit than to check %1 sets individually. Do you really want to continue?").arg(qmc2MachineList->numTaggedSets), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
+			case QMessageBox::Yes:
+				break;
+			case QMessageBox::No:
+			default:
+				return;
+		}
+	}
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	qmc2LoadingInterrupted = false;

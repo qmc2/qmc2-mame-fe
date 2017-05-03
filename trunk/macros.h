@@ -900,4 +900,7 @@
 // number of machine search strings that get (re)stored - i.e. the last 10 items
 #define QMC2_MACHINE_SEARCH_HISTORY_LENGTH	10
 
+// number of tagged sets above which a warning message will be shown when the user wants to check their ROM states individually
+#define QMC2_WARN_TAGGED_CHECKS_AMOUNT		500
+
 #endif
