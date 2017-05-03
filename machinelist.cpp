@@ -3203,10 +3203,11 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 			QPixmap iconPixmap;
 			if ( iconPixmap.loadFromData(imageData, "ICO") )
 				qmc2IconHash.insert(id, QIcon(iconPixmap));
-			if ( ++iconCount % QMC2_ICONCACHE_DB_RESPONSIVENESS == 0 )
+			if ( ++iconCount % QMC2_ICONCACHE_DB_RESPONSIVENESS == 0 ) {
 				mainProgressBar->setValue(iconCount);
+				qApp->processEvents();
+			}
 		}
-		mainProgressBar->setValue(mainProgressBar->maximum());
 		elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading icons from cache database, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 	}
