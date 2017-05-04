@@ -68,6 +68,7 @@ extern bool qmc2EarlyReloadActive;
 extern bool qmc2LoadingInterrupted;
 extern bool qmc2StartingUp;
 extern bool qmc2VerifyActive;
+extern bool qmc2VerifyTaggedActive;
 extern bool qmc2FilterActive;
 extern bool qmc2UseIconFile;
 extern bool qmc2IconsPreloaded;
@@ -1955,7 +1956,7 @@ void MachineList::filter(bool initial)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state filter already active"));
 			return;
 		}
-		if ( qmc2VerifyActive ) {
+		if ( qmc2VerifyActive || qmc2VerifyTaggedActive ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
 			return;
 		}

@@ -156,6 +156,7 @@ bool qmc2ImageCheckActive = false;
 bool qmc2SampleCheckActive = false;
 bool qmc2EarlyReloadActive = false;
 bool qmc2VerifyActive = false;
+bool qmc2VerifyTaggedActive = false;
 bool qmc2FilterActive = false;
 bool qmc2GuiReady = false;
 bool qmc2CleaningUp = false;
@@ -2166,7 +2167,7 @@ void MainWindow::on_actionReload_triggered(bool)
 			log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
 			return;
 		}
-		if ( qmc2VerifyActive ) {
+		if ( qmc2VerifyActive || qmc2VerifyTaggedActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
 			return;
 		}
@@ -2249,7 +2250,7 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 {
 	if ( qmc2FilterActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
-	else if ( qmc2VerifyActive )
+	else if ( qmc2VerifyActive || qmc2VerifyTaggedActive )
 		log(QMC2_LOG_FRONTEND, tr("ROM verification already active"));
 	else if ( qmc2ReloadActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -2617,7 +2618,7 @@ void MainWindow::on_actionClearROMStateCache_triggered(bool)
 			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 			return;
 		}
-		if ( qmc2VerifyActive ) {
+		if ( qmc2VerifyActive || qmc2VerifyTaggedActive ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
 			return;
 		}
@@ -5643,7 +5644,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		return;
 	}
 
-	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2VerifyTaggedActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
 		qmc2LoadingInterrupted = true;
 		log(QMC2_LOG_FRONTEND, tr("stopping current processing upon user request"));
 		e->ignore();
@@ -8195,7 +8196,7 @@ void MainWindow::checkActivity()
 	// resync timer (as far as possible)
 	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
-	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2VerifyTaggedActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
 		activityState = !activityState;
 		if ( activityState )
 			actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
@@ -8718,6 +8719,7 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
 	QTreeWidgetItem *item;
 	qmc2LoadingInterrupted = false;
+	qmc2VerifyTaggedActive = true;
 	while ( it.hasNext() && !qmc2LoadingInterrupted ) {
 		it.next();
 		item = qmc2MachineListItemHash.value(it.key());
@@ -8731,6 +8733,7 @@ void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 			}
 		}
 	}
+	qmc2VerifyTaggedActive = false;
 }
 
 void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
