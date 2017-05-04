@@ -177,7 +177,7 @@ qint64 MachineListDatabaseManager::machineListRowCount(bool reset)
 bool MachineListDatabaseManager::isEmpty()
 {
 	QSqlQuery query(m_db);
-	if ( query.exec(QString("SELECT * FROM %1").arg(m_tableBasename)) )
+	if ( query.exec(QString("SELECT * FROM %1 LIMIT 1").arg(m_tableBasename)) )
 		return !query.first();
 	else
 		return true;
