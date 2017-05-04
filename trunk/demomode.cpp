@@ -17,6 +17,7 @@ extern QString qmc2DemoMachine;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
 extern bool qmc2VerifyActive;
+extern bool qmc2VerifyTaggedActive;
 extern Settings *qmc2Config;
 extern MachineList *qmc2MachineList;
 extern QHash<QString, QString> qmc2ParentHash;
@@ -167,7 +168,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 			return;
 		}
-		if ( qmc2VerifyActive ) {
+		if ( qmc2VerifyActive || qmc2VerifyTaggedActive ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
 			return;
 		}
