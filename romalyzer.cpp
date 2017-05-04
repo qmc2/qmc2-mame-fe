@@ -2757,14 +2757,14 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 				int progressCount = 0, updateCount = 0;
 				foreach (QString list, uniqueSoftwareLists) {
 					foreach (QString set, qmc2MainWindow->swlDb->uniqueSoftwareSets(list)) {
-						QStringList xmlLines(qmc2MainWindow->swlDb->xml(list, set).split("\n", QString::SkipEmptyParts));
+						QStringList xmlLines(qmc2MainWindow->swlDb->xml(list, set).split('\n', QString::SkipEmptyParts));
 						for (int i = 0; i < xmlLines.count(); i++) {
-							QString xmlLine = xmlLines[i];
+							QString xmlLine(xmlLines.at(i));
 							int hashIndex = xmlLine.indexOf(hashStartString);
 							if ( hashIndex >= 0 ) {
 								int hashPos = hashIndex + hashStartOffset;
-								QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower());
-								if ( currentChecksum == searchedChecksum ) {
+								QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf('\"', hashPos) - hashPos).toLower());
+								if ( currentChecksum.compare(searchedChecksum) == 0 ) {
 									int fileNamePos;
 									QString fileType;
 									if ( xmlLine.startsWith("<disk name=\"") ) {
@@ -2774,7 +2774,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 										fileType = tr("ROM");
 										fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
 									}
-									QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos));
+									QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos));
 									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
 									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, list + ":" + set);
 									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
@@ -2804,12 +2804,12 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 				QString currentMachine(qmc2MainWindow->treeWidgetMachineList->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME));
 				QStringList xmlLines(qmc2MachineList->xmlDb()->xml(currentMachine).split('\n', QString::SkipEmptyParts));
 				for (int j = 0; j < xmlLines.count(); j++) {
-					QString xmlLine = xmlLines.at(j);
+					QString xmlLine(xmlLines.at(j));
 					int hashIndex = xmlLine.indexOf(hashStartString);
 					if ( hashIndex >= 0 ) {
 						int hashPos = hashIndex + hashStartOffset;
 						QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf('\"', hashPos) - hashPos).toLower());
-						if ( currentChecksum == searchedChecksum ) {
+						if ( currentChecksum.compare(searchedChecksum) == 0 ) {
 							int fileNamePos;
 							QString fileType;
 							if ( xmlLine.startsWith("<disk name=\"") ) {
@@ -2819,7 +2819,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 								fileType = tr("ROM");
 								fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
 							}
-							QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos);
+							QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos));
 							QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
 							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentMachine);
 							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
