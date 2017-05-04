@@ -652,7 +652,7 @@
 #endif
 
 // this allows for changing the configuration path dynamically by adding '-config_path <config_path>' on the command line
-#define QMC2_DYNAMIC_DOT_PATH			(qApp->arguments().indexOf("-config_path") >= 0 && qApp->arguments().indexOf("-config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-config_path") + 1] : (qApp->arguments().indexOf("-qmc2_config_path") >= 0 && qApp->arguments().indexOf("-qmc2_config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-qmc2_config_path") + 1] : QMC2_DOT_PATH))
+#define QMC2_DYNAMIC_DOT_PATH			(qApp->arguments().indexOf("-config_path") >= 0 && qApp->arguments().indexOf("-config_path") + 1 <= qApp->arguments().count() ? qApp->arguments().at(qApp->arguments().indexOf("-config_path") + 1) : QMC2_DOT_PATH)
 
 // -cc: clear (all emulator) caches 
 #define QMC2_CLI_OPT_CLEAR_ALL_CACHES		(qApp->arguments().indexOf("-cc") >= 0)
