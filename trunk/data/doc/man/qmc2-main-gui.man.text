@@ -5,8 +5,8 @@ SYNOPSIS
   qmc2-sdlmame [-config_path path] [-cc] [-tc] [-r] [-h|-?|-help] [qt_arguments]
 
 DESCRIPTION
-  QMC2 is a graphical front-end based on Qt which drives the great MAME emulator. Besides being a powerful catalog and launcher for MAME systems it also contains sophisticated ROM management features
-  through its built-in ROMAlyzer.
+  QMC2 is a graphical front-end based on Qt which drives the great MAME emulator. Besides being a powerful catalog and launcher for systems emulated by MAME it also contains sophisticated ROM management
+  features through its built-in ROMAlyzer.
 
 OPTIONS
   -config_path path  Specify this argument to use the directory path instead of the default folder (CONFIG_PATH) to store QMC2's configuration, logs and cache-files / cache-folders.
