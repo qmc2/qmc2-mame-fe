@@ -995,9 +995,9 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 				nextChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Control"));
 				nextChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "type", true));
 				attributes.clear();
-				attributes << "minimum" << "maximum" << "sensitivity" << "keydelta" << "reverse";
+				attributes << "minimum" << "maximum" << "sensitivity" << "keydelta" << "reverse" << "player" << "buttons" << "ways";
 				descriptions.clear();
-				descriptions << tr("Minimum") << tr("Maximum") << tr("Sensitivity") << tr("Key Delta") << tr("Reverse");
+				descriptions << tr("Minimum") << tr("Maximum") << tr("Sensitivity") << tr("Key Delta") << tr("Reverse") << tr("Player") << tr("Buttons") << tr("Ways");
 				insertAttributeItems(nextChildItem, subElement, attributes, descriptions, true);
 				gamePos++;
 			}
