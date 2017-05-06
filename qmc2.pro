@@ -68,6 +68,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			catverinioptimizer.ui \
 			filterconfigurationdialog.ui \
 			manualscanner.ui \
+			rompathcleaner.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
 			htmleditor/tablepropertydialog.ui
@@ -160,6 +161,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			filterconfigurationdialog.cpp \
 			rankitemdelegate.cpp \
 			manualscanner.cpp \
+			rompathcleaner.cpp \
 			htmleditor/htmleditor.cpp \
 			htmleditor/highlighter.cpp \
 			lzma/7zAlloc.c \
@@ -282,6 +284,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			rankitemdelegate.h \
 			manualscanner.h \
 			dbcolumninfo.h \
+			rompathcleaner.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RomPathCleaner</class>
+ <widget class="QWidget" name="RomPathCleaner">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>526</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ROM path cleaner</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Checked path</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="pushButtonStartStop">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Start / stop rebuilding</string>
+     </property>
+     <property name="text">
+      <string>Start check</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QComboBox" name="comboBoxModeSwitch">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Mode switch</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Delete obsolete and invalid files</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Move files to the backup folder</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Dry run (don't change anything)</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QPlainTextEdit" name="plainTextEditLog">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="4">
+    <widget class="QLabel" name="labelRebuildStatus">
+     <property name="toolTip">
+      <string>Check statistics</string>
+     </property>
+     <property name="text">
+      <string notr="true">&lt;center&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;4&quot; width=&quot;100%&quot;&gt;&lt;tr&gt;
+&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Files processed:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
+&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Obsolete ROMs:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
+&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Obsolete disks:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
+&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Invalid files:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboBox">
+     <item>
+      <property name="text">
+       <string>Current ROM path</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Select path...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout2">
+     <item>
+      <widget class="QCheckBox" name="checkBoxEnableLog">
+       <property name="toolTip">
+        <string>Enable log output</string>
+       </property>
+       <property name="text">
+        <string>Enable log</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelMaxLogSize">
+       <property name="text">
+        <string>Log size</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBoxMaxLogSize">
+       <property name="toolTip">
+        <string>Maximum number of lines in log (0 = no limit)</string>
+       </property>
+       <property name="specialValueText">
+        <string>unlimited</string>
+       </property>
+       <property name="suffix">
+        <string> lines</string>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>999999</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="progressBar">
+       <property name="toolTip">
+        <string>Check progress indicator</string>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="format">
+        <string>Idle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonClear">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Clear log</string>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>comboBoxModeSwitch</tabstop>
+  <tabstop>pushButtonStartStop</tabstop>
+  <tabstop>plainTextEditLog</tabstop>
+  <tabstop>checkBoxEnableLog</tabstop>
+  <tabstop>spinBoxMaxLogSize</tabstop>
+  <tabstop>toolButtonClear</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>toolButtonClear</sender>
+   <signal>clicked()</signal>
+   <receiver>plainTextEditLog</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>140</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

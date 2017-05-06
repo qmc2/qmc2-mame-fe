@@ -83,10 +83,12 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 #if defined(QMC2_OS_WIN)
-	: QDialog(parent, Qt::Dialog)
+	: QDialog(parent, Qt::Dialog),
 #else
-	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
+	: QDialog(parent, Qt::Dialog | Qt::SubWindow),
 #endif
+	m_collectionRebuilder(0),
+	m_romPathCleaner(0)
 {
 	setupUi(this);
 	setMode(romalyzerMode);
@@ -217,9 +219,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	checkSumDbStatusTimer.start(QMC2_CHECKSUM_DB_STATUS_UPDATE_LONG);
 	pushButtonCheckSumDbPauseResumeScan->hide();
 	connect(&m_checkSumTextChangedTimer, SIGNAL(timeout()), this, SLOT(lineEditChecksumWizardHash_textChanged_delayed()));
-
-	// we create the collection rebuilder on demand
-	m_collectionRebuilder = 0;
 
 	currentFilesSize = 0;
 	if ( mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {

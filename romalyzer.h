@@ -17,6 +17,7 @@
 #include "checksumdbmgr.h"
 #include "checksumscannerlog.h"
 #include "collectionrebuilder.h"
+#include "rompathcleaner.h"
 #include "ui_romalyzer.h"
 
 #define QMC2_ROMALYZER_PAGE_REPORT		0
@@ -317,6 +318,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		CheckSumScannerLog *checkSumScannerLog() { return m_checkSumScannerLog; }
 		CheckSumScannerThread *checkSumScannerThread() { return m_checkSumScannerThread; }
 		CollectionRebuilder *collectionRebuilder() { return m_collectionRebuilder; }
+		RomPathCleaner *romPathCleaner() { return m_romPathCleaner; }
 		int mode() { return m_currentMode; }
 		void setMode(int mode);
 		bool active() { return m_active; }
@@ -414,6 +416,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 		QPixmap m_checkSumDbQueryStatusPixmap;
 		QTimer m_checkSumTextChangedTimer;
 		CollectionRebuilder *m_collectionRebuilder;
+		RomPathCleaner *m_romPathCleaner;
 		int m_currentMode;
 		bool m_active;
 		bool m_paused;
