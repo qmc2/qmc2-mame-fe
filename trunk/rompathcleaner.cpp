@@ -17,6 +17,7 @@ void RomPathCleaner::adjustIconSizes()
 	QFontMetrics fm(f);
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	pushButtonStartStop->setIconSize(iconSize);
+	comboBoxCheckedPath->setIconSize(iconSize);
 }
 
 void RomPathCleaner::on_pushButtonStartStop_clicked()
