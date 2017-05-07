@@ -11,6 +11,7 @@ class RomPathCleaner : public QWidget, public Ui::RomPathCleaner
 		RomPathCleaner(QWidget *parent = 0);
 
 	public slots:
+		void adjustIconSizes();
 
 	signals:
 

@@ -135,6 +135,13 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 #endif
 	lastRowCount = -1;
 
+#if defined(QMC2_WIP_ENABLED) // FIXME: WIP
+	m_romPathCleaner = new RomPathCleaner(this);
+	gridLayoutRomPathCleaner->addWidget(romPathCleaner(), 0, 0);
+#else
+	tabWidgetAnalysis->removeTab(tabWidgetAnalysis->indexOf(tabRomPathCleaner));
+#endif
+
 	adjustIconSizes();
 
 	widgetCheckSumDbQueryStatus->setVisible(false);
@@ -255,6 +262,8 @@ ROMAlyzer::~ROMAlyzer()
 		delete checkSumScannerLog();
 	if ( checkSumScannerThread() )
 		delete checkSumScannerThread();
+	if ( romPathCleaner() )
+		delete romPathCleaner();
 	if ( collectionRebuilder() )
 		delete collectionRebuilder();
 }
@@ -296,6 +305,8 @@ void ROMAlyzer::adjustIconSizes()
 	QPalette pal = widgetCheckSumDbQueryStatus->palette();
 	pal.setBrush(QPalette::Window, m_checkSumDbQueryStatusPixmap.scaled(widgetCheckSumDbQueryStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	widgetCheckSumDbQueryStatus->setPalette(pal);
+	if ( romPathCleaner() )
+		romPathCleaner()->adjustIconSizes();
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()
@@ -521,7 +532,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
 	comboBoxSetRewriterLibArchiveDeflate->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", true).toBool() ? 0 : 1);
 	checkBoxSetRewriterAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
-	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
+	comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/ChecksumWizardHashType", QMC2_ROMALYZER_CSF_HASHTYPE_SHA1).toInt());
 	groupBoxCheckSumDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableCheckSumDb", false).toBool());
 	on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 	bool enable = true;
@@ -861,7 +872,7 @@ void ROMAlyzer::analyze()
 
 			int numWizardFiles = 1;
 			if ( wizardSearch )
-				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
+				numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSF_COLUMN_ID).count();
 
 			// step 3: check file status of ROMs and CHDs, recalculate check-sums
 			log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(setKey));
@@ -892,10 +903,10 @@ void ROMAlyzer::analyze()
 				bool optionalRom = xmlHandler.optionalROMs.contains(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 
 				if ( wizardSearch ) {
-					QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+					QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSF_COLUMN_ID);
 					bool itemFound = false;
 					foreach (QTreeWidgetItem *it, il)
-						if ( it->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) ) {
+						if ( it->text(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) ) {
 							itemFound = true;
 							break;
 						}
@@ -975,13 +986,13 @@ void ROMAlyzer::analyze()
 						}
 						filesError = true;
 						if ( wizardSelectedSets.contains(setKey) ) {
-							QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+							QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSF_COLUMN_ID);
 							foreach (QTreeWidgetItem *item, il)
-								if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) ||
-										item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
-									item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
-									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
+								if ( item->text(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) ||
+										item->whatsThis(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("bad"));
+									item->setForeground(QMC2_ROMALYZER_CSF_COLUMN_STATUS, xmlHandler.redBrush);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_PATH, fallbackPath);
 								}
 							on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 						}
@@ -1002,12 +1013,12 @@ void ROMAlyzer::analyze()
 								}
 							}
 							if ( wizardSelectedSets.contains(setKey) ) {
-								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSF_COLUMN_ID);
 								foreach (QTreeWidgetItem *item, il) {
-									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) || item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
-										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
-										item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
-										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
+									if ( item->text(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) || item->whatsThis(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
+										item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("bad"));
+										item->setForeground(QMC2_ROMALYZER_CSF_COLUMN_STATUS, xmlHandler.redBrush);
+										item->setText(QMC2_ROMALYZER_CSF_COLUMN_PATH, fallbackPath);
 									}
 								}
 								on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
@@ -1106,21 +1117,21 @@ void ROMAlyzer::analyze()
 							} else if ( hasDump )
 								goodDump = true;
 							if ( wizardSelectedSets.contains(setKey) ) {
-								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+								QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(setKey, Qt::MatchExactly, QMC2_ROMALYZER_CSF_COLUMN_ID);
 								foreach (QTreeWidgetItem *item, il) {
-									if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) ||
-									     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
+									if ( item->text(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_SET) ||
+									     item->whatsThis(QMC2_ROMALYZER_CSF_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 										if ( fromCheckSumDb ) {
-											item->setIcon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/database_good.png")));
-											item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
-											item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
+											item->setIcon(QMC2_ROMALYZER_CSF_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/database_good.png")));
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("bad"));
+											item->setForeground(QMC2_ROMALYZER_CSF_COLUMN_STATUS, xmlHandler.redBrush);
 										} else {
-											item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? tr("good") : tr("bad"));
-											item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, goodDump ? xmlHandler.greenBrush : xmlHandler.redBrush);
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, goodDump ? tr("good") : tr("bad"));
+											item->setForeground(QMC2_ROMALYZER_CSF_COLUMN_STATUS, goodDump ? xmlHandler.greenBrush : xmlHandler.redBrush);
 										}
-										item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
+										item->setText(QMC2_ROMALYZER_CSF_COLUMN_PATH, effectiveFile);
 										if ( goodDump || fromCheckSumDb )
-											item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
+											item->setWhatsThis(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 									}
 								}
 								on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
@@ -2338,7 +2349,7 @@ void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
 		case QMC2_ROMALYZER_PAGE_LOG:
 			textBrowserLog->horizontalScrollBar()->setValue(0);
 			break;
-		case QMC2_ROMALYZER_PAGE_CSWIZ:
+		case QMC2_ROMALYZER_PAGE_CSF:
 			on_groupBoxCheckSumDatabase_toggled(groupBoxCheckSumDatabase->isChecked());
 			break;
 		case QMC2_ROMALYZER_PAGE_RCR:
@@ -2617,14 +2628,14 @@ void ROMAlyzer::lineEditChecksumWizardHash_textChanged_delayed()
 	m_checkSumTextChangedTimer.stop();
 	QString sha1, crc;
 	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+		case QMC2_ROMALYZER_CSF_HASHTYPE_CRC:
 			crc = lineEditChecksumWizardHash->text();
 			if ( !groupBoxCheckSumDatabase->isChecked() )
 				currentFilesCrcChecksum = crc;
 			break;
 
 		default:
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+		case QMC2_ROMALYZER_CSF_HASHTYPE_SHA1:
 			sha1 = lineEditChecksumWizardHash->text();
 			if ( !groupBoxCheckSumDatabase->isChecked() )
 				currentFilesSHA1Checksum = sha1;
@@ -2700,7 +2711,7 @@ void ROMAlyzer::on_groupBoxCheckSumDatabase_toggled(bool enable)
 void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 {
 	switch ( index ) {
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+		case QMC2_ROMALYZER_CSF_HASHTYPE_CRC:
 			if ( !currentFilesCrcChecksum.isEmpty() && lineEditChecksumWizardHash->text().length() == 40 )
 				lineEditChecksumWizardHash->setText(currentFilesCrcChecksum);
 			else
@@ -2708,7 +2719,7 @@ void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
 			break;
 
 		default:
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+		case QMC2_ROMALYZER_CSF_HASHTYPE_SHA1:
 			if ( !currentFilesSHA1Checksum.isEmpty() && lineEditChecksumWizardHash->text().length() == 8 )
 				lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
 			else
@@ -2737,13 +2748,13 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	QString hashStartString;
 	int hashStartOffset;
 	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+		case QMC2_ROMALYZER_CSF_HASHTYPE_CRC:
 			hashStartString = "crc=\"";
 			hashStartOffset = 5;
 			break;
 
 		default:
-		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+		case QMC2_ROMALYZER_CSF_HASHTYPE_SHA1:
 			hashStartString = "sha1=\"";
 			hashStartOffset = 6;
 			break;
@@ -2775,10 +2786,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 									}
 									QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos));
 									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, list + ":" + set);
-									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
-									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
-									item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, list + ":" + set);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
 								}
 							}
 						}
@@ -2820,10 +2831,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 							}
 							QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos));
 							QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentMachine);
-							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
-							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
-							item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
+							item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, currentMachine);
+							item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+							item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
+							item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
 						}
 					}
 				}
@@ -2847,12 +2858,12 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 void ROMAlyzer::runChecksumWizard()
 {
 	if ( !currentFilesSHA1Checksum.isEmpty() ) {
-		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1);
+		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSF_HASHTYPE_SHA1);
 		lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
 		tabWidgetAnalysis->setCurrentWidget(tabChecksumWizard);
 		pushButtonChecksumWizardSearch->animateClick();
 	} else if ( !currentFilesCrcChecksum.isEmpty() ) {
-		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC);
+		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSF_HASHTYPE_CRC);
 		lineEditChecksumWizardHash->setText(currentFilesCrcChecksum);
 		tabWidgetAnalysis->setCurrentWidget(tabChecksumWizard);
 		pushButtonChecksumWizardSearch->animateClick();
@@ -3382,11 +3393,11 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 	int selectedGoodSets = 0;
 	int selectedBadSets = 0;
 	foreach (QTreeWidgetItem *item, il) {
-		wizardSelectedSets << item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
+		wizardSelectedSets << item->text(QMC2_ROMALYZER_CSF_COLUMN_ID);
+		if ( item->text(QMC2_ROMALYZER_CSF_COLUMN_STATUS) == tr("good") )
 			selectedGoodSets++;
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) {
-			if ( !item->icon(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).isNull() )
+		if ( item->text(QMC2_ROMALYZER_CSF_COLUMN_STATUS) == tr("bad") ) {
+			if ( !item->icon(QMC2_ROMALYZER_CSF_COLUMN_STATUS).isNull() )
 				selectedGoodSets++;
 			selectedBadSets++;
 		}
