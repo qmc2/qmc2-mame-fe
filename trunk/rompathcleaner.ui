@@ -6,38 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>617</width>
-    <height>280</height>
+    <width>608</width>
+    <height>319</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ROM path cleaner</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="3">
-    <widget class="QPushButton" name="pushButtonStartStop">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+   <item row="2" column="0" colspan="7">
+    <widget class="QPlainTextEdit" name="plainTextEditLog">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
-     <property name="toolTip">
-      <string>Start / stop check</string>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
-     <property name="text">
-      <string>Start check</string>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
      </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
+   <item row="1" column="0" colspan="7">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
     <widget class="QComboBox" name="comboBoxModeSwitch">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -62,36 +65,33 @@
      </item>
     </widget>
    </item>
-   <item row="1" column="0" colspan="4">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="0" column="6">
+    <widget class="QPushButton" name="pushButtonStartStop">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Start / stop check</string>
+     </property>
+     <property name="text">
+      <string>Start check</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="4">
-    <widget class="QPlainTextEdit" name="plainTextEditLog">
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="lineWrapMode">
-      <enum>QPlainTextEdit::NoWrap</enum>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="4">
+   <item row="3" column="0" colspan="7">
     <widget class="QLabel" name="labelRebuildStatus">
      <property name="toolTip">
       <string>Check statistics</string>
      </property>
      <property name="text">
-      <string notr="true">&lt;center&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;4&quot; width=&quot;100%&quot;&gt;&lt;tr&gt;
+      <string notr="true">&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;4&quot; width=&quot;100%&quot;&gt;&lt;tr&gt;
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Files processed:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
 &lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Renamed files:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
@@ -99,11 +99,61 @@
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Obsolete ROMs / disks:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0 / 0&lt;/td&gt;
 &lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Invalid files:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
-&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;</string>
+&lt;/tr&gt;&lt;/table&gt;</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="4">
+   <item row="0" column="5">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::MinimumExpanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QComboBox" name="comboBoxCheckedPath">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Choose the path which will be checked</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Current ROM path</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Select path...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelCheckedPath">
+     <property name="text">
+      <string>Checked path</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="7">
     <layout class="QHBoxLayout" name="horizontalLayout2">
      <item>
       <widget class="QCheckBox" name="checkBoxEnableLog">
@@ -188,25 +238,11 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QComboBox" name="comboBoxCheckedPath">
-     <property name="toolTip">
-      <string>Choose the path which will be checked</string>
+   <item row="0" column="3">
+    <widget class="QLabel" name="labelModeSwitch">
+     <property name="text">
+      <string>Mode</string>
      </property>
-     <item>
-      <property name="text">
-       <string>Current ROM path</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Select path...</string>
-      </property>
-      <property name="icon">
-       <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-      </property>
-     </item>
     </widget>
    </item>
   </layout>

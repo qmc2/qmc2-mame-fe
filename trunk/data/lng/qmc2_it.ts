@@ -20723,32 +20723,32 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="26"/>
+        <location filename="../../rompathcleaner.ui" line="77"/>
         <source>Start / stop check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="29"/>
+        <location filename="../../rompathcleaner.ui" line="80"/>
         <source>Start check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="46"/>
+        <location filename="../../rompathcleaner.ui" line="49"/>
         <source>Mode switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="50"/>
+        <location filename="../../rompathcleaner.ui" line="53"/>
         <source>Delete obsolete and invalid files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="55"/>
+        <location filename="../../rompathcleaner.ui" line="58"/>
         <source>Move files to the backup folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="60"/>
+        <location filename="../../rompathcleaner.ui" line="63"/>
         <source>Dry run (don&apos;t change anything)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20758,67 +20758,77 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="111"/>
+        <location filename="../../rompathcleaner.ui" line="152"/>
+        <source>Checked path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.ui" line="161"/>
         <source>Enable log output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="114"/>
+        <location filename="../../rompathcleaner.ui" line="164"/>
         <source>Enable log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="131"/>
+        <location filename="../../rompathcleaner.ui" line="181"/>
         <source>Log size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="138"/>
+        <location filename="../../rompathcleaner.ui" line="188"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="141"/>
+        <location filename="../../rompathcleaner.ui" line="191"/>
         <source>unlimited</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="144"/>
+        <location filename="../../rompathcleaner.ui" line="194"/>
         <source> lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="163"/>
+        <location filename="../../rompathcleaner.ui" line="213"/>
         <source>Check progress indicator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="169"/>
+        <location filename="../../rompathcleaner.ui" line="219"/>
         <source>Idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="182"/>
+        <location filename="../../rompathcleaner.ui" line="232"/>
         <source>Clear log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="185"/>
+        <location filename="../../rompathcleaner.ui" line="235"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="194"/>
+        <location filename="../../rompathcleaner.ui" line="244"/>
+        <source>Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.ui" line="131"/>
         <source>Choose the path which will be checked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="198"/>
+        <location filename="../../rompathcleaner.ui" line="135"/>
         <source>Current ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="203"/>
+        <location filename="../../rompathcleaner.ui" line="140"/>
         <source>Select path...</source>
         <translation type="unfinished"></translation>
     </message>
