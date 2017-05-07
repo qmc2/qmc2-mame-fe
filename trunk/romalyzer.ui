@@ -356,7 +356,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>837</width>
+            <width>827</width>
             <height>993</height>
            </rect>
           </property>
@@ -1931,7 +1931,7 @@
      <widget class="QWidget" name="tabRomPathCleaner">
       <attribute name="icon">
        <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+        <normaloff>:/data/img/cleanup.png</normaloff>:/data/img/cleanup.png</iconset>
       </attribute>
       <attribute name="title">
        <string>ROM path cleaner</string>
