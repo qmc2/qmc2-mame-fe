@@ -25,6 +25,7 @@
         <file>data/img/characters.png</file>
         <file>data/img/checkpoint.png</file>
         <file>data/img/circuit.png</file>
+        <file>data/img/cleanup.png</file>
         <file>data/img/clock.png</file>
         <file>data/img/clone.png</file>
         <file>data/img/colors.png</file>
@@ -226,6 +227,7 @@
         <file>data/img/romalyzer_flipped.png</file>
         <file>data/img/romalyzer_multiple.png</file>
         <file>data/img/romalyzer_sw.png</file>
+        <file>data/img/rompath.png</file>
         <file>data/img/scan_manuals.png</file>
         <file>data/img/search.png</file>
         <file>data/img/search_multiple.png</file>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>628</width>
+    <width>638</width>
     <height>319</height>
    </rect>
   </property>
@@ -148,7 +148,7 @@
       </property>
       <property name="icon">
        <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
+        <normaloff>:/data/img/rompath.png</normaloff>:/data/img/rompath.png</iconset>
       </property>
      </item>
      <item>
