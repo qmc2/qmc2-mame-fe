@@ -2501,8 +2501,8 @@ void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 	else if ( qmc2SystemROMAlyzer->isMinimized() )
 		qmc2SystemROMAlyzer->showNormal();
 
-	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabReport && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
-		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabReport);
+	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabAnalyzer && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
+		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabAnalyzer);
 
 	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
 	QTimer::singleShot(0, qmc2SystemROMAlyzer->pushButtonAnalyze, SLOT(click()));
@@ -8763,8 +8763,8 @@ void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 		qmc2SystemROMAlyzer->show();
 	else if ( qmc2SystemROMAlyzer->isMinimized() )
 		qmc2SystemROMAlyzer->showNormal();
-	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabReport && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
-		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabReport);
+	if ( qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabAnalyzer && qmc2SystemROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2SystemROMAlyzer->tabLog )
+		qmc2SystemROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2SystemROMAlyzer->tabAnalyzer);
 	QTimer::singleShot(0, qmc2SystemROMAlyzer, SLOT(raise()));
 	QTimer::singleShot(0, qmc2SystemROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
 }

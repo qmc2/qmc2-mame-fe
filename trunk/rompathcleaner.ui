@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
+    <width>617</width>
     <height>280</height>
    </rect>
   </property>
@@ -14,13 +14,6 @@
    <string>ROM path cleaner</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Checked path</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="3">
     <widget class="QPushButton" name="pushButtonStartStop">
      <property name="sizePolicy">
@@ -30,7 +23,7 @@
       </sizepolicy>
      </property>
      <property name="toolTip">
-      <string>Start / stop rebuilding</string>
+      <string>Start / stop check</string>
      </property>
      <property name="text">
       <string>Start check</string>
@@ -101,31 +94,13 @@
       <string notr="true">&lt;center&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;4&quot; width=&quot;100%&quot;&gt;&lt;tr&gt;
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Files processed:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
 &lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
-&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Obsolete ROMs:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Renamed files:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
 &lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
-&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Obsolete disks:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Obsolete ROMs / disks:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0 / 0&lt;/td&gt;
 &lt;td nowrap align=&quot;center&quot; width=&quot;1%&quot;&gt;|&lt;/td&gt;
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Invalid files:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
 &lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;</string>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="comboBox">
-     <item>
-      <property name="text">
-       <string>Current ROM path</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Select path...</string>
-      </property>
-      <property name="icon">
-       <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-      </property>
-     </item>
     </widget>
    </item>
    <item row="4" column="0" colspan="4">
@@ -213,10 +188,31 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QComboBox" name="comboBoxCheckedPath">
+     <property name="toolTip">
+      <string>Choose the path which will be checked</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Current ROM path</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Select path...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </item>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>comboBox</tabstop>
+  <tabstop>comboBoxCheckedPath</tabstop>
   <tabstop>comboBoxModeSwitch</tabstop>
   <tabstop>pushButtonStartStop</tabstop>
   <tabstop>plainTextEditLog</tabstop>

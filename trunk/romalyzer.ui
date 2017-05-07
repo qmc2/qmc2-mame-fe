@@ -15,99 +15,6 @@
    <string>ROMAlyzer</string>
   </property>
   <layout class="QGridLayout" name="gridLayoitROMALyzer">
-   <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout1">
-     <item>
-      <widget class="QLineEdit" name="lineEditSoftwareLists">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Specify software-lists to be analyzed - wildcards allowed, use space as delimiter for multiple software-lists or search patterns</string>
-       </property>
-       <property name="placeholderText">
-        <string>Specify software-lists to analyze</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEditSets">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Enter short names / IDs of sets to be analyzed - wildcards allowed, use space as delimiter for multiple sets or search patterns</string>
-       </property>
-       <property name="placeholderText">
-        <string>Specify sets to analyze</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonToolsMenu">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Tools menu</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
-       </property>
-       <property name="popupMode">
-        <enum>QToolButton::InstantPopup</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonAnalyze">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Start / stop analysis</string>
-       </property>
-       <property name="text">
-        <string>&amp;Analyze</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonPause">
-       <property name="toolTip">
-        <string>Pause / resume active analysis</string>
-       </property>
-       <property name="text">
-        <string>&amp;Pause</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabWidgetAnalysis">
      <property name="sizePolicy">
@@ -119,19 +26,19 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tabReport">
+     <widget class="QWidget" name="tabAnalyzer">
       <attribute name="icon">
        <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/highlight.png</normaloff>:/data/img/highlight.png</iconset>
+        <normaloff>:/data/img/analyze.png</normaloff>:/data/img/analyze.png</iconset>
       </attribute>
       <attribute name="title">
-       <string>Report</string>
+       <string>Analyzer</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutReport">
-       <item row="0" column="0">
+       <item row="1" column="0">
         <widget class="QTreeWidget" name="treeWidgetChecksums">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -194,6 +101,99 @@
           </property>
          </column>
         </widget>
+       </item>
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout1">
+         <item>
+          <widget class="QLineEdit" name="lineEditSoftwareLists">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Specify software-lists to be analyzed - wildcards allowed, use space as delimiter for multiple software-lists or search patterns</string>
+           </property>
+           <property name="placeholderText">
+            <string>Specify software-lists to analyze</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditSets">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Enter short names / IDs of sets to be analyzed - wildcards allowed, use space as delimiter for multiple sets or search patterns</string>
+           </property>
+           <property name="placeholderText">
+            <string>Specify sets to analyze</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonToolsMenu">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Tools menu</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::InstantPopup</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonAnalyze">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Start / stop analysis</string>
+           </property>
+           <property name="text">
+            <string>&amp;Analyze</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonPause">
+           <property name="toolTip">
+            <string>Pause / resume active analysis</string>
+           </property>
+           <property name="text">
+            <string>&amp;Pause</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -356,7 +356,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>837</width>
+            <width>827</width>
             <height>993</height>
            </rect>
           </property>
@@ -1926,6 +1926,20 @@
          </column>
         </widget>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabRomPathCleaner">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>ROM path cleaner</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutRomPathCleaner">
+       <property name="margin">
+        <number>0</number>
+       </property>
       </layout>
      </widget>
      <widget class="QWidget" name="tabCollectionRebuilder">
