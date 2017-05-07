@@ -9,6 +9,7 @@ RomPathCleaner::RomPathCleaner(QWidget *parent) :
 	QWidget(parent)
 {
 	setupUi(this);
+	comboBoxCheckedPath->insertSeparator(QMC2_RPC_PATH_INDEX_SEPARATOR);
 }
 
 void RomPathCleaner::adjustIconSizes()
@@ -29,6 +30,6 @@ void RomPathCleaner::on_pushButtonStartStop_clicked()
 void RomPathCleaner::on_comboBoxCheckedPath_activated(int index)
 {
 	// FIXME
-	if ( index == QMC2_RPC_INDEX_SELECT_PATH )
+	if ( index == QMC2_RPC_PATH_INDEX_SELECT )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: RomPathCleaner::on_comboBoxCheckedPath_activated(): not implemented yet!"));
 }

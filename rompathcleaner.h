@@ -3,8 +3,13 @@
 
 #include "ui_rompathcleaner.h"
 
-#define QMC2_RPC_INDEX_ROM_PATH		0
-#define QMC2_RPC_INDEX_SELECT_PATH	1
+#define QMC2_RPC_PATH_INDEX_ROMPATH		0
+#define QMC2_RPC_PATH_INDEX_SEPARATOR		1
+#define QMC2_RPC_PATH_INDEX_SELECT		2
+
+#define QMC2_RPC_MODE_INDEX_DELETE		0
+#define QMC2_RPC_MODE_INDEX_MOVE		1
+#define QMC2_RPC_MODE_INDEX_DRYRUN		2
 
 class RomPathCleaner : public QWidget, public Ui::RomPathCleaner
 {
