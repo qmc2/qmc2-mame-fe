@@ -704,14 +704,14 @@ void CollectionRebuilder::rebuilderThread_progressChanged(int progress)
 
 void CollectionRebuilder::rebuilderThread_statusUpdated(quint64 setsProcessed, quint64 missingDumps, quint64 missingDisks)
 {
-	QString statusString = "<center><table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>";
-	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Sets processed") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(setsProcessed) + "</td>";
-	statusString += "<td nowrap align=\"center\">|</td>";
-	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing ROMs") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDumps) + "</td>";
-	statusString += "<td nowrap align=\"center\">|</td>";
-	statusString += "<td nowrap width=\"16.5%\" align=\"left\"><b>" + tr("Missing disks") + ":</b></td><td nowrap width=\"16.5%\" align=\"right\">" + QString::number(missingDisks) + "</td>";
-	statusString += "<td nowrap align=\"right\">|</td>";
-	statusString += "</tr></table></center>";
+	QString statusString("<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\" width=\"100%\"><tr>");
+	statusString += "<td nowrap align=\"left\" width=\"16.16%\"><b>" + tr("Sets processed") + ":</b></td><td nowrap align=\"right\" width=\"16.16%\">" + QString::number(setsProcessed) + "</td>";
+	statusString += "<td nowrap align=\"center\" width=\"1%\">|</td>";
+	statusString += "<td nowrap align=\"left\" width=\"16.16%\"><b>" + tr("Missing ROMs") + ":</b></td><td nowrap align=\"right\" width=\"16.16%\">" + QString::number(missingDumps) + "</td>";
+	statusString += "<td nowrap align=\"center\" width=\"1%\">|</td>";
+	statusString += "<td nowrap align=\"left\" width=\"16.16%\"><b>" + tr("Missing disks") + ":</b></td><td nowrap align=\"right\" width=\"16.16%\">" + QString::number(missingDisks) + "</td>";
+	statusString += "<td nowrap align=\"right\" width=\"1%\">|</td>";
+	statusString += "</tr></table>";
 	labelRebuildStatus->setText(statusString);
 }
 
