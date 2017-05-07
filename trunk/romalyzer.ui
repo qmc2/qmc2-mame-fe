@@ -355,8 +355,8 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>827</width>
+            <y>-393</y>
+            <width>837</width>
             <height>993</height>
            </rect>
           </property>
@@ -2055,12 +2055,12 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
+  <tabstop>tabWidgetAnalysis</tabstop>
   <tabstop>lineEditSoftwareLists</tabstop>
   <tabstop>lineEditSets</tabstop>
   <tabstop>toolButtonToolsMenu</tabstop>
   <tabstop>pushButtonAnalyze</tabstop>
   <tabstop>pushButtonPause</tabstop>
-  <tabstop>tabWidgetAnalysis</tabstop>
   <tabstop>treeWidgetChecksums</tabstop>
   <tabstop>textBrowserLog</tabstop>
   <tabstop>lineEditSearchString</tabstop>
@@ -2126,6 +2126,7 @@
   <tabstop>pushButtonChecksumWizardSearch</tabstop>
   <tabstop>treeWidgetChecksumWizardSearchResult</tabstop>
   <tabstop>pushButtonClose</tabstop>
+  <tabstop>pushButtonChecksumWizardAnalyzeSelectedSets</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
