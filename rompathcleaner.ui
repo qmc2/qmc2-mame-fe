@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>608</width>
+    <width>628</width>
     <height>319</height>
    </rect>
   </property>
@@ -47,6 +47,9 @@
      </property>
      <property name="toolTip">
       <string>Mode switch</string>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToMinimumContentsLength</enum>
      </property>
      <item>
       <property name="text">
@@ -90,6 +93,12 @@
      <property name="toolTip">
       <string>Check statistics</string>
      </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
      <property name="text">
       <string notr="true">&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;4&quot; width=&quot;100%&quot;&gt;&lt;tr&gt;
 &lt;td nowrap align=&quot;left&quot;&gt;&lt;b&gt;Files processed:&lt;/b&gt;&lt;/td&gt;&lt;td nowrap align=&quot;right&quot;&gt;0&lt;/td&gt;
@@ -130,9 +139,16 @@
      <property name="toolTip">
       <string>Choose the path which will be checked</string>
      </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToContents</enum>
+     </property>
      <item>
       <property name="text">
        <string>Current ROM path</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
       </property>
      </item>
      <item>

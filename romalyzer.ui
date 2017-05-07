@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>877</width>
-    <height>687</height>
+    <width>758</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -355,7 +355,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-393</y>
+            <y>0</y>
             <width>837</width>
             <height>993</height>
            </rect>
@@ -2055,7 +2055,6 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
-  <tabstop>tabWidgetAnalysis</tabstop>
   <tabstop>lineEditSoftwareLists</tabstop>
   <tabstop>lineEditSets</tabstop>
   <tabstop>toolButtonToolsMenu</tabstop>
@@ -2063,6 +2062,7 @@
   <tabstop>pushButtonPause</tabstop>
   <tabstop>treeWidgetChecksums</tabstop>
   <tabstop>textBrowserLog</tabstop>
+  <tabstop>tabWidgetAnalysis</tabstop>
   <tabstop>lineEditSearchString</tabstop>
   <tabstop>pushButtonSearchForward</tabstop>
   <tabstop>pushButtonSearchBackward</tabstop>
