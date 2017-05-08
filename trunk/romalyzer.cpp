@@ -136,7 +136,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	lastRowCount = -1;
 
 #if defined(QMC2_WIP_ENABLED) // FIXME: WIP
-	m_romPathCleaner = new RomPathCleaner(this);
+	m_romPathCleaner = new RomPathCleaner(mode() == QMC2_ROMALYZER_MODE_SYSTEM ? "RomPathCleaner" : "SoftwareRomPathCleaner", this);
 	gridLayoutRomPathCleaner->addWidget(romPathCleaner(), 0, 0);
 #else
 	tabWidgetAnalysis->removeTab(tabWidgetAnalysis->indexOf(tabRomPathCleaner));
@@ -205,7 +205,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	toolButtonToolsMenu->setMenu(toolsMenu);
 
 	// check-sum DB related
-	m_checkSumScannerLog = new CheckSumScannerLog(mode() == QMC2_ROMALYZER_MODE_SYSTEM ? "CheckSumScannerLog" : "SoftwareCheckSumScannerLog" , 0);
+	m_checkSumScannerLog = new CheckSumScannerLog(mode() == QMC2_ROMALYZER_MODE_SYSTEM ? "CheckSumScannerLog" : "SoftwareCheckSumScannerLog", 0);
 	connect(checkSumScannerLog(), SIGNAL(windowOpened()), this, SLOT(checkSumScannerLog_windowOpened()));
 	connect(checkSumScannerLog(), SIGNAL(windowClosed()), this, SLOT(checkSumScannerLog_windowClosed()));
 	m_checkSumDb = new CheckSumDatabaseManager(this, m_settingsKey);
