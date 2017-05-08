@@ -620,6 +620,10 @@ void Options::apply()
 			qmc2SystemROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
 			QTimer::singleShot(0, qmc2SystemROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
 		}
+		if ( qmc2SystemROMAlyzer->romPathCleaner() ) {
+			qmc2SystemROMAlyzer->romPathCleaner()->plainTextEditLog->setFont(logFont);
+			QTimer::singleShot(0, qmc2SystemROMAlyzer->romPathCleaner(), SLOT(adjustIconSizes()));
+		}
 	}
 	if ( qmc2SoftwareROMAlyzer ) {
 		qmc2SoftwareROMAlyzer->textBrowserLog->setFont(logFont);
@@ -629,6 +633,10 @@ void Options::apply()
 		if ( qmc2SoftwareROMAlyzer->collectionRebuilder() ) {
 			qmc2SoftwareROMAlyzer->collectionRebuilder()->plainTextEditLog->setFont(logFont);
 			QTimer::singleShot(0, qmc2SoftwareROMAlyzer->collectionRebuilder(), SLOT(adjustIconSizes()));
+		}
+		if ( qmc2SoftwareROMAlyzer->romPathCleaner() ) {
+			qmc2SoftwareROMAlyzer->romPathCleaner()->plainTextEditLog->setFont(logFont);
+			QTimer::singleShot(0, qmc2SoftwareROMAlyzer->romPathCleaner(), SLOT(adjustIconSizes()));
 		}
 	}
 	if ( qmc2ImageChecker )
