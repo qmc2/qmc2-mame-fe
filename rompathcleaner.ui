@@ -48,9 +48,6 @@
      <property name="toolTip">
       <string>Mode switch</string>
      </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-     </property>
      <item>
       <property name="text">
        <string>Delete obsolete and invalid files</string>
@@ -138,9 +135,6 @@
      </property>
      <property name="toolTip">
       <string>Choose the path which will be checked</string>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContents</enum>
      </property>
      <item>
       <property name="text">
