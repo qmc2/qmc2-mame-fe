@@ -2271,138 +2271,138 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Pauzati</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="314"/>
+        <location filename="../../collectionrebuilder.ui" line="317"/>
         <source>Rebuild statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="359"/>
+        <location filename="../../collectionrebuilder.ui" line="363"/>
         <source>Enable the use of a Qt regular expression that a software-list&apos;s name has to match in order to be processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="362"/>
+        <location filename="../../collectionrebuilder.ui" line="366"/>
         <source>Filter lists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="438"/>
+        <location filename="../../collectionrebuilder.ui" line="442"/>
         <source>Specify a Qt regular expression that a software-list&apos;s name has to match in order to be processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="465"/>
+        <location filename="../../collectionrebuilder.ui" line="469"/>
         <source>Enable the use of a Qt regular expression that a set&apos;s ID has to match in order to be processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="571"/>
+        <location filename="../../collectionrebuilder.ui" line="575"/>
         <source>Enable state filtering (a set is included when its state is checked here)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="574"/>
+        <location filename="../../collectionrebuilder.ui" line="578"/>
         <source>Filter states</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="592"/>
+        <location filename="../../collectionrebuilder.ui" line="596"/>
         <source>Include sets with state C (correct)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="595"/>
+        <location filename="../../collectionrebuilder.ui" line="599"/>
         <source>Correct</source>
         <translation type="unfinished">Corect</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="624"/>
+        <location filename="../../collectionrebuilder.ui" line="628"/>
         <source>Include sets with state M (mostly correct)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="627"/>
+        <location filename="../../collectionrebuilder.ui" line="631"/>
         <source>Mostly correct</source>
         <translation type="unfinished">Majoritatea corecte</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="656"/>
+        <location filename="../../collectionrebuilder.ui" line="660"/>
         <source>Include sets with state I (incorrect)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="659"/>
+        <location filename="../../collectionrebuilder.ui" line="663"/>
         <source>Incorrect</source>
         <translation type="unfinished">Incorect</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="688"/>
+        <location filename="../../collectionrebuilder.ui" line="692"/>
         <source>Include sets with state N (not found)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="691"/>
+        <location filename="../../collectionrebuilder.ui" line="695"/>
         <source>Not found</source>
         <translation type="unfinished">Negasit</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="720"/>
+        <location filename="../../collectionrebuilder.ui" line="724"/>
         <source>Include sets with state U (unknown)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="723"/>
+        <location filename="../../collectionrebuilder.ui" line="727"/>
         <source>Unknown</source>
         <translation type="unfinished">Necunoscut</translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="754"/>
-        <location filename="../../collectionrebuilder.ui" line="777"/>
+        <location filename="../../collectionrebuilder.ui" line="758"/>
+        <location filename="../../collectionrebuilder.ui" line="781"/>
         <source>Exact match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="372"/>
-        <location filename="../../collectionrebuilder.ui" line="478"/>
+        <location filename="../../collectionrebuilder.ui" line="376"/>
+        <location filename="../../collectionrebuilder.ui" line="482"/>
         <source>Choose the regular expression syntax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="336"/>
+        <location filename="../../collectionrebuilder.ui" line="340"/>
         <source>Show / hide list of missing dumps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../collectionrebuilder.ui" line="412"/>
-        <location filename="../../collectionrebuilder.ui" line="518"/>
-        <source>Select the filter type (include / exclude filter)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../collectionrebuilder.ui" line="416"/>
         <location filename="../../collectionrebuilder.ui" line="522"/>
+        <source>Select the filter type (include / exclude filter)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../collectionrebuilder.ui" line="420"/>
+        <location filename="../../collectionrebuilder.ui" line="526"/>
         <source>Include</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="421"/>
-        <location filename="../../collectionrebuilder.ui" line="527"/>
+        <location filename="../../collectionrebuilder.ui" line="425"/>
+        <location filename="../../collectionrebuilder.ui" line="531"/>
         <source>Exclude</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="468"/>
+        <location filename="../../collectionrebuilder.ui" line="472"/>
         <source>Filter sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="544"/>
+        <location filename="../../collectionrebuilder.ui" line="548"/>
         <source>Specify a Qt regular expression that a set&apos;s ID has to match in order to be processed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../collectionrebuilder.ui" line="454"/>
-        <location filename="../../collectionrebuilder.ui" line="560"/>
+        <location filename="../../collectionrebuilder.ui" line="458"/>
+        <location filename="../../collectionrebuilder.ui" line="564"/>
         <source>Clear filter expression</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20822,78 +20822,83 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="152"/>
+        <location filename="../../rompathcleaner.ui" line="162"/>
         <source>Checked path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="161"/>
+        <location filename="../../rompathcleaner.ui" line="171"/>
         <source>Enable log output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="164"/>
+        <location filename="../../rompathcleaner.ui" line="174"/>
         <source>Enable log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="181"/>
+        <location filename="../../rompathcleaner.ui" line="191"/>
         <source>Log size</source>
         <translation type="unfinished">Marime jurnal</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="188"/>
+        <location filename="../../rompathcleaner.ui" line="198"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation type="unfinished">Numar maxim de linii in jurnal (0 = fara limita)</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="191"/>
+        <location filename="../../rompathcleaner.ui" line="201"/>
         <source>unlimited</source>
         <translation type="unfinished">nelimitat</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="194"/>
+        <location filename="../../rompathcleaner.ui" line="204"/>
         <source> lines</source>
         <translation type="unfinished"> linii</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="213"/>
+        <location filename="../../rompathcleaner.ui" line="223"/>
         <source>Check progress indicator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="219"/>
+        <location filename="../../rompathcleaner.ui" line="229"/>
         <source>Idle</source>
         <translation type="unfinished">Inactiv</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="232"/>
+        <location filename="../../rompathcleaner.ui" line="242"/>
         <source>Clear log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="235"/>
+        <location filename="../../rompathcleaner.ui" line="245"/>
         <source>Clear</source>
         <translation type="unfinished">Curatati</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="244"/>
+        <location filename="../../rompathcleaner.ui" line="254"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="131"/>
+        <location filename="../../rompathcleaner.ui" line="137"/>
         <source>Choose the path which will be checked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="135"/>
+        <location filename="../../rompathcleaner.ui" line="141"/>
         <source>Current ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="140"/>
+        <location filename="../../rompathcleaner.ui" line="150"/>
         <source>Select path...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="38"/>
+        <source>Select path to be checked</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
