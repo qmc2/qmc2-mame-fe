@@ -3,6 +3,7 @@
 #include <QDateTime>
 #include <QFontMetrics>
 #include <QFont>
+#include <QTest>
 
 #include "qmc2main.h"
 #include "options.h"
@@ -15,25 +16,33 @@ extern Settings *qmc2Config;
 
 RomPathCleaner::RomPathCleaner(const QString &settingsKey, QWidget *parent) :
 	QWidget(parent),
-	m_romPathCleanerThread(0),
+	m_cleanerThread(0),
 	m_settingsKey(settingsKey)
 {
 	setupUi(this);
 	comboBoxCheckedPath->insertSeparator(QMC2_RPC_PATH_INDEX_SEPARATOR);
+	pushButtonPauseResume->setVisible(false);
 
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", 10000).toInt());
 
-	m_romPathCleanerThread = new RomPathCleanerThread(this);
-	connect(romPathCleanerThread(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
+	m_cleanerThread = new RomPathCleanerThread(this);
+	connect(cleanerThread(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
+	connect(cleanerThread(), SIGNAL(checkStarted()), this, SLOT(cleanerThread_checkStarted()));
+	connect(cleanerThread(), SIGNAL(checkFinished()), this, SLOT(cleanerThread_checkFinished()));
+	connect(cleanerThread(), SIGNAL(checkPaused()), this, SLOT(cleanerThread_checkPaused()));
+	connect(cleanerThread(), SIGNAL(checkResumed()), this, SLOT(cleanerThread_checkResumed()));
+	connect(cleanerThread(), SIGNAL(progressTextChanged(const QString &)), this, SLOT(cleanerThread_progressTextChanged(const QString &)));
+	connect(cleanerThread(), SIGNAL(progressRangeChanged(int, int)), this, SLOT(cleanerThread_progressRangeChanged(int, int)));
+	connect(cleanerThread(), SIGNAL(progressChanged(int)), this, SLOT(cleanerThread_progressChanged(int)));
 }
 
 RomPathCleaner::~RomPathCleaner()
 {
-	if ( romPathCleanerThread() )
-		delete romPathCleanerThread();
+	if ( cleanerThread() )
+		delete cleanerThread();
 }
 
 void RomPathCleaner::adjustIconSizes()
@@ -41,8 +50,9 @@ void RomPathCleaner::adjustIconSizes()
 	QFont f(qApp->font());
 	QFontMetrics fm(f);
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
-	pushButtonStartStop->setIconSize(iconSize);
 	comboBoxCheckedPath->setIconSize(iconSize);
+	pushButtonStartStop->setIconSize(iconSize);
+	pushButtonPauseResume->setIconSize(iconSize);
 }
 
 void RomPathCleaner::log(const QString &message)
@@ -51,10 +61,50 @@ void RomPathCleaner::log(const QString &message)
 		plainTextEditLog->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
 }
 
-void RomPathCleaner::on_pushButtonStartStop_clicked()
+void RomPathCleaner::cleanerThread_checkStarted()
 {
-	// FIXME
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: RomPathCleaner::on_pushButtonStartStop_clicked(): not implemented yet!"));
+	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/halt.png")));
+	pushButtonStartStop->setText(tr("Stop check"));
+	pushButtonPauseResume->setText(tr("Pause"));
+	pushButtonPauseResume->show();
+	pushButtonStartStop->setEnabled(true);
+	pushButtonPauseResume->setEnabled(true);
+}
+
+void RomPathCleaner::cleanerThread_checkFinished()
+{
+	pushButtonStartStop->setIcon(QIcon(QString::fromUtf8(":/data/img/refresh.png")));
+	pushButtonStartStop->setText(tr("Start check"));
+	pushButtonPauseResume->hide();
+	pushButtonStartStop->setEnabled(true);
+	pushButtonPauseResume->setEnabled(true);
+}
+
+void RomPathCleaner::cleanerThread_checkPaused()
+{
+	pushButtonPauseResume->setText(tr("Resume"));
+	pushButtonPauseResume->setEnabled(true);
+}
+
+void RomPathCleaner::cleanerThread_checkResumed()
+{
+	pushButtonPauseResume->setText(tr("Pause"));
+	pushButtonPauseResume->setEnabled(true);
+}
+
+void RomPathCleaner::cleanerThread_progressTextChanged(const QString &text)
+{
+	progressBar->setFormat(text);
+}
+
+void RomPathCleaner::cleanerThread_progressRangeChanged(int min, int max)
+{
+	progressBar->setRange(min, max);
+}
+
+void RomPathCleaner::cleanerThread_progressChanged(int progress)
+{
+	progressBar->setValue(progress);
 }
 
 void RomPathCleaner::on_comboBoxCheckedPath_activated(int index)
@@ -71,9 +121,32 @@ void RomPathCleaner::on_comboBoxCheckedPath_activated(int index)
 	}
 }
 
+void RomPathCleaner::on_pushButtonStartStop_clicked()
+{
+	pushButtonStartStop->setEnabled(false);
+	pushButtonStartStop->update();
+	pushButtonPauseResume->setEnabled(false);
+	pushButtonPauseResume->update();
+	qApp->processEvents();
+	if ( cleanerThread()->active() )
+		cleanerThread()->requestStop();
+	else
+		cleanerThread()->waitCondition().wakeAll();
+}
+
+void RomPathCleaner::on_pushButtonPauseResume_clicked()
+{
+	pushButtonPauseResume->setEnabled(false);
+	if ( cleanerThread()->paused() )
+		QTimer::singleShot(0, cleanerThread(), SLOT(resume()));
+	else
+		QTimer::singleShot(0, cleanerThread(), SLOT(pause()));
+}
+
 RomPathCleanerThread::RomPathCleanerThread(QObject *parent) :
 	QThread(parent),
 	m_exit(false),
+	m_stop(false),
 	m_active(false),
 	m_waiting(false),
 	m_paused(false)
@@ -98,9 +171,30 @@ void RomPathCleanerThread::run()
 		m_active = m_paused = false;
 		m_waitCondition.wait(&m_mutex);
 		m_active = true;
-		m_waiting = false;
+		m_waiting = m_stop = false;
 		m_mutex.unlock();
-		// FIXME
+		if ( !m_exit && !m_stop ) {
+			emit log(tr("check started"));
+			emit checkStarted();
+			while ( !m_exit && !m_stop ) {
+				if ( m_paused ) {
+					emit log(tr("check paused"));
+					emit checkPaused();
+					while ( m_paused && !m_stop && !m_exit )
+						QTest::qWait(100);
+					if ( !m_paused ) {
+						emit log(tr("check resumed"));
+						emit checkResumed();
+					}
+				} else {
+					// FIXME
+					QTest::qWait(100);
+				}
+			}
+			emit log(tr("check finished"));
+			emit checkFinished();
+		}
+		m_stop = false;
 	}
 	emit log(tr("cleaner thread ended"));
 }

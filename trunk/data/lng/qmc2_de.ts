@@ -20734,117 +20734,140 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>ROM Pfad aufräumen</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="77"/>
+        <location filename="../../rompathcleaner.ui" line="67"/>
         <source>Start / stop check</source>
         <translation>Prüfung starten / stoppen</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="80"/>
+        <location filename="../../rompathcleaner.ui" line="70"/>
+        <location filename="../../rompathcleaner.cpp" line="77"/>
         <source>Start check</source>
         <translation>Prüfung starten</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="49"/>
+        <location filename="../../rompathcleaner.ui" line="110"/>
         <source>Mode switch</source>
         <translation>Modus Umschalter</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="53"/>
+        <location filename="../../rompathcleaner.ui" line="114"/>
         <source>Delete obsolete and invalid files</source>
         <translation>Überflüssige / ungültige Dateien löschen</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="58"/>
+        <location filename="../../rompathcleaner.ui" line="119"/>
         <source>Move files to the backup folder</source>
         <translation>Dateien in Backup Verzeichnis verschieben</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="63"/>
+        <location filename="../../rompathcleaner.ui" line="124"/>
         <source>Dry run (don&apos;t change anything)</source>
         <translation>Probelauf (es wird nichts verändert)</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="91"/>
+        <location filename="../../rompathcleaner.ui" line="175"/>
         <source>Check statistics</source>
         <translation>Prüf-Statistiken</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="162"/>
+        <location filename="../../rompathcleaner.ui" line="54"/>
         <source>Checked path</source>
         <translation>Zu prüfender Pfad</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="171"/>
+        <location filename="../../rompathcleaner.ui" line="138"/>
+        <source>Pause / resume check</source>
+        <translation>Prüfen pausieren / fortsetzen</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.ui" line="141"/>
+        <location filename="../../rompathcleaner.cpp" line="68"/>
+        <location filename="../../rompathcleaner.cpp" line="91"/>
+        <source>Pause</source>
+        <translation>Pausieren</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.ui" line="201"/>
         <source>Enable log output</source>
         <translation>Log Ausgaben aktivieren</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="174"/>
+        <location filename="../../rompathcleaner.ui" line="204"/>
         <source>Enable log</source>
         <translation>Log aktivieren</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="191"/>
+        <location filename="../../rompathcleaner.ui" line="221"/>
         <source>Log size</source>
         <translation>Log Größe</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="198"/>
+        <location filename="../../rompathcleaner.ui" line="228"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Maximale Anzahl von Zeilen im Log (0 = keine Beschränkung)</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="201"/>
+        <location filename="../../rompathcleaner.ui" line="231"/>
         <source>unlimited</source>
         <translation>unbegrenzt</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="204"/>
+        <location filename="../../rompathcleaner.ui" line="234"/>
         <source> lines</source>
         <translation> Zeilen</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="223"/>
+        <location filename="../../rompathcleaner.ui" line="253"/>
         <source>Check progress indicator</source>
         <translation>Fortschritssanzeige der Prüfung</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="229"/>
+        <location filename="../../rompathcleaner.ui" line="259"/>
         <source>Idle</source>
         <translation>Leerlauf</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="242"/>
+        <location filename="../../rompathcleaner.ui" line="272"/>
         <source>Clear log</source>
         <translation>Log leeren</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="245"/>
+        <location filename="../../rompathcleaner.ui" line="275"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="254"/>
+        <location filename="../../rompathcleaner.ui" line="97"/>
         <source>Mode</source>
         <translation>Modus</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="137"/>
+        <location filename="../../rompathcleaner.ui" line="26"/>
         <source>Choose the path which will be checked</source>
         <translation>Zu prüfenden Pfad auswählen</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="141"/>
+        <location filename="../../rompathcleaner.ui" line="33"/>
         <source>Current ROM path</source>
         <translation>Aktueller ROM Pfad</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.ui" line="150"/>
+        <location filename="../../rompathcleaner.ui" line="42"/>
         <source>Select path...</source>
         <translation>Pfad auswählen...</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="63"/>
+        <location filename="../../rompathcleaner.cpp" line="67"/>
+        <source>Stop check</source>
+        <translation>Prüfung beenden</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="85"/>
+        <source>Resume</source>
+        <translation>Fortsetzen</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="113"/>
         <source>Select path to be checked</source>
         <translation>Zu prüfenden Pfad auswählen</translation>
     </message>
@@ -20852,17 +20875,37 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>RomPathCleanerThread</name>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="93"/>
+        <location filename="../../rompathcleaner.cpp" line="166"/>
         <source>cleaner thread started</source>
         <translation>Aufräumer Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="95"/>
+        <location filename="../../rompathcleaner.cpp" line="168"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="105"/>
+        <location filename="../../rompathcleaner.cpp" line="177"/>
+        <source>check started</source>
+        <translation>Prüfen gestartet</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="181"/>
+        <source>check paused</source>
+        <translation>Prüfen pausiert</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="186"/>
+        <source>check resumed</source>
+        <translation>Prüfen wird fortgesetzt</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="194"/>
+        <source>check finished</source>
+        <translation>Prüfen beendet</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="199"/>
         <source>cleaner thread ended</source>
         <translation>Aufräumer Thread beendet</translation>
     </message>
