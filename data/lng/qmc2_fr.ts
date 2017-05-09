@@ -20749,7 +20749,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../rompathcleaner.ui" line="70"/>
-        <location filename="../../rompathcleaner.cpp" line="77"/>
+        <location filename="../../rompathcleaner.cpp" line="82"/>
         <source>Start check</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20790,8 +20790,8 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../rompathcleaner.ui" line="141"/>
-        <location filename="../../rompathcleaner.cpp" line="68"/>
-        <location filename="../../rompathcleaner.cpp" line="91"/>
+        <location filename="../../rompathcleaner.cpp" line="69"/>
+        <location filename="../../rompathcleaner.cpp" line="100"/>
         <source>Pause</source>
         <translation type="unfinished">Pause</translation>
     </message>
@@ -20866,17 +20866,17 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="67"/>
+        <location filename="../../rompathcleaner.cpp" line="68"/>
         <source>Stop check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="85"/>
+        <location filename="../../rompathcleaner.cpp" line="94"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="113"/>
+        <location filename="../../rompathcleaner.cpp" line="122"/>
         <source>Select path to be checked</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20884,37 +20884,42 @@ Are you sure you want to do this?</source>
 <context>
     <name>RomPathCleanerThread</name>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="166"/>
+        <location filename="../../rompathcleaner.cpp" line="181"/>
         <source>cleaner thread started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="168"/>
+        <location filename="../../rompathcleaner.cpp" line="183"/>
         <source>waiting for work</source>
         <translation type="unfinished">en attente</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="177"/>
+        <location filename="../../rompathcleaner.cpp" line="192"/>
         <source>check started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="181"/>
+        <location filename="../../rompathcleaner.cpp" line="198"/>
         <source>check paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="186"/>
+        <location filename="../../rompathcleaner.cpp" line="203"/>
         <source>check resumed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="194"/>
+        <location filename="../../rompathcleaner.cpp" line="212"/>
         <source>check finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="199"/>
+        <location filename="../../rompathcleaner.cpp" line="212"/>
+        <source>total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="217"/>
         <source>cleaner thread ended</source>
         <translation type="unfinished"></translation>
     </message>
