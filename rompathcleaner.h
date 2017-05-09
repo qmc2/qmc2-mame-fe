@@ -28,18 +28,30 @@ class RomPathCleanerThread : public QThread
 		bool active() { return m_active; }
 		bool waiting() { return m_waiting; }
 		bool paused() { return m_paused; }
+		QWaitCondition &waitCondition() { return m_waitCondition; }
 
 	public slots:
 		void requestExit() { m_exit = true; }
+		void requestStop() { m_stop = true; }
+		void pause() { m_paused = true; }
+		void resume() { m_paused = false; }
 
 	signals:
 		void log(const QString &);
+		void checkStarted();
+		void checkFinished();
+		void checkPaused();
+		void checkResumed();
+		void progressTextChanged(const QString &);
+		void progressRangeChanged(int, int);
+		void progressChanged(int);
 
 	protected:
 		void run();
 
 	private:
 		bool m_exit;
+		bool m_stop;
 		bool m_active;
 		bool m_waiting;
 		bool m_paused;
@@ -55,18 +67,26 @@ class RomPathCleaner : public QWidget, public Ui::RomPathCleaner
 		RomPathCleaner(const QString &settingsKey, QWidget *parent = 0);
 		~RomPathCleaner();
 
-		RomPathCleanerThread *romPathCleanerThread() { return m_romPathCleanerThread; }
+		RomPathCleanerThread *cleanerThread() { return m_cleanerThread; }
 
 	public slots:
 		void adjustIconSizes();
 		void log(const QString &);
+		void cleanerThread_checkStarted();
+		void cleanerThread_checkFinished();
+		void cleanerThread_checkPaused();
+		void cleanerThread_checkResumed();
+		void cleanerThread_progressTextChanged(const QString &);
+		void cleanerThread_progressRangeChanged(int, int);
+		void cleanerThread_progressChanged(int);
 		void on_pushButtonStartStop_clicked();
+		void on_pushButtonPauseResume_clicked();
 		void on_comboBoxCheckedPath_activated(int);
 
 	signals:
 
 	private:
-		RomPathCleanerThread *m_romPathCleanerThread;
+		RomPathCleanerThread *m_cleanerThread;
 		QString m_settingsKey;
 };
 
