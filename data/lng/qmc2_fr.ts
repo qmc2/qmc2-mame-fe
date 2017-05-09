@@ -20749,7 +20749,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../rompathcleaner.ui" line="70"/>
-        <location filename="../../rompathcleaner.cpp" line="82"/>
+        <location filename="../../rompathcleaner.cpp" line="88"/>
         <source>Start check</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20790,8 +20790,8 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../rompathcleaner.ui" line="141"/>
-        <location filename="../../rompathcleaner.cpp" line="69"/>
-        <location filename="../../rompathcleaner.cpp" line="100"/>
+        <location filename="../../rompathcleaner.cpp" line="75"/>
+        <location filename="../../rompathcleaner.cpp" line="106"/>
         <source>Pause</source>
         <translation type="unfinished">Pause</translation>
     </message>
@@ -20866,17 +20866,37 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="68"/>
+        <location filename="../../rompathcleaner.cpp" line="74"/>
         <source>Stop check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="94"/>
+        <location filename="../../rompathcleaner.cpp" line="100"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="122"/>
+        <location filename="../../rompathcleaner.cpp" line="128"/>
+        <source>Files processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="130"/>
+        <source>Renamed files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="132"/>
+        <source>Obsolete ROMs / disks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="134"/>
+        <source>Invalid files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="142"/>
         <source>Select path to be checked</source>
         <translation type="unfinished"></translation>
     </message>
@@ -20884,42 +20904,75 @@ Are you sure you want to do this?</source>
 <context>
     <name>RomPathCleanerThread</name>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="181"/>
+        <location filename="../../rompathcleaner.cpp" line="220"/>
         <source>cleaner thread started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="183"/>
+        <location filename="../../rompathcleaner.cpp" line="222"/>
         <source>waiting for work</source>
         <translation type="unfinished">en attente</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="192"/>
+        <location filename="../../rompathcleaner.cpp" line="234"/>
         <source>check started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="198"/>
+        <location filename="../../rompathcleaner.cpp" line="240"/>
+        <source>checking path &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="243"/>
+        <source>reading directory tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../rompathcleaner.cpp" line="245"/>
+        <source>path contains %n file(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="248"/>
+        <source>Cleaning up path %1 / %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="252"/>
         <source>check paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="203"/>
+        <location filename="../../rompathcleaner.cpp" line="257"/>
         <source>check resumed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="212"/>
+        <location filename="../../rompathcleaner.cpp" line="273"/>
+        <source>done (checking path &apos;%1&apos;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="277"/>
         <source>check finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="212"/>
+        <location filename="../../rompathcleaner.cpp" line="277"/>
         <source>total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="217"/>
+        <location filename="../../rompathcleaner.cpp" line="282"/>
+        <source>Idle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="285"/>
         <source>cleaner thread ended</source>
         <translation type="unfinished"></translation>
     </message>

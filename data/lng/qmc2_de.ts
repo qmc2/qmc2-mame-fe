@@ -20740,7 +20740,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../rompathcleaner.ui" line="70"/>
-        <location filename="../../rompathcleaner.cpp" line="82"/>
+        <location filename="../../rompathcleaner.cpp" line="88"/>
         <source>Start check</source>
         <translation>Prüfung starten</translation>
     </message>
@@ -20781,8 +20781,8 @@ Bist Du sicher, dass Du das tun willst?</translation>
     </message>
     <message>
         <location filename="../../rompathcleaner.ui" line="141"/>
-        <location filename="../../rompathcleaner.cpp" line="69"/>
-        <location filename="../../rompathcleaner.cpp" line="100"/>
+        <location filename="../../rompathcleaner.cpp" line="75"/>
+        <location filename="../../rompathcleaner.cpp" line="106"/>
         <source>Pause</source>
         <translation>Pausieren</translation>
     </message>
@@ -20857,17 +20857,37 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <translation>Pfad auswählen...</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="68"/>
+        <location filename="../../rompathcleaner.cpp" line="74"/>
         <source>Stop check</source>
         <translation>Prüfung beenden</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="94"/>
+        <location filename="../../rompathcleaner.cpp" line="100"/>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="122"/>
+        <location filename="../../rompathcleaner.cpp" line="128"/>
+        <source>Files processed</source>
+        <translation>Verarbeitete Dateien</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="130"/>
+        <source>Renamed files</source>
+        <translation>Umbenannte Dateien</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="132"/>
+        <source>Obsolete ROMs / disks</source>
+        <translation>Überflüssige ROMs / Disks</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="134"/>
+        <source>Invalid files</source>
+        <translation>Ungültige Dateien</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="142"/>
         <source>Select path to be checked</source>
         <translation>Zu prüfenden Pfad auswählen</translation>
     </message>
@@ -20875,42 +20895,75 @@ Bist Du sicher, dass Du das tun willst?</translation>
 <context>
     <name>RomPathCleanerThread</name>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="181"/>
+        <location filename="../../rompathcleaner.cpp" line="220"/>
         <source>cleaner thread started</source>
         <translation>Aufräumer Thread gestartet</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="183"/>
+        <location filename="../../rompathcleaner.cpp" line="222"/>
         <source>waiting for work</source>
         <translation>Warte auf Arbeit</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="192"/>
+        <location filename="../../rompathcleaner.cpp" line="234"/>
         <source>check started</source>
         <translation>Prüfen gestartet</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="198"/>
+        <location filename="../../rompathcleaner.cpp" line="240"/>
+        <source>checking path &apos;%1&apos;</source>
+        <translation>Prüfe Pfad &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="243"/>
+        <source>reading directory tree</source>
+        <translation>Lese Verzeichnisbaum</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../rompathcleaner.cpp" line="245"/>
+        <source>path contains %n file(s)</source>
+        <translation>
+            <numerusform>Pfad enthält %n Datei</numerusform>
+            <numerusform>Pfad enthält %n Dateien</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="248"/>
+        <source>Cleaning up path %1 / %2</source>
+        <translation>Räume Pfad %1 / %2 auf</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="252"/>
         <source>check paused</source>
         <translation>Prüfen pausiert</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="203"/>
+        <location filename="../../rompathcleaner.cpp" line="257"/>
         <source>check resumed</source>
         <translation>Prüfen wird fortgesetzt</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="212"/>
+        <location filename="../../rompathcleaner.cpp" line="273"/>
+        <source>done (checking path &apos;%1&apos;)</source>
+        <translation>Fertig (Prüfe Pfad &apos;%1&apos;)</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="277"/>
         <source>check finished</source>
         <translation>Prüfen beendet</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="212"/>
+        <location filename="../../rompathcleaner.cpp" line="277"/>
         <source>total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6</source>
-        <translation type="unfinished">verwendete Zeit insgesamt = %1, verarbeitete Dateien = %2, umbenannte Dateien = %3, überflüssige ROMs = %4, überflüssige Disks = %5, ungültige Dateien = %6</translation>
+        <translation>verwendete Zeit insgesamt = %1, verarbeitete Dateien = %2, umbenannte Dateien = %3, überflüssige ROMs = %4, überflüssige Disks = %5, ungültige Dateien = %6</translation>
     </message>
     <message>
-        <location filename="../../rompathcleaner.cpp" line="217"/>
+        <location filename="../../rompathcleaner.cpp" line="282"/>
+        <source>Idle</source>
+        <translation>Leerlauf</translation>
+    </message>
+    <message>
+        <location filename="../../rompathcleaner.cpp" line="285"/>
         <source>cleaner thread ended</source>
         <translation>Aufräumer Thread beendet</translation>
     </message>

@@ -2,6 +2,7 @@
 #define _ROMPATHCLEANER_H_
 
 #include <QString>
+#include <QStringList>
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
@@ -17,6 +18,8 @@
 #define QMC2_RPC_MODE_INDEX_MOVE		1
 #define QMC2_RPC_MODE_INDEX_DRYRUN		2
 
+#define QMC2_RPC_STATUS_UPDATE			100 // update stats every 100 processed files
+
 class RomPathCleanerThread : public QThread
 {
 	Q_OBJECT
@@ -29,6 +32,7 @@ class RomPathCleanerThread : public QThread
 		bool waiting() { return m_waiting; }
 		bool paused() { return m_paused; }
 		QWaitCondition &waitCondition() { return m_waitCondition; }
+		void setCheckedPaths(const QStringList &cp) { m_checkedPaths = cp; }
 
 	public slots:
 		void requestExit() { m_exit = true; }
@@ -45,6 +49,7 @@ class RomPathCleanerThread : public QThread
 		void progressTextChanged(const QString &);
 		void progressRangeChanged(int, int);
 		void progressChanged(int);
+		void statusUpdated(quint64, quint64, quint64, quint64, quint64);
 
 	protected:
 		void run();
@@ -54,6 +59,9 @@ class RomPathCleanerThread : public QThread
 		quint64 m_filesProcessed, m_renamedFiles, m_obsoleteROMs, m_obsoleteDisks, m_invalidFiles;
 		QMutex m_mutex;
 		QWaitCondition m_waitCondition;
+		QStringList m_checkedPaths;
+ 
+		void recursiveFileList(const QString &, QStringList *);
 };
 
 class RomPathCleaner : public QWidget, public Ui::RomPathCleaner
@@ -76,6 +84,7 @@ class RomPathCleaner : public QWidget, public Ui::RomPathCleaner
 		void cleanerThread_progressTextChanged(const QString &);
 		void cleanerThread_progressRangeChanged(int, int);
 		void cleanerThread_progressChanged(int);
+		void cleanerThread_statusUpdated(quint64, quint64, quint64, quint64, quint64);
 		void on_pushButtonStartStop_clicked();
 		void on_pushButtonPauseResume_clicked();
 		void on_comboBoxCheckedPath_activated(int);

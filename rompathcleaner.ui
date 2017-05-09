@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>638</width>
+    <width>677</width>
     <height>319</height>
    </rect>
   </property>
@@ -170,7 +170,7 @@
     </widget>
    </item>
    <item row="3" column="0" colspan="8">
-    <widget class="QLabel" name="labelRebuildStatus">
+    <widget class="QLabel" name="labelStatus">
      <property name="toolTip">
       <string>Check statistics</string>
      </property>
