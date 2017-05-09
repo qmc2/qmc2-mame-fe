@@ -164,7 +164,12 @@ RomPathCleanerThread::RomPathCleanerThread(QObject *parent) :
 	m_stop(false),
 	m_active(false),
 	m_waiting(false),
-	m_paused(false)
+	m_paused(false),
+	m_filesProcessed(0),
+	m_renamedFiles(0),
+	m_obsoleteROMs(0),
+	m_obsoleteDisks(0),
+	m_invalidFiles(0)
 {
 	start();
 }
@@ -189,6 +194,7 @@ void RomPathCleanerThread::run()
 		m_waiting = m_stop = false;
 		m_mutex.unlock();
 		if ( !m_exit && !m_stop ) {
+			m_filesProcessed = m_renamedFiles = m_obsoleteROMs = m_obsoleteDisks = m_invalidFiles = 0;
 			emit log(tr("check started"));
 			emit checkStarted();
 			QTime checkTimer, elapsedTime(0, 0, 0, 0);
@@ -209,7 +215,7 @@ void RomPathCleanerThread::run()
 				}
 			}
 			elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
-			emit log(tr("check finished") + " - " + tr("total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(0).arg(0).arg(0).arg(0).arg(0));
+			emit log(tr("check finished") + " - " + tr("total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(m_filesProcessed).arg(m_renamedFiles).arg(m_obsoleteROMs).arg(m_obsoleteDisks).arg(m_invalidFiles));
 			emit checkFinished();
 		}
 		m_stop = false;

@@ -50,11 +50,8 @@ class RomPathCleanerThread : public QThread
 		void run();
 
 	private:
-		bool m_exit;
-		bool m_stop;
-		bool m_active;
-		bool m_waiting;
-		bool m_paused;
+		bool m_exit, m_stop, m_active, m_waiting, m_paused;
+		quint64 m_filesProcessed, m_renamedFiles, m_obsoleteROMs, m_obsoleteDisks, m_invalidFiles;
 		QMutex m_mutex;
 		QWaitCondition m_waitCondition;
 };
