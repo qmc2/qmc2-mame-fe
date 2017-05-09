@@ -3,6 +3,7 @@
 #include <QDateTime>
 #include <QFontMetrics>
 #include <QFont>
+#include <QTime>
 #include <QTest>
 
 #include "qmc2main.h"
@@ -69,6 +70,10 @@ void RomPathCleaner::cleanerThread_checkStarted()
 	pushButtonPauseResume->show();
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
+	labelCheckedPath->setEnabled(false);
+	comboBoxCheckedPath->setEnabled(false);
+	labelModeSwitch->setEnabled(false);
+	comboBoxModeSwitch->setEnabled(false);
 }
 
 void RomPathCleaner::cleanerThread_checkFinished()
@@ -78,6 +83,10 @@ void RomPathCleaner::cleanerThread_checkFinished()
 	pushButtonPauseResume->hide();
 	pushButtonStartStop->setEnabled(true);
 	pushButtonPauseResume->setEnabled(true);
+	labelCheckedPath->setEnabled(true);
+	comboBoxCheckedPath->setEnabled(true);
+	labelModeSwitch->setEnabled(true);
+	comboBoxModeSwitch->setEnabled(true);
 }
 
 void RomPathCleaner::cleanerThread_checkPaused()
@@ -143,6 +152,12 @@ void RomPathCleaner::on_pushButtonPauseResume_clicked()
 		QTimer::singleShot(0, cleanerThread(), SLOT(pause()));
 }
 
+void RomPathCleaner::on_spinBoxMaxLogSize_valueChanged(int value)
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", value);
+	plainTextEditLog->setMaximumBlockCount(value);
+}
+
 RomPathCleanerThread::RomPathCleanerThread(QObject *parent) :
 	QThread(parent),
 	m_exit(false),
@@ -176,6 +191,8 @@ void RomPathCleanerThread::run()
 		if ( !m_exit && !m_stop ) {
 			emit log(tr("check started"));
 			emit checkStarted();
+			QTime checkTimer, elapsedTime(0, 0, 0, 0);
+			checkTimer.start();
 			while ( !m_exit && !m_stop ) {
 				if ( m_paused ) {
 					emit log(tr("check paused"));
@@ -191,7 +208,8 @@ void RomPathCleanerThread::run()
 					QTest::qWait(100);
 				}
 			}
-			emit log(tr("check finished"));
+			elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
+			emit log(tr("check finished") + " - " + tr("total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(0).arg(0).arg(0).arg(0).arg(0));
 			emit checkFinished();
 		}
 		m_stop = false;

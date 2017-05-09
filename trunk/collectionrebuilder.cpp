@@ -283,8 +283,8 @@ void CollectionRebuilder::on_pushButtonStartStop_clicked()
 								cp = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Checkpoint", -1).toLongLong();
 							else {
 								index -= 1;
-								QStringList checkpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList();
-								QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+								QStringList checkpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", QStringList()).toStringList());
+								QStringList softwareCheckpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList());
 								if ( index >= 0 && index < checkpointList.count() ) {
 									cp = checkpointList[index].toLongLong();
 									if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE )
@@ -428,7 +428,7 @@ void CollectionRebuilder::on_comboBoxXmlSource_currentIndexChanged(int index)
 				checkpointList << "-1";
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceCheckpoints", checkpointList);
 				if ( romAlyzer()->mode() == QMC2_ROMALYZER_MODE_SOFTWARE ) {
-					QStringList softwareCheckpointList = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList();
+					QStringList softwareCheckpointList(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", QStringList()).toStringList());
 					softwareCheckpointList << QString();
 					qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/XmlSourceListCheckpoints", softwareCheckpointList);
 				}
