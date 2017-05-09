@@ -5,6 +5,11 @@
 #include <QFont>
 #include <QTime>
 #include <QTest>
+#include <QDir>
+#include <QFileInfo>
+#if defined(QMC2_OS_WIN)
+#include <windows.h>
+#endif
 
 #include "qmc2main.h"
 #include "options.h"
@@ -38,6 +43,7 @@ RomPathCleaner::RomPathCleaner(const QString &settingsKey, QWidget *parent) :
 	connect(cleanerThread(), SIGNAL(progressTextChanged(const QString &)), this, SLOT(cleanerThread_progressTextChanged(const QString &)));
 	connect(cleanerThread(), SIGNAL(progressRangeChanged(int, int)), this, SLOT(cleanerThread_progressRangeChanged(int, int)));
 	connect(cleanerThread(), SIGNAL(progressChanged(int)), this, SLOT(cleanerThread_progressChanged(int)));
+	connect(cleanerThread(), SIGNAL(statusUpdated(quint64, quint64, quint64, quint64, quint64)), this, SLOT(cleanerThread_statusUpdated(quint64, quint64, quint64, quint64, quint64)));
 }
 
 RomPathCleaner::~RomPathCleaner()
@@ -116,6 +122,20 @@ void RomPathCleaner::cleanerThread_progressChanged(int progress)
 	progressBar->setValue(progress);
 }
 
+void RomPathCleaner::cleanerThread_statusUpdated(quint64 filesProcessed, quint64 renamedFiles, quint64 obsoleteROMs, quint64 obsoleteDisks, quint64 invalidFiles)
+{
+	QString statusString("<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\" width=\"100%\"><tr>");
+	statusString += "<td nowrap align=\"left\"><b>" + tr("Files processed") + ":</b></td><td nowrap align=\"right\">" + QString::number(filesProcessed) + "</td>";
+	statusString += "<td nowrap align=\"center\" width=\"1%\">|</td>";
+	statusString += "<td nowrap align=\"left\"><b>" + tr("Renamed files") + ":</b></td><td nowrap align=\"right\">" + QString::number(renamedFiles) + "</td>";
+	statusString += "<td nowrap align=\"center\" width=\"1%\">|</td>";
+	statusString += "<td nowrap align=\"left\"><b>" + tr("Obsolete ROMs / disks") + ":</b></td><td nowrap align=\"right\">" + QString::number(obsoleteROMs) + " / " + QString::number(obsoleteDisks) + "</td>";
+	statusString += "<td nowrap align=\"right\" width=\"1%\">|</td>";
+	statusString += "<td nowrap align=\"left\"><b>" + tr("Invalid files") + ":</b></td><td nowrap align=\"right\">" + QString::number(invalidFiles) + "</td>";
+	statusString += "</tr></table>";
+	labelStatus->setText(statusString);
+}
+
 void RomPathCleaner::on_comboBoxCheckedPath_activated(int index)
 {
 	if ( index == QMC2_RPC_PATH_INDEX_SELECT ) {
@@ -139,8 +159,22 @@ void RomPathCleaner::on_pushButtonStartStop_clicked()
 	qApp->processEvents();
 	if ( cleanerThread()->active() )
 		cleanerThread()->requestStop();
-	else
+	else {
+		switch ( comboBoxCheckedPath->currentIndex() ) {
+			case QMC2_RPC_PATH_INDEX_CUSTOMPATH:
+				cleanerThread()->setCheckedPaths(QStringList() << comboBoxCheckedPath->currentText());
+				break;
+			default:
+			case QMC2_RPC_PATH_INDEX_ROMPATH:
+				if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
+					cleanerThread()->setCheckedPaths(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().split(';', QString::SkipEmptyParts));
+				else
+					cleanerThread()->setCheckedPaths(QStringList() << "roms");
+				break;
+		}
+		plainTextEditLog->clear();
 		cleanerThread()->waitCondition().wakeAll();
+	}
 }
 
 void RomPathCleaner::on_pushButtonPauseResume_clicked()
@@ -184,41 +218,111 @@ RomPathCleanerThread::~RomPathCleanerThread()
 void RomPathCleanerThread::run()
 {
 	emit log(tr("cleaner thread started"));
-	while ( !m_exit ) {
+	while ( !m_exit && !m_stop ) {
 		emit log(tr("waiting for work"));
 		m_mutex.lock();
 		m_waiting = true;
 		m_active = m_paused = false;
+		m_checkedPaths.clear();
 		m_waitCondition.wait(&m_mutex);
 		m_active = true;
 		m_waiting = m_stop = false;
 		m_mutex.unlock();
 		if ( !m_exit && !m_stop ) {
 			m_filesProcessed = m_renamedFiles = m_obsoleteROMs = m_obsoleteDisks = m_invalidFiles = 0;
+			emit statusUpdated(m_filesProcessed, m_renamedFiles, m_obsoleteROMs, m_obsoleteDisks, m_invalidFiles);
 			emit log(tr("check started"));
 			emit checkStarted();
 			QTime checkTimer, elapsedTime(0, 0, 0, 0);
 			checkTimer.start();
-			while ( !m_exit && !m_stop ) {
-				if ( m_paused ) {
-					emit log(tr("check paused"));
-					emit checkPaused();
-					while ( m_paused && !m_stop && !m_exit )
-						QTest::qWait(100);
-					if ( !m_paused ) {
-						emit log(tr("check resumed"));
-						emit checkResumed();
+			int pathCount = 0;
+			foreach (QString path, m_checkedPaths) {
+				emit log(tr("checking path '%1'").arg(path));
+				pathCount++;
+				QStringList fileList;
+				emit log(tr("reading directory tree"));
+				recursiveFileList(path, &fileList);
+				emit log(tr("path contains %n file(s)", "", fileList.count()));
+				emit progressRangeChanged(0, fileList.count());
+				emit progressChanged(0);
+				emit progressTextChanged(tr("Cleaning up path %1 / %2").arg(pathCount).arg(m_checkedPaths.count()));
+				int index = 0;
+				while ( !m_exit && !m_stop && index < fileList.count()) {
+					if ( m_paused ) {
+						emit log(tr("check paused"));
+						emit checkPaused();
+						while ( m_paused && !m_stop && !m_exit )
+							QTest::qWait(100);
+						if ( !m_paused ) {
+							emit log(tr("check resumed"));
+							emit checkResumed();
+						}
 					}
-				} else {
-					// FIXME
-					QTest::qWait(100);
+					if ( !m_paused && !m_stop && !m_exit ) {
+						QString filePath(fileList.at(index));
+						// FIXME
+					}
+					if ( m_filesProcessed % QMC2_RPC_STATUS_UPDATE == 0 ) {
+						emit statusUpdated(m_filesProcessed, m_renamedFiles, m_obsoleteROMs, m_obsoleteDisks, m_invalidFiles);
+						emit progressChanged(index);
+						QTest::qWait(1);
+					}
+					m_filesProcessed++;
+					index++;
 				}
+				emit log(tr("done (checking path '%1')").arg(path));
 			}
+			emit statusUpdated(m_filesProcessed, m_renamedFiles, m_obsoleteROMs, m_obsoleteDisks, m_invalidFiles);
 			elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
 			emit log(tr("check finished") + " - " + tr("total check time = %1, files processed = %2, renamed files = %3, obsolete ROMs = %4, obsolete disks = %5, invalid files = %6").arg(elapsedTime.toString("hh:mm:ss.zzz")).arg(m_filesProcessed).arg(m_renamedFiles).arg(m_obsoleteROMs).arg(m_obsoleteDisks).arg(m_invalidFiles));
 			emit checkFinished();
 		}
+		emit progressRangeChanged(0, 100);
+		emit progressChanged(0);
+		emit progressTextChanged(tr("Idle"));
 		m_stop = false;
 	}
 	emit log(tr("cleaner thread ended"));
+}
+
+void RomPathCleanerThread::recursiveFileList(const QString &sDir, QStringList *fileNames)
+{
+	if ( m_exit || m_stop )
+		return;
+#if defined(QMC2_OS_WIN)
+	WIN32_FIND_DATA ffd;
+	QString dirName(QDir::toNativeSeparators(QDir::cleanPath(sDir + "/*")));
+#ifdef UNICODE
+	HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
+#else
+	HANDLE hFind = FindFirstFile((TCHAR *)dirName.toUtf8().constData(), &ffd);
+#endif
+	if ( !exitThread && !stopScan && hFind != INVALID_HANDLE_VALUE ) {
+		do {
+#ifdef UNICODE
+			QString fName(QString::fromUtf16((ushort*)ffd.cFileName));
+#else
+			QString fName(QString::fromLocal8Bit(ffd.cFileName));
+#endif
+			if ( ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) {
+				if ( fName != ".." && fName != "." )
+					recursiveFileList(sDir + "/" + fName, fileNames);
+			} else
+				fileNames->append(sDir + "/" + fName);
+		} while ( !m_exit && !m_stop && FindNextFile(hFind, &ffd) != 0 );
+	}
+#else
+	QDir dir(sDir);
+	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
+		if ( m_exit || m_stop )
+			break;
+		QString path(info.filePath());
+		if ( info.isDir() ) {
+			// directory recursion
+			if ( info.fileName() != ".." && info.fileName() != "." )
+				recursiveFileList(path, fileNames);
+		} else
+			fileNames->append(path);
+	}
+#endif
 }
