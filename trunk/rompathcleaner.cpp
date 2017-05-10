@@ -170,7 +170,9 @@ void RomPathCleaner::on_pushButtonStartStop_clicked()
 			default:
 			case QMC2_RPC_PATH_INDEX_ROMPATH:
 				if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
-					cleanerThread()->setCheckedPaths(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().split(';', QString::SkipEmptyParts));
+					cleanerThread()->setCheckedPaths(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString().split(';', QString::SkipEmptyParts));
+				else if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory") )
+					cleanerThread()->setCheckedPaths(QStringList() << qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString() + "/roms");
 				else
 					cleanerThread()->setCheckedPaths(QStringList() << "roms");
 				break;
@@ -246,6 +248,7 @@ void RomPathCleanerThread::run()
 			checkTimer.start();
 			int pathCount = 1;
 			foreach (QString path, m_checkedPaths) {
+				path = QDir::cleanPath(path);
 				emit progressTextChanged(tr("Cleaning up path %1 / %2").arg(pathCount++).arg(m_checkedPaths.count()));
 				emit log(tr("checking path '%1'").arg(path));
 				QStringList fileList;
@@ -305,7 +308,7 @@ void RomPathCleanerThread::recursiveFileList(const QString &sDir, QStringList *f
 #else
 	HANDLE hFind = FindFirstFile((TCHAR *)dirName.toUtf8().constData(), &ffd);
 #endif
-	if ( !exitThread && !stopScan && hFind != INVALID_HANDLE_VALUE ) {
+	if ( !m_exit && !m_stop && hFind != INVALID_HANDLE_VALUE ) {
 		do {
 #ifdef UNICODE
 			QString fName(QString::fromUtf16((ushort*)ffd.cFileName));
