@@ -4654,7 +4654,7 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 		return;
 #if defined(QMC2_OS_WIN)
 	WIN32_FIND_DATA ffd;
-	QString dirName = QDir::toNativeSeparators(QDir::cleanPath(sDir + "/*"));
+	QString dirName(QDir::toNativeSeparators(QDir::cleanPath(sDir + "/*")));
 #ifdef UNICODE
 	HANDLE hFind = FindFirstFile((TCHAR *)dirName.utf16(), &ffd);
 #else
@@ -4663,9 +4663,9 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 	if ( !exitThread && !stopScan && hFind != INVALID_HANDLE_VALUE ) {
 		do {
 #ifdef UNICODE
-			QString fName = QString::fromUtf16((ushort*)ffd.cFileName);
+			QString fName(QString::fromUtf16((ushort*)ffd.cFileName));
 #else
-			QString fName = QString::fromLocal8Bit(ffd.cFileName);
+			QString fName(QString::fromLocal8Bit(ffd.cFileName));
 #endif
 			if ( ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) {
 				if ( fName != ".." && fName != "." )
@@ -4679,7 +4679,7 @@ void CheckSumScannerThread::recursiveFileList(const QString &sDir, QStringList *
 	foreach (QFileInfo info, dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Hidden | QDir::System)) {
 		if ( exitThread || stopScan )
 			break;
-		QString path = info.filePath();
+		QString path(info.filePath());
 		if ( info.isDir() ) {
 			// directory recursion
 			if ( info.fileName() != ".." && info.fileName() != "." )
