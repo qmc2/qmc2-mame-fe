@@ -22,6 +22,7 @@ inf: informational only
 	<li>fix: corrected UI behavior when the given emulator executable file's path does not exist during reload (<a href="http://tracker.batcom-it.net/view.php?id=143" target="_blank">BT #143</a>)</li>
 	<li>fix: ROMAlyzer: added a hard limit of 2 GB per analyzed dump (the analyzer will skip individual dumps which are bigger than QByteArray's limit, avoiding a crash)</li>
 	<li>fix: avoid a crash when interrupting a ROM verification of tagged sets (the process is now cleanly interruptable)</li>
+	<li>fix: the <i>enable log</i> settings of the check-sum scanner log and the collection rebuilder were not restored</li>
 	<li>imp: software-lists: removed the temporary workaround for launching ColecoVision&trade; cartridge images since the issue has been fixed in MAME 0.184</li>
 	<li>imp: updated category.ini to MAME 'git latest'</li>
 	<li>imp: added a confirmation pop-up which tells the user that it's much faster to do a full ROM audit than to check ROM states individually above a certain amount of sets (shown for more than 500 tagged sets)</li>

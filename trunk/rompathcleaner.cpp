@@ -32,7 +32,9 @@ RomPathCleaner::RomPathCleaner(const QString &settingsKey, QWidget *parent) :
 	QFont logFont;
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
+	comboBoxModeSwitch->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Mode", QMC2_RPC_MODE_INDEX_DRYRUN).toInt());
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", 10000).toInt());
+	checkBoxEnableLog->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableLog", true).toBool());
 
 	m_cleanerThread = new RomPathCleanerThread(this);
 	connect(cleanerThread(), SIGNAL(log(const QString &)), this, SLOT(log(const QString &)));
@@ -48,6 +50,7 @@ RomPathCleaner::RomPathCleaner(const QString &settingsKey, QWidget *parent) :
 
 RomPathCleaner::~RomPathCleaner()
 {
+	hideEvent(0);
 	if ( cleanerThread() )
 		delete cleanerThread();
 }
@@ -192,6 +195,12 @@ void RomPathCleaner::on_spinBoxMaxLogSize_valueChanged(int value)
 	plainTextEditLog->setMaximumBlockCount(value);
 }
 
+void RomPathCleaner::hideEvent(QHideEvent *e)
+{
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/Mode", comboBoxModeSwitch->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableLog", checkBoxEnableLog->isChecked());
+}
+
 RomPathCleanerThread::RomPathCleanerThread(QObject *parent) :
 	QThread(parent),
 	m_exit(false),
@@ -235,17 +244,16 @@ void RomPathCleanerThread::run()
 			emit checkStarted();
 			QTime checkTimer, elapsedTime(0, 0, 0, 0);
 			checkTimer.start();
-			int pathCount = 0;
+			int pathCount = 1;
 			foreach (QString path, m_checkedPaths) {
+				emit progressTextChanged(tr("Cleaning up path %1 / %2").arg(pathCount++).arg(m_checkedPaths.count()));
 				emit log(tr("checking path '%1'").arg(path));
-				pathCount++;
 				QStringList fileList;
 				emit log(tr("reading directory tree"));
 				recursiveFileList(path, &fileList);
 				emit log(tr("path contains %n file(s)", "", fileList.count()));
 				emit progressRangeChanged(0, fileList.count());
 				emit progressChanged(0);
-				emit progressTextChanged(tr("Cleaning up path %1 / %2").arg(pathCount).arg(m_checkedPaths.count()));
 				int index = 0;
 				while ( !m_exit && !m_stop && index < fileList.count()) {
 					if ( m_paused ) {

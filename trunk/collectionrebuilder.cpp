@@ -110,6 +110,7 @@ CollectionRebuilder::CollectionRebuilder(ROMAlyzer *myROMAlyzer, QWidget *parent
 	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	plainTextEditLog->setFont(logFont);
 	spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/MaxLogSize", 10000).toInt());
+	checkBoxEnableLog->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableLog", true).toBool());
 	adjustIconSizes();
 
 	m_rebuilderThread = new CollectionRebuilderThread(this);
@@ -841,6 +842,7 @@ void CollectionRebuilder::hideEvent(QHideEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateI", toolButtonStateI->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateN", toolButtonStateN->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/IncludeStateU", toolButtonStateU->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/EnableLog", checkBoxEnableLog->isChecked());
 	if ( missingDumpsViewer() )
 		missingDumpsViewer()->close();
 	if ( e )
