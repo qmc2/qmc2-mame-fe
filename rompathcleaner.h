@@ -90,7 +90,8 @@ class RomPathCleaner : public QWidget, public Ui::RomPathCleaner
 		void on_comboBoxCheckedPath_activated(int);
 		void on_spinBoxMaxLogSize_valueChanged(int);
 
-	signals:
+	protected:
+		void hideEvent(QHideEvent *);
 
 	private:
 		RomPathCleanerThread *m_cleanerThread;
