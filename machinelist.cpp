@@ -840,7 +840,7 @@ void MachineList::verify(bool currentOnly)
 	QStringList args;
 	QString command(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath") )
-		args << "-rompath" << QString("\"%1\"").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME"));
+		args << "-rompath" << QString("%1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME"));
 	args << "-verifyroms";
 	if ( verifyCurrentOnly )
 		args << checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
@@ -851,7 +851,7 @@ void MachineList::verify(bool currentOnly)
 	if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString().isEmpty() )
 		verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString());
 	verifyProc->setProcessChannelMode(QProcess::MergedChannels);
-	verifyProc->start(command, args);
+	verifyProc->start(command, args, QIODevice::ReadOnly | QIODevice::Text);
 }
 
 QString MachineList::value(QString element, QString attribute, bool translate)
@@ -2735,12 +2735,8 @@ void MachineList::verifyReadyReadStandardOutput()
 	// process rom verification output
 	char romState;
 	QString romStateLong; 
-	QString s(verifyLastLine + verifyProc->readAllStandardOutput());
-#if defined(QMC2_OS_WIN)
-	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
-#endif
-	QStringList lines(s.split('\n'));
-	if ( s.endsWith('\n') )
+	QStringList lines(QString(verifyLastLine + verifyProc->readAllStandardOutput()).split('\n'));
+	if ( lines.last().endsWith('\n') )
 		verifyLastLine.clear();
 	else {
 		verifyLastLine = lines.last();
