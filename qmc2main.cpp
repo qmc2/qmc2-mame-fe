@@ -1600,7 +1600,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 	// check if a foreign emulator is to be used and if it CAN be used; if yes (both), start it instead of the default emulator...
 	qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
-	QStringList registeredEmulators = qmc2Config->childGroups();
+	QStringList registeredEmulators(qmc2Config->childGroups());
 	qmc2Config->endGroup();
 	bool foreignEmulator = false;
 	if ( registeredEmulators.count() > 0 && qmc2DemoMachine.isEmpty() ) {
@@ -1608,12 +1608,12 @@ void MainWindow::on_actionPlay_triggered(bool)
 			if ( tabWidgetMachineList->currentIndex() == tabWidgetMachineList->indexOf(tabForeignEmulators) ) {
 				QTreeWidgetItem *item = treeWidgetForeignIDs->currentItem();
 				if ( item && item->isSelected() ) {
-					QStringList foreignInfo = item->whatsThis(0).split("\t");
+					QStringList foreignInfo(item->whatsThis(0).split('\t'));
 					if ( foreignInfo.count() > 2 ) {
 						// 0:emuName -- 1:id -- 2:description 
-						foreignEmuName = foreignInfo[0];
-						foreignID = foreignInfo[1];
-						foreignDescription = foreignInfo[2];
+						foreignEmuName = foreignInfo.at(0);
+						foreignID = foreignInfo.at(1);
+						foreignDescription = foreignInfo.at(2);
 						launchForeignID = true;
 					}
 				}
@@ -1621,9 +1621,9 @@ void MainWindow::on_actionPlay_triggered(bool)
 		}
 		if ( launchForeignID ) {
 			foreignEmulator = true;
-			QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName), QString()).toString();
-			QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName), QString()).toString();
-			QString argString = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString();
+			QString emuCommand(qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(foreignEmuName), QString()).toString());
+			QString emuWorkDir(qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName), QString()).toString());
+			QString argString(qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(foreignEmuName), QString()).toString());
 			QStringList emuArgs;
 			if ( foreignID == tr("N/A") )
 				argString.replace("$ID$", "").replace("$DESCRIPTION$", "");
@@ -1637,12 +1637,12 @@ void MainWindow::on_actionPlay_triggered(bool)
 			}
 			qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
 		} else if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
-			QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
+			QString selectedEmulator(qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString());
 			if ( !selectedEmulator.isEmpty() && registeredEmulators.contains(selectedEmulator) ) {
 				foreignEmulator = true;
-				QString emuCommand = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator), QString()).toString();
-				QString emuWorkDir = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator), QString()).toString();
-				QString argString = qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString();
+				QString emuCommand(qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Executable").arg(selectedEmulator), QString()).toString());
+				QString emuWorkDir(qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator), QString()).toString());
+				QString argString(qmc2Config->value(QString(QMC2_EMULATOR_PREFIX + "RegisteredEmulators/%1/Arguments").arg(selectedEmulator), QString()).toString());
 				QStringList emuArgs;
 				argString.replace("$ID$", machineName).replace("$DESCRIPTION$", qmc2MachineListItemHash.value(machineName)->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 				QRegExp rx("([^\\s]+|[^\\s]*\"[^\"]+\"[^\\s]*)");
@@ -1721,8 +1721,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 				}
 
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
-					QStringList subValues = option.value.split(",");
-					QStringList defaultSubValues = option.dvalue.split(",");
+					QStringList subValues(option.value.split(','));
+					QStringList defaultSubValues(option.dvalue.split(','));
 					double v1, v2, dv1, dv2;
 					v1 = v2 = dv1 = dv2 = 0;
 					if ( subValues.count() > 0 )
@@ -1739,8 +1739,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 				}
 
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
-					QStringList subValues = option.value.split(",");
-					QStringList defaultSubValues = option.dvalue.split(",");
+					QStringList subValues(option.value.split(','));
+					QStringList defaultSubValues(option.dvalue.split(','));
 					double v1, v2, v3, dv1, dv2, dv3;
 					v1 = v2 = v3 = dv1 = dv2 = dv3 = 0;
 					if ( subValues.count() > 0 )
@@ -1820,10 +1820,10 @@ void MainWindow::on_actionPlay_triggered(bool)
 	}
 
 	foreach (QString extraOpt, extraOpts) {
-		QStringList optParams = extraOpt.split("-", QString::SkipEmptyParts);
-		QString negOpt = "-no" + optParams[1];
-		QString posOpt = "-" + optParams[1];
-		if ( optParams[0] == "enable" ) {
+		QStringList optParams(extraOpt.split('-', QString::SkipEmptyParts));
+		QString negOpt("-no" + optParams.at(1));
+		QString posOpt("-" + optParams.at(1));
+		if ( optParams.first() == "enable" ) {
 			if ( args.contains(negOpt) )
 				args.removeAll(negOpt);
 			if ( !args.contains(posOpt) )
@@ -1844,14 +1844,14 @@ void MainWindow::on_actionPlay_triggered(bool)
 	QStringList softwareLists, softwareNames;
 
 	if ( qmc2SoftwareList && tabWidgetMachineDetail->currentIndex() == componentInfo->appliedFeatureList().indexOf(QMC2_SOFTWARE_LIST_INDEX) ) {
-		QStringList swlArgs = qmc2SoftwareList->arguments(&softwareLists, &softwareNames);
+		QStringList swlArgs(qmc2SoftwareList->arguments(&softwareLists, &softwareNames));
 		if ( swlArgs.count() > 1 ) { 
-			if ( swlArgs[0] == "-snapname" ) {
+			if ( swlArgs.first() == "-snapname" ) {
 				args.removeLast();
-				args << swlArgs[0] << swlArgs[1];
+				args << swlArgs.at(0) << swlArgs.at(1);
 				args << machineName;
 				for (int a = 2; a < swlArgs.count(); a++)
-					args << swlArgs[a];
+					args << swlArgs.at(a);
 			} else
 				args << swlArgs;
 		} else
@@ -1859,7 +1859,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	} else if ( qmc2DeviceConfigurator && tabWidgetMachineDetail->currentIndex() == componentInfo->appliedFeatureList().indexOf(QMC2_DEVICE_INDEX) ) {
 		switch ( qmc2DeviceConfigurator->tabWidgetDeviceSetup->currentIndex() ) {
 			case QMC2_DEVSETUP_TAB_FILECHOOSER: {
-				QString instance = qmc2DeviceConfigurator->comboBoxDeviceInstanceChooser->currentText();
+				QString instance(qmc2DeviceConfigurator->comboBoxDeviceInstanceChooser->currentText());
 				QItemSelectionModel *selectionModel = qmc2DeviceConfigurator->treeViewFileChooser->selectionModel();
 				QModelIndexList indexList;
 				if ( selectionModel )
@@ -1872,7 +1872,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						qmc2DeviceConfigurator->insertChildItems(item, allSlotItems);
 					}
 					foreach (QTreeWidgetItem *item, allSlotItems) {
-						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
+						QString slotName(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT));
 						if ( !slotName.isEmpty() ) {
 							QComboBox *cb = (QComboBox *)qmc2DeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
@@ -1880,21 +1880,21 @@ void MainWindow::on_actionPlay_triggered(bool)
 								QString biosChoice;
 								QComboBox *cbBIOS = (QComboBox *)qmc2DeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
 								if ( cbBIOS ) {
-									QStringList biosInfoList = cbBIOS->currentText().split(" ", QString::SkipEmptyParts);
+									QStringList biosInfoList(cbBIOS->currentText().split(' ', QString::SkipEmptyParts));
 									if ( biosInfoList.count() == 3 && biosInfoList[2] == tr("default") )
 										biosChoice = tr("N/A");
 									else
-										biosChoice = biosInfoList[0];
+										biosChoice = biosInfoList.first();
 									if ( biosChoice != tr("N/A") )
 										biosChoice = ",bios=" + biosChoice;
 									else
 										biosChoice.clear();
 								}
 								if ( qmc2DeviceConfigurator->slotPreselectionMap.contains(cb) )
-									defaultIndex = qmc2DeviceConfigurator->slotPreselectionMap[cb];
+									defaultIndex = qmc2DeviceConfigurator->slotPreselectionMap.value(cb);
 								else if ( qmc2DeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
-									defaultIndex = qmc2DeviceConfigurator->nestedSlotPreselectionMap[cb];
-								QString slotDeviceString = QString("%1%2").arg(cb->currentText().split(" ", QString::SkipEmptyParts)[0]).arg(biosChoice);
+									defaultIndex = qmc2DeviceConfigurator->nestedSlotPreselectionMap.value(cb);
+								QString slotDeviceString(QString("%1%2").arg(cb->currentText().split(' ', QString::SkipEmptyParts).first()).arg(biosChoice));
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << slotDeviceString;
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
@@ -1908,11 +1908,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 					}
 					bool doMapping = true;
 					if ( qmc2DeviceConfigurator->toolButtonChooserMergeMaps->isChecked() ) {
-						QString configName = qmc2DeviceConfigurator->lineEditConfigurationName->text();
-						QPair<QStringList, QStringList> valuePair = qmc2DeviceConfigurator->configurationMap[configName];
+						QString configName(qmc2DeviceConfigurator->lineEditConfigurationName->text());
+						QPair<QStringList, QStringList> valuePair = qmc2DeviceConfigurator->configurationMap.value(configName);
 						for (int i = 0; i < valuePair.first.count(); i++) {
-							if ( valuePair.first[i] == instance ) {
-								QString file = qmc2DeviceConfigurator->fileModel->absolutePath(indexList[0]);
+							if ( valuePair.first.at(i) == instance ) {
+								QString file(qmc2DeviceConfigurator->fileModel->absolutePath(indexList.first()));
 #if defined(QMC2_OS_WIN)
 								args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
@@ -1929,7 +1929,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						}
 					}
 					if ( doMapping ) {
-						QString file = qmc2DeviceConfigurator->fileModel->absolutePath(indexList[0]);
+						QString file(qmc2DeviceConfigurator->fileModel->absolutePath(indexList.first()));
 #if defined(QMC2_OS_WIN)
 						args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
@@ -1941,13 +1941,13 @@ void MainWindow::on_actionPlay_triggered(bool)
 			break;
 
 		default: {
-				QString configName = qmc2DeviceConfigurator->lineEditConfigurationName->text();
+				QString configName(qmc2DeviceConfigurator->lineEditConfigurationName->text());
 				if ( configName != tr("Default configuration") ) {
 					if ( qmc2DeviceConfigurator->configurationMap.contains(configName) ) {
 						QPair<QStringList, QStringList> valuePair = qmc2DeviceConfigurator->slotMap[configName];
 						for (int i = 0; i < valuePair.first.count(); i++) {
-							QString slotName = valuePair.first[i];
-							QString slotOption = valuePair.second[i];
+							QString slotName(valuePair.first.at(i));
+							QString slotOption(valuePair.second.at(i));
 							QTreeWidgetItem *item;
 							QComboBox *cb = qmc2DeviceConfigurator->comboBoxByName(slotName, &item);
 							if ( cb ) {
@@ -1956,11 +1956,11 @@ void MainWindow::on_actionPlay_triggered(bool)
 								if ( item ) {
 									QComboBox *cbBIOS = (QComboBox *)qmc2DeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
 									if ( cbBIOS ) {
-										QStringList biosInfoList = cbBIOS->currentText().split(" ", QString::SkipEmptyParts);
-										if ( biosInfoList.count() == 3 && biosInfoList[2] == tr("default") )
+										QStringList biosInfoList(cbBIOS->currentText().split(' ', QString::SkipEmptyParts));
+										if ( biosInfoList.count() == 3 && biosInfoList.at(2) == tr("default") )
 											biosChoice = tr("N/A");
 										else
-											biosChoice = biosInfoList[0];
+											biosChoice = biosInfoList.first();
 										if ( biosChoice != tr("N/A") )
 											biosChoice = ",bios=" + biosChoice;
 										else
@@ -1968,10 +1968,10 @@ void MainWindow::on_actionPlay_triggered(bool)
 									}
 								}
 								if ( qmc2DeviceConfigurator->slotPreselectionMap.contains(cb) )
-									defaultIndex = qmc2DeviceConfigurator->slotPreselectionMap[cb];
+									defaultIndex = qmc2DeviceConfigurator->slotPreselectionMap.value(cb);
 								else if ( qmc2DeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
-									defaultIndex = qmc2DeviceConfigurator->nestedSlotPreselectionMap[cb];
-								QString slotDeviceString = QString("%1%2").arg(cb->currentText().split(" ", QString::SkipEmptyParts)[0]).arg(biosChoice);
+									defaultIndex = qmc2DeviceConfigurator->nestedSlotPreselectionMap.value(cb);
+								QString slotDeviceString(QString("%1%2").arg(cb->currentText().split(' ', QString::SkipEmptyParts).first()).arg(biosChoice));
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << slotDeviceString;
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
@@ -1985,9 +1985,9 @@ void MainWindow::on_actionPlay_triggered(bool)
 						valuePair = qmc2DeviceConfigurator->configurationMap[configName];
 						for (int i = 0; i < valuePair.first.count(); i++)
 #if defined(QMC2_OS_WIN)
-							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
+							args << QString("-%1").arg(valuePair.first.at(i)) << valuePair.second[i].replace('/', '\\');
 #else
-							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
+							args << QString("-%1").arg(valuePair.first.at(i)) << valuePair.second[i].replace("~", "$HOME");
 #endif
 					}
 				} else {
@@ -1998,7 +1998,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						qmc2DeviceConfigurator->insertChildItems(item, allSlotItems);
 					}
 					foreach (QTreeWidgetItem *item, allSlotItems) {
-						QString slotName = item->text(QMC2_SLOTCONFIG_COLUMN_SLOT);
+						QString slotName(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT));
 						if ( !slotName.isEmpty() ) {
 							QComboBox *cb = (QComboBox *)qmc2DeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
@@ -2006,21 +2006,21 @@ void MainWindow::on_actionPlay_triggered(bool)
 								QString biosChoice;
 								QComboBox *cbBIOS = (QComboBox *)qmc2DeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_BIOS);
 								if ( cbBIOS ) {
-									QStringList biosInfoList = cbBIOS->currentText().split(" ", QString::SkipEmptyParts);
-									if ( biosInfoList.count() == 3 && biosInfoList[2] == tr("default") )
+									QStringList biosInfoList(cbBIOS->currentText().split(' ', QString::SkipEmptyParts));
+									if ( biosInfoList.count() == 3 && biosInfoList.at(2) == tr("default") )
 										biosChoice = tr("N/A");
 									else
-										biosChoice = biosInfoList[0];
+										biosChoice = biosInfoList.first();
 									if ( biosChoice != tr("N/A") )
 										biosChoice = ",bios=" + biosChoice;
 									else
 										biosChoice.clear();
 								}
 								if ( qmc2DeviceConfigurator->slotPreselectionMap.contains(cb) )
-									defaultIndex = qmc2DeviceConfigurator->slotPreselectionMap[cb];
+									defaultIndex = qmc2DeviceConfigurator->slotPreselectionMap.value(cb);
 								else if ( qmc2DeviceConfigurator->nestedSlotPreselectionMap.contains(cb) )
-									defaultIndex = qmc2DeviceConfigurator->nestedSlotPreselectionMap[cb];
-								QString slotDeviceString = QString("%1%2").arg(cb->currentText().split(" ", QString::SkipEmptyParts)[0]).arg(biosChoice);
+									defaultIndex = qmc2DeviceConfigurator->nestedSlotPreselectionMap.value(cb);
+								QString slotDeviceString(QString("%1%2").arg(cb->currentText().split(' ', QString::SkipEmptyParts).first()).arg(biosChoice));
 								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << slotDeviceString;
 								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
@@ -2595,7 +2595,7 @@ void MainWindow::on_actionClearYouTubeCache_triggered(bool)
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	quint64 removedBytes = 0, removedFiles = 0;
 	if ( youTubeCacheDir.exists() ) {
-		QStringList youTubeCacheFiles = youTubeCacheDir.entryList(QStringList("*"));
+		QStringList youTubeCacheFiles(youTubeCacheDir.entryList(QStringList("*")));
 		foreach (QString youTubeCacheFile, youTubeCacheFiles) {
 			QFileInfo fi(youTubeCacheDir.filePath(youTubeCacheFile));
 			qint64 fSize = fi.size();
@@ -3545,7 +3545,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
 				QString softwareParent = softwareParentHash[listName + ":" + entryName];
 				if ( !softwareParent.isEmpty() ) {
-					QStringList softwareParentWords = softwareParent.split(":");
+					QStringList softwareParentWords(softwareParent.split(':'));
 					if ( softwareParentWords.count() > 1 )
 						softwareParent = softwareParentWords[1];
 					else
@@ -4109,7 +4109,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				comboBoxEmuSelector = new QComboBox(configWidget);
 				comboBoxEmuSelector->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
 				qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
-				QStringList registeredEmulators = qmc2Config->childGroups();
+				QStringList registeredEmulators(qmc2Config->childGroups());
 				qmc2Config->endGroup();
 				registeredEmulators.prepend(tr("Default"));
 				comboBoxEmuSelector->insertItems(0, registeredEmulators);
@@ -4137,10 +4137,10 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				std::sort(ramSizes.begin(), ramSizes.end(), MainWindow::qStringListLessThan);
 				QStringList humanReadableRamSizes;
 				for (int i = 0; i < ramSizes.count(); i++) {
-					if ( ramSizes[i] == defaultChoice )
-						humanReadableRamSizes << ROMAlyzer::humanReadable(ramSizes[i].toULongLong(), 0) + " / " + tr("default");
+					if ( ramSizes.at(i) == defaultChoice )
+						humanReadableRamSizes << ROMAlyzer::humanReadable(ramSizes.at(i).toULongLong(), 0) + " / " + tr("default");
 					else
-						humanReadableRamSizes << ROMAlyzer::humanReadable(ramSizes[i].toULongLong(), 0);
+						humanReadableRamSizes << ROMAlyzer::humanReadable(ramSizes.at(i).toULongLong(), 0);
 				}
 				qmc2EmulatorOptions->addChoices("ramsize", ramSizes, humanReadableRamSizes, defaultChoice, false);
 
@@ -4712,7 +4712,7 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
-		QStringList foreignInfo = item->whatsThis(0).split("\t");
+		QStringList foreignInfo(item->whatsThis(0).split('\t'));
 		if ( foreignInfo.count() > 2 ) {
 			// 0:emuName -- 1:id -- 2:description 
 			foreignEmuName = foreignInfo[0];
@@ -5528,7 +5528,7 @@ void MainWindow::pushButtonGlobalEmulatorOptionsImportFromFile_clicked(QString u
 
 void MainWindow::pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
 {
-	QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath", QDir::homePath()).toString().split(";");
+	QStringList iniPaths(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath", QDir::homePath()).toString().split(';', QString::SkipEmptyParts));
 	QString iniPath;
 	if ( iniPaths.count() > 0 )
 		iniPath = iniPaths[0].replace("~", QDir::homePath());
@@ -5551,7 +5551,7 @@ void MainWindow::pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
 	if ( !qmc2CurrentItem )
 		return;
 
-	QStringList iniPaths = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath", QDir::homePath()).toString().split(";");
+	QStringList iniPaths(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/inipath", QDir::homePath()).toString().split(';', QString::SkipEmptyParts));
 	QString iniPath;
 	if ( iniPaths.count() > 0 ) {
 		iniPath = iniPaths[0].replace("~", QDir::homePath());
@@ -6667,9 +6667,9 @@ void MainWindow::loadYouTubeVideoInfoMap()
 				if ( viCounter++ % QMC2_YOUTUBE_VIDEO_INFO_RSP == 0 )
 					progressBarMachineList->setValue(curLen);
 				if ( !line.startsWith("#") ) {
-					QStringList tokens = line.split("\t");
+					QStringList tokens(line.split('\t'));
 					if ( tokens.count() > 2 )
-						qmc2YouTubeVideoInfoHash[tokens[0]] = YouTubeVideoInfo(tokens[2], tokens[1]);
+						qmc2YouTubeVideoInfoHash[tokens.at(0)] = YouTubeVideoInfo(tokens.at(2), tokens.at(1));
 				}
 			}
 			progressBarMachineList->reset();
@@ -6732,7 +6732,7 @@ void MainWindow::loadEmuInfoDB()
 
 void MainWindow::loadSoftwareInfoDB()
 {
-	QStringList pathList = QStringList() << qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString();
+	QStringList pathList(QStringList() << qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareInfoDB").toString());
 	if ( qmc2MachineList->datInfoDb()->softwareInfoImportRequired(pathList) ) {
 		qmc2LoadingSoftwareInfoDB = true;
 		qmc2Options->toolButtonImportSoftwareInfo->setEnabled(false);
@@ -7045,7 +7045,7 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool /*checked*/)
 
 void MainWindow::on_toolButtonAudioAddTracks_clicked()
 {
-	QStringList sl = QFileDialog::getOpenFileNames(this, tr("Select one or more audio files"), QString(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QStringList sl(QFileDialog::getOpenFileNames(this, tr("Select one or more audio files"), QString(), tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( sl.count() > 0 )
 		listWidgetAudioPlaylist->addItems(sl);
 }
@@ -9307,7 +9307,7 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 	else
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
 	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("[\\\\,\\.\\;\\:\\'\\/\\(\\)\\[\\]\\{\\}]"), " ").replace("&", "\%26").replace(" - ", " ").simplified().trimmed();
-	QStringList wordList(searchPattern.split(" ", QString::SkipEmptyParts));
+	QStringList wordList(searchPattern.split(' ', QString::SkipEmptyParts));
 	wordList.removeAll("<unknown>");
 	wordList.removeAll("<generic>");
 	wordList.removeDuplicates();
@@ -9492,7 +9492,7 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 	bool preOn = false;
 	bool codeOn = false;
 	int preCounter = 0;
-	QStringList wikiLines = wikiText.split("<p>");
+	QStringList wikiLines(wikiText.split("<p>"));
 	wikiText.clear();
 	foreach (QString wikiLine, wikiLines) {
 		QString wikiLineTrimmed = wikiLine.trimmed();
@@ -9548,7 +9548,7 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 		wikiLine.replace(QRegExp("\\[\\[wp>([^\\]]*)\\]\\]"), QLatin1String("\\1 -- http://en.wikipedia.org/wiki/\\1"));
 		foreach (QString snippet, wikiLine.split("[[")) {
 			if ( snippet.indexOf(QRegExp("\\]\\]|\\|")) > 0 ) {
-				QStringList subSnippets = snippet.split(QRegExp("\\]\\]|\\|"));
+				QStringList subSnippets(snippet.split(QRegExp("\\]\\]|\\|")));
 				wikiLine.replace(QString("[[%1]]").arg(snippet), subSnippets[0]);
 			}
 		}
