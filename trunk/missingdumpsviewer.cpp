@@ -37,7 +37,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 	QString storedPath;
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath") )
 		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath").toString();
-	QString dataFilePath = QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString dataFilePath(QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !dataFilePath.isNull() ) {
 		QFile dataFile(dataFilePath);
 		QFileInfo fi(dataFilePath);
@@ -72,10 +72,10 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 					qApp->processEvents();
 				}
 			}
-			QStringList dumpKeys = dumpMap.uniqueKeys();
+			QStringList dumpKeys(dumpMap.uniqueKeys());
 			progressBar->setRange(0, dumpKeys.count());
 			for (int i = 0; i < dumpKeys.count(); i++) {
-				QString id = dumpKeys[i];
+				QString id(dumpKeys.at(i));
 				if ( defaultEmulator() ) {
 					QString sourcefile, isbios, cloneof, romof, sampleof, description, year, manufacturer, merge;
 					QByteArray xmlDocument(ROMAlyzer::getXmlData(id, true).toUtf8());
