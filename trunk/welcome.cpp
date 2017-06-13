@@ -16,6 +16,7 @@
 #include "options.h"
 #include "romalyzer.h"
 #include "cryptedbytearray.h"
+#include "setupwizard.h"
 
 // external global variables
 extern QTranslator *qmc2Translator;
@@ -29,6 +30,9 @@ Welcome::Welcome(QWidget *parent)
 	hide();
 	if ( !checkConfig() ) {
 		setupUi(this);
+#if !defined(QMC2_WIP_ENABLED)
+		pushButtonRunSetupWizard->hide();
+#endif
 		comboBoxLanguage->blockSignals(true);
 		comboBoxLanguage->addItems(availableLanguages);
 		originalLanguage = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
@@ -115,6 +119,21 @@ void Welcome::on_pushButtonOkay_clicked()
 		emit accept();
 }
 
+void Welcome::on_pushButtonRunSetupWizard_clicked()
+{
+	SetupWizard wizard(startupConfig, this);
+	hide();
+	switch ( wizard.exec() ) {
+		case QDialog::Accepted:
+			emit accept();
+			break;
+		case QDialog::Rejected:
+		default:
+			emit reject();
+			break;
+	}
+}
+
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 {
 	QString s;
@@ -124,7 +143,7 @@ void Welcome::on_toolButtonBrowseExecutableFile_clicked()
 		QFileInfo fileInfo(comboBoxExecutableFile->lineEdit()->text());
 		s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absoluteFilePath(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	}
-	if ( !s.isEmpty() )
+	if ( !s.isNull() )
 		comboBoxExecutableFile->lineEdit()->setText(s);
 	raise();
 }
@@ -276,7 +295,7 @@ bool Welcome::checkConfig()
 					startupConfig->setValue("GUI/CheckSingleInstance", true);
 					break;
 				case 2: 
-					default:
+				default:
 					startupConfig->setValue("GUI/CheckSingleInstance", false);
 					break;
 			}

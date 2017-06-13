@@ -167,9 +167,8 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			ts << "</datafile>\n";
 			dataFile.close();
 			progressBar->hide();
-		} else {
+		} else
 			QMessageBox::critical(this, tr("Error"), tr("Can't open '%1' for writing!").arg(dataFilePath));
-		}
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath", dataFilePath);
 	}
 }

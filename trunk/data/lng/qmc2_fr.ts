@@ -17458,7 +17458,7 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../options.cpp" line="1816"/>
-        <location filename="../../welcome.cpp" line="40"/>
+        <location filename="../../welcome.cpp" line="44"/>
         <source>Default</source>
         <translation>Par défaut</translation>
     </message>
@@ -21259,6 +21259,14 @@ Are you sure you want to do this?</source>
     </message>
 </context>
 <context>
+    <name>SetupWizard</name>
+    <message>
+        <location filename="../../setupwizard.ui" line="14"/>
+        <source>QMC2 Setup Wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SevenZipFile</name>
     <message>
         <location filename="../../sevenzipfile.cpp" line="36"/>
@@ -23349,54 +23357,54 @@ Are you sure you want to do this?</source>
 <context>
     <name>Welcome</name>
     <message>
-        <location filename="../../welcome.cpp" line="107"/>
+        <location filename="../../welcome.cpp" line="111"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="113"/>
+        <location filename="../../welcome.cpp" line="117"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="113"/>
+        <location filename="../../welcome.cpp" line="117"/>
         <source>The specified file isn&apos;t executable!</source>
         <translation>Le fichier spécifié n&apos;est pas un exécutable !</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="122"/>
-        <location filename="../../welcome.cpp" line="125"/>
+        <location filename="../../welcome.cpp" line="141"/>
+        <location filename="../../welcome.cpp" line="144"/>
         <source>Choose emulator executable file</source>
         <translation>Choisir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="122"/>
-        <location filename="../../welcome.cpp" line="125"/>
+        <location filename="../../welcome.cpp" line="141"/>
+        <location filename="../../welcome.cpp" line="144"/>
         <source>All files (*)</source>
         <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="141"/>
+        <location filename="../../welcome.cpp" line="160"/>
         <source>Choose working directory</source>
         <translation>Choisir le dossier de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="149"/>
+        <location filename="../../welcome.cpp" line="168"/>
         <source>Choose ROM path</source>
         <translation>Choisir le chemin d&apos;accès aux ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="157"/>
+        <location filename="../../welcome.cpp" line="176"/>
         <source>Choose sample path</source>
         <translation>Choisir le chemin d&apos;accès aux échantillons sonores</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="165"/>
+        <location filename="../../welcome.cpp" line="184"/>
         <source>Choose hash path</source>
         <translation>Choisir le chemin d&apos;accès aux hachages</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="268"/>
+        <location filename="../../welcome.cpp" line="287"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -23412,27 +23420,37 @@ Quitter maintenant, accepter cette fois-ci ou ignorer complètement ?</translati
         <translation>Bienvenue dans QMC2</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="30"/>
+        <location filename="../../welcome.ui" line="178"/>
         <source>Browse sample path</source>
         <translation>Parcourir le répertoire d&apos;échantillons</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="195"/>
+        <location filename="../../welcome.ui" line="40"/>
         <source>Browse ROM path</source>
         <translation>Parcourir le répertoire de ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="251"/>
+        <location filename="../../welcome.ui" line="199"/>
+        <source>Configure QMC2 through the setup wizard...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="202"/>
+        <source>Alternatively, configure QMC2 through the setup wizard...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="239"/>
         <source>GUI style</source>
         <translation>Style de l&apos;interface graphique</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="326"/>
+        <location filename="../../welcome.ui" line="314"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="104"/>
+        <location filename="../../welcome.ui" line="81"/>
         <source>&lt;h1&gt;Welcome to QMC2!&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;&lt;p&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;&lt;p&gt;&lt;b&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</source>
         <translatorcomment>Cela semble être votre premier départ de QMC2 car aucune configuration valide n&apos;a été trouvé.
 Pour utiliser QMC2 comme un front end pour un émulateur, vous devez spécifier le chemin vers le fichier exécutable de l&apos;émulateur ci-dessous.
@@ -23441,97 +23459,97 @@ Il est fortement recommandé que vous spécifiez le chemin de ROM que vous allez
         <translation>&lt;h1&gt;Bienvenue dans QMC2 !&lt;/h1&gt;&lt;font size=&quot;+1&quot;&gt;&lt;p&gt;Il nous semble que vous démarrez QMC2 pour la première fois, car nous n&apos;avons pas trouvé de fichier de configuration valide. Afin de pouvoir utiliser QMC2 comme frontal d&apos;un émulateur, vous devez renseigner ci-dessous le chemin d&apos;accès à l&apos;exécutable de l&apos;émulateur.&lt;/p&gt;&lt;p&gt;Les autres chemins d&apos;accès sont facultatifs, mais vous devriez en renseigner maintenant autant que possible afin d&apos;éviter d&apos;éventuels problèmes plus tard (bien évidemment, vous pourrez modifier les chemins d&apos;accès dans la configuration globale de l&apos;émulateur à tout moment).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Nous vous recommandons vivement d&apos;au moins renseigner le chemin d&apos;accès vers le répertoire des ROM que vous comptez utiliser !&lt;/b&gt;&lt;/p&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="185"/>
+        <location filename="../../welcome.ui" line="189"/>
         <source>Hash path</source>
         <translation>Répertoire de hachage</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="120"/>
+        <location filename="../../welcome.ui" line="57"/>
         <source>Path to hash files</source>
         <translation>Chemin vers les fichiers de hachage</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="127"/>
+        <location filename="../../welcome.ui" line="64"/>
         <source>Browse hash path</source>
         <translation>Parcourir le répertoire de hachage</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="265"/>
+        <location filename="../../welcome.ui" line="253"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="258"/>
+        <location filename="../../welcome.ui" line="246"/>
         <source>&amp;Ok</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="54"/>
+        <location filename="../../welcome.ui" line="167"/>
         <source>Browse working directory</source>
         <translation>Parcourir le répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="47"/>
+        <location filename="../../welcome.ui" line="229"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Dossier de travail utilisé quand l&apos;émulateur est lancé (si vide, le dossier de travail actuel de QMC2 est alors utilisé)</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="175"/>
+        <location filename="../../welcome.ui" line="30"/>
         <source>Working directory</source>
         <translation>Dossier de travail</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="235"/>
+        <location filename="../../welcome.ui" line="131"/>
         <source>Emulator executable file</source>
         <translation>Fichier exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="164"/>
+        <location filename="../../welcome.ui" line="114"/>
         <source>Browse emulator executable file</source>
         <translation>Parcourir l&apos;exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="267"/>
+        <location filename="../../welcome.cpp" line="286"/>
         <source>Single-instance check</source>
         <translation>Vérification d&apos;instance unique</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="269"/>
+        <location filename="../../welcome.cpp" line="288"/>
         <source>&amp;Exit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="269"/>
+        <location filename="../../welcome.cpp" line="288"/>
         <source>&amp;Once</source>
         <translation>&amp;Une fois</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="269"/>
+        <location filename="../../welcome.cpp" line="288"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignorer</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="157"/>
+        <location filename="../../welcome.ui" line="97"/>
         <source>Path to ROM images</source>
         <translation>Chemin d&apos;accès aux images ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="222"/>
+        <location filename="../../welcome.ui" line="150"/>
         <source>Path to samples</source>
         <translation>Chemin d&apos;accès aux échantillons sonores</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="88"/>
+        <location filename="../../welcome.ui" line="157"/>
         <source>Emulator executable</source>
         <translation>Exécutable de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="65"/>
+        <location filename="../../welcome.ui" line="104"/>
         <source>ROM path</source>
         <translation>Chemin d&apos;accès aux ROM</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="206"/>
+        <location filename="../../welcome.ui" line="213"/>
         <source>Sample path</source>
         <translation>Chemin d&apos;accès aux échantillons sonores</translation>
     </message>
