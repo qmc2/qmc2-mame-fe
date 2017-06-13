@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>360</height>
+    <width>529</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <attribute name="pageId">
     <string notr="true">1</string>
    </attribute>
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridLayout1">
     <item row="3" column="2">
      <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
       <property name="toolTip">
@@ -114,14 +114,20 @@
   </widget>
   <widget class="QWizardPage" name="wizardPage2">
    <property name="title">
-    <string>Probe executable file</string>
+    <string>Probing executable file</string>
    </property>
    <attribute name="pageId">
     <string notr="true">2</string>
    </attribute>
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="gridLayout2">
     <item row="4" column="1">
      <widget class="QLabel" name="labelIdentifiedAsMameResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
        <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
@@ -132,7 +138,7 @@
       <property name="text">
        <string>&lt;font size=&quot;+1&quot;&gt;
 &lt;p&gt;The chosen emulator executable file is now probed to determine if QMC2 will be able to work with.&lt;/p&gt;
-&lt;p&gt;We recommend to continue only when the checks below all pass without warnings.&lt;/p&gt;
+&lt;p&gt;You can only continue when the checks below pass without errors.&lt;/p&gt;
 &lt;/font&gt;</string>
       </property>
       <property name="alignment">
@@ -145,6 +151,12 @@
     </item>
     <item row="5" column="1">
      <widget class="QLabel" name="labelVersionSupportedResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
        <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
@@ -159,6 +171,12 @@
     </item>
     <item row="3" column="1">
      <widget class="QLabel" name="labelFileIsExecutableResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
        <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
@@ -206,6 +224,12 @@
     </item>
     <item row="8" column="1">
      <widget class="QLabel" name="labelFileModificationDateResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
        <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
@@ -220,6 +244,12 @@
     </item>
     <item row="7" column="1">
      <widget class="QLabel" name="labelBinaryIdentHashResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
        <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
@@ -241,6 +271,12 @@
     </item>
     <item row="6" column="1">
      <widget class="QLabel" name="labelTotalMachinesResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
        <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
@@ -255,7 +291,7 @@
    <attribute name="pageId">
     <string notr="true">3</string>
    </attribute>
-   <layout class="QGridLayout" name="gridLayout_3">
+   <layout class="QGridLayout" name="gridLayout3">
     <item row="0" column="0">
      <widget class="Line" name="line3">
       <property name="orientation">
@@ -272,7 +308,7 @@
    <attribute name="pageId">
     <string notr="true">4</string>
    </attribute>
-   <layout class="QGridLayout" name="gridLayout_4">
+   <layout class="QGridLayout" name="gridLayout4">
     <item row="0" column="0">
      <widget class="Line" name="line4">
       <property name="orientation">
@@ -289,7 +325,7 @@
    <attribute name="pageId">
     <string notr="true">5</string>
    </attribute>
-   <layout class="QGridLayout" name="gridLayout_5">
+   <layout class="QGridLayout" name="gridLayout5">
     <item row="0" column="0">
      <widget class="Line" name="line5">
       <property name="orientation">
