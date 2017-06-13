@@ -3,7 +3,6 @@
 
 #include <QSettings>
 #include <QString>
-#include <QPalette>
 
 #include "ui_setupwizard.h"
 #include "macros.h"
@@ -42,9 +41,11 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 	private:
 		QSettings *m_startupConfig;
 		QString m_mameIniPath;
-		QPalette m_greenPalette;
-		QPalette m_redPalette;
-		QPalette m_yellowPalette;
+		QString m_listfullSha1;
+		int m_minRequiredMameVersionMinor;
+		int m_minRequiredMameVersionMajor;
+		int m_totalMachines;
+		int m_modificationTime;
 };
 
 #endif
