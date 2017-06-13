@@ -6,16 +6,298 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>500</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QMC2 Setup Wizard</string>
   </property>
-  <widget class="QWizardPage" name="wizardPage1"/>
-  <widget class="QWizardPage" name="wizardPage2"/>
+  <widget class="QWizardPage" name="wizardPage1">
+   <property name="title">
+    <string>Choose the emulator's executable file</string>
+   </property>
+   <property name="subTitle">
+    <string/>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">1</string>
+   </attribute>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="3" column="2">
+     <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
+      <property name="toolTip">
+       <string>Browse emulator executable file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QLabel" name="label1">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;
+&lt;p&gt;In order to use QMC2 as a front end for an emulator, it needs to know the path to the emulator's executable file which you specify below.&lt;/p&gt;
+&lt;p&gt;QMC2 supports official MAME and a number of its derivates. Therefore, the chosen file will be probed when clicking &lt;i&gt;Next&lt;/i&gt;.&lt;/p&gt;
+&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <spacer name="verticalSpacer1">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelExecutableFile">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Emulator executable file&lt;/font&gt;</string>
+      </property>
+      <property name="indent">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QComboBox" name="comboBoxExecutableFile">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Emulator executable file</string>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="insertPolicy">
+       <enum>QComboBox::InsertAlphabetically</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="Line" name="line1">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWizardPage" name="wizardPage2">
+   <property name="title">
+    <string>Probe executable file</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">2</string>
+   </attribute>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="4" column="1">
+     <widget class="QLabel" name="labelIdentifiedAsMameResult">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QLabel" name="label2">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;
+&lt;p&gt;The chosen emulator executable file is now probed to determine if QMC2 will be able to work with.&lt;/p&gt;
+&lt;p&gt;We recommend to continue only when the checks below all pass without warnings.&lt;/p&gt;
+&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="labelVersionSupportedResult">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelIdentifiedAsMame">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Identified as being MAME(-like)?&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="labelFileIsExecutableResult">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="labelVersionSupported">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Version is supported?&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <spacer name="verticalSpacer2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>473</width>
+        <height>89</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="Line" name="line2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelFileIsExecutable">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;File is executable?&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QLabel" name="labelFileModificationDateResult">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="labelBinaryIdentHash">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Binary identifier hash:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLabel" name="labelBinaryIdentHashResult">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="labelFileModificationDate">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;File modification date:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="labelTotalMachines">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Supported non-device systems:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="labelTotalMachinesResult">
+      <property name="text">
+       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWizardPage" name="wizardPage3">
+   <property name="title">
+    <string>Import emulator settings from mame.ini</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">3</string>
+   </attribute>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <widget class="Line" name="line3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWizardPage" name="wizardPage4">
+   <property name="title">
+    <string>Adjust important search paths</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">4</string>
+   </attribute>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="Line" name="line4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWizardPage" name="wizardPage5">
+   <property name="title">
+    <string>Setup complete</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">5</string>
+   </attribute>
+   <layout class="QGridLayout" name="gridLayout_5">
+    <item row="0" column="0">
+     <widget class="Line" name="line5">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
  <connections/>
 </ui>
