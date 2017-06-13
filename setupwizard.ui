@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>QMC2 Setup Wizard</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="qmc2.qrc">
+    <normaloff>:/data/img/wizard.png</normaloff>:/data/img/wizard.png</iconset>
+  </property>
   <widget class="QWizardPage" name="wizardPage1">
    <property name="title">
     <string>Choose the emulator's executable file</string>
@@ -119,7 +123,7 @@
     <item row="4" column="1">
      <widget class="QLabel" name="labelIdentifiedAsMameResult">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
@@ -142,7 +146,7 @@
     <item row="5" column="1">
      <widget class="QLabel" name="labelVersionSupportedResult">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
@@ -156,7 +160,7 @@
     <item row="3" column="1">
      <widget class="QLabel" name="labelFileIsExecutableResult">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
@@ -203,7 +207,7 @@
     <item row="8" column="1">
      <widget class="QLabel" name="labelFileModificationDateResult">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
@@ -217,7 +221,7 @@
     <item row="7" column="1">
      <widget class="QLabel" name="labelBinaryIdentHashResult">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
@@ -238,7 +242,7 @@
     <item row="6" column="1">
      <widget class="QLabel" name="labelTotalMachinesResult">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
@@ -296,6 +300,10 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>comboBoxExecutableFile</tabstop>
+  <tabstop>toolButtonBrowseExecutableFile</tabstop>
+ </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
