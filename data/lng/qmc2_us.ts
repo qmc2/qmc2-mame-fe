@@ -13328,23 +13328,33 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Choose data file to export to</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Data files (*.dat)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>All files (*)</source>
         <translation>All files (*)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="59"/>
+        <location filename="../../missingdumpsviewer.cpp" line="60"/>
         <source>Created by QMC2 v%1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Error</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Can&apos;t open &apos;%1&apos; for writing!</source>
         <translation></translation>
     </message>
 </context>

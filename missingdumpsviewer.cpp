@@ -8,6 +8,7 @@
 #include <QBuffer>
 #include <QXmlQuery>
 #include <QMultiMap>
+#include <QMessageBox>
 
 #include "missingdumpsviewer.h"
 #include "romalyzer.h"
@@ -18,11 +19,11 @@
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
 
-MissingDumpsViewer::MissingDumpsViewer(QString settingsKey, QWidget *parent)
+MissingDumpsViewer::MissingDumpsViewer(QString settingsKey, QWidget *parent) :
 #if defined(QMC2_OS_WIN)
-	: QDialog(parent, Qt::Dialog)
+	QDialog(parent, Qt::Dialog)
 #else
-	: QDialog(parent, Qt::Dialog | Qt::SubWindow)
+	QDialog(parent, Qt::Dialog | Qt::SubWindow)
 #endif
 {
 	m_settingsKey = settingsKey;
@@ -58,7 +59,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			ts << "\t\t<url></url>\n";
 			ts << "\t\t<comment>" << tr("Created by QMC2 v%1").arg(XSTR(QMC2_VERSION)) << "</comment>\n";
 			ts << "\t</header>\n";
-			QString mainEntityName = "machine";
+			QString mainEntityName("machine");
 			QMultiMap<QString, DumpRecord *> dumpMap;
 			progressBar->show();
 			progressBar->setRange(0, treeWidget->topLevelItemCount());
@@ -167,7 +168,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			dataFile.close();
 			progressBar->hide();
 		} else {
-			// FIXME "file error"
+			QMessageBox::critical(this, tr("Error"), tr("Can't open '%1' for writing!").arg(dataFilePath));
 		}
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath", dataFilePath);
 	}
