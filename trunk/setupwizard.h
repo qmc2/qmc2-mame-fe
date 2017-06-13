@@ -3,8 +3,10 @@
 
 #include <QSettings>
 #include <QString>
+#include <QPalette>
 
 #include "ui_setupwizard.h"
+#include "macros.h"
 
 #define QMC2_SETUPWIZARD_PAGE_ID_CHOOSE_EXECUTABLE		1
 #define QMC2_SETUPWIZARD_PAGE_ID_PROBE_EXECUTABLE		2
@@ -20,16 +22,29 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		SetupWizard(QSettings *cfg, QWidget *parent = 0);
 
 		QString &findMameIni();
+#if defined(QMC2_OS_MAC)
+		bool useNativeFileDialogs() { return m_startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool(); }
+#else
+		bool useNativeFileDialogs() { return m_startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
+#endif
 
 	public slots:
+		void init();
+		void probeExecutable();
+		void comboBoxExecutableFile_textChanged(const QString &text);
+		void on_toolButtonBrowseExecutableFile_clicked();
 
 	protected:
 		int nextId() const;
+		void initializePage(int id);
 		bool validateCurrentPage();
 
 	private:
 		QSettings *m_startupConfig;
 		QString m_mameIniPath;
+		QPalette m_greenPalette;
+		QPalette m_redPalette;
+		QPalette m_yellowPalette;
 };
 
 #endif
