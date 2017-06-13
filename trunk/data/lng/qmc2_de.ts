@@ -13343,24 +13343,34 @@ Bitte die &apos;rompath&apos; Option in den globalen Emulator Einstellungen übe
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Choose data file to export to</source>
         <translation>Data-Datei für den Export auswählen</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Data files (*.dat)</source>
         <translation>Data Dateien (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="59"/>
+        <location filename="../../missingdumpsviewer.cpp" line="60"/>
         <source>Created by QMC2 v%1</source>
         <translation>Erzeugt durch QMC2 v%1</translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Can&apos;t open &apos;%1&apos; for writing!</source>
+        <translation>Kann &apos;%1&apos; nicht zum Schreiben öffnen!</translation>
     </message>
 </context>
 <context>

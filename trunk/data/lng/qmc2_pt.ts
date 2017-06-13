@@ -13362,24 +13362,34 @@ Tentar novamente?</translation>
         <translation>Fechar</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Choose data file to export to</source>
         <translation>Escolhar arquivo de dados para exportar</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Data files (*.dat)</source>
         <translation>Arquivos de dados (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>All files (*)</source>
         <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="59"/>
+        <location filename="../../missingdumpsviewer.cpp" line="60"/>
         <source>Created by QMC2 v%1</source>
         <translation>Criado por QMC2 v%1</translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Can&apos;t open &apos;%1&apos; for writing!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

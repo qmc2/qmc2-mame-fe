@@ -13398,23 +13398,33 @@ Ponowić próbę osadzania?</translation>
         <translation type="unfinished">Zamknij</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Choose data file to export to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Data files (*.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>All files (*)</source>
         <translation type="unfinished">Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="59"/>
+        <location filename="../../missingdumpsviewer.cpp" line="60"/>
         <source>Created by QMC2 v%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished">Błąd</translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Can&apos;t open &apos;%1&apos; for writing!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

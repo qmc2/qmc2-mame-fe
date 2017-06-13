@@ -13359,24 +13359,34 @@ Por favor, revisa la opción &apos;rompath&apos; en la configuración global del
         <translation type="unfinished">Cerrar</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Choose data file to export to</source>
         <translation type="unfinished">Seleccionar archivo de datos al que exportar</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>Data files (*.dat)</source>
         <translation type="unfinished">Archivos de datos (*.dat)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="40"/>
+        <location filename="../../missingdumpsviewer.cpp" line="41"/>
         <source>All files (*)</source>
         <translation type="unfinished">Todos los archivos (*)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="59"/>
+        <location filename="../../missingdumpsviewer.cpp" line="60"/>
         <source>Created by QMC2 v%1</source>
         <translation type="unfinished">Creado por QMC2 v%1</translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../missingdumpsviewer.cpp" line="171"/>
+        <source>Can&apos;t open &apos;%1&apos; for writing!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
