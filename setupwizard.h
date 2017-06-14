@@ -5,6 +5,7 @@
 #include <QString>
 
 #include "ui_setupwizard.h"
+#include "clickablelabel.h"
 #include "macros.h"
 
 #define QMC2_SETUPWIZARD_PAGE_ID_CHOOSE_EXECUTABLE		1
@@ -32,6 +33,10 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		void init();
 		void probeExecutable();
 		void comboBoxExecutableFile_textChanged(const QString &text);
+		void labelImportMameIni_clicked() { radioButtonImportMameIni->click(); }
+		void labelImportUiIni_clicked() { radioButtonImportUiIni->click(); }
+		void labelImportBothInis_clicked() { radioButtonImportBothInis->click(); }
+		void labelImportNothing_clicked() { radioButtonImportNothing->click(); }
 		void on_toolButtonBrowseExecutableFile_clicked();
 
 	protected:
@@ -49,6 +54,10 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		int m_minRequiredMameVersionMajor;
 		int m_totalMachines;
 		int m_modificationTime;
+		ClickableLabel *m_labelImportMameIni;
+		ClickableLabel *m_labelImportUiIni;
+		ClickableLabel *m_labelImportBothInis;
+		ClickableLabel *m_labelImportNothing;
 };
 
 #endif

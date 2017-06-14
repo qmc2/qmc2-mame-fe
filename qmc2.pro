@@ -164,6 +164,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			manualscanner.cpp \
 			rompathcleaner.cpp \
 			setupwizard.cpp \
+			clickablelabel.cpp \
 			htmleditor/htmleditor.cpp \
 			htmleditor/highlighter.cpp \
 			lzma/7zAlloc.c \
@@ -288,6 +289,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			dbcolumninfo.h \
 			rompathcleaner.h \
 			setupwizard.h \
+			clickablelabel.h \
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h \
 			arcade/keysequences.h

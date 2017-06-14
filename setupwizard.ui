@@ -228,7 +228,7 @@
      <widget class="QLabel" name="label2">
       <property name="text">
        <string>&lt;font size=&quot;4&quot;&gt;
-&lt;p&gt;The chosen emulator executable file is now probed to determine if QMC2 will be able to work with.&lt;/p&gt;
+&lt;p&gt;The chosen emulator executable file is now probed to determine if QMC2 will be able to work with it.&lt;/p&gt;
 &lt;p&gt;You can only continue when the checks below pass without errors.&lt;/p&gt;
 &lt;/font&gt;</string>
       </property>
@@ -345,46 +345,10 @@
     <string notr="true">3</string>
    </attribute>
    <layout class="QGridLayout" name="gridLayout3">
-    <item row="2" column="0" colspan="2">
-     <widget class="QLabel" name="spacerLabel3"/>
-    </item>
-    <item row="7" column="0">
-     <widget class="QRadioButton" name="radioButtonImportNothing">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QRadioButton" name="radioButtonImportMameIni">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QRadioButton" name="radioButtonImportUiIni">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QRadioButton" name="radioButtonImportBothInis">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+    <item row="0" column="0" colspan="2">
+     <widget class="Line" name="line3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
@@ -404,10 +368,13 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="Line" name="line3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="3" column="0">
+     <widget class="QRadioButton" name="radioButtonImportMameIni">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>
@@ -418,28 +385,58 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
-     <widget class="QLabel" name="labelImportNothing">
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;4&quot;&gt;Import nothing&lt;/font&gt;</string>
+    <item row="4" column="0">
+     <widget class="QRadioButton" name="radioButtonImportUiIni">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="4" column="1">
      <widget class="QLabel" name="labelImportUiIni">
       <property name="text">
        <string notr="true">&lt;font size=&quot;4&quot;&gt;Import front-end settings from ui.ini&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
+    <item row="5" column="0">
+     <widget class="QRadioButton" name="radioButtonImportBothInis">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
      <widget class="QLabel" name="labelImportBothInis">
       <property name="text">
        <string notr="true">&lt;font size=&quot;4&quot;&gt;Import both emulator and front-end settings&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="0" colspan="2">
+    <item row="6" column="0">
+     <widget class="QRadioButton" name="radioButtonImportNothing">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="labelImportNothing">
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Import nothing&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0" colspan="2">
      <spacer name="verticalSpacer3">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -451,6 +448,9 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QLabel" name="spacerLabel3"/>
     </item>
    </layout>
   </widget>
