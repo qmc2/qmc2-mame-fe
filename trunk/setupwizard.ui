@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
-    <height>383</height>
+    <width>550</width>
+    <height>400</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>550</width>
+    <height>400</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>QMC2 Setup Wizard</string>
@@ -28,21 +34,20 @@
     <string notr="true">1</string>
    </attribute>
    <layout class="QGridLayout" name="gridLayout1">
-    <item row="3" column="2">
-     <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
-      <property name="toolTip">
-       <string>Browse emulator executable file</string>
-      </property>
-      <property name="icon">
-       <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+    <item row="2" column="0" colspan="4">
+     <widget class="QLabel" name="spacerLabel1"/>
+    </item>
+    <item row="0" column="0" colspan="4">
+     <widget class="Line" name="line1">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
-    <item row="1" column="0" colspan="3">
+    <item row="1" column="0" colspan="4">
      <widget class="QLabel" name="label1">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;
+       <string>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;In order to use QMC2 as a front end for an emulator, it needs to know the path to the emulator's executable file which you specify below.&lt;/p&gt;
 &lt;p&gt;QMC2 supports official MAME and a number of its derivates. Therefore, the chosen file will be probed when clicking &lt;i&gt;Next&lt;/i&gt;.&lt;/p&gt;
 &lt;/font&gt;</string>
@@ -55,7 +60,47 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="3">
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelExecutableFile">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Emulator executable file&lt;/font&gt;</string>
+      </property>
+      <property name="indent">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" colspan="2">
+     <widget class="QComboBox" name="comboBoxExecutableFile">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="insertPolicy">
+       <enum>QComboBox::InsertAlphabetically</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="4">
      <spacer name="verticalSpacer1">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -68,48 +113,6 @@
       </property>
      </spacer>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="labelExecutableFile">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Emulator executable file&lt;/font&gt;</string>
-      </property>
-      <property name="indent">
-       <number>2</number>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QComboBox" name="comboBoxExecutableFile">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="toolTip">
-       <string>Emulator executable file</string>
-      </property>
-      <property name="editable">
-       <bool>true</bool>
-      </property>
-      <property name="insertPolicy">
-       <enum>QComboBox::InsertAlphabetically</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="3">
-     <widget class="Line" name="line1">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QWizardPage" name="wizardPage2">
@@ -120,15 +123,36 @@
     <string notr="true">2</string>
    </attribute>
    <layout class="QGridLayout" name="gridLayout2">
-    <item row="9" column="0">
-     <widget class="QLabel" name="labelEmulatorIniFileLocation">
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelIdentifiedAsMame">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Emulator ini-file location:&lt;/font&gt;</string>
+       <string>&lt;font size=&quot;4&quot;&gt;Identified as being MAME(-like)?&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="labelTotalMachinesResult">
+    <item row="7" column="0">
+     <widget class="QLabel" name="labelBinaryIdentHash">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Binary identifier hash:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="labelVersionSupported">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Version is supported?&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="Line" name="line2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QLabel" name="labelBinaryIdentHashResult">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -136,11 +160,58 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="9" column="0">
+     <widget class="QLabel" name="labelEmulatorIniFileLocation">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Emulator ini-file location:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2">
+     <widget class="QLabel" name="labelFileModificationDateResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="labelFileModificationDate">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;File modification date:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="2">
+     <widget class="QLabel" name="labelFrontendIniFileLocationResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="labelTotalMachines">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Supported non-device systems:&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
      <widget class="QLabel" name="labelFileIsExecutableResult">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -149,48 +220,14 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="labelFileIsExecutable">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;File is executable?&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="Line" name="line2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="labelFileModificationDate">
-      <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;File modification date:&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="labelVersionSupported">
-      <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Version is supported?&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
+    <item row="1" column="0" colspan="3">
      <widget class="QLabel" name="label2">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;
+       <string>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The chosen emulator executable file is now probed to determine if QMC2 will be able to work with.&lt;/p&gt;
 &lt;p&gt;You can only continue when the checks below pass without errors.&lt;/p&gt;
 &lt;/font&gt;</string>
@@ -203,40 +240,7 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
-     <widget class="QLabel" name="labelFileModificationDateResult">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="labelTotalMachines">
-      <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Supported non-device systems:&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="QLabel" name="labelEmulatorIniFileLocationResult">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
+    <item row="5" column="2">
      <widget class="QLabel" name="labelVersionSupportedResult">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -245,19 +249,25 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="labelIdentifiedAsMame">
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelFileIsExecutable">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Identified as being MAME(-like)?&lt;/font&gt;</string>
+       <string>&lt;font size=&quot;4&quot;&gt;File is executable?&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
-     <widget class="QLabel" name="labelBinaryIdentHashResult">
+    <item row="9" column="2">
+     <widget class="QLabel" name="labelEmulatorIniFileLocationResult">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -265,31 +275,31 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="labelBinaryIdentHash">
+    <item row="6" column="2">
+     <widget class="QLabel" name="labelTotalMachinesResult">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Binary identifier hash:&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
-     <spacer name="verticalSpacer2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+    <item row="10" column="0">
+     <widget class="QLabel" name="labelFrontendIniFileLocation">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Front-end ini-file location:&lt;/font&gt;</string>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
+     </widget>
     </item>
-    <item row="4" column="1">
+    <item row="4" column="2">
      <widget class="QLabel" name="labelIdentifiedAsMameResult">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -298,27 +308,30 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Check result pending...&lt;/font&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="labelFrontendIniFileLocation">
-      <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;Front-end ini-file location:&lt;/font&gt;</string>
-      </property>
-     </widget>
+    <item row="2" column="0" colspan="3">
+     <widget class="QLabel" name="spacerLabel2_1"/>
     </item>
-    <item row="10" column="1">
-     <widget class="QLabel" name="labelFrontendIniFileLocationResult">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+    <item row="11" column="0" colspan="3">
+     <spacer name="verticalSpacer2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="spacerLabel2_2">
       <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Check result pending...&lt;/font&gt;</string>
+       <string notr="true"/>
       </property>
      </widget>
     </item>
@@ -332,25 +345,8 @@
     <string notr="true">3</string>
    </attribute>
    <layout class="QGridLayout" name="gridLayout3">
-    <item row="5" column="0">
-     <widget class="QRadioButton" name="radioButtonImportUiIni">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QRadioButton" name="radioButtonImportBothInis">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
+    <item row="2" column="0" colspan="2">
+     <widget class="QLabel" name="spacerLabel3"/>
     </item>
     <item row="7" column="0">
      <widget class="QRadioButton" name="radioButtonImportNothing">
@@ -372,32 +368,31 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QLabel" name="labelImportMameIni">
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Import emulator settings from mame.ini&lt;/font&gt;</string>
+    <item row="5" column="0">
+     <widget class="QRadioButton" name="radioButtonImportUiIni">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="labelImportUiIni">
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Import front-end settings from ui.ini&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="labelImportBothInis">
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Import both emulator and front-end settings&lt;/font&gt;</string>
+    <item row="6" column="0">
+     <widget class="QRadioButton" name="radioButtonImportBothInis">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
      <widget class="QLabel" name="label3">
       <property name="text">
-       <string>&lt;font size=&quot;+1&quot;&gt;
-&lt;p&gt;One or more ini-file were found in the previous step that can be used to import emulator and/or front-end settings. Decide below what should be done.&lt;/p&gt;
+       <string>&lt;font size=&quot;4&quot;&gt;
+&lt;p&gt;One or more ini-files were found in the previous step that can be used to import emulator and/or front-end settings. Decide below what should be done.&lt;/p&gt;
 &lt;p&gt;You will be able to edit the most relevant emulator settings after this.&lt;/p&gt;
 &lt;/font&gt;</string>
       </property>
@@ -416,8 +411,36 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
-     <spacer name="verticalSpacer">
+    <item row="3" column="1">
+     <widget class="QLabel" name="labelImportMameIni">
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Import emulator settings from mame.ini&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLabel" name="labelImportNothing">
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Import nothing&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="labelImportUiIni">
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Import front-end settings from ui.ini&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="labelImportBothInis">
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;Import both emulator and front-end settings&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="2">
+     <spacer name="verticalSpacer3">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -429,13 +452,6 @@
       </property>
      </spacer>
     </item>
-    <item row="7" column="1">
-     <widget class="QLabel" name="labelImportNothing">
-      <property name="text">
-       <string notr="true">&lt;font size=&quot;+1&quot;&gt;Import nothing&lt;/font&gt;</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QWizardPage" name="wizardPage4">
@@ -446,12 +462,37 @@
     <string notr="true">4</string>
    </attribute>
    <layout class="QGridLayout" name="gridLayout4">
+    <item row="3" column="0">
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label5_2">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;
+&lt;p&gt;The chosen ini-files are now imported (please see the log below for details). You can proceed as soon as the import is done, regardless of possible errors.&lt;/p&gt;
+&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="Line" name="line4">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="spacerLabel4"/>
     </item>
    </layout>
   </widget>
@@ -463,12 +504,156 @@
     <string notr="true">5</string>
    </attribute>
    <layout class="QGridLayout" name="gridLayout5">
-    <item row="0" column="0">
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelWorkingDirectory">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Working directory&lt;/font&gt;</string>
+      </property>
+      <property name="indent">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QToolButton" name="toolButtonBrowseROMPath">
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="lineEditWorkingDirectory">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="labelSamplePath">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Sample path&lt;/font&gt;</string>
+      </property>
+      <property name="indent">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLineEdit" name="lineEditHashPath">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="lineEditSamplePath">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="labelHashPath">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Hash path&lt;/font&gt;</string>
+      </property>
+      <property name="indent">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QLabel" name="label5">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;
+&lt;p&gt;The settings below are actually optional, but you should specify as many of them as you can right now (of course, you can change these settings at any time later as well).&lt;/p&gt;
+&lt;p&gt;If the &lt;i&gt;working directory&lt;/i&gt; is not the base path to a standard installation (i.e. from an official MAME build) or your &lt;i&gt;ROM path&lt;/i&gt; doesn't follow standard conventions, we &lt;b&gt;strongly recommend&lt;/b&gt; that you specify the ROM path at least!&lt;/p&gt;
+&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QToolButton" name="toolButtonBrowseHashPath">
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="lineEditROMPath">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="labelROMPath">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;ROM path&lt;/font&gt;</string>
+      </property>
+      <property name="indent">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
      <widget class="Line" name="line5">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QToolButton" name="toolButtonBrowseSamplePath">
+      <property name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="3">
+     <spacer name="verticalSpacer5">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="QLabel" name="spacerLabel5"/>
     </item>
    </layout>
   </widget>
@@ -487,6 +672,22 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label6">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;
+&lt;p&gt;The basic setup is now complete and all settings have been stored!&lt;/p&gt;
+&lt;p&gt;QMC2's main GUI will be launched when you click &lt;i&gt;Finish&lt;/i&gt;.&lt;/p&gt;
+&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
@@ -497,6 +698,15 @@
   <tabstop>radioButtonImportUiIni</tabstop>
   <tabstop>radioButtonImportBothInis</tabstop>
   <tabstop>radioButtonImportNothing</tabstop>
+  <tabstop>plainTextEdit</tabstop>
+  <tabstop>lineEditWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseWorkingDirectory</tabstop>
+  <tabstop>lineEditROMPath</tabstop>
+  <tabstop>toolButtonBrowseROMPath</tabstop>
+  <tabstop>lineEditSamplePath</tabstop>
+  <tabstop>toolButtonBrowseSamplePath</tabstop>
+  <tabstop>lineEditHashPath</tabstop>
+  <tabstop>toolButtonBrowseHashPath</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
