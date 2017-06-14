@@ -9,9 +9,10 @@
 
 #define QMC2_SETUPWIZARD_PAGE_ID_CHOOSE_EXECUTABLE		1
 #define QMC2_SETUPWIZARD_PAGE_ID_PROBE_EXECUTABLE		2
-#define QMC2_SETUPWIZARD_PAGE_ID_IMPORT_MAME_INI		3
-#define QMC2_SETUPWIZARD_PAGE_ID_ADJUST_SEARCH_PATHS		4
-#define QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE			5
+#define QMC2_SETUPWIZARD_PAGE_ID_IMPORT_INI_FILES		3
+#define QMC2_SETUPWIZARD_PAGE_ID_IMPORTING_INI_FILES		4
+#define QMC2_SETUPWIZARD_PAGE_ID_ADJUST_SETTINGS		5
+#define QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE			6
 
 class SetupWizard : public QWizard, public Ui::SetupWizard
 {
@@ -20,12 +21,12 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
        	public:
 		SetupWizard(QSettings *cfg, QWidget *parent = 0);
 
-		QString &findMameIni();
 #if defined(QMC2_OS_MAC)
 		bool useNativeFileDialogs() { return m_startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool(); }
 #else
 		bool useNativeFileDialogs() { return m_startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", false).toBool(); }
 #endif
+		bool findIniFiles();
 
 	public slots:
 		void init();
@@ -40,8 +41,10 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 
 	private:
 		QSettings *m_startupConfig;
-		QString m_mameIniPath;
+		QString m_emulatorIniPath;
+		QString m_frontendIniPath;
 		QString m_listfullSha1;
+		QString m_emuConfigName;
 		int m_minRequiredMameVersionMinor;
 		int m_minRequiredMameVersionMajor;
 		int m_totalMachines;
