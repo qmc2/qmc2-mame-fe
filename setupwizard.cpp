@@ -22,6 +22,7 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	m_modificationTime(-1)
 {
 	setupUi(this);
+	adjustSize();
 	connect(comboBoxExecutableFile->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxExecutableFile_textChanged(const QString &)));
 	QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -52,7 +53,7 @@ void SetupWizard::probeExecutable()
 	m_emuConfigName.clear();
 	QFileInfo fi(comboBoxExecutableFile->currentText());
 	if ( fi.isReadable() && fi.isExecutable() ) {
-		labelFileIsExecutableResult->setText("<font color=\"green\" size=\"+1\"><b>" + tr("Yes") + "</b></font>");
+		labelFileIsExecutableResult->setText("<font color=\"green\" size=\"4\"><b>" + tr("Yes") + "</b></font>");
 		QStringList emulatorIdentifiers, emulatorConfigNames;
 		emulatorIdentifiers << "MAME" << "M.A.M.E." << "HBMAME" << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
 		emulatorConfigNames << "mame" << "mame" << "hbmame" << "hbmame" << "mess" << "mess";
@@ -81,18 +82,18 @@ void SetupWizard::probeExecutable()
 				QStringList versionWords(versionLines.first().split(' '));
 				if ( versionWords.count() > 1 ) {
 					if ( emulatorIdentifiers.contains(versionWords.first()) ) {
-						labelIdentifiedAsMameResult->setText("<font color=\"green\" size=\"+1\"><b>" + tr("Yes") + " (" + versionWords.first() + ")</b></font>");
+						labelIdentifiedAsMameResult->setText("<font color=\"green\" size=\"4\"><b>" + tr("Yes") + " (" + versionWords.first() + ")</b></font>");
 						m_emuConfigName = emulatorConfigNames.at(emulatorIdentifiers.indexOf(versionWords.first()));
 						QStringList emulatorVersionInfo(versionWords[1].remove('v').split('.'));
 						if ( emulatorVersionInfo.count() > 1 ) {
 							int verMinor = emulatorVersionInfo.at(0).toInt();
 							int verMajor = emulatorVersionInfo.at(1).toInt();
 							if ( verMinor >= m_minRequiredMameVersionMinor && verMajor >= m_minRequiredMameVersionMajor )
-								labelVersionSupportedResult->setText("<font color=\"green\" size=\"+1\"><b>" + tr("Yes") + " (" + versionWords.at(1) + ")</b></font>");
+								labelVersionSupportedResult->setText("<font color=\"green\" size=\"4\"><b>" + tr("Yes") + " (" + versionWords.at(1) + ")</b></font>");
 							else
-								labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No") + " (" + versionWords.at(1) + ", " + tr("%1.%2+ required").arg(m_minRequiredMameVersionMinor).arg(m_minRequiredMameVersionMajor) + ")</b></font>");
+								labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No") + " (" + versionWords.at(1) + ", " + tr("%1.%2+ required").arg(m_minRequiredMameVersionMinor).arg(m_minRequiredMameVersionMajor) + ")</b></font>");
 						} else
-							labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("Unknown") + " (" + tr("can't parse version info") + ")</b></font>");
+							labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("Unknown") + " (" + tr("can't parse version info") + ")</b></font>");
 						commandProcStarted = false;
 						retries = 0;
 						commandProc.start(comboBoxExecutableFile->currentText(), QStringList() << "-listfull");
@@ -114,77 +115,77 @@ void SetupWizard::probeExecutable()
 								m_totalMachines = lfOutput.count('\n') - 1;
 								sha1.addData(lfOutput.toUtf8().constData());
 								m_listfullSha1 = sha1.result().toHex();
-								labelTotalMachinesResult->setText("<font color=\"green\" size=\"+1\"><b>" + QString::number(m_totalMachines) + "</b></font>");
-								labelBinaryIdentHashResult->setText("<font color=\"green\" size=\"+1\"><b>" + m_listfullSha1 + "</b></font>");
+								labelTotalMachinesResult->setText("<font color=\"green\" size=\"4\"><b>" + QString::number(m_totalMachines) + "</b></font>");
+								labelBinaryIdentHashResult->setText("<font color=\"green\" size=\"4\"><b>" + m_listfullSha1 + "</b></font>");
 							} else {
-								labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
-								labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
+								labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
+								labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
 							}
 						} else {
-							labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
-							labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
+							labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
+							labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("Unknown") + " (" + tr("emulator didn't start") + "</b></font>");
 						}
 						m_modificationTime = fi.lastModified().toTime_t();
-						labelFileModificationDateResult->setText("<font color=\"green\" size=\"+1\"><b>" + fi.lastModified().toString(Qt::SystemLocaleShortDate) + "</b></font>");
+						labelFileModificationDateResult->setText("<font color=\"green\" size=\"4\"><b>" + fi.lastModified().toString(Qt::SystemLocaleShortDate) + "</b></font>");
 						if ( findIniFiles() ) {
 							if ( m_emulatorIniPath.isEmpty() )
-								labelEmulatorIniFileLocationResult->setText("<font color=\"green\" size=\"+1\"><b>" + tr("No ini-file found") + "</b></font>");
+								labelEmulatorIniFileLocationResult->setText("<font color=\"green\" size=\"4\"><b>" + tr("No ini-file found") + "</b></font>");
 							else
-								labelEmulatorIniFileLocationResult->setText("<font color=\"green\" size=\"+1\"><b>" + m_emulatorIniPath + "</b></font>");
+								labelEmulatorIniFileLocationResult->setText("<font color=\"green\" size=\"4\"><b>" + m_emulatorIniPath + "</b></font>");
 							if ( m_frontendIniPath.isEmpty() )
-								labelFrontendIniFileLocationResult->setText("<font color=\"green\" size=\"+1\"><b>" + tr("No ini-file found") + "</b></font>");
+								labelFrontendIniFileLocationResult->setText("<font color=\"green\" size=\"4\"><b>" + tr("No ini-file found") + "</b></font>");
 							else
-								labelFrontendIniFileLocationResult->setText("<font color=\"green\" size=\"+1\"><b>" + m_frontendIniPath + "</b></font>");
+								labelFrontendIniFileLocationResult->setText("<font color=\"green\" size=\"4\"><b>" + m_frontendIniPath + "</b></font>");
 							button(QWizard::NextButton)->setEnabled(true);
 						} else {
-							labelEmulatorIniFileLocation->setText("<font color=\"red\" size=\"+1\"><b>" + tr("Couldn't determine ini-path") + "</b></font>");
-							labelFrontendIniFileLocation->setText("<font color=\"red\" size=\"+1\"><b>" + tr("Couldn't determine ini-path") + "</b></font>");
+							labelEmulatorIniFileLocation->setText("<font color=\"red\" size=\"4\"><b>" + tr("Couldn't determine ini-path") + "</b></font>");
+							labelFrontendIniFileLocation->setText("<font color=\"red\" size=\"4\"><b>" + tr("Couldn't determine ini-path") + "</b></font>");
 						}
 					} else {
-						labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"+1\"><b>" + tr("No") + " (" + tr("incompatible binary") + ")</b></font>");
-						labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-						labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-						labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-						labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-						labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-						labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
+						labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"4\"><b>" + tr("No") + " (" + tr("incompatible binary") + ")</b></font>");
+						labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+						labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+						labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+						labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+						labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+						labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
 					}
 				} else {
-					labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"+1\"><b>" + tr("No") + " (" + tr("incompatible binary") + ")</b></font>");
-					labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-					labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-					labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-					labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-					labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-					labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
+					labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"4\"><b>" + tr("No") + " (" + tr("incompatible binary") + ")</b></font>");
+					labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+					labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+					labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+					labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+					labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+					labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
 				}
 			} else {
-				labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"+1\"><b>" + tr("No") + " (" + tr("emulator didn't start") + ")</b></font>");
-				labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-				labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-				labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-				labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-				labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-				labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
+				labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"4\"><b>" + tr("No") + " (" + tr("emulator didn't start") + ")</b></font>");
+				labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+				labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+				labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+				labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+				labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+				labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
 			}
 		} else {
-			labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"+1\"><b>" + tr("No") + "(" + tr("emulator didn't start") + ")</b></font>");
-			labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-			labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-			labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-			labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-			labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-			labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
+			labelIdentifiedAsMameResult->setText("<font color=\"red\" size=\"4\"><b>" + tr("No") + "(" + tr("emulator didn't start") + ")</b></font>");
+			labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+			labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+			labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+			labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+			labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+			labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
 		}
 	} else {
-		labelFileIsExecutableResult->setText("<font color=\"red\" size=\"+1\"><b>" + tr("No") + "</b></font>");
-		labelIdentifiedAsMameResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-		labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-		labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-		labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-		labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-		labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
-		labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"+1\"><b>" + tr("No result") + "</b></font>");
+		labelFileIsExecutableResult->setText("<font color=\"red\" size=\"4\"><b>" + tr("No") + "</b></font>");
+		labelIdentifiedAsMameResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+		labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+		labelTotalMachinesResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+		labelBinaryIdentHashResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+		labelFileModificationDateResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+		labelEmulatorIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
+		labelFrontendIniFileLocationResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No result") + "</b></font>");
 	}
 }
 
@@ -216,27 +217,27 @@ void SetupWizard::initializePage(int id)
 {
 	switch ( id ) {
 		case QMC2_SETUPWIZARD_PAGE_ID_PROBE_EXECUTABLE:
-			labelFileIsExecutableResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelIdentifiedAsMameResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelVersionSupportedResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelTotalMachinesResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelBinaryIdentHashResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelFileModificationDateResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelEmulatorIniFileLocationResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
-			labelFrontendIniFileLocationResult->setText("<font size=\"+1\">" + tr("Check result pending...") + "</font>");
+			labelFileIsExecutableResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelIdentifiedAsMameResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelVersionSupportedResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelTotalMachinesResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelBinaryIdentHashResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelFileModificationDateResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelEmulatorIniFileLocationResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
+			labelFrontendIniFileLocationResult->setText("<font size=\"4\">" + tr("Check result pending...") + "</font>");
 			QTimer::singleShot(0, this, SLOT(probeExecutable()));
 			break;
 		case QMC2_SETUPWIZARD_PAGE_ID_IMPORT_INI_FILES:
 			radioButtonImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
 			labelImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
-			labelImportMameIni->setText("<font size=\"+1\">" + tr("Import emulator settings from %1").arg(m_emulatorIniPath) + "</font>");
+			labelImportMameIni->setText("<font size=\"4\">" + tr("Import emulator settings from %1").arg(m_emulatorIniPath) + "</font>");
 			radioButtonImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
 			labelImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
-			labelImportUiIni->setText("<font size=\"+1\">" + tr("Import front-end settings from %1").arg(m_frontendIniPath) + "</font>");
+			labelImportUiIni->setText("<font size=\"4\">" + tr("Import front-end settings from %1").arg(m_frontendIniPath) + "</font>");
 			radioButtonImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
 			labelImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
-			labelImportBothInis->setText("<font size=\"+1\">" + tr("Import both emulator and front-end settings") + "</font>");
-			labelImportNothing->setText("<font size=\"+1\">" + tr("Import nothing") + "</font>");
+			labelImportBothInis->setText("<font size=\"4\">" + tr("Import both emulator and front-end settings") + "</font>");
+			labelImportNothing->setText("<font size=\"4\">" + tr("Import nothing") + "</font>");
 			radioButtonImportNothing->setChecked(true);
 			break;
 	}
