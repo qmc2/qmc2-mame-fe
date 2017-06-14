@@ -22,6 +22,31 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	m_modificationTime(-1)
 {
 	setupUi(this);
+
+	gridLayout3->removeWidget(labelImportMameIni);
+	delete labelImportMameIni;
+	m_labelImportMameIni = new ClickableLabel(this);
+	gridLayout3->addWidget(m_labelImportMameIni, 3, 1);
+	connect(m_labelImportMameIni, SIGNAL(clicked()), this, SLOT(labelImportMameIni_clicked()));
+
+	gridLayout3->removeWidget(labelImportUiIni);
+	delete labelImportUiIni;
+	m_labelImportUiIni = new ClickableLabel(this);
+	gridLayout3->addWidget(m_labelImportUiIni, 4, 1);
+	connect(m_labelImportUiIni, SIGNAL(clicked()), this, SLOT(labelImportUiIni_clicked()));
+
+	gridLayout3->removeWidget(labelImportBothInis);
+	delete labelImportBothInis;
+	m_labelImportBothInis = new ClickableLabel(this);
+	gridLayout3->addWidget(m_labelImportBothInis, 5, 1);
+	connect(m_labelImportBothInis, SIGNAL(clicked()), this, SLOT(labelImportBothInis_clicked()));
+
+	gridLayout3->removeWidget(labelImportNothing);
+	delete labelImportNothing;
+	m_labelImportNothing = new ClickableLabel(this);
+	gridLayout3->addWidget(m_labelImportNothing, 6, 1);
+	connect(m_labelImportNothing, SIGNAL(clicked()), this, SLOT(labelImportNothing_clicked()));
+
 	adjustSize();
 	connect(comboBoxExecutableFile->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxExecutableFile_textChanged(const QString &)));
 	QTimer::singleShot(0, this, SLOT(init()));
@@ -229,15 +254,15 @@ void SetupWizard::initializePage(int id)
 			break;
 		case QMC2_SETUPWIZARD_PAGE_ID_IMPORT_INI_FILES:
 			radioButtonImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
-			labelImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
-			labelImportMameIni->setText("<font size=\"4\">" + tr("Import emulator settings from %1").arg(m_emulatorIniPath) + "</font>");
+			m_labelImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
+			m_labelImportMameIni->setText("<font size=\"4\">" + tr("Import emulator settings from %1").arg(m_emulatorIniPath) + "</font>");
 			radioButtonImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
-			labelImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
-			labelImportUiIni->setText("<font size=\"4\">" + tr("Import front-end settings from %1").arg(m_frontendIniPath) + "</font>");
+			m_labelImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
+			m_labelImportUiIni->setText("<font size=\"4\">" + tr("Import front-end settings from %1").arg(m_frontendIniPath) + "</font>");
 			radioButtonImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
-			labelImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
-			labelImportBothInis->setText("<font size=\"4\">" + tr("Import both emulator and front-end settings") + "</font>");
-			labelImportNothing->setText("<font size=\"4\">" + tr("Import nothing") + "</font>");
+			m_labelImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
+			m_labelImportBothInis->setText("<font size=\"4\">" + tr("Import both emulator and front-end settings") + "</font>");
+			m_labelImportNothing->setText("<font size=\"4\">" + tr("Import nothing") + "</font>");
 			radioButtonImportNothing->setChecked(true);
 			break;
 	}
