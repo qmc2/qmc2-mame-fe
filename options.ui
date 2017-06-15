@@ -883,9 +883,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-598</y>
-                <width>511</width>
-                <height>1141</height>
+                <y>0</y>
+                <width>360</width>
+                <height>1140</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -3177,11 +3177,21 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>530</width>
-                <height>542</height>
+                <width>531</width>
+                <height>543</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
+               <item row="11" column="0">
+                <widget class="QCheckBox" name="checkBoxSaveMachineSelection">
+                 <property name="toolTip">
+                  <string>Save machine selection on exit and before reloading the machine list</string>
+                 </property>
+                 <property name="text">
+                  <string>Save machine selection</string>
+                 </property>
+                </widget>
+               </item>
                <item row="17" column="0" colspan="3">
                 <widget class="QCheckBox" name="checkBoxSaveSoftwareSelection">
                  <property name="toolTip">
@@ -3384,16 +3394,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="9" column="1">
-                <widget class="QLabel" name="labelSortOrder">
-                 <property name="text">
-                  <string>Sort order</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
                <item row="7" column="2">
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <item>
@@ -3516,78 +3516,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="8" column="1">
-                <widget class="QLabel" name="labelSortCriteria">
-                 <property name="text">
-                  <string>Sort criteria</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="2">
-                <widget class="QComboBox" name="comboBoxSortCriteria">
-                 <property name="toolTip">
-                  <string>Select sort criteria</string>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>Machine description</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>ROM state</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Tag</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Year</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Manufacturer</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Machine name</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>ROM types</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Players</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Driver status</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Source file</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Rank</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
                <item row="9" column="0">
                 <widget class="QCheckBox" name="checkBoxShowROMStatusIcons">
                  <property name="sizePolicy">
@@ -3608,31 +3536,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="9" column="2">
-                <widget class="QComboBox" name="comboBoxSortOrder">
-                 <property name="toolTip">
-                  <string>Select sort order</string>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>Ascending</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="qmc2.qrc">
-                    <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Descending</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="qmc2.qrc">
-                    <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
-                  </property>
-                 </item>
-                </widget>
-               </item>
                <item row="10" column="0">
                 <widget class="QCheckBox" name="checkBoxAutoTriggerROMCheck">
                  <property name="sizePolicy">
@@ -3646,35 +3549,6 @@
                  </property>
                  <property name="text">
                   <string>Auto-trigger ROM check</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="10" column="1">
-                <widget class="QLabel" name="labelResponsiveness">
-                 <property name="text">
-                  <string>Responsiveness</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="10" column="2">
-                <widget class="QSpinBox" name="spinBoxResponsiveness">
-                 <property name="toolTip">
-                  <string>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</string>
-                 </property>
-                 <property name="specialValueText">
-                  <string>immediate</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>99999</number>
-                 </property>
-                 <property name="value">
-                  <number>100</number>
                  </property>
                 </widget>
                </item>
@@ -3822,26 +3696,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="12" column="0" colspan="3">
-                <widget class="QCheckBox" name="checkBoxRestoreMachineSelection">
-                 <property name="toolTip">
-                  <string>Restore saved machine selection at start and after reloading the machine list</string>
-                 </property>
-                 <property name="text">
-                  <string>Restore machine selection</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="11" column="0" colspan="3">
-                <widget class="QCheckBox" name="checkBoxSaveMachineSelection">
-                 <property name="toolTip">
-                  <string>Save machine selection on exit and before reloading the machine list</string>
-                 </property>
-                 <property name="text">
-                  <string>Save machine selection</string>
-                 </property>
-                </widget>
-               </item>
                <item row="16" column="0" colspan="3">
                 <widget class="QCheckBox" name="checkBoxSoftwareSnapOnMouseHover">
                  <property name="toolTip">
@@ -3849,6 +3703,165 @@
                  </property>
                  <property name="text">
                   <string>Software snaps on mouse hover</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="1">
+                <widget class="QLabel" name="labelResponsiveness">
+                 <property name="text">
+                  <string>Responsiveness</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="2">
+                <widget class="QSpinBox" name="spinBoxResponsiveness">
+                 <property name="toolTip">
+                  <string>Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>immediate</string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>99999</number>
+                 </property>
+                 <property name="value">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="1">
+                <widget class="QLabel" name="labelSortOrder">
+                 <property name="text">
+                  <string>Sort order</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="2">
+                <widget class="QComboBox" name="comboBoxSortOrder">
+                 <property name="toolTip">
+                  <string>Select sort order</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Ascending</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Descending</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="qmc2.qrc">
+                    <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QLabel" name="labelSortCriteria">
+                 <property name="text">
+                  <string>Sort criteria</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="2">
+                <widget class="QComboBox" name="comboBoxSortCriteria">
+                 <property name="toolTip">
+                  <string>Select sort criteria</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Machine description</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>ROM state</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Tag</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Year</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Manufacturer</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Machine name</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>ROM types</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Players</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Driver status</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Source file</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Rank</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="8" column="1" colspan="2">
+                <widget class="QCheckBox" name="checkBoxDynamicStateFilter">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Apply the state filter dynamically during a full ROM audit?</string>
+                 </property>
+                 <property name="text">
+                  <string>Apply state filter dynamically when checking ROMs</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="12" column="0" colspan="3">
+                <widget class="QCheckBox" name="checkBoxRestoreMachineSelection">
+                 <property name="toolTip">
+                  <string>Restore saved machine selection at start and after reloading the machine list</string>
+                 </property>
+                 <property name="text">
+                  <string>Restore machine selection</string>
                  </property>
                 </widget>
                </item>
@@ -6279,12 +6292,13 @@
   <tabstop>toolButtonShowN</tabstop>
   <tabstop>toolButtonShowU</tabstop>
   <tabstop>checkBoxShowDeviceSets</tabstop>
-  <tabstop>comboBoxSortCriteria</tabstop>
+  <tabstop>checkBoxDynamicStateFilter</tabstop>
   <tabstop>checkBoxShowROMStatusIcons</tabstop>
-  <tabstop>comboBoxSortOrder</tabstop>
+  <tabstop>comboBoxSortCriteria</tabstop>
   <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
-  <tabstop>spinBoxResponsiveness</tabstop>
+  <tabstop>comboBoxSortOrder</tabstop>
   <tabstop>checkBoxSaveMachineSelection</tabstop>
+  <tabstop>spinBoxResponsiveness</tabstop>
   <tabstop>checkBoxRestoreMachineSelection</tabstop>
   <tabstop>checkBoxAutoDisableSoftwareSnap</tabstop>
   <tabstop>comboBoxSoftwareSnapPosition</tabstop>
@@ -6396,8 +6410,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>736</x>
-     <y>601</y>
+     <x>473</x>
+     <y>669</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -6412,8 +6426,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>826</x>
-     <y>601</y>
+     <x>563</x>
+     <y>669</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -6432,7 +6446,7 @@
      <y>106</y>
     </hint>
     <hint type="destinationlabel">
-     <x>699</x>
+     <x>543</x>
      <y>112</y>
     </hint>
    </hints>
@@ -6508,12 +6522,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>223</x>
-     <y>605</y>
+     <x>236</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
-     <x>679</x>
-     <y>605</y>
+     <x>523</x>
+     <y>579</y>
     </hint>
    </hints>
   </connection>
@@ -6524,12 +6538,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>232</x>
-     <y>631</y>
+     <x>245</x>
+     <y>605</y>
     </hint>
     <hint type="destinationlabel">
-     <x>679</x>
-     <y>631</y>
+     <x>523</x>
+     <y>605</y>
     </hint>
    </hints>
   </connection>
@@ -6572,12 +6586,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>265</x>
-     <y>501</y>
+     <x>249</x>
+     <y>475</y>
     </hint>
     <hint type="destinationlabel">
-     <x>679</x>
-     <y>501</y>
+     <x>523</x>
+     <y>475</y>
     </hint>
    </hints>
   </connection>
@@ -6588,12 +6602,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>162</x>
-     <y>475</y>
+     <x>175</x>
+     <y>449</y>
     </hint>
     <hint type="destinationlabel">
-     <x>679</x>
-     <y>475</y>
+     <x>523</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRomStateFilter</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxDynamicStateFilter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>235</x>
+     <y>430</y>
     </hint>
    </hints>
   </connection>
