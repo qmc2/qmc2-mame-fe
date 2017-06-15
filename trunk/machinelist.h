@@ -139,6 +139,7 @@ class MachineList : public QObject
 		void enableWidgets(bool enable = true);
 		void disableWidgets() { enableWidgets(false); }
 		void filter(bool initial = false);
+		void filterOne(QTreeWidgetItem *item, char romState);
 
 	signals:
 		void widgetsEnabled(bool);
@@ -151,6 +152,9 @@ class MachineList : public QObject
 		IconCacheDatabaseManager *m_iconCacheDb;
 		QString m_trL, m_trC, m_trM, m_trI, m_trN, m_trU, m_trS, m_trT;
 		QString m_statusString, m_statusTemplate;
+		bool m_showC, m_showM, m_showI, m_showN, m_showU;
+		bool m_showDeviceSets, m_showBiosSets;
+		bool m_doFilter;
 };
 
 class MachineListItem : public QTreeWidgetItem

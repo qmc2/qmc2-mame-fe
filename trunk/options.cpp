@@ -1223,6 +1223,7 @@ void Options::on_pushButtonApply_clicked()
 			needFilter = false;
 		}
 	}
+	config->setValue(QMC2_FRONTEND_PREFIX + "RomStateFilter/DynamicStateFilter", checkBoxDynamicStateFilter->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", checkBoxSaveMachineSelection->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", checkBoxRestoreMachineSelection->isChecked());
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveSoftwareSelection", checkBoxSaveSoftwareSelection->isChecked());
@@ -2049,6 +2050,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 		if ( !qmc2EarlyStartup )
 			qmc2StatesTogglesEnabled = true;
 	}
+	checkBoxDynamicStateFilter->setChecked(config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/DynamicStateFilter", false).toBool());
 	checkBoxSaveMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", true).toBool());
 	checkBoxRestoreMachineSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", true).toBool());
 	checkBoxSaveSoftwareSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveSoftwareSelection", true).toBool());
@@ -3893,6 +3895,7 @@ void Options::enableWidgets(bool enable)
 	checkBoxUseCategoryIni->setEnabled(enable);
 	checkBoxShowROMStatusIcons->setEnabled(enable);
 	checkBoxRomStateFilter->setEnabled(enable);
+	checkBoxDynamicStateFilter->setEnabled(enable);
 	checkBoxShowBiosSets->setEnabled(enable);
 	checkBoxShowDeviceSets->setEnabled(enable);
 	toolButtonBrowseSoftwareListCacheDb->setEnabled(enable);
@@ -3952,8 +3955,6 @@ void Options::enableWidgets(bool enable)
 	toolButtonShowI->setEnabled(enable);
 	toolButtonShowN->setEnabled(enable);
 	toolButtonShowU->setEnabled(enable);
-	comboBoxSortCriteria->setEnabled(enable);
-	comboBoxSortOrder->setEnabled(enable);
 	treeWidgetShortcuts->clearSelection();
 	treeWidgetShortcuts->setEnabled(enable);
 	treeWidgetJoystickMappings->clearSelection();

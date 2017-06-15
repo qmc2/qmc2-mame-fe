@@ -137,7 +137,15 @@ Qt::ItemFlags MachineListItem::defaultItemFlags = Qt::ItemIsSelectable | Qt::Ite
 #define mainProgressBar		qmc2MainWindow->progressBarMachineList
 
 MachineList::MachineList(QObject *parent) :
-	QObject(parent)
+	QObject(parent),
+	m_showC(true),
+	m_showM(true),
+	m_showI(true),
+	m_showN(true),
+	m_showU(true),
+	m_showDeviceSets(true),
+	m_showBiosSets(true),
+	m_doFilter(true)
 {
 	numMachines = numTotalMachines = numCorrectMachines = numMostlyCorrectMachines = numIncorrectMachines = numUnknownMachines = numNotFoundMachines = -1;
 	uncommittedXmlDbRows = numTaggedSets = numMatchedMachines = numVerifyRoms = 0;
@@ -844,6 +852,14 @@ void MachineList::verify(bool currentOnly)
 	args << "-verifyroms";
 	if ( verifyCurrentOnly )
 		args << checkedItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+	m_showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowCorrect", true).toBool();
+	m_showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowMostlyCorrect", true).toBool();
+	m_showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowIncorrect", true).toBool();
+	m_showN = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowNotFound", true).toBool();
+	m_showU = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/ShowUnknown", true).toBool();
+	m_showDeviceSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowDeviceSets", true).toBool();
+	m_showBiosSets = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/ShowBiosSets", true).toBool();
+	m_doFilter = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool() && qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/DynamicStateFilter", false).toBool();
 	verifyProc = new QProcess(this);
 	connect(verifyProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(verifyFinished(int, QProcess::ExitStatus)));
 	connect(verifyProc, SIGNAL(readyReadStandardOutput()), this, SLOT(verifyReadyReadStandardOutput()));
@@ -1949,6 +1965,35 @@ QString MachineList::sortCriteriaName(int sc)
 	}
 }
 
+void MachineList::filterOne(QTreeWidgetItem *item, char romState)
+{
+	bool itemWasHidden = item->isHidden();
+	if ( !m_showBiosSets && isBios(item->text(QMC2_MACHINELIST_COLUMN_NAME)) )
+		item->setHidden(true);
+	else if ( !m_showDeviceSets && isDevice(item->text(QMC2_MACHINELIST_COLUMN_NAME)) )
+		item->setHidden(true);
+	else switch ( romState ) {
+		case 'C':
+			item->setHidden(!m_showC);
+			break;
+		case 'M':
+			item->setHidden(!m_showM);
+			break;
+		case 'I':
+			item->setHidden(!m_showI);
+			break;
+		case 'N':
+			item->setHidden(!m_showN);
+			break;
+		case 'U':
+		default:
+			item->setHidden(!m_showU);
+			break;
+	}
+	if ( (!itemWasHidden && item->isHidden()) || (itemWasHidden && !item->isHidden()) )
+		qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
+}
+
 void MachineList::filter(bool initial)
 {
 	if ( !initial ) {
@@ -2923,6 +2968,8 @@ void MachineList::verifyReadyReadStandardOutput()
 						numUnknownMachines--;
 					} else if ( romStateCache.isOpen() )
 						tsRomCache << romName << ' ' << romState << '\n';
+					if ( m_doFilter )
+						filterOne(romItem, romState);
 				}
 			}
 		}
