@@ -1990,7 +1990,7 @@ void MachineList::filterOne(QTreeWidgetItem *item, char romState)
 			item->setHidden(!m_showU);
 			break;
 	}
-	if ( (!itemWasHidden && item->isHidden()) || (itemWasHidden && !item->isHidden()) )
+	if ( itemWasHidden != item->isHidden() )
 		qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
 }
 
