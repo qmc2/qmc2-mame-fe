@@ -69,6 +69,11 @@ void SetupWizard::init()
 		comboBoxExecutableFile->setCurrentIndex(index);
 }
 
+void SetupWizard::log(const QString &message)
+{
+	plainTextEdit->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
+}
+
 void SetupWizard::probeExecutable()
 {
 	button(QWizard::NextButton)->setEnabled(false);
@@ -214,6 +219,25 @@ void SetupWizard::probeExecutable()
 	}
 }
 
+void SetupWizard::importMameIni()
+{
+	button(QWizard::NextButton)->setEnabled(false);
+	log(tr("importing emulator settings from %1").arg(m_emulatorIniPath));
+	// FIXME
+	if ( radioButtonImportBothInis->isChecked() )
+		QTimer::singleShot(0, this, SLOT(importUiIni()));
+	else
+		button(QWizard::NextButton)->setEnabled(true);
+}
+
+void SetupWizard::importUiIni()
+{
+	button(QWizard::NextButton)->setEnabled(false);
+	log(tr("importing front-end settings from %1").arg(m_frontendIniPath));
+	// FIXME
+	button(QWizard::NextButton)->setEnabled(true);
+}
+
 int SetupWizard::nextId() const
 {
 	switch ( currentId() ) {
@@ -264,6 +288,13 @@ void SetupWizard::initializePage(int id)
 			m_labelImportBothInis->setText("<font size=\"4\">" + tr("Import both emulator and front-end settings") + "</font>");
 			m_labelImportNothing->setText("<font size=\"4\">" + tr("Import nothing") + "</font>");
 			radioButtonImportNothing->setChecked(true);
+			break;
+		case QMC2_SETUPWIZARD_PAGE_ID_IMPORTING_INI_FILES:
+			plainTextEdit->clear();
+			if ( radioButtonImportBothInis->isChecked() || radioButtonImportMameIni->isChecked() )
+				QTimer::singleShot(0, this, SLOT(importMameIni()));
+			else if ( radioButtonImportUiIni->isChecked() )
+				QTimer::singleShot(0, this, SLOT(importUiIni()));
 			break;
 	}
 }

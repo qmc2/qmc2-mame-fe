@@ -31,12 +31,15 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 
 	public slots:
 		void init();
+		void log(const QString &);
 		void probeExecutable();
 		void comboBoxExecutableFile_textChanged(const QString &text);
 		void labelImportMameIni_clicked() { radioButtonImportMameIni->click(); }
 		void labelImportUiIni_clicked() { radioButtonImportUiIni->click(); }
 		void labelImportBothInis_clicked() { radioButtonImportBothInis->click(); }
 		void labelImportNothing_clicked() { radioButtonImportNothing->click(); }
+		void importMameIni();
+		void importUiIni();
 		void on_toolButtonBrowseExecutableFile_clicked();
 
 	protected:

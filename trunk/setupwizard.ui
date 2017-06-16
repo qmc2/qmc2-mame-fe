@@ -577,7 +577,7 @@
       <property name="text">
        <string>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The settings below are actually optional, but you should specify as many of them as you can right now (of course, you can change these settings at any time later as well).&lt;/p&gt;
-&lt;p&gt;If the &lt;i&gt;working directory&lt;/i&gt; is not the base path to a standard installation (i.e. from an official MAME build) or your &lt;i&gt;ROM path&lt;/i&gt; doesn't follow standard conventions, we &lt;b&gt;strongly recommend&lt;/b&gt; that you specify the ROM path at least!&lt;/p&gt;
+&lt;p&gt;If the emulator's &lt;i&gt;working directory&lt;/i&gt; is not the base path to a standard installation (i.e. from an official MAME build) or your &lt;i&gt;ROM path&lt;/i&gt; doesn't follow standard conventions, we &lt;b&gt;strongly recommend&lt;/b&gt; that you specify the ROM path at least!&lt;/p&gt;
 &lt;/font&gt;</string>
       </property>
       <property name="alignment">
