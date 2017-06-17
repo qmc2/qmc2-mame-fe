@@ -1,8 +1,8 @@
-<!--
+﻿<!--
 SHIDERAVAN SOFTWARE TEMPLATE
-LAST MODIFICATION: 24/November/2015
+LAST MODIFICATION: 2017-06-16 (16/June/2017)
 
-Copyright (c) 2015 Jose Marcio Rezende Franco
+Copyright (c) 2017 Jose Marcio Rezende Franco
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,21 +16,23 @@ Copyright (c) 2015 Jose Marcio Rezende Franco
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  
-Whatsnew:
-24/Nov/2015: -Support for additional artwork classes.
-             -Fixed some small bugs.
-			 -Cleared a huge amount of blank spaces in the code.
-30/Sep/2015: -Some updates in Italian language (thanks criccroc).
-27/Sep/2015: -Changed "No image available" for "Not available" (for standarization with System Template).
-             -Updated French languages giving them the status of "full support" as of now (thanks remax with the help for this update).
-             -Added translations for all the BG Modes (the same from System templates).
-28/May/2015: -Add "SOFTWARE_PARENT_ID" macro compatibility (either for showing in the software info or for search images online).
-22/May/2015: -Updated the whatsnew, documentation and licensing.
-10/Jan/2015: -Updates and Cleanups  
-10/Sep/2012: -First version of Softwarelist template.
 
-Recommended for use with QMC2 0.58 and beyond.
+Whatsnew:
+16/Jun/2017: -Support for software manual
+             -Code cleanup
+24/Nov/2015: -Support for additional artwork classes
+             -Fixed some small bugs
+			 -Cleared a huge amount of blank spaces in the code
+30/Sep/2015: -Some updates in Italian language (thanks criccroc)
+27/Sep/2015: -Changed "No image available" for "Not available" (for standarization with System Template)
+             -Updated French languages giving them the status of "full support" as of now (thanks remax with the help for this update)
+             -Added translations for all the BG Modes (the same from System templates)
+28/May/2015: -Add "SOFTWARE_PARENT_ID" macro compatibility (either for showing in the software info or for search images online)
+22/May/2015: -Updated the whatsnew, documentation and licensing
+10/Jan/2015: -Updates and Cleanups
+10/Sep/2012: -First version of Softwarelist template
+
+Recommended for use with QMC2 0.186 and beyond.
 
 This code are distributed under GPLv2 license.
 http://www.gnu.org/licenses/gpl-2.0.html
@@ -51,71 +53,60 @@ status of the languages supported:
  pl (Polish) = Nothing 
  ro (Romanian) = Nothing
  el (Greek) = Nothing
-
---------------------------------------------  
+--------------------------------------------
   Macros used:
   $SOFTWARE_TITLE$  Software's title
-  $SOFTWARE_NAME$    Software's name / ID
+  $SOFTWARE_NAME$    Software's name/ID
   $SOFTWARE_PARENT_ID$
   $SOFTWARE_LIST$    Software-list this software is from
   $SOFTWARE_PUBLISHER$  Publisher of this software
   $SOFTWARE_YEAR$    Year this software was published
-  $SOFTWARE_SUPPORTED$  Software support status ('yes', 'no' or 'partially' / translated)
-  $SOFTWARE_SUPPORTED_UT$  Software support status ('yes', 'no' or 'partially' / untranslated)
+  $SOFTWARE_SUPPORTED$  Software support status ('yes', 'no' or 'partially'/translated)
+  $SOFTWARE_SUPPORTED_UT$  Software support status ('yes', 'no' or 'partially'/untranslated)
   $SOFTWARE_INFO$    Software info DB entry (from MAME history.dat)
-  $SOFTWARE_INFO_STATUS$  Status of the software info DB entry (OK / NO_DATA)
+  $SOFTWARE_INFO_STATUS$  Status of the software info DB entry (OK/NO_DATA)
   $SOFTWARE_STATUS$
   $SOFTWARE_STATUS_UT$
 
   Image macros:
   $SOFTWARE_SNAPSHOT$  Absolute path to the software-snapshot
-  $GHOST_IMAGE$    Path to the Ghostbusters logo (if an image wasn't found, its file URL will
-        be same as the value of this macro, so you can use it to check image validity)
+  $GHOST_IMAGE$    Path to the Ghostbusters logo (if an image wasn't found, its file URL will be same as the value of this macro, so you can use it to check image validity)
 
   General macros:
   $GUI_LANGUAGE$    The GUI's current language setting (us, de, ...)
-  
-  Obsolete:
-  $EMULATOR_TYPE$    Used to verify the current emulator type (MAME, MESS, UME).
-  $EMULATOR_VARIANT$  Used to verify the current emulator variant (MAME, MESS, UME, SDLMAME, SDLMESS, SDLUME)
 -->
 <html>
 <head>
 
 <!--CSS/Style (basead in suggestions from René)-->
 <style type="text/css">
-    html, body
-    {
+    html, body{
        height: 100%;
        width: 100%;
        position: relative;
        margin: 0;
     }
-    #content
-    {
+    #content{
        position: absolute;
        top: 32;
        bottom: 169;
        width: 100%;
        overflow: auto;
     }
-    #contentno
-    {
+    #contentno{
        position: absolute;
        top: 32;
        bottom: 21;
        width: 100%;
        overflow: auto;
-    }    
-    #footer
-    {
+    }
+    #footer{
        position: absolute;
        bottom: 0;
        height: 169;
        width: 100%;
     }
-    #footerno
-    {
+    #footerno{
        position: absolute;
        bottom: 0;
        height: 21;
@@ -125,11 +116,9 @@ status of the languages supported:
 
 <script language="JavaScript">
     var trMap = {};
-    
-switch ("$GUI_LANGUAGE$")
-{    
-   case "pt":
-   {    
+
+switch ("$GUI_LANGUAGE$"){
+   case "pt":{
       /*LANGUAGE: PT*/
       trMap['File Status'] = 'Estado do arquivo';
       trMap['Support'] = 'Suporte';
@@ -145,7 +134,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Publisher'] = 'Fabricante';
       trMap['Release date'] = 'Lançamento';
       trMap['Clone of'] = 'Clone de';
-      trMap['MAIN SOFTWARE'] = 'SISTEMA PAI';
+      trMap['MAIN SOFTWARE'] = 'SOFTWARE PAI';
 
       /*PT:options*/
       trMap['SHOW OPTIONS'] = 'MOSTRAR OPÇÕES';
@@ -157,9 +146,9 @@ switch ("$GUI_LANGUAGE$")
       trMap['Info Bar'] = 'Barra de Informações';
       trMap['Right Snapshot'] = 'Foto do jogo a direita';
 
-      trMap['Image Options'] = 'Opções de Imagem';      
+      trMap['Image Options'] = 'Opções de Imagem';
       trMap['TV Mode'] = 'Modo TV';
-      trMap['Scaled Images'] = 'Imagens Esticadas';       
+      trMap['Scaled Images'] = 'Imagens Esticadas';
       trMap['Image Transition'] = 'Transição de Imagens';
 
       trMap['Shadows'] = 'Sombras';
@@ -175,10 +164,9 @@ switch ("$GUI_LANGUAGE$")
       trMap['scaled'] = 'extendida';
       trMap['tiled'] = 'lado a lado';
       break;
-   }            
+   }
 
-   case "de":
-   { 
+   case "de":{ 
       /*LANGUAGE: DE*/
       trMap['File Status'] = 'Datei-Status';
       trMap['Support'] = 'Unterstützung';
@@ -188,7 +176,7 @@ switch ("$GUI_LANGUAGE$")
 
       trMap['ZIP File'] = 'ZIP Datei';
       trMap['file not zipped'] = 'Datei nicht komprimiert';
-          
+
       /*DE:infobar*/
       trMap['Software-list'] = 'Software-Liste';
       trMap['Publisher'] = 'Herausgeber';
@@ -226,8 +214,7 @@ switch ("$GUI_LANGUAGE$")
       break;
   }
 
-  case "fr":
-  {
+  case "fr":{
       /*LANGUAGE: FR*/
       trMap['File Status'] = 'Statut du Fichier';
       trMap['Support'] = 'Support';
@@ -275,8 +262,7 @@ switch ("$GUI_LANGUAGE$")
       break;
    }
 
-   case "es":
-   { 
+   case "es":{ 
         /*LANGUAGE: ES*/ 
         trMap['File Status'] = 'Estado del archivo';
         trMap['Support'] = 'Soporte';
@@ -324,8 +310,7 @@ switch ("$GUI_LANGUAGE$")
         break;
      }
 
-  case "sv":
-  {       
+  case "sv":{       
       /*LANGUAGE: SV*/ 
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -353,7 +338,7 @@ switch ("$GUI_LANGUAGE$")
       trMap['Info Bar'] = '???';
       trMap['Right Snapshot'] = '???';
 
-      trMap['Image Options'] = '???';    
+      trMap['Image Options'] = '???';
       trMap['TV Mode'] = '???';
       trMap['Scaled Images'] = '???';
       trMap['Image Transition'] = '???';
@@ -373,8 +358,7 @@ switch ("$GUI_LANGUAGE$")
       break;
   }
 
-  case "it":
-  {
+  case "it":{
       /*LANGUAGE: IT*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -422,8 +406,7 @@ switch ("$GUI_LANGUAGE$")
       break;
   }
 
-  <!--case "pl":
-  {
+  <!--case "pl": {
       /*LANGUAGE: PL*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -471,8 +454,7 @@ switch ("$GUI_LANGUAGE$")
       break;
   }
 
-  case "ro":
-  {       
+  case "ro":{
       /*LANGUAGE: RO*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -520,8 +502,7 @@ switch ("$GUI_LANGUAGE$")
       break;
   }
   
-  case "el":
-  {
+  case "el":{
       /*LANGUAGE: EL*/
       trMap['File Status'] = '???';
       trMap['Support'] = '???';
@@ -535,23 +516,23 @@ switch ("$GUI_LANGUAGE$")
       /*infobar*/
       trMap['Software-list'] = '???';
       trMap['Publisher'] = '???';
-      trMap['Release date'] = '???';   
+      trMap['Release date'] = '???';
       trMap['Clone of'] = '???';
-      trMap['MAIN SOFTWARE'] = '???';  
+      trMap['MAIN SOFTWARE'] = '???';
 
       /*options*/
       trMap['SHOW OPTIONS'] = '???';
-      trMap['General Options'] = '???'; 
+      trMap['General Options'] = '???';
       trMap['Show Sources'] = '???';
 
       trMap['Header Options'] = '???';
       trMap['Left Snapshot'] = '???';
-      trMap['Info Bar'] = '???';      
+      trMap['Info Bar'] = '???';
       trMap['Right Snapshot'] = '???';
 
-      trMap['Image Options'] = '???';      
+      trMap['Image Options'] = '???';
       trMap['TV Mode'] = '???';
-      trMap['Scaled Images'] = '???';       
+      trMap['Scaled Images'] = '???';
       trMap['Image Transition'] = '???';
 
       trMap['Shadows'] = '???';
@@ -559,7 +540,7 @@ switch ("$GUI_LANGUAGE$")
 
       /*BG Mode*/
       trMap['BG mode'] = '???';
-      trMap['SoftInfo/BG'] = '???';   
+      trMap['SoftInfo/BG'] = '???';
       trMap['None'] = '???';
       trMap['Default'] = '???';
       trMap['Color'] = '???';
@@ -567,324 +548,273 @@ switch ("$GUI_LANGUAGE$")
       trMap['scaled'] = '???';
       trMap['tiled'] = '???';
       break;
-  }-->   
+  }--> 
 }
-  
-<!--Translation function-->    
-function tr(textoVeio) 
-{
+
+<!--Translation function-->
+function tr(textoVeio){
    var texto = trMap[textoVeio];
    if (texto == undefined||texto == "???")
       texto = textoVeio;
    return texto;
 }
-    
+
 <!--Script: Verifies if the image exist-->
-function imagemExiste(url) 
-{
+function imagemExiste(url){
    var img = new Image();
-   img.src = url; 
+   img.src = url;
    return img.height != 0;
 }
 
 <!--Script: Draw the icon-->
-function iconTag() 
-{
+function iconTag(){
    var data = qmc2NEO.getIconData();
-   if (data != "")  
+   if (data != "")
       imgTag = "<img style=\"border: 0; vertical-align: bottom; max-height: 32;\" src=\"data:image/png;base64," + data + "\"/>";
-   else imgTag = "";   
+   else imgTag = "";
    return imgTag;
 }
 
 <!--Options implementation-->
-function changeBackgroundMode(mode)
-{
+function changeBackgroundMode(mode){
    localStorage['SoftwareNotesTemplate/BackgroundMode'] = mode;
    qmc2NEO.loadCurrentTemplate();
 }
 
-function selectColor() 
-{
+function selectColor(){
    localStorage['SoftwareNotesTemplate/BackgroundColor'] = qmc2NEO.getColor(localStorage['SoftwareNotesTemplate/BackgroundColor']);
    qmc2NEO.loadCurrentTemplate();
 }
 
-function selectTextCor() 
-{
+function selectTextCor(){
    localStorage['SoftwareNotesTemplate/TextCor'] = qmc2NEO.getColor(localStorage['SoftwareNotesTemplate/TextCor']);
    qmc2NEO.loadCurrentTemplate();
 }
 
-function selectImage() 
-{
+function selectImage(){
    localStorage['SoftwareNotesTemplate/BackgroundImage'] = qmc2NEO.getImage(localStorage['SoftwareNotesTemplate/BackgroundImage']);
    var mode = localStorage['SoftwareNotesTemplate/BackgroundMode'];
    if (mode == 'image-tiled' || mode == 'image-scaled')
       qmc2NEO.loadCurrentTemplate();
 }
 
-function changeBackgroundMode2(mode2)
-{
+function changeBackgroundMode2(mode2){
    localStorage['SoftwareNotesTemplate/BackgroundMode2'] = mode2;
    qmc2NEO.loadCurrentTemplate();
 }
 
-function selectColor2() 
-{
+function selectColor2(){
    localStorage['SoftwareNotesTemplate/BackgroundColor2'] = qmc2NEO.getColor(localStorage['SoftwareNotesTemplate/BackgroundColor2']);
    qmc2NEO.loadCurrentTemplate();
 }
 
-function selectTextCor2() 
-{
+function selectTextCor2(){
    localStorage['SoftwareNotesTemplate/TextCor2'] = qmc2NEO.getColor(localStorage['SoftwareNotesTemplate/TextCor2']);
    qmc2NEO.loadCurrentTemplate();
 }
 
-function selectImage2() 
-{
+function selectImage2(){
    localStorage['SoftwareNotesTemplate/BackgroundImage2'] = qmc2NEO.getImage(localStorage['SoftwareNotesTemplate/BackgroundImage2']);
    var mode2 = localStorage['SoftwareNotesTemplate/BackgroundMode2'];
    if (mode2 == 'image-tiled' || mode2 == 'image-scaled')
       qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleOptions(enable) 
-{
+function toggleOptions(enable){
    localStorage['SoftwareNotesTemplate/ToggleOptions'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleShowImageSource(enable) 
-{
+function toggleShowImageSource(enable){
    localStorage['SoftwareNotesTemplate/ShowImageSource'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleSnap(enable) 
-{
+function toggleSnap(enable){
    localStorage['SoftwareNotesTemplate/ToggleSnap'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggle2Snap(enable) 
-{
+function toggle2Snap(enable){
    localStorage['SoftwareNotesTemplate/Toggle2Snap'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleInfo(enable) 
-{
+function toggleInfo(enable){
    localStorage['SoftwareNotesTemplate/ToggleInfo'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleTvMode(enable)
-{
+function toggleTvMode(enable){
    localStorage['SoftwareNotesTemplate/TvMode'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleBigImages(enable)
-{
+function toggleBigImages(enable){
    localStorage['SoftwareNotesTemplate/BigImages'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function FancyImages(enable) 
-{
+function FancyImages(enable){
    localStorage['SoftwareNotesTemplate/FancyImages'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
-}  
+}
 
-function toggleProjectMess(enable) 
-{
+function toggleProjectMess(enable){
    localStorage['SoftwareNotesTemplate/UseProjectMess'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleShadows(enable) 
-{
+function toggleShadows(enable){
    localStorage['SoftwareNotesTemplate/Shadows'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
-function toggleUseZip(enable) 
-{
+function toggleUseZip(enable){
    localStorage['SoftwareNotesTemplate/UseZip'] = enable ? 'true' : 'false';
    qmc2NEO.loadCurrentTemplate();
 }
 
 <!--Script: Shows the source of the image with info in language that's been using (Script: mostra a fonte da imagem na linguagem sendo usada)-->
-function mostraFonte(v, zip)
-{
-   if (localStorage['SoftwareNotesTemplate/ShowImageSource'] == 'true')
-   {
-      switch (v)
-      {
-         case "local":
-         {
-            document.write("<br><i>"+tr('Image source')+": "+tr('your default directory')); 
+function mostraFonte(v, zip){
+   if (localStorage['SoftwareNotesTemplate/ShowImageSource'] == 'true'){
+      switch (v){
+         case "local":{
+            document.write("<br><i>"+tr('Image source')+": "+tr('your default directory'));
             if (zip==0)
                document.write(" - "+tr('ZIP file')+".</i>");
             else
                document.write(" - "+tr('file not zipped')+".</i>");
-            break;   
-         }             
-           
+            break;
+         }
+
          case "pmess":
-            document.write("<br><i>"+tr('Image source')+": ProjectMESS.</i>");  
-            break;        
-      } 
-   }   
-   
-   if(v=="miss")
-   {
+            document.write("<br><i>"+tr('Image source')+": ProjectMESS.</i>");
+            break;
+      }
+   }
+
+   if(v=="miss"){
       document.write("<i>"+tr('Not available')+".</i>");
-   }                  
+   }
 }
 
 <!--Create image style-->
-function estilImagem()
-{
+function estilImagem(){
    var stilo="style=\"";
-   
+
    if (localStorage['SoftwareNotesTemplate/TvMode'] == 'true')
-   {
-      stilo+="height: 200; width: 300; border-radius: 12;";     
-   }
+      stilo+="height: 200; width: 300; border-radius: 12;";
    else if (localStorage['SoftwareNotesTemplate/BigImages'] == 'true')
-   {
       stilo+="max-height: 1000%;";
-   }   
-   else 
-   {
-      stilo+="max-height: 200px;";
-   }  
-   
-   if (localStorage['SoftwareNotesTemplate/Shadows'] == 'true')
-   {
-      stilo+="max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);";
-   }
    else
-   {
+      stilo+="max-height: 200px;";
+
+   if (localStorage['SoftwareNotesTemplate/Shadows'] == 'true')
+      stilo+="max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);";
+   else
       stilo+="max-width: 100%;";
-   }
-   
+
    stilo+="opacity: 0;";
-   
+
    if (localStorage['SoftwareNotesTemplate/FancyImages'] == 'true')
-   {
       stilo+=" -webkit-transition: opacity 1.0s;";
-   }
-   
+
    stilo+="  \" ";
-    
+
    return stilo;
 }
 
+function mostraManual(list, id){
+   if (qmc2NEO.softwareManualExists(list, id)){
+      document.write("<br><button title=\"Manual\" style= \"vertical-align:center;font-size:9px;color:black;background-color:#FF9055;height:19\" onclick=\"qmc2NEO.openSoftwareManual('$SOFTWARE_LIST$', '$SOFTWARE_NAME$')\"><b>Manual</b></button>");
+   }
+   else document.write("<br><b>Manual: </b><i>"+tr('Not available')+"</i>");
+}
+
 <!--Script: function to show images - ZIP support-->
-function mostraImagem(url, dom)
-{ 
-   if (localStorage['SystemNotesTemplate/UseZip'] == 'true')
-   {
-      if (!qmc2NEO.isZippedImage('sws')) 
-      {   
+function mostraImagem(url, dom){
+   if (localStorage['SystemNotesTemplate/UseZip'] == 'true'){
+      if (!qmc2NEO.isZippedImage('sws')){
          document.write("<a href=\""+url+"\"><img onload=\"this.style.opacity='1';\" "+estilImagem()+" title=\"SOFTWARE SNAPSHOT IMAGE\" src= \""+url+"\"></a>");
          mostraFonte(dom, 1);
-      }   
-        
-      else
-      {
+      }
+
+      else{
          var imagdata = qmc2NEO.getImageData('sws');
          document.write("<a href=\"data:image/png;base64,"+imagdata+"\"><img onload=\"this.style.opacity='1';\" style=\"max-width : 100%;\" title=\"SOFTWARE SNAPSHOT IMAGE\" src=\"data:image/png;base64,"+imagdata+"\"></a>");
          mostraFonte(dom, 0);
       }
    }
-   else
-   {
+   else{
       document.write("<a href=\""+url+"\"><img onload=\"this.style.opacity='1';\" "+estilImagem()+" title=\"SOFTWARE SNAPSHOT IMAGE\" src= \""+url+"\"></a>");
-      mostraFonte(dom, 1);   
-   }               
+      mostraFonte(dom, 1);
+   }
 }
 
 <!--Creates a color software support bar-->
-function supportCor() 
-{
-   switch ("$SOFTWARE_SUPPORTED_UT$")
-   {
-      case "yes":
-      {
+function supportCor(){
+   switch ("$SOFTWARE_SUPPORTED_UT$"){
+      case "yes":{
          document.write("<tbody bgcolor=\"#005000\">");
          break;
       }
-           
-      case "partially":
-      {
-         document.write("<tbody bgcolor=\"#777700\">");        
-         break;    
+
+      case "partially":{
+         document.write("<tbody bgcolor=\"#777700\">");
+         break;
       }
-          
-      default:
-      {
+
+      default:{
          document.write("<tbody bgcolor=\"#700000\">");
          break;
-      }  
-   }          
+      }
+   }
 }
 
 <!--Creates a color software status bar-->
-function statusCor() 
-{
-   switch ("$SOFTWARE_STATUS_UT$")
-   {
-      case "correct":
-      {
+function statusCor(){
+   switch ("$SOFTWARE_STATUS_UT$"){
+      case "correct":{
          document.write("<tbody bgcolor=\"#005000\">");
          break;
       }
-           
-      case "mostly correct":
-      {
-         document.write("<tbody bgcolor=\"#777700\">");        
-         break;    
+
+      case "mostly correct":{
+         document.write("<tbody bgcolor=\"#777700\">");
+         break;
       }
-           
-      case "incorrect":
-      {
+
+      case "incorrect":{
          document.write("<tbody bgcolor=\"#700000\">");
          break;
       }
 
-      case "not found":
-      {
+      case "not found":{
          document.write("<tbody bgcolor=\"#7f7f7f\">");
          break;
       }
-                  
-      default:
-      {
+
+      default:{
          document.write("<tbody bgcolor=\"#000070\">");
          break;
       } 
-   }          
+   }
 }
 </script>
 </head>
 
-<script language="JavaScript">  
+<script language="JavaScript">
 var corFun2;
 if (corFun2 == undefined)
-   corFun2 = "background-color: #ffffe2";  
+   corFun2 = "background-color: #ffffe2";
 if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'default')
-   corFun2 = "background-color: #ffffe2";  
-else if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'color')  
+   corFun2 = "background-color: #ffffe2";
+else if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'color')
    corFun2 = "background-color:"+localStorage['SoftwareNotesTemplate/BackgroundColor2'];
-   
+
 else
-  if (localStorage['SoftwareNotesTemplate/BackgroundImage2']) 
-  {
+  if (localStorage['SoftwareNotesTemplate/BackgroundImage2']){
     if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'image-tiled')
       corFun2 = "background-image: url('"+localStorage['SoftwareNotesTemplate/BackgroundImage2']+"'); background-repeat: repeat;";
     else
@@ -896,7 +826,7 @@ else
 var textCor2 = localStorage['SoftwareNotesTemplate/TextCor2'];
 if (textCor2 == undefined)
    textcor2 = "background-color: #000000";
-document.write("<body style=\""+corFun2+";color:"+textCor2+";\">");                  
+document.write("<body style=\""+corFun2+";color:"+textCor2+";\">");
 </script>
 
 <!--Create the top screen area-->
@@ -909,8 +839,8 @@ document.write("<body style=\""+corFun2+";color:"+textCor2+";\">");
 <tr>
    <td width="34"align="left">
       <script language="JavaScript">
-         document.write(iconTag());     
-      </script>   
+         document.write(iconTag());
+      </script>
    </td>
    <td align="center">
       <font size="5" style="color: #FFFFFF"><b>
@@ -920,10 +850,10 @@ document.write("<body style=\""+corFun2+";color:"+textCor2+";\">");
       </b></font>
    </td>
    <td width="34" align="right"><font style="color: #FFFFFF">
-      <script language="JavaScript">   
+      <script language="JavaScript">
          document.write(iconTag());
-      </script>   
-   </td>     
+      </script>
+   </td>
 </tr>
 
 </tbody>
@@ -931,28 +861,21 @@ document.write("<body style=\""+corFun2+";color:"+textCor2+";\">");
 
 <script language="JavaScript">
 if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true')
-{
    document.write("<div id=\"content\">");
-}
 else
-{
-   document.write("<div id=\"contentno\">");  
-}
-</script> 
+   document.write("<div id=\"contentno\">");
 
 <!--Starts the info area-->
-<script language="JavaScript">  
 var corFun;
 if (corFun == undefined)
-   corFun = "background-color: #ffffe2";  
+   corFun = "background-color: #ffffe2";
 if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'default')
-   corFun = "background-color: #ffffe2";  
-else if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'color')  
+   corFun = "background-color: #ffffe2";
+else if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'color')
    corFun = "background-color:"+localStorage['SoftwareNotesTemplate/BackgroundColor'];
-   
+
 else
-  if (localStorage['SoftwareNotesTemplate/BackgroundImage']) 
-  {
+  if (localStorage['SoftwareNotesTemplate/BackgroundImage']){
      if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'image-tiled')
         corFun = "background-image: url('"+localStorage['SoftwareNotesTemplate/BackgroundImage']+"'); background-repeat: repeat;";
      else
@@ -963,36 +886,30 @@ else
 
 var textCor = localStorage['SoftwareNotesTemplate/TextCor'];
 if (textCor == undefined)
-   textcor = "background-color: #000000";                
+   textcor = "background-color: #000000";
 
 <!--This shows the area with the image, in center if the selection is "none" and in top if the selection is any other-->
-if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] != 'none')
-{   
+if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] != 'none'){
    document.write("<table border=\"0\" height=\"210\" width=\"100%\" cellspacing=\"0\" style=\"table-layout: fixed;\">");
 }
-else
-{
-   document.write("<table border=\"0\" height=\"100%\" width=\"100%\" cellspacing=\"0\" style=\"table-layout: fixed;\">");   
+else{
+   document.write("<table border=\"0\" height=\"100%\" width=\"100%\" cellspacing=\"0\" style=\"table-layout: fixed;\">");
 }
-document.write("<tbody style=\""+corFun+";color:"+textCor+";\">");  
+document.write("<tbody style=\""+corFun+";color:"+textCor+";\">");
 document.write("<tr>");
-   
+
 <!--Custom images-->
-if (localStorage['SoftwareNotesTemplate/ToggleSnap'] == 'true')
-{   
+if (localStorage['SoftwareNotesTemplate/ToggleSnap'] == 'true'){
    <!--Additional artwork classes-->
    var customArtworkNames = qmc2NEO.customSoftwareArtwork();
-   if (customArtworkNames.length > 0) 
-   {
-      for (var cont=0; cont < customArtworkNames.length; cont++) 
-	  {
+   if (customArtworkNames.length > 0){
+      for (var cont=0; cont < customArtworkNames.length; cont++){
 	     <!--artworkKey includes "&"; artworkName don't-->
          var artworkKey = customArtworkNames[cont];
          var artworkName = customArtworkNames[cont].replace("&", "");
          var imageUrl = qmc2NEO.customSoftwareArtworkUrl('$SOFTWARE_LIST$', '$SOFTWARE_NAME$', artworkKey);
 
-         if (imageUrl != "$GHOST_IMAGE$")
-         {
+         if (imageUrl != "$GHOST_IMAGE$"){
             document.write("<td valign=\"middle\" align=\"center\">");
             document.write("<b>"+artworkName+":</b><br>");
             document.write("<a href=\""+imageUrl+"\"><img onload=\"this.style.opacity='1';\" style=\"max-width : 100%;max-height : 250;\" title=\"Custom image\" src=\""+imageUrl+"\"></a>");
@@ -1004,142 +921,116 @@ if (localStorage['SoftwareNotesTemplate/ToggleSnap'] == 'true')
 }
 
 <!--Information column-->
-if (localStorage['SoftwareNotesTemplate/ToggleInfo'] == 'true')
-{
-   document.write("<td align=\"center\" valign=\"middle\">"); 
-   document.write("<br><font size=\"5\"><font size=\"6\"><b>$SOFTWARE_TITLE$</b></font><br><i>$SOFTWARE_NAME$</i><br>"); 
-       
-   document.write("<br><b>"+ tr('Software-list') +":</b> $SOFTWARE_LIST$");   
-   document.write("<br><b>"+ tr('Publisher') +":</b> $SOFTWARE_PUBLISHER$");   
+if (localStorage['SoftwareNotesTemplate/ToggleInfo'] == 'true'){
+   document.write("<td align=\"center\" valign=\"middle\">");
+   document.write("<br><font size=\"5\"><font size=\"6\"><b>$SOFTWARE_TITLE$</b></font><br><i>$SOFTWARE_NAME$</i><br>");
+
+   document.write("<br><b>"+ tr('Software-list') +":</b> $SOFTWARE_LIST$");
+   document.write("<br><b>"+ tr('Publisher') +":</b> $SOFTWARE_PUBLISHER$");
    document.write("<br><b>"+ tr('Release date') +":</b> $SOFTWARE_YEAR$");
-   document.write("<br><b>");  
-   
+   document.write("<br><b>");
+
    if("$SOFTWARE_PARENT_ID$" != "")
-   {
       document.write(tr('Clone of')+": </b>$SOFTWARE_PARENT_ID$");
-   }
-         
+
    else
-   {
       document.write(tr('MAIN SOFTWARE')+"!!!</b>");
-   }   
-   
+
+   mostraManual("$SOFTWARE_LIST$", "$SOFTWARE_NAME$");
    document.write("</font></td>");
 }
 
 <!--Second image-->
-if (localStorage['SoftwareNotesTemplate/Toggle2Snap'] == 'true')
-{
+if (localStorage['SoftwareNotesTemplate/Toggle2Snap'] == 'true'){
    document.write("<td valign=\"middle\" align=\"center\">");
    document.write("<b>Snapshot image:</b><br>");
 
    if ("$SOFTWARE_SNAPSHOT$"!="$GHOST_IMAGE$")
-   {
       mostraImagem("$SOFTWARE_SNAPSHOT$", "local");
-   }
 
-   else
-   {
-      if (localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true')
-      {
-         switch (true)
-         {        
+   else{
+      if (localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true'){
+         switch (true){
             <!--Gioloi-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png", "pmess"); 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_NAME$.png", "pmess");
                break;
-            }           
-        
-            <!--Tafoid-->   
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png", "pmess");         
+            }
+
+            <!--Tafoid-->
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_NAME$.png", "pmess"); 
                break;
-            }            
-         
+            }
+
             <!--Various For--> 
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png", "pmess"); 
-               break;  
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_NAME$.png", "pmess");
+               break;
             }
-                   
+
             <!--Title Tafoid-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png", "pmess");    
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_NAME$.png", "pmess");
                break;
-            }     
-            
+            }
+
             <!--Scoure-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png", "pmess");   
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scuore/$SOFTWARE_NAME$.png", "pmess");
                break;
             }
-                        
+
             <!--Covers LusSpaceMine-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg", "pmess");  
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_NAME$.jpg", "pmess");
                break;
-            }              
-            
+            }
+
             <!--Clones-->
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_gioloi/$SOFTWARE_PARENT_ID$.png", "pmess");
                break;
             }
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess");
                break;
             }
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_variousfor/$SOFTWARE_PARENT_ID$.png", "pmess");
                break;
             }
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            } 
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png", "pmess"); 
-               break;
-            }            
-            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png")):
-            {
-               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png", "pmess"); 
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/title_tafoid/$SOFTWARE_PARENT_ID$.png", "pmess");
                break;
             }
-                                                                  
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/snap_scoure/$SOFTWARE_PARENT_ID$.png", "pmess");
+               break;
+            }
+            case (imagemExiste("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png")):{
+               mostraImagem("http://www.progettoemma.net/mess/snaps/$SOFTWARE_LIST$/covers_LusSpace_mine/$SOFTWARE_PARENT_ID$.png", "pmess");
+               break;
+            }
+
             default:
-            {
-               mostraFonte("miss", 0);      
-            }    
+               mostraFonte("miss", 0);
          }
       }
-   
-      else
-      {
-         mostraFonte("miss", 0);   
-         document.write("<br><br>Try to activate P.MESS mode"); 
-      }   
-   }  
+
+      else{
+         mostraFonte("miss", 0); 
+         document.write("<br><br>Try to activate P.MESS mode");
+      } 
+   }
    document.write("</td>");
 }
 </script>
-</tr></tbody></table>        
+</tr></tbody></table>
 
 <!--Small color line - for softinfo-->
 <script language="JavaScript">
-if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] != 'none')
-{
+if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] != 'none'){
    document.write("<table border=\"0\" cellspacing=\"0\" height=\"5\" width=\"100%\">");
    supportCor();
    document.write("<tr><td height=\"5\"></td></tr></tbody></table>");
@@ -1149,232 +1040,152 @@ if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] != 'none')
 </div>
 
 <!--new option bar-->
-<script language="JavaScript"> 
+<script language="JavaScript">
 <!--Ve a altura da barra de opções-->
 if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true')
-{
    document.write("<div id=\"footer\">");
-}
+
 else
-{
    document.write("<div id=\"footerno\">");
-}
-      
-<!--Cria a tabela básica-->      
+
+<!--Cria a tabela básica-->
 document.write("<table border=\"0\" cellspacing=\"0\" valign=\"top\" width=\"100%\">");
 statusCor();
 document.write("<td align=\"left\"><font color=\"white\">");
-if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true')
-{
+if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true'){
    document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" checked=\"checked\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
 }
-else
-{   
+else{
    document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
 }
-   
+
 document.write(" <label><b>"+tr('SHOW OPTIONS')+"</b></label></font></td>");
-   
 document.write("<td align=\"center\" valign=\"middle\"><font size=\"4\"><font style=\"color:white\"><b>");
-
 document.write(tr('File Status')+": $SOFTWARE_STATUS$");
-
 document.write("</b></font></td><td align=\"right\"><font color=\"white\"><b>"+tr('SHOW OPTIONS')+"</b>");
 
 if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true')
-{
    document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" checked=\"checked\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
-}
-else
-{   
-   document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
-}
 
-document.write("</font></td></tbody></table>");  
-  
-if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true')
-{   
-   document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" bgcolor=\"#080808\"><tbody>");       
+else
+   document.write("<input name=\"copt\" type=\"checkbox\" id=\"copt\" onclick=\"toggleOptions(this.checked);\" title=\"Show Options?\"/>");
+
+document.write("</font></td></tbody></table>");
+
+if (localStorage['SoftwareNotesTemplate/ToggleOptions'] == 'true'){
+   document.write("<table border=\"0\" cellspacing=\"0\" valign=\"middle\" width=\"100%\" bgcolor=\"#080808\"><tbody>");
    document.write("<tr><td width=\"15%\"><font color=\"white\">"+tr('General Options'));
    document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");
-   
+
    if (localStorage['SoftwareNotesTemplate/ShowImageSource'] == 'true')
-   {
       document.write("<input name=\"csource\" type=\"checkbox\" id=\"csource\" checked=\"checked\" onclick=\"toggleShowImageSource(this.checked);\" title=\"Show images source?\"/> <label>"+tr('Show Sources')+"</label>");
-   }
    else
-   {
       document.write("<input name=\"csource\" type=\"checkbox\" id=\"csource\" onclick=\"toggleShowImageSource(this.checked);\" title=\"Show images source?\"/> <label>"+tr('Show Sources')+"</label>");
-   }
 
    document.write("</td><td></td><td width=\"30%\"align=\"right\"><font color=\"white\">");
 
    if (localStorage['SoftwareNotesTemplate/UseProjectMess'] == 'true')
-   {
       document.write("P.MESS<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" checked=\"checked\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label></label>");
-   }
    else
-   {
       document.write("P.MESS<input name=\"cpmess\" type=\"checkbox\" id=\"cpmess\" onclick=\"toggleProjectMess(this.checked);\" title=\"Try to load images from P.MESS if not found on local disk?\"/> <label></label>");
-   }  
-  
-   
+
    document.write("</td></tr><tr><td width=\"15%\"><font color=\"white\">"+tr('Header Options'));
-   document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");  
+   document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");
 
    if (localStorage['SoftwareNotesTemplate/ToggleSnap'] == 'true')
-   {
-      document.write("<input name=\"csnap\" type=\"checkbox\" id=\"csnap\" checked=\"checked\" onclick=\"toggleSnap(this.checked);\" title=\"Toggle Snapshot Image\"/> <label>"+tr('Left Snapshot')+"</label>");       
-   }
+      document.write("<input name=\"csnap\" type=\"checkbox\" id=\"csnap\" checked=\"checked\" onclick=\"toggleSnap(this.checked);\" title=\"Toggle Snapshot Image\"/> <label>"+tr('Left Snapshot')+"</label>");
    else
-   {
       document.write("<input name=\"csnap\" type=\"checkbox\" id=\"csnap\" onclick=\"toggleSnap(this.checked);\" title=\"Toggle Snapshot Image\"/> <label>"+tr('Left Snapshot')+"</label>");
-   }
-   
-   document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");  
-   
+
+   document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");
+
    if (localStorage['SoftwareNotesTemplate/ToggleInfo'] == 'true')
-   {
       document.write("<input name=\"cinfo\" type=\"checkbox\" id=\"cinfo\" checked=\"checked\" onclick=\"toggleInfo(this.checked);\" title=\"Toggle Info\"/> <label>"+tr('Info Bar')+"</label>");
-   }       
    else
-   {
       document.write("<input name=\"cinfo\" type=\"checkbox\" id=\"cinfo\" onclick=\"toggleInfo(this.checked);\" title=\"Toggle Info\"/> <label>"+tr('Info Bar')+"</label>");
-   }     
-   
-   document.write("</td><td width=\"30%\" align=\"right\"><font color=\"white\">");  
+
+   document.write("</td><td width=\"30%\" align=\"right\"><font color=\"white\">");
 
    if (localStorage['SoftwareNotesTemplate/Toggle2Snap'] == 'true')
-   {
       document.write(tr('Right Snapshot')+"<input name=\"c2snap\" type=\"checkbox\" id=\"c2snap\" checked=\"checked\" onclick=\"toggle2Snap(this.checked);\" title=\"Toggle  a second Snapshot Image\"/> <label></label>");
-   }
    else
-   {
-      document.write(tr('Right Snapshot')+"<input name=\"c2snap\" type=\"checkbox\" id=\"c2snap\" onclick=\"toggle2Snap(this.checked);\" title=\"Toggle  a second Snapshot Image\"/> <label></label>");       
-   }
-   
+      document.write(tr('Right Snapshot')+"<input name=\"c2snap\" type=\"checkbox\" id=\"c2snap\" onclick=\"toggle2Snap(this.checked);\" title=\"Toggle  a second Snapshot Image\"/> <label></label>");
+
    document.write("</td></tr><tr><td width=\"15%\"><font color=\"white\">"+tr('Image Options'));
    document.write(":</td><td width=\"30%\ align=\"left\"><font color=\"white\">");
-   
+
    if (localStorage['SoftwareNotesTemplate/TvMode'] == 'true')
-   {
       document.write("<input name=\"ctvmode\" type=\"checkbox\" id=\"ctvmode\" checked=\"checked\" onclick=\"toggleTvMode(this.checked);\" title=\"Force 4:3 (old TV) aspect ratio?\"/> <label>"+tr('TV Mode')+"</label>");
-   }
    else
-   {
-      document.write("<input name=\"ctvmode\" type=\"checkbox\" id=\"ctvmode\" onclick=\"toggleTvMode(this.checked);\" title=\"Force 4:3 (old TV) aspect ratio?\"/> <label>"+tr('TV Mode')+"</label>");    
-   }                   
-   
-   document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");  
-   
+      document.write("<input name=\"ctvmode\" type=\"checkbox\" id=\"ctvmode\" onclick=\"toggleTvMode(this.checked);\" title=\"Force 4:3 (old TV) aspect ratio?\"/> <label>"+tr('TV Mode')+"</label>");
+
+   document.write("</td><td width=\"30%\" align=\"left\"><font color=\"white\">");
+
    if (localStorage['SoftwareNotesTemplate/BigImages'] == 'true')
-   {
       document.write("<input name=\"cbigimages\" type=\"checkbox\" id=\"cbigimages\" checked=\"checked\" onclick=\"toggleBigImages(this.checked);\" title=\"Force Big Images?\"/> <label>"+tr('Scaled Images')+"</label>");
-   }
    else
-   {
       document.write("<input name=\"cbigimages\" type=\"checkbox\" id=\"cbigimages\" onclick=\"toggleBigImages(this.checked);\" title=\"Force Big Images?\"/> <label>"+tr('Scaled Images')+"</label>");
-   }
-               
+
    document.write("</td><td width=\"30%\" align=\"right\"><font color=\"white\">");
-          
+
    if ( localStorage['SoftwareNotesTemplate/FancyImages'] == 'true' )
-   {
       document.write(tr('Image Transition')+"<input name=\"cfancy\" type=\"checkbox\" id=\"cfancy\" checked=\"checked\" onclick=\"FancyImages(this.checked);\" title=\"Show the black column or disable it?\"/> <label></label>");
-   }
    else
-   {
-      document.write(tr('Image Transition')+"<input name=\"cfancy\" type=\"checkbox\" id=\"cfancy\" onclick=\"FancyImages(this.checked);\" title=\"Show the black column or disable it?\"/> <label></label>");                   
-   }
+      document.write(tr('Image Transition')+"<input name=\"cfancy\" type=\"checkbox\" id=\"cfancy\" onclick=\"FancyImages(this.checked);\" title=\"Show the black column or disable it?\"/> <label></label>");
 
    document.write("</font></td></tr><tr><td></td><td align=\"left\"><font color=\"white\">");
 
    if (localStorage['SoftwareNotesTemplate/Shadows'] == 'true')
-   {
       document.write("<input name=\"cshadows\" type=\"checkbox\" id=\"cshadows\" checked=\"checked\" onclick=\"toggleShadows(this.checked);\" title=\"Show shadows under images?\"/> <label>"+tr('Shadows')+"</label>");
-   }
    else
-   {
-      document.write("<input name=\"cshadows\" type=\"checkbox\" id=\"cshadows\" onclick=\"toggleShadows(this.checked);\" title=\"Show shadows under images?\"/> <label>"+tr('Shadows')+"</label>"); 
-   }
+      document.write("<input name=\"cshadows\" type=\"checkbox\" id=\"cshadows\" onclick=\"toggleShadows(this.checked);\" title=\"Show shadows under images?\"/> <label>"+tr('Shadows')+"</label>");
 
    document.write("</td><td align=\"left\"><font color=\"white\">");
    
    if (localStorage['SoftwareNotesTemplate/UseZip'] == 'true')
-   {
       document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" checked=\"checked\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
-   }                
    else
-   {
       document.write("<input name=\"cusezip\" type=\"checkbox\" id=\"cusezip\" onclick=\"toggleUseZip(this.checked);\" title=\"Select this option if you want to use images from zip files (maybe slow)\"/> <label>"+tr('Use images from ZIP (may be slow)')+"</label>");
-   }   
 
    document.write("</td></tr><tr><td></td><td></td>");
-
-   document.write("<td align=\"right\"><input name=\"btxt\" type=\"button\" id=\"btxt\" onclick=\"selectTextCor();\" style=\"background-image: url('../img/fonts.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Text Color\"/></font>"); 
+   document.write("<td align=\"right\"><input name=\"btxt\" type=\"button\" id=\"btxt\" onclick=\"selectTextCor();\" style=\"background-image: url('../img/fonts.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Text Color\"/></font>");
 
    if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'color')
-   {
       document.write("<input name=\"bcor\" type=\"button\" id=\"bcor\" onclick=\"selectColor();\" style=\"background-image: url('../img/colors.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Background Color\"/></font>");
-   }
    else if ((localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'image-tiled')||(localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'image-scaled'))
-   {    
-      document.write("<input name=\"bimg\" type=\"button\" id=\"bimg\" onclick=\"selectImage();\" style=\"background-image: url('../img/camera.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Image for Background\"/></font></td>");    
-   }   
+   {
+      document.write("<input name=\"bimg\" type=\"button\" id=\"bimg\" onclick=\"selectImage();\" style=\"background-image: url('../img/camera.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Image for Background\"/></font></td>");
+   }
 
    if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'image-tiled')
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\">"+tr('BG mode')+": "+tr('Default')+"</option><option value=\"color\">"+tr('BG mode')+": "+tr('Color')+"</option><option value=\"image-tiled\" selected=\"selected\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'image-scaled')
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\">"+tr('BG mode')+": "+tr('Default')+"</option><option value=\"color\">"+tr('BG mode')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\"  selected=\"selected\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else if (localStorage['SoftwareNotesTemplate/BackgroundMode'] == 'color')
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\">"+tr('BG mode')+": "+tr('Default')+"</option><option value=\"color\" selected=\"selected\">"+tr('BG mode')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode(this.value)\" name=\"selBackgroundMode\" id=\"selBackgroundMode\" style=\"vertical-align: middle;\"><option value=\"default\" selected=\"selected\">"+tr('BG mode')+": "+tr('Default')+"</option><option value=\"color\">"+tr('BG mode')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('BG mode')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
 
    document.write("</td></tr><tr><td></td><td></td>");
-
-   document.write("<td align=\"right\"><input name=\"btxt2\" type=\"button\" id=\"btxt2\" onclick=\"selectTextCor2();\" style=\"background-image: url('../img/fonts.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Text Color from softwareinfo\"/></font>"); 
+   document.write("<td align=\"right\"><input name=\"btxt2\" type=\"button\" id=\"btxt2\" onclick=\"selectTextCor2();\" style=\"background-image: url('../img/fonts.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Text Color from softwareinfo\"/></font>");
 
    if (localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'color')
-   {
       document.write("<input name=\"bcor2\" type=\"button\" id=\"bcor2\" onclick=\"selectColor2();\" style=\"background-image: url('../img/colors.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Background Color from softwareinfo\"/></font>");
-   }
-
    else if ((localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'image-tiled')||(localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'image-scaled'))
-   {    
       document.write("<input name=\"bimg2\" type=\"button\" id=\"bimg2\" onclick=\"selectImage2();\" style=\"background-image: url('../img/camera.png');background-size: 100%; vertical-align: middle; width: 30; height: 30;\" title=\"Select Image for Background from softwareinfo\"/></font></td>");  
-   }     
 
    if ( localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'image-tiled' )
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode2(this.value)\" name=\"selBackgroundMode2\" id=\"selBackgroundMode2\" style=\"vertical-align: middle;\"><option value=\"none\">"+tr('SoftInfo/BG')+": "+tr('None')+"</option><option value=\"default\">"+tr('SoftInfo/BG')+": "+tr('Default')+"</option><option value=\"color\">"+tr('SoftInfo/BG')+": "+tr('Color')+"</option><option value=\"image-tiled\" selected=\"selected\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else if ( localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'image-scaled' )
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode2(this.value)\" name=\"selBackgroundMode2\" id=\"selBackgroundMode2\" style=\"vertical-align: middle;\"><option value=\"none\">"+tr('SoftInfo/BG')+": "+tr('None')+"</option><option value=\"default\">"+tr('SoftInfo/BG')+": "+tr('Default')+"</option><option value=\"color\">"+tr('SoftInfo/BG')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\" selected=\"selected\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else if ( localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'color' )
-   { 
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode2(this.value)\" name=\"selBackgroundMode2\" id=\"selBackgroundMode2\" style=\"vertical-align: middle;\"><option value=\"none\">"+tr('SoftInfo/BG')+": "+tr('None')+"</option><option value=\"default\">"+tr('SoftInfo/BG')+": "+tr('Default')+"</option><option value=\"color\" selected=\"selected\">"+tr('SoftInfo/BG')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else if ( localStorage['SoftwareNotesTemplate/BackgroundMode2'] == 'default' )
-   {
       document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode2(this.value)\" name=\"selBackgroundMode2\" id=\"selBackgroundMode2\" style=\"vertical-align: middle;\"><option value=\"none\">"+tr('SoftInfo/BG')+": "+tr('None')+"</option><option value=\"default\" selected=\"selected\">"+tr('SoftInfo/BG')+": "+tr('Default')+"</option><option value=\"color\">"+tr('SoftInfo/BG')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
-   }
    else
-   {
-      document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode2(this.value)\" name=\"selBackgroundMode2\" id=\"selBackgroundMode2\" style=\"vertical-align: middle;\"><option value=\"none\" selected=\"selected\">"+tr('SoftInfo/BG')+": "+tr('None')+"</option><option value=\"default\">"+tr('SoftInfo/BG')+": "+tr('Default')+"</option><option value=\"color\">"+tr('SoftInfo/BG')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");  
-   }   
+      document.write("<td align=\"right\"><select onchange=\"changeBackgroundMode2(this.value)\" name=\"selBackgroundMode2\" id=\"selBackgroundMode2\" style=\"vertical-align: middle;\"><option value=\"none\" selected=\"selected\">"+tr('SoftInfo/BG')+": "+tr('None')+"</option><option value=\"default\">"+tr('SoftInfo/BG')+": "+tr('Default')+"</option><option value=\"color\">"+tr('SoftInfo/BG')+": "+tr('Color')+"</option><option value=\"image-tiled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('tiled')+")</option><option value=\"image-scaled\">"+tr('SoftInfo/BG')+": "+tr('Image')+" ("+tr('scaled')+")</option></select></td>");
 }
 
-</script>   
-</tbody>   
+</script>
+</tbody>
 </html>
