@@ -3527,7 +3527,8 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 					if ( comboBox->currentIndex() > QMC2_SWLIST_MSEL_DONT_MOUNT ) {
 						if ( snapnameList.isEmpty() ) {
 							QTreeWidgetItem *item = *it;
-							while ( item->parent() ) item = item->parent();
+							while ( item->parent() )
+								item = item->parent();
 							snapnameList = item->text(QMC2_SWLIST_COLUMN_LIST);
 							snapnameSoftware = item->text(QMC2_SWLIST_COLUMN_NAME);
 							if ( comboBoxSnapnameDevice->isVisible() ) {
@@ -3547,7 +3548,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 							while ( item->parent() )
 								item = item->parent();
 						}
-						swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
+						swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(partItem->text(QMC2_SWLIST_COLUMN_PART));
 						if ( softwareLists )
 							*softwareLists << item->text(QMC2_SWLIST_COLUMN_LIST);
 						if ( softwareNames )
@@ -3575,7 +3576,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 				QString mountDev(lookupMountDevice(parts.at(i), interfaces.at(i)));
 				if ( !mountDev.isEmpty() ) {
 					swlArgs << QString("-%1").arg(mountDev);
-					swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
+					swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(parts.at(i));
 				}
 			}
 			if ( softwareLists )
