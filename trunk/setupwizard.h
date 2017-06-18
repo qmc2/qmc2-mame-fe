@@ -3,6 +3,7 @@
 
 #include <QSettings>
 #include <QString>
+#include <QVariant>
 
 #include "ui_setupwizard.h"
 #include "clickablelabel.h"
@@ -15,12 +16,26 @@
 #define QMC2_SETUPWIZARD_PAGE_ID_ADJUST_SETTINGS		5
 #define QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE			6
 
+class CustomSettings : public QObject
+{
+	public:
+		explicit CustomSettings(QSettings *cfg, QObject *parent = 0);
+
+	public:
+		void loadFrom(QSettings *cfg);
+		void saveTo(QSettings *cfg);
+
+	private:
+		QHash<QString, QVariant> m_settingsHash;
+};
+
 class SetupWizard : public QWizard, public Ui::SetupWizard
 {
 	Q_OBJECT
 
        	public:
-		SetupWizard(QSettings *cfg, QWidget *parent = 0);
+		explicit SetupWizard(QSettings *cfg, QWidget *parent = 0);
+		~SetupWizard();
 
 #if defined(QMC2_OS_MAC)
 		bool useNativeFileDialogs() { return m_startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/NativeFileDialogs", true).toBool(); }
@@ -61,6 +76,7 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		ClickableLabel *m_labelImportUiIni;
 		ClickableLabel *m_labelImportBothInis;
 		ClickableLabel *m_labelImportNothing;
+		CustomSettings *m_customSettings;
 };
 
 #endif

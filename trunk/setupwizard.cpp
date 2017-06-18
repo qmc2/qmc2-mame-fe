@@ -13,6 +13,27 @@
 
 extern bool qmc2TemplateCheck;
 
+CustomSettings::CustomSettings(QSettings *cfg, QObject *parent) :
+	QObject(parent)
+{
+	loadFrom(cfg);
+}
+
+void CustomSettings::loadFrom(QSettings *cfg)
+{
+	m_settingsHash.clear();
+	if ( cfg )
+		foreach (QString key, cfg->allKeys())
+			m_settingsHash.insert(key, cfg->value(key));
+}
+
+void CustomSettings::saveTo(QSettings *cfg)
+{
+	if ( cfg )
+		foreach (QString key, m_settingsHash.uniqueKeys())
+			cfg->setValue(key, m_settingsHash.value(key));
+}
+
 SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	QWizard(parent),
 	m_startupConfig(cfg),
@@ -49,7 +70,13 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 
 	adjustSize();
 	connect(comboBoxExecutableFile->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxExecutableFile_textChanged(const QString &)));
+	m_customSettings = new CustomSettings(m_startupConfig, this);
 	QTimer::singleShot(0, this, SLOT(init()));
+}
+
+SetupWizard::~SetupWizard()
+{
+	delete m_customSettings;
 }
 
 void SetupWizard::init()
