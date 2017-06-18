@@ -572,6 +572,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QTimer m_clRankUpdateTimer;
 		QTimer m_vlRankUpdateTimer;
 		bool m_ignoreSelectionChange;
+		bool m_ignoreDetailTabChange;
 		MachineListViewer *m_lastMlvSender;
 		QList<RankItemWidget *> m_rankItemWidgets;
 };
