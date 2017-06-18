@@ -314,6 +314,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	phononAudioOutput(0),
 #endif
 	m_ignoreSelectionChange(false),
+	m_ignoreDetailTabChange(false),
 	m_lastMlvSender(0)
 {
 	setUpdatesEnabled(false);
@@ -1595,7 +1596,10 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 	if ( qmc2DemoMachine.isEmpty() ) {
 		qmc2LastConfigItem = 0;
+		if ( componentInfo->appliedFeatureList().at(tabWidgetMachineDetail->currentIndex()) == QMC2_SYSTEM_NOTES_INDEX )
+			m_ignoreDetailTabChange = true;
 		on_tabWidgetMachineDetail_currentChanged(componentInfo->appliedFeatureList().indexOf(QMC2_CONFIG_INDEX));
+		m_ignoreDetailTabChange = false;
 	}
 
 	// check if a foreign emulator is to be used and if it CAN be used; if yes (both), start it instead of the default emulator...
@@ -3892,7 +3896,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	}
 #endif
 
-	if ( componentInfo->appliedFeatureList().at(currentIndex) != QMC2_SYSTEM_NOTES_INDEX ) {
+	if ( !m_ignoreDetailTabChange && componentInfo->appliedFeatureList().at(currentIndex) != QMC2_SYSTEM_NOTES_INDEX ) {
 		if ( qmc2SystemNotesEditor ) {
 			qmc2SystemNotesEditor->hideTearOffMenus();
 			qmc2SystemNotesEditor->hide();
