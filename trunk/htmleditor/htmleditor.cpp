@@ -1396,7 +1396,7 @@ QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
 		QString cacheKey(imw->cachePrefix() + '_' + id);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
 		if ( !cpm ) {
-			imw->loadImage(id, id, true, 0, false);
+			imw->loadImage(id, id, false, 0, false);
 			cpm = qmc2ImagePixmapCache.object(cacheKey);
 		}
 		if ( cpm ) {

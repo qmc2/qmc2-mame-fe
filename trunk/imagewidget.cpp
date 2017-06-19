@@ -312,7 +312,7 @@ bool ImageWidget::loadImage(const QString &machineName, const QString &onBehalfO
 	if ( fileName )
 		*fileName = "";
 	bool fileOk = true;
-	QString cacheKey = cachePrefix() + "_" + onBehalfOf;
+	QString cacheKey(cachePrefix() + '_' + onBehalfOf);
 	if ( useZip() ) {
 		// try loading image from (semicolon-separated) ZIP archive(s)
 		QByteArray imageData;
