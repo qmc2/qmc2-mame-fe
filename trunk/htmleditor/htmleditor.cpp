@@ -1395,8 +1395,14 @@ QString HtmlEditor::customSystemArtworkData(QString id, QString artworkName)
 	if ( imw ) {
 		QString cacheKey(imw->cachePrefix() + '_' + id);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
-		if ( !cpm )
+		if ( !cpm ) {
 			imw->loadImage(id, id, true, 0, false);
+			cpm = qmc2ImagePixmapCache.object(cacheKey);
+		}
+		if ( cpm ) {
+			imw->currentPixmap = *cpm;
+			imw->currentPixmap.imagePath = cpm->imagePath;
+		}
 		return imw->toBase64();
 	} else
 		return QString();
@@ -1450,8 +1456,14 @@ QString HtmlEditor::customSoftwareArtworkData(QString listName, QString software
 	if ( imw ) {
 		QString cacheKey(imw->cachePrefix() + '_' + listName + '_' + softwareName);
 		ImagePixmap *cpm = qmc2ImagePixmapCache.object(cacheKey);
-		if ( !cpm )
+		if ( !cpm ) {
 			imw->loadImage(listName, softwareName);
+			cpm = qmc2ImagePixmapCache.object(cacheKey);
+		}
+		if ( cpm ) {
+			imw->currentPixmap = *cpm;
+			imw->currentPixmap.imagePath = cpm->imagePath;
+		}
 		return imw->toBase64();
 	} else
 		return QString();
