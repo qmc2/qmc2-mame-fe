@@ -171,7 +171,7 @@ void SoftwareImageWidget::paintEvent(QPaintEvent *e)
 	}
 	QString listName(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST));
 	QString entryName(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME));
-	myCacheKey = cachePrefix() + "_" + listName + "_" + entryName;
+	myCacheKey = cachePrefix() + '_' + listName + '_' + entryName;
 	ImagePixmap *cpm = qmc2ImagePixmapCache.object(myCacheKey);
 	if ( !cpm ) {
 		loadImage(listName, entryName);
