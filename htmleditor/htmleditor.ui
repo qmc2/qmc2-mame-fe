@@ -64,6 +64,9 @@
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
+          <property name="lineWrapMode">
+           <enum>QPlainTextEdit::NoWrap</enum>
+          </property>
          </widget>
         </item>
        </layout>
@@ -78,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>659</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -227,7 +230,6 @@
    <addaction name="actionFormatNumberedList"/>
    <addaction name="actionFormatBulletedList"/>
    <addaction name="separator"/>
-   <addaction name="menuInsertImage"/>
    <addaction name="actionCreateLink"/>
    <addaction name="actionInsertTable"/>
    <addaction name="actionInsertHtml"/>
@@ -324,7 +326,8 @@
   </action>
   <action name="actionFileSaveAs">
    <property name="icon">
-    <iconset resource="../qmc2.qrc"><normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+    <iconset resource="../qmc2.qrc">
+     <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
    </property>
    <property name="text">
     <string>Save &amp;copy...</string>
@@ -341,7 +344,8 @@
   </action>
   <action name="actionFileOpenInBrowser">
    <property name="icon">
-    <iconset resource="../qmc2.qrc"><normaloff>:/data/img/browser.png</normaloff>:/data/img/browser.png</iconset>
+    <iconset resource="../qmc2.qrc">
+     <normaloff>:/data/img/browser.png</normaloff>:/data/img/browser.png</iconset>
    </property>
    <property name="text">
     <string>Open in browser...</string>
