@@ -1680,7 +1680,7 @@ void HtmlEditor::adjustIconSizes()
 	toolButtonSettings->setIconSize(iconSize);
 	QTabBar *tabBar = ui->tabWidget->findChild<QTabBar *>();
 	if ( tabBar ) {
-		f.setPointSize(f.pointSize()/1.5);
+		f.setPointSize(f.pointSize() * 0.666666f);
 		tabBar->setFont(f);
 	}
 }
