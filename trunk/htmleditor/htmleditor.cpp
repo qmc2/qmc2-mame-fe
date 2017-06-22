@@ -25,6 +25,7 @@
 #include <QtWebKit>
 #include <QHBoxLayout>
 #include <QTest>
+#include <QTabBar>
 #include <QMap>
 #include <QHash>
 #include <QList>
@@ -343,9 +344,9 @@ HtmlEditor::~HtmlEditor()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/MenuHidden").arg(myEditorName), actionHideMenu->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ReadOnly").arg(myEditorName), actionReadOnly->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/ShowHtml").arg(myEditorName), actionShowHTML->isChecked());
-
 	closeXmlBuffer();
-
+	if ( highlighter )
+		delete highlighter;
 	delete ui;
 	delete ui_dialog;
 }
@@ -1677,4 +1678,9 @@ void HtmlEditor::adjustIconSizes()
 	ui->standardToolBar->setIconSize(iconSize);
 	loadProgress->setFixedHeight(fm.height() - 4);
 	toolButtonSettings->setIconSize(iconSize);
+	QTabBar *tabBar = ui->tabWidget->findChild<QTabBar *>();
+	if ( tabBar ) {
+		f.setPointSize(f.pointSize()/1.5);
+		tabBar->setFont(f);
+	}
 }
