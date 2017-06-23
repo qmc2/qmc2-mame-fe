@@ -34,6 +34,19 @@ void CustomSettings::saveTo(QSettings *cfg)
 			cfg->setValue(key, m_settingsHash.value(key));
 }
 
+void CustomSettings::setValue(const QString &key, const QVariant &value)
+{
+	m_settingsHash.insert(key, value);
+}
+
+QVariant CustomSettings::value(const QString &key, const QVariant &defaultValue)
+{
+	if ( m_settingsHash.contains(key) )
+		return m_settingsHash.value(key);
+	else
+		return defaultValue;
+}
+
 SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	QWizard(parent),
 	m_startupConfig(cfg),
@@ -82,7 +95,7 @@ SetupWizard::~SetupWizard()
 void SetupWizard::init()
 {
 	button(QWizard::NextButton)->setEnabled(false);
-	QStringList emuHistory(m_startupConfig->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList());
+	QStringList emuHistory(m_customSettings->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList());
 	emuHistory.sort();
 	for (int i = 0; i < emuHistory.count(); i++) {
 		QString emuPath(emuHistory.at(i));
@@ -90,7 +103,7 @@ void SetupWizard::init()
 		if ( fi.exists() && fi.isReadable() && fi.isExecutable() && fi.isFile() )
 			comboBoxExecutableFile->insertItem(i, emuPath);
 	}
-	comboBoxExecutableFile->lineEdit()->setText(m_startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
+	comboBoxExecutableFile->lineEdit()->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString());
 	int index = comboBoxExecutableFile->findText(comboBoxExecutableFile->lineEdit()->text());
 	if ( index >= 0 )
 		comboBoxExecutableFile->setCurrentIndex(index);
@@ -323,6 +336,12 @@ void SetupWizard::initializePage(int id)
 			else if ( radioButtonImportUiIni->isChecked() )
 				QTimer::singleShot(0, this, SLOT(importUiIni()));
 			break;
+		case QMC2_SETUPWIZARD_PAGE_ID_ADJUST_SETTINGS:
+			lineEditWorkingDirectory->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
+			lineEditROMPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
+			lineEditSamplePath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
+			lineEditHashPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
+			break;
 	}
 }
 
@@ -420,4 +439,32 @@ void SetupWizard::on_toolButtonBrowseExecutableFile_clicked()
 	}
 	if ( !s.isNull() )
 		comboBoxExecutableFile->lineEdit()->setText(s);
+}
+
+void SetupWizard::on_toolButtonBrowseWorkingDirectory_clicked()
+{
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
+	if ( !s.isNull() )
+		lineEditWorkingDirectory->setText(s);
+}
+
+void SetupWizard::on_toolButtonBrowseROMPath_clicked()
+{
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose ROM path"), lineEditROMPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
+	if ( !s.isNull() )
+		lineEditROMPath->setText(s);
+}
+
+void SetupWizard::on_toolButtonBrowseSamplePath_clicked()
+{
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
+	if ( !s.isNull() )
+		lineEditSamplePath->setText(s);
+}
+
+void SetupWizard::on_toolButtonBrowseHashPath_clicked()
+{
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
+	if ( !s.isNull() )
+		lineEditHashPath->setText(s);
 }
