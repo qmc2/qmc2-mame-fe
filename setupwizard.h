@@ -24,6 +24,8 @@ class CustomSettings : public QObject
 	public:
 		void loadFrom(QSettings *cfg);
 		void saveTo(QSettings *cfg);
+		void setValue(const QString &key, const QVariant &value);
+		QVariant value(const QString &key, const QVariant &defaultValue = QVariant());
 
 	private:
 		QHash<QString, QVariant> m_settingsHash;
@@ -56,6 +58,10 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		void importMameIni();
 		void importUiIni();
 		void on_toolButtonBrowseExecutableFile_clicked();
+		void on_toolButtonBrowseWorkingDirectory_clicked();
+		void on_toolButtonBrowseROMPath_clicked();
+		void on_toolButtonBrowseSamplePath_clicked();
+		void on_toolButtonBrowseHashPath_clicked();
 
 	protected:
 		int nextId() const;
