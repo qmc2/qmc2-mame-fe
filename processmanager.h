@@ -1,5 +1,5 @@
-#ifndef _PROCESSMANAGER_H_
-#define _PROCESSMANAGER_H_
+#ifndef PROCESSMANAGER_H
+#define PROCESSMANAGER_H
 
 #include <QProcess>
 #include <QMap>

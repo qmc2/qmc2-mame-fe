@@ -1,5 +1,5 @@
-#ifndef _CUSTOMIDSETUP_H_
-#define _CUSTOMIDSETUP_H_
+#ifndef CUSTOMIDSETUP_H
+#define CUSTOMIDSETUP_H
 
 #include <QtGui>
 #include "ui_customidsetup.h"

@@ -1,5 +1,5 @@
-#ifndef _WINDOWS_TOOL_H_
-#define _WINDOWS_TOOL_H_
+#ifndef WINDOWS_TOOLS_H
+#define WINDOWS_TOOLS_H
 
 #include "macros.h"
 

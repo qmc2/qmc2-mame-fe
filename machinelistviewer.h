@@ -1,5 +1,5 @@
-#ifndef _MACHINELISTVIEWER_H_
-#define _MACHINELISTVIEWER_H_
+#ifndef MACHINELISTVIEWER_H
+#define MACHINELISTVIEWER_H
 
 #include <QStyledItemDelegate>
 #include <QTimer>

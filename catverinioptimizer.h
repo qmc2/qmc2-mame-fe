@@ -1,5 +1,5 @@
-#ifndef _CATVERINIOPTIMIZER_H_
-#define _CATVERINIOPTIMIZER_H_
+#ifndef CATVERINIOPTIMIZER_H
+#define CATVERINIOPTIMIZER_H
 
 #include <QMap>
 #include <QHash>

@@ -1,5 +1,5 @@
-#ifndef _PALETTEEDITOR_H_
-#define _PALETTEEDITOR_H_
+#ifndef PALETTEEDITOR_H
+#define PALETTEEDITOR_H
 
 #include <QPalette>
 #include <QStringList>

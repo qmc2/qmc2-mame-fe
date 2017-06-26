@@ -1,5 +1,5 @@
-#ifndef _IMAGEFORMATSETUP_H_
-#define _IMAGEFORMATSETUP_H_
+#ifndef IMAGEFORMATSETUP_H
+#define IMAGEFORMATSETUP_H
 
 #include <QMap>
 #include <QList>

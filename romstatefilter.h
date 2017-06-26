@@ -1,5 +1,5 @@
-#ifndef _ROMSTATEFILTER_H_
-#define _ROMSTATEFILTER_H_
+#ifndef ROMSTATEFILTER_H
+#define ROMSTATEFILTER_H
 
 #include <QAction>
 

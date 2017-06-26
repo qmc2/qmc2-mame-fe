@@ -1,5 +1,5 @@
-#ifndef _ROMSTATUSEXPORT_H_
-#define _ROMSTATUSEXPORT_H_
+#ifndef ROMSTATUSEXPORT_H
+#define ROMSTATUSEXPORT_H
 
 #include <QTextStream>
 #include "ui_romstatusexport.h"

@@ -1,5 +1,5 @@
-#ifndef _ICONCACHEDBMGR_H_
-#define _ICONCACHEDBMGR_H_
+#ifndef ICONCACHEDBMGR_H
+#define ICONCACHEDBMGR_H
 
 #include <QObject>
 #include <QSqlDatabase>

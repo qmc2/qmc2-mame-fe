@@ -1,5 +1,5 @@
-#ifndef _SWLISTEXPORT_H_
-#define _SWLISTEXPORT_H_
+#ifndef SWLISTEXPORT_H
+#define SWLISTEXPORT_H
 
 #include <Qt>
 #include "softwarelist.h"

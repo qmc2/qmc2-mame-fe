@@ -1,5 +1,5 @@
-#ifndef _FILEICONPROVIDER_H_
-#define _FILEICONPROVIDER_H_
+#ifndef FILEICONPROVIDER_H
+#define FILEICONPROVIDER_H
 
 #include <QIcon>
 #include <QCache>

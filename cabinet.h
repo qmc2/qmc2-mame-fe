@@ -1,5 +1,5 @@
-#ifndef _CABINET_H_
-#define _CABINET_H_
+#ifndef CABINET_H
+#define CABINET_H
 
 #include "imagewidget.h"
 

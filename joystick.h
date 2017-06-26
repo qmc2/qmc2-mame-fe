@@ -1,7 +1,7 @@
 #if QMC2_JOYSTICK == 1
 
-#ifndef _JOYSTICK_H_
-#define _JOYSTICK_H_
+#ifndef JOYSTICK_H
+#define JOYSTICK_H
 
 #include <QObject>
 #include <QMap>

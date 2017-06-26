@@ -1,5 +1,5 @@
-#ifndef _ADDITIONALARTWORKSETUP_H_
-#define _ADDITIONALARTWORKSETUP_H_
+#ifndef ADDITIONALARTWORKSETUP_H
+#define ADDITIONALARTWORKSETUP_H
 
 #include <QHash>
 #include <QTreeWidgetItem>

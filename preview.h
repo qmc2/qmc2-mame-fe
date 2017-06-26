@@ -1,5 +1,5 @@
-#ifndef _PREVIEW_H_
-#define _PREVIEW_H_
+#ifndef PREVIEW_H
+#define PREVIEW_H
 
 #include "imagewidget.h"
 

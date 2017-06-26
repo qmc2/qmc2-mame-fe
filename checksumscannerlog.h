@@ -1,5 +1,5 @@
-#ifndef _CHECKSUMSCANNERLOG_H_
-#define _CHECKSUMSCANNERLOG_H_
+#ifndef CHECKSUMSCANNERLOG_H
+#define CHECKSUMSCANNERLOG_H
 
 #include <QStringList>
 #include <QString>

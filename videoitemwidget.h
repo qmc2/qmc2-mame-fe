@@ -1,7 +1,7 @@
 #if defined(QMC2_YOUTUBE_ENABLED)
 
-#ifndef _VIDEOITEMWIDGET_H_
-#define _VIDEOITEMWIDGET_H_
+#ifndef VIDEOITEMWIDGET_H
+#define VIDEOITEMWIDGET_H
 
 #include <Qt>
 #include "ui_videoitemwidget.h"

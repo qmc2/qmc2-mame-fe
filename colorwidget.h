@@ -1,5 +1,5 @@
-#ifndef _COLORWIDGET_H_
-#define _COLORWIDGET_H_
+#ifndef COLORWIDGET_H
+#define COLORWIDGET_H
 
 #include <QPalette>
 #include <QSize>

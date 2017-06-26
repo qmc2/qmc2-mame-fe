@@ -1,5 +1,5 @@
-#ifndef _EMUOPTACTIONS_H_
-#define _EMUOPTACTIONS_H_
+#ifndef EMUOPTACTIONS_H
+#define EMUOPTACTIONS_H
 
 #include <QTreeWidgetItem>
 #include "ui_emuoptactions.h"

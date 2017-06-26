@@ -1,5 +1,5 @@
-#ifndef _ROMALYZER_H_
-#define _ROMALYZER_H_
+#ifndef ROMALYZER_H
+#define ROMALYZER_H
 
 #include <QtGui>
 #include <QtXml>

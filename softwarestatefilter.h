@@ -1,5 +1,5 @@
-#ifndef _SOFTWARESTATEFILTER_H_
-#define _SOFTWARESTATEFILTER_H_
+#ifndef SOFTWARESTATEFILTER_H
+#define SOFTWARESTATEFILTER_H
 
 #include "ui_softwarestatefilter.h"
 

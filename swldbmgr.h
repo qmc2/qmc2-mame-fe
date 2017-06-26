@@ -1,5 +1,5 @@
-#ifndef _SWLDBMGR_H_
-#define _SWLDBMGR_H_
+#ifndef SWLDBMGR_H
+#define SWLDBMGR_H
 
 #include <QObject>
 #include <QList>

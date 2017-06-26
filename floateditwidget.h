@@ -1,5 +1,5 @@
-#ifndef _FLOATEDITWIDGET_H_
-#define _FLOATEDITWIDGET_H_
+#ifndef FLOATEDITWIDGET_H
+#define FLOATEDITWIDGET_H
 
 #include "ui_floateditwidget.h"
 

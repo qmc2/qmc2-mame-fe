@@ -1,5 +1,5 @@
-#ifndef WHEELAREA_H
-#define WHEELAREA_H
+#ifndef WHEEL_H
+#define WHEEL_H
 
 #include <qglobal.h>
 

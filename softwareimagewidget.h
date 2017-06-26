@@ -1,5 +1,5 @@
-#ifndef _SOFTWAREIMAGEWIDGET_H_
-#define _SOFTWAREIMAGEWIDGET_H_
+#ifndef SOFTWAREIMAGEWIDGET_H
+#define SOFTWAREIMAGEWIDGET_H
 
 #include <QAction>
 #include <QMenu>

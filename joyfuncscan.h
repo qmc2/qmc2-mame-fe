@@ -1,7 +1,7 @@
 #if QMC2_JOYSTICK == 1
 
-#ifndef _JOYFUNCSCAN_H_
-#define _JOYFUNCSCAN_H_
+#ifndef JOYFUNCSCAN_H
+#define JOYFUNCSCAN_H
 
 #include <QTimer>
 #include "joystick.h"

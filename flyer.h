@@ -1,5 +1,5 @@
-#ifndef _FLYER_H_
-#define _FLYER_H_
+#ifndef FLYER_H
+#define FLYER_H
 
 #include "imagewidget.h"
 

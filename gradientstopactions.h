@@ -1,5 +1,5 @@
-#ifndef _GRADIENTSTOPACTIONS_H_
-#define _GRADIENTSTOPACTIONS_H_
+#ifndef GRADIENTSTOPACTIONS_H
+#define GRADIENTSTOPACTIONS_H
 
 #include <QTreeWidgetItem>
 #include "ui_gradientstopactions.h"

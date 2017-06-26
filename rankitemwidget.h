@@ -1,5 +1,5 @@
-#ifndef _RANKITEMWIDGET_H_
-#define _RANKITEMWIDGET_H_
+#ifndef RANKITEMWIDGET_H
+#define RANKITEMWIDGET_H
 
 #include <QFontMetrics>
 #include <QMouseEvent>

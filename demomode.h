@@ -1,5 +1,5 @@
-#ifndef _DEMOMODE_H_
-#define _DEMOMODE_H_
+#ifndef DEMOMODE_H
+#define DEMOMODE_H
 
 #include <QProcess>
 #include "ui_demomode.h"

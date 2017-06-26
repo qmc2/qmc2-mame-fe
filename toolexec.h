@@ -1,5 +1,5 @@
-#ifndef _TOOLEXEC_H_
-#define _TOOLEXEC_H_
+#ifndef TOOLEXEC_H
+#define TOOLEXEC_H
 
 #include <QProcess>
 #include "ui_toolexec.h"

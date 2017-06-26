@@ -1,5 +1,5 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#ifndef MACHINEOBJECT_H
+#define MACHINEOBJECT_H
 
 #include <QObject>
 

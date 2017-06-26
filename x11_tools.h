@@ -1,5 +1,5 @@
-#ifndef _X11_TOOL_H_
-#define _X11_TOOL_H_
+#ifndef X11_TOOLS_H
+#define X11_TOOLS_H
 
 #include "macros.h"
 

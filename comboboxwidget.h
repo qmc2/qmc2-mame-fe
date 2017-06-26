@@ -1,5 +1,5 @@
-#ifndef _COMBOBOXWIDGET_H_
-#define _COMBOBOXWIDGET_H_
+#ifndef COMBOBOXWIDGET_H
+#define COMBOBOXWIDGET_H
 
 #include <QStringList>
 #include <QSize>

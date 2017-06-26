@@ -1,5 +1,5 @@
-#ifndef _CHECKSUMDBMGR_H_
-#define _CHECKSUMDBMGR_H_
+#ifndef CHECKSUMDBMGR_H
+#define CHECKSUMDBMGR_H
 
 #include <QObject>
 #include <QSqlDatabase>

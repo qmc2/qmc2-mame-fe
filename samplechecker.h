@@ -1,5 +1,5 @@
-#ifndef _SAMPLECHECKER_H_
-#define _SAMPLECHECKER_H_
+#ifndef SAMPLECHECKER_H
+#define SAMPLECHECKER_H
 
 #include <QDialog>
 #include <QTime>

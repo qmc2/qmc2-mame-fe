@@ -1,5 +1,5 @@
-#ifndef CURSORSHAPEAREA_H
-#define CURSORSHAPEAREA_H
+#ifndef POINTER_H
+#define POINTER_H
 
 #include <qglobal.h>
 

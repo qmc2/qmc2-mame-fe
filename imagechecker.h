@@ -1,5 +1,5 @@
-#ifndef _IMAGECHECKER_H_
-#define _IMAGECHECKER_H_
+#ifndef IMAGECHECKER_H
+#define IMAGECHECKER_H
 
 #include <QMap>
 #include <QThread>

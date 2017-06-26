@@ -1,5 +1,5 @@
-#ifndef _COOKIEJAR_H_
-#define _COOKIEJAR_H_
+#ifndef COOKIEJAR_H
+#define COOKIEJAR_H
 
 #include <QString>
 #include <QSqlDatabase>
