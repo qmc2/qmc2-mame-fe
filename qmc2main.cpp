@@ -546,6 +546,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	qmc2MachineList = new MachineList(this);
 	labelMachineListStatus->setText(qmc2MachineList->status());
+	connect(qmc2MachineList->iconCacheDb(), SIGNAL(log(const QString &)), this, SLOT(logFE(const QString &)));
 
 	statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar").toBool());
 

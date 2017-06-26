@@ -65,7 +65,8 @@ SOURCES += main.cpp \
     ../lzma/Ppmd7.c \
     ../lzma/Ppmd7Dec.c \
     ../lzma/Ppmd7Enc.c \
-    ../lzma/Sha256.c
+    ../lzma/Sha256.c \
+    ../iconcachedbmgr.cpp
 
 lessThan(QT_MAJOR_VERSION, 5) {
     include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -93,9 +94,12 @@ HEADERS += \
     datinfodbmgr.h \
     ../settings.h \
     ../sevenzipfile.h \
-    ../bigbytearray.h
+    ../bigbytearray.h \
+    ../iconcachedbmgr.h
 
 INCLUDEPATH += ../lzma
+
+DEFINES += QMC2_ARCADE
 
 contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
     SOURCES += ../archivefile.cpp

@@ -711,6 +711,11 @@ QString TweakedQmlApplicationViewer::emuMode()
 	}
 }
 
+bool TweakedQmlApplicationViewer::iconCacheDatabaseEnabled()
+{
+	return globalConfig->iconCacheDatabaseEnabled();
+}
+
 QString TweakedQmlApplicationViewer::parentId(QString id)
 {
 	if ( m_parentHash.contains(id) )

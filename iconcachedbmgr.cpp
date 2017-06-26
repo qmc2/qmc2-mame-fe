@@ -2,18 +2,25 @@
 #include <QSqlDriver>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QDateTime>
 #include <QDir>
 #include <QUuid>
 
-#include "macros.h"
-#include "qmc2main.h"
-#include "settings.h"
+#if defined(QMC2_ARCADE)
+#include "arcadesettings.h"
+#else
 #include "options.h"
+#endif
+#include "settings.h"
 #include "iconcachedbmgr.h"
+#include "macros.h"
 
 // external global variables
-extern MainWindow *qmc2MainWindow;
+#if defined(QMC2_ARCADE)
+extern ArcadeSettings *globalConfig;
+#else
 extern Settings *qmc2Config;
+#endif
 
 IconCacheDatabaseManager::IconCacheDatabaseManager(QObject *parent) :
 	QObject(parent),
@@ -24,14 +31,19 @@ IconCacheDatabaseManager::IconCacheDatabaseManager(QObject *parent) :
 {
 	m_connectionName = QString("icon-db-connection-%1").arg(QUuid::createUuid().toString());
 	m_db = QSqlDatabase::addDatabase("QSQLITE", m_connectionName);
+#if defined(QMC2_ARCADE)
+	m_db.setDatabaseName(globalConfig->iconCacheDatabaseName());
+	m_tableBasename = QString("%1_icon_cache").arg(globalConfig->emulatorName().toLower());
+#else
 	m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/IconCacheDatabase", QString(Options::configPath() + "/%1-icon-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_icon_cache").arg(QMC2_EMU_NAME.toLower());
+#endif
 	if ( m_db.open() ) {
 		QStringList tables = m_db.driver()->tables(QSql::Tables);
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to open icon cache database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
+		emit log(tr("WARNING: failed to open icon cache database '%1': error = '%2'").arg(m_db.databaseName()).arg(m_db.lastError().text()));
 }
 
 IconCacheDatabaseManager::~IconCacheDatabaseManager()
@@ -52,7 +64,7 @@ QString IconCacheDatabaseManager::emulatorVersion()
 			emu_version = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return emu_version;
 }
 
@@ -66,17 +78,17 @@ void IconCacheDatabaseManager::setEmulatorVersion(QString emu_version)
 			query.prepare(QString("INSERT INTO %1_metadata (emu_version, row) VALUES (:emu_version, 0)").arg(m_tableBasename));
 			query.bindValue(":emu_version", emu_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
+				emit log(tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET emu_version=:emu_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":emu_version", emu_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
+				emit log(tr("WARNING: failed to update '%1' in icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("emu_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 QString IconCacheDatabaseManager::qmc2Version()
@@ -89,7 +101,7 @@ QString IconCacheDatabaseManager::qmc2Version()
 			qmc2_version = query.value(0).toString();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return qmc2_version;
 }
 
@@ -103,17 +115,17 @@ void IconCacheDatabaseManager::setQmc2Version(QString qmc2_version)
 			query.prepare(QString("INSERT INTO %1_metadata (qmc2_version, row) VALUES (:qmc2_version, 0)").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
+				emit log(tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET qmc2_version=:qmc2_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":qmc2_version", qmc2_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
+				emit log(tr("WARNING: failed to update '%1' in icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("qmc2_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 int IconCacheDatabaseManager::iconCacheVersion()
@@ -126,7 +138,7 @@ int IconCacheDatabaseManager::iconCacheVersion()
 			icon_cache_version = query.value(0).toInt();
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
 	return icon_cache_version;
 }
 
@@ -140,17 +152,17 @@ void IconCacheDatabaseManager::setIconCacheVersion(int icon_cache_version)
 			query.prepare(QString("INSERT INTO %1_metadata (icon_cache_version, row) VALUES (:icon_cache_version, 0)").arg(m_tableBasename));
 			query.bindValue(":icon_cache_version", icon_cache_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
+				emit log(tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		} else {
 			query.finish();
 			query.prepare(QString("UPDATE %1_metadata SET icon_cache_version=:icon_cache_version WHERE row=0").arg(m_tableBasename));
 			query.bindValue(":icon_cache_version", icon_cache_version);
 			if ( !query.exec() )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to update '%1' in icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
+				emit log(tr("WARNING: failed to update '%1' in icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
 		}
 		query.finish();
 	} else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("icon_cache_version").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 qint64 IconCacheDatabaseManager::iconCacheRowCount(bool reset)
@@ -164,7 +176,7 @@ qint64 IconCacheDatabaseManager::iconCacheRowCount(bool reset)
 			else
 				m_lastRowCount = -1;
 		} else {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch row count from icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+			emit log(tr("WARNING: failed to fetch row count from icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 			m_lastRowCount = -1;
 		}
 		m_resetRowCount = false;
@@ -183,8 +195,13 @@ bool IconCacheDatabaseManager::isEmpty()
 
 bool IconCacheDatabaseManager::importRequired(const QStringList &pathList)
 {
+#if defined(QMC2_ARCADE)
+	QStringList importPaths(globalConfig->iconCacheImportPaths());
+	QStringList importDates(globalConfig->iconCacheImportDates());
+#else
 	QStringList importPaths(qmc2Config->value(QMC2_EMULATOR_PREFIX + "IconCacheDatabase/ImportPaths", QStringList()).toStringList());
 	QStringList importDates(qmc2Config->value(QMC2_EMULATOR_PREFIX + "IconCacheDatabase/ImportDates", QStringList()).toStringList());
+#endif
 	if ( importPaths.isEmpty() || importDates.isEmpty() )
 		return true;
 	if ( importPaths.count() != importDates.count() )
@@ -240,7 +257,23 @@ void IconCacheDatabaseManager::setIconData(const QString &id, const QByteArray &
 	query.bindValue(":id", id);
 	query.bindValue(":icon_data", icon_data);
 	if ( !query.exec() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to add '%1' to icon cache database: query = '%2', error = '%3'").arg(id).arg(query.lastQuery()).arg(query.lastError().text()));
+}
+
+QByteArray IconCacheDatabaseManager::iconData(const QString &id)
+{
+	QSqlQuery query(m_db);
+	query.prepare(QString("SELECT icon_data FROM %1 WHERE id=:id LIMIT 1").arg(m_tableBasename));
+	query.bindValue(":id", id);
+	if ( query.exec() )
+		if ( query.first() )
+			return query.value(0).toByteArray();
+		else
+			return QByteArray();
+	else {
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("icon_data").arg(query.lastQuery()).arg(query.lastError().text()));
+		return QByteArray();
+	}
 }
 
 bool IconCacheDatabaseManager::exists(const QString &id)
@@ -251,7 +284,7 @@ bool IconCacheDatabaseManager::exists(const QString &id)
 	if ( query.exec() )
 		return query.first();
 	else {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to fetch '%1' from icon cache database: query = '%2', error = '%3'").arg("id").arg(query.lastQuery()).arg(query.lastError().text()));
 		return false;
 	}
 }
@@ -281,7 +314,7 @@ void IconCacheDatabaseManager::setCacheSize(quint64 kiloBytes)
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA cache_size = -%1").arg(kiloBytes)) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the icon cache database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to change the '%1' setting for the icon cache database: query = '%2', error = '%3'").arg("cache_size").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void IconCacheDatabaseManager::setSyncMode(uint syncMode)
@@ -291,7 +324,7 @@ void IconCacheDatabaseManager::setSyncMode(uint syncMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA synchronous = %1").arg(dbSyncModes.at(syncMode))) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the icon cache database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to change the '%1' setting for the icon cache database: query = '%2', error = '%3'").arg("synchronous").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void IconCacheDatabaseManager::setJournalMode(uint journalMode)
@@ -301,24 +334,24 @@ void IconCacheDatabaseManager::setJournalMode(uint journalMode)
 		return;
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("PRAGMA journal_mode = %1").arg(dbJournalModes.at(journalMode))) )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to change the '%1' setting for the icon cache database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to change the '%1' setting for the icon cache database: query = '%2', error = '%3'").arg("journal_mode").arg(query.lastQuery()).arg(query.lastError().text()));
 }
 
 void IconCacheDatabaseManager::recreateDatabase()
 {
 	QSqlQuery query(m_db);
 	if ( !query.exec(QString("DROP INDEX IF EXISTS %1_index").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to remove icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to remove icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("DROP TABLE IF EXISTS %1_metadata").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to remove icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to remove icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
@@ -326,19 +359,19 @@ void IconCacheDatabaseManager::recreateDatabase()
 	query.exec("VACUUM");
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1 (id TEXT PRIMARY KEY, icon_data BLOB, CONSTRAINT %1_unique_id UNIQUE (id))").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to create icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE INDEX %1_index ON %1 (id)").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to create icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	query.finish();
 	if ( !query.exec(QString("CREATE TABLE %1_metadata (row INTEGER PRIMARY KEY, emu_version TEXT, qmc2_version TEXT, icon_cache_version INTEGER)").arg(m_tableBasename)) ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to create icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
+		emit log(tr("WARNING: failed to create icon cache database: query = '%1', error = '%2'").arg(query.lastQuery()).arg(query.lastError().text()));
 		return;
 	}
 	if ( logActive() )
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("icon cache database '%1' initialized").arg(m_db.databaseName()));
+		emit log(tr("icon cache database '%1' initialized").arg(m_db.databaseName()));
 }

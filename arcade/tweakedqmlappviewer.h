@@ -141,6 +141,7 @@ public slots:
 	void imageDataUpdate(const QString &cachePrefix) { emit imageDataUpdated(cachePrefix); }
 	bool isSevenZippedImageType(const QString & type) { return imageProvider->isSevenZippedImageType(type); }
 	bool isZippedImageType(const QString & type) { return imageProvider->isZippedImageType(type); }
+	bool iconCacheDatabaseEnabled();
 	QString parentId(QString id);
 	QStringList customSystemArtwork();
 	QStringList customSoftwareArtwork();

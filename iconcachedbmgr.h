@@ -37,6 +37,7 @@ class IconCacheDatabaseManager : public QObject
 		qint64 iconCacheRowCount(bool reset = false);
 
 		void setIconData(const QString &id, const QByteArray &icon_data);
+		QByteArray iconData(const QString &id);
 		void queryIconData();
 		bool nextIconData(QString *id, QByteArray *icon_data);
 		
@@ -53,6 +54,9 @@ class IconCacheDatabaseManager : public QObject
 		void recreateDatabase();
 		void beginTransaction() { m_db.driver()->beginTransaction(); }
 		void commitTransaction() { m_db.driver()->commitTransaction(); }
+
+	signals:
+		void log(const QString &message);
 
 	private:
 		mutable QSqlDatabase m_db;
