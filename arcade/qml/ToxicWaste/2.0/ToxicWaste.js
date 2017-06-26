@@ -69,9 +69,9 @@ function overlayOffset(h) {
     return offset;
 }
 
-function gameCardHeader() {
-    var gameObject = machineListModel[machineListView.currentIndex];
-    return "<h2>" + gameObject.description + "</h2>" + "<p>"+ qsTr("ID") + ": " + gameObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(gameObject.romState) + "</p>";
+function machineCardHeader() {
+    var machineObject = machineListModel[toxicWasteMain.currentMachineIndex];
+    return "<h2>" + machineObject.description + "</h2>" + "<p>"+ qsTr("ID") + ": " + machineObject.id + " / " + qsTr("ROM state") + ": " + viewer.romStateText(machineObject.romState) + "</p>";
 }
 
 function nextImageType(imageType) {
@@ -202,13 +202,13 @@ function cachePrefix(imageType) {
 }
 
 function imageUrl(imageType) {
-    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + machineListModel[machineListView.currentIndex].id + "/" + machineListModel[machineListView.currentIndex].parentId;;
+    var imgUrl = "image://qmc2/" + cachePrefix(imageType) + "/" + machineListModel[toxicWasteMain.currentMachineIndex].id + "/" + machineListModel[toxicWasteMain.currentMachineIndex].parentId;;
     return imgUrl;
 }
 
 function launchButtonSource() {
     var buttonSource = "images/launch_";
-    switch ( machineListModel[machineListView.currentIndex].romState ) {
+    switch ( machineListModel[toxicWasteMain.currentMachineIndex].romState ) {
     case 0:
         buttonSource += "correct.png";
         break;

@@ -14,6 +14,7 @@ Rectangle {
     property bool flipDirectionChanged: false
     property bool iconsReady: false
     property bool icoSevenZipped: viewer.isSevenZippedImageType("ico") && !viewer.iconCacheDatabaseEnabled()
+    property int currentMachineIndex: 0
 
     // restored properties
     property bool fpsVisible: false
@@ -84,6 +85,14 @@ Rectangle {
         running: false
         repeat: false
         onTriggered: toxicWasteMain.flipDirectionChanged = false
+    }
+
+    Timer {
+        id: detailUpdateTimer
+        interval: 20
+        running: false
+        repeat: false
+        onTriggered: toxicWasteMain.currentMachineIndex = machineListView.currentIndex;
     }
 
     Connections {
@@ -226,7 +235,7 @@ Rectangle {
                 }
                 Text {
                     id: itemDescription
-                    text: ToxicWaste.gameCardHeader()
+                    text: ToxicWaste.machineCardHeader()
                     font.pixelSize: 12 * ToxicWaste.scaleFactorY()
                     anchors.top: parent.top
                     anchors.topMargin: 10 * ToxicWaste.scaleFactorX()
@@ -402,7 +411,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(machineListModel[machineListView.currentIndex].id, "emuinfo");
+                            displayText: viewer.requestInfo(machineListModel[toxicWasteMain.currentMachineIndex].id, "emuinfo");
                         }
                     }
                     Rectangle {
@@ -423,7 +432,7 @@ Rectangle {
                             fontSize: 12 * ToxicWaste.scaleFactorX()
                             fontColor: "white"
                             arrowIcon: "images/down_arrow_white.png"
-                            displayText: viewer.requestInfo(machineListModel[machineListView.currentIndex].id, "sysinfo");
+                            displayText: viewer.requestInfo(machineListModel[toxicWasteMain.currentMachineIndex].id, "sysinfo");
                         }
                     }
                 }
@@ -717,7 +726,15 @@ Rectangle {
                 break;
             }
         }
-        onCurrentIndexChanged: toxicWasteMain.lastIndex = currentIndex;
+        onCurrentIndexChanged: {
+            toxicWasteMain.lastIndex = currentIndex;
+            if ( !flicking )
+                detailUpdateTimer.restart();
+        }
+        onFlickingChanged: {
+            if ( !flicking )
+                detailUpdateTimer.restart();
+        }
     }
     Rectangle {
         id: confirmQuitDialog
