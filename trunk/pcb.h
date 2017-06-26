@@ -1,5 +1,5 @@
-#ifndef _PCB_H_
-#define _PCB_H_
+#ifndef PCB_H
+#define PCB_H
 
 #include "imagewidget.h"
 

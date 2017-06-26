@@ -2,8 +2,8 @@
 
 #if QMC2_USE_PHONON_API == 1
 
-#ifndef _AUDIOEFFECTS_H_
-#define _AUDIOEFFECTS_H_
+#ifndef AUDIOEFFECTS_H
+#define AUDIOEFFECTS_H
 
 #include <QMap>
 #include <QString>

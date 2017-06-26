@@ -1,5 +1,5 @@
-#ifndef _SOFTWARESNAPSHOT_H_
-#define _SOFTWARESNAPSHOT_H_
+#ifndef SOFTWARESNAPSHOT_H
+#define SOFTWARESNAPSHOT_H
 
 #include "softwareimagewidget.h"
 

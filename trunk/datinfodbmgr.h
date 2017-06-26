@@ -1,5 +1,5 @@
-#ifndef _DATINFODBMGR_H_
-#define _DATINFODBMGR_H_
+#ifndef DATINFODBMGR_H
+#define DATINFODBMGR_H
 
 #include <QObject>
 #include <QSqlDatabase>

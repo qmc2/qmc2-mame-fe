@@ -1,5 +1,5 @@
-#ifndef _COLLECTIONREBUILDER_H_
-#define _COLLECTIONREBUILDER_H_
+#ifndef COLLECTIONREBUILDER_H
+#define COLLECTIONREBUILDER_H
 
 #include <QThread>
 #include <QMutex>

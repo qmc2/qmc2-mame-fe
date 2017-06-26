@@ -1,7 +1,7 @@
 #if defined(QMC2_YOUTUBE_ENABLED)
 
-#ifndef _YOUTUBEVIDEOPLAYER_H_
-#define _YOUTUBEVIDEOPLAYER_H_
+#ifndef YOUTUBEVIDEOPLAYER_H
+#define YOUTUBEVIDEOPLAYER_H
 
 #include <qglobal.h>
 #include <QtGui>

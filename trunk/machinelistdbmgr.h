@@ -1,5 +1,5 @@
-#ifndef _MACHINELISTDBMGR_H_
-#define _MACHINELISTDBMGR_H_
+#ifndef MACHINELISTDBMGR_H
+#define MACHINELISTDBMGR_H
 
 #include <QObject>
 #include <QSqlDatabase>

@@ -1,5 +1,5 @@
-#ifndef _DIREDITWIDGET_H_
-#define _DIREDITWIDGET_H_
+#ifndef DIREDITWIDGET_H
+#define DIREDITWIDGET_H
 
 #include <QTreeWidget>
 #include "ui_direditwidget.h"

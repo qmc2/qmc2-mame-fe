@@ -1,5 +1,5 @@
-#ifndef _DOWNLOADITEM_H_
-#define _DOWNLOADITEM_H_
+#ifndef DOWNLOADITEM_H
+#define DOWNLOADITEM_H
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>

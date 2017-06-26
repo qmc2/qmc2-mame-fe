@@ -1,5 +1,5 @@
-#ifndef _MESSDEVCFG_H_
-#define _MESSDEVCFG_H_
+#ifndef DEVICECONFIGURATOR_H
+#define DEVICECONFIGURATOR_H
 
 #include <QItemDelegate>
 #include <QModelIndex>

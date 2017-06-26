@@ -1,5 +1,5 @@
-#ifndef _DBROWSER_H_
-#define _DBROWSER_H_
+#ifndef DOCBROWSER_H
+#define DOCBROWSER_H
 
 #include "ui_docbrowser.h"
 #include "miniwebbrowser.h"

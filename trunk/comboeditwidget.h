@@ -1,5 +1,5 @@
-#ifndef _COMBOEDITWIDGET_H_
-#define _COMBOEDITWIDGET_H_
+#ifndef COMBOEDITWIDGET_H
+#define COMBOEDITWIDGET_H
 
 #include "ui_comboeditwidget.h"
 

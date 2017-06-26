@@ -1,5 +1,5 @@
-#ifndef MACROS_H
-#define MACROS_H
+#ifndef MACROS_QMC2_ARCADE_H
+#define MACROS_QMC2_ARCADE_H
 
 #include <Qt>
 

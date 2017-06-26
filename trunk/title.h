@@ -1,5 +1,5 @@
-#ifndef _TITLE_H_
-#define _TITLE_H_
+#ifndef TITLE_H
+#define TITLE_H
 
 #include "imagewidget.h"
 

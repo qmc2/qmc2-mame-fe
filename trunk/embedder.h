@@ -1,5 +1,5 @@
-#ifndef _EMBEDDER_H_
-#define _EMBEDDER_H_
+#ifndef EMBEDDER_H
+#define EMBEDDER_H
 
 #include <qglobal.h>
 #include "macros.h"

@@ -1,5 +1,5 @@
-#ifndef _IMAGEWIDGET_H_
-#define _IMAGEWIDGET_H_
+#ifndef IMAGEWIDGET_H
+#define IMAGEWIDGET_H
 
 #include <QMap>
 #include <QHash>

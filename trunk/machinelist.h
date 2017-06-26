@@ -1,5 +1,5 @@
-#ifndef _MACHINELIST_H_
-#define _MACHINELIST_H_
+#ifndef MACHINELIST_H
+#define MACHINELIST_H
 
 #include <QtGui>
 #include <QIcon>

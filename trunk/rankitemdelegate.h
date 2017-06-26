@@ -1,5 +1,5 @@
-#ifndef _RANKITEMDELEGATE_H_
-#define _RANKITEMDELEGATE_H_
+#ifndef RANKITEMDELEGATE_H
+#define RANKITEMDELEGATE_H
 
 #include <QStyledItemDelegate>
 #include <QWidget>

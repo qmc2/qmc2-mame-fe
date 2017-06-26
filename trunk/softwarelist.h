@@ -1,5 +1,5 @@
-#ifndef _SOFTWARELIST_H_
-#define _SOFTWARELIST_H_
+#ifndef SOFTWARELIST_H
+#define SOFTWARELIST_H
 
 #include <QProcess>
 #include <QTime>

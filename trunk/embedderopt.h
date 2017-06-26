@@ -1,5 +1,5 @@
-#ifndef _EMBEDDEROPT_H_
-#define _EMBEDDEROPT_H_
+#ifndef EMBEDDEROPT_H
+#define EMBEDDEROPT_H
 
 #include <qglobal.h>
 #include <QMap>

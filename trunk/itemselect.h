@@ -1,5 +1,5 @@
-#ifndef _ITEMSELECT_H_
-#define _ITEMSELECT_H_
+#ifndef ITEMSELECT_H
+#define ITEMSELECT_H
 
 #include <QStringList>
 #include "ui_itemselect.h"

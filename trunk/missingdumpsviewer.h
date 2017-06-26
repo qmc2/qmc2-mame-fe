@@ -1,5 +1,5 @@
-#ifndef _MISSINGDUMPSVIEWER_H_
-#define _MISSINGDUMPSVIEWER_H_
+#ifndef MISSINGDUMPSVIEWER_H
+#define MISSINGDUMPSVIEWER_H
 
 #include <QTreeWidget>
 #include <QString>

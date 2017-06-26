@@ -1,5 +1,5 @@
-#ifndef _ICONCACHESETUPDIALOG_H_
-#define _ICONCACHESETUPDIALOG_H_
+#ifndef ICONCACHESETUPDIALOG_H
+#define ICONCACHESETUPDIALOG_H
 
 #include "ui_iconcachesetupdialog.h"
 

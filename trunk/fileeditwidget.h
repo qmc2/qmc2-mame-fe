@@ -1,5 +1,5 @@
-#ifndef _FILEEDITWIDGET_H_
-#define _FILEEDITWIDGET_H_
+#ifndef FILEEDITWIDGET_H
+#define FILEEDITWIDGET_H
 
 #include <QTreeWidget>
 #include "ui_fileeditwidget.h"

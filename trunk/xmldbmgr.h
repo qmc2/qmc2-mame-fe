@@ -1,5 +1,5 @@
-#ifndef _XMLDBMGR_H_
-#define _XMLDBMGR_H_
+#ifndef XMLDBMGR_H
+#define XMLDBMGR_H
 
 #include <QObject>
 #include <QList>

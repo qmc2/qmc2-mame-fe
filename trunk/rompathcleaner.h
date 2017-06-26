@@ -1,5 +1,5 @@
-#ifndef _ROMPATHCLEANER_H_
-#define _ROMPATHCLEANER_H_
+#ifndef ROMPATHCLEANER_H
+#define ROMPATHCLEANER_H
 
 #include <QString>
 #include <QStringList>

@@ -1,5 +1,5 @@
-#ifndef _QMC2_MAIN_H_
-#define _QMC2_MAIN_H_
+#ifndef QMC2MAIN_H
+#define QMC2MAIN_H
 
 #include <qglobal.h>
 #include <QApplication>

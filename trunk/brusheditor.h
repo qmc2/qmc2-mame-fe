@@ -1,5 +1,5 @@
-#ifndef _BRUSHEDITOR_H_
-#define _BRUSHEDITOR_H_
+#ifndef BRUSHEDITOR_H
+#define BRUSHEDITOR_H
 
 #include "ui_brusheditor.h"
 

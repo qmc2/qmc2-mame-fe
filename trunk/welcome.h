@@ -1,5 +1,5 @@
-#ifndef _WELCOME_H_
-#define _WELCOME_H_
+#ifndef WELCOME_H
+#define WELCOME_H
 
 #include <QStringList>
 

@@ -1,5 +1,5 @@
-#ifndef _KEYSEQSCAN_H_
-#define _KEYSEQSCAN_H_
+#ifndef KEYSEQSCAN_H
+#define KEYSEQSCAN_H
 
 #include <QTimer>
 #include "ui_keyseqscan.h"

@@ -1,5 +1,5 @@
-#ifndef _ARCADEMODESETUP_H_
-#define _ARCADEMODESETUP_H_
+#ifndef ARCADEMODESETUP_H
+#define ARCADEMODESETUP_H
 
 #include <QStringList>
 

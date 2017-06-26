@@ -1,5 +1,5 @@
-#ifndef _TOOLBARCUSTOMIZER_H_
-#define _TOOLBARCUSTOMIZER_H_
+#ifndef TOOLBARCUSTOMIZER_H
+#define TOOLBARCUSTOMIZER_H
 
 #include <QList>
 #include <QMap>

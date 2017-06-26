@@ -1,5 +1,5 @@
-#ifndef _ICONLINEEDIT_H_
-#define _ICONLINEEDIT_H_
+#ifndef ICONLINEEDIT_H
+#define ICONLINEEDIT_H
 
 #include <QLineEdit>
 #include <QToolButton>

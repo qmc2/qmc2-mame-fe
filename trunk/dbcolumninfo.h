@@ -1,5 +1,5 @@
-#ifndef _DBCOLUMNINFO_H_
-#define _DBCOLUMNINFO_H_
+#ifndef DBCOLUMNINFO_H
+#define DBCOLUMNINFO_H
 
 #include <QString>
 

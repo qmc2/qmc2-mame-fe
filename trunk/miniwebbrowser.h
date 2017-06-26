@@ -1,5 +1,5 @@
-#ifndef _MINIWEBBROWSER_H_
-#define _MINIWEBBROWSER_H_
+#ifndef MINIWEBBROWSER_H
+#define MINIWEBBROWSER_H
 
 #include <Qt>
 #if QT_VERSION >= 0x050000

@@ -1,5 +1,5 @@
-#ifndef _USERDATADBMGR_H_
-#define _USERDATADBMGR_H_
+#ifndef USERDATADBMGR_H
+#define USERDATADBMGR_H
 
 #include <QObject>
 #include <QSqlDatabase>

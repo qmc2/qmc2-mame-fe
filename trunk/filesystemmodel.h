@@ -1,5 +1,5 @@
-#ifndef _FILESYSTEMMODEL_H_
-#define _FILESYSTEMMODEL_H_
+#ifndef FILESYSTEMMODEL_H
+#define FILESYSTEMMODEL_H
 
 #include <QDir>
 #include <QDirIterator>

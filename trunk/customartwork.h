@@ -1,5 +1,5 @@
-#ifndef _CUSTOMARTWORK_H_
-#define _CUSTOMARTWORK_H_
+#ifndef CUSTOMARTWORK_H
+#define CUSTOMARTWORK_H
 
 #include <QString>
 

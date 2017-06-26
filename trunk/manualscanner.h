@@ -1,5 +1,5 @@
-#ifndef _MANUALSCANNER_H_
-#define _MANUALSCANNER_H_
+#ifndef MANUALSCANNER_H
+#define MANUALSCANNER_H
 
 #include <QString>
 

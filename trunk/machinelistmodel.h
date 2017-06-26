@@ -1,5 +1,5 @@
-#ifndef _MACHINELISTMODEL_H_
-#define _MACHINELISTMODEL_H_
+#ifndef MACHINELISTMODEL_H
+#define MACHINELISTMODEL_H
 
 #include <QAbstractItemModel>
 #include <QList>

@@ -1,5 +1,5 @@
-#ifndef _COMPONENTSETUP_H_
-#define _COMPONENTSETUP_H_
+#ifndef COMPONENTSETUP_H
+#define COMPONENTSETUP_H
 
 #include <QWidget>
 #include <QTabWidget>

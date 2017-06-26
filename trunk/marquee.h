@@ -1,5 +1,5 @@
-#ifndef _MARQUEE_H_
-#define _MARQUEE_H_
+#ifndef MARQUEE_H
+#define MARQUEE_H
 
 #include "imagewidget.h"
 

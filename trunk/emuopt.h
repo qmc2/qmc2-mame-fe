@@ -1,5 +1,5 @@
-#ifndef _EMUOPT_H_
-#define _EMUOPT_H_
+#ifndef EMUOPT_H
+#define EMUOPT_H
 
 #include <QStyledItemDelegate>
 #include <QModelIndex>

@@ -1,5 +1,5 @@
-#ifndef _MOVIERECORDERSETUP_H_
-#define _MOVIERECORDERSETUP_H_
+#ifndef MOVIERECORDERSETUP_H
+#define MOVIERECORDERSETUP_H
 
 #include "ui_movierecordersetup.h"
 
