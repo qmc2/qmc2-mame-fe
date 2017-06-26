@@ -1009,6 +1009,26 @@ void ArcadeSettings::removeMachineInfoImportDates()
 	remove(QString("%1/DatInfoDatabase/MachineInfoImportDates").arg(emulatorPrefix));
 }
 
+bool ArcadeSettings::iconCacheDatabaseEnabled()
+{
+	return value(QString("%1/IconCacheDatabase/Enabled").arg(emulatorPrefix)).toBool();
+}
+
+QString ArcadeSettings::iconCacheDatabaseName()
+{
+	return value(QString("%1/FilesAndDirectories/IconCacheDatabase").arg(frontEndPrefix), QString(configPath() + "/%1-icon-cache.db").arg(emulatorName())).toString();
+}
+
+QStringList ArcadeSettings::iconCacheImportPaths()
+{
+	return value(QString("%1/IconCacheDatabase/ImportPaths").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
+QStringList ArcadeSettings::iconCacheImportDates()
+{
+	return value(QString("%1/IconCacheDatabase/ImportDates").arg(emulatorPrefix), QStringList()).toStringList();
+}
+
 QStringList ArcadeSettings::customSystemArtworkNames()
 {
 	beginGroup("Artwork");

@@ -413,6 +413,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void checkCurrentFavoritesSelection();
 		void checkCurrentPlayedSelection();
 		void log(int, const QString &);
+		void logFE(const QString &message) { log(QMC2_LOG_FRONTEND, message); }
+		void logEMU(const QString &message) { log(QMC2_LOG_EMULATOR, message); }
 		void logScrollToEnd(int);
 		void init();
 		void setupStyle(QString);

@@ -27,6 +27,7 @@
 #if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
 #include "../archivefile.h"
 #endif
+#include "../iconcachedbmgr.h"
 
 #if QT_VERSION < 0x050000
 #include <QDeclarativeImageProvider>
@@ -77,6 +78,7 @@ private:
 	QStringList mFormatExtensions;
 	QStringList mFormatNames;
 	QMap<QString, bool> mAsyncMap;
+	IconCacheDatabaseManager *m_iconCacheDb;
 };
 #else
 #include <QQuickImageProvider>
@@ -127,6 +129,7 @@ private:
 	QStringList mFormatExtensions;
 	QStringList mFormatNames;
 	QMap<QString, bool> mAsyncMap;
+	IconCacheDatabaseManager *m_iconCacheDb;
 };
 #endif
 

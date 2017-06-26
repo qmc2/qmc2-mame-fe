@@ -2991,6 +2991,7 @@ void MachineList::reopenIconCacheDb()
 	m_iconCacheDb = new IconCacheDatabaseManager(this);
 	iconCacheDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
 	iconCacheDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	connect(iconCacheDb(), SIGNAL(log(const QString &)), qmc2MainWindow, SLOT(logFE(const QString &)));
 }
 
 bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)

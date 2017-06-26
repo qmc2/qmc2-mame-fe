@@ -239,6 +239,12 @@ public slots:
 	void setMachineInfoImportDates(QStringList &);
 	void removeMachineInfoImportDates();
 
+	// icon cache database related
+	bool iconCacheDatabaseEnabled();
+	QString iconCacheDatabaseName();
+	QStringList iconCacheImportPaths();
+	QStringList iconCacheImportDates();
+
 	// custom artwork related
 	QStringList customSystemArtworkNames();
 	QStringList customSoftwareArtworkNames();

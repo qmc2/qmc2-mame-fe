@@ -13,6 +13,7 @@ Rectangle {
     property bool horizontalFlip: true
     property bool flipDirectionChanged: false
     property bool iconsReady: false
+    property bool icoSevenZipped: viewer.isSevenZippedImageType("ico") && !viewer.iconCacheDatabaseEnabled()
 
     // restored properties
     property bool fpsVisible: false
@@ -561,7 +562,7 @@ Rectangle {
         flickableDirection: Flickable.AutoFlickDirection
         smooth: true
         preferredHighlightBegin: 0
-        preferredHighlightEnd: 0
+        preferredHighlightEnd: 72
         highlight: Rectangle {
             id: itemHighlighter
             smooth: true
@@ -598,15 +599,15 @@ Rectangle {
                 border.width: 2
                 Image {
                     id: machineListItemIcon
-                    cache: viewer.isSevenZippedImageType("ico") ? toxicWasteMain.iconsReady : true
+                    cache: icoSevenZipped ? toxicWasteMain.iconsReady : true
                     source: "image://qmc2/ico/" + model.modelData.id + "/" + model.modelData.parentId
                     anchors.left: machineListItemBackground.left
                     anchors.verticalCenter: machineListItemBackground.verticalCenter
                     anchors.margins: 10
                     smooth: true
                     fillMode: Image.PreserveAspectFit
-                    height: machineListItemBackground.height / 3
-                    asynchronous: !viewer.isSevenZippedImageType("ico")
+                    height: 24
+                    asynchronous: !icoSevenZipped
                     Connections {
                         target: viewer
                         onImageDataUpdated: {
