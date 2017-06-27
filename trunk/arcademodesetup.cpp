@@ -149,6 +149,7 @@ ArcadeModeSetup::ArcadeModeSetup(QWidget *parent)
 	checkBoxJoy->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/Joy", false).toBool());
 	spinBoxJoyIndex->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/JoyIndex", 0).toInt());
 #endif
+	checkBoxDebugQt->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugQt", false).toBool());
 
 	// machine list filter
 	checkBoxFavoriteSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/FavoriteSetsOnly", false).toBool());
@@ -478,6 +479,7 @@ void ArcadeModeSetup::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/Joy", checkBoxJoy->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/JoyIndex", spinBoxJoyIndex->value());
 #endif
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Arcade/DebugQt", checkBoxDebugQt->isChecked());
 
 	// machine list filter
 	qmc2Config->setValue(QMC2_ARCADE_PREFIX + "UseFilteredList", checkBoxUseFilteredList->isChecked());
