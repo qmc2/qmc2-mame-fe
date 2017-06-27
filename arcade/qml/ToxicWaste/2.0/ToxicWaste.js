@@ -136,7 +136,7 @@ function previousImageType(imageType) {
     return previousType;
 }
 
-function gameImageType(imageType) {
+function machineImageType(imageType) {
     var typeName;
     switch ( imageType ) {
     case "flyer":
