@@ -70,6 +70,8 @@ FILES
 
   CONFIG_PATH/mame.mlc.filtered  Filtered version of the machine list cache created by qmc2(6) (optional)
 
+  CONFIG_PATH/mame-icon-cache.db  Icon cache database (SQLite 3)
+
   CONFIG_PATH/mame-dat-info.db  DAT-info database (SQLite 3), a combined data store for all supported DAT-info sources (emu-info, machine-info and software-info)
 
 SEE ALSO
