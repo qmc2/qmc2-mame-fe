@@ -32,7 +32,8 @@ Rectangle {
     property bool menuHidden: false
     property string version: ""
     property bool confirmQuit: true
-    property int gameCardPage: 0
+    property int preferencesTab: 0
+    property int machineCardPage: 0
     property bool autoPositionOverlay: true
     property real overlayScale: 0.73
     property real overlayOffsetX: 0
@@ -312,15 +313,15 @@ Rectangle {
                     wrapMode: Text.WordWrap
                 }
                 TabWidget {
-                    id: gameCardTabWidget
+                    id: machineCardTabWidget
                     anchors.fill: parent
                     anchors.leftMargin: 10 * ToxicWaste.scaleFactorX()
                     anchors.rightMargin: anchors.leftMargin
                     anchors.bottom: parent.bottom
                     anchors.topMargin: itemDescription.height + 25 * ToxicWaste.scaleFactorY()
                     anchors.horizontalCenter: parent.horizontalCenter
-                    current: toxicWasteMain.gameCardPage
-                    onCurrentChanged: toxicWasteMain.gameCardPage = current
+                    current: toxicWasteMain.machineCardPage
+                    onCurrentChanged: toxicWasteMain.machineCardPage = current
                     baseColor: "#55a5ff"
                     activeBorderColor: "black"
                     inactiveBorderColor: "#202020"
@@ -373,7 +374,7 @@ Rectangle {
                             smooth: true
                             Text {
                                 id: imageTypeText
-                                text: ToxicWaste.gameImageType(toxicWasteMain.secondaryImageType)
+                                text: ToxicWaste.machineImageType(toxicWasteMain.secondaryImageType)
                                 color: "black"
                                 font.bold: true
                                 font.pixelSize: 12 * ToxicWaste.scaleFactorY()
@@ -481,7 +482,7 @@ Rectangle {
                         }
                     }
                     Rectangle {
-                        id: gameInfoViewer
+                        id: machineInfoViewer
                         property string title: qsTr("Machine info")
                         anchors.fill: parent
                         anchors.topMargin: 5 * ToxicWaste.scaleFactorY()
@@ -657,7 +658,6 @@ Rectangle {
         highlightMoveDuration: 500
         cacheBuffer: 72 * itemsPerPage() // 72 = machineListItemDelegate.height
         delegate: Item {
-            property string gameId: id
             id: machineListItemDelegate
             width: 280
             height: 72
@@ -939,6 +939,8 @@ Rectangle {
             inactiveTextColor: "#202020"
             fontSize: 12
             smooth: true
+            current: toxicWasteMain.preferencesTab
+            onCurrentChanged: toxicWasteMain.preferencesTab = current
             scaleFactor: ToxicWaste.scaleFactorX()
             Rectangle {
                 id: preferencesSwitchesTab

@@ -313,14 +313,24 @@ bool ArcadeSettings::confirmQuit()
 	return value(QString("Arcade/%1/confirmQuit").arg(arcadeTheme), true).toBool();
 }
 
-void ArcadeSettings::setGameCardPage(int page)
+void ArcadeSettings::setMachineCardPage(int page)
 {
-	setValue(QString("Arcade/%1/gameCardPage").arg(arcadeTheme), page);
+	setValue(QString("Arcade/%1/machineCardPage").arg(arcadeTheme), page);
 }
 
-int ArcadeSettings::gameCardPage()
+int ArcadeSettings::machineCardPage()
 {
-	return value(QString("Arcade/%1/gameCardPage").arg(arcadeTheme), 0).toInt();
+	return value(QString("Arcade/%1/machineCardPage").arg(arcadeTheme), 0).toInt();
+}
+
+void ArcadeSettings::setPreferencesTab(int tab)
+{
+	setValue(QString("Arcade/%1/preferencesTab").arg(arcadeTheme), tab);
+}
+
+int ArcadeSettings::preferencesTab()
+{
+	return value(QString("Arcade/%1/preferencesTab").arg(arcadeTheme), 0).toInt();
 }
 
 void ArcadeSettings::setAutoPositionOverlay(bool autoPosition)
@@ -373,14 +383,14 @@ double ArcadeSettings::backgroundOpacity()
 	return value(QString("Arcade/%1/backgroundOpacity").arg(arcadeTheme), 1).toDouble();
 }
 
-void ArcadeSettings::setGameListOpacity(double opacity)
+void ArcadeSettings::setMachineListOpacity(double opacity)
 {
-	setValue(QString("Arcade/%1/gameListOpacity").arg(arcadeTheme), opacity);
+	setValue(QString("Arcade/%1/machineListOpacity").arg(arcadeTheme), opacity);
 }
 
-double ArcadeSettings::gameListOpacity()
+double ArcadeSettings::machineListOpacity()
 {
-	return value(QString("Arcade/%1/gameListOpacity").arg(arcadeTheme), 1).toDouble();
+	return value(QString("Arcade/%1/machineListOpacity").arg(arcadeTheme), 1).toDouble();
 }
 
 void ArcadeSettings::setCabinetImageType(QString imageType)

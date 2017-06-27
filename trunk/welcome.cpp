@@ -307,10 +307,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 69, osr, 7768) ) {
-			startupConfig->remove(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel");
-			startupConfig->remove(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/ChecksumWizardAutomationLevel");
-		}
 		if ( QMC2_TEST_VERSION(omv, 70, osr, 7815) ) {
 			// more "Game" => "Machine" transitions
 			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator") ) {
@@ -358,6 +354,17 @@ bool Welcome::checkConfig()
 		if ( QMC2_TEST_VERSION(omv, 183, osr, 7910) ) {
 			// we got rid of using a temporary file *completely* in this revision
 			startupConfig->remove(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile");
+		}
+		if ( QMC2_TEST_VERSION(omv, 187, osr, 8076) ) {
+			// QMC2 Arcade / ToxicWaste theme changes
+			if ( startupConfig->contains("Arcade/ToxicWaste/gameCardPage") ) {
+				startupConfig->setValue("Arcade/ToxicWaste/machineCardPage", startupConfig->value("Arcade/ToxicWaste/gameCardPage", 0).toInt());
+				startupConfig->remove("Arcade/ToxicWaste/gameCardPage");
+			}
+			if ( startupConfig->contains("Arcade/ToxicWaste/gameListOpacity") ) {
+				startupConfig->setValue("Arcade/ToxicWaste/machineListOpacity", startupConfig->value("Arcade/ToxicWaste/gameListOpacity", 1.0).toDouble());
+				startupConfig->remove("Arcade/ToxicWaste/gameListOpacity");
+			}
 		}
 	}
 

@@ -250,14 +250,15 @@ void TweakedQmlApplicationViewer::loadSettings()
 		rootObject()->setProperty("lastIndex", globalConfig->lastIndex() < gameList.count() ? globalConfig->lastIndex() : 0);
 		rootObject()->setProperty("menuHidden", globalConfig->menuHidden());
 		rootObject()->setProperty("confirmQuit", globalConfig->confirmQuit());
-		rootObject()->setProperty("gameCardPage", globalConfig->gameCardPage());
+		rootObject()->setProperty("machineCardPage", globalConfig->machineCardPage());
+		rootObject()->setProperty("preferencesTab", globalConfig->preferencesTab());
 		rootObject()->setProperty("autoPositionOverlay", globalConfig->autoPositionOverlay());
 		rootObject()->setProperty("overlayScale", QMC2_ARCADE_MAX(0.0, QMC2_ARCADE_MIN(10.0, globalConfig->overlayScale())));
 		rootObject()->setProperty("overlayOffsetX", globalConfig->overlayOffsetX());
 		rootObject()->setProperty("overlayOffsetY", globalConfig->overlayOffsetY());
 		rootObject()->setProperty("overlayOpacity", globalConfig->overlayOpacity());
 		rootObject()->setProperty("backgroundOpacity", globalConfig->backgroundOpacity());
-		rootObject()->setProperty("gameListOpacity", globalConfig->gameListOpacity());
+		rootObject()->setProperty("machineListOpacity", globalConfig->machineListOpacity());
 		rootObject()->setProperty("cabinetImageType", globalConfig->cabinetImageType());
 		rootObject()->setProperty("autoStopAnimations", globalConfig->autoStopAnimations());
 		if ( videoEnabled() ) {
@@ -319,14 +320,15 @@ void TweakedQmlApplicationViewer::saveSettings()
 		globalConfig->setLastIndex(rootObject()->property("lastIndex").toInt());
 		globalConfig->setMenuHidden(rootObject()->property("menuHidden").toBool());
 		globalConfig->setConfirmQuit(rootObject()->property("confirmQuit").toBool());
-		globalConfig->setGameCardPage(rootObject()->property("gameCardPage").toInt());
+		globalConfig->setMachineCardPage(rootObject()->property("machineCardPage").toInt());
+		globalConfig->setPreferencesTab(rootObject()->property("preferencesTab").toInt());
 		globalConfig->setAutoPositionOverlay(rootObject()->property("autoPositionOverlay").toBool());
 		globalConfig->setOverlayScale(rootObject()->property("overlayScale").toDouble());
 		globalConfig->setOverlayOffsetX(rootObject()->property("overlayOffsetX").toDouble());
 		globalConfig->setOverlayOffsetY(rootObject()->property("overlayOffsetY").toDouble());
 		globalConfig->setOverlayOpacity(rootObject()->property("overlayOpacity").toDouble());
 		globalConfig->setBackgroundOpacity(rootObject()->property("backgroundOpacity").toDouble());
-		globalConfig->setGameListOpacity(rootObject()->property("gameListOpacity").toDouble());
+		globalConfig->setMachineListOpacity(rootObject()->property("machineListOpacity").toDouble());
 		globalConfig->setCabinetImageType(rootObject()->property("cabinetImageType").toString());
 		globalConfig->setAutoStopAnimations(rootObject()->property("autoStopAnimations").toBool());
 		if ( videoEnabled() ) {

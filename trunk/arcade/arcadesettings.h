@@ -90,8 +90,10 @@ public slots:
 	bool showShaderEffect();
 	void setConfirmQuit(bool);
 	bool confirmQuit();
-	void setGameCardPage(int);
-	int gameCardPage();
+	void setMachineCardPage(int);
+	int machineCardPage();
+	void setPreferencesTab(int);
+	int preferencesTab();
 	void setAutoPositionOverlay(bool);
 	bool autoPositionOverlay();
 	void setOverlayOffsetX(double);
@@ -102,8 +104,8 @@ public slots:
 	double overlayOpacity();
 	void setBackgroundOpacity(double);
 	double backgroundOpacity();
-	void setGameListOpacity(double);
-	double gameListOpacity();
+	void setMachineListOpacity(double);
+	double machineListOpacity();
 	void setCabinetImageType(QString);
 	QString cabinetImageType();
 	void setAutoStopAnimations(bool);
