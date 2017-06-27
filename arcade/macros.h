@@ -63,7 +63,7 @@
 #else
 #define QMC2_ARCADE_DOT_PATH			(QDir::homePath() + "/.qmc2")
 #endif
-#define QMC2_ARCADE_DYN_DOT_PATH		(argumentList.indexOf("-config_path") >= 0 && argumentList.indexOf("-config_path") + 1 <= argumentList.count() ? argumentList[argumentList.indexOf("-config_path") + 1]: QMC2_ARCADE_DOT_PATH)
+#define QMC2_ARCADE_DYN_DOT_PATH		(argumentList.indexOf("-config_path") >= 0 && argumentList.indexOf("-config_path") + 1 <= argumentList.count() ? argumentList.at(argumentList.indexOf("-config_path") + 1) : QMC2_ARCADE_DOT_PATH)
 
 // ROM states
 #define QMC2_ARCADE_ROMSTATE_C			0
@@ -158,6 +158,8 @@
 #define QMC2_ARCADE_CLI_NO_JOY			(argumentList.indexOf("-nojoy") >= 0)
 // -debugjoy
 #define QMC2_ARCADE_CLI_DEBUG_JOY		(argumentList.indexOf("-debugjoy") >= 0)
+// -debugqt
+#define QMC2_ARCADE_CLI_DEBUG_QT		(argumentList.indexOf("-debugqt") >= 0)
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP			(argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation

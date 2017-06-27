@@ -2956,6 +2956,8 @@ void MainWindow::on_actionLaunchArcade_triggered(bool)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugJoy").toBool() )
 			args << "-debugjoy";
 	}
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/DebugQt").toBool() )
+		args << "-debugqt";
 
 	QString commandString(QDir::toNativeSeparators(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Arcade/ExecutableFile").toString()));
 	foreach (QString arg, args)
