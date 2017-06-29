@@ -139,7 +139,7 @@ Rectangle {
             front: Item {
                 id: frontItem
                 anchors.fill: parent
-                scale: toxicWasteMain.autoPositionOverlay ? 1 : toxicWasteMain.overlayScale
+                scale: toxicWasteMain.overlayScale
                 property bool shiftPressed: false
                 property bool altPressed: false
                 property bool ctrlPressed: false
@@ -175,6 +175,7 @@ Rectangle {
                         anchors.centerIn: parent
                         anchors.margins: 1
                         fillMode: Image.PreserveAspectFit
+                        asynchronous: viewer.isSevenZippedImageType(toxicWasteMain.cabinetImageType) ? false : true
                         Connections {
                             target: viewer
                             onImageDataUpdated: {
@@ -182,6 +183,21 @@ Rectangle {
                                     previewImage.cache = true;
                             }
                         }
+                        onStatusChanged: {
+                            if ( status == Image.Ready )
+                                previewOverlay.source = source
+                        }
+                    }
+                    Image {
+                        id: previewOverlay
+                        cache: previewImage.cache
+                        smooth: true
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        anchors.margins: 1
+                        fillMode: Image.PreserveAspectFit
+                        opacity: videoSnap.playing ? 0 : 1
+                        asynchronous: previewImage.asynchronous
                     }
                 }
                 MouseArea {
@@ -284,6 +300,7 @@ Rectangle {
                             anchors.centerIn: parent
                             anchors.margins: 2
                             fillMode: Image.PreserveAspectFit
+                            asynchronous: viewer.isSevenZippedImageType(toxicWasteMain.secondaryImageType) ? false : true
                             Connections {
                                 target: viewer
                                 onImageDataUpdated: {
@@ -291,6 +308,20 @@ Rectangle {
                                         imageViewer.cache = true;
                                 }
                             }
+                            onStatusChanged: {
+                                if ( status == Image.Ready )
+                                    imageViewerOverlay.source = source
+                            }
+                        }
+                        Image {
+                            id: imageViewerOverlay
+                            cache: imageViewer.cache
+                            smooth: true
+                            anchors.fill: parent
+                            anchors.centerIn: parent
+                            anchors.margins: 1
+                            fillMode: Image.PreserveAspectFit
+                            asynchronous: imageViewer.asynchronous
                         }
                         Rectangle {
                             id: imageTypeSelector

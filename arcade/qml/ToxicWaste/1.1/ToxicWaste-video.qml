@@ -187,12 +187,17 @@ Rectangle {
                         anchors.margins: 1
                         fillMode: Image.PreserveAspectFit
                         opacity: videoSnap.playing ? 0 : 1
+                        asynchronous: viewer.isSevenZippedImageType(toxicWasteMain.cabinetImageType) ? false : true
                         Connections {
                             target: viewer
                             onImageDataUpdated: {
                                 if ( cachePrefix === ToxicWaste.cachePrefix(toxicWasteMain.cabinetImageType) )
                                     previewImage.cache = true;
                             }
+                        }
+                        onStatusChanged: {
+                            if ( status == Image.Ready )
+                                previewOverlay.source = source
                         }
                         MouseArea {
                             anchors.fill: parent
@@ -204,6 +209,17 @@ Rectangle {
                                     videoSnap.play();
                             }
                         }
+                    }
+                    Image {
+                        id: previewOverlay
+                        cache: previewImage.cache
+                        smooth: true
+                        anchors.fill: parent
+                        anchors.centerIn: parent
+                        anchors.margins: 1
+                        fillMode: Image.PreserveAspectFit
+                        opacity: videoSnap.playing ? 0 : 1
+                        asynchronous: previewImage.asynchronous
                     }
                     Image {
                         id: videoIndicator
@@ -349,6 +365,7 @@ Rectangle {
                             anchors.fill: parent
                             anchors.centerIn: parent
                             anchors.margins: 2
+                            asynchronous: viewer.isSevenZippedImageType(toxicWasteMain.secondaryImageType) ? false : true
                             fillMode: Image.PreserveAspectFit
                             Connections {
                                 target: viewer
@@ -357,6 +374,20 @@ Rectangle {
                                         imageViewer.cache = true;
                                 }
                             }
+                            onStatusChanged: {
+                                if ( status == Image.Ready )
+                                    imageViewerOverlay.source = source
+                            }
+                        }
+                        Image {
+                            id: imageViewerOverlay
+                            cache: imageViewer.cache
+                            smooth: true
+                            anchors.fill: parent
+                            anchors.centerIn: parent
+                            anchors.margins: 1
+                            fillMode: Image.PreserveAspectFit
+                            asynchronous: imageViewer.asynchronous
                         }
                         Rectangle {
                             id: imageTypeSelector
