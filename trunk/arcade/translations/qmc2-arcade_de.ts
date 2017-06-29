@@ -1220,8 +1220,8 @@
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1080"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1078"/>
-        <source>Scale &amp; position cabinet automatically?</source>
-        <translation>Gehäuse autom. skalieren/platzieren?</translation>
+        <source>Position the cabinet automatically?</source>
+        <translation>Gehäuse automatisch positionieren?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1101"/>
@@ -1406,8 +1406,8 @@ QMC2 Arcade neu starten!</translation>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1145"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1080"/>
-        <source>Scale &amp; position cabinet automatically?</source>
-        <translation>Gehäuse autom. skalieren/platzieren?</translation>
+        <source>Position the cabinet automatically?</source>
+        <translation>Gehäuse automatisch positionieren?</translation>
     </message>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1166"/>
