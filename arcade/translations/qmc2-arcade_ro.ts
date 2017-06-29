@@ -1224,7 +1224,7 @@
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1080"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1078"/>
-        <source>Scale &amp; position cabinet automatically?</source>
+        <source>Position the cabinet automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1408,7 +1408,7 @@ take effect, please restart QMC2 Arcade!</source>
     <message>
         <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1145"/>
         <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1080"/>
-        <source>Scale &amp; position cabinet automatically?</source>
+        <source>Position the cabinet automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

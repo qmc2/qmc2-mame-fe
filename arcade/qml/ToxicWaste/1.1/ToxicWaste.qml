@@ -34,7 +34,7 @@ Rectangle {
     property int preferencesTab: 0
     property int machineCardPage: 0
     property bool autoPositionOverlay: true
-    property real overlayScale: 0.73
+    property real overlayScale: 1.0
     property real overlayOffsetX: 0
     property real overlayOffsetY: 0
     property real overlayOpacity: 1
@@ -187,9 +187,9 @@ Rectangle {
                 WheelArea {
                     anchors.fill: overlayImage
                     onWheel: {
+                        var wheelEventHandled = false;
                         if ( !toxicWasteMain.autoPositionOverlay ) {
                             frontItem.focus = true;
-                            var wheelEventHandled = false;
                             if ( frontItem.altPressed ) {
                                 wheelEventHandled = true;
                                 toxicWasteMain.overlayOffsetX += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
@@ -198,15 +198,15 @@ Rectangle {
                                 wheelEventHandled = true;
                                 toxicWasteMain.overlayOffsetY += (frontItem.shiftPressed ? 0.05 : 0.25) * delta
                             }
-                            if ( !wheelEventHandled ) {
-                                var newScale = toxicWasteMain.overlayScale * (1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta)));
-                                if ( newScale > 10.0 )
-                                    newScale = 10.0;
-                                else if ( newScale < 0.01 )
-                                    newScale = 0.01;
-                                toxicWasteMain.overlayScale = newScale;
-                                preferencesSlidersTab.cabinetZoomValue = toxicWasteMain.overlayScale;
-                            }
+                        }
+                        if ( !wheelEventHandled ) {
+                            var newScale = toxicWasteMain.overlayScale * (1 + (frontItem.shiftPressed ? 0.01 : 0.1) * (delta / Math.abs(delta)));
+                            if ( newScale > 10.0 )
+                                newScale = 10.0;
+                            else if ( newScale < 0.01 )
+                                newScale = 0.01;
+                            toxicWasteMain.overlayScale = newScale;
+                            preferencesSlidersTab.cabinetZoomValue = toxicWasteMain.overlayScale;
                         }
                     }
                 }
@@ -1077,7 +1077,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     checked: toxicWasteMain.autoPositionOverlay
-                    text: qsTr("Scale & position cabinet automatically?")
+                    text: qsTr("Position the cabinet automatically?")
                     textColor: "black"
                     onClicked: {
                         toxicWasteMain.autoPositionOverlay = checked;
