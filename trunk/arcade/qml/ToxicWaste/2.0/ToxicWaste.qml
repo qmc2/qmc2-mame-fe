@@ -1387,15 +1387,17 @@ Rectangle {
             onMouseYChanged: parent.opacity = 1.0
             onExited: parent.opacity = 0.5
             onClicked: {
-                parent.opacity = 0.5;
-                if ( parent.rotation == 0 ) {
-                    parent.rotation = 180;
-                    toxicWasteMain.menuHidden = false;
-                } else {
-                    parent.rotation = 0;
-                    toxicWasteMain.menuHidden = true;
+                if ( !menuAndStatusBar.showHideAnim.running ) {
+                    parent.opacity = 0.5;
+                    if ( parent.rotation == 0 ) {
+                        parent.rotation = 180;
+                        toxicWasteMain.menuHidden = false;
+                    } else {
+                        parent.rotation = 0;
+                        toxicWasteMain.menuHidden = true;
+                    }
+                    searchTextInput.focus = false;
                 }
-                searchTextInput.focus = false;
             }
         }
     }
@@ -1408,8 +1410,12 @@ Rectangle {
     }
     Rectangle {
         id: menuAndStatusBar
+        property alias showHideAnim: menuAndStatusBarAnimation
         x: 0
         z: 4
+        Behavior on anchors.bottomMargin {
+            NumberAnimation { id: menuAndStatusBarAnimation; duration: 250 }
+        }
         width: parent.width
         height: ToxicWaste.scaleFactorY() > 1 ? 24 : (ToxicWaste.scaleFactorY() < 0.5 ? 12 : 24 * ToxicWaste.scaleFactorY())
         anchors.horizontalCenter: parent.horizontalCenter
