@@ -1883,6 +1883,7 @@ Rectangle {
                         videoSnap.stop();
                     else
                         videoSnap.play();
+                    break;
                 case Qt.Key_Backspace:
                     toxicWasteMain.cabinetFlipped = !toxicWasteMain.cabinetFlipped;
                     event.accepted = true;
