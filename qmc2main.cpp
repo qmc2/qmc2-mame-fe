@@ -3593,7 +3593,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					layout->addWidget(qmc2SoftwareSnapshot);
 					layout->setContentsMargins(0, 0, 0, 0);
 					tabSnapshot->setLayout(layout);
-					qApp->processEvents();
 				}
 				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 				QString ghostPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png"));
