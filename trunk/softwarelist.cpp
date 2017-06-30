@@ -2971,7 +2971,7 @@ void SoftwareList::on_treeWidgetKnownSoftwareTree_itemSelectionChanged()
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 {
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
-	bool enable = (selectedItems.count() > 0);
+	bool enable = !selectedItems.isEmpty();
 	toolButtonPlay->setEnabled(enable);
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonRemoveFromFavorites->setEnabled(enable);
@@ -3024,12 +3024,13 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 {
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
-	bool enable = (selectedItems.count() > 0);
+	bool enable = !selectedItems.isEmpty();
 	toolButtonPlay->setEnabled(enable);
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
 	toolButtonRemoveFromFavorites->setEnabled(false);
-	if ( selectedItems.count() > 0 && qmc2SoftwareSnap ) {
+	if ( enable && qmc2SoftwareSnap ) {
+		SoftwareImageWidget::updateArtwork();
 		SoftwareItem *item = (SoftwareItem *)selectedItems.first();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
