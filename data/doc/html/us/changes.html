@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.187, 30-JUN-2017</h3>
+<h3>CHANGES - v0.187, 01-JUL-2017</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.187, 30-JUN-2017:</b></p>
+<p><b>v0.187, 01-JUL-2017:</b></p>
 <ul>
 	<li>fix: software-lists: reverted a change from v0.183 which prevented multi-part software from being mounted correctly (<a href="http://tracker.batcom-it.net/view.php?id=145" target="_blank">BT #145</a>)</li>
 	<li>fix: fixed that the system-notes widget gets hidden when a machine is launched while the "notes" tab is the current one (<a href="http://tracker.batcom-it.net/view.php?id=147" target="_blank">BT #147</a>)</li>
@@ -29,7 +29,7 @@ inf: informational only
 	<li>imp: QMC2 Arcade / ToxicWaste theme: the cabinet can now be scaled independently from its automatic positioning (mouse wheel) and the menu bar's fade-in/out is animated</li>
 	<li>new: added optional support for dynamically filtering machines according to their potentially changing ROM states during full audits (<a href="http://tracker.batcom-it.net/view.php?id=144" target="_blank">BT #144</a>)</li>
 	<li>new: QMC2 Arcade: added support for the icon cache database (used if enabled in the main GUI)</li>
-	<li>new: QMC2 Arcade: added the new CLI option <code>-debugqt</code> which will enable logging of Qt debug messages (which are now suppressed per default)</li>
+	<li>new: QMC2 Arcade: added the new CLI option <code>-debugqt</code> which will enable logging of Qt debug messages (which are now suppressed by default)</li>
 </ul>
 <p><b>v0.186, 14-JUN-2017:</b></p>
 <ul>
@@ -532,7 +532,7 @@ inf: informational only
  	<li>new: replaced the foreign IDs menu with a new (tree-)view for foreign emulators and their custom IDs (if any) shown as sub-items of each emulator; the view will only be shown when there <b>are</b> any registered (foreign) emulators -- see also <a href="http://tracker.batcom-it.net/view.php?id=53" target="_blank">BT #53</a></li>
  	<li>new: icons for foreign emulators and their custom IDs can now be selected individually</li>
  	<li>new: eye-candy: pepped up the static loading &amp; filtering texts with an animation (also used for <i>mass tagging</i>)</li>
- 	<li>new: automatically clear all emulator caches when the output of '-listfull' changes (optional, enabled per default) -- something users often forget is using QMC2's -cc command line switch when updating their MAME/MESS/UME SVN builds; this feature is supposed to automate that as far as possible (changes to devices and software-lists aren't recognized automatically)</li>
+ 	<li>new: automatically clear all emulator caches when the output of '-listfull' changes (optional, enabled by default) -- something users often forget is using QMC2's -cc command line switch when updating their MAME/MESS/UME SVN builds; this feature is supposed to automate that as far as possible (changes to devices and software-lists aren't recognized automatically)</li>
  	<li>new: added command line option '-tc' which will check the emulator configuration template (printing results to <i>stdout</i>) and exit before actual start-up occurs</li>
  	<li>new: ROMAlyzer: added support for CMP-compatible fix.dat exports -- see also <a href="http://tracker.batcom-it.net/view.php?id=51" target="_blank">BT #51</a></li>
  	<li>new: QMC2 Arcade: added support for <b>multiple</b> image/icon files (per artwork category), supporting the main GUI's <i>ParentImageFallback</i> setting as well</li>
@@ -923,7 +923,7 @@ inf: informational only
  	<li>imp: loading of software-lists can be interrupted now and is indicated accordingly for larger lists (i.e. cpc_cass/cpc_flop)</li>
  	<li>imp: Mac OS X build: moved macx/Info.plist.in to arch/Darwin/Info.plist.in where it belongs</li>
  	<li>imp: build: added a 'configure' make target to create platform dependent project file(s) and stop (i.e. to open it in XCode and build from there on Mac OS X, or to run MinGW make in job-server mode on Windows)</li>
- 	<li>imp: MiniWebBrowser: browser-plugins are now enabled per default (see make option <i>BROWSER_PLUGINS</i>)</li>
+ 	<li>imp: MiniWebBrowser: browser-plugins are now enabled by default (see make option <i>BROWSER_PLUGINS</i>)</li>
  	<li>imp: build: removed make option <i>PRETTY</i> as it's no longer usable in the supported Qt versions</li>
  	<li>imp: Mac OS X build: provide application icons (.icns) to be associated with the apps</li>
  	<li>imp: created new logo images (thanks to JacKc)</li>
