@@ -7,7 +7,7 @@
 #include <QUuid>
 
 #if defined(QMC2_ARCADE)
-#include "arcadesettings.h"
+#include "arcade/arcadesettings.h"
 #else
 #include "options.h"
 #endif
