@@ -2094,10 +2094,8 @@ void MachineList::filter(bool initial)
 					item->setHidden(!showU);
 					break;
 			}
-			if ( i % filterResponse == 0 ) {
+			if ( i % filterResponse == 0 )
 				mainProgressBar->setValue(i);
-				//qApp->processEvents();
-			}
 		}
 		qmc2MainWindow->loadAnimMovie->setPaused(true);
 		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
@@ -2305,9 +2303,9 @@ void MachineList::loadReadyReadStandardOutput()
 	if ( QCoreApplication::hasPendingEvents() )
 		qApp->processEvents();
 #if defined(QMC2_OS_WIN)
-	QString readBuffer = QString::fromUtf8(loadProc->readAllStandardOutput());
+	QString readBuffer(QString::fromUtf8(loadProc->readAllStandardOutput()));
 #else
-	QString readBuffer = loadProc->readAllStandardOutput();
+	QString readBuffer(loadProc->readAllStandardOutput());
 #endif
 	bool startsWithSpace = readBuffer.startsWith(' ') && !lastCharacterWasSpace;
 	bool endsWithSpace = readBuffer.endsWith(' ');
