@@ -1400,35 +1400,37 @@ void EmulatorOptions::checkTemplateMap()
 		QStringList sl = s.split("\r\n");
 #endif
 		foreach (QString line, sl) {
-		QString l = line.simplified();
-		if ( l.isEmpty() )
-			continue;
-		if ( l.startsWith("#") )
-			continue;
-		if ( l.startsWith("<") )
-			continue;
-		if ( l.startsWith("readconfig") )
-			continue;
+			QString l(line.simplified());
+			if ( l.isEmpty() )
+				continue;
+			if ( l.startsWith("#") )
+				continue;
+			if ( l.startsWith("<") )
+				continue;
+			if ( l.startsWith("readconfig") )
+				continue;
+			if ( l.startsWith("dtd") )
+				continue;
 #if defined(QMC2_MESS)
-		// this is a 'non-SDL Windows MESS'-only option and is ignored for all SDLMESS builds
-		if ( l.startsWith("newui") )
-			continue;
+			// this is a 'non-SDL Windows MESS'-only option and is ignored for all SDLMESS builds
+			if ( l.startsWith("newui") )
+				continue;
 #endif
-		QStringList wl;
-		QRegExp rx("(\\S+|\\\".*\\\")");
-		int pos = 0;
-		while ( (pos = rx.indexIn(l, pos)) != -1 ) {
-			QString s = rx.cap(1);
-			s = s.remove("\"");
-			wl << s;
-			pos += rx.matchedLength();
-		}
-		if ( wl.count() == 2 )
-			emuOptions[wl[0]] = wl[1];
-		else if ( wl.count() == 1 )
-			emuOptions[wl[0]] = "";
-		else
-			continue;
+			QStringList wl;
+			QRegExp rx("(\\S+|\\\".*\\\")");
+			int pos = 0;
+			while ( (pos = rx.indexIn(l, pos)) != -1 ) {
+				QString s = rx.cap(1);
+				s = s.remove("\"");
+				wl << s;
+				pos += rx.matchedLength();
+			}
+			if ( wl.count() == 2 )
+				emuOptions[wl[0]] = wl[1];
+			else if ( wl.count() == 1 )
+				emuOptions[wl[0]] = "";
+			else
+				continue;
 		}
 	} else if ( qmc2TemplateCheck ) {
 		printf("%s\n", tr("FATAL: can't create temporary file, please check emulator executable and permissions").toUtf8().constData());
