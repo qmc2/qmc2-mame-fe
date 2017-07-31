@@ -1196,12 +1196,13 @@ QStringList &EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
 	QString choiceEntity("choice");
 	QString ignoreOS(QString("ignore.%1").arg(QMC2_OS_NAME));
 	validChoices.clear();
+	QString trueStr("true");
 	while ( !xmlReader->atEnd() && readNext ) {
 		if ( !xmlReader->hasError() ) {
 			if ( xmlReader->isStartElement() ) {
 				QString elementType(xmlReader->name().toString());
 				if ( choiceEntity.compare(elementType) == 0 ) {
-					if ( xmlReader->attributes().value("ignore").compare("true") != 0 && xmlReader->attributes().value(ignoreOS).compare("true") != 0 )
+					if ( xmlReader->attributes().value("ignore").compare(trueStr) != 0 && xmlReader->attributes().value(ignoreOS).compare(QString("true")) != 0 )
 						validChoices.append(xmlReader->attributes().value("name").toString());
 				} else
 					readNext = false;
@@ -1240,6 +1241,8 @@ void EmulatorOptions::createTemplateMap()
 		QString templateEntity("template");
 		QString ignoreOS(QString("ignore.%1").arg(QMC2_OS_NAME));
 		QString defaultOS(QString("default.%1").arg(QMC2_OS_NAME));
+		QString trueStr("true");
+		QString choiceStr("choice");
 		bool readNext = true;
 		while ( !xmlReader.atEnd() ) {
 			if ( readNext )
@@ -1255,9 +1258,9 @@ void EmulatorOptions::createTemplateMap()
 					if ( sectionEntity.compare(elementType) == 0 ) {
 						bool ignore = false;
 						if ( xmlReader.attributes().hasAttribute("ignore") )
-							ignore = xmlReader.attributes().value("ignore").compare("true") == 0;
+							ignore = xmlReader.attributes().value("ignore").compare(trueStr) == 0;
 						if ( xmlReader.attributes().hasAttribute(ignoreOS) )
-							ignore |= xmlReader.attributes().value(ignoreOS).compare("true") == 0;
+							ignore |= xmlReader.attributes().value(ignoreOS).compare(trueStr) == 0;
 						if ( !ignore ) {
 							sectionTitle = readDescription(&xmlReader, lang, &readNext);
 							templateMap[sectionTitle].clear();
@@ -1267,17 +1270,17 @@ void EmulatorOptions::createTemplateMap()
 					if ( optionEntity.compare(elementType) == 0 ) {
 						bool ignore = false;
 						if ( xmlReader.attributes().hasAttribute("ignore") )
-							ignore = xmlReader.attributes().value("ignore").compare("true") == 0;
+							ignore = xmlReader.attributes().value("ignore").compare(trueStr) == 0;
 						if ( xmlReader.attributes().hasAttribute(ignoreOS) )
-							ignore |= xmlReader.attributes().value(ignoreOS).compare("true") == 0;
+							ignore |= xmlReader.attributes().value(ignoreOS).compare(trueStr) == 0;
 						if ( !ignore ) {
 							bool visible = true;
 							bool wip = false;
 							int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
 							if ( xmlReader.attributes().hasAttribute("wip") )
-								wip = xmlReader.attributes().value("wip").compare("true") == 0;
+								wip = xmlReader.attributes().value("wip").compare(trueStr) == 0;
 							if ( xmlReader.attributes().hasAttribute("visible") )
-								visible = xmlReader.attributes().value("visible").compare("true") == 0;
+								visible = xmlReader.attributes().value("visible").compare(trueStr) == 0;
 							if ( xmlReader.attributes().hasAttribute("decimals") )
 								decimals = xmlReader.attributes().value("decimals").toString().toInt();
 							QString type(xmlReader.attributes().value("type").toString());
@@ -1288,7 +1291,7 @@ void EmulatorOptions::createTemplateMap()
 								defaultValue = xmlReader.attributes().value("default").toString();
 							QString optionDescription(readDescription(&xmlReader, lang, &readNext));
 							optionChoices.clear();
-							if ( type.compare("combo") == 0 && xmlReader.name().compare("choice") == 0 )
+							if ( type.compare("combo") == 0 && xmlReader.name().compare(choiceStr) == 0 )
 								optionChoices = readChoices(&xmlReader);
 							optionPart.clear();
 							optionRelativeTo.clear();
