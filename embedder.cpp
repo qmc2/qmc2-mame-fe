@@ -488,7 +488,7 @@ void Embedder::checkWindow()
 		}
 		if ( hwnd && hwnd != windowHandle ) {
 			windowHandle = hwnd;
-			embeddedWinId = (wId)hwnd;
+			embeddedWinId = (WId)hwnd;
   			SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
 			SetParent(windowHandle, (HWND)embedContainer->winId());
 			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);

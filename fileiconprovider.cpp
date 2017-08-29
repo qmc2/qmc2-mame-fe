@@ -5,6 +5,9 @@
 #include "fileiconprovider.h"
 
 #if defined(QMC2_OS_WIN)
+#if QT_VERSION >= 0x050000
+#include <QtWinExtras>
+#endif
 #include <windows.h>
 #endif
 
@@ -30,7 +33,11 @@ QIcon FileIconProvider::fileIcon(const QString &fileName)
 		SHFILEINFO shFileInfo;
 		unsigned long val = SHGetFileInfo((const wchar_t *)("dummy." + fileInfo.suffix()).utf16(), 0, &shFileInfo, sizeof(SHFILEINFO), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
 		if ( val && shFileInfo.hIcon ) {
+#if QT_VERSION >= 0x050000
+			QPixmap pixmap = QtWin::fromHICON(shFileInfo.hIcon);
+#else
 			QPixmap pixmap = QPixmap::fromWinHICON(shFileInfo.hIcon);
+#endif
 			if ( !pixmap.isNull() ) {
 				icon = QIcon(pixmap);
 				m_iconCache.insert(fileInfo.suffix(), new QIcon(icon));

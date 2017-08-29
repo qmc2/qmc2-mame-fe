@@ -5,6 +5,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		QT += core gui xml xmlpatterns webkit network sql svg
 		greaterThan(QT_MAJOR_VERSION, 4) {
 			QT += testlib widgets webkitwidgets
+			win32 {
+				QT += winextras
+			}
 			contains(DEFINES, "QMC2_MULTIMEDIA=1"): QT += multimedia multimediawidgets
 			HEADERS += qftp/qftp.h \
 				qftp/qurlinfo.h
