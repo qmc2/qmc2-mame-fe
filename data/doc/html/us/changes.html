@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.188, 01-AUG-2017</h3>
+<h3>CHANGES - v0.188, 29-AUG-2017</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,10 +14,11 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.188, 01-AUG-2017:</b></p>
+<p><b>v0.188, 29-AUG-2017:</b></p>
 <ul>
 	<li>fix: corrected build issues when using Qt 5.9.x (<a href="http://tracker.batcom-it.net/view.php?id=157" target="_blank">BT #157</a>)</li>
 	<li>imp: ignore the new <i>dtd</i> emulator option when checking the template map</li>
+	<li>imp: MinGW builds: changed the Makefile to support the newer MAME-dev tools, including Qt 5, but Qt 4 is still recommended (note that for Qt 5 <code>&lt;mingw-folder&gt;/usr/bin/sh.exe</code> <b>must be renamed or removed</b>, otherwise <code>qmake</code> won't produce correct paths - see <a href="https://bugreports.qt.io/browse/QTBUG-48876" target="_blank">QTBUG-48876</a> which unfortunately isn't fixed but <i>closed</i>)</li>
 </ul>
 <p><b>v0.187, 02-JUL-2017:</b></p>
 <ul>
