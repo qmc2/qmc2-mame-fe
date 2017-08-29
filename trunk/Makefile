@@ -99,7 +99,7 @@ endif
 #
 ifndef OSREL
 ifeq '$(FORCE_MINGW)' '1'
-OSREL = $(shell arch/Windows/osrel.bat)
+OSREL = $(shell arch\Windows\osrel.bat)
 else
 OSREL = $(shell uname -r)
 endif
@@ -448,28 +448,6 @@ ifndef MAC_UNIVERSAL
 MAC_UNIVERSAL = 0
 endif
 
-# >>> YOUTUBE <<<
-#
-# Enable (1) or disable (0) support for machine 'attached' YouTube videos.
-#
-# With Qt 4 this feature requires Phonon and will thus be disabled automatically
-# when Phonon has been disabled globally (PHONON=0)!
-# 
-# In case of Qt 5 we use the QtMultimedia module. When multi-media features have
-# been disabled globally (MULTIMEDIA=0) the YouTube feature will be disabled as
-# well.
-#
-# You'll also need a decent back-end and codecs that supports FLV / MP4 video
-# formats. The codecs have to be installed separately.
-#
-ifndef YOUTUBE
-ifeq '$(QMAKEV)' '3'
-YOUTUBE = $(MULTIMEDIA)
-else
-YOUTUBE = $(PHONON)
-endif
-endif
-
 # >>> LOCAL_QML_IMPORT_PATH <<<
 #
 # Specifies a local path that's used as an additional path for QML imports. The
@@ -512,15 +490,7 @@ else
 SDL = 2
 endif
 
-# >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
-
-# project name
-PROJECT = qmc2
-
-# version
-VERSION_MAJOR = 0
-VERSION_MINOR = 188
-
+### BEGIN: PLEASE DON'T CHANGE THIS ###
 # commands are platform/distribution-specific
 ifneq '$(ARCH)' 'Windows'
 include arch/default.cfg
@@ -547,6 +517,43 @@ include arch/default.cfg
 include arch/Windows.cfg
 endif
 
+# qmake version check (major release)
+ifndef QMAKEV
+QMAKEV = $(shell $(QMAKE) -query QMAKE_VERSION | $(COLRM) 2)
+endif
+### END: PLEASE DON'T CHANGE THIS ###
+
+# >>> YOUTUBE <<<
+#
+# Enable (1) or disable (0) support for machine 'attached' YouTube videos.
+#
+# With Qt 4 this feature requires Phonon and will thus be disabled automatically
+# when Phonon has been disabled globally (PHONON=0)!
+# 
+# In case of Qt 5 we use the QtMultimedia module. When multi-media features have
+# been disabled globally (MULTIMEDIA=0) the YouTube feature will be disabled as
+# well.
+#
+# You'll also need a decent back-end and codecs that supports FLV / MP4 video
+# formats. The codecs have to be installed separately.
+#
+ifndef YOUTUBE
+ifeq '$(QMAKEV)' '3'
+YOUTUBE = $(MULTIMEDIA)
+else
+YOUTUBE = $(PHONON)
+endif
+endif
+
+# >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
+
+# project name
+PROJECT = qmc2
+
+# version
+VERSION_MAJOR = 0
+VERSION_MINOR = 188
+
 ifneq '$(ARCH)' 'Windows'
 QMC2_EMULATOR = SDLMAME
 else
@@ -571,15 +578,6 @@ ifneq '$(ARCH)' 'Windows'
 GLOBAL_QMC2_INI=$(shell $(ECHO) $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 # global data directory
 GLOBAL_DATADIR=$(shell $(ECHO) $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
-endif
-
-# qmake version check (major release)
-ifndef QMAKEV
-ifeq '$(ARCH)' 'Windows'
-QMAKEV = 2
-else
-QMAKEV = $(shell $(ECHO) `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
-endif
 endif
 
 ifeq '$(QMAKEV)' '3'
@@ -716,7 +714,7 @@ endif
 # setup library and include paths for MinGW environment
 ifeq '$(ARCH)' 'Windows'
 TEST_FILE=$(shell gcc -print-file-name=libSDL2.a)
-MINGW_LIBDIR=$(shell arch/Windows/dirname.bat $(TEST_FILE))
+MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
 ifeq '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
@@ -988,7 +986,7 @@ ifeq '$(ARCH)' 'Windows'
 rcgen: qmc2-mame.rc
 
 qmc2-mame.rc:
-	@arch/Windows/rcgen.bat
+	@arch\Windows\rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
@@ -1020,7 +1018,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 else
-	@$(shell scripts/setup_imgset.bat $(IMGSET)) 
+	@$(shell scripts\setup_imgset.bat $(IMGSET)) 
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1035,7 +1033,7 @@ ifeq '$(ARCH)' 'Windows'
 rcgen: qmc2-mame.rc
 
 qmc2-mame.rc:
-	@arch/Windows/rcgen.bat
+	@arch\Windows\rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
@@ -1066,7 +1064,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts/setup_imgset.bat $(IMGSET)) 
+	@$(shell scripts\setup_imgset.bat $(IMGSET)) 
 endif
 ifeq '$(ARCH)' 'Darwin'
 ifneq '$(QT_LIB48PLUS)' 'true'
@@ -1179,7 +1177,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts/setup_imgset.bat classic)
+	@$(shell scripts\setup_imgset.bat classic)
 endif
 else
 ifneq '$(ARCH)' 'Windows'
@@ -1212,7 +1210,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 else
-	@$(shell scripts/setup_imgset.bat classic)
+	@$(shell scripts\setup_imgset.bat classic)
 endif
 endif
 
@@ -1387,6 +1385,7 @@ endif
 	@$(ECHO) "PHONON                 Enable Phonon based features (0, 1)           $(PHONON)"
 	@$(ECHO) "PREFIX                 Prefix directory for install target           $(PREFIX)"
 	@$(ECHO) "QMAKE                  Qt make (qmake) command                       $(QMAKE)"
+	@$(ECHO) "QMAKEV                 Qt make (qmake) major version                 $(QMAKEV)"
 	@$(ECHO) "QMAKEFILE              Qt generated Makefile name                    $(QMAKEFILE)"
 	@$(ECHO) "QT_LIBVERSION          Version of the Qt library in use              $(QT_LIBVERSION)"
 	@$(ECHO) "QUIET                  Suppress output of compile/link (0, 1)        $(QUIET)"
