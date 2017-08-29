@@ -2615,6 +2615,8 @@ void SoftwareList::on_toolButtonReload_clicked(bool)
 	comboBoxDeviceConfiguration->clear();
 	comboBoxDeviceConfiguration->insertItem(0, tr("Default configuration"));
 	load();
+	if ( !comboBoxSearch->currentText().isEmpty() )
+		searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
 void SoftwareList::on_toolButtonExport_clicked(bool)
