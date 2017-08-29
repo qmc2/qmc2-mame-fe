@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <QDesktopWidget>
 #include "macros.h"
 
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -485,9 +486,9 @@ void Embedder::checkWindow()
 			return;
 		}
 		if ( hwnd && hwnd != windowHandle ) {
-			windowHandle = embeddedWinId = hwnd;
+			windowHandle = (HWND)embeddedWinId = hwnd;
   			SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
-			SetParent(windowHandle, embedContainer->winId());
+			SetParent(windowHandle, (HWND)embedContainer->winId());
 			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
 			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("using replacement window ID %1 for emulator #%2").arg((qulonglong)windowHandle).arg(machineId));
@@ -500,7 +501,7 @@ void Embedder::checkWindow()
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("no replacement window ID found for emulator #%1, closing embedder").arg(machineId));
 			checkTimer.stop();
-			windowHandle = embeddedWinId = 0;
+			windowHandle = (HWND)embeddedWinId = 0;
 			QTimer::singleShot(0, this, SLOT(clientClosed()));
 			checkingWindow = false;
 			return;
