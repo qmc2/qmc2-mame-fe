@@ -120,7 +120,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
 	connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
 #elif defined(QMC2_OS_WIN)
-	windowHandle = embeddedWinId;
+	windowHandle = (HWND *)embeddedWinId;
 	embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
 	connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkWindow()));
 	RECT wR, cR;
@@ -159,7 +159,7 @@ void Embedder::embed()
 	embedded = true;
 	embeddingWindow = false;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(machineId).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
-	SetParent(windowHandle, embedContainer->winId());
+	SetParent(windowHandle, (HWND *)embedContainer->winId());
 	QTimer::singleShot(0, this, SLOT(updateWindow()));
 	checkTimer.start(250);
 #endif
@@ -194,7 +194,7 @@ void Embedder::release()
 	qmc2MainWindow->raise();
 	qmc2MainWindow->activateWindow();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(machineId).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
-	windowHandle = embeddedWinId = 0;
+	windowHandle = (HWND *)embeddedWinId = 0;
 	releasingWindow = false;
 #endif
 }
@@ -346,7 +346,7 @@ void Embedder::forceFocus()
 #if defined(QMC2_OS_WIN)
 		if ( !updatingWindow ) {
   			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
-			SetParent(windowHandle, embedContainer->winId());
+			SetParent(windowHandle, (HWND *)embedContainer->winId());
 			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
   			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
 			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
