@@ -195,7 +195,8 @@ void Embedder::release()
 	qmc2MainWindow->raise();
 	qmc2MainWindow->activateWindow();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(machineId).arg("0x" + QString::number((qulonglong)windowHandle, 16)));
-	windowHandle = (HWND)embeddedWinId = 0;
+	windowHandle = 0;
+	embeddedWinId = 0;
 	releasingWindow = false;
 #endif
 }
@@ -486,7 +487,8 @@ void Embedder::checkWindow()
 			return;
 		}
 		if ( hwnd && hwnd != windowHandle ) {
-			windowHandle = (HWND)embeddedWinId = hwnd;
+			windowHandle = hwnd;
+			embeddedWinId = (wId)hwnd;
   			SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
 			SetParent(windowHandle, (HWND)embedContainer->winId());
 			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
@@ -501,7 +503,8 @@ void Embedder::checkWindow()
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("no replacement window ID found for emulator #%1, closing embedder").arg(machineId));
 			checkTimer.stop();
-			windowHandle = (HWND)embeddedWinId = 0;
+			windowHandle = 0;
+			embeddedWinId = 0;
 			QTimer::singleShot(0, this, SLOT(clientClosed()));
 			checkingWindow = false;
 			return;
