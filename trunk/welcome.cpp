@@ -5,6 +5,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QFile>
+#include <QFont>
 #include <QDir>
 #include <QMap>
 #include <QStyleFactory>
@@ -22,14 +23,19 @@
 extern QTranslator *qmc2Translator;
 extern QTranslator *qmc2QtTranslator;
 
-Welcome::Welcome(QWidget *parent)
-	: QDialog(parent)
+Welcome::Welcome(QWidget *parent) :
+	QDialog(parent)
 {
 	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
 	checkOkay = false;
 	hide();
 	if ( !checkConfig() ) {
 		setupUi(this);
+		if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/Font") ) {
+			QFont f;
+			f.fromString(startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+			qApp->setFont(f);
+		}
 #if !defined(QMC2_WIP_ENABLED)
 		pushButtonRunSetupWizard->hide();
 #endif
