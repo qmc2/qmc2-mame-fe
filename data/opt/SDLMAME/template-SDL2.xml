@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="SDLMAME" format="0.2.9" version="0.188">
+<template emulator="SDLMAME" format="0.2.9" version="0.189">
 	<section name="search_paths">
 		<description lang="es" text="Rutas de búsqueda"/>
 		<description lang="us" text="Search paths"/>
