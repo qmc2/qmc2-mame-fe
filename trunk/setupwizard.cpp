@@ -81,12 +81,6 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	gridLayout3->addWidget(m_labelImportNothing, 6, 1);
 	connect(m_labelImportNothing, SIGNAL(clicked()), this, SLOT(labelImportNothing_clicked()));
 
-	wizardPage1->adjustSize();
-	wizardPage2->adjustSize();
-	wizardPage3->adjustSize();
-	wizardPage4->adjustSize();
-	wizardPage5->adjustSize();
-	wizardPage6->adjustSize();
 	connect(comboBoxExecutableFile->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxExecutableFile_textChanged(const QString &)));
 	m_customSettings = new CustomSettings(m_startupConfig, this);
 	QTimer::singleShot(0, this, SLOT(init()));
