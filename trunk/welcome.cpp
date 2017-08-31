@@ -203,8 +203,10 @@ void Welcome::on_comboBoxLanguage_currentIndexChanged(int index)
 
 void Welcome::reject()
 {
-	if ( !originalLanguage.isEmpty() )
+	if ( !originalLanguage.isEmpty() ) {
 		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", originalLanguage);
+		startupConfig->sync();
+	}
 	QDialog::reject();
 }
 
