@@ -554,6 +554,9 @@ PROJECT = qmc2
 VERSION_MAJOR = 0
 VERSION_MINOR = 189
 
+# complete version string
+VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
+
 ifneq '$(ARCH)' 'Windows'
 QMC2_EMULATOR = SDLMAME
 else
@@ -599,9 +602,6 @@ ifneq '$(QT_LIB48PLUS)' 'true'
 $(error Sorry, Qt 4.8+ not found!)
 endif
 endif
-
-# complete version string
-VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 
 # work around for qmake's issues with spaces in values
 blank =
