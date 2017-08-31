@@ -4015,7 +4015,8 @@ QString &SoftwareList::status(SoftwareListXmlHandler *handler)
 					  "<font color=\"#7f7f7f\">" + m_trN + locale.toString(numSoftwareNotFound + handler->numNotFound) + "</font>&nbsp;"
 					  "<font color=\"#0000f9\">" + m_trU + locale.toString(numSoftwareUnknown + handler->numUnknown) + "</font>&nbsp;"
 					  "<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
-		}
+		} else
+			m_statusString += "<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
 	} else {
 		m_statusString += "<font color=black>" + m_trL + locale.toString(numSoftwareTotal) + "</font>&nbsp;";
 		if ( toolButtonSoftwareStates->isChecked() ) {
@@ -4025,7 +4026,8 @@ QString &SoftwareList::status(SoftwareListXmlHandler *handler)
 					  "<font color=\"#7f7f7f\">" + m_trN + locale.toString(numSoftwareNotFound) + "</font>&nbsp;"
 					  "<font color=\"#0000f9\">" + m_trU + locale.toString(numSoftwareUnknown) + "</font>&nbsp;"
 					  "<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
-		}
+		} else
+			m_statusString += "<font color=\"chocolate\">" + m_trS + locale.toString(numSoftwareMatches) + "</font>";
 	}
 	m_statusString += "</b>";
 	return m_statusString;
