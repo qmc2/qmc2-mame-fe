@@ -9,6 +9,7 @@
 #include "clickablelabel.h"
 #include "macros.h"
 
+#define QMC2_SETUPWIZARD_PAGE_ID_WELCOME			0
 #define QMC2_SETUPWIZARD_PAGE_ID_CHOOSE_EXECUTABLE		1
 #define QMC2_SETUPWIZARD_PAGE_ID_PROBE_EXECUTABLE		2
 #define QMC2_SETUPWIZARD_PAGE_ID_IMPORT_INI_FILES		3
@@ -28,6 +29,7 @@ class CustomSettings : public QObject
 		QVariant value(const QString &key, const QVariant &defaultValue = QVariant());
 		void remove(const QString &key);
 		void clear() { m_settingsHash.clear(); }
+		bool contains(const QString &key) { m_settingsHash.contains(key); }
 
 	private:
 		QHash<QString, QVariant> m_settingsHash;
@@ -51,6 +53,8 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 	public slots:
 		void accept();
 		void init();
+		void setupLanguage();
+		void setupStyle(const QString &);
 		void log(const QString &);
 		void probeExecutable();
 		void comboBoxExecutableFile_textChanged(const QString &text);
@@ -65,6 +69,7 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		void on_toolButtonBrowseROMPath_clicked();
 		void on_toolButtonBrowseSamplePath_clicked();
 		void on_toolButtonBrowseHashPath_clicked();
+		void on_comboBoxLanguage_currentIndexChanged(int index);
 
 	protected:
 		int nextId() const;
@@ -77,6 +82,8 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		QString m_frontendIniPath;
 		QString m_listfullSha1;
 		QString m_emuConfigName;
+		QString m_defaultStyle;
+		QStringList m_availableLanguages;
 		int m_minRequiredMameVersionMinor;
 		int m_minRequiredMameVersionMajor;
 		int m_totalMachines;
