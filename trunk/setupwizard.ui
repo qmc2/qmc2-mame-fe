@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>550</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>640</width>
-    <height>480</height>
+    <height>550</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -23,12 +23,136 @@
    <iconset resource="qmc2.qrc">
     <normaloff>:/data/img/wizard.png</normaloff>:/data/img/wizard.png</iconset>
   </property>
+  <widget class="QWizardPage" name="wizardPage0">
+   <property name="title">
+    <string>Welcome to QMC2!</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">0</string>
+   </attribute>
+   <layout class="QGridLayout" name="gridLayout0">
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelStyle">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;GUI style&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QComboBox" name="comboBoxStyle"/>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="labelLanguage">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;Language&lt;/font&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QComboBox" name="comboBoxLanguage">
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContents</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4" colspan="2">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="3">
+     <widget class="Line" name="line0">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="6">
+     <widget class="QLabel" name="labelVersion">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string notr="true">&lt;font size=&quot;4&quot;&gt;QMC2 v0.xxx&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="7">
+     <widget class="QLabel" name="label0">
+      <property name="text">
+       <string>&lt;font size=&quot;4&quot;&gt;
+&lt;p&gt;This is either your first start of QMC2 or you're reconfiguring the basic settings.&lt;/p&gt;
+&lt;p&gt;Please choose your GUI style and language below, then click &lt;i&gt;Next&lt;/i&gt; to continue the guided setup. Clicking &lt;i&gt;Cancel&lt;/i&gt; or pressing &lt;i&gt;Escape&lt;/i&gt; at any point will exit the configuration wizard.&lt;/p&gt;
+&lt;/font&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="7">
+     <widget class="QLabel" name="labelLogoPixmap">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="qmc2.qrc">:/data/img/qmc2_logo_big.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="7">
+     <spacer name="verticalSpacer0">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>0</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
   <widget class="QWizardPage" name="wizardPage1">
    <property name="title">
     <string>Choose the emulator's executable file</string>
-   </property>
-   <property name="subTitle">
-    <string/>
    </property>
    <attribute name="pageId">
     <string notr="true">1</string>
@@ -707,6 +831,8 @@
   </widget>
  </widget>
  <tabstops>
+  <tabstop>comboBoxStyle</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
   <tabstop>comboBoxExecutableFile</tabstop>
   <tabstop>toolButtonBrowseExecutableFile</tabstop>
   <tabstop>radioButtonImportMameIni</tabstop>

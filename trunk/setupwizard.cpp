@@ -1,7 +1,9 @@
 #include <QCryptographicHash>
+#include <QStyleFactory>
 #include <QApplication>
 #include <QStringList>
 #include <QFileDialog>
+#include <QTranslator>
 #include <QLineEdit>
 #include <QFileInfo>
 #include <QDateTime>
@@ -11,7 +13,10 @@
 
 #include "setupwizard.h"
 
+// external global variables
 extern bool qmc2TemplateCheck;
+extern QTranslator *qmc2Translator;
+extern QTranslator *qmc2QtTranslator;
 
 CustomSettings::CustomSettings(QSettings *cfg, QObject *parent) :
 	QObject(parent)
@@ -63,7 +68,19 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	m_totalMachines(-1),
 	m_modificationTime(-1)
 {
+	// remember the default style
+	m_defaultStyle = QApplication::style()->objectName();
+
+	m_availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
+	m_customSettings = new CustomSettings(m_startupConfig, this);
+
 	setupUi(this);
+
+#if QMC2_SVN_REV > 0
+	labelVersion->setText(QString("QMC2 v%1 (SVN r%2)").arg(XSTR(QMC2_VERSION)).arg(QMC2_SVN_REV));
+#else
+	labelVersion->setText(QString("QMC2 v%1").arg(XSTR(QMC2_VERSION)));
+#endif
 
 	gridLayout3->removeWidget(labelImportMameIni);
 	delete labelImportMameIni;
@@ -89,8 +106,26 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	gridLayout3->addWidget(m_labelImportNothing, 6, 1);
 	connect(m_labelImportNothing, SIGNAL(clicked()), this, SLOT(labelImportNothing_clicked()));
 
+	comboBoxLanguage->blockSignals(true);
+	comboBoxLanguage->addItems(m_availableLanguages);
+	int index = comboBoxLanguage->findText(m_customSettings->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString());
+	if ( index >= 0 )
+		comboBoxLanguage->setCurrentIndex(index);
+	comboBoxLanguage->blockSignals(false);
+
+	comboBoxStyle->blockSignals(true);
+	comboBoxStyle->addItem(QObject::tr("Default"));
+	comboBoxStyle->addItems(QStyleFactory::keys());
+	QString myStyle(QObject::tr((const char *)m_customSettings->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString().toUtf8()));
+	int styleIndex = comboBoxStyle->findText(myStyle, Qt::MatchFixedString);
+	if ( styleIndex < 0 )
+		styleIndex = 0;
+	comboBoxStyle->setCurrentIndex(styleIndex);
+	setupStyle(comboBoxStyle->currentText());
+	comboBoxStyle->blockSignals(false);
+
+	connect(comboBoxStyle, SIGNAL(activated(const QString &)), this, SLOT(setupStyle(const QString &)));
 	connect(comboBoxExecutableFile->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxExecutableFile_textChanged(const QString &)));
-	m_customSettings = new CustomSettings(m_startupConfig, this);
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -295,6 +330,8 @@ void SetupWizard::importUiIni()
 int SetupWizard::nextId() const
 {
 	switch ( currentId() ) {
+		case QMC2_SETUPWIZARD_PAGE_ID_WELCOME:
+			return QMC2_SETUPWIZARD_PAGE_ID_CHOOSE_EXECUTABLE;
 		case QMC2_SETUPWIZARD_PAGE_ID_CHOOSE_EXECUTABLE:
 			return QMC2_SETUPWIZARD_PAGE_ID_PROBE_EXECUTABLE;
 		case QMC2_SETUPWIZARD_PAGE_ID_PROBE_EXECUTABLE:
@@ -361,6 +398,11 @@ void SetupWizard::initializePage(int id)
 			}
 			break;
 		case QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE: {
+				if ( comboBoxStyle->currentText() == tr("Default") )
+					m_customSettings->remove(QMC2_FRONTEND_PREFIX + "GUI/Style");
+				else
+					m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", comboBoxStyle->currentText());
+				m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", comboBoxLanguage->currentText());
 				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", comboBoxExecutableFile->currentText());
 				QStringList emuHistory;
 				for (int i = 0; i < comboBoxExecutableFile->count(); i++)
@@ -516,4 +558,83 @@ void SetupWizard::on_toolButtonBrowseHashPath_clicked()
 	QString s(QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isNull() )
 		lineEditHashPath->setText(s);
+}
+
+void SetupWizard::on_comboBoxLanguage_currentIndexChanged(int index)
+{
+	m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", m_availableLanguages.at(index));
+	setupLanguage();
+	retranslateUi(this);
+}
+
+void SetupWizard::setupLanguage()
+{
+	QString lang(m_customSettings->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString());
+	if ( lang.isEmpty() || !m_availableLanguages.contains(lang) ) {
+		// try to use default system locale - use "us" if a translation is not available for the system locale
+		switch ( QLocale::system().language() ) {
+			case QLocale::German:
+				lang = "de";
+				break;
+			case QLocale::Spanish:
+				lang = "es";
+				break;
+			case QLocale::French:
+				lang = "fr";
+				break;
+			case QLocale::Greek:
+				lang = "el";
+				break;
+			case QLocale::Italian:
+				lang = "it";
+				break;
+			case QLocale::Polish:
+				lang = "pl";
+				break;
+			case QLocale::Portuguese:
+				lang = "pt";
+				break;
+			case QLocale::Romanian:
+				lang = "ro";
+				break;
+			case QLocale::Swedish:
+				lang = "sv";
+				break;
+			default:
+				lang = "us";
+				break;
+		}
+		m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);
+	}
+	if ( qmc2QtTranslator ) {
+		qApp->removeTranslator(qmc2QtTranslator);
+		delete qmc2QtTranslator;
+	}
+	qmc2QtTranslator = new QTranslator(0);
+	qmc2QtTranslator->load(QString(":/data/lng/qt_%1.qm").arg(lang));
+	qApp->installTranslator(qmc2QtTranslator);
+	if ( qmc2Translator ) {
+		qApp->removeTranslator(qmc2Translator);
+		delete qmc2Translator;
+	}
+	qmc2Translator = new QTranslator(0);
+	qmc2Translator->load(QString(":/data/lng/qmc2_%1.qm").arg(lang));
+	qApp->installTranslator(qmc2Translator);
+
+	// we need to "retranslate" the style list due to "Default"
+	comboBoxStyle->blockSignals(true);
+	int styleIndex = comboBoxStyle->currentIndex();
+	comboBoxStyle->clear();
+	comboBoxStyle->addItem(QObject::tr("Default"));
+	comboBoxStyle->addItems(QStyleFactory::keys());
+	comboBoxStyle->setCurrentIndex(styleIndex);
+	comboBoxStyle->blockSignals(false);
+}
+
+void SetupWizard::setupStyle(const QString &styleName)
+{
+	if ( styleName == QObject::tr("Default") )
+		qApp->setStyle(QStyleFactory::create(m_defaultStyle));
+	else
+		qApp->setStyle(QStyleFactory::create(styleName));
 }
