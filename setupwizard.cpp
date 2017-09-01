@@ -360,24 +360,36 @@ void SetupWizard::initializePage(int id)
 				lineEditHashPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
 			}
 			break;
-		case QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE:
-			m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", comboBoxExecutableFile->currentText());
-			if ( !lineEditWorkingDirectory->text().isEmpty() )
-				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
-			else
-				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory");
-			if ( !lineEditROMPath->text().isEmpty() )
-				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", lineEditROMPath->text());
-			else
-				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath");
-			if ( !lineEditSamplePath->text().isEmpty() )
-				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
-			else
-				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath");
-			if ( !lineEditHashPath->text().isEmpty() )
-				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
-			else
-				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath");
+		case QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE: {
+				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", comboBoxExecutableFile->currentText());
+				QStringList emuHistory;
+				for (int i = 0; i < comboBoxExecutableFile->count(); i++)
+					emuHistory << comboBoxExecutableFile->itemText(i);
+				if ( !emuHistory.contains(comboBoxExecutableFile->currentText()) )
+					emuHistory << comboBoxExecutableFile->currentText();
+				if ( emuHistory.isEmpty() )
+					m_customSettings->remove(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory");
+				else {
+					emuHistory.sort();
+					m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", emuHistory);
+				}
+				if ( !lineEditWorkingDirectory->text().isEmpty() )
+					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+				else
+					m_customSettings->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory");
+				if ( !lineEditROMPath->text().isEmpty() )
+					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", lineEditROMPath->text());
+				else
+					m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath");
+				if ( !lineEditSamplePath->text().isEmpty() )
+					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
+				else
+					m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath");
+				if ( !lineEditHashPath->text().isEmpty() )
+					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
+				else
+					m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath");
+			}
 			break;
 	}
 }
