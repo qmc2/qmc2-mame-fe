@@ -21,7 +21,7 @@ CustomSettings::CustomSettings(QSettings *cfg, QObject *parent) :
 
 void CustomSettings::loadFrom(QSettings *cfg)
 {
-	m_settingsHash.clear();
+	clear();
 	if ( cfg )
 		foreach (QString key, cfg->allKeys())
 			m_settingsHash.insert(key, cfg->value(key));
@@ -29,9 +29,11 @@ void CustomSettings::loadFrom(QSettings *cfg)
 
 void CustomSettings::saveTo(QSettings *cfg)
 {
-	if ( cfg )
+	if ( cfg ) {
+		cfg->clear();
 		foreach (QString key, m_settingsHash.uniqueKeys())
 			cfg->setValue(key, m_settingsHash.value(key));
+	}
 }
 
 void CustomSettings::setValue(const QString &key, const QVariant &value)
@@ -45,6 +47,12 @@ QVariant CustomSettings::value(const QString &key, const QVariant &defaultValue)
 		return m_settingsHash.value(key);
 	else
 		return defaultValue;
+}
+
+void CustomSettings::remove(const QString &key)
+{
+	if ( m_settingsHash.contains(key) )
+		m_settingsHash.remove(key);
 }
 
 SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
@@ -89,6 +97,13 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 SetupWizard::~SetupWizard()
 {
 	delete m_customSettings;
+}
+
+void SetupWizard::accept()
+{
+	m_customSettings->saveTo(m_startupConfig);
+	m_startupConfig->sync();
+	QWizard::accept();
 }
 
 void SetupWizard::init()
@@ -157,9 +172,9 @@ void SetupWizard::probeExecutable()
 						if ( emulatorVersionInfo.count() > 1 ) {
 							int verMinor = emulatorVersionInfo.at(0).toInt();
 							int verMajor = emulatorVersionInfo.at(1).toInt();
-							if ( verMinor >= m_minRequiredMameVersionMinor && verMajor >= m_minRequiredMameVersionMajor )
+							if ( verMinor >= m_minRequiredMameVersionMinor && verMajor >= m_minRequiredMameVersionMajor ) {
 								labelVersionSupportedResult->setText("<font color=\"green\" size=\"4\"><b>" + tr("Yes") + " (" + versionWords.at(1) + ")</b></font>");
-							else
+							} else
 								labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("No") + " (" + versionWords.at(1) + ", " + tr("%1.%2+ required").arg(m_minRequiredMameVersionMinor).arg(m_minRequiredMameVersionMajor) + ")</b></font>");
 						} else
 							labelVersionSupportedResult->setText("<font color=\"sandybrown\" size=\"4\"><b>" + tr("Unknown") + " (" + tr("can't parse version info") + ")</b></font>");
@@ -335,11 +350,34 @@ void SetupWizard::initializePage(int id)
 			else if ( radioButtonImportUiIni->isChecked() )
 				QTimer::singleShot(0, this, SLOT(importUiIni()));
 			break;
-		case QMC2_SETUPWIZARD_PAGE_ID_ADJUST_SETTINGS:
-			lineEditWorkingDirectory->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
-			lineEditROMPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
-			lineEditSamplePath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
-			lineEditHashPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
+		case QMC2_SETUPWIZARD_PAGE_ID_ADJUST_SETTINGS: {
+				QString wd(m_customSettings->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
+				if ( wd.isEmpty() ) // default to emulator executable's path
+					wd = QFileInfo(comboBoxExecutableFile->currentText()).absolutePath();
+				lineEditWorkingDirectory->setText(wd);
+				lineEditROMPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString());
+				lineEditSamplePath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
+				lineEditHashPath->setText(m_customSettings->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
+			}
+			break;
+		case QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE:
+			m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", comboBoxExecutableFile->currentText());
+			if ( !lineEditWorkingDirectory->text().isEmpty() )
+				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+			else
+				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory");
+			if ( !lineEditROMPath->text().isEmpty() )
+				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", lineEditROMPath->text());
+			else
+				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath");
+			if ( !lineEditSamplePath->text().isEmpty() )
+				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", lineEditSamplePath->text());
+			else
+				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath");
+			if ( !lineEditHashPath->text().isEmpty() )
+				m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", lineEditHashPath->text());
+			else
+				m_customSettings->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath");
 			break;
 	}
 }
