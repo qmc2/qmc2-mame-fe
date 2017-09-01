@@ -42,6 +42,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="toolTip">
+       <string>Emulator executable file</string>
+      </property>
       <property name="editable">
        <bool>true</bool>
       </property>
@@ -52,6 +55,9 @@
     </item>
     <item row="3" column="3">
      <widget class="QToolButton" name="toolButtonBrowseExecutableFile">
+      <property name="toolTip">
+       <string>Browse emulator executable file</string>
+      </property>
       <property name="icon">
        <iconset resource="qmc2.qrc">
         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
@@ -504,6 +510,9 @@
     </item>
     <item row="4" column="2">
      <widget class="QToolButton" name="toolButtonBrowseWorkingDirectory">
+      <property name="toolTip">
+       <string>Browse working directory</string>
+      </property>
       <property name="icon">
        <iconset resource="qmc2.qrc">
         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
@@ -519,6 +528,9 @@
     </item>
     <item row="6" column="2">
      <widget class="QToolButton" name="toolButtonBrowseSamplePath">
+      <property name="toolTip">
+       <string>Browse sample path</string>
+      </property>
       <property name="icon">
        <iconset resource="qmc2.qrc">
         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
@@ -532,6 +544,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Working directory that's used when the emulator is executed (if empty, QMC2's current working directory is used)</string>
       </property>
      </widget>
     </item>
@@ -573,6 +588,9 @@
     </item>
     <item row="7" column="2">
      <widget class="QToolButton" name="toolButtonBrowseHashPath">
+      <property name="toolTip">
+       <string>Browse hash path</string>
+      </property>
       <property name="icon">
        <iconset resource="qmc2.qrc">
         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
@@ -586,6 +604,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Path to ROM images</string>
       </property>
      </widget>
     </item>
@@ -601,6 +622,9 @@
     </item>
     <item row="5" column="2">
      <widget class="QToolButton" name="toolButtonBrowseROMPath">
+      <property name="toolTip">
+       <string>Browse ROM path</string>
+      </property>
       <property name="icon">
        <iconset resource="qmc2.qrc">
         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
@@ -615,6 +639,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="toolTip">
+       <string>Path to hash files</string>
+      </property>
      </widget>
     </item>
     <item row="6" column="1">
@@ -624,6 +651,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Path to samples</string>
       </property>
      </widget>
     </item>
