@@ -26,6 +26,8 @@ class CustomSettings : public QObject
 		void saveTo(QSettings *cfg);
 		void setValue(const QString &key, const QVariant &value);
 		QVariant value(const QString &key, const QVariant &defaultValue = QVariant());
+		void remove(const QString &key);
+		void clear() { m_settingsHash.clear(); }
 
 	private:
 		QHash<QString, QVariant> m_settingsHash;
@@ -47,6 +49,7 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		bool findIniFiles();
 
 	public slots:
+		void accept();
 		void init();
 		void log(const QString &);
 		void probeExecutable();
