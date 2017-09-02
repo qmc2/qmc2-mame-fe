@@ -75,11 +75,12 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	m_customSettings = new CustomSettings(m_startupConfig, this);
 
 	setupUi(this);
-	setupLanguage();
-	button(QWizard::NextButton)->setText(tr("&Next >"));
-	button(QWizard::BackButton)->setText(tr("< &Back"));
-	button(QWizard::CancelButton)->setText(tr("&Cancel"));
-	button(QWizard::FinishButton)->setText(tr("&Finish"));
+
+	// setting explicit button texts makes it possible to translate them dynamically
+	setButtonText(QWizard::NextButton, tr("&Next >"));
+	setButtonText(QWizard::BackButton, tr("< &Back"));
+	setButtonText(QWizard::CancelButton, tr("&Cancel"));
+	setButtonText(QWizard::FinishButton, tr("&Finish"));
 
 #if QMC2_SVN_REV > 0
 	labelVersion->setText(QString("QMC2 v%1 (SVN r%2)").arg(XSTR(QMC2_VERSION)).arg(QMC2_SVN_REV));
@@ -148,6 +149,7 @@ void SetupWizard::accept()
 
 void SetupWizard::init()
 {
+	setupLanguage();
 	button(QWizard::NextButton)->setEnabled(false);
 	QStringList emuHistory(m_customSettings->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList());
 	emuHistory.sort();
@@ -441,12 +443,6 @@ void SetupWizard::initializePage(int id)
 	}
 }
 
-bool SetupWizard::validateCurrentPage()
-{
-	// FIXME
-	return true;
-}
-
 bool SetupWizard::findIniFiles()
 {
 	m_emulatorIniPath.clear();
@@ -570,10 +566,10 @@ void SetupWizard::on_comboBoxLanguage_currentIndexChanged(int index)
 	m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", m_availableLanguages.at(index));
 	setupLanguage();
 	retranslateUi(this);
-	button(QWizard::NextButton)->setText(tr("&Next >"));
-	button(QWizard::BackButton)->setText(tr("< &Back"));
-	button(QWizard::CancelButton)->setText(tr("&Cancel"));
-	button(QWizard::FinishButton)->setText(tr("&Finish"));
+	setButtonText(QWizard::NextButton, tr("&Next >"));
+	setButtonText(QWizard::BackButton, tr("< &Back"));
+	setButtonText(QWizard::CancelButton, tr("&Cancel"));
+	setButtonText(QWizard::FinishButton, tr("&Finish"));
 }
 
 void SetupWizard::setupLanguage()
