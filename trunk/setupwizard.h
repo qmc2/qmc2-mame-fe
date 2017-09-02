@@ -74,7 +74,6 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 	protected:
 		int nextId() const;
 		void initializePage(int id);
-		bool validateCurrentPage();
 
 	private:
 		QSettings *m_startupConfig;

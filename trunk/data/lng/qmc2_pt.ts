@@ -17485,9 +17485,9 @@ Tem certeza que deseja fazer isso?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1817"/>
-        <location filename="../../setupwizard.cpp" line="121"/>
-        <location filename="../../setupwizard.cpp" line="636"/>
-        <location filename="../../setupwizard.cpp" line="644"/>
+        <location filename="../../setupwizard.cpp" line="123"/>
+        <location filename="../../setupwizard.cpp" line="633"/>
+        <location filename="../../setupwizard.cpp" line="641"/>
         <location filename="../../welcome.cpp" line="50"/>
         <source>Default</source>
         <translation>Padrão</translation>
@@ -21425,42 +21425,42 @@ Tem certeza que deseja fazer isso?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="619"/>
+        <location filename="../../setupwizard.ui" line="644"/>
         <source>Adjust important settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="638"/>
+        <location filename="../../setupwizard.ui" line="663"/>
         <source>Browse working directory</source>
         <translation type="unfinished">Procurar diretório de trabalho</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="656"/>
+        <location filename="../../setupwizard.ui" line="681"/>
         <source>Browse sample path</source>
         <translation type="unfinished">Procurar pelo caminho dos exemplos (samples)</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="673"/>
+        <location filename="../../setupwizard.ui" line="698"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation type="unfinished">Diretório de trabalho que é usado quando o emulador é executado (se vazio, o diretório de trabalho do QMC2 é usado)</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="716"/>
+        <location filename="../../setupwizard.ui" line="741"/>
         <source>Browse hash path</source>
         <translation type="unfinished">Procurar pelo caminho dos arquivos de hash</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="733"/>
+        <location filename="../../setupwizard.ui" line="758"/>
         <source>Path to ROM images</source>
         <translation type="unfinished">Caminho para as ROMs</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="740"/>
+        <location filename="../../setupwizard.ui" line="765"/>
         <source>&lt;font size=&quot;4&quot;&gt;Working directory&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="817"/>
+        <location filename="../../setupwizard.ui" line="842"/>
         <source>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The basic setup is now complete!&lt;/p&gt;
 &lt;p&gt;Settings will be stored and QMC2&apos;s main GUI will be launched as soon as you click &lt;i&gt;Finish&lt;/i&gt;.&lt;/p&gt;
@@ -21468,17 +21468,17 @@ Tem certeza que deseja fazer isso?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="680"/>
+        <location filename="../../setupwizard.ui" line="705"/>
         <source>&lt;font size=&quot;4&quot;&gt;Sample path&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="690"/>
+        <location filename="../../setupwizard.ui" line="715"/>
         <source>&lt;font size=&quot;4&quot;&gt;Hash path&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="700"/>
+        <location filename="../../setupwizard.ui" line="725"/>
         <source>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The settings below are actually optional, but you should specify as many of them as you can right now (of course, you can change these settings at any time later as well).&lt;/p&gt;
 &lt;p&gt;If the emulator&apos;s &lt;i&gt;working directory&lt;/i&gt; is not the base path to a standard installation (i.e. from an official MAME build) or your &lt;i&gt;ROM path&lt;/i&gt; doesn&apos;t follow standard conventions, we &lt;b&gt;strongly recommend&lt;/b&gt; that you specify the ROM path at least!&lt;/p&gt;
@@ -21486,229 +21486,229 @@ Tem certeza que deseja fazer isso?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="628"/>
+        <location filename="../../setupwizard.ui" line="653"/>
         <source>&lt;font size=&quot;4&quot;&gt;ROM path&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="750"/>
+        <location filename="../../setupwizard.ui" line="775"/>
         <source>Browse ROM path</source>
         <translation type="unfinished">Procurar pelo caminho das ROMs</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="767"/>
+        <location filename="../../setupwizard.ui" line="792"/>
         <source>Path to hash files</source>
         <translation type="unfinished">Caminho para os arquivos de hash</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="780"/>
+        <location filename="../../setupwizard.ui" line="805"/>
         <source>Path to samples</source>
         <translation type="unfinished">Caminho para os exemplos</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="801"/>
+        <location filename="../../setupwizard.ui" line="826"/>
         <source>Setup complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="78"/>
-        <location filename="../../setupwizard.cpp" line="572"/>
+        <location filename="../../setupwizard.cpp" line="80"/>
+        <location filename="../../setupwizard.cpp" line="569"/>
         <source>&amp;Next &gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="79"/>
-        <location filename="../../setupwizard.cpp" line="573"/>
+        <location filename="../../setupwizard.cpp" line="81"/>
+        <location filename="../../setupwizard.cpp" line="570"/>
         <source>&lt; &amp;Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="80"/>
-        <location filename="../../setupwizard.cpp" line="574"/>
+        <location filename="../../setupwizard.cpp" line="82"/>
+        <location filename="../../setupwizard.cpp" line="571"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;Cancelar</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="81"/>
-        <location filename="../../setupwizard.cpp" line="575"/>
+        <location filename="../../setupwizard.cpp" line="83"/>
+        <location filename="../../setupwizard.cpp" line="572"/>
         <source>&amp;Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="179"/>
-        <location filename="../../setupwizard.cpp" line="208"/>
-        <location filename="../../setupwizard.cpp" line="215"/>
+        <location filename="../../setupwizard.cpp" line="182"/>
+        <location filename="../../setupwizard.cpp" line="211"/>
+        <location filename="../../setupwizard.cpp" line="218"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="217"/>
-        <location filename="../../setupwizard.cpp" line="268"/>
-        <location filename="../../setupwizard.cpp" line="277"/>
-        <location filename="../../setupwizard.cpp" line="286"/>
-        <location filename="../../setupwizard.cpp" line="295"/>
-        <location filename="../../setupwizard.cpp" line="304"/>
+        <location filename="../../setupwizard.cpp" line="220"/>
+        <location filename="../../setupwizard.cpp" line="271"/>
+        <location filename="../../setupwizard.cpp" line="280"/>
+        <location filename="../../setupwizard.cpp" line="289"/>
+        <location filename="../../setupwizard.cpp" line="298"/>
+        <location filename="../../setupwizard.cpp" line="307"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="217"/>
+        <location filename="../../setupwizard.cpp" line="220"/>
         <source>%1.%2+ required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="219"/>
-        <location filename="../../setupwizard.cpp" line="244"/>
-        <location filename="../../setupwizard.cpp" line="245"/>
+        <location filename="../../setupwizard.cpp" line="222"/>
+        <location filename="../../setupwizard.cpp" line="247"/>
         <location filename="../../setupwizard.cpp" line="248"/>
-        <location filename="../../setupwizard.cpp" line="249"/>
+        <location filename="../../setupwizard.cpp" line="251"/>
+        <location filename="../../setupwizard.cpp" line="252"/>
         <source>Unknown</source>
         <translation type="unfinished">Desconhecido</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="219"/>
+        <location filename="../../setupwizard.cpp" line="222"/>
         <source>can&apos;t parse version info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="244"/>
-        <location filename="../../setupwizard.cpp" line="245"/>
+        <location filename="../../setupwizard.cpp" line="247"/>
         <location filename="../../setupwizard.cpp" line="248"/>
-        <location filename="../../setupwizard.cpp" line="249"/>
-        <location filename="../../setupwizard.cpp" line="286"/>
-        <location filename="../../setupwizard.cpp" line="295"/>
+        <location filename="../../setupwizard.cpp" line="251"/>
+        <location filename="../../setupwizard.cpp" line="252"/>
+        <location filename="../../setupwizard.cpp" line="289"/>
+        <location filename="../../setupwizard.cpp" line="298"/>
         <source>emulator didn&apos;t start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="255"/>
-        <location filename="../../setupwizard.cpp" line="259"/>
+        <location filename="../../setupwizard.cpp" line="258"/>
+        <location filename="../../setupwizard.cpp" line="262"/>
         <source>No ini-file found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="264"/>
-        <location filename="../../setupwizard.cpp" line="265"/>
+        <location filename="../../setupwizard.cpp" line="267"/>
+        <location filename="../../setupwizard.cpp" line="268"/>
         <source>Couldn&apos;t determine ini-path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="268"/>
-        <location filename="../../setupwizard.cpp" line="277"/>
+        <location filename="../../setupwizard.cpp" line="271"/>
+        <location filename="../../setupwizard.cpp" line="280"/>
         <source>incompatible binary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="269"/>
-        <location filename="../../setupwizard.cpp" line="270"/>
-        <location filename="../../setupwizard.cpp" line="271"/>
         <location filename="../../setupwizard.cpp" line="272"/>
         <location filename="../../setupwizard.cpp" line="273"/>
         <location filename="../../setupwizard.cpp" line="274"/>
-        <location filename="../../setupwizard.cpp" line="278"/>
-        <location filename="../../setupwizard.cpp" line="279"/>
-        <location filename="../../setupwizard.cpp" line="280"/>
+        <location filename="../../setupwizard.cpp" line="275"/>
+        <location filename="../../setupwizard.cpp" line="276"/>
+        <location filename="../../setupwizard.cpp" line="277"/>
         <location filename="../../setupwizard.cpp" line="281"/>
         <location filename="../../setupwizard.cpp" line="282"/>
         <location filename="../../setupwizard.cpp" line="283"/>
-        <location filename="../../setupwizard.cpp" line="287"/>
-        <location filename="../../setupwizard.cpp" line="288"/>
-        <location filename="../../setupwizard.cpp" line="289"/>
+        <location filename="../../setupwizard.cpp" line="284"/>
+        <location filename="../../setupwizard.cpp" line="285"/>
+        <location filename="../../setupwizard.cpp" line="286"/>
         <location filename="../../setupwizard.cpp" line="290"/>
         <location filename="../../setupwizard.cpp" line="291"/>
         <location filename="../../setupwizard.cpp" line="292"/>
-        <location filename="../../setupwizard.cpp" line="296"/>
-        <location filename="../../setupwizard.cpp" line="297"/>
-        <location filename="../../setupwizard.cpp" line="298"/>
+        <location filename="../../setupwizard.cpp" line="293"/>
+        <location filename="../../setupwizard.cpp" line="294"/>
+        <location filename="../../setupwizard.cpp" line="295"/>
         <location filename="../../setupwizard.cpp" line="299"/>
         <location filename="../../setupwizard.cpp" line="300"/>
         <location filename="../../setupwizard.cpp" line="301"/>
-        <location filename="../../setupwizard.cpp" line="305"/>
-        <location filename="../../setupwizard.cpp" line="306"/>
-        <location filename="../../setupwizard.cpp" line="307"/>
+        <location filename="../../setupwizard.cpp" line="302"/>
+        <location filename="../../setupwizard.cpp" line="303"/>
+        <location filename="../../setupwizard.cpp" line="304"/>
         <location filename="../../setupwizard.cpp" line="308"/>
         <location filename="../../setupwizard.cpp" line="309"/>
         <location filename="../../setupwizard.cpp" line="310"/>
         <location filename="../../setupwizard.cpp" line="311"/>
+        <location filename="../../setupwizard.cpp" line="312"/>
+        <location filename="../../setupwizard.cpp" line="313"/>
+        <location filename="../../setupwizard.cpp" line="314"/>
         <source>No result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="318"/>
+        <location filename="../../setupwizard.cpp" line="321"/>
         <source>importing emulator settings from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="329"/>
+        <location filename="../../setupwizard.cpp" line="332"/>
         <source>importing front-end settings from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="364"/>
-        <location filename="../../setupwizard.cpp" line="365"/>
-        <location filename="../../setupwizard.cpp" line="366"/>
         <location filename="../../setupwizard.cpp" line="367"/>
         <location filename="../../setupwizard.cpp" line="368"/>
         <location filename="../../setupwizard.cpp" line="369"/>
         <location filename="../../setupwizard.cpp" line="370"/>
         <location filename="../../setupwizard.cpp" line="371"/>
+        <location filename="../../setupwizard.cpp" line="372"/>
+        <location filename="../../setupwizard.cpp" line="373"/>
+        <location filename="../../setupwizard.cpp" line="374"/>
         <source>Check result pending...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="377"/>
+        <location filename="../../setupwizard.cpp" line="380"/>
         <source>Import emulator settings from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="380"/>
+        <location filename="../../setupwizard.cpp" line="383"/>
         <source>Import front-end settings from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="383"/>
+        <location filename="../../setupwizard.cpp" line="386"/>
         <source>Import both emulator and front-end settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="384"/>
+        <location filename="../../setupwizard.cpp" line="387"/>
         <source>Import nothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="405"/>
+        <location filename="../../setupwizard.cpp" line="408"/>
         <source>Default</source>
         <translation type="unfinished">Padrão</translation>
     </message>
     <message>
+        <location filename="../../setupwizard.cpp" line="527"/>
         <location filename="../../setupwizard.cpp" line="530"/>
-        <location filename="../../setupwizard.cpp" line="533"/>
         <source>Choose emulator executable file</source>
         <translation type="unfinished">Escolha o arquivo executável do emulador</translation>
     </message>
     <message>
+        <location filename="../../setupwizard.cpp" line="527"/>
         <location filename="../../setupwizard.cpp" line="530"/>
-        <location filename="../../setupwizard.cpp" line="533"/>
         <source>All files (*)</source>
         <translation type="unfinished">Todos os arquivos (*)</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="541"/>
+        <location filename="../../setupwizard.cpp" line="538"/>
         <source>Choose working directory</source>
         <translation type="unfinished">Escolha o diretório de trabalho</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="548"/>
+        <location filename="../../setupwizard.cpp" line="545"/>
         <source>Choose ROM path</source>
         <translation type="unfinished">Escolha o caminho das ROMs</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="555"/>
+        <location filename="../../setupwizard.cpp" line="552"/>
         <source>Choose sample path</source>
         <translation type="unfinished">Escolha o caminho dos exemplos (samples)</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="562"/>
+        <location filename="../../setupwizard.cpp" line="559"/>
         <source>Choose hash path</source>
         <translation type="unfinished">Escolha o caminho para os hashes</translation>
     </message>
