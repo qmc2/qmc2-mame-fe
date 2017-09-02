@@ -21494,7 +21494,7 @@ Bist Du sicher, dass Du das tun willst?</translation>
     <message>
         <location filename="../../setupwizard.ui" line="775"/>
         <source>Browse ROM path</source>
-        <translation>ROM Pfad auswählen</translation>
+        <translation>ROM Verzeichnis auswählen</translation>
     </message>
     <message>
         <location filename="../../setupwizard.ui" line="792"/>
