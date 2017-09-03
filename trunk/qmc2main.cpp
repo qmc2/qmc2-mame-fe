@@ -5741,7 +5741,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( !qmc2YouTubeVideoInfoHash.isEmpty() && qmc2YouTubeVideoInfoHashChanged ) {
-		log(QMC2_LOG_FRONTEND, tr("saving YouTube video info map"));
+		log(QMC2_LOG_FRONTEND, tr("saving YouTube video info cache"));
 		QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 		if ( youTubeCacheDir.exists() ) {
 #if defined(QMC2_SDLMAME)
@@ -5760,11 +5760,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
 					ts << it.key() << "\t" << it.value().author << "\t" << it.value().title << "\n";
 				}
 				f.close();
-				log(QMC2_LOG_FRONTEND, tr("done (saving YouTube video info map)"));
+				log(QMC2_LOG_FRONTEND, tr("done (saving YouTube video info cache)"));
 			} else
-				log(QMC2_LOG_FRONTEND, tr("failed (saving YouTube video info map)"));
+				log(QMC2_LOG_FRONTEND, tr("failed (saving YouTube video info cache)"));
 		} else
-			log(QMC2_LOG_FRONTEND, tr("failed (saving YouTube video info map)"));
+			log(QMC2_LOG_FRONTEND, tr("failed (saving YouTube video info cache)"));
 	}
 #endif
 
@@ -6636,7 +6636,7 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::loadYouTubeVideoInfoMap()
 {
-	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info map"));
+	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info cache"));
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	if ( youTubeCacheDir.exists() ) {
 #if defined(QMC2_SDLMAME)
@@ -6683,7 +6683,7 @@ void MainWindow::loadYouTubeVideoInfoMap()
 			progressBarMachineList->setValue(oldValue);
 		}
 	}
-	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info map)"));
+	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info cache)"));
 	log(QMC2_LOG_FRONTEND, tr("%n video info record(s) loaded", "", qmc2YouTubeVideoInfoHash.count()));
 	qmc2YouTubeVideoInfoHashChanged = false;
 }
