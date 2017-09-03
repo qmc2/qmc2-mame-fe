@@ -9,6 +9,7 @@
 #include <QDateTime>
 #include <QProcess>
 #include <QTimer>
+#include <QFont>
 #include <QDir>
 
 #include "setupwizard.h"
@@ -76,7 +77,14 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 
 	setupUi(this);
 
-	// setting explicit button texts makes it possible to translate them dynamically
+	// set customized UI font when applicable
+	if ( m_customSettings->contains(QMC2_FRONTEND_PREFIX + "GUI/Font") ) {
+		QFont f;
+		f.fromString(m_customSettings->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+		qApp->setFont(f);
+	}
+
+	// setting explicit button texts makes it possible to translate them dynamically (however, some styles ignore this)
 	setButtonText(QWizard::NextButton, tr("&Next >"));
 	setButtonText(QWizard::BackButton, tr("< &Back"));
 	setButtonText(QWizard::CancelButton, tr("&Cancel"));
