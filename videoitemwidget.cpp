@@ -132,9 +132,9 @@ void VideoItemWidget::setTitle(QString vTitle)
 			if ( !authorUrlPattern.isEmpty() ) {
 				QString url = authorUrlPattern;
 				url.replace("$USER_ID$", videoAuthor);
-				htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Author:") + "</td><td width=\"95%\" valign=\"top\">" + "<a href=\"" + url + "\" title=\"" + tr("Open author URL with the default browser") + "\">" + videoAuthor + "</a></td></tr>";
+				htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Author:") + "</td><td width=\"95%\" valign=\"top\">" + "<a href=\"" + url + "\" title=\"" + tr("Open author URL with the default browser") + "\">" + videoAuthor.replace("+", " ") + "</a></td></tr>";
 			} else
-				htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Author:") + "</td><td width=\"95%\" valign=\"top\">" + videoAuthor + "</td></tr>";
+				htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Author:") + "</td><td width=\"95%\" valign=\"top\">" + videoAuthor.replace("+", " ") + "</td></tr>";
 		}
 		if ( !videoID.isEmpty() ) {
 			if ( !videoUrlPattern.isEmpty() ) {

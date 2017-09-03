@@ -1150,7 +1150,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	videoInfoBuffer.clear();
 	viError = viFinished = false;
 	videoInfoRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1&key=%2").arg(videoID).arg(QMC2_GOOGLE_DEV_KEY));
-	videoInfoRequest.setRawHeader("User-Agent", "QMC2 - MAME/MESS/UME Catalog / Launcher II");
+	videoInfoRequest.setRawHeader("User-Agent", "QMC2 - MAME Catalog / Launcher II");
 	videoInfoRequest.setRawHeader("X-GData-Key", QString("key=%1").arg(QMC2_GOOGLE_DEV_KEY).toLatin1());
 	if ( videoInfoManager ) {
 		disconnect(videoInfoManager);
@@ -1656,7 +1656,7 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	QString queryString = savedSearchString.simplified();
 	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>&key=<developer-key>
 	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3&key=%4").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString).arg(QMC2_GOOGLE_DEV_KEY));
-	searchRequest.setRawHeader("User-Agent", "QMC2 - MAME/MESS/UME Catalog / Launcher II");
+	searchRequest.setRawHeader("User-Agent", "QMC2 - MAME Catalog / Launcher II");
 	searchRequest.setRawHeader("X-GData-Key", QString("key=%1").arg(QMC2_GOOGLE_DEV_KEY).toLatin1());
 	if ( searchRequestManager ) {
 		disconnect(searchRequestManager);
@@ -1698,6 +1698,8 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 			continue;
 		if ( viw->videoImageValid )
 			continue;
+		if ( viw->videoID.startsWith("#:") )
+			continue;
 
 		ImagePixmap *imagePixmap = qmc2ImagePixmapCache.object("yt_" + viw->videoID);
 		bool pixmapFound = (imagePixmap != 0);
@@ -1712,6 +1714,8 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 						ImagePixmap ipm = pm;
 						ipm.imagePath = youTubeCacheDir.filePath(imageFile);
 						qmc2ImagePixmapCache.insert("yt_" + viw->videoID, new ImagePixmap(ipm), pm.toImage().byteCount());
+						viw->setImage(&ipm);
+						continue;
 					}
 				}
 			}
@@ -1728,7 +1732,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		videoImageBuffer.clear();
 		vimgError = vimgFinished = false;
 		videoImageRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1&key=%2").arg(viw->videoID).arg(QMC2_GOOGLE_DEV_KEY));
-		videoImageRequest.setRawHeader("User-Agent", "QMC2 - MAME/MESS/UME Catalog / Launcher II");
+		videoImageRequest.setRawHeader("User-Agent", "QMC2 - MAME Catalog / Launcher II");
 		videoImageRequest.setRawHeader("X-GData-Key", QString("key=%1").arg(QMC2_GOOGLE_DEV_KEY).toLatin1());
 		if ( videoImageManager ) {
 			disconnect(videoImageManager);
