@@ -889,14 +889,17 @@ void YouTubeVideoPlayer::init()
 		}
 	}
 
-	QStringList attachedVideos = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList();
+	if ( forcedExit )
+		return;
+
+	QStringList attachedVideos(qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList());
 	listWidgetAttachedVideos->setUpdatesEnabled(false);
 	foreach(QString vid, attachedVideos) {
 		if ( vid.startsWith("#:" ) )
 			attachVideo(vid, QString(), QString());
 		else {
 			if ( qmc2YouTubeVideoInfoHash.contains(vid) ) {
-				YouTubeVideoInfo vi = qmc2YouTubeVideoInfoHash[vid];
+				YouTubeVideoInfo vi = qmc2YouTubeVideoInfoHash.value(vid);
 				attachVideo(vid, vi.title, vi.author);
 			} else
 				attachVideoById(vid); // this is more expensive
@@ -1154,6 +1157,10 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 		delete videoInfoManager;
 		videoInfoManager = 0;
 	}
+
+	if ( forcedExit )
+		return QUrl();
+
 	videoInfoManager = new QNetworkAccessManager(this);
 	videoInfoReply = videoInfoManager->get(videoInfoRequest);
 	connect(videoInfoReply, SIGNAL(readyRead()), this, SLOT(videoInfoReadyRead()));
@@ -1169,10 +1176,12 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 			qApp->processEvents();
 			QTest::qWait(YOUTUBE_VIDEOINFO_WAIT);
 		}
+		if ( forcedExit )
+			return QUrl();
 	}
 
-	if ( viFinished && !viError ) {
-		QStringList videoInfoList = videoInfoBuffer.split("&", QString::SkipEmptyParts);
+	if ( viFinished && !viError && !timeoutOccurred ) {
+		QStringList videoInfoList(videoInfoBuffer.split('&', QString::SkipEmptyParts));
 #ifdef QMC2_DEBUG
 		printf("\nFull info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
 #endif
@@ -1250,20 +1259,20 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 			if ( forcedExit )
 				break;
 			if ( videoInfo.startsWith("url_encoded_fmt_stream_map=") ) {
-				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^url_encoded_fmt_stream_map="), "").split("%2C", QString::SkipEmptyParts);
+				QStringList fmtUrlMap(videoInfo.replace(QRegExp("^url_encoded_fmt_stream_map="), "").split("%2C", QString::SkipEmptyParts));
 				foreach (QString fmtUrl, fmtUrlMap) {
 					if ( forcedExit )
 						break;
 					QString sig, itag, url;
-					foreach (QString urlPart, QUrl::fromEncoded(fmtUrl.toLatin1()).toString().split("&", QString::SkipEmptyParts)) {
+					foreach (QString urlPart, QUrl::fromEncoded(fmtUrl.toLatin1()).toString().split('&', QString::SkipEmptyParts)) {
 						if ( urlPart.startsWith("url=") ) {
 							url = urlPart.split("=")[1];
 						} else {
-							foreach (QString subPart, urlPart.split(",", QString::SkipEmptyParts)) {
+							foreach (QString subPart, urlPart.split(',', QString::SkipEmptyParts)) {
 								if ( subPart.startsWith("sig=") )
-									sig = subPart.split("=")[1];
+									sig = subPart.split('=')[1];
 								if ( subPart.startsWith("itag=") )
-									itag = subPart.split("=")[1];
+									itag = subPart.split('=')[1];
 							}
 						}
 					}
@@ -1328,7 +1337,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	}
 
 	showMessage(tr("video info error: unknown reason"), 4000);
-	return QString();
+	return QUrl();
 }
 
 QString YouTubeVideoPlayer::indexToFormat(int index)
@@ -1772,7 +1781,8 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		}
 	}
 
-	listWidgetAttachedVideos->setUpdatesEnabled(true);
+	if ( !forcedExit )
+		listWidgetAttachedVideos->setUpdatesEnabled(true);
 }
 
 void YouTubeVideoPlayer::videoImageReadyRead()

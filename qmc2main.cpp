@@ -3919,11 +3919,10 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 			if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
 				tabYouTube->setUpdatesEnabled(false);
 				if ( qmc2YouTubeWidget ) {
-					qmc2YouTubeWidget->stop();
-					qmc2YouTubeWidget->saveSettings();
 					qmc2YouTubeWidget->forcedExit = true;
-					if ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
+					while ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
 						qmc2YouTubeWidget->stop();
+					qmc2YouTubeWidget->saveSettings();
 					QLayout *vbl = tabYouTube->layout();
 					if ( vbl )
 						delete vbl;
