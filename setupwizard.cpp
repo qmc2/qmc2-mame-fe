@@ -4,12 +4,14 @@
 #include <QStringList>
 #include <QFileDialog>
 #include <QTranslator>
+#include <QTextStream>
 #include <QLineEdit>
 #include <QFileInfo>
 #include <QDateTime>
 #include <QProcess>
 #include <QTimer>
 #include <QFont>
+#include <QFile>
 #include <QDir>
 
 #include "setupwizard.h"
@@ -326,8 +328,57 @@ void SetupWizard::probeExecutable()
 void SetupWizard::importMameIni()
 {
 	button(QWizard::NextButton)->setEnabled(false);
-	log(tr("importing emulator settings from %1").arg(m_emulatorIniPath));
-	// FIXME
+	log(tr("importing emulator settings from '%1'").arg(m_emulatorIniPath));
+
+	// IMPORTANT: these string lists have to be kept up-to-date using the bash script "scripts/generate-option-lists.sh"!!!
+	QStringList allOptions(QStringList() << "adstick_device" << "artpath" << "artwork_crop" << "aspect" << "aspect0" << "aspect1" << "aspect2" << "aspect3" << "audiodriver" << "audio_effect0" << "audio_effect1" << "audio_effect2" << "audio_effect3" << "audio_effect4" << "audio_effect5" << "audio_effect6" << "audio_effect7" << "audio_effect8" << "audio_effect9" << "audio_latency" << "audio_output" << "autoboot_command" << "autoboot_delay" << "autoboot_script" << "autoframeskip" << "autorol" << "autoror" << "autosave" << "autostretchxy" << "aviwrite" << "beam_intensity_weight" << "beam_width_max" << "beam_width_min" << "bench" << "bgfx_avi_name" << "bgfx_backend" << "bgfx_debug" << "bgfx_path" << "bgfx_screen_chains" << "bgfx_shadow_mask" << "bios" << "bloom_blend_mode" << "bloom_lvl0_weight" << "bloom_lvl1_weight" << "bloom_lvl2_weight" << "bloom_lvl3_weight" << "bloom_lvl4_weight" << "bloom_lvl5_weight" << "bloom_lvl6_weight" << "bloom_lvl7_weight" << "bloom_lvl8_weight" << "bloom_overdrive" << "bloom_scale" << "blu_ratio" << "brightness" << "burnin" << "centerh" << "centerv" << "cfg_directory" << "cheat" << "cheatpath" << "coin_impulse" << "coin_lockout" << "comment_directory" << "comm_localhost" << "comm_localport" << "comm_remotehost" << "comm_remoteport" << "confirm_quit" << "console" << "contrast" << "converge_x" << "converge_y" << "crosshairpath" << "ctrlr" << "ctrlrpath" << "cubic_distortion" << "debug" << "debugger" << "debugger_font" << "debugger_font_size" << "debugscript" << "defocus" << "dial_device" << "diff_directory" << "distort_corner" << "distortion" << "drc" << "drc_log_native" << "drc_log_uml" << "drc_use_c" << "dual_lightgun" << "effect" << "exit_after_playback" << "filter" << "flicker" << "flipx" << "flipy" << "floor" << "fontpath" << "frameskip" << "full_screen_brightness" << "full_screen_contrast" << "full_screen_gamma" << "gamma" << "gl_forcepow2texture" << "gl_glsl" << "gl_glsl_filter" << "gl_lib" << "gl_notexturerect" << "global_inputs" << "gl_pbo" << "glsl_shader_mame0" << "glsl_shader_mame1" << "glsl_shader_mame2" << "glsl_shader_mame3" << "glsl_shader_mame4" << "glsl_shader_mame5" << "glsl_shader_mame6" << "glsl_shader_mame7" << "glsl_shader_mame8" << "glsl_shader_mame9" << "glsl_shader_screen0" << "glsl_shader_screen1" << "glsl_shader_screen2" << "glsl_shader_screen3" << "glsl_shader_screen4" << "glsl_shader_screen5" << "glsl_shader_screen6" << "glsl_shader_screen7" << "glsl_shader_screen8" << "glsl_shader_screen9" << "gl_vbo" << "grn_ratio" << "hashpath" << "hlsl_enable" << "hlsl_oversampling" << "hlslpath" << "hlsl_snap_height" << "hlsl_snap_width" << "hlsl_write" << "homepath" << "http" << "http_port" << "http_root" << "hum_bar_alpha" << "inipath" << "input_directory" << "intoverscan" << "intscalex" << "intscaley" << "joy_idx1" << "joy_idx2" << "joy_idx3" << "joy_idx4" << "joy_idx5" << "joy_idx6" << "joy_idx7" << "joy_idx8" << "joystick" << "joystick_contradictory" << "joystick_deadzone" << "joystick_map" << "joystickprovider" << "joystick_saturation" << "keepaspect" << "keyb_idx1" << "keyb_idx2" << "keyb_idx3" << "keyb_idx4" << "keyb_idx5" << "keyb_idx6" << "keyb_idx7" << "keyb_idx8" << "keyboardprovider" << "keymap" << "keymap_file" << "language" << "languagepath" << "lightgun" << "lightgun_device" << "lightgun_index1" << "lightgun_index2" << "lightgun_index3" << "lightgun_index4" << "lightgun_index5" << "lightgun_index6" << "lightgun_index7" << "lightgun_index8" << "lightgunprovider" << "log" << "maximize" << "menu" << "mngwrite" << "monitorprovider" << "mouse" << "mouse_device" << "mouse_index1" << "mouse_index2" << "mouse_index3" << "mouse_index4" << "mouse_index5" << "mouse_index6" << "mouse_index7" << "mouse_index8" << "mouseprovider" << "multikeyboard" << "multimouse" << "natural" << "noplugin" << "numprocessors" << "numscreens" << "nvram_directory" << "offscreen_reload" << "offset" << "oslog" << "output" << "pa_api" << "paddle_device" << "pa_device" << "pa_latency" << "pause_brightness" << "pedal_device" << "phosphor_life" << "playback" << "plugin" << "plugins" << "pluginspath" << "positional_device" << "power" << "prescale" << "priority" << "profile" << "radial_converge_x" << "radial_converge_y" << "ramsize" << "readconfig" << "record" << "record_timecode" << "red_ratio" << "reflection" << "refreshspeed" << "renderdriver" << "resolution" << "resolution0" << "resolution1" << "resolution2" << "resolution3" << "rol" << "rompath" << "ror" << "rotate" << "round_corner" << "samplepath" << "samplerate" << "samples" << "saturation" << "scale" << "scalemode" << "scanline_alpha" << "scanline_bright_offset" << "scanline_bright_scale" << "scanline_height" << "scanline_jitter" << "scanline_size" << "scanline_variation" << "screen" << "screen0" << "screen1" << "screen2" << "screen3" << "sdlvideofps" << "seconds_to_run" << "shadow_mask_alpha" << "shadow_mask_texture" << "shadow_mask_tile_mode" << "shadow_mask_uoffset" << "shadow_mask_usize" << "shadow_mask_voffset" << "shadow_mask_vsize" << "shadow_mask_x_count" << "shadow_mask_y_count" << "sixaxis" << "skip_gameinfo" << "sleep" << "smooth_border" << "snapbilinear" << "snapname" << "snapshot_directory" << "snapsize" << "snapview" << "sound" << "speed" << "state" << "state_directory" << "statename" << "steadykey" << "switchres" << "swpath" << "syncrefresh" << "throttle" << "trackball_device" << "triplebuffer" << "ui" << "ui_active" << "uifont" << "uifontprovider" << "uimodekey" << "ui_mouse" << "unevenstretch" << "unevenstretchx" << "unevenstretchy" << "update_in_pause" << "useallheads" << "use_backdrops" << "use_bezels" << "use_cpanels" << "use_marquees" << "use_overlays" << "vector_beam_smooth" << "vector_length_ratio" << "vector_length_scale" << "verbose" << "video" << "videodriver" << "view" << "view0" << "view1" << "view2" << "view3" << "vignetting" << "volume" << "waitvsync" << "watchdog" << "wavwrite" << "window" << "writeconfig" << "yiq_a" << "yiq_b" << "yiq_cc" << "yiq_enable" << "yiq_i" << "yiq_jitter" << "yiq_n" << "yiq_o" << "yiq_p" << "yiq_phase_count" << "yiq_q" << "yiq_scan_time" << "yiq_y");
+	QStringList booleanOptions(QStringList() << "artwork_crop" << "autoframeskip" << "autorol" << "autoror" << "autosave" << "autostretchxy" << "bgfx_debug" << "burnin" << "centerh" << "centerv" << "cheat" << "coin_lockout" << "confirm_quit" << "console" << "debug" << "drc" << "drc_log_native" << "drc_log_uml" << "drc_use_c" << "dual_lightgun" << "exit_after_playback" << "filter" << "flipx" << "flipy" << "gl_forcepow2texture" << "gl_glsl" << "gl_notexturerect" << "global_inputs" << "gl_pbo" << "gl_vbo" << "hlsl_enable" << "hlsl_oversampling" << "http" << "intoverscan" << "joystick" << "joystick_contradictory" << "keepaspect" << "keymap" << "lightgun" << "log" << "maximize" << "menu" << "mouse" << "multikeyboard" << "multimouse" << "natural" << "offscreen_reload" << "oslog" << "plugins" << "readconfig" << "record_timecode" << "refreshspeed" << "rol" << "ror" << "rotate" << "samples" << "sdlvideofps" << "sixaxis" << "skip_gameinfo" << "sleep" << "snapbilinear" << "steadykey" << "switchres" << "syncrefresh" << "throttle" << "triplebuffer" << "ui_active" << "ui_mouse" << "unevenstretch" << "unevenstretchx" << "unevenstretchy" << "update_in_pause" << "useallheads" << "use_backdrops" << "use_bezels" << "use_cpanels" << "use_marquees" << "use_overlays" << "verbose" << "waitvsync" << "window" << "writeconfig" << "yiq_enable");
+	QStringList floatOptions(QStringList() << "beam_intensity_weight" << "beam_width_max" << "beam_width_min" << "bloom_lvl0_weight" << "bloom_lvl1_weight" << "bloom_lvl2_weight" << "bloom_lvl3_weight" << "bloom_lvl4_weight" << "bloom_lvl5_weight" << "bloom_lvl6_weight" << "bloom_lvl7_weight" << "bloom_lvl8_weight" << "bloom_overdrive" << "bloom_scale" << "blu_ratio" << "brightness" << "contrast" << "converge_x" << "converge_y" << "cubic_distortion" << "defocus" << "distort_corner" << "distortion" << "flicker" << "floor" << "full_screen_brightness" << "full_screen_contrast" << "full_screen_gamma" << "gamma" << "grn_ratio" << "hum_bar_alpha" << "joystick_deadzone" << "joystick_saturation" << "offset" << "pa_latency" << "pause_brightness" << "phosphor_life" << "power" << "radial_converge_x" << "radial_converge_y" << "red_ratio" << "reflection" << "round_corner" << "saturation" << "scale" << "scanline_alpha" << "scanline_bright_offset" << "scanline_bright_scale" << "scanline_height" << "scanline_jitter" << "scanline_size" << "scanline_variation" << "shadow_mask_alpha" << "shadow_mask_uoffset" << "shadow_mask_usize" << "shadow_mask_voffset" << "shadow_mask_vsize" << "smooth_border" << "speed" << "vector_beam_smooth" << "vector_length_ratio" << "vector_length_scale" << "vignetting" << "yiq_a" << "yiq_b" << "yiq_cc" << "yiq_i" << "yiq_jitter" << "yiq_n" << "yiq_o" << "yiq_p" << "yiq_q" << "yiq_scan_time" << "yiq_y");
+	QStringList ignoredOptions(QStringList() << "dtd");
+
+	QFile iniFile(m_emulatorIniPath);
+	if ( iniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+		QTextStream ts(&iniFile);
+		int lineCounter = 0;
+		while ( !ts.atEnd() ) {
+			if ( lineCounter % 10 )
+				qApp->processEvents();
+			QString lineTrimmed(ts.readLine().trimmed());
+			if ( !lineTrimmed.isEmpty() && !lineTrimmed.startsWith('#') && !lineTrimmed.startsWith("<UNADORNED") ) {
+				QStringList tokens(lineTrimmed.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+				if ( tokens.count() > 1 ) {
+					QString option(tokens.at(0));
+					QString value(lineTrimmed.mid(lineTrimmed.indexOf(tokens.at(1), tokens.at(0).length())));
+					if ( ignoredOptions.contains(option) ) {
+						log(tr("option '%1' with value '%2' ignored").arg(option).arg(value.replace("$HOME", "~")));
+						continue;
+					}
+					if ( !allOptions.contains(option) ) {
+						log(tr("WARNING: unknown option '%1' on line %2 ignored").arg(option).arg(lineCounter));
+						continue;
+					}
+					if ( booleanOptions.contains(option) )
+						value = value == "1" ? "true" : "false";
+					else if ( floatOptions.contains(option) ) {
+						QStringList floatParts = value.split(',', QString::SkipEmptyParts);
+						QStringList newValues;
+						for (int i = 0; i < floatParts.count(); i++) {
+							double num = floatParts.at(i).toDouble();
+							newValues << QString::number(num, 'f', QMC2_EMUOPT_DFLT_DECIMALS);
+						}
+						value = newValues.join(",");
+					}
+					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + option, value);
+					log(tr("option '%1' with value '%2' imported").arg(option).arg(value.replace("$HOME", "~")));
+				} else if ( tokens.count() > 0 )
+					log(tr("WARNING: missing value on line %1, option '%2' ignored").arg(lineCounter).arg(tokens.at(0)));
+			}
+			lineCounter++;
+		}
+		iniFile.close();
+	} else
+		log(tr("ERROR: can't open '%1' for reading").arg(m_emulatorIniPath));
+	log(tr("done (importing emulator settings from '%1')").arg(m_emulatorIniPath));
 	if ( radioButtonImportBothInis->isChecked() )
 		QTimer::singleShot(0, this, SLOT(importUiIni()));
 	else
@@ -337,9 +388,10 @@ void SetupWizard::importMameIni()
 void SetupWizard::importUiIni()
 {
 	button(QWizard::NextButton)->setEnabled(false);
-	log(tr("importing front-end settings from %1").arg(m_frontendIniPath));
+	log(tr("importing front-end settings from '%1'").arg(m_frontendIniPath));
 	// FIXME
 	button(QWizard::NextButton)->setEnabled(true);
+	log(tr("done (importing front-end settings from '%1')").arg(m_frontendIniPath));
 }
 
 int SetupWizard::nextId() const
