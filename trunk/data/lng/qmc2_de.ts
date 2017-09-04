@@ -21439,15 +21439,6 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <source>Browse hash path</source>
         <translation>Hash Verzeichnis auswählen</translation>
     </message>
-    <message utf8="true">
-        <location filename="../../setupwizard.ui" line="758"/>
-        <source>&lt;p&gt;Specifies a list of paths within which to find ROM or hard disk images.&lt;/p&gt;
-&lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
-&lt;p&gt;The default is ‘roms’ (that is, a folder named &apos;roms&apos; in the emulator&apos;s working directory).&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Legt eine Liste von Pfaden fest, innerhalb derer nach ROM- oder Festplatten-Abbildern gesucht wird.&lt;/p&gt;
-&lt;p&gt;Mehrere Pfade können durch Semikolon getrennt angegeben werden (&amp;lt;Pfad1&amp;gt;;&amp;lt;Pfad2&amp;gt;;...).&lt;/p&gt;
-&lt;p&gt;Der Standardpfad lautet &apos;roms&apos; (das heißt, ein Ordner mit dem Namen &apos;roms&apos; im Arbeitsverzeichnis des Emulators).&lt;/p&gt;</translation>
-    </message>
     <message>
         <location filename="../../setupwizard.ui" line="767"/>
         <source>&lt;font size=&quot;4&quot;&gt;Working directory&lt;/font&gt;</source>
@@ -21494,6 +21485,15 @@ Bist Du sicher, dass Du das tun willst?</translation>
         <location filename="../../setupwizard.ui" line="653"/>
         <source>&lt;font size=&quot;4&quot;&gt;ROM path&lt;/font&gt;</source>
         <translation>&lt;font size=&quot;4&quot;&gt;ROM Verzeichnis&lt;/font&gt;</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../../setupwizard.ui" line="758"/>
+        <source>&lt;p&gt;Specifies a list of paths within which to find ROM- or disk-images.&lt;/p&gt;
+&lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
+&lt;p&gt;The default is ‘roms’ (that is, a folder named &apos;roms&apos; in the emulator&apos;s working directory).&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Legt eine Liste von Pfaden fest, innerhalb derer nach ROM- oder Disk-Abbildern gesucht wird.&lt;/p&gt;
+&lt;p&gt;Mehrere Pfade können durch Semikolon getrennt angegeben werden (&amp;lt;Pfad1&amp;gt;;&amp;lt;Pfad2&amp;gt;;...).&lt;/p&gt;
+&lt;p&gt;Der Standardpfad lautet &apos;roms&apos; (das heißt, ein Ordner mit dem Namen &apos;roms&apos; im Arbeitsverzeichnis des Emulators).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../setupwizard.ui" line="777"/>
