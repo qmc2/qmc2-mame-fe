@@ -866,6 +866,8 @@ void EmulatorOptions::save(QString optName)
 		horizontalScrollPosition = horizontalScrollBar()->sliderPosition();
 		verticalScrollPosition = verticalScrollBar()->sliderPosition();
 	}
+	if ( optName.isEmpty() )
+		qmc2Config->remove(settingsGroup);
 	qmc2Config->beginGroup(settingsGroup);
 	QString sectionTitle;
 	foreach (sectionTitle, optionsMap.keys()) {
