@@ -641,7 +641,7 @@
   </widget>
   <widget class="QWizardPage" name="wizardPage5">
    <property name="title">
-    <string>Adjust important settings</string>
+    <string>Adjust important emulator settings</string>
    </property>
    <attribute name="pageId">
     <string notr="true">5</string>
@@ -755,7 +755,9 @@
        </sizepolicy>
       </property>
       <property name="toolTip">
-       <string>Path to ROM images</string>
+       <string>&lt;p&gt;Specifies a list of paths within which to find ROM or hard disk images.&lt;/p&gt;
+&lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
+&lt;p&gt;The default is ‘roms’ (that is, a folder named 'roms' in the emulator's working directory).&lt;/p&gt;</string>
       </property>
      </widget>
     </item>
@@ -789,7 +791,9 @@
        </sizepolicy>
       </property>
       <property name="toolTip">
-       <string>Path to hash files</string>
+       <string>&lt;p&gt;Specifies a list of paths within which to find software-list hash files.&lt;/p&gt;
+&lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
+&lt;p&gt;The default is ‘hash’ (that is, a folder named 'hash' in the emulator's working directory).&lt;/p&gt;</string>
       </property>
      </widget>
     </item>
@@ -802,7 +806,9 @@
        </sizepolicy>
       </property>
       <property name="toolTip">
-       <string>Path to samples</string>
+       <string>&lt;p&gt;Specifies a list of paths within which to find sample files.&lt;/p&gt;
+&lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
+&lt;p&gt;The default is ‘samples’ (that is, a folder named 'samples' in the emulator's working directory).&lt;/p&gt;</string>
       </property>
      </widget>
     </item>
