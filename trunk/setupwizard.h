@@ -69,6 +69,8 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		void on_toolButtonBrowseROMPath_clicked();
 		void on_toolButtonBrowseSamplePath_clicked();
 		void on_toolButtonBrowseHashPath_clicked();
+		void on_toolButtonBrowseMameIni_clicked();
+		void on_toolButtonBrowseUiIni_clicked();
 		void on_comboBoxLanguage_currentIndexChanged(int index);
 
 	protected:
