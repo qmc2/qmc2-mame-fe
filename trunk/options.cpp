@@ -757,8 +757,10 @@ void Options::apply()
 	if ( qmc2ToolBarCustomizer )
 		if ( qmc2ToolBarCustomizer->isVisible() )
 			QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(adjustIconSizes()));
-	if ( qmc2GlobalEmulatorOptions )
+	if ( qmc2GlobalEmulatorOptions ) {
 		QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(adjustIconSizes()));
+		QTimer::singleShot(0, qmc2GlobalEmulatorOptions, SLOT(save()));
+	}
 	if ( qmc2EmulatorOptions )
 		QTimer::singleShot(0, qmc2EmulatorOptions, SLOT(adjustIconSizes()));
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(updateUserData()));
