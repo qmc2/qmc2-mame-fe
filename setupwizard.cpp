@@ -368,8 +368,8 @@ void SetupWizard::importMameIni()
 						}
 						value = newValues.join(",");
 					}
-					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + option, value);
-					log(tr("option '%1' with value '%2' imported").arg(option).arg(value.replace("$HOME", "~")));
+					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + option, value.replace("$HOME", "~"));
+					log(tr("option '%1' with value '%2' imported").arg(option).arg(value));
 				} else if ( tokens.count() > 0 )
 					log(tr("WARNING: missing value on line %1, option '%2' ignored").arg(lineCounter).arg(tokens.at(0)));
 			}
