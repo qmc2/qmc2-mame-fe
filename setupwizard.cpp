@@ -438,9 +438,11 @@ void SetupWizard::initializePage(int id)
 			radioButtonImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
 			m_labelImportMameIni->setVisible(!m_emulatorIniPath.isEmpty());
 			m_labelImportMameIni->setText("<font size=\"4\">" + tr("Import emulator settings from %1").arg(m_emulatorIniPath) + "</font>");
+			toolButtonBrowseMameIni->setVisible(!m_emulatorIniPath.isEmpty());
 			radioButtonImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
 			m_labelImportUiIni->setVisible(!m_frontendIniPath.isEmpty());
 			m_labelImportUiIni->setText("<font size=\"4\">" + tr("Import front-end settings from %1").arg(m_frontendIniPath) + "</font>");
+			toolButtonBrowseUiIni->setVisible(!m_frontendIniPath.isEmpty());
 			radioButtonImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
 			m_labelImportBothInis->setVisible(!m_emulatorIniPath.isEmpty() && !m_frontendIniPath.isEmpty());
 			m_labelImportBothInis->setText("<font size=\"4\">" + tr("Import both emulator and front-end settings") + "</font>");
@@ -619,6 +621,22 @@ void SetupWizard::on_toolButtonBrowseHashPath_clicked()
 	QString s(QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isNull() )
 		lineEditHashPath->setText(s);
+}
+
+void SetupWizard::on_toolButtonBrowseMameIni_clicked()
+{
+	QString s(QFileDialog::getOpenFileName(this, tr("Choose mame.ini"), m_emulatorIniPath, tr("Ini files (*.ini)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() )
+		m_emulatorIniPath = s;
+	m_labelImportMameIni->setText("<font size=\"4\">" + tr("Import emulator settings from %1").arg(m_emulatorIniPath) + "</font>");
+}
+
+void SetupWizard::on_toolButtonBrowseUiIni_clicked()
+{
+	QString s(QFileDialog::getOpenFileName(this, tr("Choose ui.ini"), m_frontendIniPath, tr("Ini files (*.ini)") + ";;" + tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
+	if ( !s.isNull() )
+		m_frontendIniPath = s;
+	m_labelImportUiIni->setText("<font size=\"4\">" + tr("Import front-end settings from %1").arg(m_frontendIniPath) + "</font>");
 }
 
 void SetupWizard::on_comboBoxLanguage_currentIndexChanged(int index)

@@ -5082,8 +5082,8 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <name>EmulatorOptions</name>
     <message>
         <location filename="../../emuopt.cpp" line="451"/>
-        <location filename="../../emuopt.cpp" line="1068"/>
-        <location filename="../../emuopt.cpp" line="1227"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
+        <location filename="../../emuopt.cpp" line="1229"/>
         <source>unknown</source>
         <translation>necunoscut</translation>
     </message>
@@ -5109,74 +5109,74 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="513"/>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>bool</source>
         <translation>boolean</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>int</source>
         <translation>int</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>float</source>
         <translation>float</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>float2</source>
         <translation>float2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>float3</source>
         <translation>float3</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>file</source>
         <translation>fisier</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1067"/>
+        <location filename="../../emuopt.cpp" line="1069"/>
         <source>directory</source>
         <translation>director</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
         <source>choice</source>
         <translation>alegere</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
         <source>string</source>
         <translation>string</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
         <source>Short name</source>
         <translation>Nume scurt</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="511"/>
-        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
         <source>Default</source>
         <translation>Initial</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="517"/>
-        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
         <source>true</source>
         <translation>adevarat</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1069"/>
+        <location filename="../../emuopt.cpp" line="1071"/>
         <source>false</source>
         <translation>fals</translation>
     </message>
@@ -5184,7 +5184,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../emuopt.cpp" line="534"/>
         <location filename="../../emuopt.cpp" line="538"/>
         <location filename="../../emuopt.cpp" line="640"/>
-        <location filename="../../emuopt.cpp" line="1069"/>
+        <location filename="../../emuopt.cpp" line="1071"/>
         <source>&lt;EMPTY&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5194,143 +5194,143 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1068"/>
+        <location filename="../../emuopt.cpp" line="1070"/>
         <source>color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1069"/>
+        <location filename="../../emuopt.cpp" line="1071"/>
         <source>Description</source>
         <translation>Descriere</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1149"/>
+        <location filename="../../emuopt.cpp" line="1151"/>
         <source>WIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1222"/>
+        <location filename="../../emuopt.cpp" line="1224"/>
         <source>creating template configuration map</source>
         <translation>Creez sablon cu harta de configurari</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1253"/>
+        <location filename="../../emuopt.cpp" line="1255"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation>FATAL: eroare XML citind sablon: &apos;%1&apos; in fisierul &apos;%2&apos; la linia %3, coloana %4</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1305"/>
+        <location filename="../../emuopt.cpp" line="1307"/>
         <source>relative to the emulator&apos;s working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1307"/>
+        <location filename="../../emuopt.cpp" line="1309"/>
         <source>relative to the path specified in &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1319"/>
+        <location filename="../../emuopt.cpp" line="1321"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
         <translation>informatii sablon: emulator = %1, versiune = %2, format = %3</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1329"/>
+        <location filename="../../emuopt.cpp" line="1331"/>
         <source>FATAL: can&apos;t open options template file</source>
         <translation>FATAL: nu pot deschide fisierul cu sablonul de optiuni</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1331"/>
+        <location filename="../../emuopt.cpp" line="1333"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
         <translation>AVERTIZARE: nu pot determina tipul de sablon de emulator</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1333"/>
+        <location filename="../../emuopt.cpp" line="1335"/>
         <source>WARNING: couldn&apos;t determine template version</source>
         <translation>AVERTIZARE: nu pot determina versiunea sablonului</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1335"/>
+        <location filename="../../emuopt.cpp" line="1337"/>
         <source>WARNING: couldn&apos;t determine template format</source>
         <translation>AVERTIZARE: nu pot determina formatul sablonului</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1341"/>
+        <location filename="../../emuopt.cpp" line="1343"/>
         <source>please wait for reload to finish and try again</source>
         <translation>va rog asteptati reincarcarea sa se termine si incercati din nou</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1348"/>
-        <location filename="../../emuopt.cpp" line="1351"/>
+        <location filename="../../emuopt.cpp" line="1350"/>
+        <location filename="../../emuopt.cpp" line="1353"/>
         <source>checking template configuration map against selected emulator</source>
         <translation>verific sablonul cu harta de configurari impotriva emulatorului selectat</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1355"/>
-        <location filename="../../emuopt.cpp" line="1358"/>
+        <location filename="../../emuopt.cpp" line="1357"/>
+        <location filename="../../emuopt.cpp" line="1360"/>
         <source>FATAL: %1 executable file &apos;%2&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1363"/>
-        <location filename="../../emuopt.cpp" line="1366"/>
+        <location filename="../../emuopt.cpp" line="1365"/>
+        <location filename="../../emuopt.cpp" line="1368"/>
         <source>FATAL: &apos;%1&apos; isn&apos;t executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1392"/>
-        <location filename="../../emuopt.cpp" line="1395"/>
+        <location filename="../../emuopt.cpp" line="1394"/>
+        <location filename="../../emuopt.cpp" line="1397"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation>FATAL: nu pot dechide executabilul MAME intr-un cadru de timp rezonabil, renunt</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1392"/>
-        <location filename="../../emuopt.cpp" line="1395"/>
+        <location filename="../../emuopt.cpp" line="1394"/>
+        <location filename="../../emuopt.cpp" line="1397"/>
         <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1439"/>
-        <location filename="../../emuopt.cpp" line="1442"/>
+        <location filename="../../emuopt.cpp" line="1441"/>
+        <location filename="../../emuopt.cpp" line="1444"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation>FATAL: nu pot crea fisier temporar, va rog verificati executabilul emulator si permisiunile</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1460"/>
-        <location filename="../../emuopt.cpp" line="1463"/>
-        <location filename="../../emuopt.cpp" line="1471"/>
-        <location filename="../../emuopt.cpp" line="1474"/>
-        <location filename="../../emuopt.cpp" line="1488"/>
-        <location filename="../../emuopt.cpp" line="1491"/>
-        <location filename="../../emuopt.cpp" line="1505"/>
-        <location filename="../../emuopt.cpp" line="1508"/>
-        <location filename="../../emuopt.cpp" line="1517"/>
-        <location filename="../../emuopt.cpp" line="1520"/>
-        <location filename="../../emuopt.cpp" line="1542"/>
-        <location filename="../../emuopt.cpp" line="1545"/>
+        <location filename="../../emuopt.cpp" line="1462"/>
+        <location filename="../../emuopt.cpp" line="1465"/>
+        <location filename="../../emuopt.cpp" line="1473"/>
+        <location filename="../../emuopt.cpp" line="1476"/>
+        <location filename="../../emuopt.cpp" line="1490"/>
+        <location filename="../../emuopt.cpp" line="1493"/>
+        <location filename="../../emuopt.cpp" line="1507"/>
+        <location filename="../../emuopt.cpp" line="1510"/>
+        <location filename="../../emuopt.cpp" line="1519"/>
+        <location filename="../../emuopt.cpp" line="1522"/>
+        <location filename="../../emuopt.cpp" line="1544"/>
+        <location filename="../../emuopt.cpp" line="1547"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
         <translation>emulatorul foloseste o valoare deiferita pentru optiunea &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); optiune acceptata este &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1552"/>
-        <location filename="../../emuopt.cpp" line="1555"/>
+        <location filename="../../emuopt.cpp" line="1554"/>
+        <location filename="../../emuopt.cpp" line="1557"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
         <translation>optiune sablon &apos;%1&apos; este necunoscuta pentru emulator</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1566"/>
-        <location filename="../../emuopt.cpp" line="1569"/>
+        <location filename="../../emuopt.cpp" line="1568"/>
+        <location filename="../../emuopt.cpp" line="1571"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
         <translation>optiune emulator &apos;%1&apos; cu valori implicite &apos;%2&apos; este necunoscuta sablonului</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1573"/>
-        <location filename="../../emuopt.cpp" line="1577"/>
+        <location filename="../../emuopt.cpp" line="1575"/>
+        <location filename="../../emuopt.cpp" line="1579"/>
         <source>done (checking template configuration map against selected emulator)</source>
         <translation>terminat (verific sablonul cu harta de configurare impotriva emulatorului selectat)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../emuopt.cpp" line="1574"/>
-        <location filename="../../emuopt.cpp" line="1578"/>
+        <location filename="../../emuopt.cpp" line="1576"/>
+        <location filename="../../emuopt.cpp" line="1580"/>
         <source>check results: %n difference(s)</source>
         <translation>
             <numerusform>verific rezultate: %n diferente(s)</numerusform>
@@ -5339,99 +5339,99 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1597"/>
+        <location filename="../../emuopt.cpp" line="1599"/>
         <source>Enter search string</source>
         <translation type="unfinished">Introduceti nume sir de cautare</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1669"/>
+        <location filename="../../emuopt.cpp" line="1671"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
         <translation>AVERTIZARE: export ini: nu am gasit cai ini care pot fi scrise</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1673"/>
-        <location filename="../../emuopt.cpp" line="1803"/>
+        <location filename="../../emuopt.cpp" line="1675"/>
+        <location filename="../../emuopt.cpp" line="1805"/>
         <source>Path selection</source>
         <translation>Selectie cale</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1674"/>
+        <location filename="../../emuopt.cpp" line="1676"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
         <translation>Cai ini multiple detectate. Alegeti calea(ile) care sa le export la:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1694"/>
+        <location filename="../../emuopt.cpp" line="1696"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
         <translation>AVERTIZARE: export ini: nicio cale selectata (sau cale ini invalida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1716"/>
+        <location filename="../../emuopt.cpp" line="1718"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
         <translation>FATAL: nu pot deschide fisier exportat pentru scriere, cale = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1721"/>
+        <location filename="../../emuopt.cpp" line="1723"/>
         <source>exporting %1 MAME configuration to %2</source>
         <translation>exportez %1 configurare MAME catre %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1721"/>
-        <location filename="../../emuopt.cpp" line="1766"/>
-        <location filename="../../emuopt.cpp" line="1851"/>
-        <location filename="../../emuopt.cpp" line="1940"/>
+        <location filename="../../emuopt.cpp" line="1723"/>
+        <location filename="../../emuopt.cpp" line="1768"/>
+        <location filename="../../emuopt.cpp" line="1853"/>
+        <location filename="../../emuopt.cpp" line="1942"/>
         <source>global</source>
         <translation>global</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1721"/>
-        <location filename="../../emuopt.cpp" line="1766"/>
-        <location filename="../../emuopt.cpp" line="1851"/>
-        <location filename="../../emuopt.cpp" line="1940"/>
+        <location filename="../../emuopt.cpp" line="1723"/>
+        <location filename="../../emuopt.cpp" line="1768"/>
+        <location filename="../../emuopt.cpp" line="1853"/>
+        <location filename="../../emuopt.cpp" line="1942"/>
         <source>machine-specific</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1766"/>
+        <location filename="../../emuopt.cpp" line="1768"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
         <translation>terminat (exportez %1 configurare MAME la %2, timp scurs = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1799"/>
+        <location filename="../../emuopt.cpp" line="1801"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
         <translation>AVERTIZARE: import ini: nicio cale ini citibila gasita</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1804"/>
+        <location filename="../../emuopt.cpp" line="1806"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
         <translation>Cai ini multiple gasite. Alegeti calea(ile) pe care sa le import la:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1824"/>
+        <location filename="../../emuopt.cpp" line="1826"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
         <translation>AVERTIZARE: import ini: nicio cale selectata(sau cale ini invalida)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1846"/>
+        <location filename="../../emuopt.cpp" line="1848"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
         <translation>FATAL: nu pot deschide fisier importat pentru citire, cale = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1851"/>
+        <location filename="../../emuopt.cpp" line="1853"/>
         <source>importing %1 MAME configuration from %2</source>
         <translation>import %1 configurare MAME de la %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1933"/>
+        <location filename="../../emuopt.cpp" line="1935"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
         <translation>AVERTIZARE: optiune necunoscuta &apos;%1&apos; la linia %2 (%3) ignorata</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1935"/>
+        <location filename="../../emuopt.cpp" line="1937"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
         <translation>AVERTIZARE: sintaxa invalida la linia %1 (%2) ignorata</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1940"/>
+        <location filename="../../emuopt.cpp" line="1942"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
         <translation>terminat (import %1 configurare MAME de la %2, timp scurs = %3)</translation>
     </message>
@@ -17510,8 +17510,8 @@ Are you sure you want to do this?</source>
     <message>
         <location filename="../../options.cpp" line="1819"/>
         <location filename="../../setupwizard.cpp" line="133"/>
-        <location filename="../../setupwizard.cpp" line="693"/>
-        <location filename="../../setupwizard.cpp" line="701"/>
+        <location filename="../../setupwizard.cpp" line="711"/>
+        <location filename="../../setupwizard.cpp" line="719"/>
         <location filename="../../welcome.cpp" line="50"/>
         <source>Default</source>
         <translation>Initial</translation>
@@ -21442,7 +21442,13 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="546"/>
+        <location filename="../../setupwizard.ui" line="542"/>
+        <location filename="../../setupwizard.cpp" line="628"/>
+        <source>Choose mame.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setupwizard.ui" line="553"/>
         <source>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;One or more ini-files were found in the previous step that can be used to import emulator and/or front-end settings. Decide below what should be done.&lt;/p&gt;
 &lt;p&gt;You will be able to edit the most relevant emulator settings after this.&lt;/p&gt;
@@ -21450,44 +21456,50 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="580"/>
+        <location filename="../../setupwizard.ui" line="588"/>
+        <location filename="../../setupwizard.cpp" line="636"/>
+        <source>Choose ui.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../setupwizard.ui" line="614"/>
         <source>Importing settings from ini-files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="589"/>
+        <location filename="../../setupwizard.ui" line="623"/>
         <source>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The chosen ini-files are now imported (please see the log below for details). You can proceed as soon as the import is done, regardless of possible errors.&lt;/p&gt;
 &lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="663"/>
+        <location filename="../../setupwizard.ui" line="697"/>
         <source>Browse working directory</source>
         <translation type="unfinished">Rasfoiti directorul de lucru</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="681"/>
+        <location filename="../../setupwizard.ui" line="715"/>
         <source>Browse sample path</source>
         <translation type="unfinished">Rasfoiti cale mostre</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="698"/>
+        <location filename="../../setupwizard.ui" line="732"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation type="unfinished">Directorul de lucru folosit cand emulatorul este executat ( daca este gol, este folosit directorul curent de lucru pentru QMC2)</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="741"/>
+        <location filename="../../setupwizard.ui" line="775"/>
         <source>Browse hash path</source>
         <translation type="unfinished">Rasfoiti cale hash</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="767"/>
+        <location filename="../../setupwizard.ui" line="801"/>
         <source>&lt;font size=&quot;4&quot;&gt;Working directory&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="848"/>
+        <location filename="../../setupwizard.ui" line="882"/>
         <source>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The basic setup is now complete!&lt;/p&gt;
 &lt;p&gt;Settings will be stored and QMC2&apos;s main GUI will be launched as soon as you click &lt;i&gt;Finish&lt;/i&gt;.&lt;/p&gt;
@@ -21495,22 +21507,22 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="705"/>
+        <location filename="../../setupwizard.ui" line="739"/>
         <source>&lt;font size=&quot;4&quot;&gt;Sample path&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="644"/>
+        <location filename="../../setupwizard.ui" line="678"/>
         <source>Adjust important emulator settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="715"/>
+        <location filename="../../setupwizard.ui" line="749"/>
         <source>&lt;font size=&quot;4&quot;&gt;Hash path&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="725"/>
+        <location filename="../../setupwizard.ui" line="759"/>
         <source>&lt;font size=&quot;4&quot;&gt;
 &lt;p&gt;The settings below are actually optional, but you should specify as many of them as you can right now (of course, you can change these settings at any time later as well).&lt;/p&gt;
 &lt;p&gt;If the emulator&apos;s &lt;i&gt;working directory&lt;/i&gt; is not the base path to a standard installation (i.e. from an official MAME build) or your &lt;i&gt;ROM path&lt;/i&gt; doesn&apos;t follow standard conventions, we &lt;b&gt;strongly recommend&lt;/b&gt; that you specify the ROM path at least!&lt;/p&gt;
@@ -21518,62 +21530,62 @@ Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="653"/>
+        <location filename="../../setupwizard.ui" line="687"/>
         <source>&lt;font size=&quot;4&quot;&gt;ROM path&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../setupwizard.ui" line="758"/>
+        <location filename="../../setupwizard.ui" line="792"/>
         <source>&lt;p&gt;Specifies a list of paths within which to find ROM- or disk-images.&lt;/p&gt;
 &lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
 &lt;p&gt;The default is ‘roms’ (that is, a folder named &apos;roms&apos; in the emulator&apos;s working directory).&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="777"/>
+        <location filename="../../setupwizard.ui" line="811"/>
         <source>Browse ROM path</source>
         <translation type="unfinished">Rasfoiti cale ROM</translation>
     </message>
     <message utf8="true">
-        <location filename="../../setupwizard.ui" line="794"/>
+        <location filename="../../setupwizard.ui" line="828"/>
         <source>&lt;p&gt;Specifies a list of paths within which to find software-list hash files.&lt;/p&gt;
 &lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
 &lt;p&gt;The default is ‘hash’ (that is, a folder named &apos;hash&apos; in the emulator&apos;s working directory).&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
-        <location filename="../../setupwizard.ui" line="809"/>
+        <location filename="../../setupwizard.ui" line="843"/>
         <source>&lt;p&gt;Specifies a list of paths within which to find sample files.&lt;/p&gt;
 &lt;p&gt;Multiple paths can be specified by separating them with semicolons (&amp;lt;path1&amp;gt;;&amp;lt;path2&amp;gt;;...).&lt;/p&gt;
 &lt;p&gt;The default is ‘samples’ (that is, a folder named &apos;samples&apos; in the emulator&apos;s working directory).&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.ui" line="832"/>
+        <location filename="../../setupwizard.ui" line="866"/>
         <source>Setup complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../setupwizard.cpp" line="90"/>
-        <location filename="../../setupwizard.cpp" line="629"/>
+        <location filename="../../setupwizard.cpp" line="647"/>
         <source>&amp;Next &gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../setupwizard.cpp" line="91"/>
-        <location filename="../../setupwizard.cpp" line="630"/>
+        <location filename="../../setupwizard.cpp" line="648"/>
         <source>&lt; &amp;Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../setupwizard.cpp" line="92"/>
-        <location filename="../../setupwizard.cpp" line="631"/>
+        <location filename="../../setupwizard.cpp" line="649"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../setupwizard.cpp" line="93"/>
-        <location filename="../../setupwizard.cpp" line="632"/>
+        <location filename="../../setupwizard.cpp" line="650"/>
         <source>&amp;Finish</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21735,60 +21747,70 @@ Are you sure you want to do this?</source>
     </message>
     <message>
         <location filename="../../setupwizard.cpp" line="440"/>
+        <location filename="../../setupwizard.cpp" line="631"/>
         <source>Import emulator settings from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="443"/>
+        <location filename="../../setupwizard.cpp" line="444"/>
+        <location filename="../../setupwizard.cpp" line="639"/>
         <source>Import front-end settings from %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="446"/>
+        <location filename="../../setupwizard.cpp" line="448"/>
         <source>Import both emulator and front-end settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="447"/>
+        <location filename="../../setupwizard.cpp" line="449"/>
         <source>Import nothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="468"/>
+        <location filename="../../setupwizard.cpp" line="470"/>
         <source>Default</source>
         <translation type="unfinished">Initial</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="587"/>
-        <location filename="../../setupwizard.cpp" line="590"/>
+        <location filename="../../setupwizard.cpp" line="589"/>
+        <location filename="../../setupwizard.cpp" line="592"/>
         <source>Choose emulator executable file</source>
         <translation type="unfinished">Alegeti fisierul executabil al emulatorului</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="587"/>
-        <location filename="../../setupwizard.cpp" line="590"/>
+        <location filename="../../setupwizard.cpp" line="589"/>
+        <location filename="../../setupwizard.cpp" line="592"/>
+        <location filename="../../setupwizard.cpp" line="628"/>
+        <location filename="../../setupwizard.cpp" line="636"/>
         <source>All files (*)</source>
         <translation type="unfinished">Toate fisierele (*)</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="598"/>
+        <location filename="../../setupwizard.cpp" line="600"/>
         <source>Choose working directory</source>
         <translation type="unfinished">Alegeti directorul de lucru</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="605"/>
+        <location filename="../../setupwizard.cpp" line="607"/>
         <source>Choose ROM path</source>
         <translation type="unfinished">Alegeti cale pentru ROM</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="612"/>
+        <location filename="../../setupwizard.cpp" line="614"/>
         <source>Choose sample path</source>
         <translation type="unfinished">Alegeti cale pentru mostre</translation>
     </message>
     <message>
-        <location filename="../../setupwizard.cpp" line="619"/>
+        <location filename="../../setupwizard.cpp" line="621"/>
         <source>Choose hash path</source>
         <translation type="unfinished">Alegeti cale pentru hash</translation>
+    </message>
+    <message>
+        <location filename="../../setupwizard.cpp" line="628"/>
+        <location filename="../../setupwizard.cpp" line="636"/>
+        <source>Ini files (*.ini)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
