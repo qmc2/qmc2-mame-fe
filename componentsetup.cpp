@@ -14,6 +14,7 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern Options *qmc2Options;
+extern bool qmc2CriticalSection;
 
 ComponentSetup::ComponentSetup(QWidget *parent)
 	: QDialog(parent)
@@ -379,6 +380,7 @@ void ComponentSetup::loadComponent(QString name, bool fromSettings)
 
 void ComponentSetup::saveComponent(QString name)
 {
+	qmc2CriticalSection = true;
 	if ( name.isEmpty() )
 		name = m_components.at(comboBoxComponents->currentIndex());
 	ComponentInfo *componentInfo = componentInfoHash().value(name);
@@ -459,6 +461,7 @@ void ComponentSetup::saveComponent(QString name)
 		splitter->setHandleWidth(1);
 	}
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/" + name + "/ActiveFeatures", activeIndexList);
+	qmc2CriticalSection = false;
 }
 
 void ComponentSetup::loadArrangement()
