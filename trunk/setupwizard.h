@@ -29,7 +29,7 @@ class CustomSettings : public QObject
 		QVariant value(const QString &key, const QVariant &defaultValue = QVariant());
 		void remove(const QString &key);
 		void clear() { m_settingsHash.clear(); }
-		bool contains(const QString &key) { m_settingsHash.contains(key); }
+		bool contains(const QString &key) { return m_settingsHash.contains(key); }
 
 	private:
 		QHash<QString, QVariant> m_settingsHash;
