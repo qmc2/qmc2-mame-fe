@@ -315,50 +315,6 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 70, osr, 7815) ) {
-			// more "Game" => "Machine" transitions
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", true).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicatorOnlyWhenRequired", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", false).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMachineName", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", true).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMachineNameOnlyWhenRequired", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired", false).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineDetail/TabPosition", startupConfig->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreMachineSelection", startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", true).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection");
-			}
-			if ( startupConfig->contains(QMC2_EMULATOR_PREFIX + "SelectedGame") ) {
-				startupConfig->setValue(QMC2_EMULATOR_PREFIX + "SelectedMachine", startupConfig->value(QMC2_EMULATOR_PREFIX + "SelectedGame", QString()).toString());
-				startupConfig->remove(QMC2_EMULATOR_PREFIX + "SelectedGame");
-			}
-			if ( startupConfig->contains(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame") ) {
-				startupConfig->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectMachine", startupConfig->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", true).toBool());
-				startupConfig->remove(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame");
-			}
-			startupConfig->remove(QMC2_FRONTEND_PREFIX + "SoftwareROMAlyzer/SelectGame");
-		}
-		if ( QMC2_TEST_VERSION(omv, 70, osr, 7829) ) {
-			// we need to reset the emulator control panel's header state to ensure all columns are shown on all OSs from now on
-			startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState");
-		}
 		if ( QMC2_TEST_VERSION(omv, 183, osr, 7910) ) {
 			// we got rid of using a temporary file *completely* in this revision
 			startupConfig->remove(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile");
