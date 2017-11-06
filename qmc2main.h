@@ -555,6 +555,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		// related to system manuals
 		void checkSystemManualAvailability();
 
+		// Qt bug workarounds
+		void detailTabBarUpdate(int currentIndex);
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
@@ -567,6 +570,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		// inform about selection changes done by ourself
 		void selectionChanged(const QString &);
+		void updateDetailTabBar(int);
 
 	private:
 		QTimer m_mlRankUpdateTimer;
