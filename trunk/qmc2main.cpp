@@ -1314,6 +1314,9 @@ MainWindow::MainWindow(QWidget *parent) :
 	// prepare to receive MAME output notifications from the process manager
 	connect(qmc2ProcessManager, SIGNAL(mameOutputNotifier(int, const QString &, const QString &)), this, SLOT(processOutputNotifier(int, const QString &, const QString &)));
 
+	// Qt bug workaround
+	connect(this, SIGNAL(updateDetailTabBar(int)), this, SLOT(detailTabBarUpdate(int)));
+
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -3790,6 +3793,22 @@ void MainWindow::softwareLoadInterrupted()
 	on_tabWidgetMachineDetail_currentChanged(componentInfo->appliedFeatureList().indexOf(QMC2_SOFTWARE_LIST_INDEX));
 }
 
+void MainWindow::detailTabBarUpdate(int currentIndex)
+{
+	// this is a workaround for a Qt bug that prevents the tab-header from scrolling correctly when the current index is "far to the right", seen on Windows
+	QTabBar *tabBar = tabWidgetMachineDetail->findChild<QTabBar *>();
+	if ( tabBar ) {
+		if ( tabBar->currentIndex() == currentIndex && tabBar->count() > 1 ) {
+			tabBar->blockSignals(true);
+			tabBar->setUpdatesEnabled(false);
+			tabBar->setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : 1);
+			tabBar->setCurrentIndex(currentIndex);
+			tabBar->setUpdatesEnabled(true);
+			tabBar->blockSignals(false);
+		}
+	}
+}
+
 void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 {
 	static bool initialCall = true;
@@ -3822,6 +3841,8 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	qmc2CurrentItem = ci;
 	if ( qmc2CurrentItem->childCount() <= 0 )
 		return;
+
+	emit updateDetailTabBar(currentIndex);
 
 	// show / hide machine status indicator
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineStatusIndicator").toBool() ) {
