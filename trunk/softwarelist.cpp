@@ -140,6 +140,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
 
 	comboBoxSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxSearch));
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
+	comboBoxSearch->setToolTip(comboBoxSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
 
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
