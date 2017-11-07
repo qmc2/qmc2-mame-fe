@@ -3912,7 +3912,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 			if ( vbl )
 				delete vbl;
 			qmc2YouTubeWidget->close();
-			delete qmc2YouTubeWidget;
+			qmc2YouTubeWidget->deleteLater();;
 			qmc2YouTubeWidget = 0;
 			qmc2LastYouTubeItem = 0;
 		}
@@ -3954,7 +3954,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				QVBoxLayout *layout = new QVBoxLayout;
 				layout->setContentsMargins(left, top, right, bottom);
-				QString setID = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+				QString setID(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 				qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2MachineListItemHash.value(setID)->text(QMC2_MACHINELIST_COLUMN_MACHINE), tabYouTube);
 				layout->addWidget(qmc2YouTubeWidget);
 				tabYouTube->setLayout(layout);

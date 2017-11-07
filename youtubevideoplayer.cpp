@@ -32,8 +32,8 @@ extern bool qmc2YouTubeVideoInfoHashChanged;
 extern bool qmc2ParentImageFallback;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 
-YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
-	: QWidget(parent)
+YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent) :
+	QWidget(parent)
 {
 	setupUi(this);
 
