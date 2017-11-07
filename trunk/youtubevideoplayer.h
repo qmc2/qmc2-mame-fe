@@ -242,6 +242,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 #endif
 		void showMessage(QString message, int timeout = 2000) { videoOverlayWidget->showMessage(message, timeout); }
 		void clearMessage() { videoOverlayWidget->clearMessage(); }
+		void reload(const QString &, const QString &);
 
 	public slots:
 		void play() { videoPlayer()->play(); }
@@ -254,8 +255,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 
 		void playMovieFile(QString &);
 		void attachMovieFile();
-		void playVideo(QString &);
-		void loadVideo(QString &);
+		void playVideo(const QString &);
+		void loadVideo(const QString &);
 		void loadNullVideo();
 		void playNextVideo();
 		void videoTick(qint64);
