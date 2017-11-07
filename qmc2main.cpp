@@ -3939,26 +3939,18 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				loadYouTubeVideoInfoMap();
 			if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
 				tabYouTube->setUpdatesEnabled(false);
-				if ( qmc2YouTubeWidget ) {
-					qmc2YouTubeWidget->forcedExit = true;
-					while ( qmc2YouTubeWidget->isPlaying() || qmc2YouTubeWidget->isPaused() )
-						qmc2YouTubeWidget->stop();
-					qmc2YouTubeWidget->saveSettings();
-					QLayout *vbl = tabYouTube->layout();
-					if ( vbl )
-						delete vbl;
-					qmc2YouTubeWidget->close();
-					qmc2YouTubeWidget->deleteLater();
-					qmc2YouTubeWidget = 0;
-				}
-				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-				QVBoxLayout *layout = new QVBoxLayout;
-				layout->setContentsMargins(left, top, right, bottom);
 				QString setID(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
-				qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2MachineListItemHash.value(setID)->text(QMC2_MACHINELIST_COLUMN_MACHINE), tabYouTube);
-				layout->addWidget(qmc2YouTubeWidget);
-				tabYouTube->setLayout(layout);
-				qmc2YouTubeWidget->show();
+				QString setName(qmc2MachineListItemHash.value(setID)->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+				if ( !qmc2YouTubeWidget ) {
+					gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+					QVBoxLayout *layout = new QVBoxLayout;
+					layout->setContentsMargins(left, top, right, bottom);
+					qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, setName, tabYouTube);
+					layout->addWidget(qmc2YouTubeWidget);
+					tabYouTube->setLayout(layout);
+					qmc2YouTubeWidget->show();
+				} else
+					qmc2YouTubeWidget->reload(setID, setName);
 				qmc2LastYouTubeItem = qmc2CurrentItem;
 				tabYouTube->setUpdatesEnabled(true);
 			}
