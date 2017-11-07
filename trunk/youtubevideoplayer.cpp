@@ -1386,6 +1386,14 @@ void YouTubeVideoPlayer::reload(const QString &setID, const QString &setName)
 	mySetName = setName;
 	currentVideoID.clear();
 	fullyLoaded = forcedExit = false;
+#if defined(QMC2_OS_WIN)
+#if QT_VERSION < 0x050000
+	// this works around a Windows-specific Phonon bug (not sure if it's required with Qt 5 / QtMultimedia as well)
+	QSize s(videoPlayer()->size());
+	videoPlayer()->resize(0,0);
+	videoPlayer()->resize(s);
+#endif
+#endif
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
