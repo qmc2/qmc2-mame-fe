@@ -6649,6 +6649,12 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::loadYouTubeVideoInfoMap()
 {
+	static bool loadingVideoInfoMap = false;
+
+	if ( loadingVideoInfoMap )
+		return;
+	loadingVideoInfoMap = true;
+
 	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info cache"));
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	if ( youTubeCacheDir.exists() ) {
@@ -6699,6 +6705,7 @@ void MainWindow::loadYouTubeVideoInfoMap()
 	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info cache)"));
 	log(QMC2_LOG_FRONTEND, tr("%n video info record(s) loaded", "", qmc2YouTubeVideoInfoHash.count()));
 	qmc2YouTubeVideoInfoHashChanged = false;
+	loadingVideoInfoMap = false;
 }
 #endif
 
