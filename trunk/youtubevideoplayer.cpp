@@ -1388,9 +1388,10 @@ void YouTubeVideoPlayer::reload(const QString &setID, const QString &setName)
 	fullyLoaded = forcedExit = false;
 #if defined(QMC2_OS_WIN)
 #if QT_VERSION < 0x050000
-	// this works around a Windows-specific Phonon bug (not sure if it's required with Qt 5 / QtMultimedia as well)
+	// this works around a Windows-specific Phonon bug which prevents the video frame to be cleared
+	// when the video is stopped (not sure if it's required with Qt 5 / QtMultimedia as well)
 	QSize s(videoPlayer()->size());
-	videoPlayer()->resize(0,0);
+	videoPlayer()->resize(0, 0);
 	videoPlayer()->resize(s);
 #endif
 #endif
