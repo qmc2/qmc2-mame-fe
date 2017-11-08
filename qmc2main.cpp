@@ -3936,7 +3936,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 	switch ( componentInfo->appliedFeatureList().at(currentIndex) ) {
 #if defined(QMC2_YOUTUBE_ENABLED)
 		case QMC2_YOUTUBE_INDEX:
-			if ( qmc2YouTubeVideoInfoHash.isEmpty() )
+			if ( !m_videoInfoMapLoaded )
 				loadYouTubeVideoInfoMap();
 			if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
 				tabYouTube->setUpdatesEnabled(false);
@@ -6650,9 +6650,6 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::loadYouTubeVideoInfoMap()
 {
-	if ( m_videoInfoMapLoaded )
-		return;
-
 	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info cache"));
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	if ( youTubeCacheDir.exists() ) {
@@ -6688,10 +6685,10 @@ void MainWindow::loadYouTubeVideoInfoMap()
 #endif
 				if ( viCounter++ % QMC2_YOUTUBE_VIDEO_INFO_RSP == 0 )
 					progressBarMachineList->setValue(curLen);
-				if ( !line.startsWith("#") ) {
+				if ( !line.startsWith('#') ) {
 					QStringList tokens(line.split('\t'));
 					if ( tokens.count() > 2 )
-						qmc2YouTubeVideoInfoHash[tokens.at(0)] = YouTubeVideoInfo(tokens.at(2), tokens.at(1));
+						qmc2YouTubeVideoInfoHash.insert(tokens.at(0), YouTubeVideoInfo(tokens.at(2), tokens.at(1)));
 				}
 			}
 			progressBarMachineList->reset();
