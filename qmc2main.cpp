@@ -315,7 +315,9 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 	m_ignoreSelectionChange(false),
 	m_ignoreDetailTabChange(false),
+#if defined(QMC2_YOUTUBE_ENABLED)
 	m_videoInfoMapLoaded(false),
+#endif
 	m_lastMlvSender(0)
 {
 	setUpdatesEnabled(false);
@@ -6650,6 +6652,8 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::loadYouTubeVideoInfoMap()
 {
+	if ( m_videoInfoMapLoaded )
+		return;
 	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info cache"));
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	if ( youTubeCacheDir.exists() ) {

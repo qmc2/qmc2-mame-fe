@@ -579,7 +579,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QTimer m_vlRankUpdateTimer;
 		bool m_ignoreSelectionChange;
 		bool m_ignoreDetailTabChange;
+#if defined(QMC2_YOUTUBE_ENABLED)
 		bool m_videoInfoMapLoaded;
+#endif
 		MachineListViewer *m_lastMlvSender;
 		QList<RankItemWidget *> m_rankItemWidgets;
 };
