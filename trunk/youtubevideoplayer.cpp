@@ -1490,6 +1490,7 @@ void YouTubeVideoPlayer::hideEvent(QHideEvent *e)
 		pausedByHideEvent = true;
 		pause();
 	}
+	clearMessage();
 }
 
 void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *item)
