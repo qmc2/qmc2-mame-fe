@@ -86,7 +86,10 @@ class VideoOverlayWidget : public QWidget
 	public slots:
 		void showMessage(QString message, int timeout = 2000)
 		{
-			if ( videoWidget()->isVisible() ) {
+			QWidget *p = videoWidget()->parentWidget();
+			while ( p->parentWidget() )
+				p = p->parentWidget();
+			if ( videoWidget()->isVisible() && !p->isMinimized() ) {
 				QRect r;
 				messageText = message;
 				if ( videoWidget()->isFullScreen() )
