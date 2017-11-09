@@ -28,6 +28,7 @@ QColor RankItemWidget::rankImageColor;
 
 RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent) :
 	QWidget(parent),
+	m_rank(0),
 	m_item(item),
 	m_mlmItem(0)
 {
@@ -42,6 +43,7 @@ RankItemWidget::RankItemWidget(QTreeWidgetItem *item, QWidget *parent) :
 
 RankItemWidget::RankItemWidget(MachineListModelItem *item, QWidget *parent) :
 	QWidget(parent),
+	m_rank(0),
 	m_item(0),
 	m_mlmItem(item)
 {

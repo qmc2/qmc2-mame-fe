@@ -206,7 +206,7 @@ void MachineListViewer::treeViewUpdateRanks()
 			if ( riw->rank() > 0 )
 				QTimer::singleShot(0, riw, SLOT(updateRankImage()));
 		} else {
-			RankItemWidget *riw = new RankItemWidget(model()->itemFromIndex(idx));
+			riw = new RankItemWidget(model()->itemFromIndex(idx));
 			m_rankItemWidgets << riw;
 			treeView->setIndexWidget(idx, riw);
 		}
