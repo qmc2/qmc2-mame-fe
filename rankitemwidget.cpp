@@ -124,6 +124,10 @@ void RankItemWidget::setRank(int rank)
 		p.drawPixmap(x, 0, pmRank);
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
 	}
+	for (int r = m_rank; r < 6; r++) {
+		int x = r * rankSingle.width();
+		p.fillRect(x, 0, rankSingle.width(), rankSingle.height(), m_palette.brush(QPalette::Base));
+	}
 	QPixmap pmBackground(QPixmap::fromImage(rankBackround));
 	QPainter pBackground;
 	pBackground.begin(&pmBackground);
