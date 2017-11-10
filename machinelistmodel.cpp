@@ -283,9 +283,9 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 				case ROM_STATUS:
 					return ml->romStatus(item->id(), true);
 				case HAS_ROMS:
-					return item->hasRoms() ? "true" : "false";
+					return item->hasRoms() ? tr("true") : tr("false");
 				case HAS_CHDS:
-					return item->hasChds() ? "true" : "false";
+					return item->hasChds() ? tr("true") : tr("false");
 				case DRIVER_STATUS:
 					return item->driverStatus();
 				case SOURCE_FILE:
@@ -293,9 +293,9 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 				case PLAYERS:
 					return item->players();
 				case IS_BIOS:
-					return item->isBios() ? "true" : "false";
+					return item->isBios() ? tr("true") : tr("false");
 				case IS_DEVICE:
-					return item->isDevice() ? "true" : "false";
+					return item->isDevice() ? tr("true") : tr("false");
 				case CATEGORY:
 					return item->category();
 				case VERSION:
