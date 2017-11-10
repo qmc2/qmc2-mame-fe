@@ -163,7 +163,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			individualfallbacksettings.cpp \
 			catverinioptimizer.cpp \
 			filterconfigurationdialog.cpp \
-			rankitemdelegate.cpp \
 			manualscanner.cpp \
 			rompathcleaner.cpp \
 			setupwizard.cpp \
@@ -287,7 +286,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			individualfallbacksettings.h \
 			catverinioptimizer.h \
 			filterconfigurationdialog.h \
-			rankitemdelegate.h \
 			manualscanner.h \
 			dbcolumninfo.h \
 			rompathcleaner.h \
