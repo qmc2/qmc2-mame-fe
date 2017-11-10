@@ -41,6 +41,8 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
 	m_rankUpdateTimer.setSingleShot(true);
 	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
+	m_selectionUpdateTimer.setSingleShot(true);
+	connect(&m_selectionUpdateTimer, SIGNAL(timeout()), this, SLOT(currentChangedDelayed()));
 	qmc2ActiveViews << treeView;
 
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
@@ -147,6 +149,11 @@ void MachineListViewer::on_toolButtonUpdateView_clicked()
 void MachineListViewer::currentChanged(const QModelIndex &current, const QModelIndex & /*previous*/)
 {
 	m_currentId = current.sibling(current.row(), MachineListModel::ID).data().toString();
+	m_selectionUpdateTimer.start(qmc2UpdateDelay);
+}
+
+void MachineListViewer::currentChangedDelayed()
+{
 	if ( !m_ignoreSelectionChange )
 		emit selectionChanged(m_currentId);
 	m_ignoreSelectionChange = false;

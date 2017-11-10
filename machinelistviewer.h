@@ -31,6 +31,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void on_toolButtonEditQuery_clicked();
 		void on_toolButtonUpdateView_clicked();
 		void currentChanged(const QModelIndex &current, const QModelIndex &previous);
+		void currentChangedDelayed();
 		void romStatusChanged(const QString &id, char status);
 		void mainTagChanged(const QString &id, bool tagged);
 		void mainSelectionChanged(const QString &id);
@@ -55,6 +56,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QString m_currentId;
 		bool m_ignoreSelectionChange;
 		QTimer m_rankUpdateTimer;
+		QTimer m_selectionUpdateTimer;
 		FilterConfigurationDialog *m_filterConfigurationDialog;
 };
 
