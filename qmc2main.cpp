@@ -10127,8 +10127,6 @@ void MainWindow::updateUserData()
 				break;
 		}
 	}
-	foreach (MachineListViewer *v, machineListViewers)
-		QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
 }
 
 void MainWindow::on_actionRankImageGradient_triggered(bool checked)

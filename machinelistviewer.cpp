@@ -206,7 +206,7 @@ void MachineListViewer::treeViewUpdateRanks()
 	treeView->setUpdatesEnabled(false);
 	while ( index.isValid() ) {
 		QModelIndex idx(index.sibling(index.row(), MachineListModel::RANK));
-		treeView->setIndexWidget(idx, new RankItemWidget(model()->itemFromIndex(idx)));
+		treeView->setIndexWidget(idx, new RankItemWidget(model()->itemFromIndex(idx), treeView));
 		if ( index == endIndex )
 			break;
 		index = treeView->indexBelow(index);
