@@ -127,8 +127,6 @@ void MachineListViewer::on_toolButtonUpdateView_clicked()
 	int currentSortColumn = treeView->header()->sortIndicatorSection();
 	Qt::SortOrder currentSortOrder = treeView->header()->sortIndicatorOrder();
 	model()->resetModel();
-	qDeleteAll(m_rankItemWidgets);
-	m_rankItemWidgets.clear();
 	treeView->sortByColumn(currentSortColumn, currentSortOrder);
 	if ( qmc2CurrentItem ) {
 		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
@@ -195,25 +193,18 @@ void MachineListViewer::treeViewVerticalScrollChanged(int)
 
 void MachineListViewer::treeViewUpdateRanks()
 {
-	QModelIndex index = treeView->indexAt(treeView->viewport()->rect().topLeft());
-	QModelIndex endIndex = treeView->indexAt(treeView->viewport()->rect().bottomLeft());
 	QFontMetrics fm(treeView->fontMetrics());
+	QModelIndex index(treeView->indexAt(treeView->viewport()->rect().topLeft()));
+	QModelIndex endIndex(treeView->indexAt(treeView->viewport()->rect().bottomLeft()));
+	treeView->setUpdatesEnabled(false);
 	while ( index.isValid() ) {
 		QModelIndex idx(index.sibling(index.row(), MachineListModel::RANK));
-		RankItemWidget *riw = (RankItemWidget *)treeView->indexWidget(idx);
-		if ( riw ) {
-			riw->updateSize(&fm);
-			riw->updateRankImage();
-			//QTimer::singleShot(0, riw, SLOT(updateRankImage()));
-		} else {
-			riw = new RankItemWidget(model()->itemFromIndex(idx));
-			m_rankItemWidgets << riw;
-			treeView->setIndexWidget(idx, riw);
-		}
+		treeView->setIndexWidget(idx, new RankItemWidget(model()->itemFromIndex(idx)));
 		if ( index == endIndex )
 			break;
 		index = treeView->indexBelow(index);
 	}
+	treeView->setUpdatesEnabled(true);
 }
 
 void MachineListViewer::on_treeView_customContextMenuRequested(const QPoint &p)

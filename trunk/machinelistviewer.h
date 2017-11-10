@@ -56,7 +56,6 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		bool m_ignoreSelectionChange;
 		QTimer m_rankUpdateTimer;
 		FilterConfigurationDialog *m_filterConfigurationDialog;
-		QList<RankItemWidget *> m_rankItemWidgets;
 };
 
 #endif

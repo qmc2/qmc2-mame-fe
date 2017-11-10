@@ -91,7 +91,7 @@ QIcon RankItemWidget::colorRankIcon()
 
 void RankItemWidget::updateSize(QFontMetrics *fm)
 {
-	QSize newSize = size();
+	QSize newSize(size());
 	if ( fm )
 		newSize.scale(width(), QMC2_MAX(qApp->style()->pixelMetric(QStyle::PM_IndicatorHeight), fm->height()), Qt::KeepAspectRatio);
 	else
@@ -119,14 +119,13 @@ void RankItemWidget::setRank(int rank)
 	pRank.setCompositionMode(useColorRankImage ? QPainter::CompositionMode_SourceIn : QPainter::CompositionMode_Overlay);
 	pRank.fillRect(pmRank.rect(), rankImageColor);
 	pRank.end();
-	for (int r = 0; r < m_rank; r++) {
+	for (int r = 0; r < 6; r++) {
 		int x = r * rankSingle.width();
-		p.drawPixmap(x, 0, pmRank);
+		if ( r < m_rank )
+			p.drawPixmap(x, 0, pmRank);
+		else
+			p.fillRect(x, 0, rankSingle.width(), rankSingle.height(), m_palette.brush(QPalette::Base));
 		p.drawRoundedRect(x + 2, 3, rankSingle.width() - 2, rankSingle.height() - 3, 5, 5, Qt::RelativeSize);
-	}
-	for (int r = m_rank; r < 6; r++) {
-		int x = r * rankSingle.width();
-		p.fillRect(x, 0, rankSingle.width(), rankSingle.height(), m_palette.brush(QPalette::Base));
 	}
 	QPixmap pmBackground(QPixmap::fromImage(rankBackround));
 	QPainter pBackground;
@@ -137,7 +136,6 @@ void RankItemWidget::setRank(int rank)
 	p.drawPixmap(0, 0, pmBackground);
 	p.end();
 	rankImage->setPixmap(pm.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-	update();
 	emit rankChanged(m_rank);
 }
 

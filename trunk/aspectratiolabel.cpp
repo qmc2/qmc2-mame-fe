@@ -62,11 +62,6 @@ void AspectRatioLabel::showEvent(QShowEvent *e)
 
 void AspectRatioLabel::paintEvent(QPaintEvent *e)
 {
-	/*
-	m_painter.begin(this);
-	m_painter.eraseRect(e->rect());
-	m_painter.end();
-	*/
 	QLabel::paintEvent(e);
 	if ( !m_labelText.isEmpty() ) {
 		m_painter.begin(this);
