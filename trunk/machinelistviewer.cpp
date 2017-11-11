@@ -195,7 +195,7 @@ void MachineListViewer::mainTagChanged(const QString &id, bool tagged)
 
 void MachineListViewer::treeViewVerticalScrollChanged(int)
 {
-	m_rankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+	m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 }
 
 void MachineListViewer::treeViewUpdateRanks()
