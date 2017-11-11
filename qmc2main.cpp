@@ -10144,6 +10144,8 @@ void MainWindow::on_actionRankImageGradient_triggered(bool checked)
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
+		foreach (MachineListViewer *v, machineListViewers)
+			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
 	}
 }
 
@@ -10162,6 +10164,8 @@ void MainWindow::on_actionRankImageFlat_triggered(bool checked)
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
+		foreach (MachineListViewer *v, machineListViewers)
+			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
 	}
 }
 
@@ -10180,6 +10184,8 @@ void MainWindow::on_actionRankImagePlain_triggered(bool checked)
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
+		foreach (MachineListViewer *v, machineListViewers)
+			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
 	}
 }
 
@@ -10194,6 +10200,8 @@ void MainWindow::on_actionRankImageColor_triggered(bool)
 		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
+		foreach (MachineListViewer *v, machineListViewers)
+			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
 	}
 }
 
