@@ -74,10 +74,19 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	// remember the default style
 	m_defaultStyle = QApplication::style()->objectName();
 
+	// initialize available languages and mewUi-to-QMC2 mappings
 	m_availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
-	m_customSettings = new CustomSettings(m_startupConfig, this);
+	m_uiToQmc2Hash.insert("cabinets_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetDirectory");
+	m_uiToQmc2Hash.insert("cpanels_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerDirectory");
+	m_uiToQmc2Hash.insert("pcbs_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBDirectory");
+	m_uiToQmc2Hash.insert("flyers_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerDirectory");
+	m_uiToQmc2Hash.insert("titles_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/TitleDirectory");
+	m_uiToQmc2Hash.insert("marquees_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeDirectory");
+	m_uiToQmc2Hash.insert("logos_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MarqueeDirectory");
+	m_uiToQmc2Hash.insert("icons_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/IconDirectory");
 
-	setupUi(this);
+	// create custom settings based on the stored ones
+	m_customSettings = new CustomSettings(m_startupConfig, this);
 
 	// set customized UI font when applicable
 	if ( m_customSettings->contains(QMC2_FRONTEND_PREFIX + "GUI/Font") ) {
@@ -86,18 +95,23 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 		qApp->setFont(f);
 	}
 
+	// now setup the UI
+	setupUi(this);
+
 	// setting explicit button texts makes it possible to translate them dynamically (however, some styles ignore this)
 	setButtonText(QWizard::NextButton, tr("&Next >"));
 	setButtonText(QWizard::BackButton, tr("< &Back"));
 	setButtonText(QWizard::CancelButton, tr("&Cancel"));
 	setButtonText(QWizard::FinishButton, tr("&Finish"));
 
+	// we want to show our version :)...
 #if QMC2_SVN_REV > 0
 	labelVersion->setText(QString("QMC2 v%1 (SVN r%2)").arg(XSTR(QMC2_VERSION)).arg(QMC2_SVN_REV));
 #else
 	labelVersion->setText(QString("QMC2 v%1").arg(XSTR(QMC2_VERSION)));
 #endif
 
+	// replace labels with clickable ones
 	gridLayout3->removeWidget(labelImportMameIni);
 	delete labelImportMameIni;
 	m_labelImportMameIni = new ClickableLabel(this);
@@ -122,6 +136,7 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	gridLayout3->addWidget(m_labelImportNothing, 6, 1);
 	connect(m_labelImportNothing, SIGNAL(clicked()), this, SLOT(labelImportNothing_clicked()));
 
+	// fill the language combo-box
 	comboBoxLanguage->blockSignals(true);
 	comboBoxLanguage->addItems(m_availableLanguages);
 	int index = comboBoxLanguage->findText(m_customSettings->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString());
@@ -140,6 +155,7 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	setupStyle(comboBoxStyle->currentText());
 	comboBoxStyle->blockSignals(false);
 
+	// connections and start-up
 	connect(comboBoxStyle, SIGNAL(activated(const QString &)), this, SLOT(setupStyle(const QString &)));
 	connect(comboBoxExecutableFile->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxExecutableFile_textChanged(const QString &)));
 	QTimer::singleShot(0, this, SLOT(init()));
@@ -160,7 +176,7 @@ void SetupWizard::accept()
 void SetupWizard::init()
 {
 	setupLanguage();
-	button(QWizard::NextButton)->setEnabled(false);
+	//button(QWizard::NextButton)->setEnabled(false);
 	QStringList emuHistory(m_customSettings->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList());
 	emuHistory.sort();
 	for (int i = 0; i < emuHistory.count(); i++) {
@@ -354,7 +370,7 @@ void SetupWizard::importMameIni()
 						continue;
 					}
 					if ( !allOptions.contains(option) ) {
-						log(tr("WARNING: unknown option '%1' on line %2 ignored").arg(option).arg(lineCounter));
+						log(tr("WARNING: unknown option '%1' on line %2 ignored").arg(option).arg(lineCounter + 1));
 						continue;
 					}
 					if ( booleanOptions.contains(option) )
@@ -370,8 +386,10 @@ void SetupWizard::importMameIni()
 					}
 					m_customSettings->setValue(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + option, value.replace("$HOME", "~"));
 					log(tr("option '%1' with value '%2' imported").arg(option).arg(value));
-				} else if ( tokens.count() > 0 )
-					log(tr("WARNING: missing value on line %1, option '%2' ignored").arg(lineCounter).arg(tokens.at(0)));
+				} else if ( tokens.count() > 0 ) {
+					if ( allOptions.contains(tokens.at(0)) )
+						log(tr("WARNING: missing value on line %1, option '%2' ignored").arg(lineCounter + 1).arg(tokens.at(0)));
+				}
 			}
 			lineCounter++;
 		}
@@ -389,9 +407,41 @@ void SetupWizard::importUiIni()
 {
 	button(QWizard::NextButton)->setEnabled(false);
 	log(tr("importing front-end settings from '%1'").arg(m_frontendIniPath));
-	// FIXME
-	button(QWizard::NextButton)->setEnabled(true);
+	QFile iniFile(m_frontendIniPath);
+	if ( iniFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+		QTextStream ts(&iniFile);
+		int lineCounter = 0;
+		while ( !ts.atEnd() ) {
+			if ( lineCounter % 10 )
+				qApp->processEvents();
+			QString lineTrimmed(ts.readLine().trimmed());
+			if ( !lineTrimmed.isEmpty() && !lineTrimmed.startsWith('#') && !lineTrimmed.startsWith("<UNADORNED") ) {
+				QStringList tokens(lineTrimmed.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+				if ( tokens.count() > 1 ) {
+					QString option(tokens.at(0));
+					QString value(lineTrimmed.mid(lineTrimmed.indexOf(tokens.at(1), tokens.at(0).length())));
+					if ( m_uiToQmc2Hash.contains(option) ) {
+						QString currentValue(m_customSettings->value(m_uiToQmc2Hash.value(option)).toString());
+						value.replace("$HOME", "~");
+						if ( currentValue.isEmpty() )
+							m_customSettings->setValue(m_uiToQmc2Hash.value(option), value);
+						else
+							m_customSettings->setValue(m_uiToQmc2Hash.value(option), currentValue + ';' + value);
+						log(tr("option '%1' with value '%2' imported").arg(option).arg(value));
+					} else
+						log(tr("option '%1' with value '%2' ignored").arg(option).arg(value.replace("$HOME", "~")));
+				} else if ( tokens.count() > 0 ) {
+					if ( m_uiToQmc2Hash.contains(tokens.at(0)) )
+						log(tr("WARNING: missing value on line %1, option '%2' ignored").arg(lineCounter + 1).arg(tokens.at(0)));
+				}
+			}
+			lineCounter++;
+		}
+		iniFile.close();
+	} else
+		log(tr("ERROR: can't open '%1' for reading").arg(m_frontendIniPath));
 	log(tr("done (importing front-end settings from '%1')").arg(m_frontendIniPath));
+	button(QWizard::NextButton)->setEnabled(true);
 }
 
 int SetupWizard::nextId() const

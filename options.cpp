@@ -1459,7 +1459,7 @@ void Options::on_pushButtonApply_clicked()
 	if ( invalidateSoftwareInfoDB )
 		qmc2MachineList->datInfoDb()->recreateSoftwareInfoTable();
 
-	if ( needManualReload )
+	if ( needManualReload && !qmc2MachineList->initialLoad )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload machine list for some changes to take effect"));
 
 	if ( needRestart )

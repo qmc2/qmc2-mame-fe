@@ -4,6 +4,7 @@
 #include <QSettings>
 #include <QString>
 #include <QVariant>
+#include <QHash>
 
 #include "ui_setupwizard.h"
 #include "clickablelabel.h"
@@ -94,6 +95,7 @@ class SetupWizard : public QWizard, public Ui::SetupWizard
 		ClickableLabel *m_labelImportBothInis;
 		ClickableLabel *m_labelImportNothing;
 		CustomSettings *m_customSettings;
+		QHash<QString, QString> m_uiToQmc2Hash;
 };
 
 #endif

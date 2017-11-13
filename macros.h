@@ -201,7 +201,7 @@
 #define QMC2_EMUCONTROL_COLUMN_PID		6
 #define QMC2_EMUCONTROL_COLUMN_COMMAND		7
 
-// logical column indexes of the MESS device configurator
+// logical column indexes of the device configurator
 #define QMC2_DEVCONFIG_COLUMN_NAME		0
 #define QMC2_DEVCONFIG_COLUMN_BRIEF		1
 #define QMC2_DEVCONFIG_COLUMN_TYPE		2
@@ -228,15 +228,15 @@
 #define QMC2_DEVTYPE_MIDIIN			15
 #define QMC2_DEVTYPE_MIDIOUT			16
 
-// delay in milliseconds before actually loading the MESS device configurator
+// delay in milliseconds before actually loading the device configurator
 #define QMC2_DEVCONFIG_LOAD_DELAY		50
 
-// logical column indexes of the MESS device configurator's slot setup
+// logical column indexes of the device configurator's slot setup
 #define QMC2_SLOTCONFIG_COLUMN_SLOT		0
 #define QMC2_SLOTCONFIG_COLUMN_OPTION		1
 #define QMC2_SLOTCONFIG_COLUMN_BIOS		2
 
-// indexes of the device-setup tabs of the MESS device configurator
+// indexes of the device-setup tabs of the device configurator
 #define QMC2_DEVSETUP_TAB_DEVMAPPINGS		0
 #define QMC2_DEVSETUP_TAB_SLOTCONFIG		1
 #define QMC2_DEVSETUP_TAB_FILECHOOSER		2
@@ -617,11 +617,7 @@
 #define QMC2_FRONTEND_PREFIX			QString("Frontend/")
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
-#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
-#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
 #define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MAME
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMAME_NAME)
@@ -629,11 +625,7 @@
 #define QMC2_EMU_NAME_VARIANT			QString("SDLMAME")
 #elif defined(QMC2_MAME)
 #define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
-#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
-#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
 #define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
 #define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MAME
 #define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MAME_NAME)
