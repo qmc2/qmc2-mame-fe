@@ -36,9 +36,6 @@ Welcome::Welcome(QWidget *parent) :
 			f.fromString(startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 			qApp->setFont(f);
 		}
-#if !defined(QMC2_WIP_ENABLED)
-		pushButtonRunSetupWizard->hide();
-#endif
 		comboBoxLanguage->blockSignals(true);
 		comboBoxLanguage->addItems(availableLanguages);
 		originalLanguage = startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Language", QString()).toString();
@@ -72,7 +69,10 @@ Welcome::Welcome(QWidget *parent) :
 		lineEditSamplePath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath", QString()).toString());
 		lineEditHashPath->setText(startupConfig->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
 		adjustSize();
-		show();
+		if ( QMC2_CLI_OPT_RECONFIGURE )
+			show();
+		else
+			QTimer::singleShot(0, pushButtonRunSetupWizard, SLOT(click()));
 	} else {
 		checkOkay = true;
 		QTimer::singleShot(0, this, SLOT(on_pushButtonOkay_clicked()));
@@ -127,8 +127,8 @@ void Welcome::on_pushButtonOkay_clicked()
 
 void Welcome::on_pushButtonRunSetupWizard_clicked()
 {
-	SetupWizard wizard(startupConfig, this);
 	hide();
+	SetupWizard wizard(startupConfig, this);
 	switch ( wizard.exec() ) {
 		case QDialog::Accepted:
 			emit accept();
