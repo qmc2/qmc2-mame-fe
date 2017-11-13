@@ -176,7 +176,6 @@ void SetupWizard::accept()
 void SetupWizard::init()
 {
 	setupLanguage();
-	//button(QWizard::NextButton)->setEnabled(false);
 	QStringList emuHistory(m_customSettings->value(QMC2_FRONTEND_PREFIX + "Welcome/EmuHistory", QStringList()).toStringList());
 	emuHistory.sort();
 	for (int i = 0; i < emuHistory.count(); i++) {
@@ -420,16 +419,12 @@ void SetupWizard::importUiIni()
 				if ( tokens.count() > 1 ) {
 					QString option(tokens.at(0));
 					QString value(lineTrimmed.mid(lineTrimmed.indexOf(tokens.at(1), tokens.at(0).length())));
+					value.replace("$HOME", "~").replace('\"', "");
 					if ( m_uiToQmc2Hash.contains(option) ) {
-						QString currentValue(m_customSettings->value(m_uiToQmc2Hash.value(option)).toString());
-						value.replace("$HOME", "~");
-						if ( currentValue.isEmpty() )
-							m_customSettings->setValue(m_uiToQmc2Hash.value(option), value);
-						else
-							m_customSettings->setValue(m_uiToQmc2Hash.value(option), currentValue + ';' + value);
+						m_customSettings->setValue(m_uiToQmc2Hash.value(option), value);
 						log(tr("option '%1' with value '%2' imported").arg(option).arg(value));
 					} else
-						log(tr("option '%1' with value '%2' ignored").arg(option).arg(value.replace("$HOME", "~")));
+						log(tr("option '%1' with value '%2' ignored").arg(option).arg(value));
 				} else if ( tokens.count() > 0 ) {
 					if ( m_uiToQmc2Hash.contains(tokens.at(0)) )
 						log(tr("WARNING: missing value on line %1, option '%2' ignored").arg(lineCounter + 1).arg(tokens.at(0)));
