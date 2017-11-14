@@ -18,7 +18,6 @@ class VisibleColumnSetup : public QDialog, public Ui::VisibleColumnSetup
 		void init();
 		void on_pushButtonOk_clicked();
 		void on_pushButtonApply_clicked();
-		void on_pushButtonCancel_clicked();
 
 	protected:
 		void showEvent(QShowEvent *e);

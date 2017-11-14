@@ -42,11 +42,11 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void mainSelectionChanged(const QString &);
 		void treeViewVerticalScrollChanged(int);
 		void treeViewUpdateRanks();
+		void treeViewSectionMoved(int, int, int);
 		void on_treeView_customContextMenuRequested(const QPoint &);
 		void on_treeView_activated(const QModelIndex &);
 		void on_treeView_entered(const QModelIndex &);
 		void on_treeView_clicked(const QModelIndex &);
-		void on_treeView_sectionMoved(int, int, int);
 
 	signals:
 		void selectionChanged(const QString &);

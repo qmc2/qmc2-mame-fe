@@ -53,11 +53,6 @@ void VisibleColumnSetup::on_pushButtonApply_clicked()
 	viewer()->treeView->viewport()->update();
 }
 
-void VisibleColumnSetup::on_pushButtonCancel_clicked()
-{
-	// FIXME
-}
-
 void VisibleColumnSetup::showEvent(QShowEvent *e)
 {
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/VisibleColumnSetup/Geometry", QByteArray()).toByteArray());
@@ -68,7 +63,6 @@ void VisibleColumnSetup::showEvent(QShowEvent *e)
 
 void VisibleColumnSetup::hideEvent(QHideEvent *e)
 {
-	on_pushButtonCancel_clicked();
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/VisibleColumnSetup/Geometry", saveGeometry());
 	if ( e )
 		QDialog::hideEvent(e);
