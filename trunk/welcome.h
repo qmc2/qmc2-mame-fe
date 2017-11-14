@@ -17,7 +17,6 @@ class Welcome : public QDialog, public Ui::Welcome
 
 		bool checkOkay;
 		QSettings *startupConfig;
-		QString variant;
 
 		bool checkConfig();
 #if defined(QMC2_OS_MAC)
