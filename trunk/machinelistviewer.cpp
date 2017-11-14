@@ -50,6 +50,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
 
+	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(on_treeView_sectionMoved(int, int, int)));
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
