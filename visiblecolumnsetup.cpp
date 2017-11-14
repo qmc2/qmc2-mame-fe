@@ -45,12 +45,12 @@ void VisibleColumnSetup::on_pushButtonApply_clicked()
 		viewer()->headerView()->setSectionHidden(viewer()->headerView()->logicalIndex(to), listWidget->item(to)->checkState() == Qt::Unchecked);
 	}
 	viewer()->headerView()->blockSignals(false);
-	viewer()->treeView->viewport()->update();
 	viewer()->treeView->viewport()->setUpdatesEnabled(false);
 	QSize s(viewer()->treeView->viewport()->size());
 	viewer()->treeView->viewport()->resize(0, 0);
 	viewer()->treeView->viewport()->resize(s);
 	viewer()->treeView->viewport()->setUpdatesEnabled(true);
+	viewer()->treeView->viewport()->update();
 }
 
 void VisibleColumnSetup::on_pushButtonCancel_clicked()
