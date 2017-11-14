@@ -277,14 +277,7 @@ bool Welcome::checkConfig()
 	QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
 	QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, Options::configPath());
-
 	startupConfig = new Settings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
-
-#if defined(QMC2_SDLMAME)
-	variant = "qmc2-sdlmame";
-#elif defined(QMC2_MAME)
-	variant = "qmc2-mame";
-#endif
 
 	setupLanguage();
 
@@ -292,7 +285,7 @@ bool Welcome::checkConfig()
 	if ( startupConfig->value("GUI/CheckSingleInstance", true).toBool() ) {
 		if ( startupConfig->value(QString("InstanceRunning")).toBool() ) {
 			switch ( QMessageBox::question(0, tr("Single-instance check"),
-						       tr("It appears that another instance of %1 is already running.\nHowever, this can also be the leftover of a previous crash.\n\nExit now, accept once or ignore completely?").arg(variant),
+						       tr("It appears that another instance of %1 is already running.\nHowever, this can also be the leftover of a previous crash.\n\nExit now, accept once or ignore completely?").arg(QMC2_VARIANT_NAME),
 						       tr("&Exit"), tr("&Once"), tr("&Ignore"), 0, 0) ) {
 				case 0:
 					startupConfig->setValue("GUI/CheckSingleInstance", true);
