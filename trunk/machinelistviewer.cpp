@@ -79,7 +79,7 @@ void MachineListViewer::init()
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 				treeView->scrollTo(idx, qmc2CursorPositioningMode);
-				treeViewUpdateRanks();
+				m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 			}
 		}
 	}
@@ -149,7 +149,7 @@ void MachineListViewer::on_toolButtonUpdateView_clicked()
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 				treeView->scrollTo(idx, qmc2CursorPositioningMode);
-				treeViewUpdateRanks();
+				m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 			}
 		}
 	}
@@ -210,16 +210,20 @@ void MachineListViewer::treeViewVerticalScrollChanged(int)
 
 void MachineListViewer::treeViewUpdateRanks()
 {
+	if ( headerView()->isSectionHidden(MachineListModel::RANK) )
+		return;
 	QFontMetrics fm(treeView->fontMetrics());
 	QModelIndex index(treeView->indexAt(treeView->viewport()->rect().topLeft()));
+	index = index.sibling(index.row(), MachineListModel::RANK);
 	QModelIndex endIndex(treeView->indexAt(treeView->viewport()->rect().bottomLeft()));
+	endIndex = endIndex.sibling(endIndex.row(), MachineListModel::RANK);
 	treeView->setUpdatesEnabled(false);
 	while ( index.isValid() ) {
-		QModelIndex idx(index.sibling(index.row(), MachineListModel::RANK));
-		treeView->setIndexWidget(idx, new RankItemWidget(model()->itemFromIndex(idx), treeView));
+		treeView->setIndexWidget(index, new RankItemWidget(model()->itemFromIndex(index), treeView));
 		if ( index == endIndex )
 			break;
 		index = treeView->indexBelow(index);
+		index = index.sibling(index.row(), MachineListModel::RANK);
 	}
 	treeView->setUpdatesEnabled(true);
 }
@@ -322,7 +326,7 @@ void MachineListViewer::hideEvent(QHideEvent *e)
 
 void MachineListViewer::resizeEvent(QResizeEvent *e)
 {
-	m_rankUpdateTimer.start(qmc2UpdateDelay + QMC2_RANK_UPDATE_DELAY);
+	m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 	if ( e )
 		QWidget::resizeEvent(e);
 }

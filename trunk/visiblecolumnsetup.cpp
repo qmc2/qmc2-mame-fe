@@ -24,7 +24,7 @@ void VisibleColumnSetup::init()
 		QListWidgetItem *item = new QListWidgetItem;
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable);
 		item->setText(viewer()->headers().at(viewer()->headerView()->logicalIndex(c)));
-		item->setCheckState(viewer()->headerView()->isSectionHidden(c) ? Qt::Unchecked : Qt::Checked);
+		item->setCheckState(viewer()->headerView()->isSectionHidden(viewer()->headerView()->logicalIndex(c)) ? Qt::Unchecked : Qt::Checked);
 		listWidget->addItem(item);
 	}
 	listWidget->setUpdatesEnabled(true);
@@ -42,7 +42,7 @@ void VisibleColumnSetup::on_pushButtonApply_clicked()
 		int from = viewer()->headerView()->visualIndex(viewer()->headers().indexOf(listWidget->item(to)->text()));
 		if ( from != to )
 			viewer()->headerView()->moveSection(from, to);
-		viewer()->headerView()->setSectionHidden(viewer()->headerView()->logicalIndex(to), listWidget->item(to)->checkState() == Qt::Unchecked);
+		viewer()->treeView->setColumnHidden(viewer()->headerView()->logicalIndex(to), listWidget->item(to)->checkState() == Qt::Unchecked);
 	}
 	viewer()->headerView()->blockSignals(false);
 	viewer()->treeView->viewport()->setUpdatesEnabled(false);
@@ -51,6 +51,7 @@ void VisibleColumnSetup::on_pushButtonApply_clicked()
 	viewer()->treeView->viewport()->resize(s);
 	viewer()->treeView->viewport()->setUpdatesEnabled(true);
 	viewer()->treeView->viewport()->update();
+	QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, viewer(), SLOT(treeViewUpdateRanks()));
 }
 
 void VisibleColumnSetup::showEvent(QShowEvent *e)
