@@ -50,7 +50,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
 
-	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(on_treeView_sectionMoved(int, int, int)));
+	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewSectionMoved(int, int, int)));
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -224,6 +224,12 @@ void MachineListViewer::treeViewUpdateRanks()
 	treeView->setUpdatesEnabled(true);
 }
 
+void MachineListViewer::treeViewSectionMoved(int /* logicalIndex */, int visualFrom, int visualTo)
+{
+	if ( visibleColumnSetup() )
+		visibleColumnSetup()->listWidget->insertItem(visualTo, visibleColumnSetup()->listWidget->takeItem(visualFrom));
+}
+
 void MachineListViewer::on_treeView_customContextMenuRequested(const QPoint &p)
 {
 	QModelIndex idx(treeView->indexAt(p));
@@ -293,12 +299,6 @@ void MachineListViewer::on_treeView_clicked(const QModelIndex &index)
 			qmc2MainWindow->labelMachineListStatus->setText(qmc2MachineList->status());
 		}
 	}
-}
-
-void MachineListViewer::on_treeView_sectionMoved(int /* logicalIndex */, int visualFrom, int visualTo)
-{
-	if ( visibleColumnSetup() )
-		visibleColumnSetup()->listWidget->insertItem(visualTo, visibleColumnSetup()->listWidget->takeItem(visualFrom));
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)
