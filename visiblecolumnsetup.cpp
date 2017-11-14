@@ -14,7 +14,6 @@ VisibleColumnSetup::VisibleColumnSetup(MachineListViewer *viewer, QWidget *paren
 	m_viewer(viewer)
 {
 	setupUi(this);
-	connect(m_viewer->headerView(), SIGNAL(sectionMoved(int, int, int)), m_viewer, SLOT(on_treeView_sectionMoved(int, int, int)));
 }
 
 void VisibleColumnSetup::init()
@@ -47,6 +46,11 @@ void VisibleColumnSetup::on_pushButtonApply_clicked()
 	}
 	viewer()->headerView()->blockSignals(false);
 	viewer()->treeView->viewport()->update();
+	viewer()->treeView->viewport()->setUpdatesEnabled(false);
+	QSize s(viewer()->treeView->viewport()->size());
+	viewer()->treeView->viewport()->resize(0, 0);
+	viewer()->treeView->viewport()->resize(s);
+	viewer()->treeView->viewport()->setUpdatesEnabled(true);
 }
 
 void VisibleColumnSetup::on_pushButtonCancel_clicked()
