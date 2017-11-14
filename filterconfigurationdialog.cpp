@@ -121,6 +121,7 @@ void FilterConfigurationDialog::showEvent(QShowEvent *e)
 
 void FilterConfigurationDialog::hideEvent(QHideEvent *e)
 {
+	on_pushButtonCancel_clicked();
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/FilterConfigurationDialog/Geometry", saveGeometry());
 	if ( e )
 		QDialog::hideEvent(e);

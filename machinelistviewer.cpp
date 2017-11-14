@@ -35,9 +35,11 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
 	m_model(0),
 	m_ignoreSelectionChange(false),
-	m_filterConfigurationDialog(0)
+	m_filterConfigurationDialog(0),
+	m_visibleColumnSetup(0)
 {
 	setupUi(this);
+	setAttribute(Qt::WA_DeleteOnClose);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
 	m_rankUpdateTimer.setSingleShot(true);
 	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
@@ -58,11 +60,13 @@ MachineListViewer::~MachineListViewer()
 	treeView->setModel(0);
 	delete model();
 	delete filterConfigurationDialog();
+	delete visibleColumnSetup();
 }
 
 void MachineListViewer::init()
 {
 	m_filterConfigurationDialog = new FilterConfigurationDialog(this, this);
+	m_visibleColumnSetup = new VisibleColumnSetup(this);
 	m_model = new MachineListModel(treeView, this);
 	treeView->setModel(model());
 	if ( qmc2CurrentItem ) {
@@ -111,12 +115,17 @@ void MachineListViewer::on_toolButtonConfigureFilters_clicked()
 	filterConfigurationDialog()->show();
 	if ( filterConfigurationDialog()->isMinimized() )
 		filterConfigurationDialog()->showNormal();
+	filterConfigurationDialog()->raise();
 	filterConfigurationDialog()->exec();
 }
 
 void MachineListViewer::on_toolButtonVisibleColumns_clicked()
 {
-	// FIXME: there's no way to customize column visibility yet
+	visibleColumnSetup()->show();
+	if ( visibleColumnSetup()->isMinimized() )
+		visibleColumnSetup()->showNormal();
+	visibleColumnSetup()->raise();
+	visibleColumnSetup()->exec();
 }
 
 void MachineListViewer::on_toolButtonEditQuery_clicked()
@@ -283,6 +292,12 @@ void MachineListViewer::on_treeView_clicked(const QModelIndex &index)
 			qmc2MainWindow->labelMachineListStatus->setText(qmc2MachineList->status());
 		}
 	}
+}
+
+void MachineListViewer::on_treeView_sectionMoved(int /* logicalIndex */, int visualFrom, int visualTo)
+{
+	if ( visibleColumnSetup() )
+		visibleColumnSetup()->listWidget->insertItem(visualTo, visibleColumnSetup()->listWidget->takeItem(visualFrom));
 }
 
 void MachineListViewer::showEvent(QShowEvent *e)
