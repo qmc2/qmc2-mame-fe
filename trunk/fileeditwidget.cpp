@@ -18,8 +18,8 @@ extern Options *qmc2Options;
 extern EmulatorOptions *qmc2GlobalEmulatorOptions;
 extern EmulatorOptions *qmc2EmulatorOptions;
 
-FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, QWidget *parent, bool showClearButton, QString relativeTo, QTreeWidget *treeWidget, bool cbMode)
-	: QWidget(parent)
+FileEditWidget::FileEditWidget(QString filePath, QString filter, QString part, QWidget *parent, bool showClearButton, QString relativeTo, QTreeWidget *treeWidget, bool cbMode) :
+	QWidget(parent)
 {
 	setupUi(this);
 	m_comboBoxMode = cbMode;
