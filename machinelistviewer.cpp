@@ -291,6 +291,9 @@ void MachineListViewer::saveViewAction_triggered(bool)
 		v->comboBoxViewName->lineEdit()->blockSignals(true);
 		v->comboBoxViewName->lineEdit()->setText(v->name());
 		v->lineEdit_textChanged(v->name());
+		int index = v->comboBoxViewName->findText(v->name());
+		if ( index >= 0 )
+			v->comboBoxViewName->setCurrentIndex(index);
 		v->comboBoxViewName->lineEdit()->blockSignals(false);
 		v->comboBoxViewName->blockSignals(false);
 	}
@@ -306,6 +309,9 @@ void MachineListViewer::removeViewAction_triggered(bool)
 		v->comboBoxViewName->insertItems(0, savedViews());
 		v->comboBoxViewName->lineEdit()->setText(v->name());
 		v->lineEdit_textChanged(v->name());
+		int index = v->comboBoxViewName->findText(v->name());
+		if ( index >= 0 )
+			v->comboBoxViewName->setCurrentIndex(index);
 		v->comboBoxViewName->lineEdit()->blockSignals(false);
 		v->comboBoxViewName->blockSignals(false);
 	}
