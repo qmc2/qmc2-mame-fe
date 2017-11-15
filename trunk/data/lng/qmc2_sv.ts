@@ -9560,113 +9560,130 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="197"/>
-        <source>Query</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="70"/>
+        <location filename="../../machinelistviewer.ui" line="193"/>
         <source>Columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="239"/>
+        <location filename="../../machinelistviewer.ui" line="73"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="259"/>
-        <location filename="../../machinelistviewer.ui" line="262"/>
+        <location filename="../../machinelistviewer.cpp" line="71"/>
+        <location filename="../../machinelistviewer.cpp" line="72"/>
+        <source>Remove view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="76"/>
+        <source>Attach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="77"/>
+        <location filename="../../machinelistviewer.cpp" line="78"/>
+        <source>Attach view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="81"/>
+        <source>Detach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="82"/>
+        <location filename="../../machinelistviewer.cpp" line="83"/>
+        <source>Detach view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="88"/>
+        <location filename="../../machinelistviewer.cpp" line="89"/>
         <source>Clone view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="96"/>
+        <location filename="../../machinelistviewer.ui" line="99"/>
+        <source>Toggle flat / tree view mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="102"/>
+        <source>Flat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="141"/>
+        <location filename="../../machinelistviewer.ui" line="144"/>
+        <source>Tools menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="187"/>
+        <location filename="../../machinelistviewer.ui" line="190"/>
+        <source>Setup visible columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.ui" line="67"/>
+        <location filename="../../machinelistviewer.ui" line="70"/>
+        <source>Configure view filters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="66"/>
+        <location filename="../../machinelistviewer.cpp" line="67"/>
+        <source>Save view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../machinelistviewer.cpp" line="65"/>
+        <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../machinelistviewer.ui" line="171"/>
         <location filename="../../machinelistviewer.ui" line="174"/>
-        <source>Toggle flat / tree view mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="177"/>
-        <source>Flat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="64"/>
-        <location filename="../../machinelistviewer.ui" line="67"/>
-        <source>Setup visible columns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="233"/>
-        <location filename="../../machinelistviewer.ui" line="236"/>
-        <source>Configure view filters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="44"/>
-        <location filename="../../machinelistviewer.ui" line="47"/>
-        <source>Save view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="50"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="104"/>
-        <location filename="../../machinelistviewer.ui" line="107"/>
         <source>Enter a unique name for this view or select an existing one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="123"/>
-        <location filename="../../machinelistviewer.ui" line="126"/>
+        <location filename="../../machinelistviewer.ui" line="41"/>
+        <location filename="../../machinelistviewer.ui" line="44"/>
         <source>Update view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="129"/>
+        <location filename="../../machinelistviewer.ui" line="47"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="191"/>
-        <location filename="../../machinelistviewer.ui" line="194"/>
-        <source>Customize the SQL query (i.e. to pre-filter on database level)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="143"/>
-        <location filename="../../machinelistviewer.ui" line="146"/>
+        <location filename="../../machinelistviewer.ui" line="116"/>
+        <location filename="../../machinelistviewer.ui" line="119"/>
         <source>Number of records in view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="265"/>
+        <location filename="../../machinelistviewer.cpp" line="87"/>
         <source>Clone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="288"/>
-        <location filename="../../machinelistviewer.ui" line="291"/>
-        <source>Remove saved view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.ui" line="294"/>
+        <location filename="../../machinelistviewer.cpp" line="70"/>
         <source>Remove</source>
         <translation type="unfinished">Ta bort</translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.ui" line="329"/>
-        <location filename="../../machinelistviewer.ui" line="332"/>
+        <location filename="../../machinelistviewer.ui" line="251"/>
+        <location filename="../../machinelistviewer.ui" line="254"/>
         <source>Toggle menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../machinelistviewer.cpp" line="43"/>
+        <location filename="../../machinelistviewer.cpp" line="53"/>
         <source>Enter a unique name for this view</source>
         <translation type="unfinished"></translation>
     </message>

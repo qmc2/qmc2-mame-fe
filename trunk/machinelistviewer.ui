@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1135</width>
-    <height>309</height>
+    <width>786</width>
+    <height>249</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,96 +22,14 @@
    </property>
    <item row="0" column="0">
     <widget class="QWidget" name="widgetMenu" native="true">
-     <layout class="QGridLayout" name="gridLayoutWidgetMenu" columnstretch="2,0,0,0,1,0,0,0,0,0,0,0,0">
+     <layout class="QGridLayout" name="gridLayoutWidgetMenu" columnstretch="2,0,1,0,0,0,0,0,0,0">
       <property name="leftMargin">
        <number>0</number>
       </property>
       <property name="rightMargin">
        <number>0</number>
       </property>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="toolButtonSaveView">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Save view</string>
-        </property>
-        <property name="statusTip">
-         <string>Save view</string>
-        </property>
-        <property name="text">
-         <string>Save</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/filesaveas_and_apply.png</normaloff>:/data/img/filesaveas_and_apply.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="9">
-       <widget class="QToolButton" name="toolButtonVisibleColumns">
-        <property name="toolTip">
-         <string>Setup visible columns</string>
-        </property>
-        <property name="statusTip">
-         <string>Setup visible columns</string>
-        </property>
-        <property name="text">
-         <string>Columns</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/columns.png</normaloff>:/data/img/columns.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="Line" name="line1">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="11">
-       <widget class="Line" name="line2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QComboBox" name="comboBoxViewName">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Enter a unique name for this view or select an existing one</string>
-        </property>
-        <property name="statusTip">
-         <string>Enter a unique name for this view or select an existing one</string>
-        </property>
-        <property name="editable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="12">
        <widget class="QToolButton" name="toolButtonUpdateView">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -137,26 +55,33 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QLCDNumber" name="lcdNumberRecordCount">
+      <item row="0" column="6">
+       <widget class="QToolButton" name="toolButtonConfigureFilters">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="toolTip">
-         <string>Number of records in view</string>
+         <string>Configure view filters</string>
         </property>
         <property name="statusTip">
-         <string>Number of records in view</string>
+         <string>Configure view filters</string>
         </property>
-        <property name="numDigits">
-         <number>6</number>
+        <property name="text">
+         <string>Filters</string>
         </property>
-        <property name="digitCount">
-         <number>6</number>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
         </property>
-        <property name="segmentStyle">
-         <enum>QLCDNumber::Flat</enum>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
-      <item row="0" column="6">
+      <item row="0" column="4">
        <widget class="QToolButton" name="toolButtonViewModeToggle">
         <property name="enabled">
          <bool>false</bool>
@@ -185,27 +110,105 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="10">
-       <widget class="QToolButton" name="toolButtonEditQuery">
+      <item row="0" column="3">
+       <widget class="QLCDNumber" name="lcdNumberRecordCount">
         <property name="toolTip">
-         <string>Customize the SQL query (i.e. to pre-filter on database level)</string>
+         <string>Number of records in view</string>
         </property>
         <property name="statusTip">
-         <string>Customize the SQL query (i.e. to pre-filter on database level)</string>
+         <string>Number of records in view</string>
         </property>
-        <property name="text">
-         <string>Query</string>
+        <property name="numDigits">
+         <number>6</number>
+        </property>
+        <property name="digitCount">
+         <number>6</number>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QToolButton" name="toolButtonToolsMenu">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Tools menu</string>
+        </property>
+        <property name="statusTip">
+         <string>Tools menu</string>
         </property>
         <property name="icon">
          <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/database.png</normaloff>:/data/img/database.png</iconset>
+          <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::InstantPopup</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="Line" name="line2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QComboBox" name="comboBoxViewName">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Enter a unique name for this view or select an existing one</string>
+        </property>
+        <property name="statusTip">
+         <string>Enter a unique name for this view or select an existing one</string>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::NoInsert</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QToolButton" name="toolButtonVisibleColumns">
+        <property name="toolTip">
+         <string>Setup visible columns</string>
+        </property>
+        <property name="statusTip">
+         <string>Setup visible columns</string>
+        </property>
+        <property name="text">
+         <string>Columns</string>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/columns.png</normaloff>:/data/img/columns.png</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
+      <item row="0" column="5">
+       <widget class="Line" name="line1">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -220,87 +223,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-      <item row="0" column="8">
-       <widget class="QToolButton" name="toolButtonConfigureFilters">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Configure view filters</string>
-        </property>
-        <property name="statusTip">
-         <string>Configure view filters</string>
-        </property>
-        <property name="text">
-         <string>Filters</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QToolButton" name="toolButtonCloneView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Clone view</string>
-        </property>
-        <property name="statusTip">
-         <string>Clone view</string>
-        </property>
-        <property name="text">
-         <string>Clone</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QToolButton" name="toolButtonRemoveSavedView">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string>Remove saved view</string>
-        </property>
-        <property name="statusTip">
-         <string>Remove saved view</string>
-        </property>
-        <property name="text">
-         <string>Remove</string>
-        </property>
-        <property name="icon">
-         <iconset resource="qmc2.qrc">
-          <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
       </item>
      </layout>
     </widget>
@@ -356,13 +278,10 @@
  </widget>
  <tabstops>
   <tabstop>comboBoxViewName</tabstop>
-  <tabstop>toolButtonRemoveSavedView</tabstop>
-  <tabstop>toolButtonSaveView</tabstop>
-  <tabstop>toolButtonCloneView</tabstop>
+  <tabstop>toolButtonToolsMenu</tabstop>
   <tabstop>toolButtonViewModeToggle</tabstop>
   <tabstop>toolButtonConfigureFilters</tabstop>
   <tabstop>toolButtonVisibleColumns</tabstop>
-  <tabstop>toolButtonEditQuery</tabstop>
   <tabstop>toolButtonUpdateView</tabstop>
   <tabstop>toolButtonToggleMenu</tabstop>
   <tabstop>treeView</tabstop>
