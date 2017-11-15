@@ -4348,7 +4348,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 #else
 				qmc2SystemNotesEditor->templateMap["$GHOST_IMAGE$"] = "file://" + ghostPath;
 #endif
-				QString ghostVideoPath = QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost_video.png");
+				QString ghostVideoPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/video_thumbnail.png"));
 #if defined(QMC2_OS_WIN)
 				qmc2SystemNotesEditor->templateMap["$GHOST_VIDEO$"] = "file:///" + ghostVideoPath;
 #else
