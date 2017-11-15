@@ -48,9 +48,10 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	m_detachViewAction(0),
 	m_cloneViewAction(0)
 {
-	setupUi(this);
 	setAttribute(Qt::WA_DeleteOnClose);
+	setupUi(this);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view or select an existing one"));
+	comboBoxViewName->lineEdit()->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	m_rankUpdateTimer.setSingleShot(true);
 	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
 	m_selectionUpdateTimer.setSingleShot(true);
