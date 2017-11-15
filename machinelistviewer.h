@@ -30,6 +30,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QList<int> &pages() { return model()->pages(); }
 		QStringList &savedViews() { return m_savedViews; }
 		QStringList &attachedViews() { return m_attachedViews; }
+		QString &name() { return m_name; }
 
 	public slots:
 		void init();

@@ -273,33 +273,40 @@ void MachineListViewer::treeViewSectionMoved(int /* logicalIndex */, int visualF
 
 void MachineListViewer::saveViewAction_triggered(bool)
 {
-	if ( !savedViews().contains(m_name) ) {
-		savedViews().append(m_name);
+	if ( !savedViews().contains(name()) ) {
+		savedViews().append(name());
 		savedViews().sort();
 		foreach (MachineListViewer *v, MainWindow::machineListViewers) {
 			v->comboBoxViewName->blockSignals(true);
 			v->comboBoxViewName->lineEdit()->blockSignals(true);
 			v->comboBoxViewName->clear();
 			v->comboBoxViewName->insertItems(0, savedViews());
-			v->comboBoxViewName->blockSignals(false);
 			v->comboBoxViewName->lineEdit()->blockSignals(false);
+			v->comboBoxViewName->blockSignals(false);
 		}
 	}
-	comboBoxViewName->lineEdit()->setText(m_name);
-	lineEdit_textChanged(m_name);
+	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		v->comboBoxViewName->blockSignals(true);
+		v->comboBoxViewName->lineEdit()->blockSignals(true);
+		v->comboBoxViewName->lineEdit()->setText(v->name());
+		v->lineEdit_textChanged(v->name());
+		v->comboBoxViewName->lineEdit()->blockSignals(false);
+		v->comboBoxViewName->blockSignals(false);
+	}
 }
 
 void MachineListViewer::removeViewAction_triggered(bool)
 {
-	savedViews().removeAll(m_name);
+	savedViews().removeAll(name());
 	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
 		v->comboBoxViewName->blockSignals(true);
 		v->comboBoxViewName->lineEdit()->blockSignals(true);
 		v->comboBoxViewName->clear();
 		v->comboBoxViewName->insertItems(0, savedViews());
-		v->comboBoxViewName->blockSignals(false);
+		v->comboBoxViewName->lineEdit()->setText(v->name());
+		v->lineEdit_textChanged(v->name());
 		v->comboBoxViewName->lineEdit()->blockSignals(false);
-		v->comboBoxViewName->lineEdit()->setText(m_name);
+		v->comboBoxViewName->blockSignals(false);
 	}
 }
 
