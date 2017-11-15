@@ -4,7 +4,9 @@
 #include <QStyledItemDelegate>
 #include <QHeaderView>
 #include <QStringList>
+#include <QAction>
 #include <QTimer>
+#include <QMenu>
 
 #include "machinelistmodel.h"
 #include "filterconfigurationdialog.h"
@@ -26,15 +28,12 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QStringList &headers() { return model()->headers(); }
 		QHeaderView *headerView() { return treeView->header(); }
 		QList<int> &pages() { return model()->pages(); }
+		QStringList &savedViews() { return m_savedViews; }
+		QStringList &attachedViews() { return m_attachedViews; }
 
 	public slots:
 		void init();
 		void adjustIconSizes();
-		void on_toolButtonToggleMenu_clicked();
-		void on_toolButtonConfigureFilters_clicked();
-		void on_toolButtonVisibleColumns_clicked();
-		void on_toolButtonEditQuery_clicked();
-		void on_toolButtonUpdateView_clicked();
 		void currentChanged(const QModelIndex &, const QModelIndex &);
 		void currentChangedDelayed();
 		void romStatusChanged(const QString &, char);
@@ -43,6 +42,18 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void treeViewVerticalScrollChanged(int);
 		void treeViewUpdateRanks();
 		void treeViewSectionMoved(int, int, int);
+		void saveViewAction_triggered(bool);
+		void removeViewAction_triggered(bool);
+		void attachViewAction_triggered(bool);
+		void detachViewAction_triggered(bool);
+		void cloneViewAction_triggered(bool);
+		void lineEdit_textChanged(const QString &);
+
+		// automatically connected slots
+		void on_toolButtonToggleMenu_clicked();
+		void on_toolButtonConfigureFilters_clicked();
+		void on_toolButtonVisibleColumns_clicked();
+		void on_toolButtonUpdateView_clicked();
 		void on_treeView_customContextMenuRequested(const QPoint &);
 		void on_treeView_activated(const QModelIndex &);
 		void on_treeView_entered(const QModelIndex &);
@@ -58,6 +69,9 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void resizeEvent(QResizeEvent *);
 
 	private:
+		static QStringList m_savedViews;
+		static QStringList m_attachedViews;
+
 		MachineListModel *m_model;
 		QString m_currentId;
 		bool m_ignoreSelectionChange;
@@ -65,6 +79,13 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QTimer m_selectionUpdateTimer;
 		FilterConfigurationDialog *m_filterConfigurationDialog;
 		VisibleColumnSetup *m_visibleColumnSetup;
+		QMenu *m_toolsMenu;
+		QAction *m_saveViewAction;
+		QAction *m_removeViewAction;
+		QAction *m_attachViewAction;
+		QAction *m_detachViewAction;
+		QAction *m_cloneViewAction;
+		QString m_name;
 };
 
 #endif

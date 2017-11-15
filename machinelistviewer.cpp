@@ -31,12 +31,22 @@ extern bool qmc2StartEmbedded;
 extern bool qmc2IgnoreItemActivation;
 extern QList<QWidget *> qmc2ActiveViews;
 
+// static members
+QStringList MachineListViewer::m_savedViews;
+QStringList MachineListViewer::m_attachedViews;
+
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
 	m_model(0),
 	m_ignoreSelectionChange(false),
 	m_filterConfigurationDialog(0),
-	m_visibleColumnSetup(0)
+	m_visibleColumnSetup(0),
+	m_toolsMenu(0),
+	m_saveViewAction(0),
+	m_removeViewAction(0),
+	m_attachViewAction(0),
+	m_detachViewAction(0),
+	m_cloneViewAction(0)
 {
 	setupUi(this);
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -49,6 +59,38 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
+
+	m_toolsMenu = new QMenu(this);
+	m_toolsMenu->setTearOffEnabled(true);
+	m_saveViewAction = m_toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas_and_apply.png")), tr("Save"));
+	m_saveViewAction->setToolTip(tr("Save view"));
+	m_saveViewAction->setStatusTip(tr("Save view"));
+	m_saveViewAction->setEnabled(false);
+	connect(m_saveViewAction, SIGNAL(triggered(bool)), this, SLOT(saveViewAction_triggered(bool)));
+	m_removeViewAction = m_toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/broom.png")), tr("Remove"));
+	m_removeViewAction->setToolTip(tr("Remove view"));
+	m_removeViewAction->setStatusTip(tr("Remove view"));
+	m_removeViewAction->setEnabled(false);
+	connect(m_removeViewAction, SIGNAL(triggered(bool)), this, SLOT(removeViewAction_triggered(bool)));
+	m_toolsMenu->addSeparator();
+	m_attachViewAction = m_toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/plus.png")), tr("Attach"));
+	m_attachViewAction->setToolTip(tr("Attach view"));
+	m_attachViewAction->setStatusTip(tr("Attach view"));
+	m_attachViewAction->setEnabled(false);
+	connect(m_attachViewAction, SIGNAL(triggered(bool)), this, SLOT(attachViewAction_triggered(bool)));
+	m_detachViewAction = m_toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/minus.png")), tr("Detach"));
+	m_detachViewAction->setToolTip(tr("Detach view"));
+	m_detachViewAction->setStatusTip(tr("Detach view"));
+	m_detachViewAction->setEnabled(false);
+	connect(m_detachViewAction, SIGNAL(triggered(bool)), this, SLOT(detachViewAction_triggered(bool)));
+	m_toolsMenu->addSeparator();
+	m_cloneViewAction = m_toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/editcopy.png")), tr("Clone"));
+	m_cloneViewAction->setToolTip(tr("Clone view"));
+	m_cloneViewAction->setStatusTip(tr("Clone view"));
+	connect(m_cloneViewAction, SIGNAL(triggered(bool)), this, SLOT(cloneViewAction_triggered(bool)));
+	toolButtonToolsMenu->setMenu(m_toolsMenu);
+
+	connect(comboBoxViewName->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged(const QString &)));
 
 	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewSectionMoved(int, int, int)));
 	QTimer::singleShot(0, this, SLOT(init()));
@@ -66,6 +108,8 @@ MachineListViewer::~MachineListViewer()
 
 void MachineListViewer::init()
 {
+	comboBoxViewName->insertItems(0, savedViews());
+	comboBoxViewName->setCurrentIndex(-1);
 	m_filterConfigurationDialog = new FilterConfigurationDialog(this, this);
 	m_visibleColumnSetup = new VisibleColumnSetup(this);
 	m_model = new MachineListModel(treeView, this);
@@ -96,8 +140,6 @@ void MachineListViewer::adjustIconSizes()
 	QFontMetrics fm(f);
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	QSize iconSizeView(fm.height(), fm.height());
-	toolButtonSaveView->setIconSize(iconSize);
-	toolButtonCloneView->setIconSize(iconSize);
 	toolButtonViewModeToggle->setIconSize(iconSize);
 	toolButtonConfigureFilters->setIconSize(iconSize);
 	toolButtonVisibleColumns->setIconSize(iconSize);
@@ -127,11 +169,6 @@ void MachineListViewer::on_toolButtonVisibleColumns_clicked()
 		visibleColumnSetup()->showNormal();
 	visibleColumnSetup()->raise();
 	visibleColumnSetup()->exec();
-}
-
-void MachineListViewer::on_toolButtonEditQuery_clicked()
-{
-	// FIXME: there's no query editor yet
 }
 
 void MachineListViewer::on_toolButtonUpdateView_clicked()
@@ -232,6 +269,72 @@ void MachineListViewer::treeViewSectionMoved(int /* logicalIndex */, int visualF
 {
 	if ( visibleColumnSetup() )
 		visibleColumnSetup()->listWidget->insertItem(visualTo, visibleColumnSetup()->listWidget->takeItem(visualFrom));
+}
+
+void MachineListViewer::saveViewAction_triggered(bool)
+{
+	if ( !savedViews().contains(m_name) ) {
+		savedViews().append(m_name);
+		savedViews().sort();
+		comboBoxViewName->blockSignals(true);
+		comboBoxViewName->lineEdit()->blockSignals(true);
+		comboBoxViewName->clear();
+		comboBoxViewName->insertItems(0, savedViews());
+		comboBoxViewName->blockSignals(false);
+		comboBoxViewName->lineEdit()->blockSignals(false);
+	}
+	comboBoxViewName->lineEdit()->setText(m_name);
+	lineEdit_textChanged(m_name);
+}
+
+void MachineListViewer::removeViewAction_triggered(bool)
+{
+	savedViews().removeAll(m_name);
+	comboBoxViewName->blockSignals(true);
+	comboBoxViewName->lineEdit()->blockSignals(true);
+	comboBoxViewName->clear();
+	comboBoxViewName->insertItems(0, savedViews());
+	comboBoxViewName->blockSignals(false);
+	comboBoxViewName->lineEdit()->blockSignals(false);
+	comboBoxViewName->lineEdit()->setText(m_name);
+}
+
+void MachineListViewer::attachViewAction_triggered(bool)
+{
+	QMC2_PRINT_TXT(FIXME: MachineListViewer::attachViewAction_triggered(bool));
+}
+
+void MachineListViewer::detachViewAction_triggered(bool)
+{
+	QMC2_PRINT_TXT(FIXME: MachineListViewer::detachViewAction_triggered(bool));
+}
+
+void MachineListViewer::cloneViewAction_triggered(bool)
+{
+	QMC2_PRINT_TXT(FIXME: MachineListViewer::cloneViewAction_triggered(bool));
+}
+
+void MachineListViewer::lineEdit_textChanged(const QString &text)
+{
+	m_name = text;
+	if ( text.isEmpty() ) {
+		m_saveViewAction->setEnabled(false);
+		m_removeViewAction->setEnabled(false);
+		m_attachViewAction->setEnabled(false);
+		m_detachViewAction->setEnabled(false);
+		return;
+	}
+	if ( attachedViews().contains(text) ) {
+		m_saveViewAction->setEnabled(false);
+		m_removeViewAction->setEnabled(false);
+		m_attachViewAction->setEnabled(false);
+		m_detachViewAction->setEnabled(true);
+	} else {
+		m_saveViewAction->setEnabled(true);
+		m_removeViewAction->setEnabled(savedViews().contains(text));
+		m_attachViewAction->setEnabled(savedViews().contains(text));
+		m_detachViewAction->setEnabled(false);
+	}
 }
 
 void MachineListViewer::on_treeView_customContextMenuRequested(const QPoint &p)
