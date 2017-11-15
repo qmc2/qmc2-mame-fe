@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Machine list viewer</string>
+   <string notr="true">MachineListViewer</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">

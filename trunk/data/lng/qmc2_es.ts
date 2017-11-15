@@ -9556,11 +9556,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
 <context>
     <name>MachineListViewer</name>
     <message>
-        <location filename="../../machinelistviewer.ui" line="14"/>
-        <source>Machine list viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../machinelistviewer.ui" line="193"/>
         <source>Columns</source>
         <translation type="unfinished"></translation>
@@ -9647,6 +9642,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../machinelistviewer.ui" line="171"/>
         <location filename="../../machinelistviewer.ui" line="174"/>
+        <location filename="../../machinelistviewer.cpp" line="53"/>
         <source>Enter a unique name for this view or select an existing one</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9681,11 +9677,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelistviewer.ui" line="251"/>
         <location filename="../../machinelistviewer.ui" line="254"/>
         <source>Toggle menu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.cpp" line="53"/>
-        <source>Enter a unique name for this view</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

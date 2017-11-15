@@ -50,7 +50,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 {
 	setupUi(this);
 	setAttribute(Qt::WA_DeleteOnClose);
-	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view"));
+	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view or select an existing one"));
 	m_rankUpdateTimer.setSingleShot(true);
 	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
 	m_selectionUpdateTimer.setSingleShot(true);
@@ -276,12 +276,14 @@ void MachineListViewer::saveViewAction_triggered(bool)
 	if ( !savedViews().contains(m_name) ) {
 		savedViews().append(m_name);
 		savedViews().sort();
-		comboBoxViewName->blockSignals(true);
-		comboBoxViewName->lineEdit()->blockSignals(true);
-		comboBoxViewName->clear();
-		comboBoxViewName->insertItems(0, savedViews());
-		comboBoxViewName->blockSignals(false);
-		comboBoxViewName->lineEdit()->blockSignals(false);
+		foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+			v->comboBoxViewName->blockSignals(true);
+			v->comboBoxViewName->lineEdit()->blockSignals(true);
+			v->comboBoxViewName->clear();
+			v->comboBoxViewName->insertItems(0, savedViews());
+			v->comboBoxViewName->blockSignals(false);
+			v->comboBoxViewName->lineEdit()->blockSignals(false);
+		}
 	}
 	comboBoxViewName->lineEdit()->setText(m_name);
 	lineEdit_textChanged(m_name);
@@ -290,13 +292,15 @@ void MachineListViewer::saveViewAction_triggered(bool)
 void MachineListViewer::removeViewAction_triggered(bool)
 {
 	savedViews().removeAll(m_name);
-	comboBoxViewName->blockSignals(true);
-	comboBoxViewName->lineEdit()->blockSignals(true);
-	comboBoxViewName->clear();
-	comboBoxViewName->insertItems(0, savedViews());
-	comboBoxViewName->blockSignals(false);
-	comboBoxViewName->lineEdit()->blockSignals(false);
-	comboBoxViewName->lineEdit()->setText(m_name);
+	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		v->comboBoxViewName->blockSignals(true);
+		v->comboBoxViewName->lineEdit()->blockSignals(true);
+		v->comboBoxViewName->clear();
+		v->comboBoxViewName->insertItems(0, savedViews());
+		v->comboBoxViewName->blockSignals(false);
+		v->comboBoxViewName->lineEdit()->blockSignals(false);
+		v->comboBoxViewName->lineEdit()->setText(m_name);
+	}
 }
 
 void MachineListViewer::attachViewAction_triggered(bool)
@@ -322,8 +326,10 @@ void MachineListViewer::lineEdit_textChanged(const QString &text)
 		m_removeViewAction->setEnabled(false);
 		m_attachViewAction->setEnabled(false);
 		m_detachViewAction->setEnabled(false);
+		setWindowTitle("MachineListViewer");
 		return;
 	}
+	setWindowTitle("MachineListViewer :: " + text);
 	if ( attachedViews().contains(text) ) {
 		m_saveViewAction->setEnabled(false);
 		m_removeViewAction->setEnabled(false);

@@ -9537,11 +9537,6 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
 <context>
     <name>MachineListViewer</name>
     <message>
-        <location filename="../../machinelistviewer.ui" line="14"/>
-        <source>Machine list viewer</source>
-        <translation>Anzeige der Maschinenliste</translation>
-    </message>
-    <message>
         <location filename="../../machinelistviewer.ui" line="193"/>
         <source>Columns</source>
         <translation>Spalten</translation>
@@ -9628,6 +9623,7 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../machinelistviewer.ui" line="171"/>
         <location filename="../../machinelistviewer.ui" line="174"/>
+        <location filename="../../machinelistviewer.cpp" line="53"/>
         <source>Enter a unique name for this view or select an existing one</source>
         <translation>Einen Namen für diese Ansicht eingeben oder eine existierende Ansicht auswählen</translation>
     </message>
@@ -9663,11 +9659,6 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../machinelistviewer.ui" line="254"/>
         <source>Toggle menu</source>
         <translation>Werkzeug Menü ein-/ausschalten</translation>
-    </message>
-    <message>
-        <location filename="../../machinelistviewer.cpp" line="53"/>
-        <source>Enter a unique name for this view</source>
-        <translation>Einen Namen für diese Ansicht eingeben</translation>
     </message>
 </context>
 <context>
