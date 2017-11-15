@@ -21,7 +21,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, I
 	else if ( vImage )
 		setImage(vImage, true);
 	else
-		setImage(ImagePixmap(QPixmap(QString::fromUtf8(":/data/img/ghost_video.png"))), false);
+		setImage(ImagePixmap(QPixmap(QString::fromUtf8(":/data/img/video_thumbnail.png"))), false);
 	setTitle(vTitle);
 }
 

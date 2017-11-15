@@ -113,9 +113,6 @@
         <file>data/img/forum.png</file>
         <file>data/img/forward.png</file>
         <file>data/img/ghost.png</file>
-        <file>data/img/ghost_video.png</file>
-        <file>data/img/gradient1.png</file>
-        <file>data/img/gradient2.png</file>
         <file>data/img/google.png</file>
         <file>data/img/halt.png</file>
         <file>data/img/hash.png</file>
@@ -287,6 +284,7 @@
         <file>data/img/up_action.png</file>
         <file>data/img/url.png</file>
         <file>data/img/version.png</file>
+        <file>data/img/video_thumbnail.png</file>
         <file>data/img/view_detail.png</file>
         <file>data/img/view_tree.png</file>
         <file>data/img/viewmag+.png</file>

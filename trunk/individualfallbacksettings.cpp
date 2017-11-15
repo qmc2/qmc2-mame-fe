@@ -36,7 +36,7 @@ IndividualFallbackSettings::IndividualFallbackSettings(QWidget *parent)
 			  << ":/data/img/arcademode.png"
 			  << ":/data/img/circuit.png"
 			  << ":/data/img/pacman.png"
-			  << ":/data/img/ghost_video.png"
+			  << ":/data/img/video_thumbnail.png"
 			  << ":/data/img/icon.png";
 	parentFallbackKeys << QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PreviewFallback"
 			   << QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FlyerFallback"
