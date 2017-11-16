@@ -4300,12 +4300,11 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 					qmc2SystemNotesEditor->checkRevertStatus();
 				}
 
-				QString systemNotesFolder = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesFolder").toString();
-				QString systemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesTemplate").toString();
+				qmc2SystemNotesEditor->stopLoading = true;
 				bool useSystemNotesTemplate = qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UseSystemNotesTemplate").toBool();
-				QString fileName = systemNotesFolder + machineName + ".html";
+				QString fileName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesFolder").toString() + machineName + ".html");
 				qmc2SystemNotesEditor->setCurrentFileName(fileName);
-				QString parentSystem = qmc2ParentHash.value(machineName);
+				QString parentSystem(qmc2ParentHash.value(machineName));
 
 				qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
 
@@ -4340,7 +4339,6 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2SystemNotesEditor->templateMap["$EMULATOR_VARIANT$"] = QMC2_EMU_NAME_VARIANT;
 				qmc2SystemNotesEditor->templateMap["$EMULATOR_TYPE$"] = QMC2_EMU_NAME;
 				qmc2SystemNotesEditor->templateMap["$SOURCE_FILE$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_SRCFILE);
-				QString filePath;
 				QDir dataDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString());
 				QString ghostPath(QDir::fromNativeSeparators(dataDir.absolutePath() + "/img/ghost.png"));
 #if defined(QMC2_OS_WIN)
@@ -4354,6 +4352,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 #else
 				qmc2SystemNotesEditor->templateMap["$VIDEO_THUMBNAIL$"] = "file://" + videoThumbnailPath;
 #endif
+				QString filePath;
 				if ( qmc2Preview ) {
 #if defined(QMC2_OS_WIN)
 					if ( qmc2Preview->loadImage(machineName, machineName, true, &filePath, false) )
@@ -4526,8 +4525,7 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				}
 				qmc2SystemNotesEditor->templateMap["$MACHINE_INFO$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO$"];
 				qmc2SystemNotesEditor->templateMap["$MACHINE_INFO_STATUS$"] = qmc2SystemNotesEditor->templateMap["$GAME_INFO_STATUS$"];
-				qmc2SystemNotesEditor->setCurrentTemplateName(systemNotesTemplate);
-				qmc2SystemNotesEditor->stopLoading = true;
+				qmc2SystemNotesEditor->setCurrentTemplateName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SystemNotesTemplate").toString());
 				if ( QFile::exists(fileName) )
 					QTimer::singleShot(25, qmc2SystemNotesEditor, SLOT(loadCurrent()));
 				else {
