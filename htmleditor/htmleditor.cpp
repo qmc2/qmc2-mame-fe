@@ -1118,7 +1118,7 @@ QString HtmlEditor::getIconData()
 {
 	QByteArray iconData;
 	if ( qmc2CurrentItem ) {
-		QPixmap pm = qmc2CurrentItem->icon(QMC2_MACHINELIST_COLUMN_ICON).pixmap(64, 64);
+		QPixmap pm(qmc2CurrentItem->icon(QMC2_MACHINELIST_COLUMN_ICON).pixmap(64, 64));
 		QBuffer buffer(&iconData);
 		pm.save(&buffer, "PNG");
 	}
@@ -1194,7 +1194,7 @@ QString HtmlEditor::getImageData(QString imageType)
 
 QString HtmlEditor::getColor(QString currentColor)
 {
-	QColor color = QColorDialog::getColor(QColor(currentColor), this, tr("Select color"), QColorDialog::DontUseNativeDialog);
+	QColor color(QColorDialog::getColor(QColor(currentColor), this, tr("Select color"), QColorDialog::DontUseNativeDialog));
 	if ( color.isValid() )
 		return color.name();
 	else
