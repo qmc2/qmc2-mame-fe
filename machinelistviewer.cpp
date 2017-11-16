@@ -319,12 +319,19 @@ void MachineListViewer::removeViewAction_triggered(bool)
 
 void MachineListViewer::attachViewAction_triggered(bool)
 {
-	QMC2_PRINT_TXT(FIXME: MachineListViewer::attachViewAction_triggered(bool));
+	attachedViews().append(name());
+	attachedViews().sort();
+	foreach (MachineListViewer *v, MainWindow::machineListViewers)
+		v->lineEdit_textChanged(v->name());
+	// FIXME
 }
 
 void MachineListViewer::detachViewAction_triggered(bool)
 {
-	QMC2_PRINT_TXT(FIXME: MachineListViewer::detachViewAction_triggered(bool));
+	attachedViews().removeAll(name());
+	foreach (MachineListViewer *v, MainWindow::machineListViewers)
+		v->lineEdit_textChanged(v->name());
+	// FIXME
 }
 
 void MachineListViewer::cloneViewAction_triggered(bool)
