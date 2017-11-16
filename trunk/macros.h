@@ -330,6 +330,7 @@
 #define QMC2_VIEWHIERARCHY_INDEX		1
 #define QMC2_VIEWCATEGORY_INDEX			2
 #define QMC2_VIEWVERSION_INDEX			3	
+#define QMC2_VIEWCUSTOM_INDEX			4
 
 // index positions of tabs in the options dialog
 #define QMC2_OPTIONS_FRONTEND_INDEX		0

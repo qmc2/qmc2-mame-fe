@@ -138,6 +138,21 @@ void MachineListViewer::loadSavedViews()
 	}
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
 
+	QList<QAction *> actions(qmc2MainWindow->menuView->actions());
+	for (int index = actions.count() - 1; index >= viewSelectSeparatorIndex(); index--) {
+		QAction *a = actions.at(index);
+		qmc2MainWindow->menuView->removeAction(a);
+		a->disconnect();
+		delete a;
+	}
+	if ( !m_attachedViews.isEmpty() ) {
+		qmc2MainWindow->menuView->addSeparator();
+		for (int index = 0; index < m_attachedViews.count(); index++) {
+			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
+			connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
+		}
+	}
+
 	setSavedViewsLoaded(true);
 }
 
@@ -386,6 +401,20 @@ void MachineListViewer::attachViewAction_triggered(bool)
 		qmc2MainWindow->comboBoxViewSelect->setItemIcon(insertIndex, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	}
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
+
+	QList<QAction *> actions(qmc2MainWindow->menuView->actions());
+	for (int index = actions.count() - 1; index >= viewSelectSeparatorIndex(); index--) {
+		QAction *a = actions.at(index);
+		qmc2MainWindow->menuView->removeAction(a);
+		a->disconnect();
+		delete a;
+	}
+	qmc2MainWindow->menuView->addSeparator();
+	for (int index = 0; index < m_attachedViews.count(); index++) {
+		QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
+		connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
+	}
+
 }
 
 void MachineListViewer::detachViewAction_triggered(bool)
@@ -407,6 +436,21 @@ void MachineListViewer::detachViewAction_triggered(bool)
 		}
 	}
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
+
+	QList<QAction *> actions(qmc2MainWindow->menuView->actions());
+	for (int index = actions.count() - 1; index >= viewSelectSeparatorIndex(); index--) {
+		QAction *a = actions.at(index);
+		qmc2MainWindow->menuView->removeAction(a);
+		a->disconnect();
+		delete a;
+	}
+	if ( !m_attachedViews.isEmpty() ) {
+		qmc2MainWindow->menuView->addSeparator();
+		for (int index = 0; index < m_attachedViews.count(); index++) {
+			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
+			connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
+		}
+	}
 }
 
 void MachineListViewer::cloneViewAction_triggered(bool)

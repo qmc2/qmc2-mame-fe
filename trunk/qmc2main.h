@@ -558,6 +558,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		// Qt bug workarounds
 		void detailTabBarUpdate(int currentIndex);
 
+		// related to attached views
+		void showAttachedView(const QString &);
+		void attachedViewAction_triggered(bool);
+
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
