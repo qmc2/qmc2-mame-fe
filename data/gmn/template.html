@@ -164,20 +164,10 @@
 				shadowImageStyle = "style=\"max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);\"";
 			return shadowImageStyle;
 		}
-		function scrollBarWidth() {
-			document.body.style.overflow = 'hidden';
-			var width = document.body.clientWidth;
-			document.body.style.overflow = 'scroll';
-			width -= document.body.clientWidth;
-			if ( !width )
-				width = document.body.offsetWidth - document.body.clientWidth;
-			document.body.style.overflow = '';
-			return width;
-		}
 		function fitWindow() {
 			var header_obj = document.getElementById('header_div');
 			var content_obj = document.getElementById('content_div');
-			var content_height = window.innerHeight - header_obj.clientHeight - scrollBarWidth();
+			var content_height = window.innerHeight - header_obj.clientHeight;
 			content_obj.style.height = content_height;
 		}
 		function iconTag() {
@@ -308,7 +298,7 @@
 <hr>
 <script>
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
-		document.write("</div><div id=\"content_div\" style=\"overflow: auto;\">");
+		document.write("</div><div id=\"content_div\" style=\"overflow: scroll;\">");
 </script>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
