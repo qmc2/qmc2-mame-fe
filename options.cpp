@@ -1066,8 +1066,10 @@ void Options::on_pushButtonApply_clicked()
 
 	qmc2CategoryInfoUsed = catverUsed | categoryUsed;
 	qmc2VersionInfoUsed = catverUsed;
+	int viewCount = 2;
 
 	if ( qmc2CategoryInfoUsed ) {
+		viewCount++;
 		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
 			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_CATEGORY);
 		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_CATEGORY) )
@@ -1085,7 +1087,11 @@ void Options::on_pushButtonApply_clicked()
 			comboBoxSortCriteria->insertItem(comboBoxSortCriteria->count(), tr("Category"));
 		index = qmc2MainWindow->comboBoxViewSelect->findText(tr("Category view"));
 		if ( index < 0 ) {
-			index = qmc2MainWindow->comboBoxViewSelect->count();
+			for (int i = 0; i < qmc2MainWindow->comboBoxViewSelect->count() && index < 0; i++)
+				if ( qmc2MainWindow->comboBoxViewSelect->itemData(i).toInt() == -1 )
+					index = i;
+			if ( index < 0 )
+				index = qmc2MainWindow->comboBoxViewSelect->count();
 			qmc2MainWindow->comboBoxViewSelect->insertItem(index, tr("Category view"));
 			qmc2MainWindow->comboBoxViewSelect->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/category.png")));
 		}
@@ -1109,6 +1115,7 @@ void Options::on_pushButtonApply_clicked()
 	}
 
 	if ( qmc2VersionInfoUsed ) {
+		viewCount++;
 		if ( !qmc2MainWindow->treeWidgetMachineList->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
 			qmc2MainWindow->treeWidgetMachineList->showColumn(QMC2_MACHINELIST_COLUMN_VERSION);
 		if ( !qmc2MainWindow->treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_VERSION) )
@@ -1126,7 +1133,11 @@ void Options::on_pushButtonApply_clicked()
 			comboBoxSortCriteria->insertItem(comboBoxSortCriteria->count(), tr("Version"));
 		index = qmc2MainWindow->comboBoxViewSelect->findText(tr("Version view"));
 		if ( index < 0 ) {
-			index = qmc2MainWindow->comboBoxViewSelect->count();
+			for (int i = 0; i < qmc2MainWindow->comboBoxViewSelect->count() && index < 0; i++)
+				if ( qmc2MainWindow->comboBoxViewSelect->itemData(i).toInt() == -1 )
+					index = i;
+			if ( index < 0 )
+				index = qmc2MainWindow->comboBoxViewSelect->count();
 			qmc2MainWindow->comboBoxViewSelect->insertItem(index, tr("Version view"));
 			qmc2MainWindow->comboBoxViewSelect->setItemIcon(index, QIcon(QString::fromUtf8(":/data/img/version.png")));
 		}
@@ -1148,6 +1159,13 @@ void Options::on_pushButtonApply_clicked()
 		if ( index >= 0 )
 			qmc2MainWindow->comboBoxViewSelect->removeItem(index);
 	}
+
+#if defined(QMC2_WIP_ENABLED)
+	// load saved and attached views
+	MachineListViewer::setViewSelectSeparatorIndex(viewCount);
+	if ( !MachineListViewer::savedViewsLoaded() )
+		MachineListViewer::loadSavedViews();
+#endif
 
 	if ( qmc2ToolBarCustomizer )
 		QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(refreshAvailableActions()));
