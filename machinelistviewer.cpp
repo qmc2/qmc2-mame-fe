@@ -100,6 +100,8 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 				attachedViews() << v;
 		}
 		qmc2Config->endGroup();
+		savedViews().sort();
+		attachedViews().sort();
 		m_savedViewsLoaded = true;
 	}
 
