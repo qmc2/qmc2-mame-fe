@@ -32,6 +32,9 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QStringList &attachedViews() { return m_attachedViews; }
 		QString &name() { return m_name; }
 
+		void settingsSaveView();
+		void settingsRemoveView();
+
 	public slots:
 		void init();
 		void adjustIconSizes();
@@ -72,6 +75,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 	private:
 		static QStringList m_savedViews;
 		static QStringList m_attachedViews;
+		static bool m_savedViewsLoaded;
 
 		MachineListModel *m_model;
 		QString m_currentId;

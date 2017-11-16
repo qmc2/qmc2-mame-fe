@@ -632,6 +632,7 @@
 #define QMC2_EMU_NAME				QString("MAME")
 #define QMC2_EMU_NAME_VARIANT			QString("MAME")
 #endif
+#define QMC2_VIEWS_PREFIX			QString("Views/")
 
 // Mac OS X uses "~/Library/Application Support/app" rather than "~/.app"
 #define QMC2_SYSCONF_PATH			(QString(XSTR(SYSCONFDIR)).replace(QChar(':'), QLatin1String(" ")) + "/qmc2")

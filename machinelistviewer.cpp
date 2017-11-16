@@ -34,6 +34,7 @@ extern QList<QWidget *> qmc2ActiveViews;
 // static members
 QStringList MachineListViewer::m_savedViews;
 QStringList MachineListViewer::m_attachedViews;
+bool MachineListViewer::m_savedViewsLoaded = false;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
@@ -91,9 +92,20 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	connect(m_cloneViewAction, SIGNAL(triggered(bool)), this, SLOT(cloneViewAction_triggered(bool)));
 	toolButtonToolsMenu->setMenu(m_toolsMenu);
 
-	connect(comboBoxViewName->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged(const QString &)));
+	if ( !m_savedViewsLoaded ) {
+		qmc2Config->beginGroup(QMC2_VIEWS_PREFIX);
+		foreach (QString v, qmc2Config->childGroups()) {
+			savedViews() << v;
+			if ( qmc2Config->value(v + "/Attached", false).toBool() )
+				attachedViews() << v;
+		}
+		qmc2Config->endGroup();
+		m_savedViewsLoaded = true;
+	}
 
+	connect(comboBoxViewName->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged(const QString &)));
 	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewSectionMoved(int, int, int)));
+
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -232,6 +244,21 @@ void MachineListViewer::mainSelectionChanged(const QString &id)
 	}
 }
 
+void MachineListViewer::settingsSaveView()
+{
+	if ( name().isEmpty() )
+		return;
+	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", false);
+	// FIXME
+}
+
+void MachineListViewer::settingsRemoveView()
+{
+	if ( name().isEmpty() )
+		return;
+	qmc2Config->remove(QMC2_VIEWS_PREFIX + name());
+}
+
 void MachineListViewer::mainTagChanged(const QString &id, bool tagged)
 {
 	MachineListModelItem *item = model()->itemHash().value(id);
@@ -276,6 +303,7 @@ void MachineListViewer::saveViewAction_triggered(bool)
 {
 	if ( !savedViews().contains(name()) ) {
 		savedViews().append(name());
+		settingsSaveView();
 		savedViews().sort();
 		foreach (MachineListViewer *v, MainWindow::machineListViewers) {
 			v->comboBoxViewName->blockSignals(true);
@@ -302,6 +330,7 @@ void MachineListViewer::saveViewAction_triggered(bool)
 void MachineListViewer::removeViewAction_triggered(bool)
 {
 	savedViews().removeAll(name());
+	settingsRemoveView();
 	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
 		v->comboBoxViewName->blockSignals(true);
 		v->comboBoxViewName->lineEdit()->blockSignals(true);
@@ -323,6 +352,7 @@ void MachineListViewer::attachViewAction_triggered(bool)
 	attachedViews().sort();
 	foreach (MachineListViewer *v, MainWindow::machineListViewers)
 		v->lineEdit_textChanged(v->name());
+	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", true);
 	// FIXME
 }
 
@@ -331,6 +361,7 @@ void MachineListViewer::detachViewAction_triggered(bool)
 	attachedViews().removeAll(name());
 	foreach (MachineListViewer *v, MainWindow::machineListViewers)
 		v->lineEdit_textChanged(v->name());
+	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", false);
 	// FIXME
 }
 
