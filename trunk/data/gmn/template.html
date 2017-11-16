@@ -78,8 +78,6 @@
 		.fancyImageStyle {
 			max-height: 300px;
 			max-width: 100%;
-			opacity: 0;
-			-webkit-transition: opacity 1s;
 			border-radius: 10px;
 		}
 	</style>
@@ -242,7 +240,7 @@
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
 		<td width="50%" align="left" valign="top"><h2>$DESCRIPTION$</h2></td>
-		<td width="50%" nowrap align="right" valign="top">
+		<td width="50%" align="right" valign="top" nowrap>
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
 					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>&nbsp;");
