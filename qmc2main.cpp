@@ -3334,6 +3334,9 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 						treeWidgetVersionView->setFocus();
 						QTimer::singleShot(0, this, SLOT(viewByVersion()));
 						break;
+					case QMC2_VIEWCUSTOM_INDEX:
+						// FIXME
+						break;
 					case QMC2_VIEWMACHINELIST_INDEX:
 					default:
 						treeWidgetMachineList->activateWindow();
@@ -3711,6 +3714,9 @@ void MainWindow::scrollToCurrentItem()
 					}
 				}
 				break;
+			case QMC2_VIEWCUSTOM_INDEX:
+				// FIXME
+				break;
 			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
 				qmc2CheckItemVisibility = false;
@@ -3810,6 +3816,18 @@ void MainWindow::detailTabBarUpdate(int currentIndex)
 			tabBar->blockSignals(false);
 		}
 	}
+}
+
+void MainWindow::showAttachedView(const QString &name)
+{
+	QMC2_PRINT_TXT(FIXME: MainWindow::showAttachedView(const QString &));
+	QMC2_PRINT_STR(name);
+}
+
+void MainWindow::attachedViewAction_triggered(bool)
+{
+	QAction *a = (QAction *)sender();
+	showAttachedView(a->text());
 }
 
 void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
@@ -5449,6 +5467,9 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			actionUntagVisible->setVisible(false);
 			actionInvertVisibleTags->setVisible(false);
 			break;
+		case QMC2_VIEWCUSTOM_INDEX:
+			// FIXME
+			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
 			toolButtonSelectRomFilter->setVisible(romFilterActive);
@@ -5509,6 +5530,11 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 					versionItem->setSelected(true);
 				}
 				treeWidgetVersionView_verticalScrollChanged();
+			}
+			break;
+		case QMC2_VIEWCUSTOM_INDEX:
+			if ( !qmc2ReloadActive ) {
+				// FIXME
 			}
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
@@ -6136,6 +6162,9 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 					break;
 				case QMC2_VIEWVERSION_INDEX:
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
+					break;
+				case QMC2_VIEWCUSTOM_INDEX:
+					// FIXME
 					break;
 				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
@@ -8053,6 +8082,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 	if ( tabWidgetMachineList->indexOf(tabMachineList) != tabWidgetMachineList->currentIndex() )
 		return;
 
+	bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 	switch ( index ) {
 		case QMC2_VIEWHIERARCHY_INDEX:
 			toolButtonSelectRomFilter->setVisible(false);
@@ -8079,15 +8109,16 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 			viewByVersion();
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
-		default: {
-			bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 			toolButtonSelectRomFilter->setVisible(romFilterActive);
 			actionTagVisible->setVisible(romFilterActive);
 			actionUntagVisible->setVisible(romFilterActive);
 			actionInvertVisibleTags->setVisible(romFilterActive);
 			viewFullDetail();
 			break;
-		}
+		default:
+			// FIXME
+			showAttachedView(comboBoxViewSelect->itemText(index));
+			break;
 	}
 }
 
@@ -10118,6 +10149,9 @@ void MainWindow::updateUserData()
 				break;
 			case QMC2_VIEWVERSION_INDEX:
 				treeWidgetVersionView_verticalScrollChanged();
+				break;
+			case QMC2_VIEWCUSTOM_INDEX:
+				// FIXME
 				break;
 			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
