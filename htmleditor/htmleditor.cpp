@@ -110,8 +110,16 @@ extern bool qmc2ParentImageFallback;
 extern QHash<QString, QString> qmc2ParentHash;
 extern QHash<QString, QString> softwareParentHash;
 
-HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent)
-	: QMainWindow(parent), ui(new Ui_HTMLEditorMainWindow), htmlDirty(false), wysiwygDirty(false), highlighter(0), ui_dialog(0), insertHtmlDialog(0), ui_tablePropertyDialog(0), tablePropertyDialog(0)
+HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent) :
+	QMainWindow(parent),
+	ui(new Ui_HTMLEditorMainWindow),
+	htmlDirty(false),
+	wysiwygDirty(false),
+	highlighter(0),
+	ui_dialog(0),
+	insertHtmlDialog(0),
+	ui_tablePropertyDialog(0),
+	tablePropertyDialog(0)
 {
 	ui->setupUi(this);
 

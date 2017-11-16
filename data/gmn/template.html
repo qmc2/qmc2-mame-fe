@@ -241,8 +241,8 @@
 </script>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr>
-		<td width="70%" nowrap align="left"><h2>$DESCRIPTION$</h2></td>
-		<td width="30%" nowrap align="right">
+		<td width="50%" align="left" valign="top"><h2>$DESCRIPTION$</h2></td>
+		<td width="50%" nowrap align="right" valign="top">
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
 					document.write("<input name=\"cbHeaderFixed\" type=\"checkbox\" id=\"cbHeaderFixed\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleHeaderFixed(this.checked);\" title=\"" + tr('Use a fixed header (not scrolling away)?') + "\"/><label style=\"vertical-align: middle;\" for=\"cbHeaderFixed\">" + tr('Fixed header') + "</label>&nbsp;");
@@ -363,30 +363,30 @@
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 					if ( qmc2NEO.isZippedImage('cab') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('cab') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('cab') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('prv') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('prv') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('prv') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('fly') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('fly') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('fly') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				} else {
 					if ( qmc2NEO.isZippedImage('cab') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('cab') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('cab') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('prv') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('prv') + "\"</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('prv') + "\"</td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('fly') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('fly') + "\"</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('fly') + "\"</td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
@@ -401,30 +401,30 @@
 			<script>
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 					if ( qmc2NEO.isZippedImage('ctl') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ctl') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ctl') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('mrq') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('mrq') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('mrq') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('pcb') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('pcb') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('pcb') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				} else {
 					if ( qmc2NEO.isZippedImage('ctl') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ctl') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ctl') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('mrq') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('mrq') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('mrq') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + "</td>");
 					if ( qmc2NEO.isZippedImage('pcb') )
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('pcb') + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('pcb') + "\"></td>");
 					else
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$") + "</td>");
 				}
 			</script>
 		</tr>
@@ -440,17 +440,17 @@
 		<script>
 			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 				if ( qmc2NEO.isZippedImage('ttl') )
-					document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td>");
 				else
-					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 			} else {
 				if ( qmc2NEO.isZippedImage('ttl') )
-					document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.getImageData('ttl') + "\"></td>");
 				else
-					document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + "</td>");
 			}
 			if ( vsUrls.length > 0 ) {
-				document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><video " + dropShadow() + "width=\"100%\" loop controls poster=\"$VIDEO_THUMBNAIL$\">");
+				document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><video " + dropShadow() + "width=\"100%\" loop controls poster=\"$VIDEO_THUMBNAIL$\">");
 				for (var i = 0; i < vsUrls.length; i++)
 					document.write("<source src=\"" + vsUrls[i] + "\" />");
 				document.write("</video></td>");
@@ -475,17 +475,17 @@
 				var artworkName = customArtworkNames[i];
 				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/FancyImages'] == 'true' ) {
 					if ( qmc2NEO.customArtworkZipped(artworkName) ) {
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.customSystemArtworkData('$ID$', artworkName) + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"data:image/png;base64," + qmc2NEO.customSystemArtworkData('$ID$', artworkName) + "\"></td>");
 					} else {
 						var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkName);
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "class=\"fancyImageStyle\" onload=\"this.style.opacity='1';\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
 					}
 				} else {
 					if ( qmc2NEO.customArtworkZipped(artworkName) ) {
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.customSystemArtworkData('$ID$', artworkName) + "\"></td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + qmc2NEO.customSystemArtworkData('$ID$', artworkName) + "\"></td>");
 					} else {
 						var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkName);
-						document.write("<td width=\"33%\" valign=\"center\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
 					}
 				}
 				i++;
@@ -500,20 +500,18 @@
 <h3><script>document.write(tr('Emulator info'));</script></h3>
 <p>$EMU_INFO$</p>
 <script>
-	if ( "$EMULATOR_TYPE$" == "MESS" ) {
-		document.write("<h3>" + tr('Software lists') + "</h3>");
-		if ( qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/softwarelist/@name/string()") ) {
-			var result = qmc2NEO.getXmlResult();
-			if ( result.length > 0 ) {
-				document.write("<p>" +  tr('Associated software-lists:'));
-				for (var i = 0; i < result.length; i++)
-					document.write((i > 0 ? ", " : " ") + result[i]);
-				document.write("</p>");
-			} else
-				document.write("<p>" + tr('This system has no associated software-lists.') +"</p>");
+	document.write("<h3>" + tr('Software lists') + "</h3>");
+	if ( qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/softwarelist/@name/string()") ) {
+		var result = qmc2NEO.getXmlResult();
+		if ( result.length > 0 ) {
+			document.write("<p>" +  tr('Associated software-lists:'));
+			for (var i = 0; i < result.length; i++)
+				document.write((i > 0 ? ", " : " ") + result[i]);
+			document.write("</p>");
 		} else
-			document.write(tr('XML query error!'));
-	}
+			document.write("<p>" + tr('This system has no associated software-lists.') +"</p>");
+	} else
+		document.write(tr('XML query error!'));
 </script>
 <script>
 	if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/HeaderFixed'] == 'true' )
