@@ -35,6 +35,12 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void settingsSaveView();
 		void settingsRemoveView();
 
+		static void loadSavedViews();
+		static void setSavedViewsLoaded(bool loaded = true) { m_savedViewsLoaded = loaded; }
+		static bool savedViewsLoaded() { return m_savedViewsLoaded; }
+		static void setViewSelectSeparatorIndex(int index) { m_viewSelectSeparatorIndex = index; }
+		static int viewSelectSeparatorIndex() { return m_viewSelectSeparatorIndex; }
+
 	public slots:
 		void init();
 		void adjustIconSizes();
@@ -76,6 +82,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		static QStringList m_savedViews;
 		static QStringList m_attachedViews;
 		static bool m_savedViewsLoaded;
+		static int m_viewSelectSeparatorIndex;
 
 		MachineListModel *m_model;
 		QString m_currentId;

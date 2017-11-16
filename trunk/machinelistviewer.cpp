@@ -35,6 +35,7 @@ extern QList<QWidget *> qmc2ActiveViews;
 QStringList MachineListViewer::m_savedViews;
 QStringList MachineListViewer::m_attachedViews;
 bool MachineListViewer::m_savedViewsLoaded = false;
+int MachineListViewer::m_viewSelectSeparatorIndex = -1;
 
 MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
@@ -92,18 +93,8 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	connect(m_cloneViewAction, SIGNAL(triggered(bool)), this, SLOT(cloneViewAction_triggered(bool)));
 	toolButtonToolsMenu->setMenu(m_toolsMenu);
 
-	if ( !m_savedViewsLoaded ) {
-		qmc2Config->beginGroup(QMC2_VIEWS_PREFIX);
-		foreach (QString v, qmc2Config->childGroups()) {
-			savedViews() << v;
-			if ( qmc2Config->value(v + "/Attached", false).toBool() )
-				attachedViews() << v;
-		}
-		qmc2Config->endGroup();
-		savedViews().sort();
-		attachedViews().sort();
-		m_savedViewsLoaded = true;
-	}
+	if ( !savedViewsLoaded() )
+		loadSavedViews();
 
 	connect(comboBoxViewName->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged(const QString &)));
 	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewSectionMoved(int, int, int)));
@@ -119,6 +110,35 @@ MachineListViewer::~MachineListViewer()
 	delete model();
 	delete filterConfigurationDialog();
 	delete visibleColumnSetup();
+}
+
+void MachineListViewer::loadSavedViews()
+{
+	qmc2Config->beginGroup(QMC2_VIEWS_PREFIX);
+	foreach (QString v, qmc2Config->childGroups()) {
+		m_savedViews << v;
+		if ( qmc2Config->value(v + "/Attached", false).toBool() )
+			m_attachedViews << v;
+	}
+	qmc2Config->endGroup();
+	m_savedViews.sort();
+	m_attachedViews.sort();
+
+	qmc2MainWindow->comboBoxViewSelect->blockSignals(true);
+	for (int index = qmc2MainWindow->comboBoxViewSelect->count() - 1; index >= viewSelectSeparatorIndex(); index--)
+		qmc2MainWindow->comboBoxViewSelect->removeItem(index);
+	if ( !m_attachedViews.isEmpty() ) {
+		qmc2MainWindow->comboBoxViewSelect->insertSeparator(viewSelectSeparatorIndex());
+		qmc2MainWindow->comboBoxViewSelect->setItemData(viewSelectSeparatorIndex(), -1);
+		for (int index = 0; index < m_attachedViews.count(); index++) {
+			int insertIndex = viewSelectSeparatorIndex() + index + 1;
+			qmc2MainWindow->comboBoxViewSelect->insertItem(insertIndex, m_attachedViews.at(index));
+			qmc2MainWindow->comboBoxViewSelect->setItemIcon(insertIndex, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+		}
+	}
+	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
+
+	setSavedViewsLoaded(true);
 }
 
 void MachineListViewer::init()
@@ -355,7 +375,17 @@ void MachineListViewer::attachViewAction_triggered(bool)
 	foreach (MachineListViewer *v, MainWindow::machineListViewers)
 		v->lineEdit_textChanged(v->name());
 	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", true);
-	// FIXME
+	qmc2MainWindow->comboBoxViewSelect->blockSignals(true);
+	for (int index = qmc2MainWindow->comboBoxViewSelect->count() - 1; index >= viewSelectSeparatorIndex(); index--)
+		qmc2MainWindow->comboBoxViewSelect->removeItem(index);
+	qmc2MainWindow->comboBoxViewSelect->insertSeparator(viewSelectSeparatorIndex());
+	qmc2MainWindow->comboBoxViewSelect->setItemData(viewSelectSeparatorIndex(), -1);
+	for (int index = 0; index < attachedViews().count(); index++) {
+		int insertIndex = viewSelectSeparatorIndex() + index + 1;
+		qmc2MainWindow->comboBoxViewSelect->insertItem(insertIndex, attachedViews().at(index));
+		qmc2MainWindow->comboBoxViewSelect->setItemIcon(insertIndex, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+	}
+	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
 }
 
 void MachineListViewer::detachViewAction_triggered(bool)
@@ -364,7 +394,19 @@ void MachineListViewer::detachViewAction_triggered(bool)
 	foreach (MachineListViewer *v, MainWindow::machineListViewers)
 		v->lineEdit_textChanged(v->name());
 	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", false);
-	// FIXME
+	qmc2MainWindow->comboBoxViewSelect->blockSignals(true);
+	for (int index = qmc2MainWindow->comboBoxViewSelect->count() - 1; index >= viewSelectSeparatorIndex(); index--)
+		qmc2MainWindow->comboBoxViewSelect->removeItem(index);
+	if ( !attachedViews().isEmpty() ) {
+		qmc2MainWindow->comboBoxViewSelect->insertSeparator(viewSelectSeparatorIndex());
+		qmc2MainWindow->comboBoxViewSelect->setItemData(viewSelectSeparatorIndex(), -1);
+		for (int index = 0; index < attachedViews().count(); index++) {
+			int insertIndex = viewSelectSeparatorIndex() + index + 1;
+			qmc2MainWindow->comboBoxViewSelect->insertItem(insertIndex, attachedViews().at(index));
+			qmc2MainWindow->comboBoxViewSelect->setItemIcon(insertIndex, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+		}
+	}
+	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
 }
 
 void MachineListViewer::cloneViewAction_triggered(bool)
