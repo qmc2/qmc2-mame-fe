@@ -71,6 +71,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void on_treeView_activated(const QModelIndex &);
 		void on_treeView_entered(const QModelIndex &);
 		void on_treeView_clicked(const QModelIndex &);
+		void on_comboBoxViewName_activated(const QString &);
 
 	signals:
 		void selectionChanged(const QString &);
