@@ -34,6 +34,8 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 
 		void settingsSaveView();
 		void settingsRemoveView();
+		void loadView(const QString &);
+		void saveView();
 
 		static void loadSavedViews();
 		static void setSavedViewsLoaded(bool loaded = true) { m_savedViewsLoaded = loaded; }
@@ -88,6 +90,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		MachineListModel *m_model;
 		QString m_currentId;
 		bool m_ignoreSelectionChange;
+		bool m_initCalled;
 		QTimer m_rankUpdateTimer;
 		QTimer m_selectionUpdateTimer;
 		FilterConfigurationDialog *m_filterConfigurationDialog;

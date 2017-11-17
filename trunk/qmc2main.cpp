@@ -318,7 +318,8 @@ MainWindow::MainWindow(QWidget *parent) :
 #if defined(QMC2_YOUTUBE_ENABLED)
 	m_videoInfoMapLoaded(false),
 #endif
-	m_lastMlvSender(0)
+	m_lastMlvSender(0),
+	m_attachedViewer(0)
 {
 	setUpdatesEnabled(false);
 	setVisible(false);
@@ -3343,7 +3344,10 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 						QTimer::singleShot(0, this, SLOT(viewByVersion()));
 						break;
 					case QMC2_VIEWCUSTOM_INDEX:
-						// FIXME
+						if ( attachedViewer() ) {
+							attachedViewer()->activateWindow();
+							attachedViewer()->treeView->setFocus();
+						}
 						break;
 					case QMC2_VIEWMACHINELIST_INDEX:
 					default:
@@ -3828,14 +3832,48 @@ void MainWindow::detailTabBarUpdate(int currentIndex)
 
 void MainWindow::showAttachedView(const QString &name)
 {
-	QMC2_PRINT_TXT(FIXME: MainWindow::showAttachedView(const QString &));
-	QMC2_PRINT_STR(name);
+	stackedWidgetView->setCurrentIndex(QMC2_VIEWCUSTOM_INDEX);
+	if ( !attachedViewer() ) {
+		m_attachedViewer = new MachineListViewer(attachedViewsPage);
+		bool visible = qmc2MachineList->initialLoad ? false : attachedViewsWidget->isVisible();
+		attachedViewer()->setVisible(visible);
+		machineListViewers.append(attachedViewer());
+		connect(attachedViewer(), SIGNAL(selectionChanged(const QString &)), this, SLOT(machineListViewer_selectionChanged(const QString &)));
+		connect(attachedViewer(), SIGNAL(tagChanged(const QString &, bool)), this, SLOT(machineListViewer_tagChanged(const QString &, bool)));
+		connect(this, SIGNAL(selectionChanged(const QString &)), attachedViewer(), SLOT(mainSelectionChanged(const QString &)));
+		gridLayoutAttachedViewsPage->removeWidget(attachedViewsWidget);
+		delete attachedViewsWidget;
+		attachedViewer()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+		gridLayoutAttachedViewsPage->addWidget(attachedViewer(), 0, 0);
+		attachedViewsWidget = (QWidget *)attachedViewer();
+		attachedViewer()->loadView(name);
+	} else {
+		if ( name != attachedViewer()->name() ) {
+			attachedViewer()->saveView();
+			attachedViewer()->loadView(name);
+		}
+	}
+
+	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
+	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
+#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
+	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
+		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
+			index--;
+#endif
+	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
+	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
+		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators) < 0 )
+			index--;
+	qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 }
 
 void MainWindow::attachedViewAction_triggered(bool)
 {
 	QAction *a = (QAction *)sender();
-	showAttachedView(a->text());
+	if ( a )
+		showAttachedView(a->text());
 }
 
 void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
@@ -5785,6 +5823,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 			delete item;
 		}
 	}
+
+	if ( attachedViewer() )
+		attachedViewer()->saveView();
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( !qmc2YouTubeVideoInfoHash.isEmpty() && qmc2YouTubeVideoInfoHashChanged ) {

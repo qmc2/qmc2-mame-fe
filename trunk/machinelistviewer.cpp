@@ -41,6 +41,7 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	QWidget(parent),
 	m_model(0),
 	m_ignoreSelectionChange(false),
+	m_initCalled(false),
 	m_filterConfigurationDialog(0),
 	m_visibleColumnSetup(0),
 	m_toolsMenu(0),
@@ -99,7 +100,8 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	connect(comboBoxViewName->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged(const QString &)));
 	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewSectionMoved(int, int, int)));
 
-	QTimer::singleShot(0, this, SLOT(init()));
+	if ( !parent )
+		QTimer::singleShot(0, this, SLOT(init()));
 }
 
 MachineListViewer::~MachineListViewer()
@@ -160,6 +162,8 @@ void MachineListViewer::loadSavedViews()
 
 void MachineListViewer::init()
 {
+	if ( m_initCalled )
+		return;
 	comboBoxViewName->insertItems(0, savedViews());
 	comboBoxViewName->setCurrentIndex(-1);
 	m_filterConfigurationDialog = new FilterConfigurationDialog(this, this);
@@ -183,6 +187,7 @@ void MachineListViewer::init()
 	connect(treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
 	connect(treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeViewVerticalScrollChanged(int)));
 	treeView->setFocus();
+	m_initCalled = true;
 }
 
 void MachineListViewer::adjustIconSizes()
@@ -288,7 +293,7 @@ void MachineListViewer::settingsSaveView()
 	if ( name().isEmpty() )
 		return;
 	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", false);
-	// FIXME
+	saveView();
 }
 
 void MachineListViewer::settingsRemoveView()
@@ -296,6 +301,30 @@ void MachineListViewer::settingsRemoveView()
 	if ( name().isEmpty() )
 		return;
 	qmc2Config->remove(QMC2_VIEWS_PREFIX + name());
+}
+
+void MachineListViewer::loadView(const QString &viewName)
+{
+	if ( viewName.isEmpty() )
+		return;
+	treeView->header()->restoreState(qmc2Config->value(QMC2_VIEWS_PREFIX + viewName + "/HeaderState", QByteArray()).toByteArray());
+	// FIXME
+	if ( !m_initCalled ) {
+		init();
+		comboBoxViewName->lineEdit()->setText(viewName);
+	} else {
+		comboBoxViewName->lineEdit()->setText(viewName);
+		treeView->setFocus();
+		on_toolButtonUpdateView_clicked();
+	}
+}
+
+void MachineListViewer::saveView()
+{
+	if ( name().isEmpty() )
+		return;
+	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/HeaderState", treeView->header()->saveState());
+	// FIXME
 }
 
 void MachineListViewer::mainTagChanged(const QString &id, bool tagged)
@@ -563,18 +592,25 @@ void MachineListViewer::on_treeView_clicked(const QModelIndex &index)
 void MachineListViewer::showEvent(QShowEvent *e)
 {
 	adjustIconSizes();
-	widgetMenu->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", true).toBool());
-	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", QByteArray()).toByteArray());
-	treeView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", QByteArray()).toByteArray());
+	if ( this != qmc2MainWindow->attachedViewer() ) {
+		widgetMenu->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", true).toBool());
+		restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", QByteArray()).toByteArray());
+		treeView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", QByteArray()).toByteArray());
+	} else {
+		widgetMenu->setVisible(false);
+		toolButtonToggleMenu->setVisible(false);
+	}
 	if ( e )
 		QWidget::showEvent(e);
 }
 
 void MachineListViewer::hideEvent(QHideEvent *e)
 {
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", saveGeometry());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", treeView->header()->saveState());
+	if ( this != qmc2MainWindow->attachedViewer() ) {
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/MenuActive", widgetMenu->isVisible());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/Geometry", saveGeometry());
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MachineListViewer/HeaderState", treeView->header()->saveState());
+	}
 	if ( e )
 		QWidget::hideEvent(e);
 }
