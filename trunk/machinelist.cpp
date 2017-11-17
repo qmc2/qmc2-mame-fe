@@ -683,14 +683,26 @@ void MachineList::load()
 		qmc2MainWindow->treeWidgetMachineList->setVisible(false);
 		((AspectRatioLabel *)qmc2MainWindow->labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
 		qmc2MainWindow->labelLoadingMachineList->setVisible(true);
+
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
 		((AspectRatioLabel *)qmc2MainWindow->labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
+
+		qmc2MainWindow->treeWidgetCategoryView->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelCreatingCategoryView->setVisible(true);
+
+		qmc2MainWindow->treeWidgetVersionView->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelCreatingVersionView->setVisible(true);
+
 		qmc2MainWindow->attachedViewsWidget->setVisible(false);
 		((AspectRatioLabel *)qmc2MainWindow->labelLoadingAttachedViews)->setLabelText(tr("Loading, please wait..."));
 		qmc2MainWindow->labelLoadingAttachedViews->setVisible(true);
+
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 			qmc2MainWindow->loadAnimMovie->start();
+
 		qApp->processEvents();
 	}
 	if ( emulatorVersion == xmlDb()->emulatorVersion() && xmlDb()->xmlRowCount() > 0 ) {
