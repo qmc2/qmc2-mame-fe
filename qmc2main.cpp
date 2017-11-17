@@ -6365,11 +6365,23 @@ void MainWindow::init()
 	treeWidgetMachineList->setVisible(false);
 	((AspectRatioLabel *)labelLoadingMachineList)->setLabelText(tr("Loading, please wait..."));
 	labelLoadingMachineList->setVisible(true);
+
 	treeWidgetHierarchy->setVisible(false);
 	((AspectRatioLabel *)labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
 	labelLoadingHierarchy->setVisible(true);
+
+	treeWidgetCategoryView->setVisible(false);
+	((AspectRatioLabel *)labelCreatingCategoryView)->setLabelText(tr("Loading, please wait..."));
+	labelCreatingCategoryView->setVisible(true);
+
+	treeWidgetVersionView->setVisible(false);
+	((AspectRatioLabel *)labelCreatingVersionView)->setLabelText(tr("Loading, please wait..."));
+	labelCreatingVersionView->setVisible(true);
+
+	attachedViewsWidget->setVisible(false);
 	((AspectRatioLabel *)labelLoadingAttachedViews)->setLabelText(tr("Loading, please wait..."));
 	labelLoadingAttachedViews->setVisible(true);
+
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 		loadAnimMovie->start();
 
