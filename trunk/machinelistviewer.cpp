@@ -589,6 +589,11 @@ void MachineListViewer::on_treeView_clicked(const QModelIndex &index)
 	}
 }
 
+void MachineListViewer::on_comboBoxViewName_activated(const QString &viewName)
+{
+	loadView(viewName);
+}
+
 void MachineListViewer::showEvent(QShowEvent *e)
 {
 	adjustIconSizes();
