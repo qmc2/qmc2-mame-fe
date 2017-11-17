@@ -727,6 +727,10 @@ void MachineList::load()
 					case QMC2_VIEWVERSION_INDEX:
 						qmc2MainWindow->treeWidgetVersionView->setFocus();
 						break;
+					case QMC2_VIEWCUSTOM_INDEX:
+						if ( qmc2MainWindow->attachedViewer() )
+							qmc2MainWindow->attachedViewer()->treeView->setFocus();
+						break;
 					case QMC2_VIEWMACHINELIST_INDEX:
 					default:
 						qmc2MainWindow->treeWidgetMachineList->setFocus();
@@ -742,6 +746,8 @@ void MachineList::load()
 					break;
 				case QMC2_VIEWVERSION_INDEX:
 					qmc2MainWindow->treeWidgetVersionView_verticalScrollChanged();
+					break;
+				case QMC2_VIEWCUSTOM_INDEX:
 					break;
 				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
