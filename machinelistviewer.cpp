@@ -149,6 +149,8 @@ void MachineListViewer::loadSavedViews()
 		qmc2MainWindow->menuView->addSeparator();
 		for (int index = 0; index < m_attachedViews.count(); index++) {
 			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
+			a->setToolTip(tr("Show attached view '%1'").arg(m_attachedViews.at(index)));
+			a->setStatusTip(a->toolTip());
 			connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
 		}
 	}
@@ -410,8 +412,10 @@ void MachineListViewer::attachViewAction_triggered(bool)
 		delete a;
 	}
 	qmc2MainWindow->menuView->addSeparator();
-	for (int index = 0; index < m_attachedViews.count(); index++) {
-		QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
+	for (int index = 0; index < attachedViews().count(); index++) {
+		QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), attachedViews().at(index));
+		a->setToolTip(tr("Show attached view '%1'").arg(attachedViews().at(index)));
+		a->setStatusTip(a->toolTip());
 		connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
 	}
 
@@ -444,10 +448,12 @@ void MachineListViewer::detachViewAction_triggered(bool)
 		a->disconnect();
 		delete a;
 	}
-	if ( !m_attachedViews.isEmpty() ) {
+	if ( !attachedViews().isEmpty() ) {
 		qmc2MainWindow->menuView->addSeparator();
-		for (int index = 0; index < m_attachedViews.count(); index++) {
-			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
+		for (int index = 0; index < attachedViews().count(); index++) {
+			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), attachedViews().at(index));
+			a->setToolTip(tr("Show attached view '%1'").arg(attachedViews().at(index)));
+			a->setStatusTip(a->toolTip());
 			connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
 		}
 	}
