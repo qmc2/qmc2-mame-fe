@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>935</width>
-    <height>582</height>
+    <width>1093</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,10 +55,118 @@
          <property name="spacing">
           <number>0</number>
          </property>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayoutViewSelect" stretch="3,2,1,0">
+           <property name="spacing">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="labelMachineListStatus">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
+             </property>
+             <property name="statusTip">
+              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
+             </property>
+             <property name="text">
+              <string>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="progressBarMachineList">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Progress indicator for machine list processing</string>
+             </property>
+             <property name="statusTip">
+              <string>Progress indicator for machine list processing</string>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBoxViewSelect">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Switch machine list view</string>
+             </property>
+             <property name="statusTip">
+              <string>Switch machine list view</string>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+             </property>
+             <item>
+              <property name="text">
+               <string>Full detail view</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Hierarchical view</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="toolButtonSelectRomFilter">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Toggle individual ROM states</string>
+             </property>
+             <property name="statusTip">
+              <string>Toggle individual ROM states</string>
+             </property>
+             <property name="icon">
+              <iconset resource="qmc2.qrc">
+               <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+             </property>
+             <property name="popupMode">
+              <enum>QToolButton::InstantPopup</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
          <item row="0" column="0">
           <widget class="QStackedWidget" name="stackedWidgetView">
            <property name="currentIndex">
-            <number>0</number>
+            <number>4</number>
            </property>
            <widget class="QWidget" name="machineListPage">
             <layout class="QGridLayout" name="gridLayoutMachineListPage">
@@ -649,115 +757,43 @@
              </item>
             </layout>
            </widget>
+           <widget class="QWidget" name="attachedViewsPage">
+            <layout class="QGridLayout" name="gridLayoutAttachedViewsPage">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="attachedViewsWidget" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelLoadingAttachedViews">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
-         </item>
-         <item row="1" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayoutViewSelect" stretch="3,2,1,0">
-           <property name="spacing">
-            <number>2</number>
-           </property>
-           <property name="topMargin">
-            <number>2</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="labelMachineListStatus">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
-             </property>
-             <property name="statusTip">
-              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
-             </property>
-             <property name="text">
-              <string>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QProgressBar" name="progressBarMachineList">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>Progress indicator for machine list processing</string>
-             </property>
-             <property name="statusTip">
-              <string>Progress indicator for machine list processing</string>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="comboBoxViewSelect">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>Switch machine list view</string>
-             </property>
-             <property name="statusTip">
-              <string>Switch machine list view</string>
-             </property>
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-             </property>
-             <item>
-              <property name="text">
-               <string>Full detail view</string>
-              </property>
-              <property name="icon">
-               <iconset resource="qmc2.qrc">
-                <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Hierarchical view</string>
-              </property>
-              <property name="icon">
-               <iconset resource="qmc2.qrc">
-                <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="toolButtonSelectRomFilter">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>Toggle individual ROM states</string>
-             </property>
-             <property name="statusTip">
-              <string>Toggle individual ROM states</string>
-             </property>
-             <property name="icon">
-              <iconset resource="qmc2.qrc">
-               <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
-             </property>
-             <property name="popupMode">
-              <enum>QToolButton::InstantPopup</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
          </item>
         </layout>
        </widget>
@@ -2535,8 +2571,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>935</width>
-     <height>27</height>
+     <width>1093</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
