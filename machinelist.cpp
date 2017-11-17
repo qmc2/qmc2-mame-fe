@@ -2488,7 +2488,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(machineName);
 					machineStatusHash.insert(machineName, 'U');
 					foreach (MachineListViewer *v, MainWindow::machineListViewers)
-						v->romStatusChanged(machineName, 'N');
+						v->romStatusChanged(machineName, 'U');
 					bool isBIOS = isBios(machineName);
 					bool isDev = isDevice(machineName);
 					if ( romStateCache.isOpen() )
