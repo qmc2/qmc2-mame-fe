@@ -169,6 +169,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		SoftwareListXmlDatabaseManager *swlDb;
 		RomStateFilter *romStateFilter;
 		QList<RankItemWidget *> &rankItemWidgets() { return m_rankItemWidgets; }
+		MachineListViewer *attachedViewer() { return m_attachedViewer; }
 
 		MainWindow(QWidget *parent = 0);
 		~MainWindow();
@@ -588,6 +589,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #endif
 		MachineListViewer *m_lastMlvSender;
 		QList<RankItemWidget *> m_rankItemWidgets;
+		MachineListViewer *m_attachedViewer;
 };
 
 #endif

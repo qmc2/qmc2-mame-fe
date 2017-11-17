@@ -1,7 +1,7 @@
-#include <QMultiMap>
-#include <QTimer>
 #include <QAbstractItemView>
 #include <QTreeWidgetItem>
+#include <QMultiMap>
+#include <QTimer>
 
 #include "machinelistmodel.h"
 #include "machinelist.h"
