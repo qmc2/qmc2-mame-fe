@@ -5513,7 +5513,11 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			actionInvertVisibleTags->setVisible(false);
 			break;
 		case QMC2_VIEWCUSTOM_INDEX:
-			// FIXME
+			toolButtonSelectRomFilter->setVisible(false);
+			menuRomStatusFilter->setVisible(false);
+			actionTagVisible->setVisible(romFilterActive);
+			actionUntagVisible->setVisible(romFilterActive);
+			actionInvertVisibleTags->setVisible(romFilterActive);
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
@@ -8166,7 +8170,6 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 			viewFullDetail();
 			break;
 		default:
-			// FIXME
 			showAttachedView(comboBoxViewSelect->itemText(index));
 			break;
 	}
