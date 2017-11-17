@@ -439,6 +439,14 @@ MainWindow::MainWindow(QWidget *parent) :
 	gridLayoutVersionPage->addWidget(labelCreatingVersionView, 1, 0);
 	labelCreatingVersionView->setVisible(false);
 
+	gridLayoutAttachedViewsPage->removeWidget(labelLoadingAttachedViews);
+	delete labelLoadingAttachedViews;
+	labelLoadingAttachedViews = new AspectRatioLabel(this);
+	labelLoadingAttachedViews->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+	labelLoadingAttachedViews->setMovie(loadAnimMovie);
+	gridLayoutAttachedViewsPage->addWidget(labelLoadingAttachedViews, 1, 0);
+	labelLoadingAttachedViews->setVisible(false);
+
 	checkBoxAudioFade->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
 	treeWidgetMachineList->setMouseTracking(true);
@@ -5455,7 +5463,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 		menuVersionHeader->hide();
 	}
 
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", index);
 	bool romFilterActive = qmc2Config->value(QMC2_FRONTEND_PREFIX + "RomStateFilter/Enabled", true).toBool();
 	switch ( index ) {
 		case QMC2_VIEWHIERARCHY_INDEX:
@@ -6316,6 +6323,8 @@ void MainWindow::init()
 	treeWidgetHierarchy->setVisible(false);
 	((AspectRatioLabel *)labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
 	labelLoadingHierarchy->setVisible(true);
+	((AspectRatioLabel *)labelLoadingAttachedViews)->setLabelText(tr("Loading, please wait..."));
+	labelLoadingAttachedViews->setVisible(true);
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 		loadAnimMovie->start();
 
@@ -9019,6 +9028,9 @@ void MainWindow::showLoadAnim(QString text, bool enable)
 		treeWidgetVersionView->setVisible(false);
 		((AspectRatioLabel *)labelCreatingVersionView)->setLabelText(text);
 		labelCreatingVersionView->setVisible(true);
+		attachedViewsWidget->setVisible(false);
+		((AspectRatioLabel *)labelLoadingAttachedViews)->setLabelText(text);
+		labelLoadingAttachedViews->setVisible(true);
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 			loadAnimMovie->start();
 	} else {
@@ -9031,6 +9043,8 @@ void MainWindow::showLoadAnim(QString text, bool enable)
 		labelCreatingCategoryView->setVisible(false);
 		treeWidgetVersionView->setVisible(true);
 		labelCreatingVersionView->setVisible(false);
+		attachedViewsWidget->setVisible(true);
+		labelLoadingAttachedViews->setVisible(false);
 	}
 	qApp->processEvents();
 }

@@ -318,13 +318,15 @@ void MachineList::enableWidgets(bool enable)
 	static bool lastEnable = true;
 	qmc2WidgetsEnabled = enable;
 	if ( enable ) {
-		if ( qmc2MainWindow->labelLoadingMachineList->isVisible() || qmc2MainWindow->labelLoadingHierarchy->isVisible() ) {
+		if ( qmc2MainWindow->labelLoadingMachineList->isVisible() || qmc2MainWindow->labelLoadingHierarchy->isVisible() || qmc2MainWindow->labelLoadingAttachedViews->isVisible() ) {
 			// show machine list / hide loading animation
 			qmc2MainWindow->loadAnimMovie->setPaused(true);
 			qmc2MainWindow->labelLoadingMachineList->setVisible(false);
 			qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 			qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 			qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+			qmc2MainWindow->labelLoadingAttachedViews->setVisible(false);
+			qmc2MainWindow->attachedViewsWidget->setVisible(true);
 		}
 	}
 	// avoid redundant operations
@@ -684,6 +686,9 @@ void MachineList::load()
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
 		((AspectRatioLabel *)qmc2MainWindow->labelLoadingHierarchy)->setLabelText(tr("Loading, please wait..."));
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
+		qmc2MainWindow->attachedViewsWidget->setVisible(false);
+		((AspectRatioLabel *)qmc2MainWindow->labelLoadingAttachedViews)->setLabelText(tr("Loading, please wait..."));
+		qmc2MainWindow->labelLoadingAttachedViews->setVisible(true);
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowLoadingAnimation", true).toBool() )
 			qmc2MainWindow->loadAnimMovie->start();
 		qApp->processEvents();
@@ -708,6 +713,8 @@ void MachineList::load()
 		qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 		qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 		qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+		qmc2MainWindow->labelLoadingAttachedViews->setVisible(false);
+		qmc2MainWindow->attachedViewsWidget->setVisible(true);
 		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 			if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 				switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
@@ -2270,6 +2277,8 @@ void MachineList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qmc2MainWindow->treeWidgetMachineList->setVisible(true);
 	qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
 	qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
+	qmc2MainWindow->labelLoadingAttachedViews->setVisible(false);
+	qmc2MainWindow->attachedViewsWidget->setVisible(true);
 	if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabMachineList) == qmc2MainWindow->tabWidgetMachineList->currentIndex() ) {
 		if ( qApp->focusWidget() != qmc2MainWindow->comboBoxToolbarSearch ) {
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {

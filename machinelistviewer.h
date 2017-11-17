@@ -40,6 +40,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		static bool savedViewsLoaded() { return m_savedViewsLoaded; }
 		static void setViewSelectSeparatorIndex(int index) { m_viewSelectSeparatorIndex = index; }
 		static int viewSelectSeparatorIndex() { return m_viewSelectSeparatorIndex; }
+		static int totalViews() { return m_viewSelectSeparatorIndex + m_attachedViews.count(); }
 
 	public slots:
 		void init();
