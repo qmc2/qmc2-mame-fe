@@ -393,6 +393,7 @@ void MachineListViewer::saveViewAction_triggered(bool)
 		v->comboBoxViewName->lineEdit()->blockSignals(false);
 		v->comboBoxViewName->blockSignals(false);
 	}
+	saveView();
 }
 
 void MachineListViewer::removeViewAction_triggered(bool)
