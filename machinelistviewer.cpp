@@ -230,24 +230,8 @@ void MachineListViewer::on_toolButtonVisibleColumns_clicked()
 
 void MachineListViewer::on_toolButtonUpdateView_clicked()
 {
-	int currentSortColumn = treeView->header()->sortIndicatorSection();
-	Qt::SortOrder currentSortOrder = treeView->header()->sortIndicatorOrder();
 	model()->resetModel();
-	treeView->sortByColumn(currentSortColumn, currentSortOrder);
-	if ( qmc2CurrentItem ) {
-		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
-		if ( item ) {
-			m_currentId = item->id();
-			int row = item->row();
-			if ( row >= 0 ) {
-				QModelIndex idx(model()->index(row, 0, QModelIndex()));
-				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-				treeView->scrollTo(idx, qmc2CursorPositioningMode);
-				m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
-			}
-		}
-	}
-	lcdNumberRecordCount->display((int)model()->recordCount());
+	updateCurrentView();
 }
 
 void MachineListViewer::currentChanged(const QModelIndex &current, const QModelIndex & /*previous*/)
@@ -517,6 +501,28 @@ void MachineListViewer::lineEdit_textChanged(const QString &text)
 		m_attachViewAction->setEnabled(savedViews().contains(text));
 		m_detachViewAction->setEnabled(false);
 	}
+}
+
+void MachineListViewer::updateCurrentView()
+{
+	int currentSortColumn = treeView->header()->sortIndicatorSection();
+	Qt::SortOrder currentSortOrder = treeView->header()->sortIndicatorOrder();
+	treeView->sortByColumn(currentSortColumn, currentSortOrder);
+	m_ignoreSelectionChange = true;
+	if ( qmc2CurrentItem ) {
+		MachineListModelItem *item = model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( item ) {
+			m_currentId = item->id();
+			int row = item->row();
+			if ( row >= 0 ) {
+				QModelIndex idx(model()->index(row, 0, QModelIndex()));
+				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+				treeView->scrollTo(idx, qmc2CursorPositioningMode);
+				m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
+			}
+		}
+	}
+	lcdNumberRecordCount->display((int)model()->recordCount());
 }
 
 void MachineListViewer::on_treeView_customContextMenuRequested(const QPoint &p)

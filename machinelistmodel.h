@@ -120,6 +120,7 @@ class MachineListModel : public QAbstractItemModel
 		QList<int> &pages() { return m_pages; }
 		qint64 recordCount() { return m_recordCount; }
 		MachineListDatabaseManager *machineListDb() { return m_machineListDb; }
+		QTreeView *treeView() { return m_treeView; }
 
 	public slots:
 		void startQuery();
@@ -138,6 +139,7 @@ class MachineListModel : public QAbstractItemModel
 		QTreeView *m_treeView;
 		QHash<QString, MachineListModelItem *> m_itemHash;
 		MachineListDatabaseManager *m_machineListDb;
+		bool m_firstQuery;
 
 		void toggleSortOrder(Qt::SortOrder &order) { order = (order == Qt::DescendingOrder ? Qt::AscendingOrder : Qt::DescendingOrder); }
 };
