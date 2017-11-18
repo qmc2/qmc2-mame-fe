@@ -3857,7 +3857,6 @@ void MainWindow::showAttachedView(const QString &name)
 			attachedViewer()->loadView(name);
 		}
 	}
-
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
@@ -3871,13 +3870,18 @@ void MainWindow::showAttachedView(const QString &name)
 		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators) < 0 )
 			index--;
 	qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 }
 
 void MainWindow::attachedViewAction_triggered(bool)
 {
 	QAction *a = (QAction *)sender();
-	if ( a )
+	if ( a ) {
+		comboBoxViewSelect->blockSignals(true);
+		comboBoxViewSelect->setCurrentIndex(MachineListViewer::viewSelectSeparatorIndex() + MachineListViewer::attachedViews().indexOf(a->text()) + 1);
+		comboBoxViewSelect->blockSignals(false);
 		showAttachedView(a->text());
+	}
 }
 
 void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
