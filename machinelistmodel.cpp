@@ -1,5 +1,6 @@
 #include <QAbstractItemView>
 #include <QTreeWidgetItem>
+#include <QApplication>
 #include <QMultiMap>
 #include <QTimer>
 
@@ -72,12 +73,9 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	m_oldRootItem(0),
 	m_recordCount(0),
 	m_treeView(treeView),
-	m_firstQuery(true)
+	m_firstQuery(true),
+	m_queryActive(false)
 {
-	m_machineListDb = new MachineListDatabaseManager(this);
-	machineListDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
-	machineListDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
-	m_query = new QSqlQuery(machineListDb()->db());
 	m_headers << tr("Tag")
 		  << tr("Icon")
 		  << tr("Name")
@@ -115,15 +113,13 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 		<< QMC2_FCDLG_PAGE_STRING
 		<< QMC2_FCDLG_PAGE_STRING;
 	setRootItem(new MachineListModelItem(m_treeView));
-	QTimer::singleShot(0, this, SLOT(startQuery()));
+	connectToDb();
 }
 
 MachineListModel::~MachineListModel()
 {
-	m_query->clear();
 	delete rootItem();
-	delete m_query;
-	delete machineListDb();
+	disconnectFromDb();
 }
 
 void MachineListModel::setRootItem(MachineListModelItem *item)
@@ -133,12 +129,13 @@ void MachineListModel::setRootItem(MachineListModelItem *item)
 
 void MachineListModel::startQuery()
 {
+	m_queryActive = true;
 	machineListDb()->queryRecords(m_query);
 	while ( canFetchMore(QModelIndex()) )
 		fetchMore(QModelIndex());
 	if ( m_firstQuery )
 		QTimer::singleShot(0, (MachineListViewer *)QObject::parent(), SLOT(updateCurrentView()));
-	m_firstQuery = false;
+	m_firstQuery = m_queryActive = false;
 }
 
 void MachineListModel::resetModel()
@@ -562,4 +559,22 @@ MachineListModelItem *MachineListModel::itemFromIndex(const QModelIndex &index) 
 			return item;
 	}
 	return m_rootItem;
+}
+
+void MachineListModel::connectToDb()
+{
+	m_machineListDb = new MachineListDatabaseManager(this);
+	machineListDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
+	machineListDb()->setJournalMode(QMC2_DB_JOURNAL_MODE_MEMORY);
+	m_query = new QSqlQuery(machineListDb()->db());
+	QTimer::singleShot(0, this, SLOT(startQuery()));
+}
+
+void MachineListModel::disconnectFromDb()
+{
+	while ( m_queryActive )
+		qApp->processEvents(QEventLoop::AllEvents, 10);
+	m_query->clear();
+	delete m_query;
+	delete machineListDb();
 }

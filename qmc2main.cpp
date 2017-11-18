@@ -2209,7 +2209,7 @@ void MainWindow::on_actionReload_triggered(bool)
 		}
 	} else if ( QMC2_CLI_OPT_CLEAR_ALL_CACHES ) {
 		qmc2ForceCacheRefresh = true;
-		qmc2MainWindow->on_actionClearAllEmulatorCaches_triggered(true);
+		on_actionClearAllEmulatorCaches_triggered(true);
 		qmc2ForceCacheRefresh = false;
 	}
 	if ( qmc2ReloadActive )
@@ -2673,9 +2673,13 @@ void MainWindow::on_actionClearMachineListCache_triggered(bool)
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the machine list cache file '%1', please check permissions").arg(fileName));
 	}
+	foreach (MachineListViewer *v, machineListViewers)
+		v->disconnectFromDb();
 	qmc2MachineList->machineListDb()->setLogActive(true);
 	qmc2MachineList->machineListDb()->recreateDatabase();
 	qmc2MachineList->machineListDb()->setLogActive(false);
+	foreach (MachineListViewer *v, machineListViewers)
+		v->connectToDb();
 }
 
 void MainWindow::on_actionClearXMLCache_triggered(bool)
