@@ -61,6 +61,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void detachViewAction_triggered(bool);
 		void cloneViewAction_triggered(bool);
 		void lineEdit_textChanged(const QString &);
+		void updateCurrentView();
 
 		// automatically connected slots
 		void on_toolButtonToggleMenu_clicked();

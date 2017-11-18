@@ -4,6 +4,7 @@
 #include <QTimer>
 
 #include "machinelistmodel.h"
+#include "machinelistviewer.h"
 #include "machinelist.h"
 #include "filterconfigurationdialog.h"
 
@@ -70,7 +71,8 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 	m_rootItem(0),
 	m_oldRootItem(0),
 	m_recordCount(0),
-	m_treeView(treeView)
+	m_treeView(treeView),
+	m_firstQuery(true)
 {
 	m_machineListDb = new MachineListDatabaseManager(this);
 	machineListDb()->setSyncMode(QMC2_DB_SYNC_MODE_OFF);
@@ -113,7 +115,7 @@ MachineListModel::MachineListModel(QTreeView *treeView, QObject *parent) :
 		<< QMC2_FCDLG_PAGE_STRING
 		<< QMC2_FCDLG_PAGE_STRING;
 	setRootItem(new MachineListModelItem(m_treeView));
-	startQuery();
+	QTimer::singleShot(0, this, SLOT(startQuery()));
 }
 
 MachineListModel::~MachineListModel()
@@ -126,8 +128,6 @@ MachineListModel::~MachineListModel()
 
 void MachineListModel::setRootItem(MachineListModelItem *item)
 {
-	if ( rootItem() )
-		delete rootItem();
 	m_rootItem = item;
 }
 
@@ -136,6 +136,9 @@ void MachineListModel::startQuery()
 	machineListDb()->queryRecords(m_query);
 	while ( canFetchMore(QModelIndex()) )
 		fetchMore(QModelIndex());
+	if ( m_firstQuery )
+		QTimer::singleShot(0, (MachineListViewer *)QObject::parent(), SLOT(updateCurrentView()));
+	m_firstQuery = false;
 }
 
 void MachineListModel::resetModel()
@@ -146,16 +149,16 @@ void MachineListModel::resetModel()
 	reset();
 #endif
 	m_recordCount = 0;
-	m_rootItem = new MachineListModelItem(m_treeView);
+	setRootItem(new MachineListModelItem(treeView()));
 	endResetModel();
 	startQuery();
-	if ( m_oldRootItem )
-		QTimer::singleShot(1, this, SLOT(deleteOldRoot()));
+	deleteOldRoot();
 }
 
 void MachineListModel::deleteOldRoot()
 {
-	delete m_oldRootItem;
+	if ( m_oldRootItem )
+		delete m_oldRootItem;
 	m_oldRootItem = 0;
 }
 
@@ -220,8 +223,8 @@ void MachineListModel::fetchMore(const QModelIndex &parent)
 									 is_device,
 									 is_bios,
 									 mlItem->tagged(),
-									 m_treeView,
-									 m_rootItem);
+									 treeView(),
+									 rootItem());
 		parentItem->childItems().append(mlmItem);
 		itemHash().insert(id, mlmItem);
 		i++;
@@ -383,7 +386,7 @@ QModelIndex MachineListModel::parent(const QModelIndex &child) const
 
 void MachineListModel::sort(int column, Qt::SortOrder order)
 {
-	QModelIndexList selectedIndexes = m_treeView->selectionModel()->selectedIndexes();
+	QModelIndexList selectedIndexes(treeView()->selectionModel()->selectedIndexes());
 	MachineListModelItem *selectedItem = 0;
 	if ( !selectedIndexes.isEmpty() )
 		selectedItem = itemFromIndex(selectedIndexes.at(0));
@@ -392,161 +395,161 @@ void MachineListModel::sort(int column, Qt::SortOrder order)
 		case TAG:
 			{
 				QMultiMap<bool, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->tagged(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case ICON:
 			{
 				QMultiMap<qint64, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->icon().cacheKey(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case ID:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->id(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case PARENT:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->parent(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case DESCRIPTION:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->description(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case MANUFACTURER:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->manufacturer(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case YEAR:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->year(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case ROM_STATUS:
 			{
 				QMultiMap<char, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->romStatus(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case HAS_ROMS:
 			{
 				QMultiMap<bool, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->hasRoms(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case HAS_CHDS:
 			{
 				QMultiMap<bool, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->hasChds(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case DRIVER_STATUS:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->driverStatus(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case SOURCE_FILE:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->sourceFile(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case PLAYERS:
 			{
 				QMultiMap<int, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->players(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case RANK:
 			{
 				QMultiMap<int, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->rank(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 				toggleSortOrder(order);
 			}
 			break;
 		case IS_BIOS:
 			{
 				QMultiMap<bool, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->isBios(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case IS_DEVICE:
 			{
 				QMultiMap<bool, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->isDevice(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case CATEGORY:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->category(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		case VERSION:
 			{
 				QMultiMap<QString, MachineListModelItem *> map;
-				foreach (MachineListModelItem *item, m_rootItem->childItems())
+				foreach (MachineListModelItem *item, rootItem()->childItems())
 					map.insert(item->version(), item);
-				m_rootItem->childItems() = map.values();
+				rootItem()->childItems() = map.values();
 			}
 			break;
 		default:
 			break;
 	}
 	if ( order == Qt::DescendingOrder )
-		for (int k = 0; k < m_rootItem->childItems().size() / 2; k++)
-			m_rootItem->childItems().swap(k, m_rootItem->childItems().size() - (1 + k));
+		for (int k = 0; k < rootItem()->childItems().size() / 2; k++)
+			rootItem()->childItems().swap(k, rootItem()->childItems().size() - (1 + k));
 	emit layoutChanged();
 	if ( selectedItem ) {
-		int row = m_rootItem->childItems().indexOf(selectedItem);
+		int row = rootItem()->childItems().indexOf(selectedItem);
 		if ( row >= 0 ) {
 			QModelIndex idx(index(row, 0, QModelIndex()));
-			m_treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-			m_treeView->scrollTo(idx, qmc2CursorPositioningMode);
+			treeView()->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+			treeView()->scrollTo(idx, qmc2CursorPositioningMode);
 		}
 	}
 }
