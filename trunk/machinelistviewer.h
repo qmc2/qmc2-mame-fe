@@ -28,8 +28,6 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QStringList &headers() { return model()->headers(); }
 		QHeaderView *headerView() { return treeView->header(); }
 		QList<int> &pages() { return model()->pages(); }
-		QStringList &savedViews() { return m_savedViews; }
-		QStringList &attachedViews() { return m_attachedViews; }
 		QString &name() { return m_name; }
 
 		void settingsSaveView();
@@ -37,6 +35,8 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void loadView(const QString &);
 		void saveView();
 
+		static QStringList &savedViews() { return m_savedViews; }
+		static QStringList &attachedViews() { return m_attachedViews; }
 		static void loadSavedViews();
 		static void setSavedViewsLoaded(bool loaded = true) { m_savedViewsLoaded = loaded; }
 		static bool savedViewsLoaded() { return m_savedViewsLoaded; }

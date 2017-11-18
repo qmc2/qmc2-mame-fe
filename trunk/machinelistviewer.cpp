@@ -4,12 +4,14 @@
 #include <QMenu>
 #include <QList>
 #include <QCursor>
+#include <QCursor>
+#include <QAction>
 #include <QLineEdit>
+#include <QScrollBar>
 #include <QFontMetrics>
 #include <QApplication>
 #include <QTreeWidgetItem>
 #include <QAbstractItemView>
-#include <QScrollBar>
 
 #include "qmc2main.h"
 #include "machinelistviewer.h"
@@ -118,23 +120,23 @@ void MachineListViewer::loadSavedViews()
 {
 	qmc2Config->beginGroup(QMC2_VIEWS_PREFIX);
 	foreach (QString v, qmc2Config->childGroups()) {
-		m_savedViews << v;
+		savedViews() << v;
 		if ( qmc2Config->value(v + "/Attached", false).toBool() )
-			m_attachedViews << v;
+			attachedViews() << v;
 	}
 	qmc2Config->endGroup();
-	m_savedViews.sort();
-	m_attachedViews.sort();
+	savedViews().sort();
+	attachedViews().sort();
 
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(true);
 	for (int index = qmc2MainWindow->comboBoxViewSelect->count() - 1; index >= viewSelectSeparatorIndex(); index--)
 		qmc2MainWindow->comboBoxViewSelect->removeItem(index);
-	if ( !m_attachedViews.isEmpty() ) {
+	if ( !attachedViews().isEmpty() ) {
 		qmc2MainWindow->comboBoxViewSelect->insertSeparator(viewSelectSeparatorIndex());
 		qmc2MainWindow->comboBoxViewSelect->setItemData(viewSelectSeparatorIndex(), -1);
-		for (int index = 0; index < m_attachedViews.count(); index++) {
+		for (int index = 0; index < attachedViews().count(); index++) {
 			int insertIndex = viewSelectSeparatorIndex() + index + 1;
-			qmc2MainWindow->comboBoxViewSelect->insertItem(insertIndex, m_attachedViews.at(index));
+			qmc2MainWindow->comboBoxViewSelect->insertItem(insertIndex, attachedViews().at(index));
 			qmc2MainWindow->comboBoxViewSelect->setItemIcon(insertIndex, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 		}
 	}
@@ -147,11 +149,11 @@ void MachineListViewer::loadSavedViews()
 		a->disconnect();
 		delete a;
 	}
-	if ( !m_attachedViews.isEmpty() ) {
+	if ( !attachedViews().isEmpty() ) {
 		qmc2MainWindow->menuView->addSeparator();
-		for (int index = 0; index < m_attachedViews.count(); index++) {
-			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), m_attachedViews.at(index));
-			a->setToolTip(tr("Show attached view '%1'").arg(m_attachedViews.at(index)));
+		for (int index = 0; index < attachedViews().count(); index++) {
+			QAction *a = qmc2MainWindow->menuView->addAction(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")), attachedViews().at(index));
+			a->setToolTip(tr("Show attached view '%1'").arg(attachedViews().at(index)));
 			a->setStatusTip(a->toolTip());
 			connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
 		}
@@ -407,6 +409,7 @@ void MachineListViewer::attachViewAction_triggered(bool)
 		v->lineEdit_textChanged(v->name());
 	qmc2Config->setValue(QMC2_VIEWS_PREFIX + name() + "/Attached", true);
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(true);
+	QString curText(qmc2MainWindow->comboBoxViewSelect->currentText());
 	for (int index = qmc2MainWindow->comboBoxViewSelect->count() - 1; index >= viewSelectSeparatorIndex(); index--)
 		qmc2MainWindow->comboBoxViewSelect->removeItem(index);
 	qmc2MainWindow->comboBoxViewSelect->insertSeparator(viewSelectSeparatorIndex());
@@ -416,8 +419,10 @@ void MachineListViewer::attachViewAction_triggered(bool)
 		qmc2MainWindow->comboBoxViewSelect->insertItem(insertIndex, attachedViews().at(index));
 		qmc2MainWindow->comboBoxViewSelect->setItemIcon(insertIndex, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	}
+	int index = qmc2MainWindow->comboBoxViewSelect->findText(curText);
+	if ( index > viewSelectSeparatorIndex() )
+		qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(index);
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
-
 	QList<QAction *> actions(qmc2MainWindow->menuView->actions());
 	for (int index = actions.count() - 1; index >= viewSelectSeparatorIndex(); index--) {
 		QAction *a = actions.at(index);
@@ -432,7 +437,6 @@ void MachineListViewer::attachViewAction_triggered(bool)
 		a->setStatusTip(a->toolTip());
 		connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
 	}
-
 }
 
 void MachineListViewer::detachViewAction_triggered(bool)
@@ -454,7 +458,6 @@ void MachineListViewer::detachViewAction_triggered(bool)
 		}
 	}
 	qmc2MainWindow->comboBoxViewSelect->blockSignals(false);
-
 	QList<QAction *> actions(qmc2MainWindow->menuView->actions());
 	for (int index = actions.count() - 1; index >= viewSelectSeparatorIndex(); index--) {
 		QAction *a = actions.at(index);
@@ -470,6 +473,14 @@ void MachineListViewer::detachViewAction_triggered(bool)
 			a->setStatusTip(a->toolTip());
 			connect(a, SIGNAL(triggered(bool)), qmc2MainWindow, SLOT(attachedViewAction_triggered(bool)));
 		}
+	}
+	if ( qmc2MainWindow->attachedViewer() ) {
+		if ( qmc2MainWindow->attachedViewer()->name() == name() )
+			qmc2MainWindow->attachedViewer()->saveView();
+		if ( !attachedViews().isEmpty() )
+			qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(viewSelectSeparatorIndex() + 1);
+		else
+			qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
 	}
 }
 
