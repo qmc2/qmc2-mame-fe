@@ -189,7 +189,6 @@ void MachineListViewer::init()
 	}
 	lcdNumberRecordCount->display((int)model()->recordCount());
 	connect(treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(currentChanged(const QModelIndex &, const QModelIndex &)));
-	connect(treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(treeViewVerticalScrollChanged(int)));
 	treeView->setFocus();
 	m_initCalled = true;
 }
