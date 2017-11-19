@@ -11,7 +11,7 @@
 #include "machinelistmodel.h"
 #include "filterconfigurationdialog.h"
 #include "visiblecolumnsetup.h"
-#include "rankitemwidget.h"
+#include "rankitemdelegate.h"
 #include "ui_machinelistviewer.h"
 
 class MachineListViewer : public QWidget, public Ui::MachineListViewer
@@ -29,6 +29,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QHeaderView *headerView() { return treeView->header(); }
 		QList<int> &pages() { return model()->pages(); }
 		QString &name() { return m_name; }
+		RankItemDelegate *rankItemDelegate() { return m_rankItemDelegate; }
 
 		void settingsSaveView();
 		void settingsRemoveView();
@@ -54,8 +55,6 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		void romStatusChanged(const QString &, char);
 		void mainTagChanged(const QString &, bool);
 		void mainSelectionChanged(const QString &);
-		void treeViewVerticalScrollChanged(int);
-		void treeViewUpdateRanks();
 		void treeViewSectionMoved(int, int, int);
 		void saveViewAction_triggered(bool);
 		void removeViewAction_triggered(bool);
@@ -83,7 +82,6 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 	protected:
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
-		void resizeEvent(QResizeEvent *);
 
 	private:
 		static QStringList m_savedViews;
@@ -95,7 +93,6 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QString m_currentId;
 		bool m_ignoreSelectionChange;
 		bool m_initCalled;
-		QTimer m_rankUpdateTimer;
 		QTimer m_selectionUpdateTimer;
 		FilterConfigurationDialog *m_filterConfigurationDialog;
 		VisibleColumnSetup *m_visibleColumnSetup;
@@ -106,6 +103,7 @@ class MachineListViewer : public QWidget, public Ui::MachineListViewer
 		QAction *m_detachViewAction;
 		QAction *m_cloneViewAction;
 		QString m_name;
+		RankItemDelegate *m_rankItemDelegate;
 };
 
 #endif

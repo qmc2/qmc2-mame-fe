@@ -10471,7 +10471,6 @@ RankItemWidget *MainWindow::getCurrentRankItemWidget()
 			item = qmc2CurrentItem;
 			break;
 	}
-
 	return (RankItemWidget *)treeWidget->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 }
 

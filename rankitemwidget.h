@@ -11,7 +11,6 @@
 #include <QTreeWidgetItem>
 #include <QPalette>
 
-#include "machinelistmodel.h"
 #include "ui_rankitemwidget.h"
 
 class RankItemWidget : public QWidget, public Ui::RankItemWidget
@@ -20,7 +19,6 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 
        	public:
 		RankItemWidget(QTreeWidgetItem *item, QWidget *parent = 0);
-		RankItemWidget(MachineListModelItem *item, QWidget *parent = 0);
 
 		static QImage rankBackround;
 		static QImage rankSingle;
@@ -57,11 +55,11 @@ class RankItemWidget : public QWidget, public Ui::RankItemWidget
 		void mouseMoveEvent(QMouseEvent *e);
 
 	private:
-		void updateForeignItems();
 		int m_rank;
 		QTreeWidgetItem *m_item;
-		MachineListModelItem *m_mlmItem;
 		QPalette m_palette;
+
+		void updateForeignItems();
 };
 
 #endif
