@@ -51,14 +51,13 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	m_removeViewAction(0),
 	m_attachViewAction(0),
 	m_detachViewAction(0),
-	m_cloneViewAction(0)
+	m_cloneViewAction(0),
+	m_rankItemDelegate(0)
 {
 	setAttribute(Qt::WA_DeleteOnClose);
 	setupUi(this);
 	comboBoxViewName->lineEdit()->setPlaceholderText(tr("Enter a unique name for this view or select an existing one"));
 	comboBoxViewName->lineEdit()->completer()->setCaseSensitivity(Qt::CaseSensitive);
-	m_rankUpdateTimer.setSingleShot(true);
-	connect(&m_rankUpdateTimer, SIGNAL(timeout()), this, SLOT(treeViewUpdateRanks()));
 	m_selectionUpdateTimer.setSingleShot(true);
 	connect(&m_selectionUpdateTimer, SIGNAL(timeout()), this, SLOT(currentChangedDelayed()));
 	qmc2ActiveViews << treeView;
@@ -102,6 +101,9 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	connect(comboBoxViewName->lineEdit(), SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged(const QString &)));
 	connect(headerView(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewSectionMoved(int, int, int)));
 
+	m_rankItemDelegate = new RankItemDelegate(treeView);
+	treeView->setItemDelegateForColumn(MachineListModel::RANK, m_rankItemDelegate);
+
 	if ( !parent )
 		QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -114,6 +116,7 @@ MachineListViewer::~MachineListViewer()
 	delete model();
 	delete filterConfigurationDialog();
 	delete visibleColumnSetup();
+	delete rankItemDelegate();
 }
 
 void MachineListViewer::loadSavedViews()
@@ -181,7 +184,6 @@ void MachineListViewer::init()
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 				treeView->scrollTo(idx, qmc2CursorPositioningMode);
-				m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 			}
 		}
 	}
@@ -320,31 +322,6 @@ void MachineListViewer::mainTagChanged(const QString &id, bool tagged)
 		item->setTagged(tagged);
 		model()->updateData(model()->index(item->row(), MachineListModel::TAG, QModelIndex()));
 	}
-}
-
-void MachineListViewer::treeViewVerticalScrollChanged(int)
-{
-	m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
-}
-
-void MachineListViewer::treeViewUpdateRanks()
-{
-	if ( headerView()->isSectionHidden(MachineListModel::RANK) )
-		return;
-	QFontMetrics fm(treeView->fontMetrics());
-	QModelIndex index(treeView->indexAt(treeView->viewport()->rect().topLeft()));
-	index = index.sibling(index.row(), MachineListModel::RANK);
-	QModelIndex endIndex(treeView->indexAt(treeView->viewport()->rect().bottomLeft()));
-	endIndex = endIndex.sibling(endIndex.row(), MachineListModel::RANK);
-	treeView->setUpdatesEnabled(false);
-	while ( index.isValid() ) {
-		treeView->setIndexWidget(index, new RankItemWidget(model()->itemFromIndex(index), treeView));
-		if ( index == endIndex )
-			break;
-		index = treeView->indexBelow(index);
-		index = index.sibling(index.row(), MachineListModel::RANK);
-	}
-	treeView->setUpdatesEnabled(true);
 }
 
 void MachineListViewer::treeViewSectionMoved(int /* logicalIndex */, int visualFrom, int visualTo)
@@ -529,7 +506,6 @@ void MachineListViewer::updateCurrentView()
 				QModelIndex idx(model()->index(row, 0, QModelIndex()));
 				treeView->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
 				treeView->scrollTo(idx, qmc2CursorPositioningMode);
-				m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
 			}
 		}
 	}
@@ -636,11 +612,4 @@ void MachineListViewer::hideEvent(QHideEvent *e)
 	}
 	if ( e )
 		QWidget::hideEvent(e);
-}
-
-void MachineListViewer::resizeEvent(QResizeEvent *e)
-{
-	m_rankUpdateTimer.start(QMC2_RANK_UPDATE_DELAY);
-	if ( e )
-		QWidget::resizeEvent(e);
 }

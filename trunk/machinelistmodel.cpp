@@ -296,6 +296,8 @@ QVariant MachineListModel::data(const QModelIndex &index, int role) const
 					return item->isBios() ? tr("true") : tr("false");
 				case IS_DEVICE:
 					return item->isDevice() ? tr("true") : tr("false");
+				case RANK:
+					return item->rank();
 				case CATEGORY:
 					return item->category();
 				case VERSION:

@@ -149,6 +149,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			ftpreply.cpp \
 			fileiconprovider.cpp \
 			rankitemwidget.cpp \
+			rankitemdelegate.cpp \
 			aspectratiolabel.cpp \
 			checksumscannerlog.cpp \
 			collectionrebuilder.cpp \
@@ -273,6 +274,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			ftpreply.h \
 			fileiconprovider.h \
 			rankitemwidget.h \
+			rankitemdelegate.h \
 			aspectratiolabel.h \
 			checksumscannerlog.h \
 			collectionrebuilder.h \
