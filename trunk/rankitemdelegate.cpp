@@ -104,9 +104,8 @@ void RankItemDelegate::updateForeignItems(MachineListModelItem *item)
 	foreach (MachineListViewer *v, MainWindow::machineListViewers) {
 		if ( v != item->treeView()->parent() ) {
 			MachineListModelItem *foreignItem = v->model()->itemHash().value(item->id());
-			if ( foreignItem ) {
+			if ( foreignItem )
 				foreignItem->setRank(item->rank());
-			}
 		}
 		v->treeView->viewport()->update();
 	}

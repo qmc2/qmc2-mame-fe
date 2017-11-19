@@ -10204,6 +10204,17 @@ void MainWindow::on_actionIncreaseRank_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->increaseRank();
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			int rank = foreignItem->rank();
+			if ( rank < 5 )
+				rank++;
+			foreignItem->setRank(rank);
+			userDataDb->setRank(foreignItem->id(), rank);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionDecreaseRank_triggered(bool)
@@ -10213,6 +10224,17 @@ void MainWindow::on_actionDecreaseRank_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->decreaseRank();
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			int rank = foreignItem->rank();
+			if ( rank > 0 )
+				rank--;
+			foreignItem->setRank(rank);
+			userDataDb->setRank(foreignItem->id(), rank);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::updateUserData()
@@ -10255,7 +10277,7 @@ void MainWindow::on_actionRankImageGradient_triggered(bool checked)
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 		foreach (MachineListViewer *v, machineListViewers)
-			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
+			v->treeView->viewport()->update();
 	}
 }
 
@@ -10275,7 +10297,7 @@ void MainWindow::on_actionRankImageFlat_triggered(bool checked)
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 		foreach (MachineListViewer *v, machineListViewers)
-			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
+			v->treeView->viewport()->update();
 	}
 }
 
@@ -10295,7 +10317,7 @@ void MainWindow::on_actionRankImagePlain_triggered(bool checked)
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 		foreach (MachineListViewer *v, machineListViewers)
-			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
+			v->treeView->viewport()->update();
 	}
 }
 
@@ -10311,7 +10333,7 @@ void MainWindow::on_actionRankImageColor_triggered(bool)
 		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
 		QTimer::singleShot(0, this, SLOT(updateUserData()));
 		foreach (MachineListViewer *v, machineListViewers)
-			QTimer::singleShot(0, v, SLOT(treeViewUpdateRanks()));
+			v->treeView->viewport()->update();
 	}
 }
 
@@ -10320,6 +10342,14 @@ void MainWindow::on_actionSetRank0_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->setRankComplete(0);
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			foreignItem->setRank(0);
+			userDataDb->setRank(foreignItem->id(), 0);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionSetRank1_triggered(bool)
@@ -10327,6 +10357,14 @@ void MainWindow::on_actionSetRank1_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->setRankComplete(1);
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			foreignItem->setRank(1);
+			userDataDb->setRank(foreignItem->id(), 1);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionSetRank2_triggered(bool)
@@ -10334,6 +10372,14 @@ void MainWindow::on_actionSetRank2_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->setRankComplete(2);
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			foreignItem->setRank(2);
+			userDataDb->setRank(foreignItem->id(), 2);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionSetRank3_triggered(bool)
@@ -10341,6 +10387,14 @@ void MainWindow::on_actionSetRank3_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->setRankComplete(3);
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			foreignItem->setRank(3);
+			userDataDb->setRank(foreignItem->id(), 3);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionSetRank4_triggered(bool)
@@ -10348,6 +10402,14 @@ void MainWindow::on_actionSetRank4_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->setRankComplete(4);
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			foreignItem->setRank(4);
+			userDataDb->setRank(foreignItem->id(), 4);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionSetRank5_triggered(bool)
@@ -10355,6 +10417,14 @@ void MainWindow::on_actionSetRank5_triggered(bool)
 	RankItemWidget *riw = getCurrentRankItemWidget();
 	if ( riw )
 		riw->setRankComplete(5);
+	else foreach (MachineListViewer *v, MainWindow::machineListViewers) {
+		MachineListModelItem *foreignItem = v->model()->itemHash().value(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
+		if ( foreignItem ) {
+			foreignItem->setRank(5);
+			userDataDb->setRank(foreignItem->id(), 5);
+		}
+		v->treeView->viewport()->update();
+	}
 }
 
 void MainWindow::on_actionTaggedIncreaseRank_triggered(bool)
