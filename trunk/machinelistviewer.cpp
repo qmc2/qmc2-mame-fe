@@ -7,6 +7,7 @@
 #include <QCursor>
 #include <QAction>
 #include <QLineEdit>
+#include <QCompleter>
 #include <QScrollBar>
 #include <QFontMetrics>
 #include <QApplication>
