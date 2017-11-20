@@ -295,6 +295,7 @@ void MachineListViewer::loadView(const QString &viewName)
 	if ( viewName.isEmpty() )
 		return;
 	treeView->header()->restoreState(qmc2Config->value(QMC2_VIEWS_PREFIX + viewName + "/HeaderState", QByteArray()).toByteArray());
+	QTimer::singleShot(0, visibleColumnSetup(), SLOT(init()));
 	// FIXME
 	if ( !m_initCalled ) {
 		init();
