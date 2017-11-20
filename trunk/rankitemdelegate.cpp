@@ -109,27 +109,27 @@ void RankItemDelegate::updateForeignItems(MachineListModelItem *item)
 		}
 		v->treeView->viewport()->update();
 	}
-	QTreeWidgetItem *tvi = qmc2MachineListItemHash.value(item->id());
-	if ( tvi ) {
-		RankItemWidget *riw = (RankItemWidget *)tvi->treeWidget()->itemWidget(tvi, QMC2_MACHINELIST_COLUMN_RANK);
+	QTreeWidgetItem *twi = qmc2MachineListItemHash.value(item->id());
+	if ( twi ) {
+		RankItemWidget *riw = (RankItemWidget *)twi->treeWidget()->itemWidget(twi, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( riw )
 			riw->setRank(item->rank());
 	}
-	tvi = qmc2HierarchyItemHash.value(item->id());
-	if ( tvi ) {
-		RankItemWidget *riw = (RankItemWidget *)tvi->treeWidget()->itemWidget(tvi, QMC2_MACHINELIST_COLUMN_RANK);
+	twi = qmc2HierarchyItemHash.value(item->id());
+	if ( twi ) {
+		RankItemWidget *riw = (RankItemWidget *)twi->treeWidget()->itemWidget(twi, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( riw )
 			riw->setRank(item->rank());
 	}
-	tvi = qmc2CategoryItemHash.value(item->id());
-	if ( tvi ) {
-		RankItemWidget *riw = (RankItemWidget *)tvi->treeWidget()->itemWidget(tvi, QMC2_MACHINELIST_COLUMN_RANK);
+	twi = qmc2CategoryItemHash.value(item->id());
+	if ( twi ) {
+		RankItemWidget *riw = (RankItemWidget *)twi->treeWidget()->itemWidget(twi, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( riw )
 			riw->setRank(item->rank());
 	}
-	tvi = qmc2VersionItemHash.value(item->id());
-	if ( tvi ) {
-		RankItemWidget *riw = (RankItemWidget *)tvi->treeWidget()->itemWidget(tvi, QMC2_MACHINELIST_COLUMN_RANK);
+	twi = qmc2VersionItemHash.value(item->id());
+	if ( twi ) {
+		RankItemWidget *riw = (RankItemWidget *)twi->treeWidget()->itemWidget(twi, QMC2_MACHINELIST_COLUMN_RANK);
 		if ( riw )
 			riw->setRank(item->rank());
 	}
