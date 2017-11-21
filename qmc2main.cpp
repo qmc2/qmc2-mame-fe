@@ -9437,7 +9437,7 @@ void MainWindow::commonWebSearch(QString baseUrl, QTreeWidgetItem *item)
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE) + " " + manu;
 	else
 		searchPattern = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
-	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("[\\\\,\\.\\;\\:\\'\\/\\(\\)\\[\\]\\{\\}]"), " ").replace("&", "\%26").replace(" - ", " ").simplified().trimmed();
+	searchPattern = searchPattern.replace(QRegExp("\\((.*)\\)"), "\\1").replace(QRegExp("[\\\\,\\.\\;\\:\\'\\/\\(\\)\\[\\]\\{\\}]"), " ").replace("&", "%26").replace(" - ", " ").simplified().trimmed();
 	QStringList wordList(searchPattern.split(' ', QString::SkipEmptyParts));
 	wordList.removeAll("<unknown>");
 	wordList.removeAll("<generic>");

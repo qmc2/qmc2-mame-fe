@@ -2020,7 +2020,7 @@ void DeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 
 	qmc2Config->beginGroup(group);
 
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(currentMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(currentMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isEmpty() )
 		qmc2Config->setValue("DefaultDeviceDirectory", s);
 	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
