@@ -1173,8 +1173,11 @@ void Options::on_pushButtonApply_clicked()
 	if ( qmc2ToolBarCustomizer )
 		QTimer::singleShot(0, qmc2ToolBarCustomizer, SLOT(refreshAvailableActions()));
 
-	// make sure the current view is visible / set tab icon accordingly
-	qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEWMACHINELIST_INDEX).toInt());
+	if ( initialCall ) {
+		// make sure the current view is visible / set tab icon accordingly
+		qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", QMC2_VIEWMACHINELIST_INDEX).toInt());
+	}
+
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
