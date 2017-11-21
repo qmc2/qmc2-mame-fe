@@ -50,7 +50,7 @@ void BigByteArray::append(const BigByteArray &bba)
 QByteArray &BigByteArray::mid(quint64 index, int len)
 {
 	m_tempArray.clear();
-	if ( len > QMC2_QBYTEARRAY_LIMIT ){
+	if ( len > (qlonglong)QMC2_QBYTEARRAY_LIMIT ){
 		qWarning() << "BigByteArray::mid(): length must not exceed 2 GB";
 		return m_tempArray;
 	}

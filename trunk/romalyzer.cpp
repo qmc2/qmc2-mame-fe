@@ -1447,7 +1447,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 			if ( fi.isReadable() ) {
 				totalSize = fi.size();
 				// load data from a regular file
-				if ( totalSize > QMC2_2G ) {
+				if ( totalSize > (qlonglong)QMC2_2G ) {
 					log(tr("size of '%1' is greater than 2 GB -- skipped").arg(filePath));
 					*isZipped = false;
 					progressBarFileIO->reset();
@@ -2063,7 +2063,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString listName, 
 							totalSize = 0;
 							if ( unzGetCurrentFileInfo(zipFile, &zipInfo, 0, 0, 0, 0, 0, 0) == UNZ_OK ) 
 								totalSize = zipInfo.uncompressed_size;
-							if ( totalSize > QMC2_2G ) {
+							if ( totalSize > (qlonglong)QMC2_2G ) {
 								log(tr("size of '%1' from '%2' is greater than 2 GB -- skipped").arg(fn).arg(filePath));
 								*isZipped = true;
 								progressBarFileIO->reset();
@@ -3702,7 +3702,7 @@ bool ROMAlyzer::writeAllArchiveData(QString fileName, QMap<QString, QByteArray> 
 			QByteArray data = it.value();
 			if ( writeLog )
 				log(tr("set rewriter: deflating '%1' (uncompressed size: %2)").arg(file).arg(humanReadable(data.length())));
-				if ( af.createEntry(file, data.size()) ) {
+			if ( af.createEntry(file, data.size()) ) {
 				quint64 bytesWritten = 0;
 				progressBarFileIO->setInvertedAppearance(true);
 				progressBarFileIO->setRange(0, data.length());
