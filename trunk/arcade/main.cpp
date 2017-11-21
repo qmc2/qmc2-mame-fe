@@ -207,7 +207,8 @@ void upgradeSettings()
 
 #if defined(QMC2_ARCADE_OS_WIN)
 #if defined(TCOD_VISUAL_STUDIO)
-int SDL_main(int argc, char *argv[]) {
+int SDL_main(int argc, char *argv[])
+{
 	return main(argc, argv);
 }
 #endif
