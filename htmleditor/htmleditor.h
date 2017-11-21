@@ -187,6 +187,7 @@ class HtmlEditor : public QMainWindow
 		QStringList softwareManualPaths(const QString &list, const QString &id);
 		QStringList softwareManualUrls(const QString &list, const QString &id);
 		void openSoftwareManual(const QString &list, const QString &id);
+		QString operatingSystemName();
 
 	private:
 		Ui_HTMLEditorMainWindow *ui;
