@@ -10844,7 +10844,7 @@ void MainWindow::prepareShortcuts()
 	QTimer::singleShot(0, qmc2Options, SLOT(setupShortcutActions()));
 }
 
-#if defined(QMC2_MINGW)
+#if defined(main)
 #undef main
 #endif
 
