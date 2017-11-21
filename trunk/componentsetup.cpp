@@ -706,9 +706,9 @@ void ComponentSetup::on_pushButtonConfigureFeature_clicked()
 			switch ( pageIndex ) {
 #if QMC2_YOUTUBE_ENABLED
 				case QMC2_YOUTUBE_INDEX: {
-					QString userScopePath = Options::configPath();
-					QString oldCacheDirectory = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
-					QString youTubeCacheDirectory = QFileDialog::getExistingDirectory(this, tr("Choose the YouTube cache directory"), oldCacheDirectory, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+					QString userScopePath(Options::configPath());
+					QString oldCacheDirectory(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString());
+					QString youTubeCacheDirectory(QFileDialog::getExistingDirectory(this, tr("Choose the YouTube cache directory"), oldCacheDirectory, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 					if ( !youTubeCacheDirectory.isNull() ) {
 						if ( !youTubeCacheDirectory.endsWith("/") )
 							youTubeCacheDirectory += "/";

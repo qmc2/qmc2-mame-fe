@@ -462,6 +462,8 @@ int SetupWizard::nextId() const
 			return QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE;
 		case QMC2_SETUPWIZARD_PAGE_ID_SETUP_COMPLETE:
 			return -1;
+		default:
+			return -1;
 	}
 }
 
