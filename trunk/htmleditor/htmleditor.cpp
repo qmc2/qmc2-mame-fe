@@ -1596,6 +1596,19 @@ void HtmlEditor::openSoftwareManual(const QString &list, const QString &id)
 	}
 }
 
+QString HtmlEditor::operatingSystemName()
+{
+#if defined(QMC2_OS_UNIX)
+	return "UNIX";
+#elif defined(QMC2_OS_MAC)
+	return "Mac OS X";
+#elif defined(QMC2_OS_WIN)
+	return "Windows";
+#else
+	return "Other OS";
+#endif
+}
+
 void HtmlEditor::closeXmlBuffer()
 {
 	if ( xmlQueryBuffer ) {
