@@ -109,9 +109,9 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
 		else
 			words = keySeqString.split("+");
 		keySeqString.clear();
-		if ( onlyOneKey ) {
+		if ( onlyOneKey )
 			keySeqString = QObject::tr(words[0].toLatin1());
-		} else {
+		else {
 			int i;
 			for (i = 0; i < words.count(); i++) {
 				if ( i > 0 )
@@ -185,7 +185,7 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
 			for (i = 0; i < words.count(); i++) {
 				if ( i > 0 )
 					keySeqString += "+";
-					keySeqString += QObject::tr(words[i].toLatin1());
+				keySeqString += QObject::tr(words[i].toLatin1());
 			}
 		}
 		labelKeySequence->setText(keySeqString);
