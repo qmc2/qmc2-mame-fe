@@ -3871,6 +3871,7 @@ void MainWindow::showAttachedView(const QString &name)
 			index--;
 	qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+	attachedViewer()->treeView->setFocus();
 }
 
 void MainWindow::attachedViewAction_triggered(bool)
