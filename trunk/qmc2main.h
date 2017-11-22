@@ -101,6 +101,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QMenu *menuVersionHeader;
 		QAction *actionMenuMachineListHeaderVersion;
 		QAction *actionMenuHierarchyHeaderVersion;
+		QAction *actionCustomView;
 		QWidgetAction *stateFilterAction;
 		QList<QAction *> rebuildRomActions;
 		QList<QAction *> contextMenuPlayActions;
@@ -462,6 +463,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void on_treeWidgetVersionView_itemSelectionChanged();
 		void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
 		void viewByVersion();
+		void actionCustomView_triggered();
 		void projectMessSystemLoadStarted();
 		void projectMessSystemLoadFinished(bool);
 		void projectMessLoadStarted();
