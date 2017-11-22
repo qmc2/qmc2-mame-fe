@@ -3019,6 +3019,9 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	} else
 		stopSearch = false;
 
+	if ( tabWidgetMachineList->currentWidget() != tabSearch )
+		return;
+
 	if ( treeWidgetMachineList->topLevelItemCount() == 1 )
 		if ( treeWidgetMachineList->topLevelItem(0)->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 			return;
@@ -3147,6 +3150,10 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		labelMachineListStatus->setText(qmc2MachineList->status());
 		lcdNumberSearchResults->display(qmc2MachineList->numMatchedMachines);
 		if ( currentItemPendant ) {
+			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
+			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
+		} else if ( listWidgetSearch->count() > 0) {
+			currentItemPendant = listWidgetSearch->item(0);
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
 		}
