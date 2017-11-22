@@ -3886,14 +3886,15 @@ void MainWindow::showAttachedView(const QString &name)
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
-		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
 			index--;
 #endif
 	int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
-		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators) < 0 )
+		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
-	qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+	tabWidgetMachineList->setCurrentIndex(index);
+	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	comboBoxViewSelect->blockSignals(true);
 	comboBoxViewSelect->setCurrentIndex(MachineListViewer::viewSelectSeparatorIndex() + MachineListViewer::attachedViews().indexOf(name) + 1);
