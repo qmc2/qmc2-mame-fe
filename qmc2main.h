@@ -52,6 +52,17 @@ class MainEventFilter : public QObject
 		bool eventFilter(QObject *, QEvent *);
 };
 
+class SearchBoxKeyEventFilter : public QObject
+{
+	Q_OBJECT
+
+	public:
+		SearchBoxKeyEventFilter(QObject *parent = 0) : QObject(parent) { ; }
+
+	protected:
+		bool eventFilter(QObject *obj, QEvent *event);
+};
+
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
 	Q_OBJECT
@@ -587,9 +598,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_YOUTUBE_ENABLED)
 		bool m_videoInfoMapLoaded;
 #endif
+		bool m_focusSearchResults;
 		MachineListViewer *m_lastMlvSender;
 		QList<RankItemWidget *> m_rankItemWidgets;
 		MachineListViewer *m_attachedViewer;
+		SearchBoxKeyEventFilter *m_searchBoxKeyEventFilter;
 };
 
 #endif
