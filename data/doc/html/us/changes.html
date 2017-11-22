@@ -36,6 +36,7 @@ inf: informational only
 	<li>imp: replaced the <i>ghost</i> video thumbnail with a more neutral image to avoid misinterpretation (also renamed the corresponding notes-template macro from <i>$GHOST_VIDEO$</i> to <i>$VIDEO_THUMBNAIL$</i>)</li>
 	<li>imp: revised or replaced several icons</li>
 	<li>imp: example system notes template: removed the "opacity fade in" feature from the <i>fancy</i> image style (CSS) as it takes a duration of 1s that may cause issues if systems are switched very quickly</li>
+	<li>imp: added a key-event filter for the search boxes in order to filter out their Up/Down key handling (because this causes issues with the way QMC2 uses the drop-down list as a search history)</li>
 	<li>new: finalized the advanced setup wizard (started in 0.186) and promoted it to non-WIP</li>
 	<li>new: notes-templates: added a new JavaScript-accessible funtion to query the current operating system name (see <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Miscellaneous_functions" target="_blank">wiki</a>)</li>
 	<li>wip: adding freely customizable <i>filtered machine list views</i> (consumers of the machine list database added in 0.66, aka <i>custom views</i>) that can optionally be attached to the UI</li>
