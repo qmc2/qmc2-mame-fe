@@ -10317,69 +10317,63 @@ void MainWindow::updateUserData()
 	}
 }
 
-void MainWindow::on_actionRankImageGradient_triggered(bool checked)
+void MainWindow::on_actionRankImageGradient_triggered(bool)
 {
-	if ( checked ) {
-		actionRankImageGradient->setChecked(true);
-		actionRankImageFlat->setChecked(false);
-		actionRankImagePlain->setChecked(false);
-		RankItemWidget::useFlatRankImage = false;
-		RankItemWidget::useColorRankImage = false;
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
-		menuRank->setIcon(RankItemWidget::gradientRankIcon());
-		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
-		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
-		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
-		QTimer::singleShot(0, this, SLOT(updateUserData()));
-		foreach (MachineListViewer *v, machineListViewers)
-			v->treeView->viewport()->update();
-	}
+	actionRankImageGradient->setChecked(true);
+	actionRankImageFlat->setChecked(false);
+	actionRankImagePlain->setChecked(false);
+	RankItemWidget::useFlatRankImage = false;
+	RankItemWidget::useColorRankImage = false;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
+	menuRank->setIcon(RankItemWidget::gradientRankIcon());
+	actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+	actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+	actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
+	QTimer::singleShot(0, this, SLOT(updateUserData()));
+	foreach (MachineListViewer *v, machineListViewers)
+		v->treeView->viewport()->update();
 }
 
-void MainWindow::on_actionRankImageFlat_triggered(bool checked)
+void MainWindow::on_actionRankImageFlat_triggered(bool)
 {
-	if ( checked ) {
-		actionRankImageGradient->setChecked(false);
-		actionRankImageFlat->setChecked(true);
-		actionRankImagePlain->setChecked(false);
-		RankItemWidget::useFlatRankImage = true;
-		RankItemWidget::useColorRankImage = false;
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
-		menuRank->setIcon(RankItemWidget::flatRankIcon());
-		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
-		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
-		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
-		QTimer::singleShot(0, this, SLOT(updateUserData()));
-		foreach (MachineListViewer *v, machineListViewers)
-			v->treeView->viewport()->update();
-	}
+	actionRankImageGradient->setChecked(false);
+	actionRankImageFlat->setChecked(true);
+	actionRankImagePlain->setChecked(false);
+	RankItemWidget::useFlatRankImage = true;
+	RankItemWidget::useColorRankImage = false;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
+	menuRank->setIcon(RankItemWidget::flatRankIcon());
+	actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+	actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+	actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
+	QTimer::singleShot(0, this, SLOT(updateUserData()));
+	foreach (MachineListViewer *v, machineListViewers)
+		v->treeView->viewport()->update();
 }
 
-void MainWindow::on_actionRankImagePlain_triggered(bool checked)
+void MainWindow::on_actionRankImagePlain_triggered(bool)
 {
-	if ( checked ) {
-		actionRankImageGradient->setChecked(false);
-		actionRankImageFlat->setChecked(false);
-		actionRankImagePlain->setChecked(true);
-		RankItemWidget::useFlatRankImage = true;
-		RankItemWidget::useColorRankImage = true;
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
-		menuRank->setIcon(RankItemWidget::colorRankIcon());
-		actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
-		actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
-		actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
-		QTimer::singleShot(0, this, SLOT(updateUserData()));
-		foreach (MachineListViewer *v, machineListViewers)
-			v->treeView->viewport()->update();
-	}
+	actionRankImageGradient->setChecked(false);
+	actionRankImageFlat->setChecked(false);
+	actionRankImagePlain->setChecked(true);
+	RankItemWidget::useFlatRankImage = true;
+	RankItemWidget::useColorRankImage = true;
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/FlatRankImage", RankItemWidget::useFlatRankImage);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ColorRankImage", RankItemWidget::useColorRankImage);
+	menuRank->setIcon(RankItemWidget::colorRankIcon());
+	actionRankImageGradient->setIcon(RankItemWidget::gradientRankIcon());
+	actionRankImageFlat->setIcon(RankItemWidget::flatRankIcon());
+	actionRankImagePlain->setIcon(RankItemWidget::colorRankIcon());
+	QTimer::singleShot(0, this, SLOT(updateUserData()));
+	foreach (MachineListViewer *v, machineListViewers)
+		v->treeView->viewport()->update();
 }
 
 void MainWindow::on_actionRankImageColor_triggered(bool)
 {
-	QColor color = QColorDialog::getColor(RankItemWidget::rankImageColor, this, tr("Choose overlay color"), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel);
+	QColor color(QColorDialog::getColor(RankItemWidget::rankImageColor, this, tr("Choose overlay color"), QColorDialog::DontUseNativeDialog | QColorDialog::ShowAlphaChannel));
 	if ( color.isValid() ) {
 		RankItemWidget::rankImageColor = color;
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RankImageColor", RankItemWidget::rankImageColor.name());
