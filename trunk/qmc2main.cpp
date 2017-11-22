@@ -318,8 +318,10 @@ MainWindow::MainWindow(QWidget *parent) :
 #if defined(QMC2_YOUTUBE_ENABLED)
 	m_videoInfoMapLoaded(false),
 #endif
+	m_focusSearchResults(false),
 	m_lastMlvSender(0),
-	m_attachedViewer(0)
+	m_attachedViewer(0),
+	m_searchBoxKeyEventFilter(0)
 {
 	setUpdatesEnabled(false);
 	setVisible(false);
@@ -385,6 +387,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	comboBoxToolbarSearch->setStatusTip(tr("Search for machines"));
 	comboBoxToolbarSearch->setToolTip(comboBoxToolbarSearch->toolTip() + " - " + tr("note: the special characters $, (, ), *, +, ., ?, [, ], ^, {, |, } and \\ must be escaped when they are meant literally!"));
 	comboBoxToolbarSearch->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+	comboBoxToolbarSearch->installEventFilter(m_searchBoxKeyEventFilter);
 	widgetActionToolbarSearch = new QWidgetAction(this);
 	widgetActionToolbarSearch->setDefaultWidget(comboBoxToolbarSearch);
 	widgetActionToolbarSearch->setObjectName("WATS");
@@ -1166,6 +1169,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &)));
 
+	m_searchBoxKeyEventFilter = new SearchBoxKeyEventFilter(this);
+
 	// other actions
 	comboBoxSearch->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxSearch));
 	connect(actionViewFullDetail, SIGNAL(triggered()), this, SLOT(viewFullDetail()));
@@ -1177,6 +1182,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
 	activityState = false;
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
+	comboBoxSearch->installEventFilter(m_searchBoxKeyEventFilter);
 
 	// search options menus
 	menuSearchOptions = new QMenu(this);
@@ -2997,6 +3003,7 @@ void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 	comboBoxToolbarSearch->lineEdit()->blockSignals(false);
 	if ( searchActive )
 		stopSearch = true;
+	m_focusSearchResults = false;
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
@@ -3043,8 +3050,12 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	} else if ( listWidgetSearch->count() == 0 )
 		lastSearchText.clear();
 
-	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch && lastIncludeBioses == includeBioses && lastIncludeDevices == includeDevices )
+	if ( pattern == lastSearchText && lastNegatedMatch == negatedMatch && lastIncludeBioses == includeBioses && lastIncludeDevices == includeDevices ) {
+		if ( m_focusSearchResults )
+			listWidgetSearch->setFocus();
+		m_focusSearchResults = false;
 		return;
+	}
 
 	QString patternCopy(pattern);
 
@@ -3080,7 +3091,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 	listWidgetSearch->clear();
 
-	QRegExp patternRx(QRegExp(pattern, Qt::CaseInsensitive, QRegExp::RegExp2));
+	QRegExp patternRx(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
 	if ( !patternRx.isValid() ) {
 		lastSearchText.clear();
 		lastNegatedMatch = negatedMatch;
@@ -3099,9 +3110,9 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	progressBarSearch->setRange(0, treeWidgetMachineList->topLevelItemCount());
 	progressBarSearch->setValue(0);
 
-	QString currentItemText;
+	QString currentItemName;
 	if ( qmc2CurrentItem )
-		currentItemText = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+		currentItemName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
 	QList<QTreeWidgetItem *> matches;
 	QList<QListWidgetItem *> itemList;
@@ -3109,12 +3120,12 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 
 	for (int i = 0; i < treeWidgetMachineList->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
 		QTreeWidgetItem *item = treeWidgetMachineList->topLevelItem(i);
-		QString itemName = item->text(QMC2_MACHINELIST_COLUMN_NAME);
+		QString itemName(item->text(QMC2_MACHINELIST_COLUMN_NAME));
 		if ( !includeBioses && qmc2MachineList->isBios(itemName) )
 			continue;
 		if ( !includeDevices && qmc2MachineList->isDevice(itemName) )
 			continue;
-		QString itemText = item->text(QMC2_MACHINELIST_COLUMN_MACHINE);
+		QString itemText(item->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 		bool matched = itemText.indexOf(patternRx) > -1 || itemName.indexOf(patternRx) > -1;
 		if ( negatedMatch )
 			matched = !matched;
@@ -3124,7 +3135,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 			newItem->setText(itemText);
 			newItem->setWhatsThis(itemName);
 			itemList << newItem;
-			if ( currentItemText == itemText )
+			if ( currentItemName == itemName )
 				currentItemPendant = newItem;
 		}
 		progressBarSearch->setValue(progressBarSearch->value() + 1);
@@ -3152,7 +3163,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		if ( currentItemPendant ) {
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
-		} else if ( listWidgetSearch->count() > 0) {
+		} else if ( listWidgetSearch->count() > 0 ) {
 			currentItemPendant = listWidgetSearch->item(0);
 			listWidgetSearch->setCurrentItem(currentItemPendant, QItemSelectionModel::ClearAndSelect);
 			listWidgetSearch->scrollToItem(currentItemPendant, qmc2CursorPositioningMode);
@@ -3167,7 +3178,10 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	progressBarSearch->setVisible(false);
 	progressBarSearch->reset();
 
-	searchActive = false;
+	if ( m_focusSearchResults )
+		listWidgetSearch->setFocus();
+
+	searchActive = m_focusSearchResults = false;
 }
 
 void MainWindow::on_comboBoxSearch_activated(const QString &text)
@@ -3198,8 +3212,8 @@ void MainWindow::on_comboBoxSearch_activated(const QString &text)
 	}
 	if ( comboBoxSearch->count() > QMC2_MACHINE_SEARCH_HISTORY_LENGTH )
 		comboBoxSearch->removeItem(QMC2_MACHINE_SEARCH_HISTORY_LENGTH);
+	m_focusSearchResults = true;
 	comboBoxSearch_editTextChanged_delayed();
-	listWidgetSearch->setFocus();
 }
 
 void MainWindow::on_listWidgetSearch_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
@@ -6176,6 +6190,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	qInstallMessageHandler(0);
 #endif
 	delete qmc2MainEventFilter;
+	delete m_searchBoxKeyEventFilter;
 
 	// remove possible left-overs
 	QApplication::closeAllWindows();
@@ -6756,6 +6771,22 @@ bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
 			// default event processing
 			return QObject::eventFilter(object, event);
 	}
+}
+
+bool SearchBoxKeyEventFilter::eventFilter(QObject *obj, QEvent *event)
+{
+	if ( event->type() == QEvent::KeyPress ) {
+		QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+		switch ( keyEvent->key() ) {
+			case Qt::Key_Up:
+			case Qt::Key_Down:
+				return true;
+				break;
+			default:
+				break;
+		}
+	}
+	return QObject::eventFilter(obj, event);
 }
 
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -9931,8 +9962,8 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 		tabWidgetMachineList->setCurrentWidget(tabSearch);
 		tabWidgetMachineList->blockSignals(false);
 	}
+	m_focusSearchResults = true;
 	comboBoxSearch_editTextChanged_delayed();
-	listWidgetSearch->setFocus();
 }
 
 void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
