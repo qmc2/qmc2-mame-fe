@@ -313,6 +313,9 @@ Options::Options(QWidget *parent) :
 	qmc2ShortcutHash.insert("Shift+F6", QPair<QString, QAction *>(tr("Software-list view-mode tree"), 0));
 	qmc2ShortcutHash.insert("F7", QPair<QString, QAction *>(tr("Category view"), 0));
 	qmc2ShortcutHash.insert("F8", QPair<QString, QAction *>(tr("Version view"), 0));
+#if defined(QMC2_WIP_ENABLED)
+	qmc2ShortcutHash.insert("F9", QPair<QString, QAction *>(tr("Custom view"), 0));
+#endif
 	qmc2ShortcutHash.insert("Shift+F9", QPair<QString, QAction *>(tr("Run external ROM tool"), 0));
 	qmc2ShortcutHash.insert("Ctrl+Shift+F9", QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), 0));
 	qmc2ShortcutHash.insert("F10", QPair<QString, QAction *>(tr("Check software-states"), 0));

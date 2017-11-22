@@ -1177,6 +1177,9 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(actionViewParentClones, SIGNAL(triggered()), this, SLOT(viewParentClones()));
 	connect(actionViewByCategory, SIGNAL(triggered()), this, SLOT(viewByCategory()));
 	connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
+	actionCustomView = new QAction(this);
+	connect(actionCustomView, SIGNAL(triggered()), this, SLOT(actionCustomView_triggered()));
+	addAction(actionCustomView);
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
 	connect(&updateTimer, SIGNAL(timeout()), this, SLOT(treeWidgetMachineList_itemSelectionChanged_delayed()));
 	connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
@@ -3892,6 +3895,9 @@ void MainWindow::showAttachedView(const QString &name)
 			index--;
 	qmc2MainWindow->tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
+	comboBoxViewSelect->blockSignals(true);
+	comboBoxViewSelect->setCurrentIndex(MachineListViewer::viewSelectSeparatorIndex() + MachineListViewer::attachedViews().indexOf(name) + 1);
+	comboBoxViewSelect->blockSignals(false);
 	attachedViewer()->treeView->setFocus();
 }
 
@@ -6658,6 +6664,16 @@ void MainWindow::viewByVersion()
 	treeWidgetVersionView->setFocus();
 	stackedWidgetView->update();
 	qApp->processEvents();
+}
+
+void MainWindow::actionCustomView_triggered()
+{
+	if ( MachineListViewer::attachedViews().isEmpty() )
+		return;
+	if ( attachedViewer() )
+		showAttachedView(attachedViewer()->name());
+	else
+		showAttachedView(MachineListViewer::attachedViews().first());
 }
 
 bool MainEventFilter::eventFilter(QObject *object, QEvent *event)
@@ -10840,6 +10856,9 @@ void MainWindow::prepareShortcuts()
 	qmc2ShortcutHash["F6"].second = actionViewParentClones;
 	qmc2ShortcutHash["F7"].second = actionViewByCategory;
 	qmc2ShortcutHash["F8"].second = actionViewByVersion;
+#if defined(QMC2_WIP_ENABLED)
+	qmc2ShortcutHash["F9"].second = actionCustomView;
+#endif
 	qmc2ShortcutHash["Shift+F9"].second = actionRunRomTool;
 	qmc2ShortcutHash["Ctrl+Shift+F9"].second = actionRunRomToolTagged;
 	qmc2ShortcutHash["F10"].second = 0; // for "check software-states"

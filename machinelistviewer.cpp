@@ -455,10 +455,12 @@ void MachineListViewer::detachViewAction_triggered(bool)
 	if ( qmc2MainWindow->attachedViewer() ) {
 		if ( qmc2MainWindow->attachedViewer()->name() == name() )
 			qmc2MainWindow->attachedViewer()->saveView();
-		if ( !attachedViews().isEmpty() )
-			qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(viewSelectSeparatorIndex() + 1);
-		else
-			qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
+		if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEWCUSTOM_INDEX ) {
+			if ( !attachedViews().isEmpty() )
+				qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(viewSelectSeparatorIndex() + 1);
+			else
+				qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(QMC2_VIEWMACHINELIST_INDEX);
+		}
 	}
 }
 
