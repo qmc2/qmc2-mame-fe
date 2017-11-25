@@ -670,82 +670,82 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="289"/>
+        <location filename="../main.cpp" line="290"/>
         <source>%1 is not a valid graphics-system - available graphics-systems: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="305"/>
+        <location filename="../main.cpp" line="306"/>
         <source>%1 is not a valid emulator-mode - available emulator-modes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="323"/>
+        <location filename="../main.cpp" line="324"/>
         <source>%1 is not a valid console-mode - available console-modes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="347"/>
+        <location filename="../main.cpp" line="348"/>
         <source>%1 is not valid theme - available themes: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="362"/>
+        <location filename="../main.cpp" line="363"/>
         <source>%1 is not a valid %2 theme - available %2 themes: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="362"/>
+        <location filename="../main.cpp" line="363"/>
         <source>(none)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="418"/>
+        <location filename="../main.cpp" line="419"/>
         <source>emulator-mode: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="423"/>
+        <location filename="../main.cpp" line="424"/>
         <source>language: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="424"/>
+        <location filename="../main.cpp" line="425"/>
         <source>theme: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="421"/>
+        <location filename="../main.cpp" line="422"/>
         <source>graphics-system: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="419"/>
+        <location filename="../main.cpp" line="420"/>
         <source>console-mode: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="469"/>
+        <location filename="../main.cpp" line="470"/>
         <source>Starting QML viewer using theme &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="469"/>
+        <location filename="../main.cpp" line="470"/>
         <source>video snaps %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="469"/>
+        <location filename="../main.cpp" line="470"/>
         <source>enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="469"/>
+        <location filename="../main.cpp" line="470"/>
         <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="499"/>
+        <location filename="../main.cpp" line="500"/>
         <source>QML viewer not started - please close the console window to exit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1144,177 +1144,177 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="269"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="267"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="285"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="283"/>
         <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="399"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="397"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="430"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="428"/>
         <source>Emu info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="420"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="418"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="451"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="449"/>
         <source>Machine info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="768"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="766"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="799"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="797"/>
         <source>Really quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="785"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="783"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="816"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="814"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="801"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="799"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="832"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="830"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="882"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="880"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="913"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="911"/>
         <source>Switches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="901"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="899"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="932"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="930"/>
         <source>Show floating-bubbles animation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="934"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="932"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="965"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="963"/>
         <source>Draw animation in the foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="963"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="961"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="994"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="992"/>
         <source>Show radial wave effect on background?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="993"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="991"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1024"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1022"/>
         <source>Auto-stop animation and wave effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1022"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1020"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1053"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1051"/>
         <source>Show FPS counter in the menu-bar?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1051"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1049"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1082"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1080"/>
         <source>Confirm when quitting the application?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1080"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1078"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1111"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1109"/>
         <source>Position the cabinet automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1101"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1099"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1132"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1130"/>
         <source>Sliders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1116"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1114"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1147"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1145"/>
         <source>Cabinet zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1129"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1127"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1160"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1158"/>
         <source>Cabinet X center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1143"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1141"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1174"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1172"/>
         <source>Cabinet Y center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1157"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1155"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1188"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1186"/>
         <source>Cabinet opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1170"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1168"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1201"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1199"/>
         <source>Background opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1183"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1181"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1214"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1212"/>
         <source>Machine list opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1193"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1191"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1224"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1222"/>
         <source>Backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1210"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1208"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1241"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1239"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1262"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1260"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1293"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1291"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1304"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1302"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1335"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1333"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1330"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1328"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1361"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1359"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1437"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1435"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1474"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1472"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1676"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1674"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1713"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1711"/>
         <source>Starting shader effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1678"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1676"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste.qml" line="1715"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste.qml" line="1713"/>
         <source>Shader effect stopped</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1328,202 +1328,202 @@ take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="335"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="269"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="351"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="285"/>
         <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="465"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="399"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="496"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="430"/>
         <source>Emu info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="486"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="420"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="517"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="451"/>
         <source>Machine info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="833"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="768"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="864"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="799"/>
         <source>Really quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="850"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="785"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="881"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="816"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="866"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="801"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="897"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="832"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="947"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="882"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="978"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="913"/>
         <source>Switches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="966"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="901"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="997"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="932"/>
         <source>Show floating-bubbles animation?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="999"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="934"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1030"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="965"/>
         <source>Draw animation in the foreground?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1028"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="963"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1059"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="994"/>
         <source>Show radial wave effect on background?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1058"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="993"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1089"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1024"/>
         <source>Auto-stop animation and wave effect?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1087"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1022"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1118"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1053"/>
         <source>Show FPS counter in the menu-bar?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1116"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1051"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1147"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1082"/>
         <source>Confirm when quitting the application?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1145"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1080"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1176"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1111"/>
         <source>Position the cabinet automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1166"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1101"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1197"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1132"/>
         <source>Sliders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1181"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1116"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1212"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1147"/>
         <source>Cabinet zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1194"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1129"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1225"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1160"/>
         <source>Cabinet X center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1208"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1143"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1239"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1174"/>
         <source>Cabinet Y center offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1222"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1157"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1253"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1188"/>
         <source>Cabinet opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1235"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1170"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1266"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1201"/>
         <source>Background opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1248"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1183"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1279"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1214"/>
         <source>Machine list opacity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1261"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1292"/>
         <source>Video player volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1274"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1305"/>
         <source>Video auto play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1278"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1309"/>
         <source>off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1279"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1310"/>
         <source>after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1280"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1311"/>
         <source>s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1292"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1193"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1323"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1224"/>
         <source>Backend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1309"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1210"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1340"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1241"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1361"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1262"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1392"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1293"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1403"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1304"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1434"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1335"/>
         <source>For customized default backend options to
 take effect, please restart QMC2 Arcade!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1429"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1330"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1460"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1361"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1536"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1437"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1573"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1474"/>
         <source>FPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1775"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1676"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1812"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1713"/>
         <source>Starting shader effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1777"/>
-        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1678"/>
+        <location filename="../qml/ToxicWaste/1.1/ToxicWaste-video.qml" line="1814"/>
+        <location filename="../qml/ToxicWaste/2.0/ToxicWaste-video.qml" line="1715"/>
         <source>Shader effect stopped</source>
         <translation type="unfinished"></translation>
     </message>
