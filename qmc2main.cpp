@@ -10001,15 +10001,8 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetMachineList;
 	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
-	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
-	QFontMetrics fm = treeWidget->fontMetrics();
-	if ( startItem ) {
-		while ( !endItem && endItem != startItem ) {
-			bottomPoint.setY(bottomPoint.y() - fm.height());
-			endItem = treeWidget->itemAt(bottomPoint);
-		}
-	}
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
+	QFontMetrics fm(treeWidget->fontMetrics());
 	if ( startItem && endItem ) {
 		while ( startItem->parent() )
 			startItem = startItem->parent();
@@ -10057,15 +10050,8 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetHierarchy;
 	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
-	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
-	QFontMetrics fm = treeWidget->fontMetrics();
-	if ( startItem ) {
-		while ( !endItem && endItem != startItem ) {
-			bottomPoint.setY(bottomPoint.y() - fm.height());
-			endItem = treeWidget->itemAt(bottomPoint);
-		}
-	}
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
+	QFontMetrics fm(treeWidget->fontMetrics());
 	if ( startItem && endItem ) {
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
@@ -10075,7 +10061,6 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 		if ( item )
 			startItem = item;
 		item = startItem;
-		QFontMetrics fm = treeWidget->fontMetrics();
 		int minWidth = 0;
 		while ( item && item != endItem && !m_hlRankUpdateTimer.isActive() ) {
 			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
@@ -10124,15 +10109,8 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetCategoryView;
 	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
-	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
-	QFontMetrics fm = treeWidget->fontMetrics();
-	if ( startItem ) {
-		while ( !endItem && endItem != startItem ) {
-			bottomPoint.setY(bottomPoint.y() - fm.height());
-			endItem = treeWidget->itemAt(bottomPoint);
-		}
-	}
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
+	QFontMetrics fm(treeWidget->fontMetrics());
 	if ( startItem && endItem ) {
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
@@ -10142,7 +10120,6 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 		if ( item )
 			startItem = item;
 		item = startItem;
-		QFontMetrics fm = treeWidget->fontMetrics();
 		int minWidth = 0;
 		while ( item && item != endItem && !m_clRankUpdateTimer.isActive() ) {
 			if ( item->parent() ) {
@@ -10195,15 +10172,8 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetVersionView;
 	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QPoint bottomPoint = treeWidget->viewport()->rect().bottomLeft();
-	QTreeWidgetItem *endItem = treeWidget->itemAt(bottomPoint);
-	QFontMetrics fm = treeWidget->fontMetrics();
-	if ( startItem ) {
-		while ( !endItem && endItem != startItem ) {
-			bottomPoint.setY(bottomPoint.y() - fm.height());
-			endItem = treeWidget->itemAt(bottomPoint);
-		}
-	}
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
+	QFontMetrics fm(treeWidget->fontMetrics());
 	if ( startItem && endItem ) {
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
@@ -10213,7 +10183,6 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 		if ( item )
 			startItem = item;
 		item = startItem;
-		QFontMetrics fm = treeWidget->fontMetrics();
 		int minWidth = 0;
 		while ( item && item != endItem && !m_clRankUpdateTimer.isActive() ) {
 			if ( item->parent() ) {
