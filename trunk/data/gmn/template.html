@@ -126,6 +126,8 @@
 		trMap['de' + 'Select text foreground color'] = 'Text Vordergrund-Farbe auswählen';
 		trMap['de' + 'Select text background color'] = 'Text Hintergrund-Farbe auswählen';
 		trMap['de' + 'Video snap'] = 'Video Snap';
+		trMap['de' + 'Play'] = 'Abspielen';
+		trMap['de' + 'Pause'] = 'Pausieren';
 		function tr(text) {
 			var trText = trMap['$GUI_LANGUAGE$' + text];
 			if ( trText == undefined )
@@ -198,6 +200,15 @@
 		function selectTextBgColor() {
 			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'] = qmc2NEO.getColor(localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor']);
 			qmc2NEO.loadCurrentTemplate();
+		}
+		function toggleVideoPlayback() {
+			if ( videoCanvas.paused ) {
+				videoCanvas.play();
+				pbPlayPauseVideo.innerHTML = tr('Pause');
+			} else {
+				videoCanvas.pause();
+				pbPlayPauseVideo.innerHTML = tr('Play');
+			}
 		}
 	</script>
 </head>
@@ -439,12 +450,15 @@
 			}
 			if ( vsUrls.length > 0 ) {
 				if ( qmc2NEO.operatingSystemName() == 'Windows' )
-					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><video " + dropShadow() + "width=\"100%\" autoplay>");
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr></td><video id=\"videoCanvas\" " + dropShadow() + "width=\"100%\" loop poster=\"$VIDEO_THUMBNAIL$\">");
 				else
 					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><video " + dropShadow() + "width=\"100%\" loop controls poster=\"$VIDEO_THUMBNAIL$\">");
 				for (var i = 0; i < vsUrls.length; i++)
 					document.write("<source src=\"" + vsUrls[i] + "\" />");
-				document.write("</video></td>");
+				if ( qmc2NEO.operatingSystemName() == 'Windows' )
+					document.write("</td></tr><tr></td><button name=\"pbPlayPauseVideo\" type=\"button\" id=\"pbPlayPauseVideo\" style=\"width: 100%\" onclick=\"toggleVideoPlayback()\" title=\"" + tr('Play') + "\">" + tr('Play') + "</button></td></tr></video></table></td>");
+				else
+					document.write("</video></td>");
 			}
 		</script>
 		</tr>
