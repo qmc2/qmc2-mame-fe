@@ -1,4 +1,4 @@
-VERSION = 0.192
+VERSION = 0.193
 
 QT += core gui script scripttools
 TARGET = qchdman

@@ -308,10 +308,7 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		if ( QMC2_TEST_VERSION(omv, 183, osr, 7910) ) {
-			// we got rid of using a temporary file *completely* in this revision
-			startupConfig->remove(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile");
-		}
+		// last 3 versions: 0.192, 0.187, 0.186
 		if ( QMC2_TEST_VERSION(omv, 187, osr, 8076) ) {
 			// QMC2 Arcade / ToxicWaste theme changes
 			if ( startupConfig->contains("Arcade/ToxicWaste/gameCardPage") ) {
