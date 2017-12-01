@@ -3863,8 +3863,7 @@ void MainWindow::showAttachedView(const QString &name)
 	stackedWidgetView->setCurrentIndex(QMC2_VIEWCUSTOM_INDEX);
 	if ( !attachedViewer() ) {
 		m_attachedViewer = new MachineListViewer(attachedViewsPage);
-		bool visible = qmc2MachineList->initialLoad ? false : attachedViewsWidget->isVisible();
-		attachedViewer()->setVisible(visible);
+		attachedViewer()->setVisible(!qmc2MachineList->initialLoad);
 		machineListViewers.append(attachedViewer());
 		connect(attachedViewer(), SIGNAL(selectionChanged(const QString &)), this, SLOT(machineListViewer_selectionChanged(const QString &)));
 		connect(attachedViewer(), SIGNAL(tagChanged(const QString &, bool)), this, SLOT(machineListViewer_tagChanged(const QString &, bool)));
@@ -3876,6 +3875,7 @@ void MainWindow::showAttachedView(const QString &name)
 		attachedViewsWidget = (QWidget *)attachedViewer();
 		attachedViewer()->loadView(name);
 	} else {
+		attachedViewer()->setVisible(true);
 		if ( name != attachedViewer()->name() ) {
 			attachedViewer()->saveView();
 			attachedViewer()->loadView(name);
@@ -3893,7 +3893,9 @@ void MainWindow::showAttachedView(const QString &name)
 	if ( index > 0 && foreignIndex >= 0 && foreignIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabForeignEmulators) < 0 )
 			index--;
+	tabWidgetMachineList->blockSignals(true);
 	tabWidgetMachineList->setCurrentIndex(index);
+	tabWidgetMachineList->blockSignals(false);
 	tabWidgetMachineList->setTabIcon(index, QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/filtered_view.png")));
 	comboBoxViewSelect->blockSignals(true);
