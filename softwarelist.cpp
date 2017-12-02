@@ -3378,7 +3378,6 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	progressBarSearch->setVisible(true);
 	progressBarSearch->setRange(0, treeWidgetKnownSoftware->topLevelItemCount());
 	progressBarSearch->setValue(0);
-	QList<QTreeWidgetItem *> matches;
         QList<SoftwareItem *> itemList;
 	QList<SoftwareItem *> hideList;
 	QStringList compatFilters(systemSoftwareFilterHash.value(systemName));
@@ -3392,7 +3391,6 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 		if ( negatedMatch )
 			matched = !matched;
 		if ( matched ) {
-			matches << item;
 			SoftwareItem *newItem = new SoftwareItem((QTreeWidget *)0);
 			SoftwareItem *subItem = new SoftwareItem(newItem);
 			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, MachineList::trWaitingForData);
