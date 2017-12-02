@@ -3116,15 +3116,18 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	if ( qmc2CurrentItem )
 		currentItemName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
+	if ( m_sortedItemMap.isEmpty() ) {
+		// we want to build the sorted item map only once
+		QHashIterator<QString, QTreeWidgetItem *> hashIt(qmc2MachineListItemHash);
+		while ( hashIt.hasNext() ) {
+			hashIt.next();
+			m_sortedItemMap.insert(hashIt.key(), hashIt.value());
+		}
+	}
+
 	QList<QListWidgetItem *> itemList;
 	QListWidgetItem *currentItemPendant = 0;
-	QMap<QString, QTreeWidgetItem *> sortedMap;
-	QHashIterator<QString, QTreeWidgetItem *> hashIt(qmc2MachineListItemHash);
-	while ( hashIt.hasNext() ) {
-		hashIt.next();
-		sortedMap.insert(hashIt.key(), hashIt.value());
-	}
-	QMapIterator<QString, QTreeWidgetItem *> mapIt(sortedMap);
+	QMapIterator<QString, QTreeWidgetItem *> mapIt(m_sortedItemMap);
 	int counter = 0;
 	while ( mapIt.hasNext() && !stopSearch && !qmc2CleaningUp ) {
 		progressBarSearch->setValue(progressBarSearch->value() + 1);
