@@ -3756,7 +3756,7 @@ void MainWindow::scrollToCurrentItem()
 				}
 				break;
 			case QMC2_VIEWCUSTOM_INDEX:
-				// FIXME
+				// handled by custom view
 				break;
 			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
@@ -5622,9 +5622,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 			}
 			break;
 		case QMC2_VIEWCUSTOM_INDEX:
-			if ( !qmc2ReloadActive ) {
-				// FIXME
-			}
+			// handled by custom view
 			break;
 		case QMC2_VIEWMACHINELIST_INDEX:
 		default:
@@ -6257,7 +6255,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 					QTimer::singleShot(QMC2_RANK_UPDATE_DELAY, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 					break;
 				case QMC2_VIEWCUSTOM_INDEX:
-					// FIXME
+					// handled by custom view
 					break;
 				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
@@ -10279,7 +10277,7 @@ void MainWindow::updateUserData()
 				treeWidgetVersionView_verticalScrollChanged();
 				break;
 			case QMC2_VIEWCUSTOM_INDEX:
-				// FIXME
+				// handled by custom view
 				break;
 			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
