@@ -3090,8 +3090,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 		pos += rxQuestionMark.matchedLength();
 	}
 
-	pattern.replace(' ', ".* .*").replace(".*^", "").replace("$.*", "");
-
+	pattern.replace(' ', ".* .*").replace(".*^", QString()).replace("$.*", QString());
 	listWidgetSearch->clear();
 
 	QRegExp patternRx(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
@@ -3110,39 +3109,41 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	lastSearchText = patternCopy;
 
 	progressBarSearch->setVisible(true);
-	progressBarSearch->setRange(0, treeWidgetMachineList->topLevelItemCount());
+	progressBarSearch->setRange(0, qmc2MachineListItemHash.count());
 	progressBarSearch->setValue(0);
 
 	QString currentItemName;
 	if ( qmc2CurrentItem )
 		currentItemName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
 
-	QList<QTreeWidgetItem *> matches;
 	QList<QListWidgetItem *> itemList;
 	QListWidgetItem *currentItemPendant = 0;
-
-	for (int i = 0; i < treeWidgetMachineList->topLevelItemCount() && !stopSearch && !qmc2CleaningUp; i++) {
-		QTreeWidgetItem *item = treeWidgetMachineList->topLevelItem(i);
-		QString itemName(item->text(QMC2_MACHINELIST_COLUMN_NAME));
-		if ( !includeBioses && qmc2MachineList->isBios(itemName) )
-			continue;
-		if ( !includeDevices && qmc2MachineList->isDevice(itemName) )
-			continue;
-		QString itemText(item->text(QMC2_MACHINELIST_COLUMN_MACHINE));
+	QHashIterator<QString, QTreeWidgetItem *> it(qmc2MachineListItemHash);
+	int counter = 0;
+	while ( it.hasNext() && !stopSearch && !qmc2CleaningUp ) {
+		progressBarSearch->setValue(progressBarSearch->value() + 1);
+		it.next();
+		QString itemName(it.key());
+		if ( !includeBioses )
+		       if ( qmc2MachineList->isBios(itemName) )
+				continue;
+		if ( !includeDevices )
+			if ( qmc2MachineList->isDevice(itemName) )
+				continue;
+		QString itemText(it.value()->text(QMC2_MACHINELIST_COLUMN_MACHINE));
 		bool matched = itemText.indexOf(patternRx) > -1 || itemName.indexOf(patternRx) > -1;
 		if ( negatedMatch )
 			matched = !matched;
 		if ( matched ) {
-			matches << item;
 			QListWidgetItem *newItem = new QListWidgetItem();
 			newItem->setText(itemText);
 			newItem->setWhatsThis(itemName);
 			itemList << newItem;
-			if ( currentItemName == itemName )
-				currentItemPendant = newItem;
+			if ( currentItemPendant == 0 )
+				if ( currentItemName == itemName )
+					currentItemPendant = newItem;
 		}
-		progressBarSearch->setValue(progressBarSearch->value() + 1);
-		if ( i % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
+		if ( counter++ % QMC2_SEARCH_RESULT_UPDATE == 0 ) {
 			foreach (QListWidgetItem *item, itemList)
 				listWidgetSearch->addItem(item);
 			itemList.clear();
