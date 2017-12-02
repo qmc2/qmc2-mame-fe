@@ -399,6 +399,7 @@ void MachineList::load()
 	qmc2HierarchyItemHash.clear();
 	qmc2CategoryItemHash.clear();
 	qmc2VersionItemHash.clear();
+	qmc2MainWindow->clearSortedItemMap();
 	qmc2ExpandedMachineListItems.clear();
 	biosSets.clear();
 	deviceSets.clear();

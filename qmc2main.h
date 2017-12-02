@@ -13,6 +13,7 @@
 #include <QMovie>
 #include <QPoint>
 #include <QList>
+#include <QMap>
 
 #include "settings.h"
 #include "ui_qmc2main.h"
@@ -189,6 +190,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void commonWebSearch(QString, QTreeWidgetItem *);
 		void processGlobalEmuConfig();
 		void prepareShortcuts();
+		void clearSortedItemMap() { m_sortedItemMap.clear(); }
 
 	public slots:
 		// machine menu
@@ -605,6 +607,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		QList<RankItemWidget *> m_rankItemWidgets;
 		MachineListViewer *m_attachedViewer;
 		SearchBoxKeyEventFilter *m_searchBoxKeyEventFilter;
+		QMap<QString, QTreeWidgetItem *> m_sortedItemMap;
 };
 
 #endif
