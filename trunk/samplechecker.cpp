@@ -205,9 +205,10 @@ void SampleChecker::verify()
 		QProcess commandProc;
 		if ( !emuWorkDir.isEmpty() )
 			commandProc.setWorkingDirectory(emuWorkDir);
+		commandProc.setProcessChannelMode(QProcess::MergedChannels);
 		QStringList args;
 		if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath") )
-			args << "-samplepath" << qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath").toString().replace("~", "$HOME");
+			args << "-samplepath" << QString("%1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/samplepath").toString().replace("~", "$HOME"));
 		args << "-verifysamples" << sampleSet;
 		bool commandProcStarted = false;
 		int retries = 0;
@@ -220,7 +221,7 @@ void SampleChecker::verify()
 		if ( started ) {
 			commandProcStarted = true;
 			bool commandProcRunning = (commandProc.state() == QProcess::Running);
-			while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+			while ( commandProcRunning && !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) ) {
 				qApp->processEvents();
 				commandProcRunning = (commandProc.state() == QProcess::Running);
 			}
@@ -236,7 +237,14 @@ void SampleChecker::verify()
 			if ( !buffer.isEmpty() ) {
 				QStringList bufferLines(buffer.split('\n', QString::SkipEmptyParts));
 				if ( !bufferLines.isEmpty() ) {
-					QString bufferLine(bufferLines.at(0).simplified().replace('\"', ""));
+					int index = 0;
+					for (int i = 0; i < bufferLines.count(); i++) {
+						if ( bufferLines.at(i).startsWith("sampleset ") ) {
+							index = i;
+							break;
+						}
+					}
+					QString bufferLine(bufferLines.at(index).simplified().replace('\"', ""));
 					if ( bufferLine.endsWith("is good") ) {
 						listWidgetSamplesGood->addItem(sampleSet);
 						labelSamplesGood->setText(tr("Good: %1").arg(listWidgetSamplesGood->count()));
