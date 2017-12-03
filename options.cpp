@@ -1163,9 +1163,9 @@ void Options::on_pushButtonApply_clicked()
 			qmc2MainWindow->comboBoxViewSelect->removeItem(index);
 	}
 
+	MachineListViewer::setViewSelectSeparatorIndex(viewCount);
 #if defined(QMC2_WIP_ENABLED)
 	// load saved and attached views
-	MachineListViewer::setViewSelectSeparatorIndex(viewCount);
 	if ( !MachineListViewer::savedViewsLoaded() )
 		MachineListViewer::loadSavedViews();
 #endif
