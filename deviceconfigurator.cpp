@@ -582,17 +582,12 @@ bool DeviceConfigurator::refreshDeviceMap()
 	foreach (DeviceTreeNode *child, m_rootNode->children())
 		traverseDeviceTree(0, child);
 	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
-	treeWidgetSlotOptions->setEnabled(treeWidgetSlotOptions->topLevelItemCount() > 0);
-
+	bool isDev = qmc2MachineList->isDevice(currentMachineName);
+	treeWidgetSlotOptions->setEnabled(isDev ? false : treeWidgetSlotOptions->topLevelItemCount() > 0);
 	updateDeviceMappings();
-
-	if ( qmc2MachineList->isDevice(currentMachineName) )
-		parentWidget()->setEnabled(false);
-	else {
-		parentWidget()->setEnabled(true);
+	if ( !isDev )
 		if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
  			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
-	}
 
 	refreshRunning = false;
 	return true;
@@ -778,8 +773,9 @@ void DeviceConfigurator::updateDeviceMappings()
 	devices.sort();
 	comboBoxDeviceInstanceChooser->insertItems(0, devices);
 	if ( treeWidgetDeviceSetup->topLevelItemCount() > 0 ) {
-		treeWidgetDeviceSetup->setEnabled(true);
-		tabWidgetDeviceSetup->widget(QMC2_DEVSETUP_TAB_FILECHOOSER)->setEnabled(true);
+		bool isDev = qmc2MachineList->isDevice(currentMachineName);
+		treeWidgetDeviceSetup->setEnabled(!isDev);
+		tabWidgetDeviceSetup->widget(QMC2_DEVSETUP_TAB_FILECHOOSER)->setEnabled(!isDev);
 	} else {
 		treeWidgetDeviceSetup->setEnabled(false);
 		comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
@@ -1457,8 +1453,9 @@ void DeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)
 			toolButtonRemoveConfiguration->hide();
 			toolButtonSaveConfiguration->hide();
 			vSplitter->widget(1)->hide();
-			if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
-	  			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
+			if ( !qmc2MachineList->isDevice(currentMachineName) )
+				if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
+		  			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 			break;
 		default:
 			break;

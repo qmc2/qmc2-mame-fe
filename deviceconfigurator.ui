@@ -28,65 +28,6 @@
      </property>
      <widget class="QWidget" name="layoutWidget1">
       <layout class="QGridLayout" name="gridLayoutActiveDeviceConfiguration">
-       <item row="0" column="3">
-        <widget class="QToolButton" name="toolButtonCloneConfiguration">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Clone current device configuration</string>
-         </property>
-         <property name="statusTip">
-          <string>Clone current device configuration</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QToolButton" name="toolButtonRemoveConfiguration">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Remove current device configuration</string>
-         </property>
-         <property name="statusTip">
-          <string>Remove current device configuration</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelActiveDeviceConfiguration">
-         <property name="text">
-          <string>Active device configuration</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="5">
         <widget class="QToolButton" name="toolButtonSaveConfiguration">
          <property name="enabled">
@@ -113,31 +54,11 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QToolButton" name="toolButtonNewConfiguration">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Create a new device configuration</string>
-         </property>
-         <property name="statusTip">
-          <string>Create a new device configuration</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filenew.png</normaloff>:/data/img/filenew.png</iconset>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="lineEditConfigurationName">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -149,6 +70,32 @@
          </property>
          <property name="statusTip">
           <string>Name of device configuration</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QToolButton" name="toolButtonRemoveConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Remove current device configuration</string>
+         </property>
+         <property name="statusTip">
+          <string>Remove current device configuration</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
          </property>
         </widget>
        </item>
@@ -632,12 +579,77 @@
          </property>
         </spacer>
        </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelActiveDeviceConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Active device configuration</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QToolButton" name="toolButtonCloneConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Clone current device configuration</string>
+         </property>
+         <property name="statusTip">
+          <string>Clone current device configuration</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonNewConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Create a new device configuration</string>
+         </property>
+         <property name="statusTip">
+          <string>Create a new device configuration</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filenew.png</normaloff>:/data/img/filenew.png</iconset>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="layoutWidget2">
       <layout class="QGridLayout" name="gridLayoutAvailableDeviceConfiguration">
        <item row="0" column="0">
         <widget class="QLabel" name="labelAvailableDeviceConfigurations">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
            <horstretch>0</horstretch>
@@ -651,6 +663,9 @@
        </item>
        <item row="0" column="1">
         <widget class="QToolButton" name="toolButtonConfiguration">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -677,6 +692,9 @@
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="QListWidget" name="listWidgetDeviceConfigurations">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
