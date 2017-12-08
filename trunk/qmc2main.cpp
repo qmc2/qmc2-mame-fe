@@ -4109,6 +4109,10 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2YouTubeWidget->clearMessage();
 #endif
 			if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
+				// FIXME: remove this "fixme" warning when the device configurator works again
+				if ( !qmc2DeviceConfigurator )
+					log(QMC2_LOG_FRONTEND, "FIXME: The new implementation of the device configurator doesn't work properly yet!");
+
 				if ( qmc2DeviceConfigurator ) {
 					tabDevices->setUpdatesEnabled(false);
 					qmc2DeviceConfigurator->forceQuit = true;

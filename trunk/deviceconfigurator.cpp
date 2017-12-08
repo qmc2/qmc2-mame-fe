@@ -753,8 +753,12 @@ void DeviceConfigurator::updateDeviceMappings()
 	}
 	makeUnique(&devices, &deviceBriefNames);
 
-	QMC2_PRINT_TXT(-----);
-	QMC2_PRINT_STRLST(devices);
+	// FIXME: debug start
+	if ( !devices.isEmpty() ) {
+		QMC2_PRINT_TXT(-----);
+		QMC2_PRINT_STRLST(devices);
+	}
+	// FIXME: debug end
 
 	treeWidgetDeviceSetup->clear();
 	comboBoxDeviceInstanceChooser->clear();
