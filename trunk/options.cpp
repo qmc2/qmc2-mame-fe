@@ -498,7 +498,6 @@ void Options::apply()
 	toolButtonBrowseHistoryFile->setIconSize(iconSize);
 	toolButtonBrowseMachineListCacheFile->setIconSize(iconSize);
 	toolButtonBrowseROMStateCacheFile->setIconSize(iconSize);
-	toolButtonBrowseSlotInfoCacheFile->setIconSize(iconSize);
 	toolButtonBrowseDataDirectory->setIconSize(iconSize);
 	toolButtonBrowseDatInfoDatabase->setIconSize(iconSize);
 	toolButtonBrowseMameHistoryDat->setIconSize(iconSize);
@@ -1430,7 +1429,6 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", lineEditUserDataDatabase->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", lineEditMachineListCacheFile->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
-	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", lineEditSlotInfoCacheFile->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/GeneralSoftwareFolder", lineEditGeneralSoftwareFolder->text());
@@ -2181,7 +2179,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditMachineListCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", userScopePath + "/mame.mlc").toString());
 	lineEditMachineListDatabase->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListDatabase", userScopePath + "/mame-machine-list.db").toString());
 	lineEditROMStateCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
-	lineEditSlotInfoCacheFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SlotInfoCacheFile", userScopePath + "/mame.sic").toString());
 	lineEditSoftwareListCacheDb->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", userScopePath + "/mame-swl-cache.db").toString());
 #if defined(QMC2_SDLMAME)
 	lineEditOptionsTemplateFile->setText(QMC2_QSETTINGS_CAST(config)->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template-SDL2.xml").toString());
@@ -2889,14 +2886,6 @@ void Options::on_toolButtonBrowseROMStateCacheFile_clicked()
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM state cache file"), lineEditROMStateCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
 	if ( !s.isNull() )
 		lineEditROMStateCacheFile->setText(s);
-	raise();
-}
-
-void Options::on_toolButtonBrowseSlotInfoCacheFile_clicked()
-{
-	QString s = QFileDialog::getOpenFileName(this, tr("Choose slot info cache file"), lineEditSlotInfoCacheFile->text(), tr("All files (*)"), 0, useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
-	if ( !s.isNull() )
-		lineEditSlotInfoCacheFile->setText(s);
 	raise();
 }
 
@@ -3945,7 +3934,6 @@ void Options::enableWidgets(bool enable)
 	toolButtonBrowseMachineListCacheFile->setEnabled(enable);
 	toolButtonBrowseMachineListDatabase->setEnabled(enable);
 	toolButtonBrowseROMStateCacheFile->setEnabled(enable);
-	toolButtonBrowseSlotInfoCacheFile->setEnabled(enable);
 	toolButtonBrowseFlyerDirectory->setEnabled(enable);
 	toolButtonBrowseFlyerFile->setEnabled(enable);
 	toolButtonBrowseIconDirectory->setEnabled(enable);

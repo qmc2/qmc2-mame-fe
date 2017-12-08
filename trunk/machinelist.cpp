@@ -42,8 +42,8 @@
 #include "macros.h"
 #include "unzip.h"
 #include "sevenzipfile.h"
-#include "deviceconfigurator.h"
 #include "demomode.h"
+#include "deviceconfigurator.h"
 #include "softwarelist.h"
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
@@ -443,8 +443,6 @@ void MachineList::load()
 		qmc2DeviceConfigurator = 0;
 	}
 	qmc2LastDeviceConfigItem = 0;
-	DeviceConfigurator::systemSlotHash.clear();
-	DeviceConfigurator::slotNameHash.clear();
 	if ( qmc2SystemNotesEditor ) {
 		qmc2SystemNotesEditor->save();
 		qmc2SystemNotesEditor->closeXmlBuffer();

@@ -1898,7 +1898,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 					for (int i = 0; i < qmc2DeviceConfigurator->treeWidgetSlotOptions->topLevelItemCount(); i++) {
 						QTreeWidgetItem *item = qmc2DeviceConfigurator->treeWidgetSlotOptions->topLevelItem(i);
 						allSlotItems << item;
-						qmc2DeviceConfigurator->insertChildItems(item, allSlotItems);
+						//qmc2DeviceConfigurator->insertChildItems(item, allSlotItems);
+						// FIXME
 					}
 					foreach (QTreeWidgetItem *item, allSlotItems) {
 						QString slotName(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT));
@@ -1978,7 +1979,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 							QString slotName(valuePair.first.at(i));
 							QString slotOption(valuePair.second.at(i));
 							QTreeWidgetItem *item;
-							QComboBox *cb = qmc2DeviceConfigurator->comboBoxByName(slotName, &item);
+							//QComboBox *cb = qmc2DeviceConfigurator->comboBoxByName(slotName, &item);
+							QComboBox *cb = 0; // FIXME
 							if ( cb ) {
 								int defaultIndex = -1;
 								QString biosChoice;
@@ -2024,7 +2026,8 @@ void MainWindow::on_actionPlay_triggered(bool)
 					for (int i = 0; i < qmc2DeviceConfigurator->treeWidgetSlotOptions->topLevelItemCount(); i++) {
 						QTreeWidgetItem *item = qmc2DeviceConfigurator->treeWidgetSlotOptions->topLevelItem(i);
 						allSlotItems << item;
-						qmc2DeviceConfigurator->insertChildItems(item, allSlotItems);
+						//qmc2DeviceConfigurator->insertChildItems(item, allSlotItems);
+						// FIXME
 					}
 					foreach (QTreeWidgetItem *item, allSlotItems) {
 						QString slotName(item->text(QMC2_SLOTCONFIG_COLUMN_SLOT));
@@ -2704,24 +2707,6 @@ void MainWindow::on_actionClearXMLCache_triggered(bool)
 	systemSoftwareFilterHash.clear();
 }
 
-void MainWindow::on_actionClearSlotInfoCache_triggered(bool)
-{
-	if ( !qmc2ForceCacheRefresh ) {
-		if ( qmc2ReloadActive ) {
-			log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-			return;
-		}
-	}
-	QString fileName(qmc2Config->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
-	QFile f(fileName);
-	if ( f.exists() ) {
-		if ( f.remove() )
-			log(QMC2_LOG_FRONTEND, tr("slot info cache file '%1' removed").arg(fileName));
-		else
-			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the slot info cache file '%1', please check permissions").arg(fileName));
-	}
-}
-
 void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 {
 	if ( !qmc2ForceCacheRefresh ) {
@@ -2745,7 +2730,6 @@ void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool complete)
 	actionClearROMStateCache->trigger();
 	actionClearMachineListCache->trigger();
 	actionClearXMLCache->trigger();
-	actionClearSlotInfoCache->trigger();
 	actionClearSoftwareListCache->trigger();
 	if ( complete )
 		qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Cache");
