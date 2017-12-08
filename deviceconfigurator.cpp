@@ -1166,6 +1166,9 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 	if ( qmc2CriticalSection || forceQuit )
 		return;
 
+	// FIXME
+	return;
+
 	qmc2CriticalSection = true;
 
 	toolButtonSaveConfiguration->setEnabled(false);
