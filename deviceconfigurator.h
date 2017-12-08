@@ -208,7 +208,6 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		bool refreshRunning;
 		bool updateSlots;
 		bool isLoading;
-		bool isManualSlotOptionChange;
 		bool fileChooserSetup;
 		bool includeFolders;
 		bool foldersFirst;
@@ -236,7 +235,6 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		QMenu *deviceConfigurationListMenu;
 		QMenu *configurationMenu;
 		QMenu *deviceContextMenu;
-		QMenu *slotContextMenu;
 		QMenu *dirChooserContextMenu;
 		QMenu *fileChooserContextMenu;
 		QMenu *folderModeMenu;
@@ -277,9 +275,7 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		void traverseDeviceTree(QTreeWidgetItem *, DeviceTreeNode *);
 
 	public slots:
-		void preselectSlots();
 		bool refreshDeviceMap();
-		void preselectNestedSlots();
 		bool load();
 		bool save();
 		void saveSetup();
@@ -295,7 +291,6 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		void on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *);
 		void on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
-		void on_treeWidgetSlotOptions_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetDeviceSetup_currentChanged(int);
 		void on_toolButtonChooserFilter_toggled(bool);
 		void on_comboBoxDeviceInstanceChooser_activated(const QString &);

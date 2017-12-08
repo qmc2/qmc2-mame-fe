@@ -225,7 +225,7 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
 	dirModel = 0;
 	fileModel = 0;
 	configurationRenameItem = 0;
-	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = isManualSlotOptionChange = fullyLoaded = forceQuit = false;
+	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = fullyLoaded = forceQuit = false;
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
@@ -346,10 +346,6 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(actionSelectFile_triggered()));
-
-	// slot options context menu
-	slotContextMenu = new QMenu(this);
-	// FIXME: initially left blank :)
 
 	// directory chooser context menu
 	dirChooserContextMenu = new QMenu(this);
@@ -540,7 +536,6 @@ QString DeviceConfigurator::getXmlData(const QString &machine)
 
 void DeviceConfigurator::slotOptionChanged(int index)
 {
-	isManualSlotOptionChange = true;
 	QTimer::singleShot(QMC2_SLOTOPTION_CHANGE_DELAY, this, SLOT(refreshDeviceMap()));
 }
 
@@ -566,9 +561,6 @@ void DeviceConfigurator::updateDeviceTree(DeviceTreeNode *node, const QString &m
 
 bool DeviceConfigurator::refreshDeviceMap()
 {
-	bool wasManualSlotOptionChange = isManualSlotOptionChange;
-	isManualSlotOptionChange = false;
-
 	if ( refreshRunning || forceQuit )
 		return false;
 
@@ -849,30 +841,6 @@ void DeviceConfigurator::optionComboBox_currentIndexChanged(int index)
 	}
 	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
 	cb->setFocus();
-}
-
-void DeviceConfigurator::preselectNestedSlots()
-{
-	QMapIterator<QComboBox *, int> it(newNestedSlotPreselectionMap);
-	while ( it.hasNext() ) {
-		it.next();
-		QComboBox *cb = it.key();
-		int index = it.value();
-		cb->setCurrentIndex(index);
-		connect(cb, SIGNAL(currentIndexChanged(int)), this, SLOT(slotOptionChanged(int)));
-	}
-}
-
-void DeviceConfigurator::preselectSlots()
-{
-	QMapIterator<QComboBox *, int> it(slotPreselectionMap);
-	while ( it.hasNext() ) {
-		it.next();
-		QComboBox *cb = it.key();
-		int index = it.value();
-		cb->setCurrentIndex(index);
-		connect(cb, SIGNAL(currentIndexChanged(int)), this, SLOT(slotOptionChanged(int)));
-	}
 }
 
 bool DeviceConfigurator::load()
@@ -1353,14 +1321,6 @@ void DeviceConfigurator::on_treeWidgetDeviceSetup_customContextMenuRequested(con
 	if ( treeWidgetDeviceSetup->itemAt(p) ) {
 		deviceContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetDeviceSetup->viewport()->mapToGlobal(p), deviceContextMenu));
 		deviceContextMenu->show();
-	}
-}
-
-void DeviceConfigurator::on_treeWidgetSlotOptions_customContextMenuRequested(const QPoint &p)
-{
-	if ( treeWidgetSlotOptions->itemAt(p) ) {
-		slotContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetSlotOptions->viewport()->mapToGlobal(p), slotContextMenu));
-		slotContextMenu->show();
 	}
 }
 
