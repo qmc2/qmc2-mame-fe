@@ -2604,7 +2604,6 @@
      <addaction name="actionClearROMStateCache"/>
      <addaction name="actionClearMachineListCache"/>
      <addaction name="actionClearXMLCache"/>
-     <addaction name="actionClearSlotInfoCache"/>
      <addaction name="actionClearSoftwareListCache"/>
      <addaction name="separator"/>
      <addaction name="actionClearAllEmulatorCaches"/>

@@ -179,11 +179,11 @@
              <property name="alternatingRowColors">
               <bool>true</bool>
              </property>
+             <property name="textElideMode">
+              <enum>Qt::ElideMiddle</enum>
+             </property>
              <property name="rootIsDecorated">
               <bool>false</bool>
-             </property>
-             <property name="uniformRowHeights">
-              <bool>true</bool>
              </property>
              <column>
               <property name="text">
@@ -198,11 +198,6 @@
              <column>
               <property name="text">
                <string>Type</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Tag</string>
               </property>
              </column>
              <column>
@@ -240,6 +235,12 @@
              </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
+             </property>
+             <property name="textElideMode">
+              <enum>Qt::ElideMiddle</enum>
+             </property>
+             <property name="rootIsDecorated">
+              <bool>false</bool>
              </property>
              <property name="uniformRowHeights">
               <bool>true</bool>

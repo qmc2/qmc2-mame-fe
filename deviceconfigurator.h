@@ -4,7 +4,10 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QXmlDefaultHandler>
+#include <QStringList>
+#include <QString>
 #include <QMovie>
+#include <QList>
 #include <QIcon>
 #include <QHash>
 #include <QMap>
@@ -12,6 +15,168 @@
 #include "filesystemmodel.h"
 #include "aspectratiolabel.h"
 #include "ui_deviceconfigurator.h"
+
+class DeviceTreeNode
+{
+	public:
+		explicit DeviceTreeNode(DeviceTreeNode *parent, const QString &name) :
+			m_parent(parent),
+			m_name(name)
+		{
+			while ( m_name.startsWith(':') )
+				m_name.remove(0, 1);
+			m_fullName = m_name;
+			DeviceTreeNode *n = m_parent;
+			while ( n != 0 ) {
+				if ( n->parent() != 0 )
+					m_fullName.prepend(n->name() + ':');
+				n = n->parent();
+			}
+		}
+		~DeviceTreeNode() { qDeleteAll(children()); }
+
+		DeviceTreeNode *parent() { return m_parent; }
+		QList<DeviceTreeNode *> &children() { return m_children; }
+		void setName(const QString &name) { m_name = name; }
+		QString &name() { return m_name; }
+		QString &fullName() { return m_fullName; }
+		QStringList &devices() { return m_devices; }
+		QStringList allDevices()
+		{
+			QStringList devs(devices());
+			foreach (DeviceTreeNode *child, children())
+				devs.append(child->allDevices());
+			return devs;
+		}
+		QStringList &deviceBriefNames() { return m_deviceBriefNames; }
+		QStringList allDeviceBriefNames()
+		{
+			QStringList devBriefNames(deviceBriefNames());
+			foreach (DeviceTreeNode *child, children())
+				devBriefNames.append(child->allDeviceBriefNames());
+			return devBriefNames;
+		}
+		QStringList &deviceTypes() { return m_deviceTypes; }
+		QStringList allDeviceTypes()
+		{
+			QStringList devTypes(deviceTypes());
+			foreach (DeviceTreeNode *child, children())
+				devTypes.append(child->allDeviceTypes());
+			return devTypes;
+		}
+		QStringList &deviceTags() { return m_deviceTags; }
+		QStringList allDeviceTags()
+		{
+			QStringList devTags(deviceTags());
+			foreach (DeviceTreeNode *child, children())
+				devTags.append(child->allDeviceTags());
+			return devTags;
+		}
+		QStringList &deviceInterfaces() { return m_deviceInterfaces; }
+		QStringList allDeviceInterfaces()
+		{
+			QStringList devInterfaces(deviceInterfaces());
+			foreach (DeviceTreeNode *child, children())
+				devInterfaces.append(child->allDeviceInterfaces());
+			return devInterfaces;
+		}
+		QStringList &deviceExtensions() { return m_deviceExtensions; }
+		QStringList allDeviceExtensions()
+		{
+			QStringList devExtensions(deviceExtensions());
+			foreach (DeviceTreeNode *child, children())
+				devExtensions.append(child->allDeviceExtensions());
+			return devExtensions;
+		}
+		QStringList &options() { return m_options; }
+		QStringList &optionDevices() { return m_optionDevices; }
+		QStringList &optionDescriptions() { return m_optionDescriptions; }
+		QStringList &optionBioses(const QString &option) { return m_optionBioses[option]; }
+		QStringList &optionBiosDescriptions(const QString &option) { return m_optionBiosDescriptions[option]; }
+		void setDefaultOptionBios(const QString &optionName, const QString &optionBios) { m_optionBiosDefaults.insert(optionName, optionBios); }
+		QString &defaultOptionBios(const QString &option) { return m_optionBiosDefaults[option]; }
+		void setDefaultOption(const QString &defaultOption) { m_defaultOption = defaultOption; }
+		QString &defaultOption() { return m_defaultOption; }
+		void addChild(DeviceTreeNode *child) { m_children.append(child); }
+		void addOption(const QString &optionName, const QString &optionDeviceName, const QString &optionDescription)
+		{
+			m_options.append(optionName);
+			m_optionDevices.append(optionDeviceName);
+			m_optionDescriptions.append(optionDescription);
+		}
+		void addOptionBios(const QString &optionName, const QString &optionBios, const QString &optionBiosDescription)
+		{
+			m_optionBioses[optionName].append(optionBios);
+			m_optionBiosDescriptions[optionName].append(optionBiosDescription);
+		}
+		void addDevice(const QString &device, const QString &briefName, const QString &type, const QString &tag, const QString &interface, const QString &extensions)
+		{
+			m_devices.append(device);
+			m_deviceBriefNames.append(briefName);
+			m_deviceTypes.append(type);
+			m_deviceTags.append(tag);
+			m_deviceInterfaces.append(interface);
+			m_deviceExtensions.append(extensions);
+		}
+		DeviceTreeNode *findNode(DeviceTreeNode *node, const QString &fName)
+		{
+			foreach (DeviceTreeNode *child, node->children()) {
+				if ( child->fullName() == fName )
+					return child;
+			}
+			DeviceTreeNode *n = 0;
+			foreach (DeviceTreeNode *child, node->children()) {
+				n = child->findNode(child, fName);
+				if ( n != 0 )
+					break;
+			}
+			return n;
+		}
+
+	private:
+		DeviceTreeNode *m_parent;
+		QList<DeviceTreeNode *> m_children;
+		QStringList m_options;
+		QStringList m_optionDevices;
+		QStringList m_optionDescriptions;
+		QHash<QString, QStringList> m_optionBioses;
+		QHash<QString, QStringList> m_optionBiosDescriptions;
+		QHash<QString, QString> m_optionBiosDefaults;
+		QString m_name;
+		QString m_fullName;
+		QString m_defaultOption;
+		QStringList m_devices;
+		QStringList m_deviceBriefNames;
+		QStringList m_deviceTypes;
+		QStringList m_deviceTags;
+		QStringList m_deviceInterfaces;
+		QStringList m_deviceExtensions;
+};
+
+class DeviceTreeXmlHandler : public QXmlDefaultHandler
+{
+	public:
+		DeviceTreeXmlHandler(DeviceTreeNode *devNode) : m_devNode(devNode) {}
+		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
+		bool endElement(const QString &, const QString &, const QString &);
+
+		QString lookupDescription(const QString &);
+		QString lookupBiosOptions(const QString &, QStringList *, QStringList *);
+		QString getXmlData(const QString &);
+
+	private:
+		DeviceTreeNode *m_devNode;
+		QString m_currentSlot;
+		QString m_defaultOption;
+		QString m_currentDevice;
+		QString m_currentDeviceBriefName;
+		QString m_currentDeviceType;
+		QString m_currentDeviceTag;
+		QString m_currentDeviceInterface;
+		QStringList m_currentDeviceExtensions;
+		QStringList m_slotOptions;
+		QStringList m_slotOptionDevices;
+};
 
 class DeviceItemDelegate : public QItemDelegate
 {
@@ -34,35 +199,6 @@ class DeviceItemDelegate : public QItemDelegate
 		void editorDataChanged(const QString &);
 };
 
-class DeviceConfiguratorXmlHandler : public QXmlDefaultHandler
-{
-	public:
-		QTreeWidget *parentTreeWidget;
-		QString deviceType;
-		QString deviceTag;
-		QString deviceBriefName;
-		QStringList deviceInstances;
-		QStringList deviceExtensions;
-		QString slotName;
-		QStringList newSlots;
-		QStringList allSlots;
-		QMap<QString, QStringList> newSlotOptions;
-		QMap<QString, QString> newSlotDevices;
-		QMap<QString, QString> slotDeviceNames;
-		QMap<QString, QString> defaultSlotOptions;
-		bool isCurrentMachine;
-		QString currentMachineName;
-		QString currentText;
-		QString newDeviceName;
-		QHash <QString, QString> newDevices;
-
-		DeviceConfiguratorXmlHandler(QTreeWidget *, QString);
-
-		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
-		bool endElement(const QString &, const QString &, const QString &);
-		bool characters(const QString &);
-};
-
 class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 {
 	Q_OBJECT
@@ -72,8 +208,8 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		bool refreshRunning;
 		bool updateSlots;
 		bool isLoading;
-		bool fileChooserSetup;
 		bool isManualSlotOptionChange;
+		bool fileChooserSetup;
 		bool includeFolders;
 		bool foldersFirst;
 		bool fullyLoaded;
@@ -86,8 +222,6 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		QString currentMachineName;
 		QString currentConfigName;
 		QString oldConfigurationName;
-		QString normalXmlBuffer;
-		QString slotXmlBuffer;
 		QStringList nestedSlots;
 		QStringList allSlots;
 		QMap<QString, QPair<QStringList, QStringList> > configurationMap;
@@ -125,8 +259,6 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		QModelIndex modelIndexDirModel;
 		QListWidgetItem *configurationRenameItem;
 
-		static QHash<QString, QHash<QString, QStringList> > systemSlotHash;
-		static QHash<QString, QString> slotNameHash;
 		static QHash<QString, QIcon> deviceIconHash;
 		static QHash<QString, int> deviceNameToIndexHash;
 		static QStringList midiInInterfaces;
@@ -136,18 +268,16 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		DeviceConfigurator(QString, QWidget *);
 		~DeviceConfigurator();
 
-		QString &getXmlData(QString);
-		QString &getXmlDataWithEnabledSlots(QString);
-		QComboBox *comboBoxByName(QString, QTreeWidgetItem **returnItem = 0);
-		void addNestedSlot(QString, QStringList, QStringList, QString);
+		QString getXmlData(const QString &);
 		void insertChildItems(QTreeWidgetItem *, QList<QTreeWidgetItem *> &);
-		void checkRemovedSlots(QTreeWidgetItem *parentItem = 0);
-		bool checkParentSlot(QTreeWidgetItem *, QString &);
-		void updateSlotBiosSelections();
+
+		// NEW stuff
+		void makeUnique(QStringList *, QStringList *);
+		void updateDeviceTree(DeviceTreeNode *, const QString &);
+		void traverseDeviceTree(QTreeWidgetItem *, DeviceTreeNode *);
 
 	public slots:
 		void preselectSlots();
-		bool readSystemSlots();
 		bool refreshDeviceMap();
 		void preselectNestedSlots();
 		bool load();
@@ -209,8 +339,10 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		void editorDataChanged(const QString &);
 		void setupFileChooser();
 		void configurationItemChanged(QListWidgetItem *);
-		void showLoadAnim();
-		void hideLoadAnim();
+
+		// NEW stuff
+		void updateDeviceMappings();
+		void optionComboBox_currentIndexChanged(int);
 
 	protected:
 		void closeEvent(QCloseEvent *);
@@ -221,6 +353,7 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 	private:
 		AspectRatioLabel *m_loadingAnimationOverlay;
 		QMovie *m_loadAnimMovie;
+		DeviceTreeNode *m_rootNode;
 };
 
 class FileChooserKeyEventFilter : public QObject

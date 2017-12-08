@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.193, 03-DEC-2017</h3>
+<h3>CHANGES - v0.193, 08-DEC-2017</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,11 +14,13 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.193, 03-DEC-2017:</b></p>
+<p><b>v0.193, 08-DEC-2017:</b></p>
 <ul>
 	<li>fix: sample-checker: merge process output channels (<i>stdio</i> and <i>stderr</i>) because <code>-verifysamples</code> uses both in the meantime</li>
 	<li>fix: corrected the restoration of the last machine list view during initialization for non-WIP builds</li>
 	<li>imp: improved performance when searching for machines</li>
+	<li>imp: removed the slot-info cache and all related UI hooks as it's no longer required for the upcoming new device configurator</li>
+	<li>wip: reimplementing the device configurator for modern MAME - <b>WIP-info: this doesn't work properly yet and it won't load, produce or save any useful slot- &amp; device-setups for you at the moment!</b></li>
 </ul>
 <p><b>v0.192, 29-NOV-2017:</b></p>
 <ul>

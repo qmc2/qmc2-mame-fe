@@ -320,6 +320,14 @@ bool Welcome::checkConfig()
 				startupConfig->remove("Arcade/ToxicWaste/gameListOpacity");
 			}
 		}
+		if ( QMC2_TEST_VERSION(omv, 193, osr, 8239) ) {
+			if ( startupConfig->contains("MAME/FilesAndDirectories/SlotInfoCacheFile") ) {
+				QFile f(startupConfig->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
+				if ( f.exists() )
+					f.remove();
+				startupConfig->remove("MAME/FilesAndDirectories/SlotInfoCacheFile");
+			}
+		}
 	}
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();

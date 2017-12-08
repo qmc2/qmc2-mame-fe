@@ -132,7 +132,6 @@ class Options : public QDialog, public Ui::Options
 		void on_toolButtonBrowseMachineListCacheFile_clicked();
 		void on_toolButtonBrowseMachineListDatabase_clicked();
 		void on_toolButtonBrowseROMStateCacheFile_clicked();
-		void on_toolButtonBrowseSlotInfoCacheFile_clicked();
 		void on_toolButtonBrowseSoftwareListCacheDb_clicked();
 		void on_toolButtonBrowseSoftwareStateCache_clicked();
 		void on_toolButtonBrowseGeneralSoftwareFolder_clicked();
