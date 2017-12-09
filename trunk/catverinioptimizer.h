@@ -4,6 +4,7 @@
 #include <QMap>
 #include <QHash>
 #include <QString>
+#include <QTimer>
 
 #include "ui_catverinioptimizer.h"
 
@@ -18,6 +19,7 @@ class CatverIniOptimizer : public QDialog, public Ui::CatverIniOptimizer
 	public slots:
 		void on_pushButtonOptimize_clicked();
 		void log(const QString &);
+		void scrollLog();
 
 	protected:
 		void showEvent(QShowEvent *);
@@ -37,6 +39,7 @@ class CatverIniOptimizer : public QDialog, public Ui::CatverIniOptimizer
 		QMap<QString, QString *> m_categoryMap;
 		QHash<QString, QString *> m_versionNames;
 		QMap<QString, QString *> m_versionMap;
+		QTimer m_logScrollTimer;
 };
 
 #endif
