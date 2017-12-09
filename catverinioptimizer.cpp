@@ -48,6 +48,8 @@ CatverIniOptimizer::CatverIniOptimizer(QString fileName, QWidget *parent) :
 			pushButtonOptimize->setEnabled(false);
 		}
 	}
+	m_logScrollTimer.setSingleShot(true);
+	connect(&m_logScrollTimer, SIGNAL(timeout()), this, SLOT(scrollLog()));
 }
 
 CatverIniOptimizer::~CatverIniOptimizer()
@@ -232,6 +234,11 @@ void CatverIniOptimizer::on_pushButtonOptimize_clicked()
 void CatverIniOptimizer::log(const QString &message)
 {
 	plainTextEdit->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
+	m_logScrollTimer.start(10);
+}
+
+void CatverIniOptimizer::scrollLog()
+{
 	plainTextEdit->horizontalScrollBar()->setValue(plainTextEdit->horizontalScrollBar()->minimum());
 	plainTextEdit->verticalScrollBar()->setValue(plainTextEdit->verticalScrollBar()->maximum());
 }

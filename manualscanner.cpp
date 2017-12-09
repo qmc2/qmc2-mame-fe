@@ -29,6 +29,9 @@ ManualScanner::ManualScanner(int mode, QWidget *parent) :
 	m_mode(mode)
 {
 	setupUi(this);
+	QFont logFont;
+	logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+	plainTextEdit->setFont(logFont);
 	switch ( m_mode ) {
 		case QMC2_MANUALSCANNER_MODE_SYSTEMS:
 			setWindowTitle(tr("System manual scanner"));
@@ -39,6 +42,8 @@ ManualScanner::ManualScanner(int mode, QWidget *parent) :
 			m_settingsKey = "SoftwareManualScanner";
 			break;
 	}
+	m_logScrollTimer.setSingleShot(true);
+	connect(&m_logScrollTimer, SIGNAL(timeout()), this, SLOT(scrollLog()));
 	log(tr("click 'scan now' to start"));
 }
 
@@ -66,6 +71,11 @@ void ManualScanner::on_pushButtonScanNow_clicked()
 void ManualScanner::log(const QString &message)
 {
 	plainTextEdit->appendPlainText(QDateTime::currentDateTime().toString("hh:mm:ss.zzz") + ": " + message);
+	m_logScrollTimer.start(10);
+}
+
+void ManualScanner::scrollLog()
+{
 	plainTextEdit->horizontalScrollBar()->setValue(plainTextEdit->horizontalScrollBar()->minimum());
 	plainTextEdit->verticalScrollBar()->setValue(plainTextEdit->verticalScrollBar()->maximum());
 }

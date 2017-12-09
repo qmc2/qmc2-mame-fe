@@ -2,6 +2,7 @@
 #define MANUALSCANNER_H
 
 #include <QString>
+#include <QTimer>
 
 #include "ui_manualscanner.h"
 
@@ -22,6 +23,7 @@ class ManualScanner : public QDialog, public Ui::ManualScanner
 	public slots:
 		void on_pushButtonScanNow_clicked();
 		void log(const QString &);
+		void scrollLog();
 
 	protected:
 		void showEvent(QShowEvent *);
@@ -34,6 +36,7 @@ class ManualScanner : public QDialog, public Ui::ManualScanner
 
 		int m_mode;
 		QString m_settingsKey;
+		QTimer m_logScrollTimer;
 };
 
 #endif
