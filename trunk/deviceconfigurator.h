@@ -205,20 +205,12 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 
 	public:
 		bool dontIgnoreNameChange;
-		bool refreshRunning;
 		bool updateSlots;
-		bool isLoading;
-		bool fileChooserSetup;
-		bool includeFolders;
-		bool foldersFirst;
-		bool fullyLoaded;
 		bool comboBoxChooserFilterPatternHadFocus;
-		bool forceQuit;
 		int fileModelRowInsertionCounter;
 		DeviceItemDelegate fileEditDelegate;
 		QByteArray fileChooserHeaderState;
 		QByteArray dirChooserHeaderState;
-		QString currentMachineName;
 		QString currentConfigName;
 		QString oldConfigurationName;
 		QStringList nestedSlots;
@@ -251,8 +243,6 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		QAction *actionChooserPlayEmbedded;
 #endif
 		QTimer searchTimer;
-		FileSystemModel *fileModel;
-		DirectoryModel *dirModel;
 		QModelIndex modelIndexFileModel;
 		QModelIndex modelIndexDirModel;
 		QListWidgetItem *configurationRenameItem;
@@ -273,6 +263,12 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		void makeUnique(QStringList *, QStringList *);
 		void updateDeviceTree(DeviceTreeNode *, const QString &);
 		void traverseDeviceTree(QTreeWidgetItem *, DeviceTreeNode *);
+
+		void setCurrentMachine(const QString &machine) { m_currentMachine = machine; }
+		QString &currentMachine() { return m_currentMachine; }
+
+		FileSystemModel *fileModel() { return m_fileModel; }
+		DirectoryModel *dirModel() { return m_dirModel; }
 
 	public slots:
 		bool refreshDeviceMap();
@@ -349,6 +345,13 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		AspectRatioLabel *m_loadingAnimationOverlay;
 		QMovie *m_loadAnimMovie;
 		DeviceTreeNode *m_rootNode;
+		bool m_fullyLoaded;
+		bool m_fileChooserSetup;
+		bool m_foldersFirst;
+		bool m_includeFolders;
+		QString m_currentMachine;
+		FileSystemModel *m_fileModel;
+		DirectoryModel *m_dirModel;
 };
 
 class FileChooserKeyEventFilter : public QObject
