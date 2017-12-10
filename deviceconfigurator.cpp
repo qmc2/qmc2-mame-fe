@@ -200,11 +200,18 @@ void DeviceItemDelegate::loadMidiInterfaces()
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start emulator executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 }
 
-DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
+DeviceConfigurator::DeviceConfigurator(QString machine, QWidget *parent) :
 	QWidget(parent),
 	m_loadingAnimationOverlay(0),
 	m_loadAnimMovie(0),
-	m_rootNode(0)
+	m_rootNode(0),
+	m_fullyLoaded(false),
+	m_fileChooserSetup(false),
+	m_foldersFirst(true),
+	m_includeFolders(true),
+	m_currentMachine(machine),
+	m_dirModel(0),
+	m_fileModel(0)
 {
 	setupUi(this);
 
@@ -222,10 +229,8 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
 	comboBoxChooserFilterPattern->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxChooserFilterPattern));
 	comboBoxChooserFilterPatternHadFocus = false;
-	dirModel = 0;
-	fileModel = 0;
 	configurationRenameItem = 0;
-	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = fullyLoaded = forceQuit = false;
+	dontIgnoreNameChange = false;
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
@@ -234,7 +239,6 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
 	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 	lineEditConfigurationName->blockSignals(false);
 
-	currentMachineName = machineName;
 	treeWidgetDeviceSetup->setItemDelegateForColumn(QMC2_DEVCONFIG_COLUMN_FILE, &fileEditDelegate);
 	connect(&fileEditDelegate, SIGNAL(editorDataChanged(const QString &)), this, SLOT(editorDataChanged(const QString &)));
 	tabWidgetDeviceSetup->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/DeviceSetupTab", 0).toInt());
@@ -251,16 +255,16 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
 	QString folderMode = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FolderMode", "folders-off").toString();
 	if ( folderMode == "folders-first" ) {
 		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-first.png")));
-		includeFolders = true;
-		foldersFirst = true;
+		m_includeFolders = true;
+		m_foldersFirst = true;
 	} else if ( folderMode == "folders-on" ) {
 		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
-		includeFolders = true;
-		foldersFirst = false;
+		m_includeFolders = true;
+		m_foldersFirst = false;
 	} else {
 		toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-off.png")));
-		includeFolders = false;
-		foldersFirst = false;
+		m_includeFolders = false;
+		m_foldersFirst = false;
 	}
 
 	QList<int> splitterSizes;
@@ -305,7 +309,7 @@ DeviceConfigurator::DeviceConfigurator(QString machineName, QWidget *parent) :
 	// configuration menu
 	configurationMenu = new QMenu(toolButtonConfiguration);
 	QString s = tr("Select default device directory");
-	QAction *action = configurationMenu->addAction(tr("&Default device directory for '%1'...").arg(currentMachineName));
+	QAction *action = configurationMenu->addAction(tr("&Default device directory for '%1'...").arg(m_currentMachine));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(actionSelectDefaultDeviceDirectory_triggered()));
@@ -520,9 +524,9 @@ void DeviceConfigurator::saveSetup()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/DirChooserHeaderState", dirChooserHeaderState);
 	if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
-	if ( includeFolders && foldersFirst )
+	if ( m_includeFolders && m_foldersFirst )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FolderMode", "folders-first");
-	else if ( includeFolders )
+	else if ( m_includeFolders )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FolderMode", "folders-on");
 	else
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FolderMode", "folders-off");
@@ -561,27 +565,22 @@ void DeviceConfigurator::updateDeviceTree(DeviceTreeNode *node, const QString &m
 
 bool DeviceConfigurator::refreshDeviceMap()
 {
-	if ( refreshRunning || forceQuit )
-		return false;
-
-	refreshRunning = true;
-
-	if ( !m_rootNode )
-		m_rootNode = new DeviceTreeNode(0, QString());
-	updateDeviceTree(m_rootNode, currentMachineName);
+	if ( m_rootNode )
+		delete m_rootNode;
+	m_rootNode = new DeviceTreeNode(0, QString());
+	updateDeviceTree(m_rootNode, m_currentMachine);
 
 	treeWidgetSlotOptions->clear();
 	foreach (DeviceTreeNode *child, m_rootNode->children())
 		traverseDeviceTree(0, child);
 	treeWidgetSlotOptions->sortItems(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::AscendingOrder);
-	bool isDev = qmc2MachineList->isDevice(currentMachineName);
+	bool isDev = qmc2MachineList->isDevice(m_currentMachine);
 	treeWidgetSlotOptions->setEnabled(isDev ? false : treeWidgetSlotOptions->topLevelItemCount() > 0);
 	updateDeviceMappings();
 	if ( !isDev )
 		if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
  			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 
-	refreshRunning = false;
 	return true;
 }
 
@@ -765,7 +764,7 @@ void DeviceConfigurator::updateDeviceMappings()
 	devices.sort();
 	comboBoxDeviceInstanceChooser->insertItems(0, devices);
 	if ( treeWidgetDeviceSetup->topLevelItemCount() > 0 ) {
-		bool isDev = qmc2MachineList->isDevice(currentMachineName);
+		bool isDev = qmc2MachineList->isDevice(m_currentMachine);
 		treeWidgetDeviceSetup->setEnabled(!isDev);
 		tabWidgetDeviceSetup->widget(QMC2_DEVSETUP_TAB_FILECHOOSER)->setEnabled(!isDev);
 	} else {
@@ -845,19 +844,19 @@ void DeviceConfigurator::optionComboBox_currentIndexChanged(int index)
 
 bool DeviceConfigurator::load()
 {
-	fullyLoaded = false;
+	m_fullyLoaded = false;
 	refreshDeviceMap();
 	// FIXME
-	fullyLoaded = true;
+	m_fullyLoaded = true;
 	return true;
 }
 
 bool DeviceConfigurator::save()
 {
-	if ( !fullyLoaded )
+	if ( !m_fullyLoaded )
 		return false;
 
-	QString group(QString("MAME/Configuration/Devices/%1").arg(currentMachineName));
+	QString group(QString("MAME/Configuration/Devices/%1").arg(m_currentMachine));
 	QString devDir(qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString());
 
 	qmc2Config->remove(group);
@@ -1052,7 +1051,7 @@ void DeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
 		configurationMap.remove(cfgName);
 		slotMap.remove(cfgName);
 		slotBiosMap.remove(cfgName);
-		int row = listWidgetDeviceConfigurations->row(matchedItemList[0]);
+		int row = listWidgetDeviceConfigurations->row(matchedItemList.first());
 		QListWidgetItem *prevItem = 0;
 		if ( row > 0 )
 			prevItem = listWidgetDeviceConfigurations->item(row - 1);
@@ -1068,7 +1067,7 @@ void DeviceConfigurator::actionRenameConfiguration_activated()
 	configurationRenameItem = 0;
 	QList<QListWidgetItem *> sl = listWidgetDeviceConfigurations->selectedItems();
 	if ( sl.count() > 0 ) {
-		configurationRenameItem = sl[0];
+		configurationRenameItem = sl.first();
 		oldConfigurationName = configurationRenameItem->text();
 		listWidgetDeviceConfigurations->editItem(configurationRenameItem);
 	}
@@ -1099,7 +1098,7 @@ void DeviceConfigurator::actionRemoveConfiguration_activated()
 	QList<QListWidgetItem *> sl = listWidgetDeviceConfigurations->selectedItems();
 
 	if ( sl.count() > 0 ) {
-		QListWidgetItem *item = sl[0];
+		QListWidgetItem *item = sl.first();
 		configurationMap.remove(item->text());
 		slotMap.remove(item->text());
 		slotBiosMap.remove(item->text());
@@ -1131,13 +1130,8 @@ void DeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QListWi
 
 void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text)
 {
-	if ( qmc2CriticalSection || forceQuit )
-		return;
-
 	// FIXME
 	return;
-
-	qmc2CriticalSection = true;
 
 	toolButtonSaveConfiguration->setEnabled(false);
 	if ( text == tr("Default configuration") ) {
@@ -1166,9 +1160,9 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
 		if ( !matchedItemList.isEmpty() ) {
 			matchedItemList[0]->setSelected(true);
-			listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
-			listWidgetDeviceConfigurations->scrollToItem(matchedItemList[0]);
-			QString configName = matchedItemList[0]->text();
+			listWidgetDeviceConfigurations->setCurrentItem(matchedItemList.first());
+			listWidgetDeviceConfigurations->scrollToItem(matchedItemList.first());
+			QString configName = matchedItemList.first()->text();
 			if ( updateSlots ) {
 				QList<QTreeWidgetItem *> itemList;
 				QMap<QString, QTreeWidgetItem *> itemMap;
@@ -1202,7 +1196,7 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 							if ( cb ) {
 								int index = -1;
 								/*
-								bool isNestedSlot = !systemSlotHash.value(currentMachineName).contains(valuePair.first[i]);
+								bool isNestedSlot = !systemSlotHash.value(m_currentMachine).contains(valuePair.first[i]);
 								if ( valuePair.second[i] != "\"\"" ) {
 									if ( isNestedSlot )
 										index = cb->findText(QString("%1 - %2").arg(valuePair.second[i]).arg(nestedSlotOptionMap[valuePair.first[i]][valuePair.second[i]]));
@@ -1239,7 +1233,7 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 				for (int i = 0; i < valuePair.first.count(); i++) {
 					QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
 					if ( itemList.count() > 0 ) {
-						QTreeWidgetItem *item = itemList[0];
+						QTreeWidgetItem *item = itemList.first();
 						QString data = valuePair.second[i];
 						item->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, data);
 						FileEditWidget *few = (FileEditWidget*)treeWidgetDeviceSetup->itemWidget(item, QMC2_DEVCONFIG_COLUMN_FILE);
@@ -1255,7 +1249,7 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 		} else {
 			QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(tr("Default configuration"), Qt::MatchExactly);
 			if ( !matchedItemList.isEmpty() )
-				listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
+				listWidgetDeviceConfigurations->setCurrentItem(matchedItemList.first());
 			else
 				listWidgetDeviceConfigurations->clearSelection();
 			for (int i = 0; i < treeWidgetDeviceSetup->topLevelItemCount(); i++) {
@@ -1274,7 +1268,6 @@ void DeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString 
 		}
 	}
 	dontIgnoreNameChange = false;
-	qmc2CriticalSection = false;
 }
 
 void DeviceConfigurator::editorDataChanged(const QString &text)
@@ -1336,19 +1329,19 @@ void DeviceConfigurator::actionSelectFile_triggered()
 
 void DeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 {
-	QString group = QString("MAME/Configuration/Devices/%1").arg(currentMachineName);
+	QString group = QString("MAME/Configuration/Devices/%1").arg(m_currentMachine);
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
 	if ( path.isEmpty() ) {
 		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(path + "/" + currentMachineName);
+		QDir machineSoftwareFolder(path + "/" + m_currentMachine);
 		if ( machineSoftwareFolder.exists() )
 			path = machineSoftwareFolder.canonicalPath();
 	}
 
 	qmc2Config->beginGroup(group);
 
-	QString s(QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(currentMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
+	QString s(QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(m_currentMachine), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | (qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog)));
 	if ( !s.isEmpty() )
 		qmc2Config->setValue("DefaultDeviceDirectory", s);
 	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
@@ -1357,7 +1350,7 @@ void DeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 
 	if ( qmc2FileEditStartPath.isEmpty() ) {
 		qmc2FileEditStartPath = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + currentMachineName);
+		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + m_currentMachine);
 		if ( machineSoftwareFolder.exists() )
 			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
 	}
@@ -1413,7 +1406,7 @@ void DeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)
 			toolButtonRemoveConfiguration->hide();
 			toolButtonSaveConfiguration->hide();
 			vSplitter->widget(1)->hide();
-			if ( !qmc2MachineList->isDevice(currentMachineName) )
+			if ( !qmc2MachineList->isDevice(m_currentMachine) )
 				if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
 		  			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 			break;
@@ -1424,37 +1417,42 @@ void DeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)
 
 void DeviceConfigurator::setupFileChooser()
 {
-	if ( fileChooserSetup )
+	QString group(QString("MAME/Configuration/Devices/%1").arg(currentMachine()));
+	QString path(qmc2Config->value(group + "/DefaultDeviceDirectory", QString()).toString());
+	if ( path.isEmpty() ) {
+		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		QDir machineSoftwareFolder(path + "/" + m_currentMachine);
+		if ( machineSoftwareFolder.exists() )
+			path = machineSoftwareFolder.canonicalPath();
+	}
+
+	if ( m_fileChooserSetup ) {
+		if ( path != fileModel()->currentPath() ) {
+			treeViewDirChooser->setCurrentIndex(m_dirModel->index(path));
+			fileModel()->setCurrentPath(path, false);
+			QTimer::singleShot(0, fileModel(), SLOT(refresh()));
+		}
 		return;
-	fileChooserSetup = true;
+	}
+	m_fileChooserSetup = true;
 
 	toolButtonChooserPlay->setEnabled(false);
 	toolButtonChooserPlayEmbedded->setEnabled(false);
 	toolButtonChooserSaveConfiguration->setEnabled(false);
 
-	QString group(QString("MAME/Configuration/Devices/%1").arg(currentMachineName));
-	QString path(qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString());
-
-	if ( path.isEmpty() ) {
-		path = qmc2Config->value("MAME/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-		QDir machineSoftwareFolder(path + "/" + currentMachineName);
-		if ( machineSoftwareFolder.exists() )
-			path = machineSoftwareFolder.canonicalPath();
-	}
-
 	if ( path.isEmpty() )
 		path = QDir::rootPath();
 
 	treeViewDirChooser->setUpdatesEnabled(false);
-	dirModel = new DirectoryModel(this);
-	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive | QDir::Hidden);
+	m_dirModel = new DirectoryModel(this);
+	m_dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Drives | QDir::CaseSensitive | QDir::Hidden);
 #if defined(QMC2_OS_WIN)
-	dirModel->setRootPath(dirModel->myComputer().toString());
+	m_dirModel->setRootPath(m_dirModel->myComputer().toString());
 #else
-	dirModel->setRootPath("/");
+	m_dirModel->setRootPath("/");
 #endif
-	treeViewDirChooser->setModel(dirModel);
-	treeViewDirChooser->setCurrentIndex(dirModel->index(path));
+	treeViewDirChooser->setModel(m_dirModel);
+	treeViewDirChooser->setCurrentIndex(m_dirModel->index(path));
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--)
 		treeViewDirChooser->setColumnHidden(i, true);
 	treeViewDirChooser->setSortingEnabled(true);
@@ -1474,14 +1472,14 @@ void DeviceConfigurator::setupFileChooser()
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->update();
-	fileModel = new FileSystemModel(this);
-	fileModel->setIncludeFolders(includeFolders);
-	fileModel->setFoldersFirst(foldersFirst);
-	fileModel->setCurrentPath(path, false);
-	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
-	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
+	m_fileModel = new FileSystemModel(this);
+	m_fileModel->setIncludeFolders(m_includeFolders);
+	m_fileModel->setFoldersFirst(m_foldersFirst);
+	m_fileModel->setCurrentPath(path, false);
+	connect(m_fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
+	connect(m_fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
 	treeViewFileChooser->setUpdatesEnabled(false);
-	treeViewFileChooser->setModel(fileModel);
+	treeViewFileChooser->setModel(m_fileModel);
   	treeViewFileChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/FileChooserHeaderState").toByteArray());
 	connect(treeViewDirChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewDirChooser_headerClicked(int)));
 	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
@@ -1510,8 +1508,8 @@ void DeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSelectio
 		toolButtonChooserPlay->setEnabled(false);
 		toolButtonChooserPlayEmbedded->setEnabled(false);
 		toolButtonChooserSaveConfiguration->setEnabled(false);
-		QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
-		fileModel->setCurrentPath(path, false);
+		QString path(m_dirModel->fileInfo(selected.indexes().first()).absoluteFilePath());
+		m_fileModel->setCurrentPath(path, false);
 		on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
 	}
 }
@@ -1521,9 +1519,9 @@ void DeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSelecti
 	if ( selected.indexes().count() > 0 ) {
 		toolButtonChooserPlay->setEnabled(true);
 		toolButtonChooserPlayEmbedded->setEnabled(true);
-		toolButtonChooserSaveConfiguration->setEnabled(!fileModel->isFolder(selected.indexes().first()));
+		toolButtonChooserSaveConfiguration->setEnabled(!m_fileModel->isFolder(selected.indexes().first()));
 		if ( toolButtonChooserAutoSelect->isChecked() ) {
-			QFileInfo fi(fileModel->absolutePath(selected.indexes().first()));
+			QFileInfo fi(m_fileModel->absolutePath(selected.indexes().first()));
 			QString instance = extensionInstanceMap[fi.suffix().toLower()];
 			if ( !instance.isEmpty() ) {
 		  		int index = comboBoxDeviceInstanceChooser->findText(instance, Qt::MatchExactly);
@@ -1545,7 +1543,7 @@ void DeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 {
 	if ( enabled ) {
 		QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(comboBoxDeviceInstanceChooser->currentText(), Qt::MatchExactly);
-		QStringList extensions = items[0]->text(QMC2_DEVCONFIG_COLUMN_EXT).split("/", QString::SkipEmptyParts);
+		QStringList extensions = items.first()->text(QMC2_DEVCONFIG_COLUMN_EXT).split("/", QString::SkipEmptyParts);
 		extensions << "zip";
 		for (int i = 0; i < extensions.count(); i++) {
 			QString ext = extensions[i];
@@ -1556,9 +1554,9 @@ void DeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 			}
 			extensions[i] = QString("*.%1").arg(altExt);
 		}
-		fileModel->setNameFilters(extensions);
+		m_fileModel->setNameFilters(extensions);
 	} else
-		fileModel->setNameFilters(QStringList());
+		m_fileModel->setNameFilters(QStringList());
 
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
@@ -1567,37 +1565,37 @@ void DeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
-	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+	QTimer::singleShot(0, m_fileModel, SLOT(refresh()));
 }
 
 void DeviceConfigurator::folderModeMenu_foldersOff()
 {
 	toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-off.png")));
-	includeFolders = false;
-	foldersFirst = false;
-	fileModel->setIncludeFolders(includeFolders);
-	fileModel->setFoldersFirst(foldersFirst);
-	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+	m_includeFolders = false;
+	m_foldersFirst = false;
+	m_fileModel->setIncludeFolders(m_includeFolders);
+	m_fileModel->setFoldersFirst(m_foldersFirst);
+	QTimer::singleShot(0, m_fileModel, SLOT(refresh()));
 }
 
 void DeviceConfigurator::folderModeMenu_foldersOn()
 {
 	toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-on.png")));
-	includeFolders = true;
-	foldersFirst = false;
-	fileModel->setIncludeFolders(includeFolders);
-	fileModel->setFoldersFirst(foldersFirst);
-	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+	m_includeFolders = true;
+	m_foldersFirst = false;
+	m_fileModel->setIncludeFolders(m_includeFolders);
+	m_fileModel->setFoldersFirst(m_foldersFirst);
+	QTimer::singleShot(0, m_fileModel, SLOT(refresh()));
 }
 
 void DeviceConfigurator::folderModeMenu_foldersFirst()
 {
 	toolButtonFolderMode->setIcon(QIcon(QString::fromUtf8(":/data/img/folders-first.png")));
-	includeFolders = true;
-	foldersFirst = true;
-	fileModel->setIncludeFolders(includeFolders);
-	fileModel->setFoldersFirst(foldersFirst);
-	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+	m_includeFolders = true;
+	m_foldersFirst = true;
+	m_fileModel->setIncludeFolders(m_includeFolders);
+	m_fileModel->setFoldersFirst(m_foldersFirst);
+	QTimer::singleShot(0, m_fileModel, SLOT(refresh()));
 }
 
 void DeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QString &text)
@@ -1618,9 +1616,9 @@ void DeviceConfigurator::on_treeViewDirChooser_customContextMenuRequested(const 
 void DeviceConfigurator::dirChooserUseCurrentAsDefaultDirectory()
 {
 	if ( modelIndexDirModel.isValid() ) {
-		QString path = dirModel->fileInfo(modelIndexDirModel).absoluteFilePath();
+		QString path(m_dirModel->fileInfo(modelIndexDirModel).absoluteFilePath());
 		if ( !path.isEmpty() )
-			 qmc2Config->setValue(QString("MAME/Configuration/Devices/%1/DefaultDeviceDirectory").arg(currentMachineName), path);
+			 qmc2Config->setValue(QString("MAME/Configuration/Devices/%1/DefaultDeviceDirectory").arg(m_currentMachine), path);
 	}
 }
 
@@ -1632,15 +1630,15 @@ void DeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(const
 	actionChooserPlayEmbedded->setVisible(true);
 #endif
 	if ( modelIndexFileModel.isValid() ) {
-		actionChooserViewPdf->setVisible(fileModel->isPdf(modelIndexFileModel));
-		actionChooserViewPostscript->setVisible(fileModel->isPostscript(modelIndexFileModel));
-		actionChooserViewHtml->setVisible(fileModel->isHtml(modelIndexFileModel));
-		if ( fileModel->isZip(modelIndexFileModel) ) {
+		actionChooserViewPdf->setVisible(m_fileModel->isPdf(modelIndexFileModel));
+		actionChooserViewPostscript->setVisible(m_fileModel->isPostscript(modelIndexFileModel));
+		actionChooserViewHtml->setVisible(m_fileModel->isHtml(modelIndexFileModel));
+		if ( m_fileModel->isZip(modelIndexFileModel) ) {
 			actionChooserToggleArchive->setText(treeViewFileChooser->isExpanded(modelIndexFileModel) ? tr("&Close archive") : tr("&Open archive"));
 			actionChooserToggleArchive->setVisible(true);
 		} else
 			actionChooserToggleArchive->setVisible(false);
-		if ( fileModel->isFolder(modelIndexFileModel) ) {
+		if ( m_fileModel->isFolder(modelIndexFileModel) ) {
 			actionChooserPlay->setVisible(false);
 #if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
 			actionChooserPlayEmbedded->setVisible(false);
@@ -1649,7 +1647,7 @@ void DeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(const
 			actionChooserOpenExternally->setVisible(false);
 		} else {
 			actionChooserOpenFolder->setVisible(false);
-			actionChooserOpenExternally->setVisible(!fileModel->isZipContent(modelIndexFileModel));
+			actionChooserOpenExternally->setVisible(!m_fileModel->isZipContent(modelIndexFileModel));
 		}
 		fileChooserContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeViewFileChooser->viewport()->mapToGlobal(p), fileChooserContextMenu));
 		fileChooserContextMenu->show();
@@ -1663,15 +1661,15 @@ void DeviceConfigurator::on_treeViewFileChooser_clicked(const QModelIndex &index
 
 void DeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &index)
 {
-	if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
+	if ( toolButtonChooserProcessZIPs->isChecked() && m_fileModel->isZip(index) ) {
 		if ( treeViewFileChooser->isExpanded(index) ) {
 			treeViewFileChooser->setExpanded(index, false);
 		} else {
 			treeViewFileChooser->setExpanded(index, true);
-			fileModel->openZip(index);
-			fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+			m_fileModel->openZip(index);
+			m_fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 		}
-	} else if ( fileModel->isFolder(index) ) {
+	} else if ( m_fileModel->isFolder(index) ) {
 		treeViewFileChooser_openFolder();
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
@@ -1690,70 +1688,64 @@ void DeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &ind
 
 void DeviceConfigurator::treeViewFileChooser_toggleArchive()
 {
-	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
-
+	QModelIndexList selected(treeViewFileChooser->selectionModel()->selectedIndexes());
 	if ( selected.count() > 0 ) {
-		QModelIndex index = selected[0];
+		QModelIndex index(selected.first());
 		if ( treeViewFileChooser->isExpanded(index) ) {
 			treeViewFileChooser->setExpanded(index, false);
 		} else {
 			treeViewFileChooser->setExpanded(index, true);
-			fileModel->openZip(index);
-			fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+			m_fileModel->openZip(index);
+			m_fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 		}
 	}
 }
 
 void DeviceConfigurator::treeViewFileChooser_viewPdf()
 {
-	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
-
+	QModelIndexList selected(treeViewFileChooser->selectionModel()->selectedIndexes());
 	if ( selected.count() > 0 )
-		qmc2MainWindow->viewPdf(fileModel->fileName(selected[0]));
+		qmc2MainWindow->viewPdf(m_fileModel->fileName(selected.first()));
 }
 
 void DeviceConfigurator::treeViewFileChooser_viewHtml()
 {
-	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
-
+	QModelIndexList selected(treeViewFileChooser->selectionModel()->selectedIndexes());
 	if ( selected.count() > 0 )
-		qmc2MainWindow->viewHtml(fileModel->fileName(selected[0]));
+		qmc2MainWindow->viewHtml(m_fileModel->fileName(selected.first()));
 }
 
 void DeviceConfigurator::treeViewFileChooser_openFileExternally()
 {
-	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
-
+	QModelIndexList selected(treeViewFileChooser->selectionModel()->selectedIndexes());
 	if ( selected.count() > 0 )
-		QDesktopServices::openUrl(QUrl::fromUserInput(fileModel->fileName(selected[0])));
+		QDesktopServices::openUrl(QUrl::fromUserInput(m_fileModel->fileName(selected.first())));
 }
 
 void DeviceConfigurator::treeViewFileChooser_openFolder()
 {
-	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
-
+	QModelIndexList selected(treeViewFileChooser->selectionModel()->selectedIndexes());
 	if ( selected.count() > 0 ) {
-		QModelIndex index = selected[0];
-		QString folderPath = fileModel->absolutePath(index);
-		QModelIndex dirIndex = dirModel->index(folderPath);
+		QModelIndex index(selected.first());
+		QString folderPath(m_fileModel->absolutePath(index));
+		QModelIndex dirIndex(m_dirModel->index(folderPath));
 		if ( dirIndex.isValid() )
 			treeViewDirChooser->setCurrentIndex(dirIndex);
 		else
-			treeViewDirChooser->setCurrentIndex(dirModel->index(dirModel->rootPath()));
+			treeViewDirChooser->setCurrentIndex(m_dirModel->index(m_dirModel->rootPath()));
 	}
 }
 
 void DeviceConfigurator::treeViewFileChooser_expandRequested()
 {
-	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
-
+	QModelIndexList selected(treeViewFileChooser->selectionModel()->selectedIndexes());
 	if ( selected.count() > 0 ) {
-		QModelIndex index = selected[0];
+		QModelIndex index(selected.first());
 		if ( !treeViewFileChooser->isExpanded(index) ) {
-			if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
+			if ( toolButtonChooserProcessZIPs->isChecked() && m_fileModel->isZip(index) ) {
 				treeViewFileChooser->setExpanded(index, true);
-				fileModel->openZip(index);
-				fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+				m_fileModel->openZip(index);
+				m_fileModel->sortOpenZip(index, treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 			}
 		}
 	}
@@ -1790,13 +1782,13 @@ void DeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int start, 
 		treeViewFileChooser->update();
 		treeViewFileChooser->setUpdatesEnabled(false);
 	}
-	lcdNumberFileCounter->display(fileModel->rowCount());
+	lcdNumberFileCounter->display(m_fileModel->rowCount());
 	lcdNumberFileCounter->update();
 }
 
 void DeviceConfigurator::fileModel_finished()
 {
-	lcdNumberFileCounter->display(fileModel->rowCount());
+	lcdNumberFileCounter->display(m_fileModel->rowCount());
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
@@ -1823,7 +1815,7 @@ void DeviceConfigurator::on_toolButtonChooserReload_clicked()
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
-	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+	QTimer::singleShot(0, m_fileModel, SLOT(refresh()));
 }
 
 void DeviceConfigurator::on_comboBoxChooserFilterPattern_editTextChanged(const QString &)
@@ -1835,8 +1827,8 @@ void DeviceConfigurator::comboBoxChooserFilterPattern_editTextChanged_delayed()
 {
 	searchTimer.stop();
 
-	if ( fileModel ) {
-		fileModel->setSearchPattern(comboBoxChooserFilterPattern->currentText());
+	if ( m_fileModel ) {
+		m_fileModel->setSearchPattern(comboBoxChooserFilterPattern->currentText());
 		comboBoxChooserFilterPatternHadFocus = comboBoxChooserFilterPattern->hasFocus();
 		on_toolButtonChooserReload_clicked();
 	}
@@ -1847,18 +1839,18 @@ void DeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 	QString instance = comboBoxDeviceInstanceChooser->currentText();
 	QModelIndexList indexList = treeViewFileChooser->selectionModel()->selectedIndexes();
 	if ( indexList.count() > 0 && instance != tr("No devices available") ) {
-		QString file = fileModel->absolutePath(indexList[0]);
+		QString file(m_fileModel->absolutePath(indexList.first()));
 		QString targetName;
 		bool goOn = false;
 		do {
 			QFileInfo fi(file);
-			QString sourceName = fi.completeBaseName();
+			QString sourceName(fi.completeBaseName());
 			targetName = sourceName;
 			int copies = 0;
 			while ( configurationMap.contains(targetName) )
 				targetName = tr("%1. variant of ").arg(++copies) + sourceName;
 			bool ok;
-			QString text = QInputDialog::getText(this, tr("Choose a unique configuration name"), tr("Unique configuration name:"), QLineEdit::Normal, targetName, &ok);
+			QString text(QInputDialog::getText(this, tr("Choose a unique configuration name"), tr("Unique configuration name:"), QLineEdit::Normal, targetName, &ok));
 			if ( ok && !text.isEmpty() ) {
 				if ( configurationMap.contains(text) ) {
 					switch ( QMessageBox::question(this, tr("Name conflict"), tr("A configuration named '%1' already exists.\n\nDo you want to choose a different name?").arg(text), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ) {
@@ -2019,9 +2011,9 @@ QString DeviceTreeXmlHandler::getXmlData(const QString &machine)
 	return buffer;
 }
 
-QString DeviceTreeXmlHandler::lookupDescription(const QString &machineName)
+QString DeviceTreeXmlHandler::lookupDescription(const QString &machine)
 {
-	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machineName).split('\n'));
+	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machine).split('\n'));
 	if ( xmlLines.count() > 1 ) {
 		int index = 0;
 		while ( index < xmlLines.count() && !xmlLines.at(index).startsWith("<description>") )
@@ -2035,9 +2027,9 @@ QString DeviceTreeXmlHandler::lookupDescription(const QString &machineName)
 		return QString();
 }
 
-QString DeviceTreeXmlHandler::lookupBiosOptions(const QString &machineName, QStringList *bioses, QStringList *biosDescriptions)
+QString DeviceTreeXmlHandler::lookupBiosOptions(const QString &machine, QStringList *bioses, QStringList *biosDescriptions)
 {
-	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machineName).split('\n'));
+	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machine).split('\n'));
 	if ( xmlLines.count() > 1 ) {
 		int index = 0;
 		QString defaultOption;

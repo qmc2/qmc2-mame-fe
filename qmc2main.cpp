@@ -1942,7 +1942,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						QPair<QStringList, QStringList> valuePair = qmc2DeviceConfigurator->configurationMap.value(configName);
 						for (int i = 0; i < valuePair.first.count(); i++) {
 							if ( valuePair.first.at(i) == instance ) {
-								QString file(qmc2DeviceConfigurator->fileModel->absolutePath(indexList.first()));
+								QString file(qmc2DeviceConfigurator->fileModel()->absolutePath(indexList.first()));
 #if defined(QMC2_OS_WIN)
 								args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
@@ -1959,7 +1959,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						}
 					}
 					if ( doMapping ) {
-						QString file(qmc2DeviceConfigurator->fileModel->absolutePath(indexList.first()));
+						QString file(qmc2DeviceConfigurator->fileModel()->absolutePath(indexList.first()));
 #if defined(QMC2_OS_WIN)
 						args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
@@ -4109,35 +4109,25 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2YouTubeWidget->clearMessage();
 #endif
 			if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
-				// FIXME: remove this "fixme" warning when the device configurator works again
-				if ( !qmc2DeviceConfigurator )
-					log(QMC2_LOG_FRONTEND, "FIXME: The new implementation of the device configurator doesn't work properly yet!");
-
+				tabDevices->setUpdatesEnabled(false);
 				if ( qmc2DeviceConfigurator ) {
-					tabDevices->setUpdatesEnabled(false);
-					qmc2DeviceConfigurator->forceQuit = true;
-					if ( qmc2DeviceConfigurator->refreshRunning ) {
-						QTimer::singleShot(1, this, SLOT(treeWidgetMachineList_itemSelectionChanged_delayed()));
-						return;
-					}
-					qmc2DeviceConfigurator->disconnect();
 					qmc2DeviceConfigurator->save();
 					qmc2DeviceConfigurator->saveSetup();
-					QLayout *vbl = tabDevices->layout();
-					if ( vbl )
-						delete vbl;
-					qmc2DeviceConfigurator->deleteLater();
-					qmc2DeviceConfigurator = 0;
 				}
-				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-				QVBoxLayout *layout = new QVBoxLayout;
-				layout->setContentsMargins(left, top, right, bottom);
-				qmc2DeviceConfigurator = new DeviceConfigurator(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME), tabDevices);
-				connect(&messDevCfgTimer, SIGNAL(timeout()), qmc2DeviceConfigurator, SLOT(load()));
-				layout->addWidget(qmc2DeviceConfigurator);
-				if ( !tabDevices->layout() )
-					tabDevices->setLayout(layout);
-				qmc2DeviceConfigurator->show();
+				if ( !qmc2DeviceConfigurator ) {
+					// FIXME: remove this "fixme" warning when the device configurator works again
+					log(QMC2_LOG_FRONTEND, "FIXME: The new implementation of the device configurator doesn't work properly yet!");
+					gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+					QVBoxLayout *layout = new QVBoxLayout;
+					layout->setContentsMargins(left, top, right, bottom);
+					qmc2DeviceConfigurator = new DeviceConfigurator(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME), tabDevices);
+					connect(&messDevCfgTimer, SIGNAL(timeout()), qmc2DeviceConfigurator, SLOT(load()));
+					layout->addWidget(qmc2DeviceConfigurator);
+					if ( !tabDevices->layout() )
+						tabDevices->setLayout(layout);
+					qmc2DeviceConfigurator->show();
+				} else
+					qmc2DeviceConfigurator->setCurrentMachine(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 				qmc2LastDeviceConfigItem = qmc2CurrentItem;
 				messDevCfgTimer.start(QMC2_DEVCONFIG_LOAD_DELAY);
 				tabDevices->setUpdatesEnabled(true);
