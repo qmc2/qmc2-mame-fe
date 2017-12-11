@@ -129,7 +129,7 @@
 		</option>
 		<option default="sta" name="state_directory" type="directory">
 			<description lang="us" text="Directory to save states"/>
-			<description lang="de" text="Verzeichnis zur Speicherung von Spiel-Stati"/>
+			<description lang="de" text="Verzeichnis zur Speicherung von Maschinen-Stati"/>
 			<description lang="pl" text="Katalog do zapisywania stanów gier"/>
 			<description lang="fr" text="Répertoire pour enregistrer les états (STA)"/>
 			<description lang="pt" text="Diretório para salvar estados"/>
@@ -169,7 +169,7 @@
 		<description lang="es" text="Estado / reproducción"/>
 		<option default="" name="state" type="string">
 			<description lang="us" text="Saved state to load"/>
-			<description lang="de" text="Zu ladender Spiel-Status"/>
+			<description lang="de" text="Zu ladender Maschinen-Status"/>
 			<description lang="pl" text="Stan do załadowania"/>
 			<description lang="fr" text="Etat à charger"/>
 			<description lang="pt" text="Estado salvo para carregar"/>
@@ -182,7 +182,7 @@
 		</option>
 		<option default="false" name="autosave" type="bool">
 			<description lang="us" text="Enable automatic restore at startup, and automatic save at exit time"/>
-			<description lang="de" text="Spiel-Status beim Beenden automatisch sichern und beim Start wiederherstellen"/>
+			<description lang="de" text="Maschinen-Status beim Beenden automatisch sichern und beim Start wiederherstellen"/>
 			<description lang="pl" text="Automatycznie zapisz stan gry przy wyjściu i przywróć przy starcie"/>
 			<description lang="fr" text="Sauvegarde automatiquement l'état en sortie et le restaure au démarrage"/>
 			<description lang="pt" text="Habilitar restauração automática ao inicializar, e automaticamente salvar ao sair"/>
@@ -275,6 +275,14 @@
 			<description lang="fr" text="Créer des snapshots pour chaque écran"/>
 			<description lang="pt" text="Criar snapshots para cada tela"/>
 			<description lang="es" text="Crear capturas para cada pantalla"/>
+		</option>
+		<option default="false" name="rewind" type="bool">
+			<description lang="us" text="Enable rewind save states"/>
+			<description lang="de" text="Rewind für gespeicherte Maschinen-Stati aktivieren"/>
+		</option>
+		<option default="100" name="rewind_capacity" type="int">
+			<description lang="us" text="Quantity of states rewind buffer can contain"/>
+			<description lang="de" text="Anzahl der Stati, die der Rewind-Buffer enthalten kann"/>
 		</option>
 	</section>
 	<section name="performance">
