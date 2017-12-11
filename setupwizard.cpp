@@ -561,7 +561,7 @@ bool SetupWizard::findIniFiles()
 	QProcess commandProc;
 	bool started = false, commandProcStarted = false;
 	int retries = 0;
-	commandProc.start(comboBoxExecutableFile->currentText(), QStringList() << "-showconfig");
+	commandProc.start(comboBoxExecutableFile->currentText(), QStringList() << "-noreadconfig" << "-showconfig");
 	started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
 	while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
 		qApp->processEvents();
