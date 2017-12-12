@@ -163,6 +163,11 @@ void EmulatorOptionActions::on_toolButtonStore_clicked()
 	}
 }
 
+void EmulatorOptionActions::on_toolButtonEnforceDefault_toggled(bool checked)
+{
+	// FIXME
+}
+
 void EmulatorOptionActions::adjustIconSizes()
 {
 	QFontMetrics fm(QApplication::font());
@@ -170,4 +175,5 @@ void EmulatorOptionActions::adjustIconSizes()
 	toolButtonReset->setIconSize(iconSize);
 	toolButtonRevert->setIconSize(iconSize);
 	toolButtonStore->setIconSize(iconSize);
+	toolButtonEnforceDefault->setIconSize(iconSize);
 }
