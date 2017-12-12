@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>86</width>
-    <height>25</height>
+    <width>128</width>
+    <height>32</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -17,7 +17,7 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="2">
+   <item row="0" column="3">
     <widget class="QToolButton" name="toolButtonStore">
      <property name="enabled">
       <bool>false</bool>
@@ -37,6 +37,19 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="5">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="0" column="1">
     <widget class="QToolButton" name="toolButtonRevert">
      <property name="enabled">
@@ -54,6 +67,29 @@
      <property name="icon">
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QToolButton" name="toolButtonEnforceDefault">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Forcibly pass the default value (when checked)</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/enforce.png</normaloff>:/data/img/enforce.png</iconset>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -76,19 +112,6 @@
        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
      </property>
     </widget>
-   </item>
-   <item row="0" column="3">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>0</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

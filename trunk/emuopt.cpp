@@ -639,10 +639,13 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 		if ( currentValue.isEmpty() )
 			currentValue = tr("<EMPTY>");
 		if ( isGlobal ) {
-			if ( currentValue == defaultValue )
+			if ( currentValue == defaultValue ) {
 				emuOptActions->disableResetAction();
-			else
+				emuOptActions->enableEnforceDefaultAction();
+			} else {
 				emuOptActions->enableResetAction();
+				emuOptActions->disableEnforceDefaultAction();
+			}
 			if ( currentValue != storedValue ) {
 				if ( currentValue == defaultValue && storedValue == "<UNSET>" ) {
 					emuOptActions->disableRevertAction();
@@ -656,10 +659,13 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				emuOptActions->disableStoreAction();
 			}
 		} else {
-			if ( (currentValue == globalValue && globalValue != "<UNSET>") || (currentValue == defaultValue && globalValue == "<UNSET>" && storedValue == "<UNSET>") )
+			if ( (currentValue == globalValue && globalValue != "<UNSET>") || (currentValue == defaultValue && globalValue == "<UNSET>" && storedValue == "<UNSET>") ) {
 				emuOptActions->disableResetAction();
-			else
+				emuOptActions->enableEnforceDefaultAction();
+			} else {
 				emuOptActions->enableResetAction();
+				emuOptActions->disableEnforceDefaultAction();
+			}
 			if ( currentValue != storedValue ) {
 				if ( (currentValue == globalValue && storedValue == "<UNSET>") || (currentValue == defaultValue && globalValue == "<UNSET>" && storedValue == "<UNSET>") ) {
 					emuOptActions->disableRevertAction();

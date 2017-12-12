@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.193, 11-DEC-2017</h3>
+<h3>CHANGES - v0.193, 12-DEC-2017</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.193, 11-DEC-2017:</b></p>
+<p><b>v0.193, 12-DEC-2017:</b></p>
 <ul>
 	<li>fix: sample-checker: merge process output channels (<i>stdio</i> and <i>stderr</i>) because <code>-verifysamples</code> uses both in the meantime</li>
 	<li>fix: corrected the restoration of the last machine list view during initialization for non-WIP builds</li>
@@ -24,6 +24,7 @@ inf: informational only
 	<li>imp: updated the emulator configuration templates to MAME 'git latest' (added the core state / playback options 'rewind' and 'rewind_capacity')</li>
 	<li>imp: updated category.ini to MAME 'git latest'</li>
 	<li>wip: reimplementing the device configurator for modern MAME - <b>WIP-info: this doesn't work properly yet and it won't load, produce or save any useful slot- &amp; device-setups for you at the moment, the feature isn't WIP-ified though as it's already too geared with rest of the UI!</b></li>
+	<li>wip: emulator options: adding an <i>enforce default</i> toggle switch to every option so the user can decide to explicitly pass the default value to the emulator (which QMC2 would usually not do)</li>
 </ul>
 <p><b>v0.192, 29-NOV-2017:</b></p>
 <ul>
