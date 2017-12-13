@@ -1632,7 +1632,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 	QStringList registeredEmulators(qmc2Config->childGroups());
 	qmc2Config->endGroup();
 	bool foreignEmulator = false;
-	if ( registeredEmulators.count() > 0 && qmc2DemoMachine.isEmpty() ) {
+	if ( !registeredEmulators.isEmpty() && qmc2DemoMachine.isEmpty() ) {
 		if ( !launchForeignID ) {
 			if ( tabWidgetMachineList->currentIndex() == tabWidgetMachineList->indexOf(tabForeignEmulators) ) {
 				QTreeWidgetItem *item = treeWidgetForeignIDs->currentItem();
@@ -1713,16 +1713,17 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 	EmulatorOptions *demoOpts = 0;
 	if ( !qmc2DemoMachine.isEmpty() ) {
-		demoOpts = new EmulatorOptions("MAME/Configuration/" + machineName, 0);
+		demoOpts = new EmulatorOptions(QMC2_EMULATOR_PREFIX + "Configuration/" + machineName, 0);
 		demoOpts->load();
 		emuOptions = demoOpts;
 	}
 
 	foreach (sectionTitle, emuOptions->optionsMap.uniqueKeys()) {
 		int i;
-		for (i = 0; i < emuOptions->optionsMap[sectionTitle].count(); i++) {
-			EmulatorOption option = emuOptions->optionsMap[sectionTitle][i];
-			QString globalOptionKey = QMC2_EMULATOR_PREFIX + "Configuration/Global/" + option.name;
+		for (i = 0; i < emuOptions->optionsMap.value(sectionTitle).count(); i++) {
+			EmulatorOption option(emuOptions->optionsMap.value(sectionTitle).at(i));
+			QString globalOptionKey(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + option.name);
+			bool enforceDefault = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/EnforceDefault/" + option.name, false).toBool() || qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/" + machineName + "/EnforceDefault/" + option.name, false).toBool();
 			switch ( option.type ) {
 				case QMC2_EMUOPT_TYPE_INT: {
 					int  v = option.value.toInt();
@@ -1730,7 +1731,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 					int gv = qmc2Config->value(globalOptionKey, dv).toInt();
 					if ( !option.valid )
 						v = gv;
-					if ( v != dv )
+					if ( enforceDefault || v != dv )
 						args << QString("-%1").arg(option.name) << QString("%1").arg(v);
 					break;
 				}
@@ -1741,7 +1742,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 					double gv = qmc2Config->value(globalOptionKey, dv).toDouble();
 					if ( !option.valid )
 						v = gv;
-					if ( v != dv ) {
+					if ( enforceDefault || v != dv ) {
 						QString val;
 						val.setNum(v, 'f', option.decimals);
 						args << QString("-%1").arg(option.name) << val;
@@ -1762,7 +1763,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						dv1 = defaultSubValues[0].toDouble();
 					if ( defaultSubValues.count() > 1 )
 						dv2 = defaultSubValues[1].toDouble();
-					if ( v1 != dv1 || v2 != dv2 )
+					if ( enforceDefault || v1 != dv1 || v2 != dv2 )
 						args << QString("-%1").arg(option.name) << QString("%1,%2").arg(v1).arg(v2);
 					break;
 				}
@@ -1784,7 +1785,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						dv2 = defaultSubValues[1].toDouble();
 					if ( defaultSubValues.count() > 2 )
 						dv3 = defaultSubValues[2].toDouble();
-					if ( v1 != dv1 || v2 != dv2 || v3 != dv3 )
+					if ( enforceDefault || v1 != dv1 || v2 != dv2 || v3 != dv3 )
 						args << QString("-%1").arg(option.name) << QString("%1,%2,%3").arg(v1).arg(v2).arg(v3);
 					break;
 				}
@@ -1795,7 +1796,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 					bool gv = qmc2Config->value(globalOptionKey, dv).toBool();
 					if ( !option.valid )
 						v = gv;
-					if ( v != dv ) {
+					if ( enforceDefault || v != dv ) {
 						if ( v )
 							args << QString("-%1").arg(option.name);
 						else
@@ -1812,10 +1813,10 @@ void MainWindow::on_actionPlay_triggered(bool)
 					if ( !option.valid )
 						v = gv;
 #if defined(QMC2_OS_WIN)
-					if ( v != dv )
+					if ( enforceDefault || v != dv )
 						args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(QDir::cleanPath(v));
 #else
-					if ( v != dv )
+					if ( enforceDefault || v != dv )
 						args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(v.replace("~", "$HOME"));
 #endif
 					break;
@@ -1828,7 +1829,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 					QString gv = qmc2Config->value(globalOptionKey, dv).toString();
 					if ( !option.valid )
 						v = gv;
-					if ( v != dv )
+					if ( enforceDefault || v != dv )
 						args << QString("-%1").arg(option.name) << v;
 					break;
 				}

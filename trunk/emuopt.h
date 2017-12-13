@@ -134,7 +134,7 @@ class EmulatorOptions : public QTreeWidget
 		bool changed;
 		bool isGlobal;
 
-		EmulatorOptions(QString, QWidget *parent = 0);
+		EmulatorOptions(const QString &, QWidget *parent = 0);
 		~EmulatorOptions();
 
 		QString &readDescription(QXmlStreamReader *, QString &, bool *);

@@ -433,7 +433,7 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 	QStyledItemDelegate::paint(painter, option, index);
 }
 
-EmulatorOptions::EmulatorOptions(QString group, QWidget *parent) :
+EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 	QTreeWidget(parent)
 {
 	if ( typeNameToIndexHash.isEmpty() ) {
@@ -642,6 +642,8 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 			if ( currentValue == defaultValue ) {
 				emuOptActions->disableResetAction();
 				emuOptActions->enableEnforceDefaultAction();
+				if ( qmc2Config->value("EnforceDefault/" + optionName, false).toBool() )
+					emuOptActions->checkEnforceDefaultAction();
 			} else {
 				emuOptActions->enableResetAction();
 				emuOptActions->disableEnforceDefaultAction();
@@ -662,6 +664,8 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 			if ( (currentValue == globalValue && globalValue != "<UNSET>") || (currentValue == defaultValue && globalValue == "<UNSET>" && storedValue == "<UNSET>") ) {
 				emuOptActions->disableResetAction();
 				emuOptActions->enableEnforceDefaultAction();
+				if ( qmc2Config->value("EnforceDefault/" + optionName, false).toBool() )
+					emuOptActions->checkEnforceDefaultAction();
 			} else {
 				emuOptActions->enableResetAction();
 				emuOptActions->disableEnforceDefaultAction();
@@ -721,7 +725,7 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 		}
 		int optCount = optionsMap.value(sectionTitle).count();
 		for (int i = 0; i < optCount; i++) {
-			EmulatorOption option = optionsMap.value(sectionTitle).at(i);
+			EmulatorOption option(optionsMap.value(sectionTitle).at(i));
 			if ( !optName.isEmpty() )
 				if ( option.name != optName )
 					continue;
@@ -879,16 +883,19 @@ void EmulatorOptions::save(QString optName)
 	foreach (sectionTitle, optionsMap.keys()) {
 		QString vs;
 		if ( !isGlobal ) {
-			QTreeWidgetItem *item = sectionItemMap[sectionTitle];
+			QTreeWidgetItem *item = sectionItemMap.value(sectionTitle);
 			if ( item )
 				sectionExpansionMap[sectionTitle] = item->isExpanded();
 		}
-		for (int i = 0; i < optionsMap[sectionTitle].count(); i++) {
+		for (int i = 0; i < optionsMap.value(sectionTitle).count(); i++) {
 			if ( !isGlobal )
 				optionExpansionMap[optionsMap[sectionTitle][i].name] = optionsMap[sectionTitle][i].item->isExpanded();
 			if ( !optName.isEmpty() )
 				if ( optName != optionsMap[sectionTitle][i].name )
 					continue;
+			EmulatorOptionActions *emuOptActions = (EmulatorOptionActions *)itemWidget(optionsMap[sectionTitle][i].item, QMC2_EMUOPT_COLUMN_ACTIONS);
+			if ( emuOptActions->enforceDefaultIsChecked() )
+				qmc2Config->setValue("EnforceDefault/" + optionsMap[sectionTitle][i].name, true);
 			switch ( optionsMap[sectionTitle][i].type ) {
 				case QMC2_EMUOPT_TYPE_INT: {
 					int v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toInt();
