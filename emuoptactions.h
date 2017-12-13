@@ -9,17 +9,7 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 	Q_OBJECT
 
        	public:
-		QTreeWidgetItem *myItem;
-		QString optionType;
-		QString optionName;
-		QString defaultValue;
-		QString globalValue;
-		QString storedValue;
-		QString currentValue;
-		bool isGlobal;
-		QString systemName;
-
-		EmulatorOptionActions(QTreeWidgetItem *, bool, QString &, QWidget *parent = 0);
+		EmulatorOptionActions(QTreeWidgetItem *, bool, const QString &, QWidget *parent = 0);
 		~EmulatorOptionActions();
 
 	public slots:
@@ -35,11 +25,24 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 		void enableStoreAction() { toolButtonStore->setEnabled(true); }
 		void disableStoreAction() { toolButtonStore->setEnabled(false); }
 		void enableEnforceDefaultAction() { toolButtonEnforceDefault->setEnabled(true); }
-		void disableEnforceDefaultAction() { toolButtonEnforceDefault->setEnabled(false); }
+		void disableEnforceDefaultAction() { uncheckEnforceDefaultAction(); toolButtonEnforceDefault->setEnabled(false); }
 		void checkEnforceDefaultAction() { toolButtonEnforceDefault->setChecked(true); }
 		void uncheckEnforceDefaultAction() { toolButtonEnforceDefault->setChecked(false); }
+		bool enforceDefaultIsChecked() { return toolButtonEnforceDefault->isEnabled() && toolButtonEnforceDefault->isChecked(); }
 
 		void adjustIconSizes();
+
+	private:
+		QTreeWidgetItem *m_myItem;
+		QString m_optionType;
+		QString m_optionName;
+		QString m_defaultValue;
+		QString m_globalValue;
+		QString m_storedValue;
+		QString m_currentValue;
+		QString m_systemName;
+		bool m_isGlobal;
+
 };
 
 #endif
