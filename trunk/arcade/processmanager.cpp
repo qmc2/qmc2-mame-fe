@@ -47,13 +47,14 @@ int ProcessManager::startEmulator(QString id)
 		foreach (EmulatorOption emuOpt, mTemplateList) {
 			QString globalOptionKey = globalConfig->emulatorPrefix + "/Configuration/Global/" + emuOpt.name;
 			QString localOptionKey = globalConfig->emulatorPrefix + QString("/Configuration/%1/").arg(id) + emuOpt.name;
+			bool enforceDefault = globalConfig->value(globalConfig->emulatorPrefix + "/Configuration/Global/EnforceDefault/" + emuOpt.name, false).toBool() || globalConfig->value(globalConfig->emulatorPrefix + QString("/Configuration/%1/EnforceDefault/").arg(id) + emuOpt.name, false).toBool();
 
 			switch ( emuOpt.type ) {
 			case QMC2_ARCADE_EMUOPT_INT: {
 				int dv = emuOpt.dvalue.toInt();
 				int gv = globalConfig->value(globalOptionKey, dv).toInt();
 				int v = globalConfig->value(localOptionKey, gv).toInt();
-				if ( v != dv )
+				if ( enforceDefault || v != dv )
 					args << QString("-%1").arg(emuOpt.name) << QString("%1").arg(v);
 				break;
 			}
@@ -61,7 +62,7 @@ int ProcessManager::startEmulator(QString id)
 				double dv = emuOpt.dvalue.toDouble();
 				double gv = globalConfig->value(globalOptionKey, dv).toDouble();
 				double v = globalConfig->value(localOptionKey, gv).toDouble();
-				if ( v != dv )
+				if ( enforceDefault || v != dv )
 					args << QString("-%1").arg(emuOpt.name) << QString("%1").arg(v);
 				break;
 			}
@@ -78,7 +79,7 @@ int ProcessManager::startEmulator(QString id)
 					dv1 = defaultSubValues[0].toDouble();
 				if ( defaultSubValues.count() > 1 )
 					dv2 = defaultSubValues[1].toDouble();
-				if ( v1 != dv1 || v2 != dv2 )
+				if ( enforceDefault || v1 != dv1 || v2 != dv2 )
 					args << QString("-%1").arg(emuOpt.name) << QString("%1,%2").arg(v1).arg(v2);
 				break;
 			}
@@ -99,7 +100,7 @@ int ProcessManager::startEmulator(QString id)
 					dv2 = defaultSubValues[1].toDouble();
 				if ( defaultSubValues.count() > 2 )
 					dv3 = defaultSubValues[2].toDouble();
-				if ( v1 != dv1 || v2 != dv2 || v3 != dv3 )
+				if ( enforceDefault || v1 != dv1 || v2 != dv2 || v3 != dv3 )
 					args << QString("-%1").arg(emuOpt.name) << QString("%1,%2,%3").arg(v1).arg(v2).arg(v3);
 				break;
 			}
@@ -107,7 +108,7 @@ int ProcessManager::startEmulator(QString id)
 				bool dv = (emuOpt.dvalue == "true");
 				bool gv = globalConfig->value(globalOptionKey, dv).toBool();
 				bool v = globalConfig->value(localOptionKey, gv).toBool();
-				if ( v != dv ) {
+				if ( enforceDefault || v != dv ) {
 					if ( v )
 						args << QString("-%1").arg(emuOpt.name);
 					else
@@ -120,7 +121,7 @@ int ProcessManager::startEmulator(QString id)
 				QString dv = emuOpt.dvalue;
 				QString gv = globalConfig->value(globalOptionKey, dv).toString();
 				QString v = globalConfig->value(localOptionKey, gv).toString();
-				if ( v != dv )
+				if ( enforceDefault || v != dv )
 					args << QString("-%1").arg(emuOpt.name) << v.replace("~", "$HOME");
 				break;
 			}
