@@ -10,7 +10,6 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 
        	public:
 		EmulatorOptionActions(QTreeWidgetItem *, bool, const QString &, QWidget *parent = 0);
-		~EmulatorOptionActions();
 
 	public slots:
 		void on_toolButtonReset_clicked();
@@ -42,7 +41,6 @@ class EmulatorOptionActions : public QWidget, public Ui::EmulatorOptionActions
 		QString m_currentValue;
 		QString m_systemName;
 		bool m_isGlobal;
-
 };
 
 #endif

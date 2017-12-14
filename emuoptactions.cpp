@@ -39,10 +39,6 @@ EmulatorOptionActions::EmulatorOptionActions(QTreeWidgetItem *item, bool global,
 	adjustIconSizes();
 }
 
-EmulatorOptionActions::~EmulatorOptionActions()
-{
-}
-
 void EmulatorOptionActions::on_toolButtonReset_clicked()
 {
 	if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "Configuration/Global/" + m_optionName) )
