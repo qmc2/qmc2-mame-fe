@@ -2071,14 +2071,15 @@ void SoftwareList::checkSoftwareStates()
 		QString command(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 		QStringList args;
 		args << "-verifysoftlist" << softwareList;
-		QString romPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath").toString().replace("~", "$HOME"));
+		QString romPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString().replace("~", "$HOME"));
 		if ( !romPath.isEmpty() )
-			args << "-rompath" << QString("%1").arg(romPath);
-		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath").toString().replace("~", "$HOME"));
+			args << "-rompath" << romPath;
+		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", "$HOME"));
 		if ( !hashPath.isEmpty() )
-			args << "-hashpath" << QString("%1").arg(hashPath);
-		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory").toString().isEmpty() )
+			args << "-hashpath" << hashPath;
+		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString().isEmpty() )
 			verifyProc->setWorkingDirectory(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString());
+		verifyProc->setProcessChannelMode(QProcess::MergedChannels);
 		verifyProc->start(command, args);
 		verifyReadingStdout = false;
 		int retries = 0;
@@ -2130,7 +2131,7 @@ void SoftwareList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	}
 
 	for (int i = 0; i < softwareListItems.count(); i++) {
-		QTreeWidgetItem *softwareItem = softwareListItems[i];
+		QTreeWidgetItem *softwareItem = softwareListItems.at(i);
 		QString softwareName(softwareItem->text(QMC2_SWLIST_COLUMN_NAME));
 		QTreeWidgetItem *favoriteItem = 0;
 		foreach (QTreeWidgetItem *item, favoritesListItems) {
