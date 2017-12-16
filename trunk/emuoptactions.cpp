@@ -166,10 +166,16 @@ void EmulatorOptionActions::on_toolButtonEnforceDefault_toggled(bool checked)
 		else
 			qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Configuration/Global/EnforceDefault/" + m_optionName);
 	} else {
+		QString localGroup(QMC2_EMULATOR_PREFIX + "Configuration/" + m_systemName);
+		bool leaveGroup = qmc2Config->group() == localGroup;
+		if ( leaveGroup )
+			qmc2Config->endGroup();
 		if ( checked )
-			qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Configuration/" + m_systemName + "/EnforceDefault/" + m_optionName, true);
+			qmc2Config->setValue(localGroup + "/EnforceDefault/" + m_optionName, true);
 		else
-			qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Configuration/" + m_systemName + "/EnforceDefault/" + m_optionName);
+			qmc2Config->remove(localGroup + "/EnforceDefault/" + m_optionName);
+		if ( leaveGroup )
+			qmc2Config->beginGroup(localGroup);
 	}
 }
 
