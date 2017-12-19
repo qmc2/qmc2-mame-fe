@@ -1085,8 +1085,10 @@ void EmulatorOptions::createMap()
 	optionsMap.clear();
 	sectionItemMap.clear();
 	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
-	setUpdatesEnabled(false);
 	QIcon wipIcon(QIcon(QString::fromUtf8(":/data/img/wip.png")));
+	QString sysName;
+	if ( !isGlobal )
+		sysName = settingsGroup.split('/').last();
 	while ( it.hasNext() ) {
 		it.next();
 		QString sectionTitle(it.key());
@@ -1172,9 +1174,6 @@ void EmulatorOptions::createMap()
 			} else
 				optionDescription.clear();
 			openPersistentEditor(optionItem, QMC2_EMUOPT_COLUMN_VALUE);
-			QString sysName;
-			if ( !isGlobal )
-				sysName = settingsGroup.split('/').last();
 			EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, isGlobal, sysName);
 			setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, emuOptActions);
 		}
