@@ -98,8 +98,9 @@ class MachineList : public QObject
 
 		void reopenIconCacheDb();
 		bool loadIcon(const QString &, QTreeWidgetItem *);
-		void clearCategoryNames();
-		void clearVersionNames();
+		void clearCategoryNames() { qDeleteAll(categoryNames); categoryNames.clear(); }
+		void clearVersionNames() { qDeleteAll(versionNames); versionNames.clear(); }
+
 		QString sortCriteriaName(int);
 		XmlDatabaseManager *xmlDb() { return m_xmlDb; }
 		UserDataDatabaseManager *userDataDb() { return m_userDataDb; }

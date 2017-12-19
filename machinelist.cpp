@@ -180,7 +180,7 @@ MachineList::MachineList(QObject *parent) :
 	qmc2NotFoundBIOSImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey_bios.png"));
 	qmc2NotFoundDeviceImageIcon = QIcon(QString::fromUtf8(":/data/img/sphere_grey_device.png"));
 
-	// translation look-up hashes/maps
+	// translation look-up hashes & maps
 	phraseTranslatorList << tr("good") << tr("bad") << tr("preliminary") << tr("supported") << tr("unsupported")
 		<< tr("imperfect") << tr("yes") << tr("no") << tr("baddump") << tr("nodump")
 		<< tr("vertical") << tr("horizontal") << tr("raster") << tr("unknown") << tr("Unknown") 
@@ -191,22 +191,22 @@ MachineList::MachineList(QObject *parent) :
 		<< tr("doublejoy2way") << tr("printer") << tr("cdrom") << tr("cartridge") << tr("cassette")
 		<< tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot") << tr("original")
 		<< tr("compatible") << tr("N/A");
-	reverseTranslations[tr("good")] = "good";
-	reverseTranslations[tr("bad")] = "bad";
-	reverseTranslations[tr("preliminary")] = "preliminary";
-	reverseTranslations[tr("supported")] = "supported";
-	reverseTranslations[tr("unsupported")] = "unsupported";
-	reverseTranslations[tr("imperfect")] = "imperfect";
-	reverseTranslations[QObject::tr("yes")] = "yes";
-	reverseTranslations[QObject::tr("no")] = "no";
-	reverseTranslations[QObject::tr("partially")] = "partially";
+	reverseTranslations.insert(tr("good"), "good");
+	reverseTranslations.insert(tr("bad"), "bad");
+	reverseTranslations.insert(tr("preliminary"), "preliminary");
+	reverseTranslations.insert(tr("supported"), "supported");
+	reverseTranslations.insert(tr("unsupported"), "unsupported");
+	reverseTranslations.insert(tr("imperfect"), "imperfect");
+	reverseTranslations.insert(QObject::tr("yes"), "yes");
+	reverseTranslations.insert(QObject::tr("no"), "no");
+	reverseTranslations.insert(QObject::tr("partially"), "partially");
+	machineStateTranslations.insert("good", tr("good"));
+	machineStateTranslations.insert("preliminary", tr("preliminary"));
+	machineStateTranslations.insert("imperfect", tr("imperfect"));
+	machineStateTranslations.insert("N/A", tr("N/A"));
+	romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
 	trQuestionMark = tr("?");
 	trWaitingForData = tr("Waiting for data...");
-	machineStateTranslations["good"] = tr("good");
-	machineStateTranslations["preliminary"] = tr("preliminary");
-	machineStateTranslations["imperfect"] = tr("imperfect");
-	machineStateTranslations["N/A"] = tr("N/A");
-	romTypeNames << "--" << tr("ROM") << tr("CHD") << tr("ROM, CHD");
 
 	// identifier strings (see "mame -help") that we support - others will produce a warning
 	emulatorIdentifiers << "MAME" << "M.A.M.E." << "HBMAME" << "HB.M.A.M.E." << "MESS" << "M.E.S.S.";
@@ -393,7 +393,7 @@ void MachineList::load()
 	qmc2LoadingInterrupted = false;
 	if ( qmc2DemoModeDialog )
 		qmc2DemoModeDialog->saveCategoryFilter();
-	disableWidgets();
+	QTimer::singleShot(0, this, SLOT(disableWidgets()));
 	machineStatusHash.clear();
 	qmc2MachineListItemHash.clear();
 	qmc2HierarchyItemHash.clear();
@@ -556,14 +556,14 @@ void MachineList::load()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up") + " (" + tr("error text = %1").arg(ProcessManager::errorText(commandProc.error())) + ")");
 				qmc2ReloadActive = qmc2EarlyReloadActive = false;
 				qmc2LoadingInterrupted = true;
-				enableWidgets();
+				QTimer::singleShot(0, this, SLOT(enableWidgets()));
 				return;
 			}
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start %1 executable, file '%2' does not exist").arg(QMC2_EMU_NAME).arg(execFile));
 			qmc2ReloadActive = qmc2EarlyReloadActive = false;
 			qmc2LoadingInterrupted = true;
-			enableWidgets();
+			QTimer::singleShot(0, this, SLOT(enableWidgets()));
 			return;
 		}
 		if ( commandProcStarted ) {
@@ -630,7 +630,7 @@ void MachineList::load()
 		else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
 			qmc2ReloadActive = false;
-			enableWidgets();
+			QTimer::singleShot(0, this, SLOT(enableWidgets()));
 			return;
 		}
 		if ( numTotalMachines > 0 ) {
@@ -640,7 +640,7 @@ void MachineList::load()
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
 			qmc2Config->remove(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines");
 			qmc2ReloadActive = false;
-			enableWidgets();
+			QTimer::singleShot(0, this, SLOT(enableWidgets()));
 			return;
 		}
 		if ( qmc2Config->contains(QMC2_EMULATOR_PREFIX + "ListfullSha1") && qmc2Config->value(QMC2_EMULATOR_PREFIX + "ListfullSha1", QString()).toString() != listfullSha1 ) {
@@ -674,7 +674,7 @@ void MachineList::load()
 	if ( qmc2LoadingInterrupted ) {
 		mainProgressBar->reset();
 		qmc2ReloadActive = false;
-		enableWidgets();
+		QTimer::singleShot(0, this, SLOT(enableWidgets()));
 		return;
 	}
 	if ( !initialLoad ) {
@@ -814,7 +814,7 @@ void MachineList::verify(bool currentOnly)
 		if ( !romStateCache.isOpen() ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romStateCache.fileName()));
 			qmc2VerifyActive = false;
-			enableWidgets();
+			QTimer::singleShot(0, this, SLOT(enableWidgets()));
 			return;
 		} else {
 			tsRomCache.setDevice(&romStateCache);
@@ -852,7 +852,7 @@ void MachineList::verify(bool currentOnly)
 		if ( !romStateCache.isOpen() ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romStateCache.fileName()));
 			qmc2VerifyActive = false;
-			enableWidgets();
+			QTimer::singleShot(0, this, SLOT(enableWidgets()));
 			return;
 		} else {
 			tsRomCache.setDevice(&romStateCache);
@@ -1220,7 +1220,7 @@ void MachineList::parse()
 {
 	if ( qmc2LoadingInterrupted ) {
 		qmc2ReloadActive = false;
-		enableWidgets();
+		QTimer::singleShot(0, this, SLOT(enableWidgets()));
 		return;
 	}
 	QWidget *fW = qApp->focusWidget();
@@ -3829,20 +3829,6 @@ QString MachineList::lookupDriverName(const QString &systemName)
 		}
 	}
 	return driverName;
-}
-
-void MachineList::clearCategoryNames()
-{
-	foreach (QString *category, categoryNames)
-		delete category;
-	categoryNames.clear();
-}
-
-void MachineList::clearVersionNames()
-{
-	foreach (QString *version, versionNames)
-		delete version;
-	versionNames.clear();
 }
 
 bool MachineListItem::operator<(const QTreeWidgetItem &otherItem) const
