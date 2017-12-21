@@ -35,6 +35,7 @@ MissingDumpsViewer::MissingDumpsViewer(QString settingsKey, QWidget *parent) :
 
 void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 {
+	toolButtonExportToDataFile->setEnabled(false);
 	QString storedPath(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath", QString()).toString());
 	QString dataFilePath(QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !dataFilePath.isNull() ) {
@@ -169,6 +170,7 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			QMessageBox::critical(this, tr("Error"), tr("Can't open '%1' for writing!").arg(dataFilePath));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath", dataFilePath);
 	}
+	toolButtonExportToDataFile->setEnabled(true);
 }
 
 void MissingDumpsViewer::showEvent(QShowEvent *e)
