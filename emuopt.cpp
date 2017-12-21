@@ -1084,11 +1084,12 @@ void EmulatorOptions::createMap()
 		trFalse(tr("false")), trEmpty(tr("<EMPTY>")), trDescription(tr("Description")), utTrue("true");
 	optionsMap.clear();
 	sectionItemMap.clear();
-	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
 	QIcon wipIcon(QIcon(QString::fromUtf8(":/data/img/wip.png")));
 	QString sysName;
 	if ( !isGlobal )
 		sysName = settingsGroup.split('/').last();
+	setUpdatesEnabled(false);
+	QMapIterator<QString, QList<EmulatorOption> > it(templateMap);
 	while ( it.hasNext() ) {
 		it.next();
 		QString sectionTitle(it.key());
