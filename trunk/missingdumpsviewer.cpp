@@ -35,9 +35,7 @@ MissingDumpsViewer::MissingDumpsViewer(QString settingsKey, QWidget *parent) :
 
 void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 {
-	QString storedPath;
-	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath") )
-		storedPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath").toString();
+	QString storedPath(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/LastDataFilePath", QString()).toString());
 	QString dataFilePath(QFileDialog::getSaveFileName(this, tr("Choose data file to export to"), storedPath, tr("Data files (*.dat)") + ";;" + tr("All files (*)"), 0, qmc2Options->useNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog));
 	if ( !dataFilePath.isNull() ) {
 		QFile dataFile(dataFilePath);
@@ -61,20 +59,20 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 			ts << "\t</header>\n";
 			QString mainEntityName("machine");
 			QMultiMap<QString, DumpRecord *> dumpMap;
-			progressBar->show();
+			progressBar->setFormat(tr("Preparing"));
 			progressBar->setRange(0, treeWidget->topLevelItemCount());
 			progressBar->setValue(0);
+			progressBar->show();
 			for (int i = 0; i < treeWidget->topLevelItemCount(); i++) {
 				QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 				if ( !checkBoxSelectedDumpsOnly->isChecked() || item->isSelected() )
 					dumpMap.insertMulti(item->text(QMC2_MDV_COLUMN_ID), new DumpRecord(item->text(QMC2_MDV_COLUMN_NAME), item->text(QMC2_MDV_COLUMN_TYPE), item->text(QMC2_MDV_COLUMN_SIZE), item->text(QMC2_MDV_COLUMN_CRC), item->text(QMC2_MDV_COLUMN_SHA1)));
-				if ( i % QMC2_FIXDAT_EXPORT_RESPONSE == 0 ) {
-					progressBar->setValue(i);
-					qApp->processEvents();
-				}
+				progressBar->setValue(i);
 			}
 			QStringList dumpKeys(dumpMap.uniqueKeys());
+			progressBar->setFormat(tr("Exporting"));
 			progressBar->setRange(0, dumpKeys.count());
+			progressBar->setValue(0);
 			for (int i = 0; i < dumpKeys.count(); i++) {
 				QString id(dumpKeys.at(i));
 				if ( defaultEmulator() ) {
@@ -163,9 +161,9 @@ void MissingDumpsViewer::on_toolButtonExportToDataFile_clicked()
 					qApp->processEvents();
 				}
 			}
-			dumpMap.clear();
 			ts << "</datafile>\n";
 			dataFile.close();
+			dumpMap.clear();
 			progressBar->hide();
 		} else
 			QMessageBox::critical(this, tr("Error"), tr("Can't open '%1' for writing!").arg(dataFilePath));
