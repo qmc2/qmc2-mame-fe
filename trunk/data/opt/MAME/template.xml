@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<template emulator="MAME" format="0.2.9" version="0.192">
+<template emulator="MAME" format="0.2.9" version="0.193">
 	<section name="search_paths">
 		<description lang="us" text="Search paths"/>
 		<description lang="de" text="Suchpfade"/>
@@ -985,6 +985,10 @@
 		<option default="" name="noplugin" type="string">
 			<description lang="us" text="Comma-separated list of plugins to disable"/>
 			<description lang="de" text="Komma-separierte Liste der Plugins, die deaktiviert werden sollen"/>
+		</option>
+		<option default="true" name="nvram_save" type="bool">
+			<description lang="us" text="Save NVRAM on exit"/>
+			<description lang="de" text="NVRAM beim Beenden speichern"/>
 		</option>
 	</section>
 	<section name="configuration">
