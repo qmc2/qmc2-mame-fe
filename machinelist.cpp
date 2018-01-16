@@ -901,13 +901,13 @@ QString MachineList::value(QString element, QString attribute, bool translate)
 		QString valueString(element.remove(0, element.indexOf(attributePattern) + attributePattern.length()));
 		valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 		if ( valueString == ">" )
-			return QString::null;
+			return QString();
 		if ( translate )
 			return tr(valueString.toUtf8().constData());
 		else
 			return valueString;
 	} else
-		return QString::null;
+		return QString();
 }
 
 void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
