@@ -1322,7 +1322,7 @@ void EmulatorOptions::createTemplateMap()
 										optionDescription.append(" (" + tr("relative to the path specified in '%1'").arg(optionRelativeTo) + ")");
 								}
 							}
-							templateMap[sectionTitle].append(EmulatorOption(name, type, defaultValue, optionDescription, QString::null, optionPart, 0, false, decimals, optionChoices, visible, optionRelativeTo, wip));
+							templateMap[sectionTitle].append(EmulatorOption(name, type, defaultValue, optionDescription, QString(), optionPart, 0, false, decimals, optionChoices, visible, optionRelativeTo, wip));
 						} else
 							ignoredOptions << name;
 						continue;
