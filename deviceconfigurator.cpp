@@ -1994,7 +1994,7 @@ bool DeviceTreeXmlHandler::endElement(const QString &/*namespaceURI*/, const QSt
 		m_slotOptionDevices.clear();
 		m_defaultOption.clear();
 	} else if ( qName == "device" ) {
-		m_devNode->addDevice(m_currentDevice, m_currentDeviceBriefName, m_currentDeviceType, m_currentDeviceTag, m_currentDeviceInterface, m_currentDeviceExtensions.join("/"));
+		m_devNode->addDeviceNode(m_currentDevice, m_currentDeviceBriefName, m_currentDeviceType, m_currentDeviceTag, m_currentDeviceInterface, m_currentDeviceExtensions.join("/"));
 		m_currentDevice.clear();
 		m_currentDeviceBriefName.clear();
 		m_currentDeviceType.clear();
