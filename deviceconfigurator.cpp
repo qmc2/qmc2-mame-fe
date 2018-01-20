@@ -99,7 +99,7 @@ QWidget *DeviceItemDelegate::createEditor(QWidget *parent, const QStyleOptionVie
 
 void DeviceItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-	QString value = index.model()->data(index, Qt::EditRole).toString();
+	QString value(index.model()->data(index, Qt::EditRole).toString());
 	FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
 	if ( fileEditWidget->comboBoxMode() ) {
 		int cPos = fileEditWidget->comboBox->lineEdit()->cursorPosition();
