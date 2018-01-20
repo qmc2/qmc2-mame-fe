@@ -109,12 +109,12 @@ class DeviceTreeNode
 			m_optionBioses[optionName].append(optionBios);
 			m_optionBiosDescriptions[optionName].append(optionBiosDescription);
 		}
-		void addDeviceNode(const QString &device, const QString &briefName, const QString &type, const QString &tagName, const QString &interface, const QString &extensions)
+		void addDeviceNode(const QString &device, const QString &briefName, const QString &type, const QString &tg, const QString &interface, const QString &extensions)
 		{
 			m_devices.append(device);
 			m_deviceBriefNames.append(briefName);
 			m_deviceTypes.append(type);
-			m_deviceTags.append(tagName);
+			m_deviceTags.append(tg);
 			m_deviceInterfaces.append(interface);
 			m_deviceExtensions.append(extensions);
 		}
