@@ -501,6 +501,14 @@
 			<description lang="pt" text="Habilitar marquees se a arte estiver habilitada e disponível"/>
 			<description lang="es" text="Permitir marquesinas si el arte está activado y disponible"/>
 		</option>
+		<option default="" name="fallback_artwork" type="file">
+			<description lang="us" text="Fallback artwork if no external artwork or internal driver layout is defined"/>
+			<description lang="de" text="Artwork auf das zurückgegriffen wird, wenn kein externes Artwork oder kein internes Treiber-Layout bekannt sind"/>
+		</option>
+		<option default="" name="override_artwork" type="file">
+			<description lang="us" text="Override artwork for external artwork and internal driver layout"/>
+			<description lang="de" text="Artwork mit dem sowohl externes Artwork als auch das interne Treiber-Layout überschrieben wird"/>
+		</option>
 	</section>
 	<section name="game_screen">
 		<description lang="us" text="Game screen"/>
