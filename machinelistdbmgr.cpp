@@ -31,7 +31,7 @@ MachineListDatabaseManager::MachineListDatabaseManager(QObject *parent) :
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListDatabase", QString(Options::configPath() + "/%1-machine-list.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_machine_list").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 	} else

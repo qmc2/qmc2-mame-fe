@@ -23,8 +23,8 @@ extern QHash<QString, QTreeWidgetItem *> qmc2HierarchyItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2CategoryItemHash;
 extern QHash<QString, QTreeWidgetItem *> qmc2VersionItemHash;
 
-UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent)
-	: QObject(parent)
+UserDataDatabaseManager::UserDataDatabaseManager(QObject *parent) :
+	QObject(parent)
 {
 	setLogActive(true);
 	m_connectionName = QString("user-data-db-connection-%1").arg(QUuid::createUuid().toString());

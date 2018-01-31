@@ -30,9 +30,9 @@ HANDLE winFindProcessHandle(QString procName)
 					TCHAR processName[MAX_PATH];
 					GetModuleBaseName(hProcess, hMod, processName, sizeof(processName)/sizeof(TCHAR));
 #ifdef UNICODE
-					QString pN = QString::fromUtf16((ushort*)processName);
+					QString pN(QString::fromUtf16((ushort*)processName));
 #else
-					QString pN = QString::fromLocal8Bit(processName);
+					QString pN(QString::fromLocal8Bit(processName));
 #endif
 					if ( pN == procName ) {
 						processHandle = hProcess;

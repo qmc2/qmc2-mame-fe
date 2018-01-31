@@ -16,8 +16,8 @@ extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 extern MachineList *qmc2MachineList;
 
-SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
-	: QObject(parent)
+SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent) :
+	QObject(parent)
 {
 	m_listIterationQuery = 0;
 	m_connectionName = QString("swl-cache-db-connection-%1").arg(QUuid::createUuid().toString());
@@ -25,7 +25,7 @@ SoftwareListXmlDatabaseManager::SoftwareListXmlDatabaseManager(QObject *parent)
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", QString(Options::configPath() + "/%1-swl-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_swl_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 	} else
