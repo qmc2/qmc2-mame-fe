@@ -30,7 +30,7 @@ CheckSumDatabaseManager::CheckSumDatabaseManager(QObject *parent, QString settin
 		m_db.setDatabaseName(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/CheckSumDbDatabasePath", QString(Options::configPath() + "/%1-software-checksum.db").arg(variantName)).toString());
 	m_tableBasename = QString("%1_checksum").arg(variantName.replace("-", "_"));
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) || checkSumDbVersion() != QMC2_CHECKSUM_DB_VERSION )
 			recreateDatabase();
 	} else

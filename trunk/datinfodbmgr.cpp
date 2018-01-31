@@ -35,7 +35,7 @@ DatInfoDatabaseManager::DatInfoDatabaseManager(QObject *parent)
 	m_machineInfoTableName = "machine_info";
 	m_metaDataTableName = "meta_data";
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() >= 4 ) {
 			switch ( datInfoVersion() ) {
 				case 1:

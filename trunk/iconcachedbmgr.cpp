@@ -39,7 +39,7 @@ IconCacheDatabaseManager::IconCacheDatabaseManager(QObject *parent) :
 	m_tableBasename = QString("%1_icon_cache").arg(QMC2_EMU_NAME.toLower());
 #endif
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() < 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 	} else

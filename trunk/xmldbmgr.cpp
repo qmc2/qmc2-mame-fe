@@ -14,8 +14,8 @@
 extern MainWindow *qmc2MainWindow;
 extern Settings *qmc2Config;
 
-XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
-	: QObject(parent)
+XmlDatabaseManager::XmlDatabaseManager(QObject *parent) :
+	QObject(parent)
 {
 	setLogActive(true);
 	m_connectionName = QString("xml-cache-db-connection-%1").arg(QUuid::createUuid().toString());
@@ -23,7 +23,7 @@ XmlDatabaseManager::XmlDatabaseManager(QObject *parent)
 	m_db.setDatabaseName(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", QString(Options::configPath() + "/%1-xml-cache.db").arg(QMC2_EMU_NAME.toLower())).toString());
 	m_tableBasename = QString("%1_xml_cache").arg(QMC2_EMU_NAME.toLower());
 	if ( m_db.open() ) {
-		QStringList tables = m_db.driver()->tables(QSql::Tables);
+		QStringList tables(m_db.driver()->tables(QSql::Tables));
 		if ( tables.count() != 2 || !tables.contains(m_tableBasename) || !tables.contains(QString("%1_metadata").arg(m_tableBasename)) )
 			recreateDatabase();
 	} else
