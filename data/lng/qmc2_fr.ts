@@ -5010,7 +5010,7 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
     <message>
         <location filename="../../emuopt.cpp" line="451"/>
         <location filename="../../emuopt.cpp" line="1083"/>
-        <location filename="../../emuopt.cpp" line="1241"/>
+        <location filename="../../emuopt.cpp" line="1242"/>
         <source>unknown</source>
         <translation type="unfinished">inconnu</translation>
     </message>
@@ -5121,133 +5121,133 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <translation type="unfinished">Description</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1166"/>
+        <location filename="../../emuopt.cpp" line="1167"/>
         <source>WIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1236"/>
+        <location filename="../../emuopt.cpp" line="1237"/>
         <source>creating template configuration map</source>
         <translation type="unfinished">Création d&apos;un template de configuration</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1267"/>
+        <location filename="../../emuopt.cpp" line="1268"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation type="unfinished">FATAL: erreur XML en lisant le template: &apos;%1&apos; dans le fichier &apos;%2&apos; ligne %3, colonne %4</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1319"/>
+        <location filename="../../emuopt.cpp" line="1320"/>
         <source>relative to the emulator&apos;s working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1321"/>
+        <location filename="../../emuopt.cpp" line="1322"/>
         <source>relative to the path specified in &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1333"/>
+        <location filename="../../emuopt.cpp" line="1334"/>
         <source>template info: emulator = %1, version = %2, format = %3</source>
         <translation type="unfinished">Template info: emulateur = %1, version = %2, format = %3</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1343"/>
+        <location filename="../../emuopt.cpp" line="1344"/>
         <source>FATAL: can&apos;t open options template file</source>
         <translation type="unfinished">FATAL: Ne peut pas ouvrir le fichier template d&apos;options</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1345"/>
+        <location filename="../../emuopt.cpp" line="1346"/>
         <source>WARNING: couldn&apos;t determine emulator type of template</source>
         <translation type="unfinished">ATTENTION: N&apos;a pas pu déterminer le type de template de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1347"/>
+        <location filename="../../emuopt.cpp" line="1348"/>
         <source>WARNING: couldn&apos;t determine template version</source>
         <translation type="unfinished">ATTENTION: N&apos;a pas pu déterminer la version du template</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1349"/>
+        <location filename="../../emuopt.cpp" line="1350"/>
         <source>WARNING: couldn&apos;t determine template format</source>
         <translation type="unfinished">ATTENTION: N&apos;a pas pu déterminer le format du template</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1355"/>
+        <location filename="../../emuopt.cpp" line="1356"/>
         <source>please wait for reload to finish and try again</source>
         <translation type="unfinished">merci de patienter pendant le rechargement puis ré-essayer</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1362"/>
-        <location filename="../../emuopt.cpp" line="1365"/>
+        <location filename="../../emuopt.cpp" line="1363"/>
+        <location filename="../../emuopt.cpp" line="1366"/>
         <source>checking template configuration map against selected emulator</source>
         <translation type="unfinished">vérification de la configuration du template pour l&apos;émulateur sélectionné</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1369"/>
-        <location filename="../../emuopt.cpp" line="1372"/>
+        <location filename="../../emuopt.cpp" line="1370"/>
+        <location filename="../../emuopt.cpp" line="1373"/>
         <source>FATAL: %1 executable file &apos;%2&apos; doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1377"/>
-        <location filename="../../emuopt.cpp" line="1380"/>
+        <location filename="../../emuopt.cpp" line="1378"/>
+        <location filename="../../emuopt.cpp" line="1381"/>
         <source>FATAL: &apos;%1&apos; isn&apos;t executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1406"/>
-        <location filename="../../emuopt.cpp" line="1409"/>
+        <location filename="../../emuopt.cpp" line="1407"/>
+        <location filename="../../emuopt.cpp" line="1410"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
         <translation type="unfinished">FATAL: impossible de démarrer MAME en un temps raisonnable, abandon</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1406"/>
-        <location filename="../../emuopt.cpp" line="1409"/>
+        <location filename="../../emuopt.cpp" line="1407"/>
+        <location filename="../../emuopt.cpp" line="1410"/>
         <source>error text = %1</source>
         <translation type="unfinished">Texte d&apos;erreur : %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1453"/>
-        <location filename="../../emuopt.cpp" line="1456"/>
+        <location filename="../../emuopt.cpp" line="1454"/>
+        <location filename="../../emuopt.cpp" line="1457"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
         <translation type="unfinished">FATAL: impossible de créer un fichier temporaire, vérifiez l&apos;exécutable et ses permissions</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1474"/>
-        <location filename="../../emuopt.cpp" line="1477"/>
-        <location filename="../../emuopt.cpp" line="1485"/>
-        <location filename="../../emuopt.cpp" line="1488"/>
-        <location filename="../../emuopt.cpp" line="1502"/>
-        <location filename="../../emuopt.cpp" line="1505"/>
-        <location filename="../../emuopt.cpp" line="1519"/>
-        <location filename="../../emuopt.cpp" line="1522"/>
-        <location filename="../../emuopt.cpp" line="1531"/>
-        <location filename="../../emuopt.cpp" line="1534"/>
-        <location filename="../../emuopt.cpp" line="1556"/>
-        <location filename="../../emuopt.cpp" line="1559"/>
+        <location filename="../../emuopt.cpp" line="1475"/>
+        <location filename="../../emuopt.cpp" line="1478"/>
+        <location filename="../../emuopt.cpp" line="1486"/>
+        <location filename="../../emuopt.cpp" line="1489"/>
+        <location filename="../../emuopt.cpp" line="1503"/>
+        <location filename="../../emuopt.cpp" line="1506"/>
+        <location filename="../../emuopt.cpp" line="1520"/>
+        <location filename="../../emuopt.cpp" line="1523"/>
+        <location filename="../../emuopt.cpp" line="1532"/>
+        <location filename="../../emuopt.cpp" line="1535"/>
+        <location filename="../../emuopt.cpp" line="1557"/>
+        <location filename="../../emuopt.cpp" line="1560"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
         <translation type="unfinished">l&apos;émulateur utilise une valeur par défaut différente pour l&apos;option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); type d&apos;option &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1566"/>
-        <location filename="../../emuopt.cpp" line="1569"/>
+        <location filename="../../emuopt.cpp" line="1567"/>
+        <location filename="../../emuopt.cpp" line="1570"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
         <translation type="unfinished">l&apos;option &apos;%1&apos; du template est inconnue de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1580"/>
-        <location filename="../../emuopt.cpp" line="1583"/>
+        <location filename="../../emuopt.cpp" line="1581"/>
+        <location filename="../../emuopt.cpp" line="1584"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
         <translation type="unfinished">l&apos;option &apos;%1&apos; avec pour valeur par défaut &apos;%2&apos; est inconnue du template</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1587"/>
-        <location filename="../../emuopt.cpp" line="1591"/>
+        <location filename="../../emuopt.cpp" line="1588"/>
+        <location filename="../../emuopt.cpp" line="1592"/>
         <source>done (checking template configuration map against selected emulator)</source>
         <translation type="unfinished">fait (vérification du template pour l&apos;émulateur sélectionné)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../emuopt.cpp" line="1588"/>
-        <location filename="../../emuopt.cpp" line="1592"/>
+        <location filename="../../emuopt.cpp" line="1589"/>
+        <location filename="../../emuopt.cpp" line="1593"/>
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform>résultats de test:  %n difference</numerusform>
@@ -5255,99 +5255,99 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         </translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1611"/>
+        <location filename="../../emuopt.cpp" line="1612"/>
         <source>Enter search string</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1683"/>
+        <location filename="../../emuopt.cpp" line="1684"/>
         <source>WARNING: ini-export: no writable ini-paths found</source>
         <translation type="unfinished">ATTENTION: ini-export: aucun répertoire ini accessible en écriture trouvé</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1687"/>
-        <location filename="../../emuopt.cpp" line="1817"/>
+        <location filename="../../emuopt.cpp" line="1688"/>
+        <location filename="../../emuopt.cpp" line="1818"/>
         <source>Path selection</source>
         <translation type="unfinished">Sélection de répertoire</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1688"/>
+        <location filename="../../emuopt.cpp" line="1689"/>
         <source>Multiple ini-paths detected. Select path(s) to export to:</source>
         <translation type="unfinished">Plusieurs répertoires ini détectés. Choisir le(s) répertoire(s) vers le(s)quel(s) exporter:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1708"/>
+        <location filename="../../emuopt.cpp" line="1709"/>
         <source>WARNING: ini-export: no path selected (or invalid inipath)</source>
         <translation type="unfinished">ATTENTION: ini-export: Aucun répertoire sélectionné (ou invalide)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1730"/>
+        <location filename="../../emuopt.cpp" line="1731"/>
         <source>FATAL: can&apos;t open export file for writing, path = %1</source>
         <translation type="unfinished">FATAL: Ne peut ouvrir le fichier d&apos;export pour écriture, répertoire = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1735"/>
+        <location filename="../../emuopt.cpp" line="1736"/>
         <source>exporting %1 MAME configuration to %2</source>
         <translation type="unfinished">Exportation %1 configuration de MAME vers %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1735"/>
-        <location filename="../../emuopt.cpp" line="1780"/>
-        <location filename="../../emuopt.cpp" line="1865"/>
-        <location filename="../../emuopt.cpp" line="1954"/>
+        <location filename="../../emuopt.cpp" line="1736"/>
+        <location filename="../../emuopt.cpp" line="1781"/>
+        <location filename="../../emuopt.cpp" line="1866"/>
+        <location filename="../../emuopt.cpp" line="1955"/>
         <source>global</source>
         <translation type="unfinished">global</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1735"/>
-        <location filename="../../emuopt.cpp" line="1780"/>
-        <location filename="../../emuopt.cpp" line="1865"/>
-        <location filename="../../emuopt.cpp" line="1954"/>
+        <location filename="../../emuopt.cpp" line="1736"/>
+        <location filename="../../emuopt.cpp" line="1781"/>
+        <location filename="../../emuopt.cpp" line="1866"/>
+        <location filename="../../emuopt.cpp" line="1955"/>
         <source>machine-specific</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1780"/>
+        <location filename="../../emuopt.cpp" line="1781"/>
         <source>done (exporting %1 MAME configuration to %2, elapsed time = %3)</source>
         <translation type="unfinished">fait (export %1 configuration de MAME vers %2, temps écoulé = %3)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1813"/>
+        <location filename="../../emuopt.cpp" line="1814"/>
         <source>WARNING: ini-import: no readable ini-paths found</source>
         <translation type="unfinished">ATTENTION: ini-import: aucun répertoire ini en lecture trouvé</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1818"/>
+        <location filename="../../emuopt.cpp" line="1819"/>
         <source>Multiple ini-paths detected. Select path(s) to import from:</source>
         <translation type="unfinished">Plusieurs répertoires ini détectés. Choisir le(s) répertoire(s) depuis le(s)quel(s) importer:</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1838"/>
+        <location filename="../../emuopt.cpp" line="1839"/>
         <source>WARNING: ini-import: no path selected (or invalid inipath)</source>
         <translation type="unfinished">ATTENTION: ini-import: Aucun répertoire sélectionné (ou invalide)</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1860"/>
+        <location filename="../../emuopt.cpp" line="1861"/>
         <source>FATAL: can&apos;t open import file for reading, path = %1</source>
         <translation type="unfinished">FATAL: Ne peut ouvrir le fichier d&apos;import pour lecture, répertoire = %1</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1865"/>
+        <location filename="../../emuopt.cpp" line="1866"/>
         <source>importing %1 MAME configuration from %2</source>
         <translation type="unfinished">importe %1 configuration de MAME depuis %2</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1947"/>
+        <location filename="../../emuopt.cpp" line="1948"/>
         <source>WARNING: unknown option &apos;%1&apos; at line %2 (%3) ignored</source>
         <translation type="unfinished">ATTENTION: option &apos;%1&apos; inconnue, ligne %2 (%3) ignoré</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1949"/>
+        <location filename="../../emuopt.cpp" line="1950"/>
         <source>WARNING: invalid syntax at line %1 (%2) ignored</source>
         <translation type="unfinished">ATTENTION: syntaxe non valide ligne %1 (%2) ignoré</translation>
     </message>
     <message>
-        <location filename="../../emuopt.cpp" line="1954"/>
+        <location filename="../../emuopt.cpp" line="1955"/>
         <source>done (importing %1 MAME configuration from %2, elapsed time = %3)</source>
         <translation type="unfinished">fait (importation %1 MAME configuration depuis %2, temps écoulé = %3)</translation>
     </message>
@@ -13353,42 +13353,42 @@ Please check the &apos;rompath&apos; option in the global emulator configuration
         <translation type="unfinished">Fermer</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="39"/>
+        <location filename="../../missingdumpsviewer.cpp" line="40"/>
         <source>Choose data file to export to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="39"/>
+        <location filename="../../missingdumpsviewer.cpp" line="40"/>
         <source>Data files (*.dat)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="39"/>
+        <location filename="../../missingdumpsviewer.cpp" line="40"/>
         <source>All files (*)</source>
         <translation type="unfinished">Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="58"/>
+        <location filename="../../missingdumpsviewer.cpp" line="59"/>
         <source>Created by QMC2 v%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="62"/>
+        <location filename="../../missingdumpsviewer.cpp" line="63"/>
         <source>Preparing</source>
         <translation type="unfinished">Préparation en cours</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="73"/>
+        <location filename="../../missingdumpsviewer.cpp" line="74"/>
         <source>Exporting</source>
         <translation type="unfinished">Exportation</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="169"/>
+        <location filename="../../missingdumpsviewer.cpp" line="170"/>
         <source>Error</source>
         <translation type="unfinished">Erreur</translation>
     </message>
     <message>
-        <location filename="../../missingdumpsviewer.cpp" line="169"/>
+        <location filename="../../missingdumpsviewer.cpp" line="170"/>
         <source>Can&apos;t open &apos;%1&apos; for writing!</source>
         <translation type="unfinished"></translation>
     </message>

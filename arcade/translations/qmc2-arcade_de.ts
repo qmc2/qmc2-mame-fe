@@ -411,22 +411,22 @@
 <context>
     <name>ProcessManager</name>
     <message>
-        <location filename="../processmanager.cpp" line="152"/>
+        <location filename="../processmanager.cpp" line="153"/>
         <source>Loading configuration template from &apos;%1&apos;</source>
         <translation>Lade Konfigurationsvorlage von &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="160"/>
+        <location filename="../processmanager.cpp" line="161"/>
         <source>FATAL: XML error reading template: &apos;%1&apos; in file &apos;%2&apos; at line %3, column %4</source>
         <translation>FATAL: XML Fehler beim Lesen der Vorlage: &apos;%1&apos; in Datei &apos;%2&apos; in Zeile %3, Spalte %4</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="191"/>
+        <location filename="../processmanager.cpp" line="192"/>
         <source>Done (loading configuration template from &apos;%1&apos;)</source>
         <translation>Fertig (Lade Konfigurationsvorlage von &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../processmanager.cpp" line="191"/>
+        <location filename="../processmanager.cpp" line="192"/>
         <source>%n option(s) loaded</source>
         <translation>
             <numerusform>%n Option geladen</numerusform>
@@ -434,169 +434,169 @@
         </translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="193"/>
+        <location filename="../processmanager.cpp" line="194"/>
         <source>FATAL: Can&apos;t open the configuration template file: reason = %1</source>
         <translation>FATAL: Kann die Konfigurationsvorlage-Datei nicht öffnen: Grund = %1</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="200"/>
+        <location filename="../processmanager.cpp" line="201"/>
         <source>No error occurred</source>
         <translation>Kein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="202"/>
+        <location filename="../processmanager.cpp" line="203"/>
         <source>An error occurred when reading from the file</source>
         <translation>Beim Lesen der Datei ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="204"/>
+        <location filename="../processmanager.cpp" line="205"/>
         <source>An error occurred when writing to the file</source>
         <translation>Beim Schreiben der Datei ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="206"/>
+        <location filename="../processmanager.cpp" line="207"/>
         <source>A fatal error occurred</source>
         <translation>Ein fataler Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="208"/>
+        <location filename="../processmanager.cpp" line="209"/>
         <source>A resource error occurred</source>
         <translation>Ein Ressource-Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="210"/>
+        <location filename="../processmanager.cpp" line="211"/>
         <source>The file could not be opened</source>
         <translation>Die Datei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="212"/>
+        <location filename="../processmanager.cpp" line="213"/>
         <source>The operation was aborted</source>
         <translation>Die Operation wurde abgebrochen</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="214"/>
-        <location filename="../processmanager.cpp" line="242"/>
+        <location filename="../processmanager.cpp" line="215"/>
+        <location filename="../processmanager.cpp" line="243"/>
         <source>A timeout occurred</source>
         <translation>Eine Zeitüberschreitung ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="216"/>
+        <location filename="../processmanager.cpp" line="217"/>
         <source>An unspecified error occurred</source>
         <translation>Ein unspezifischer Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="218"/>
+        <location filename="../processmanager.cpp" line="219"/>
         <source>The file could not be removed</source>
         <translation>Die Datei konnte nicht entfernt werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="220"/>
+        <location filename="../processmanager.cpp" line="221"/>
         <source>The file could not be renamed</source>
         <translation>Die Datei konnte nicht umbenannt werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="222"/>
+        <location filename="../processmanager.cpp" line="223"/>
         <source>The position in the file could not be changed</source>
         <translation>Die Position in der Datei konnte nicht verändert werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="224"/>
+        <location filename="../processmanager.cpp" line="225"/>
         <source>The file could not be resized</source>
         <translation>Die Größe der Datei konnte nicht geändert werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="226"/>
+        <location filename="../processmanager.cpp" line="227"/>
         <source>The file could not be accessed</source>
         <translation>Auf die Datei konnte nicht zugegriffen werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="228"/>
+        <location filename="../processmanager.cpp" line="229"/>
         <source>The file could not be copied</source>
         <translation>Die Datei konnte nicht kopiert werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="230"/>
-        <location filename="../processmanager.cpp" line="249"/>
+        <location filename="../processmanager.cpp" line="231"/>
+        <location filename="../processmanager.cpp" line="250"/>
         <source>An unknown error occurred</source>
         <translation>Ein unbekannter Fehler ist aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="238"/>
+        <location filename="../processmanager.cpp" line="239"/>
         <source>The process failed to start</source>
         <translation>Der Prozess konnte nicht gestartet werden</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="240"/>
+        <location filename="../processmanager.cpp" line="241"/>
         <source>The process crashed</source>
         <translation>Der Prozess ist abgestürzt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="244"/>
+        <location filename="../processmanager.cpp" line="245"/>
         <source>An error occurred when attempting to write to the process</source>
         <translation>Beim Versuch an den Prozess zu schreiben ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="246"/>
+        <location filename="../processmanager.cpp" line="247"/>
         <source>An error occurred when attempting to read from the process</source>
         <translation>Beim Versuch vom Prozess zu lesen ist ein Fehler aufgetreten</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="257"/>
+        <location filename="../processmanager.cpp" line="258"/>
         <source>Not running</source>
         <translation>Wird nicht ausgeführt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="259"/>
+        <location filename="../processmanager.cpp" line="260"/>
         <source>Starting</source>
         <translation>Programm wird gestartet</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="261"/>
+        <location filename="../processmanager.cpp" line="262"/>
         <source>Running</source>
         <translation>Wird ausgeführt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="263"/>
+        <location filename="../processmanager.cpp" line="264"/>
         <source>Unknown</source>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="271"/>
+        <location filename="../processmanager.cpp" line="272"/>
         <source>Emulator #%1 error: reason = %2</source>
         <translation>Emulator #%1 Fehler: Grund = %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="278"/>
+        <location filename="../processmanager.cpp" line="279"/>
         <source>Emulator #%1 finished: exitCode = %2, exitStatus = %3</source>
         <translation>Emulator #%1 beendet: exitCode = %2, exitStatus = %3</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="278"/>
+        <location filename="../processmanager.cpp" line="279"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="278"/>
+        <location filename="../processmanager.cpp" line="279"/>
         <source>crashed</source>
         <translation>abgestürzt</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="294"/>
+        <location filename="../processmanager.cpp" line="295"/>
         <source>Emulator #%1 stdout: %2</source>
         <translation>Emulator #%1 stdout: %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="311"/>
+        <location filename="../processmanager.cpp" line="312"/>
         <source>Emulator #%1 stderr: %2</source>
         <translation>Emulator #%1 stderr: %2</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="320"/>
+        <location filename="../processmanager.cpp" line="321"/>
         <source>Emulator #%1 started</source>
         <translation>Emulator #%1 gestartet</translation>
     </message>
     <message>
-        <location filename="../processmanager.cpp" line="328"/>
+        <location filename="../processmanager.cpp" line="329"/>
         <source>Emulator #%1 state changed: newState = %2</source>
         <translation>Emulator #%1 Statusänderung: newState = %2</translation>
     </message>
