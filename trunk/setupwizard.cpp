@@ -67,7 +67,7 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	QWizard(parent),
 	m_startupConfig(cfg),
 	m_minRequiredMameVersionMinor(0),
-	m_minRequiredMameVersionMajor(183),
+	m_minRequiredMameVersionMajor(195),
 	m_totalMachines(-1),
 	m_modificationTime(-1)
 {

@@ -308,7 +308,7 @@ bool Welcome::checkConfig()
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
 		int osr = startupConfig->value("SVN_Revision").toInt();
-		// last 3 versions: 0.194, 0.187, 0.186
+		// last 3 versions: 0.195, 0.187, 0.186
 		if ( QMC2_TEST_VERSION(omv, 187, osr, 8076) ) {
 			// QMC2 Arcade / ToxicWaste theme changes
 			if ( startupConfig->contains("Arcade/ToxicWaste/gameCardPage") ) {
@@ -320,7 +320,7 @@ bool Welcome::checkConfig()
 				startupConfig->remove("Arcade/ToxicWaste/gameListOpacity");
 			}
 		}
-		if ( QMC2_TEST_VERSION(omv, 194, osr, 8239) ) {
+		if ( QMC2_TEST_VERSION(omv, 195, osr, 8239) ) {
 			if ( startupConfig->contains("MAME/FilesAndDirectories/SlotInfoCacheFile") ) {
 				QFile f(startupConfig->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
 				if ( f.exists() )

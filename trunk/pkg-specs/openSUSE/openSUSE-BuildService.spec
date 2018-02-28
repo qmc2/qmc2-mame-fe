@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.194
+Version:        0.195
 Release:        1
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
@@ -116,8 +116,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
-* Wed Jan 31 2018 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.194-1
-- updated spec to QMC2 0.194
+* Wed Feb 28 2018 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.195-1
+- updated spec to QMC2 0.195
 
 * Wed Nov 29 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.193-1
 - updated spec to QMC2 0.193

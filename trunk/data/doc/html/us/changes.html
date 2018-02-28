@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.194, 31-JAN-2018</h3>
+<h3>CHANGES - v0.195, 28-FEB-2018</h3>
 <font size="-1"><pre>
 fix: general bug fixes
 imp: improved functionality
@@ -14,11 +14,12 @@ wip: (incomplete) work in progress
 doc: documentation changes
 inf: informational only
 </pre></font>
-<p><b>v0.194, 31-JAN-2018:</b></p>
+<p><b>v0.195, 28-FEB-2018:</b></p>
 <ul>
 	<li>fix: sample- &amp; software-state checks: merge the process output channels (<i>stdio</i> and <i>stderr</i>) because <code>-verifysamples</code> and <code>-verifysoftlist</code> use both channels in the meantime</li>
 	<li>fix: corrected the restoration of the last machine list view during initialization for non-WIP builds</li>
 	<li>fix: manual scanner: corrected the font used for logging (general log-font)</li>
+	<li>fix: adjusted machine list set counters due to changes in <code>-listfull</code> since MAME 0.195 (<code>-listfull</code> also includes the device sets now) - this means that <b>MAME 0.195+ is required now!</b>)</li>
 	<li>imp: improved performance when searching for machines</li>
 	<li>imp: removed the slot-info cache and all related UI hooks as it's no longer required for the upcoming new device configurator</li>
 	<li>imp: updated the emulator configuration templates to MAME 'git latest' (added core state / playback options 'rewind' and 'rewind_capacity', added core artwork options 'fallback_artwork' and 'override_artwork', added core miscellaneous option 'nvram_save')</li>
