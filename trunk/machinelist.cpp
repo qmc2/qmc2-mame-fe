@@ -592,7 +592,7 @@ void MachineList::load()
 		}
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/Version", emulatorVersion);
 		qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/Type", emulatorType);
-		// supported (non-device) sets
+		// supported sets
 		commandProcStarted = false;
 		retries = 0;
 		commandProc.start(execFile, QStringList() << "-listfull");
@@ -657,7 +657,7 @@ void MachineList::load()
 		emulatorType = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/Type", QString()).toString();
 		numTotalMachines = qmc2Config->value(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines", 0).toInt();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalMachines));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported set(s)", "", numTotalMachines));
 	}
 	categoryHash.clear();
 	versionHash.clear();

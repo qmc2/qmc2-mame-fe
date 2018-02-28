@@ -8330,6 +8330,15 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <source>WARNING: the selected emulator executable cannot be identified as MAME</source>
         <translation type="unfinished"></translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../machinelist.cpp" line="637"/>
+        <location filename="../../machinelist.cpp" line="660"/>
+        <source>%n supported set(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../../machinelist.cpp" line="771"/>
         <source>loading XML data and recreating cache</source>
@@ -8709,15 +8718,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1202"/>
         <source>Default</source>
         <translation>Predeterminado</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="637"/>
-        <location filename="../../machinelist.cpp" line="660"/>
-        <source>%n supported (non-device) set(s)</source>
-        <translation>
-            <numerusform>%n set soportado (sin dispositivos)</numerusform>
-            <numerusform>%n set soportados (sin dispositivos)</numerusform>
-        </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="1065"/>

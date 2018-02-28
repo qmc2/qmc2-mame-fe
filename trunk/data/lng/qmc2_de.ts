@@ -8776,6 +8776,15 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <source>libarchive error</source>
         <translation>Libarchive Fehler</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../machinelist.cpp" line="637"/>
+        <location filename="../../machinelist.cpp" line="660"/>
+        <source>%n supported set(s)</source>
+        <translation>
+            <numerusform>%n unterstütztes Set</numerusform>
+            <numerusform>%n unterstützte Sets</numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../../machinelist.cpp" line="648"/>
         <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
@@ -8887,15 +8896,6 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
         <location filename="../../machinelist.cpp" line="631"/>
         <source>FATAL: couldn&apos;t determine emulator type and version</source>
         <translation>FATAL: konnte Emulator-Typ und ~-Version nicht ermitteln</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="637"/>
-        <location filename="../../machinelist.cpp" line="660"/>
-        <source>%n supported (non-device) set(s)</source>
-        <translation>
-            <numerusform>%n unterstütztes Set (ohne Geräte-Sets)</numerusform>
-            <numerusform>%n unterstützte Sets (ohne Geräte-Sets)</numerusform>
-        </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="950"/>

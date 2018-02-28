@@ -8306,6 +8306,15 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <source>error text = %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../machinelist.cpp" line="637"/>
+        <location filename="../../machinelist.cpp" line="660"/>
+        <source>%n supported set(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../../machinelist.cpp" line="946"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
@@ -8552,15 +8561,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="1202"/>
         <source>Default</source>
         <translation>Predefinito</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="637"/>
-        <location filename="../../machinelist.cpp" line="660"/>
-        <source>%n supported (non-device) set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="771"/>
