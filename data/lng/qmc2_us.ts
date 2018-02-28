@@ -8011,15 +8011,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="637"/>
-        <location filename="../../machinelist.cpp" line="660"/>
-        <source>%n supported (non-device) set(s)</source>
-        <translation>
-            <numerusform>%n supported (non-device) set</numerusform>
-            <numerusform>%n supported (non-device) sets</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../machinelist.cpp" line="1858"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
@@ -8146,6 +8137,15 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="612"/>
         <source>error text = %1</source>
         <translation></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../machinelist.cpp" line="637"/>
+        <location filename="../../machinelist.cpp" line="660"/>
+        <source>%n supported set(s)</source>
+        <translation>
+            <numerusform>%n supported set</numerusform>
+            <numerusform>%n supported sets</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="648"/>

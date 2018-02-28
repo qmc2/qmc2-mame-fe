@@ -8033,15 +8033,6 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <source>FATAL: can&apos;t start %1 executable, file &apos;%2&apos; does not exist</source>
         <translation type="unfinished"></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="637"/>
-        <location filename="../../machinelist.cpp" line="660"/>
-        <source>%n supported (non-device) set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../machinelist.cpp" line="648"/>
         <source>WARNING: the output from -listfull changed, forcing a refresh of all emulator caches</source>
@@ -8123,6 +8114,15 @@ Use local value for option &apos;%1&apos;, overwrite with global value or don&ap
         <location filename="../../machinelist.cpp" line="612"/>
         <source>error text = %1</source>
         <translation>Texte d&apos;erreur : %1</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../machinelist.cpp" line="637"/>
+        <location filename="../../machinelist.cpp" line="660"/>
+        <source>%n supported set(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="946"/>

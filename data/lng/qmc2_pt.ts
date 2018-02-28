@@ -8179,15 +8179,6 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <source>FATAL: couldn&apos;t determine emulator type and version</source>
         <translation>FATAL: impossível determinar o tipo e versão do emulador</translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../machinelist.cpp" line="637"/>
-        <location filename="../../machinelist.cpp" line="660"/>
-        <source>%n supported (non-device) set(s)</source>
-        <translation>
-            <numerusform>%n conjunto suportado (não-dispositivo)</numerusform>
-            <numerusform>%n conjuntos suportados (não-dispositivo)</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../machinelist.cpp" line="683"/>
         <location filename="../../machinelist.cpp" line="687"/>
@@ -8304,6 +8295,15 @@ Usar valor local para a opção &apos;%1&apos;, sobrescrever com o valor global 
         <location filename="../../machinelist.cpp" line="585"/>
         <source>WARNING: the selected emulator executable cannot be identified as MAME</source>
         <translation>AVISO: o executável do emulador selecionado não pode ser identificado como MAME</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../machinelist.cpp" line="637"/>
+        <location filename="../../machinelist.cpp" line="660"/>
+        <source>%n supported set(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../../machinelist.cpp" line="648"/>
