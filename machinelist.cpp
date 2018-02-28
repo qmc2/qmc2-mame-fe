@@ -634,7 +634,7 @@ void MachineList::load()
 			return;
 		}
 		if ( numTotalMachines > 0 ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported (non-device) set(s)", "", numTotalMachines));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported set(s)", "", numTotalMachines));
 			qmc2Config->setValue(QMC2_EMULATOR_PREFIX + "Cache/TotalMachines", numTotalMachines);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
@@ -866,7 +866,7 @@ void MachineList::verify(bool currentOnly)
 			mainProgressBar->setFormat(tr("ROM check - %p%"));
 		else
 			mainProgressBar->setFormat("%p%");
-		mainProgressBar->setRange(0, numTotalMachines + deviceSets.count());
+		mainProgressBar->setRange(0, numTotalMachines);
 		mainProgressBar->reset();
 	}
 	QStringList args;
@@ -1905,8 +1905,8 @@ void MachineList::parse()
 	QTime processMachineListElapsedTimer(0, 0, 0, 0);
 	processMachineListElapsedTimer = processMachineListElapsedTimer.addMSecs(parseTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processMachineListElapsedTimer.toString("mm:ss.zzz")));
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalMachines - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", deviceSets.count()));
-	if ( numMachines - deviceSets.count() != numTotalMachines ) {
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalMachines - deviceSets.count() - biosSets.count()) + tr(", %n BIOS set(s)", "", biosSets.count()) + tr(" and %n device(s) loaded", "", deviceSets.count()));
+	if ( numMachines != numTotalMachines ) {
 		if ( reparseMachineList && qmc2LoadingInterrupted ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully parsed, invalidating machine list cache"));
 			QFile f(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile").toString());
@@ -1920,7 +1920,7 @@ void MachineList::parse()
 		}
 	}
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").
-					       arg(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark).
+					       arg(numTotalMachines >= 0 ? QString::number(numTotalMachines) : trQuestionMark).
 					       arg(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark).
 					       arg(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark).
 					       arg(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark).
@@ -1933,7 +1933,7 @@ void MachineList::parse()
 			loadProc->kill();
 		autoRomCheck = false;
 	} else {
-		if ( romStateCacheUpdate || machineStatusHash.count() - deviceSets.count() != numTotalMachines ) {
+		if ( romStateCacheUpdate || machineStatusHash.count() != numTotalMachines ) {
 			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MachineList/AutoTriggerROMCheck").toBool() ) {
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check"));
 				autoRomCheck = true;
@@ -2739,7 +2739,7 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( romStateCache.isOpen() )
 		romStateCache.close();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").
-					       arg(numTotalMachines + deviceSets.count() >= 0 ? QString::number(numTotalMachines + deviceSets.count()) : trQuestionMark).
+					       arg(numTotalMachines >= 0 ? QString::number(numTotalMachines) : trQuestionMark).
 					       arg(numCorrectMachines >= 0 ? QString::number(numCorrectMachines) : trQuestionMark).
 					       arg(numMostlyCorrectMachines >= 0 ? QString::number(numMostlyCorrectMachines) : trQuestionMark).
 					       arg(numIncorrectMachines >= 0 ? QString::number(numIncorrectMachines) : trQuestionMark).
