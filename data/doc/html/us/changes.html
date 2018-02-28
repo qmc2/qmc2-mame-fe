@@ -19,11 +19,11 @@ inf: informational only
 	<li>fix: sample- &amp; software-state checks: merge the process output channels (<i>stdio</i> and <i>stderr</i>) because <code>-verifysamples</code> and <code>-verifysoftlist</code> use both channels in the meantime</li>
 	<li>fix: corrected the restoration of the last machine list view during initialization for non-WIP builds</li>
 	<li>fix: manual scanner: corrected the font used for logging (general log-font)</li>
-	<li>fix: adjusted machine list set counters due to changes in <code>-listfull</code> since MAME 0.195 (<code>-listfull</code> also includes the device sets now) - this means that <b>MAME 0.195+ is required now!</b>)</li>
+	<li>fix: adjusted machine list set counters due to changes in <code>-listfull</code> since MAME 0.195 (<code>-listfull</code> also includes the device sets now) - this means that <b>MAME 0.195+ is required now!</b></li>
 	<li>imp: improved performance when searching for machines</li>
 	<li>imp: removed the slot-info cache and all related UI hooks as it's no longer required for the upcoming new device configurator</li>
-	<li>imp: updated the emulator configuration templates to MAME 'git latest' (added core state / playback options 'rewind' and 'rewind_capacity', added core artwork options 'fallback_artwork' and 'override_artwork', added core miscellaneous option 'nvram_save')</li>
-	<li>imp: updated category.ini to MAME 'git latest'</li>
+	<li>imp: updated the emulator configuration templates to MAME 0.195 (added core state / playback options 'rewind' and 'rewind_capacity', added core artwork options 'fallback_artwork' and 'override_artwork', added core miscellaneous option 'nvram_save')</li>
+	<li>imp: updated category.ini to MAME 0.195</li>
 	<li>new: emulator options: added an <i>enforce default</i> toggle switch to every option's action items so the user can decide to <b>explicitly</b> pass the default value to the emulator (which QMC2 would usually not do)</li>
 	<li>wip: reimplementing the device configurator for modern MAME - <b>WIP-info: this doesn't work properly yet and it won't load, produce or save any useful slot- &amp; device-setups for you at the moment, the feature isn't WIP-ified though as it's already too geared with rest of the UI!</b></li>
 </ul>
