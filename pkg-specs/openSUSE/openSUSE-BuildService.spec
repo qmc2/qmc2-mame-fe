@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.195
+Version:        0.196
 Release:        1
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
@@ -7,17 +7,24 @@ License:        GPL-2.0
 URL:            http://qmc2.batcom-it.net
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 
-BuildRequires:  libqt4-devel
-BuildRequires:  libkde4-devel
-BuildRequires:  libqt4-x11
+BuildRequires:  libQt5WebKit5-devel
+BuildRequires:  libQt5WebKitWidgets-devel
+BuildRequires:  libQt5Xml-devel
+BuildRequires:  libQt5Sql-devel
+BuildRequires:  libQt5Sql5-sqlite
+BuildRequires:  libQt5OpenGL-devel
+BuildRequires:  libqt5-qtscript-devel
+BuildRequires:  libqt5-qtxmlpatterns-devel
+BuildRequires:  libqt5-qtsvg-devel
+BuildRequires:  libqt5-qtmultimedia-devel
 BuildRequires:  libSDL2-devel
+BuildRequires:  libarchive-devel
 BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  rsync
-BuildRequires:  desktop-file-utils
+BuildRequires:  update-desktop-files
 BuildRequires:  openSUSE-release
 BuildRequires:  fdupes
-BuildRequires:  libarchive-devel
 
 %description
 QMC2 is a Qt based multi-platform GUI front-end for MAME.
@@ -35,22 +42,22 @@ mv %{name} manpages
 
 %build
 pushd sdlmame
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 SDL=2 LIBARCHIVE=1 WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 qmc2
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake-qt5 DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 MULTIMEDIA=1 SDL=2 LIBARCHIVE=1 WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 qmc2
 popd
 
 pushd arcade
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake-qt5 DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 SDL=2 LIBARCHIVE=1 WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 arcade
 popd
 
 pushd qchdman
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake-qt5 DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} WIP=0 CXX_FLAGS=-O3 CC_FLAGS=-O3 qchdman
 popd
 
 pushd manpages
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake-qt5 DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} man
 popd
 
@@ -58,22 +65,22 @@ popd
 rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmame
-make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 PHONON=1 SDL=2 LIBARCHIVE=1 WIP=0
+make install QMAKE=%{_prefix}/bin/qmake-qt5 DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 MULTIMEDIA=1 SDL=2 LIBARCHIVE=1 WIP=0
 popd
 
 pushd arcade
-make arcade-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make arcade-install QMAKE=%{_prefix}/bin/qmake-qt5 DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} JOYSTICK=1 SDL=2 LIBARCHIVE=1 WIP=0
 popd
 
 pushd qchdman
-make qchdman-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make qchdman-install QMAKE=%{_prefix}/bin/qmake-qt5 DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} WIP=0
 popd
 
 pushd manpages
-make man-install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT MAN_DIR=/usr/share/man DISTCFG=1 \
+make man-install QMAKE=%{_prefix}/bin/qmake-qt5 DESTDIR=$RPM_BUILD_ROOT MAN_DIR=/usr/share/man DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
 
@@ -85,9 +92,9 @@ cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
 %fdupes -s $RPM_BUILD_ROOT/usr/share
 
 # update the desktop files
-%suse_update_desktop_file %{name}-sdlmame Game ArcadeGame
-%suse_update_desktop_file %{name}-arcade Game ArcadeGame
-%suse_update_desktop_file qchdman Game ArcadeGame
+%suse_update_desktop_file -i %{name}-sdlmame Game ArcadeGame
+%suse_update_desktop_file -i %{name}-arcade Game ArcadeGame
+%suse_update_desktop_file -i qchdman Game ArcadeGame
 
 # make sure the executable permissions are set correctly
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
@@ -116,21 +123,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
+* Thu Mar  1 2018 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.196
+- updated spec to QMC2 0.196
+
+* Thu Mar  1 2018 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.195-2
+- switched to using Qt 5
+
 * Wed Feb 28 2018 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.195-1
 - updated spec to QMC2 0.195
-
-* Wed Nov 29 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.193-1
-- updated spec to QMC2 0.193
 
 * Sat Nov  4 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.192-1
 - updated spec to QMC2 0.192
 
 * Thu Jun 15 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.187-1
 - updated spec to QMC2 0.187
-
-* Sat Apr 29 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.186-1
-- updated spec to QMC2 0.186
-
-* Thu Jan 26 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.183-1
-- updated spec to QMC2 0.183 (changed versioning scheme to match MAME's version)
-
