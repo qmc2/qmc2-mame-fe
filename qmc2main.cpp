@@ -55,7 +55,6 @@
 #include "about.h"
 #include "welcome.h"
 #include "imagechecker.h"
-#include "samplechecker.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
 #include "componentsetup.h"
@@ -130,7 +129,6 @@ About *qmc2About = 0;
 DocBrowser *qmc2DocBrowser = 0;
 Welcome *qmc2Welcome = 0;
 ImageChecker *qmc2ImageChecker = 0;
-SampleChecker *qmc2SampleChecker = 0;
 ROMAlyzer *qmc2SystemROMAlyzer = 0;
 ROMAlyzer *qmc2SoftwareROMAlyzer = 0;
 ROMStatusExporter *qmc2ROMStatusExporter = 0;
@@ -153,7 +151,6 @@ QString qmc2AudioLastIndividualTrack;
 DemoModeDialog *qmc2DemoModeDialog = 0;
 bool qmc2ReloadActive = false;
 bool qmc2ImageCheckActive = false;
-bool qmc2SampleCheckActive = false;
 bool qmc2EarlyReloadActive = false;
 bool qmc2VerifyActive = false;
 bool qmc2VerifyTaggedActive = false;
@@ -2208,10 +2205,6 @@ void MainWindow::on_actionReload_triggered(bool)
 			log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
 			return;
 		}
-		if ( qmc2SampleCheckActive ) {
-			log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-			return;
-		}
 		if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
 			log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 			return;
@@ -2269,8 +2262,6 @@ void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 	} else if ( qmc2ImageCheckActive ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
-	} else if ( qmc2SampleCheckActive ) {
-		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
 	} else if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() ) {
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 	} else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() ) {
@@ -2289,8 +2280,6 @@ void MainWindow::on_actionCheckROMs_triggered(bool)
 		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
 	else if ( qmc2ImageCheckActive )
 		log(QMC2_LOG_FRONTEND, tr("please wait for image check to finish and try again"));
-	else if ( qmc2SampleCheckActive )
-		log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
 	else if ( qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active() )
 		log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
 	else if ( qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active() )
@@ -2423,19 +2412,6 @@ void MainWindow::viewPdf(QString filePath)
 		webBrowser->show();
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't load PDF viewer from '%1'").arg(htmlPath));
-}
-
-void MainWindow::on_actionCheckSamples_triggered(bool)
-{
-	if ( !qmc2SampleChecker )
-		qmc2SampleChecker = new SampleChecker(this);
-
-	if ( qmc2SampleChecker->isHidden() )
-		qmc2SampleChecker->show();
-	else if ( qmc2SampleChecker->isMinimized() )
-		qmc2SampleChecker->showNormal();
-
-	QTimer::singleShot(0, qmc2SampleChecker, SLOT(raise()));
 }
 
 void MainWindow::on_actionCheckImagesAndIcons_triggered(bool)
@@ -5764,7 +5740,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		return;
 	}
 
-	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2VerifyTaggedActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2VerifyTaggedActive || qmc2FilterActive || qmc2ImageCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB ) {
 		qmc2LoadingInterrupted = true;
 		log(QMC2_LOG_FRONTEND, tr("stopping current processing upon user request"));
 		e->ignore();
@@ -6124,10 +6100,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	if ( qmc2ImageChecker ) {
 		qmc2ImageChecker->close();
 		delete qmc2ImageChecker;
-	}
-	if ( qmc2SampleChecker ) {
-		qmc2SampleChecker->close();
-		delete qmc2SampleChecker;
 	}
 	if ( qmc2SystemROMAlyzer ) {
 		qmc2SystemROMAlyzer->saveState();
@@ -8367,7 +8339,7 @@ void MainWindow::checkActivity()
 	// resync timer (as far as possible)
 	activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
-	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2VerifyTaggedActive || qmc2FilterActive || qmc2ImageCheckActive || qmc2SampleCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
+	if ( qmc2ReloadActive || qmc2VerifyActive || qmc2VerifyTaggedActive || qmc2FilterActive || qmc2ImageCheckActive || (qmc2SystemROMAlyzer && qmc2SystemROMAlyzer->active()) || (qmc2SoftwareROMAlyzer && qmc2SoftwareROMAlyzer->active()) || qmc2LoadingMachineInfoDB || qmc2LoadingSoftwareInfoDB || qmc2LoadingEmuInfoDB || (qmc2SoftwareList && qmc2SoftwareList->isLoading) ) {
 		activityState = !activityState;
 		if ( activityState )
 			actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
@@ -10747,8 +10719,7 @@ void MainWindow::prepareShortcuts()
 {
 	// shortcuts
 	qmc2ShortcutHash["Ctrl+1"].second = actionCheckROMs;
-	qmc2ShortcutHash["Ctrl+2"].second = actionCheckSamples;
-	qmc2ShortcutHash["Ctrl+3"].second = actionCheckImagesAndIcons;
+	qmc2ShortcutHash["Ctrl+2"].second = actionCheckImagesAndIcons;
 	qmc2ShortcutHash["Ctrl+B"].second = actionAbout;
 	qmc2ShortcutHash["Ctrl+D"].second = actionAnalyseCurrentROM;
 	qmc2ShortcutHash["Ctrl+Shift+D"].second = actionAnalyseROMTagged;

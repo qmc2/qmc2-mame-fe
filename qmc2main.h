@@ -235,7 +235,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 		// tools menu
 		void on_actionCheckROMs_triggered(bool checked = false);
-		void on_actionCheckSamples_triggered(bool checked = false);
 		void on_actionCheckImagesAndIcons_triggered(bool checked = false);
 		void on_actionSystemROMAlyzer_triggered(bool checked = false);
 		void on_actionSoftwareROMAlyzer_triggered(bool checked = false);

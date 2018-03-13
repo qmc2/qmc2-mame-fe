@@ -377,7 +377,7 @@
 #define QMC2_PROCESS_POLL_TIME_LONG		500
 #define QMC2_PROCESS_POLL_RETRIES		(qmc2TemplateCheck ? 600 : 30)
 
-// update lists every how many milliseconds (for image & sample checkers)?
+// update lists every how many milliseconds (for image checker)
 #define QMC2_CHECK_UPDATE			1000
 #define QMC2_CHECK_UPDATE_MEDIUM		500
 #define QMC2_CHECK_UPDATE_FAST			250

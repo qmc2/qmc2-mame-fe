@@ -67,7 +67,6 @@
 #endif
 #include "htmleditor/htmleditor.h"
 #include "customidsetup.h"
-#include "samplechecker.h"
 #include "rankitemwidget.h"
 #include "componentsetup.h"
 #include "cryptedbytearray.h"
@@ -97,7 +96,6 @@ extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
 extern bool qmc2VerifyActive;
 extern bool qmc2ImageCheckActive;
-extern bool qmc2SampleCheckActive;
 extern bool qmc2UsePreviewFile;
 extern bool qmc2UseFlyerFile;
 extern bool qmc2UseIconFile;
@@ -169,7 +167,6 @@ extern QSplashScreen *qmc2SplashScreen;
 extern QCache<QString, ImagePixmap> qmc2ImagePixmapCache;
 extern QList<QTreeWidgetItem *> qmc2ExpandedMachineListItems;
 extern bool qmc2SortingActive;
-extern SampleChecker *qmc2SampleChecker;
 extern NetworkAccessManager *qmc2NetworkAccessManager;
 extern QPalette qmc2CustomPalette;
 extern QMap<QString, QPalette> qmc2StandardPalettes;
@@ -643,8 +640,6 @@ void Options::apply()
 	}
 	if ( qmc2ImageChecker )
 		qmc2ImageChecker->adjustIconSizes();
-	if ( qmc2SampleChecker )
-		QTimer::singleShot(0, qmc2SampleChecker, SLOT(adjustIconSizes()));
 #if QMC2_USE_PHONON_API || QMC2_MULTIMEDIA_ENABLED
 	qmc2MainWindow->toolButtonAudioPreviousTrack->setIconSize(iconSize);
 	qmc2MainWindow->toolButtonAudioNextTrack->setIconSize(iconSize);
