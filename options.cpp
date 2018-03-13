@@ -246,8 +246,7 @@ Options::Options(QWidget *parent) :
 
 	// shortcuts
 	qmc2ShortcutHash.insert("Ctrl+1", QPair<QString, QAction *>(tr("Check all ROM states"), 0));
-	qmc2ShortcutHash.insert("Ctrl+2", QPair<QString, QAction *>(tr("Check all sample sets"), 0));
-	qmc2ShortcutHash.insert("Ctrl+3", QPair<QString, QAction *>(tr("Check images and icons"), 0));
+	qmc2ShortcutHash.insert("Ctrl+2", QPair<QString, QAction *>(tr("Check images and icons"), 0));
 	qmc2ShortcutHash.insert("Ctrl+B", QPair<QString, QAction *>(tr("About QMC2"), 0));
 	qmc2ShortcutHash.insert("Ctrl+D", QPair<QString, QAction *>(tr("Analyze current machine"), 0));
 	qmc2ShortcutHash.insert("Ctrl+Shift+D", QPair<QString, QAction *>(tr("Analyze tagged sets"), 0));
