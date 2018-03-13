@@ -2572,7 +2572,7 @@
      <x>0</x>
      <y>0</y>
      <width>1093</width>
-     <height>31</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -2637,7 +2637,6 @@
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
     <addaction name="actionCheckROMs"/>
-    <addaction name="actionCheckSamples"/>
     <addaction name="actionCheckImagesAndIcons"/>
     <addaction name="separator"/>
     <addaction name="actionSystemROMAlyzer"/>
@@ -2874,7 +2873,6 @@
    <addaction name="actionReload"/>
    <addaction name="separator"/>
    <addaction name="actionCheckROMs"/>
-   <addaction name="actionCheckSamples"/>
    <addaction name="actionCheckImagesAndIcons"/>
    <addaction name="separator"/>
    <addaction name="actionSystemROMAlyzer"/>
@@ -2885,27 +2883,6 @@
    <addaction name="separator"/>
    <addaction name="actionLaunchArcade"/>
   </widget>
-  <action name="actionCheckSamples">
-   <property name="icon">
-    <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/sound.png</normaloff>:/data/img/sound.png</iconset>
-   </property>
-   <property name="text">
-    <string>Check &amp;samples...</string>
-   </property>
-   <property name="toolTip">
-    <string>Check samples</string>
-   </property>
-   <property name="statusTip">
-    <string>Check samples</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+2</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
   <action name="actionCheckImagesAndIcons">
    <property name="icon">
     <iconset resource="qmc2.qrc">
@@ -2924,7 +2901,7 @@
     <string>Check images and icons</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+3</string>
+    <string>Ctrl+2</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

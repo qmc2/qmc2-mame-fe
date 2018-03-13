@@ -25,7 +25,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			about.ui \
 			welcome.ui \
 			imagechecker.ui \
-			samplechecker.ui \
 			keyseqscan.ui \
 			joyfuncscan.ui \
 			toolexec.ui \
@@ -83,7 +82,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			about.cpp \
 			welcome.cpp \
 			imagechecker.cpp \
-			samplechecker.cpp \
 			keyseqscan.cpp \
 			toolexec.cpp \
 			itemselect.cpp \
@@ -206,7 +204,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			about.h \
 			welcome.h \
 			imagechecker.h \
-			samplechecker.h \
 			keyseqscan.h \
 			toolexec.h \
 			itemselect.h \
