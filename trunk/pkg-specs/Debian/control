@@ -2,8 +2,8 @@ Source: qmc2
 Section: games
 Priority: extra
 Maintainer: Marcelo Marzola Bossoni <mmbossoni@gmail.com>
-Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.8.0), libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev, libsdl1.2-dev, rsync, libxmu-dev, w3m, gawk
-Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 11), libqt4-dev (>= 4.8.0), libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev, libsdl1.2-dev, rsync, libxmu-dev, w3m, gawk
+Standards-Version: 4.3.0
 Homepage: http://qmc2.batcom-it.net
 
 Package: qmc2-sdlmame
@@ -26,6 +26,7 @@ Description: QMC2's Qt chdman interface
  A Qt interface for chdman utility
 
 Package: qmc2-data
+Depends: ${misc:Depends}
 Architecture: all
 Description: QMC2 common data files
  Common data files used by QMC2
