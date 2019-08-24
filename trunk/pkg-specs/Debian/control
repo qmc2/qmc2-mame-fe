@@ -2,16 +2,16 @@ Source: qmc2
 Section: games
 Priority: extra
 Maintainer: Marcelo Marzola Bossoni <mmbossoni@gmail.com>
-Build-Depends: debhelper (>= 11), libqt4-dev (>= 4.8.0), libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev, libsdl1.2-dev, rsync, libxmu-dev, w3m, gawk
+Build-Depends: debhelper (>= 11), qt5-default, qttools5-dev-tools, qtbase5-dev, qtmultimedia5-dev, libqt5webkit5-dev, libqt5xmlpatterns5-dev, libqt5svg5-dev, libsdl2-dev, minizip, rsync, libxmu-dev, w3m, gawk
 Standards-Version: 4.3.0
 Homepage: http://qmc2.batcom-it.net
 
 Package: qmc2-sdlmame
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data (>= 0.57), libqtgui4 (>= 4.8.0), libphonon4, libqtwebkit4, libqt4-test, libqt4-sql-sqlite, sdlmame (>= 0.162) | mame (>= 0.162)
+Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data (>= 0.57), libqt5gui5, libqt5sql5-sqlite, libqt5multimedia5, libqt5webkit5, libqt5xmlpatterns5, libqt5svg5, libqt5test5, sdlmame (>= 0.162) | mame (>= 0.162)
 Replaces: qmc2 (<= 0.34), qmc2-sdlmess (<= 0.51), qmc2-sdlume (<= 0.51), qmc2-runonce (<= 0.51)
 Description: M.A.M.E. Catalog / Launcher II
- QMC2 is a feature-rich Qt 4 based multi-platform GUI front end for M.A.M.E.
+ QMC2 is a feature-rich Qt 5 based multi-platform GUI front end for M.A.M.E.
 
 Package: qmc2-arcade
 Architecture: any
