@@ -3635,7 +3635,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			QByteArray data = it.value();
 			if ( writeLog )
 				log(tr("set rewriter: deflating '%1' (uncompressed size: %2)").arg(file).arg(humanReadable(data.length())));
-			if ( zipOpenNewFileInZip(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, Z_DEFLATED, spinBoxSetRewriterZipLevel->value(), 0) == ZIP_OK ) {
+			if ( zipOpenNewFileInZip(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, Z_DEFLATED, spinBoxSetRewriterZipLevel->value()) == ZIP_OK ) {
 				quint64 bytesWritten = 0;
 				progressBarFileIO->setInvertedAppearance(true);
 				progressBarFileIO->setRange(0, data.length());
