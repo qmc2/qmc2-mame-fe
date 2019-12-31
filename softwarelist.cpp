@@ -1115,8 +1115,8 @@ void SoftwareList::getXmlData()
 		QStringList xmlLines = qmc2MachineList->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
 		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</machine>") ) {
 			QString line = xmlLines[i++];
-			if ( line.startsWith("<softwarelist name=\"") ) {
-				int startIndex = line.indexOf("\"") + 1;
+			if ( line.startsWith("<softwarelist ") ) {
+				int startIndex = line.indexOf(" name=\"") + 7;
 				int endIndex = line.indexOf("\"", startIndex);
 				softwareList << line.mid(startIndex, endIndex - startIndex); 
 				startIndex = line.indexOf(" filter=\"");
