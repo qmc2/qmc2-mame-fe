@@ -232,7 +232,7 @@ Options::Options(QWidget *parent) :
 	checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif
 
-#if !defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)
+#if (!defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)) || QT_VERSION >= 0x050000
 	labelDefaultLaunchMode->setVisible(false);
 	comboBoxDefaultLaunchMode->setVisible(false);
 #endif
