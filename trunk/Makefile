@@ -552,7 +552,7 @@ PROJECT = qmc2
 
 # version
 VERSION_MAJOR = 0
-VERSION_MINOR = 196
+VERSION_MINOR = 217
 
 # complete version string
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
