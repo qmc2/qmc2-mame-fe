@@ -365,6 +365,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	qmc2ActiveViews << treeWidgetMachineList << treeWidgetHierarchy << treeWidgetCategoryView << treeWidgetVersionView;
 
+#if QT_VERSION >= 0x051100 // grrrr!
+	treeWidgetMachineList->header()->setFirstSectionMovable(true);
+	treeWidgetMachineList->header()->setSectionsMovable(true);
+	treeWidgetHierarchy->header()->setFirstSectionMovable(true);
+	treeWidgetHierarchy->header()->setSectionsMovable(true);
+	treeWidgetCategoryView->header()->setFirstSectionMovable(true);
+	treeWidgetCategoryView->header()->setSectionsMovable(true);
+	treeWidgetVersionView->header()->setFirstSectionMovable(true);
+	treeWidgetVersionView->header()->setSectionsMovable(true);
+#endif
+
 #if defined(QMC2_OS_MAC)
 	// we cannot use a native menu-bar on Mac OS X since we have multiple and this conflicts with it
 	menuBar()->setNativeMenuBar(false);
