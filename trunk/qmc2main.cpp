@@ -365,7 +365,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	qmc2ActiveViews << treeWidgetMachineList << treeWidgetHierarchy << treeWidgetCategoryView << treeWidgetVersionView;
 
-#if QT_VERSION >= 0x051100 // grrrr!
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)) // grrrr!
 	treeWidgetMachineList->header()->setFirstSectionMovable(true);
 	treeWidgetMachineList->header()->setSectionsMovable(true);
 	treeWidgetHierarchy->header()->setFirstSectionMovable(true);
