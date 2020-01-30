@@ -1,0 +1,426 @@
+<!--
+	This file is an example HTML template for QMC2's game-/machine-notes.
+
+	You can use the following 'macros' which will be replaced with
+	real data before rendering the HTML:
+
+	$DESCRIPTION$		System's title/description
+	$ID$			System's name / ID
+	$PARENT_ID$		Parent's name / ID (empty if there is no parent)
+	$MANUFACTURER$		The manufacturer of this system
+	$YEAR$			The year this system was first published
+	$CATEGORY$		The category of this game or machine
+	$VERSION$		Emulator version this game was added (MAME/UME-only!)
+	$PLAYERS$		Number of players (or separate input devices)
+	$ROM_TYPES$		Types of dumps included in the set (ROM/CHD)
+	$DRIVER_STATUS$		The maturity status of the driver (translated)
+	$DRIVER_STATUS_UT$	The maturity status of the driver (untranslated)
+	$ROM_STATUS$		The set's ROM status (translated)
+	$ROM_STATUS_UT$		The set's ROM status (untranslated)
+	$SOURCE_FILE$		The driver's source file name
+	$IS_BIOS$		Set to "true" if the current game/machine is a BIOS set, otherwise set to "false"
+	$IS_DEVICE$		Set to "true" if the current game/machine is a device set, otherwise set to "false"
+
+	Image / video macros:
+
+	$PREVIEW_IMAGE$		Current system's preview image
+	$FLYER_IMAGE$		Current system's flyer image
+	$CABINET_IMAGE$		Current system's cabinet image
+	$CONTROLLER_IMAGE$	Current system's controller image
+	$MARQUEE_IMAGE$		Current system's marquee image
+	$LOGO_IMAGE$		Alias for $MARQUEE_IMAGE$
+	$TITLE_IMAGE$		Current system's title image (MAME/UME-only!)
+	$PCB_IMAGE$		Current system's PCB image
+	$GHOST_IMAGE$		Path to the Ghostbusters logo (if an image wasn't found, its file URL will
+				be same as the value of this macro, so you can use it to check image validity)
+	$VIDEO_SNAP_URL$	The complete file URL to the video snap (empty when there is no video snap)
+	$VIDEO_THUMBNAIL$	Path to the general video thumbnail image
+
+	DAT info sources:
+
+	$GAME_INFO$		Game/machine info DB entry (from MAME history.dat / MESS sysinfo.dat)
+	$GAME_INFO_STATUS$	Status of the game-/machine info DB entry (OK / NO_DATA)
+	$MACHINE_INFO$		Alias for $GAME_INFO$
+	$MACHINE_INFO_STATUS$	Alias for $GAME_INFO_STATUS$
+	$EMU_INFO$		Emulator info DB entry (from MAME mameinfo.dat / MESS messinfo.dat)
+	$EMU_INFO_STATUS$	Status of the emulator info DB entry (OK / NO_DATA)
+
+	General macros:
+
+	$GUI_LANGUAGE$		The GUI's current language setting (us, de, ...)
+	$EMULATOR_TYPE$		The current emulator type (MAME, MESS, UME)
+	$EMULATOR_VARIANT$	The current emulator variant (MAME, MESS, UME, SDLMAME, SDLMESS, SDLUME)
+
+	Using JavaScript:
+
+	Note that you can also use JavaScript in this template. However, all code contained in <script>...</script>
+	blocks will be filtered whenever needed! If you want your JavaScript code to survive the filtering, use
+	<script language="JavaScript">...</script> instead, but any code that produces/changes the document's
+	content MUST be filtered in certain situations and can thus not be used in this way!
+
+	See http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Notes-templates
+	for more details!
+-->
+<html>
+<head>
+	<style type="text/css">
+		html {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+		video::-webkit-media-controls-fullscreen-button {
+			display:none !important;
+		}
+		video::-webkit-media-controls-current-time-display {
+			display:none !important;
+		}
+		.fancyImageStyle {
+			max-height: 300px;
+			max-width: 100%;
+			border-radius: 10px;
+		}
+	</style>
+	<script language="JavaScript">
+		var trMap = {};
+		trMap['de' + 'Fixed header'] = 'Header fixieren';
+		trMap['de' + 'Use a fixed header (not scrolling away)?'] = 'Fixierten Header verwenden (der nicht wegscrollt)?';
+		trMap['de' + 'Name/ID'] = 'Name/ID';
+		trMap['de' + 'Manufacturer'] = 'Hersteller';
+		trMap['de' + 'Year'] = 'Jahr';
+		trMap['de' + 'Category'] = 'Kategorie';
+		trMap['de' + 'Players'] = 'Spieler';
+		trMap['de' + 'ROM types'] = 'ROM Typen';
+		trMap['de' + 'Driver status'] = 'Treiberstatus';
+		trMap['de' + 'Version'] = 'Version';
+		trMap['de' + 'Fancy images'] = 'Bildeffekte';
+		trMap['de' + 'Use fancy images (rounded corners / fading in / limited height)?'] = 'Bildeffekte aktivieren (abgerundete Ecken / einblenden / beschränkte Höhe)?';
+		trMap['de' + 'Link images'] = 'Bilder verlinken';
+		trMap['de' + 'Create clickable links for each image?'] = 'Klickbare Links für jedes Bild erzeugen?';
+		trMap['de' + 'System images'] = 'System Bilder';
+		trMap['de' + 'ROM status'] = 'ROM Status';
+		trMap['de' + 'Cabinet image'] = 'Gehäuse';
+		trMap['de' + 'Runtime preview'] = 'Vorschau';
+		trMap['de' + 'Flyer image'] = 'Flyer';
+		trMap['de' + 'Controller image'] = 'Controller';
+		trMap['de' + 'Marquee/Logo image'] = 'Marquee/Logo';
+		trMap['de' + 'PCB image'] = 'PCB Foto';
+		trMap['de' + 'Title screen'] = 'Titelbild';
+		trMap['de' + 'Comments'] = 'Kommentare';
+		trMap['de' + 'System info'] = 'System Infos';
+		trMap['de' + 'Emulator info'] = 'Emulator Infos';
+		trMap['de' + 'Software lists'] = 'Software-Listen';
+		trMap['de' + 'Associated software-lists:'] = 'Zugeordnete Software-Listen:';
+		trMap['de' + 'This system has no associated software-lists.'] = 'Dieses System hat keine zugeordneten Software-Listen.';
+		trMap['de' + 'XML query error!'] = 'Fehler bei XML Abfrage!';
+		trMap['de' + 'Drop shadow'] = 'Schatten';
+		trMap['de' + 'Drop shadow on images?'] = 'Bildschatten einblenden?';
+		trMap['de' + 'Icon'] = 'Icon';
+		trMap['de' + 'BG mode: default'] = 'HG Modus: Standard';
+		trMap['de' + 'BG mode: color'] = 'HG Modus: Farbe';
+		trMap['de' + 'BG mode: image (tiled)'] = 'HG Modus: Bild (gekachelt)';
+		trMap['de' + 'BG mode: image (scaled)'] = 'HG Modus: Bild (skaliert)';
+		trMap['de' + 'Select background color'] = 'Hintergrund-Farbe auswählen';
+		trMap['de' + 'Select background image'] = 'Hintergrund-Bild auswählen';
+		trMap['de' + 'Text FG/BG'] = 'Text VG/HG';
+		trMap['de' + 'Select text foreground color'] = 'Text Vordergrund-Farbe auswählen';
+		trMap['de' + 'Select text background color'] = 'Text Hintergrund-Farbe auswählen';
+		trMap['de' + 'Video snap'] = 'Video Snap';
+		trMap['de' + 'Play'] = 'Abspielen';
+		trMap['de' + 'Pause'] = 'Pausieren';
+		function tr(text) {
+			var trText = trMap['$GUI_LANGUAGE$' + text];
+			if ( trText == undefined )
+				trText = text;
+			return trText;
+		}
+		function toggleVideo(enable) {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Video'] = enable ? 'true' : 'false';
+			qmc2NEO.loadCurrentTemplate();
+		}
+		function toggleAutoplay(enable) {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Autoplay'] = enable ? 'true' : 'false';
+		}
+		function changeBackgroundMode(mode) {
+			localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'] = mode;
+			qmc2NEO.loadCurrentTemplate();
+		}
+		function linkImage(text, url) {
+			var linkText = text;
+			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] == 'true' )
+				linkText = "<a href=\"" + url + "\" target=\"_blank\">" + text + "</a>";
+			return linkText;
+		}
+		function dropShadow() {
+			var shadowImageStyle = "";
+			if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/DropShadow'] == 'true' )
+				shadowImageStyle = "style=\"max-width: 98%; -webkit-box-shadow: 5px 5px 5px rgba(64, 64, 64, 64);\"";
+			return shadowImageStyle;
+		}
+		function iconTag() {
+			var data = qmc2NEO.getIconData();
+			var iconHeight = 32; /*document.getElementById('cbLinkImages').clientHeight;*/
+			var imgTag;
+			if ( data == '' )
+				imgTag = "&nbsp;";
+			else
+				imgTag = "<img style=\"border: 0; vertical-align: top; max-height: " + iconHeight + ";\" src=\"data:image/png;base64," + data + "\"/>&nbsp;";
+			return imgTag;
+		}
+		function isImageEmpty(imageData) {
+			return imageData.substring(0,48) == "iVBORw0KGgoAAAANSUhEUgAAAn0AAAI0CAYAAABoJJ9pAAAA"; 
+		}
+		function endsWith(str, suffix) {
+			return str.indexOf(suffix, str.length - suffix.length) !== -1;
+		}
+		function isImageMissing(imageUrl) {
+			return endsWith(imageUrl, "QMC2/data/img/ghost.png"); 
+		}
+	</script>
+</head>
+<script>
+	var styleTag = "style=\"";
+	var placeholder = "<img src=\"http://via.placeholder.com/1x5.png\">";
+	var autoplay = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Autoplay'];
+	var video = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Video'];
+	var color = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundColor'];
+	var mode = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/BackgroundMode'];
+	if ( color != undefined && mode == 'color' )
+		styleTag += "background-color: " + color + ";";
+	var textfgcolor = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextForegroundColor'];
+	if ( textfgcolor == undefined )
+		textfgcolor = "#000000";
+	styleTag += "color: " + textfgcolor + ";";
+	var textbgcolor = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/TextBackgroundColor'];
+	if ( textbgcolor == undefined )
+		textbgcolor = "#d3d3d3";
+	
+	localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/LinkImages'] = 'true';
+	
+</script>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td align="left" valign="top">
+			<script>
+				document.write(iconTag());
+			</script>				
+		</td>	
+		<td width="66%" align="left" valign="bottom">
+			<h2>$DESCRIPTION$</h2>
+		</td>
+		<td width="33%" align="right" valign="middle">
+			<script>
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Video'] == 'true' )
+					document.write("<label style=\"vertical-align: middle;\" for=\"cbVideo\">" + tr('Video') + "</label><input name=\"cbVideo\" type=\"checkbox\" id=\"cbVideo\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleVideo(this.checked);\" title=\"" + tr('Show video instead of image') + "\"/>");
+				else
+					document.write("<label style=\"vertical-align: middle;\" for=\"cbVideo\">" + tr('Video') + "</label><input name=\"cbVideo\" type=\"checkbox\" id=\"cbVideo\" style=\"vertical-align: middle;\" onclick=\"toggleVideo(this.checked);\" title=\"" + tr('Show video instead of image') + "\"/>");
+				if ( localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Autoplay'] == 'true' )
+					document.write("<label style=\"vertical-align: middle;\" for=\"cbAutoplay\">" + tr('Autoplay') + "</label><input name=\"cbAutoplay\" type=\"checkbox\" id=\"cbAutoplay\" style=\"vertical-align: middle;\" checked=\"checked\" onclick=\"toggleAutoplay(this.checked);\" title=\"" + tr('Autoplay video on page load') + "\"/>");
+				else
+					document.write("<label style=\"vertical-align: middle;\" for=\"cbAutoplay\">" + tr('Autoplay') + "</label><input name=\"cbAutoplay\" type=\"checkbox\" id=\"cbAutoplay\" style=\"vertical-align: middle;\" onclick=\"toggleAutoplay(this.checked);\" title=\"" + tr('Autoplay video on page load') + "\"/>");
+			</script>
+		</td>
+	</tr>
+</table>
+<table border="0" cellspacing="5" width="100%">
+	<tbody>
+		<tr>
+			<script>
+				document.write("<td width=\"12%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Name/ID') + "</td>");
+				document.write("<td width=\"13%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Manufacturer') + "</td>");
+				document.write("<td width=\"8%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Year') + "</td>");
+				document.write("<td width=\"22%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Category') + "</td>");
+				document.write("<td width=\"8%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Players') + "</td>");
+				document.write("<td width=\"13%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('ROM status') + "</td>");
+				document.write("<td width=\"12%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Driver status') + "</td>");
+				document.write("<td width=\"13%\" valign=\"top\" bgcolor=\"" + textbgcolor + "\">" + tr('Version') + "</td>");
+			</script>
+		</tr>
+		<tr>
+			<td width="12%" valign="top">$ID$</td>
+			<td width="13%" valign="top">$MANUFACTURER$</td>
+			<td width="8%" valign="top">$YEAR$</td>
+			<td width="22%" valign="top">$CATEGORY$</td>		
+			<td width="8%" valign="top">$PLAYERS$</td>
+			<td width="13%" valign="top">
+				<script>
+					if ( "$ROM_STATUS_UT$" == "correct" )
+						document.write("<font style=\"color: #00cc00;\">$ROM_STATUS$</font>&nbsp;");
+					else if ( "$ROM_STATUS_UT$" == "incorrect" )
+						document.write("<font style=\"color: #f90000;\">$ROM_STATUS$</font>&nbsp;");
+					else if ( "$ROM_STATUS_UT$" == "mostly correct" )
+						document.write("<font style=\"color: #a2c743;\">$ROM_STATUS$</font>&nbsp;");
+					else if ( "$ROM_STATUS_UT$" == "not found" )
+						document.write("<font style=\"color: #7f7f7f;\">$ROM_STATUS$</font>&nbsp;");
+					else
+						document.write("<font style=\"color: #0000f9;\">$ROM_STATUS$</font>&nbsp;");
+				</script>			
+			</td>				
+			<script>
+				if ( "$DRIVER_STATUS_UT$" == "good" )
+					document.write("<td width=\"12%\" valign=\"top\" style=\"color: #00cc00;\">$DRIVER_STATUS$</td>");
+				else if ( "$DRIVER_STATUS_UT$" == "preliminary" )
+					document.write("<td width=\"12%\" valign=\"top\" style=\"color: #f90000;\">$DRIVER_STATUS$</td>");
+				else if ( "$DRIVER_STATUS_UT$" == "imperfect" )
+					document.write("<td width=\"12%\" valign=\"top\" style=\"color: #a2c743;\">$DRIVER_STATUS$</td>");
+				else
+					document.write("<td width=\"12%\" valign=\"top\";\">$DRIVER_STATUS$</td>");
+			</script>
+			<td width="13%" valign="top">$VERSION$</td>
+		</tr>
+	</tbody>
+</table>
+<table border="0" cellspacing="5" width="100%">
+	<tbody>
+		<tr>
+			<script>
+				var emptyFly = false;
+				if ( qmc2NEO.isZippedImage('fly') ) {
+					var imageDataFly = qmc2NEO.getImageData('fly');
+					if (isImageEmpty(imageDataFly))
+						emptyFly = true;
+				}
+				
+				var pcbInCol2 = !emptyFly;
+
+				if ( qmc2NEO.isZippedImage('cab') ) {
+					var imageDataCab = qmc2NEO.getImageData('cab');
+					if ( !isImageEmpty(imageDataCab) )
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataCab + "\">") + "</td>");
+				} else {
+					if ( !isImageMissing("$CABINET_IMAGE$") )
+						document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CABINET_IMAGE$\">", "$CABINET_IMAGE$") + "</td>");
+				}
+				
+				document.write("<td width=\"33%\" valign=\"top\" align=\"center\">");
+				      
+				if ( qmc2NEO.isZippedImage('mrq') ) {
+					var imageDataMrq = qmc2NEO.getImageData('mrq');
+					if ( !isImageEmpty(imageDataMrq) )
+						document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataMrq + "\">" + placeholder);
+				} else {
+					if ( !isImageMissing("$MARQUEE_IMAGE$") )
+						document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$MARQUEE_IMAGE$\">", "$MARQUEE_IMAGE$") + placeholder);
+				}
+				
+				var vsUrls = qmc2NEO.videoSnapUrls("$ID$");
+				video = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Video'] == 'true';							
+				if (video && vsUrls.length > 0) {
+					autoplay = localStorage['Example/SystemNotesTemplate/$EMULATOR_VARIANT$/Autoplay'] == 'true';
+					if (autoplay)
+						document.write("<video id=\"videoCanvas\" " + dropShadow() + "width=\"100%\" controls preload=\"auto\" autoplay>"); 
+					else
+						document.write("<video id=\"videoCanvas\" " + dropShadow() + "width=\"100%\" controls preload=\"metadata\">"); 
+					for (var i = 0; i < vsUrls.length; i++)
+						document.write("<source src=\"" + vsUrls[i] + "\" />");
+					document.write("</video>" + placeholder);
+				} else if ( qmc2NEO.isZippedImage('prv') ) {
+					var imageDataPrv = qmc2NEO.getImageData('prv');
+					if ( !isImageEmpty(imageDataPrv) )
+						document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataPrv + "\">" + placeholder);
+				} else {
+						document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PREVIEW_IMAGE$\">", "$PREVIEW_IMAGE$") + placeholder);
+				}
+				
+				if ( qmc2NEO.isZippedImage('ctl') ) {
+					var imageDataCtl = qmc2NEO.getImageData('ctl');
+					if ( !isImageEmpty(imageDataCtl) )
+						document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataCtl + "\">" + placeholder);
+				} else {
+					if ( !isImageMissing("$CONTROLLER_IMAGE$") )
+						document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$CONTROLLER_IMAGE$\">", "$CONTROLLER_IMAGE$") + placeholder);
+				}
+				if (pcbInCol2)
+					if ( qmc2NEO.isZippedImage('pcb') ) {
+						var imageDataPcb = qmc2NEO.getImageData('pcb');
+						if ( !isImageEmpty(imageDataPcb) )
+							document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataPcb + "\">");
+					} else {
+						if ( !isImageMissing("$PCB_IMAGE$") )
+							document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$"));
+					}
+				document.write("</td>");
+				
+				document.write("<td width=\"33%\" valign=\"top\" align=\"center\">");
+				if ( qmc2NEO.isZippedImage('ttl') ) {
+					var imageDataTtl = qmc2NEO.getImageData('ttl');
+					if ( !isImageEmpty(imageDataTtl) )
+						document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataTtl + "\">" + placeholder);
+				} else {
+					if ( !isImageMissing("$TITLE_IMAGE$") )
+					document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$TITLE_IMAGE$\">", "$TITLE_IMAGE$") + placeholder);
+				}
+				if ( qmc2NEO.isZippedImage('fly') ) {
+					if ( !emptyFly )
+						document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataFly + "\">" + placeholder);
+				} else {
+					if ( !isImageMissing("$FLYER_IMAGE$") )
+						document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$FLYER_IMAGE$\">", "$FLYER_IMAGE$") + placeholder);
+				}
+				if (!pcbInCol2)
+					if ( qmc2NEO.isZippedImage('pcb') ) {
+						var imageDataPcb = qmc2NEO.getImageData('pcb');
+						if ( !isImageEmpty(imageDataPcb) )
+							document.write("<img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageDataPcb + "\">");
+					} else {
+						if ( !isImageMissing("$PCB_IMAGE$") )
+							document.write(linkImage("<img " + dropShadow() + "width=\"100%\" src=\"$PCB_IMAGE$\">", "$PCB_IMAGE$"));
+					}
+				document.write("</td>");
+			</script>
+		</tr>
+	</tbody>
+</table>
+<script>
+	var customArtworkNames = qmc2NEO.customSystemArtwork();
+	if ( customArtworkNames.length > 0 ) {
+		document.write("<table border=\"0\" cellspacing=\"5\" width=\"100%\">");
+		document.write("<tr>");
+		var col = 0; 
+		for (var i = 0; i < customArtworkNames.length; i++) {
+			var artworkName = customArtworkNames[i].replace("&", "");
+				
+			if ( qmc2NEO.customArtworkZipped(artworkName) ) {
+				var imageData = qmc2NEO.customSystemArtworkData('$ID$', artworkName);
+				if (!isImageEmpty(imageData)) {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\"><img " + dropShadow() + "width=\"100%\" src=\"data:image/png;base64," + imageData + "\"></td>");
+					col++;
+				}
+			} else {
+				var imageUrl = qmc2NEO.customSystemArtworkUrl('$ID$', artworkName);
+				if ( !isImageMissing(imageUrl) ) {
+					document.write("<td width=\"33%\" valign=\"top\" align=\"center\">" + linkImage("<img " + dropShadow() + "width=\"100%\" src=\"" + imageUrl + "\">", imageUrl) + "</td>");
+					col++;
+				}
+			}
+			
+			if (col == 3) {
+				document.write("</tr>");
+				document.write("<tr>");
+				col = 0;
+			}
+		}
+		document.write("</tr>");
+		document.write("</table>");
+	}
+</script>
+<h3><script>document.write(tr('System info'));</script></h3>
+<p>$GAME_INFO$</p>
+<h3><script>document.write(tr('Emulator info'));</script></h3>
+<p>$EMU_INFO$</p>
+<script>
+	document.write("<h3>" + tr('Software lists') + "</h3>");
+	if ( qmc2NEO.queryLocalXml("$ID$", "doc($xmlDocument)//machine/softwarelist/@name/string()") ) {
+		var result = qmc2NEO.getXmlResult();
+		if ( result.length > 0 ) {
+			document.write("<p>" +  tr('Associated software-lists:'));
+			for (var i = 0; i < result.length; i++)
+				document.write((i > 0 ? ", " : " ") + result[i]);
+			document.write("</p>");
+		} else
+			document.write("<p>" + tr('This system has no associated software-lists.') +"</p>");
+	} else
+		document.write(tr('XML query error!'));
+</script>
+</body>
+</html>

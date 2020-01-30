@@ -11,3 +11,6 @@ Shideravan System Template.html Alternative system notes template contributed
 Concise.html			An advanced (concise) version of the classic
 				'Shideravan System Template' by José Marcio
 				Rezende Franco aka Shideravan
+
+Zarth's Visual Template.html	A new template from Andrés del Campo Novale
+				aka Zarth :)
