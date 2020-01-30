@@ -785,7 +785,7 @@ void LzmaDec_InitDicAndState(CLzmaDec *p, Bool_7z initDic, Bool_7z initState)
 void LzmaDec_Init(CLzmaDec *p)
 {
   p->dicPos = 0;
-  LzmaDec_InitDicAndState(p, True, True);
+  LzmaDec_InitDicAndState(p, true, true);
 }
 
 static void LzmaDec_InitStateReal(CLzmaDec *p)

@@ -156,8 +156,8 @@ static SRes CMtThread_Prepare(CMtThread *p)
   MY_BUF_ALLOC(p->inBuf, p->inBufSize, p->mtCoder->blockSize)
   MY_BUF_ALLOC(p->outBuf, p->outBufSize, p->mtCoder->destBlockSize)
 
-  p->stopReading = False;
-  p->stopWriting = False;
+  p->stopReading = false;
+  p->stopWriting = false;
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->canRead));
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->canWrite));
 
@@ -187,7 +187,7 @@ static SRes FullRead(ISeqInStream *stream, Byte *data, size_t *processedSize)
 static SRes MtThread_Process(CMtThread *p, Bool_7z *stop)
 {
   CMtThread *next;
-  *stop = True;
+  *stop = true;
   if (Event_Wait(&p->canRead) != 0)
     return SZ_ERROR_THREAD;
   
@@ -195,7 +195,7 @@ static SRes MtThread_Process(CMtThread *p, Bool_7z *stop)
   
   if (p->stopReading)
   {
-    next->stopReading = True;
+    next->stopReading = true;
     return Event_Set(&next->canRead) == 0 ? SZ_OK : SZ_ERROR_THREAD;
   }
 
@@ -235,8 +235,8 @@ static THREAD_FUNC_RET_TYPE THREAD_FUNC_CALL_TYPE ThreadFunc(void *pp)
     {
       MtCoder_SetError(p->mtCoder, res);
       MtProgress_SetError(&p->mtCoder->mtProgress, res);
-      next->stopReading = True;
-      next->stopWriting = True;
+      next->stopReading = true;
+      next->stopWriting = true;
       Event_Set(&next->canRead);
       Event_Set(&next->canWrite);
       return res;
@@ -309,7 +309,7 @@ SRes MtCoder_Code(CMtCoder *p)
       if (LoopThread_StartSubThread(&t->thread) != SZ_OK)
       {
         res = SZ_ERROR_THREAD;
-        p->threads[0].stopReading = True;
+        p->threads[0].stopReading = true;
         break;
       }
     }

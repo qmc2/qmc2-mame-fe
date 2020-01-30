@@ -54,8 +54,8 @@ static SRes Lzma2EncInt_Init(CLzma2EncInt *p, const CLzma2EncProps *props)
   RINOK(LzmaEnc_WriteProperties(p->enc, propsEncoded, &propsSize));
   p->srcPos = 0;
   p->props = propsEncoded[0];
-  p->needInitState = True;
-  p->needInitProp = True;
+  p->needInitState = true;
+  p->needInitProp = true;
   return SZ_OK;
 }
 
@@ -102,7 +102,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
     if (res != SZ_ERROR_OUTPUT_EOF)
       return res;
     res = SZ_OK;
-    useCopyBlock = True;
+    useCopyBlock = true;
   }
 
   if (useCopyBlock)
@@ -132,7 +132,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
       }
       else
         *packSizeRes = destPos;
-      /* needInitState = True; */
+      /* needInitState = true; */
     }
     
     LzmaEnc_RestoreState(p->enc);
@@ -156,8 +156,8 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
     if (p->needInitProp)
       outBuf[destPos++] = p->props;
     
-    p->needInitProp = False;
-    p->needInitState = False;
+    p->needInitProp = false;
+    p->needInitState = false;
     destPos += packSize;
     p->srcPos += unpackSize;
 

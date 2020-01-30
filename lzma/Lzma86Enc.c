@@ -56,7 +56,7 @@ int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
 
   {
     size_t minSize = 0;
-    Bool_7z bestIsFiltered = False;
+    Bool_7z bestIsFiltered = false;
 
     /* passes for SZ_FILTER_AUTO:
         0 - BCJ + LZMA
@@ -75,7 +75,7 @@ int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
       if (curModeIsFiltered && !bestIsFiltered)
         break;
       if (useFilter && i == 0)
-        curModeIsFiltered = True;
+        curModeIsFiltered = true;
       
       curRes = LzmaEncode(dest + LZMA86_HEADER_SIZE, &outSizeProcessed,
           curModeIsFiltered ? filteredStream : src, srcLen,

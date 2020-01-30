@@ -314,7 +314,7 @@ void MatchFinder_Init_2(CMatchFinder *p, int readData)
 
 void MatchFinder_Init(CMatchFinder *p)
 {
-  MatchFinder_Init_2(p, True);
+  MatchFinder_Init_2(p, true);
 }
   
 static UInt32_7z MatchFinder_GetSubValue(CMatchFinder *p)
