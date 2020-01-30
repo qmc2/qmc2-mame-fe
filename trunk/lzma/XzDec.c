@@ -393,7 +393,7 @@ SRes MixCoder_Code(CMixCoder *p, Byte *dest, SizeT *destLen,
 {
   SizeT destLenOrig = *destLen;
   SizeT srcLenOrig = *srcLen;
-  Bool_7z allFinished = True;
+  Bool_7z allFinished = true;
   *destLen = 0;
   *srcLen = 0;
   *status = CODER_STATUS_NOT_FINISHED;
@@ -410,7 +410,7 @@ SRes MixCoder_Code(CMixCoder *p, Byte *dest, SizeT *destLen,
 
   for (;;)
   {
-    Bool_7z processed = False;
+    Bool_7z processed = false;
     unsigned i;
     /*
     if (p->numCoders == 1 && *destLen == destLenOrig && finishMode == LZMA_FINISH_ANY)
@@ -456,7 +456,7 @@ SRes MixCoder_Code(CMixCoder *p, Byte *dest, SizeT *destLen,
       res = coder->Code(coder->p, destCur, &destLenCur, srcCur, &srcLenCur, srcFinishedCur, finishMode, &encodingWasFinished);
 
       if (!encodingWasFinished)
-        allFinished = False;
+        allFinished = false;
 
       if (i == 0)
       {
@@ -484,7 +484,7 @@ SRes MixCoder_Code(CMixCoder *p, Byte *dest, SizeT *destLen,
         return res;
 
       if (destLenCur != 0 || srcLenCur != 0)
-        processed = True;
+        processed = true;
     }
     if (!processed)
       break;
@@ -573,7 +573,7 @@ SRes XzBlock_Parse(CXzBlock *p, const Byte *header)
 SRes XzDec_Init(CMixCoder *p, const CXzBlock *block)
 {
   unsigned i;
-  Bool_7z needReInit = True;
+  Bool_7z needReInit = true;
   unsigned numFilters = XzBlock_GetNumFilters(block);
   
   if (numFilters == p->numCoders)
@@ -650,7 +650,7 @@ SRes XzUnpacker_Code(CXzUnpacker *p, Byte *dest, SizeT *destLen,
         return SZ_OK;
       }
       
-      res = MixCoder_Code(&p->decoder, dest, &destLen2, src, &srcLen2, False, finishMode, status);
+      res = MixCoder_Code(&p->decoder, dest, &destLen2, src, &srcLen2, false, finishMode, status);
       XzCheck_Update(&p->check, dest, destLen2);
       
       (*srcLen) += srcLen2;

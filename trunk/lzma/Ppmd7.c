@@ -111,10 +111,10 @@ Bool_7z Ppmd7_Alloc(CPpmd7 *p, UInt32_7z size, ISzAlloc *alloc)
         + UNIT_SIZE
         #endif
         )) == 0)
-      return False;
+      return false;
     p->Size = size;
   }
-  return True;
+  return true;
 }
 
 static void InsertNode(CPpmd7 *p, void *node, unsigned indx)
@@ -458,7 +458,7 @@ static void UpdateModel(CPpmd7 *p)
 
   if (p->OrderFall == 0)
   {
-    p->MinContext = p->MaxContext = CreateSuccessors(p, True);
+    p->MinContext = p->MaxContext = CreateSuccessors(p, true);
     if (p->MinContext == 0)
     {
       RestartModel(p);
@@ -480,7 +480,7 @@ static void UpdateModel(CPpmd7 *p)
   {
     if (fSuccessor <= successor)
     {
-      CTX_PTR cs = CreateSuccessors(p, False);
+      CTX_PTR cs = CreateSuccessors(p, false);
       if (cs == NULL)
       {
         RestartModel(p);

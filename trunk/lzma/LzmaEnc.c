@@ -904,8 +904,8 @@ static UInt32_7z ReadMatchDistances(CLzmaEnc *p, UInt32_7z *numDistancePairsRes)
 }
 
 
-#define MakeAsChar(p) (p)->backPrev = (UInt32_7z)(-1); (p)->prev1IsChar = False;
-#define MakeAsShortRep(p) (p)->backPrev = 0; (p)->prev1IsChar = False;
+#define MakeAsChar(p) (p)->backPrev = (UInt32_7z)(-1); (p)->prev1IsChar = false;
+#define MakeAsShortRep(p) (p)->backPrev = 0; (p)->prev1IsChar = false;
 #define IsShortRep(p) ((p)->backPrev == 0)
 
 static UInt32_7z GetRepLen1Price(CLzmaEnc *p, UInt32_7z state, UInt32_7z posState)
@@ -956,7 +956,7 @@ static UInt32_7z Backward(CLzmaEnc *p, UInt32_7z *backRes, UInt32_7z cur)
       p->opt[posMem].posPrev = posMem - 1;
       if (p->opt[cur].prev2)
       {
-        p->opt[posMem - 1].prev1IsChar = False;
+        p->opt[posMem - 1].prev1IsChar = false;
         p->opt[posMem - 1].posPrev = p->opt[cur].posPrev2;
         p->opt[posMem - 1].backPrev = p->opt[cur].backPrev2;
       }
@@ -1123,7 +1123,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
         opt->price = curAndLenPrice;
         opt->posPrev = 0;
         opt->backPrev = i;
-        opt->prev1IsChar = False;
+        opt->prev1IsChar = false;
       }
     }
     while (--repLen >= 2);
@@ -1158,7 +1158,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
         opt->price = curAndLenPrice;
         opt->posPrev = 0;
         opt->backPrev = distance + LZMA_NUM_REPS;
-        opt->prev1IsChar = False;
+        opt->prev1IsChar = false;
       }
       if (len == matches[offs])
       {
@@ -1276,7 +1276,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
     curOpt->backs[3] = reps[3];
 
     curPrice = curOpt->price;
-    nextIsChar = False;
+    nextIsChar = false;
     data = p->matchFinder.GetPointerToCurrentPos(p->matchFinderObj) - 1;
     curByte = *data;
     matchByte = *(data - (reps[0] + 1));
@@ -1299,7 +1299,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
       nextOpt->price = curAnd1Price;
       nextOpt->posPrev = cur;
       MakeAsChar(nextOpt);
-      nextIsChar = True;
+      nextIsChar = true;
     }
 
     matchPrice = curPrice + GET_PRICE_1(p->isMatch[state][posState]);
@@ -1313,7 +1313,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
         nextOpt->price = shortRepPrice;
         nextOpt->posPrev = cur;
         MakeAsShortRep(nextOpt);
-        nextIsChar = True;
+        nextIsChar = true;
       }
     }
     numAvailFull = p->numAvail;
@@ -1360,8 +1360,8 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
             opt->price = curAndLenPrice;
             opt->posPrev = cur + 1;
             opt->backPrev = 0;
-            opt->prev1IsChar = True;
-            opt->prev2 = False;
+            opt->prev1IsChar = true;
+            opt->prev2 = false;
           }
         }
       }
@@ -1392,7 +1392,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
           opt->price = curAndLenPrice;
           opt->posPrev = cur;
           opt->backPrev = repIndex;
-          opt->prev1IsChar = False;
+          opt->prev1IsChar = false;
         }
       }
       while (--lenTest >= 2);
@@ -1439,8 +1439,8 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
                 opt->price = curAndLenPrice;
                 opt->posPrev = cur + lenTest + 1;
                 opt->backPrev = 0;
-                opt->prev1IsChar = True;
-                opt->prev2 = True;
+                opt->prev1IsChar = true;
+                opt->prev2 = true;
                 opt->posPrev2 = cur;
                 opt->backPrev2 = repIndex;
               }
@@ -1487,7 +1487,7 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
           opt->price = curAndLenPrice;
           opt->posPrev = cur;
           opt->backPrev = curBack + LZMA_NUM_REPS;
-          opt->prev1IsChar = False;
+          opt->prev1IsChar = false;
         }
         }
 
@@ -1530,8 +1530,8 @@ static UInt32_7z GetOptimum(CLzmaEnc *p, UInt32_7z position, UInt32_7z *backRes)
                 opt->price = curAndLenPrice2;
                 opt->posPrev = cur + lenTest + 1;
                 opt->backPrev = 0;
-                opt->prev1IsChar = True;
-                opt->prev2 = True;
+                opt->prev1IsChar = true;
+                opt->prev2 = true;
                 opt->posPrev2 = cur;
                 opt->backPrev2 = curBack + LZMA_NUM_REPS;
               }
@@ -1681,14 +1681,14 @@ static SRes CheckErrors(CLzmaEnc *p)
   if (p->matchFinderBase.result != SZ_OK)
     p->result = SZ_ERROR_READ;
   if (p->result != SZ_OK)
-    p->finished = True;
+    p->finished = true;
   return p->result;
 }
 
 static SRes Flush(CLzmaEnc *p, UInt32_7z nowPos)
 {
   /* ReleaseMFStream(); */
-  p->finished = True;
+  p->finished = true;
   if (p->writeEndMark)
     WriteEndMarker(p, nowPos & p->pbMask);
   RangeEnc_FlushData(&p->rc);
@@ -2092,7 +2092,7 @@ static SRes LzmaEnc_AllocAndInit(CLzmaEnc *p, UInt32_7z keepWindowSize, ISzAlloc
       break;
   p->distTableSize = i * 2;
 
-  p->finished = False;
+  p->finished = false;
   p->result = SZ_OK;
   RINOK(LzmaEnc_Alloc(p, keepWindowSize, alloc, allocBig));
   LzmaEnc_Init(p);
@@ -2164,7 +2164,7 @@ static size_t MyWrite(void *pp, const void *data, size_t size)
   if (p->rem < size)
   {
     size = p->rem;
-    p->overflow = True;
+    p->overflow = true;
   }
   memcpy(p->data, data, size);
   p->rem -= size;
@@ -2198,10 +2198,10 @@ SRes LzmaEnc_CodeOneMemBlock(CLzmaEncHandle pp, Bool_7z reInit,
   outStream.funcTable.Write = MyWrite;
   outStream.data = dest;
   outStream.rem = *destLen;
-  outStream.overflow = False;
+  outStream.overflow = false;
 
-  p->writeEndMark = False;
-  p->finished = False;
+  p->writeEndMark = false;
+  p->finished = false;
   p->result = SZ_OK;
 
   if (reInit)
@@ -2211,7 +2211,7 @@ SRes LzmaEnc_CodeOneMemBlock(CLzmaEncHandle pp, Bool_7z reInit,
   RangeEnc_Init(&p->rc);
   p->rc.outStream = &outStream.funcTable;
 
-  res = LzmaEnc_CodeOneBlock(p, True, desiredPackSize, *unpackSize);
+  res = LzmaEnc_CodeOneBlock(p, true, desiredPackSize, *unpackSize);
   
   *unpackSize = (UInt32_7z)(p->nowPos64 - nowPos64);
   *destLen -= outStream.rem;
@@ -2234,7 +2234,7 @@ static SRes LzmaEnc_Encode2(CLzmaEnc *p, ICompressProgress *progress)
 
   for (;;)
   {
-    res = LzmaEnc_CodeOneBlock(p, False, 0, 0);
+    res = LzmaEnc_CodeOneBlock(p, false, 0, 0);
     if (res != SZ_OK || p->finished)
       break;
     if (progress)
@@ -2307,7 +2307,7 @@ SRes LzmaEnc_MemEncode(CLzmaEncHandle pp, Byte *dest, SizeT *destLen, const Byte
   outStream.funcTable.Write = MyWrite;
   outStream.data = dest;
   outStream.rem = *destLen;
-  outStream.overflow = False;
+  outStream.overflow = false;
 
   p->writeEndMark = writeEndMark;
   p->rc.outStream = &outStream.funcTable;

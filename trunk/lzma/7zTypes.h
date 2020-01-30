@@ -93,10 +93,8 @@ typedef UInt32_7z SizeT;
 typedef size_t SizeT;
 #endif
 
-typedef int Bool_7z;
-#define True 1
-#define False 0
-
+#include <stdbool.h>
+typedef bool Bool_7z;
 
 #ifdef _WIN32
 #define MY_STD_CALL __stdcall

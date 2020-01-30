@@ -313,10 +313,10 @@ static SRes SbEncInStream_Read(void *pp, void *data, size_t *size)
       p->enc.readPos += processed;
       if (processed == 0)
       {
-        p->enc.readWasFinished = True;
-        p->enc.isFinalFinished = True;
+        p->enc.readWasFinished = true;
+        p->enc.isFinalFinished = true;
       }
-      p->enc.needRead = False;
+      p->enc.needRead = false;
     }
   
     *size = sizeOriginal;
@@ -402,7 +402,7 @@ void XzFilterProps_Init(CXzFilterProps *p)
   p->id = 0;
   p->delta = 0;
   p->ip = 0;
-  p->ipDefined = False;
+  p->ipDefined = false;
 }
 
 

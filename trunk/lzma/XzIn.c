@@ -32,11 +32,11 @@ SRes XzBlock_ReadHeader(CXzBlock *p, ISeqInStream *inStream, Bool_7z *isIndex, U
   if (headerSize == 0)
   {
     *headerSizeRes = 1;
-    *isIndex = True;
+    *isIndex = true;
     return SZ_OK;
   }
 
-  *isIndex = False;
+  *isIndex = false;
   *headerSizeRes = headerSize;
   RINOK(SeqInStream_Read(inStream, header + 1, headerSize - 1));
   return XzBlock_Parse(p, header);

@@ -9,9 +9,9 @@
 
 static void MtSync_Construct(CMtSync *p)
 {
-  p->wasCreated = False;
-  p->csWasInitialized = False;
-  p->csWasEntered = False;
+  p->wasCreated = false;
+  p->csWasInitialized = false;
+  p->csWasEntered = false;
   Thread_Construct(&p->thread);
   Event_Construct(&p->canStart);
   Event_Construct(&p->wasStarted);
@@ -25,9 +25,9 @@ static void MtSync_GetNextBlock(CMtSync *p)
   if (p->needStart)
   {
     p->numProcessedBlocks = 1;
-    p->needStart = False;
-    p->stopWriting = False;
-    p->exit = False;
+    p->needStart = false;
+    p->stopWriting = false;
+    p->exit = false;
     Event_Reset(&p->wasStarted);
     Event_Reset(&p->wasStopped);
 
@@ -37,13 +37,13 @@ static void MtSync_GetNextBlock(CMtSync *p)
   else
   {
     CriticalSection_Leave(&p->cs);
-    p->csWasEntered = False;
+    p->csWasEntered = false;
     p->numProcessedBlocks++;
     Semaphore_Release1(&p->freeSemaphore);
   }
   Semaphore_Wait(&p->filledSemaphore);
   CriticalSection_Enter(&p->cs);
-  p->csWasEntered = True;
+  p->csWasEntered = true;
 }
 
 /* MtSync_StopWriting must be called if Writing was started */
@@ -53,11 +53,11 @@ static void MtSync_StopWriting(CMtSync *p)
   UInt32_7z myNumBlocks = p->numProcessedBlocks;
   if (!Thread_WasCreated(&p->thread) || p->needStart)
     return;
-  p->stopWriting = True;
+  p->stopWriting = true;
   if (p->csWasEntered)
   {
     CriticalSection_Leave(&p->cs);
-    p->csWasEntered = False;
+    p->csWasEntered = false;
   }
   Semaphore_Release1(&p->freeSemaphore);
  
@@ -68,7 +68,7 @@ static void MtSync_StopWriting(CMtSync *p)
     Semaphore_Wait(&p->filledSemaphore);
     Semaphore_Release1(&p->freeSemaphore);
   }
-  p->needStart = True;
+  p->needStart = true;
 }
 
 static void MtSync_Destruct(CMtSync *p)
@@ -76,7 +76,7 @@ static void MtSync_Destruct(CMtSync *p)
   if (Thread_WasCreated(&p->thread))
   {
     MtSync_StopWriting(p);
-    p->exit = True;
+    p->exit = true;
     if (p->needStart)
       Event_Set(&p->canStart);
     Thread_Wait(&p->thread);
@@ -85,7 +85,7 @@ static void MtSync_Destruct(CMtSync *p)
   if (p->csWasInitialized)
   {
     CriticalSection_Delete(&p->cs);
-    p->csWasInitialized = False;
+    p->csWasInitialized = false;
   }
 
   Event_Close(&p->canStart);
@@ -94,7 +94,7 @@ static void MtSync_Destruct(CMtSync *p)
   Semaphore_Close(&p->freeSemaphore);
   Semaphore_Close(&p->filledSemaphore);
 
-  p->wasCreated = False;
+  p->wasCreated = false;
 }
 
 #define RINOK_THREAD(x) { if ((x) != 0) return SZ_ERROR_THREAD; }
@@ -105,7 +105,7 @@ static SRes MtSync_Create2(CMtSync *p, THREAD_FUNC_TYPE startAddress, void *obj,
     return SZ_OK;
 
   RINOK_THREAD(CriticalSection_Init(&p->cs));
-  p->csWasInitialized = True;
+  p->csWasInitialized = true;
 
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->canStart));
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->wasStarted));
@@ -114,10 +114,10 @@ static SRes MtSync_Create2(CMtSync *p, THREAD_FUNC_TYPE startAddress, void *obj,
   RINOK_THREAD(Semaphore_Create(&p->freeSemaphore, numBlocks, numBlocks));
   RINOK_THREAD(Semaphore_Create(&p->filledSemaphore, 0, numBlocks));
 
-  p->needStart = True;
+  p->needStart = true;
   
   RINOK_THREAD(Thread_Create(&p->thread, startAddress, obj));
-  p->wasCreated = True;
+  p->wasCreated = true;
   return SZ_OK;
 }
 
@@ -129,7 +129,7 @@ static SRes MtSync_Create(CMtSync *p, THREAD_FUNC_TYPE startAddress, void *obj, 
   return res;
 }
 
-void MtSync_Init(CMtSync *p) { p->needStart = True; }
+void MtSync_Init(CMtSync *p) { p->needStart = true; }
 
 #define kMtMaxValForNormalize 0xFFFFFFFF
 
@@ -391,7 +391,7 @@ static void BtFillBlock(CMatchFinderMt *p, UInt32_7z globalBlockIndex)
   if (!sync->needStart)
   {
     CriticalSection_Enter(&sync->cs);
-    sync->csWasEntered = True;
+    sync->csWasEntered = true;
   }
   
   BtGetMatches(p, p->btBuf + (globalBlockIndex & kMtBtNumBlocksMask) * kMtBtBlockSize);
@@ -406,7 +406,7 @@ static void BtFillBlock(CMatchFinderMt *p, UInt32_7z globalBlockIndex)
   if (!sync->needStart)
   {
     CriticalSection_Leave(&sync->cs);
-    sync->csWasEntered = False;
+    sync->csWasEntered = false;
   }
 }
 
@@ -503,7 +503,7 @@ void MatchFinderMt_Init(CMatchFinderMt *p)
   p->hashBufPos = p->hashBufPosLimit = 0;
 
   /* Init without data reading. We don't want to read data in this thread */
-  MatchFinder_Init_2(mf, False);
+  MatchFinder_Init_2(mf, false);
   
   p->pointerToCurPos = Inline_MatchFinder_GetPointerToCurrentPos(mf);
   p->btNumAvailBytes = 0;
