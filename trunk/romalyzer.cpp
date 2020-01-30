@@ -111,6 +111,13 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 	move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Position", QPoint(0, 0)).toPoint());
 	resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/" + m_settingsKey + "/Size", QSize(600, 800)).toSize());
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)) // grrrr!
+	treeWidgetChecksums->header()->setFirstSectionMovable(true);
+	treeWidgetChecksums->header()->setSectionsMovable(true);
+	treeWidgetChecksumWizardSearchResult-->header()->setFirstSectionMovable(true);
+	treeWidgetChecksumWizardSearchResult-->header()->setSectionsMovable(true);
+#endif
+
 	// compression types for CHD v3 and v4
 	chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
 
