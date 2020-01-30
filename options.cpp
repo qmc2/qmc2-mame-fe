@@ -413,6 +413,13 @@ Options::Options(QWidget *parent) :
 	lineEditSystemManualFolder->setToolTip(lineEditSystemManualFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
 	lineEditSoftwareManualFolder->setToolTip(lineEditSoftwareManualFolder->toolTip() + " - " + tr("use semicolon (;) to separate multiple folders"));
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)) // grrrr!
+	treeWidgetShortcuts->header()->setFirstSectionMovable(true);
+	treeWidgetShortcuts->header()->setSectionsMovable(true);
+	treeWidgetJoystickMappings->header()->setFirstSectionMovable(true);
+	treeWidgetJoystickMappings->header()->setSectionsMovable(true);
+#endif
+
 	checkPlaceholderStatus();
 	restoreCurrentConfig();
 }
