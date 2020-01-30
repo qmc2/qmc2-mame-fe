@@ -114,8 +114,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent, int romalyzerMode)
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)) // grrrr!
 	treeWidgetChecksums->header()->setFirstSectionMovable(true);
 	treeWidgetChecksums->header()->setSectionsMovable(true);
-	treeWidgetChecksumWizardSearchResult-->header()->setFirstSectionMovable(true);
-	treeWidgetChecksumWizardSearchResult-->header()->setSectionsMovable(true);
+	treeWidgetChecksumWizardSearchResult->header()->setFirstSectionMovable(true);
+	treeWidgetChecksumWizardSearchResult->header()->setSectionsMovable(true);
 #endif
 
 	// compression types for CHD v3 and v4
