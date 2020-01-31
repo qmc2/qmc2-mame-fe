@@ -3584,8 +3584,11 @@ void Options::setupShortcutActions()
 		it.next();
 		QAction *action = it.value().second;
 		if ( action ) {
-			action->setShortcut(QKeySequence(qmc2CustomShortcutHash[it.key()]));
-			action->setShortcutContext(Qt::ApplicationShortcut);
+			QKeySequence ks = QKeySequence(qmc2CustomShortcutHash.value(it.key()));
+			if ( !ks.isEmpty() ) {
+				action->setShortcut(QKeySequence(ks));
+				action->setShortcutContext(Qt::ApplicationShortcut);
+			}
 		}
 	}
 }

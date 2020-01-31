@@ -66,6 +66,11 @@ MachineListViewer::MachineListViewer(QWidget *parent) :
 	// FIXME: this is only valid for "flat" mode (we don't support "tree" mode yet)
 	treeView->setRootIsDecorated(false);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)) // grrrr!
+	treeView->header()->setFirstSectionMovable(true);
+	treeView->header()->setSectionsMovable(true);
+#endif
+
 	m_toolsMenu = new QMenu(this);
 	m_toolsMenu->setTearOffEnabled(true);
 	m_saveViewAction = m_toolsMenu->addAction(QIcon(QString::fromUtf8(":/data/img/filesaveas_and_apply.png")), tr("Save"));
