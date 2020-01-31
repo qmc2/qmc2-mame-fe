@@ -459,8 +459,7 @@ void Options::apply()
 	if ( qmc2StartupDefaultFont )
 		f = *qmc2StartupDefaultFont;
 	if ( config->contains(QMC2_FRONTEND_PREFIX + "GUI/Font") )
-		if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
-			f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+		f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	qApp->setFont(f);
 	QFontMetrics fm(f);
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
@@ -478,8 +477,7 @@ void Options::apply()
 	}
 	QFont logFont = f;
 	if ( config->contains(QMC2_FRONTEND_PREFIX + "GUI/LogFont") )
-		if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString().isEmpty() )
-			logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+		logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
 	qmc2MainWindow->textBrowserFrontendLog->setFont(logFont);
 	qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
 	lineEditLogFont->setFont(logFont);
