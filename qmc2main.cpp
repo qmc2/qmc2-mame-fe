@@ -10984,7 +10984,7 @@ int main(int argc, char **argv)
 		qmc2Options->applied = true;
 		qmc2MainWindow->close();
 	} else {
-		qmc2MainWindow->initShortcuts();
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(initShortcuts()));
 		QTimer::singleShot(0, qmc2Options, SLOT(checkShortcuts()));
 #if QMC2_JOYSTICK == 1
 		QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
