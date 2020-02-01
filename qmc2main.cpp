@@ -10726,7 +10726,7 @@ void MainWindow::processGlobalEmuConfig()
 	pushButtonGlobalEmulatorOptionsImportFromFile->setMenu(selectMenuGlobalEmulatorOptionsImportFromFile);
 }
 
-void MainWindow::prepareShortcuts()
+void MainWindow::initShortcuts()
 {
 	// shortcuts
 	qmc2ShortcutHash["Ctrl+1"].second = actionCheckROMs;
@@ -10938,7 +10938,6 @@ int main(int argc, char **argv)
 	// finalize initial setup
 	qmc2Options->apply();
 	qmc2GuiReady = true;
-	qmc2MainWindow->prepareShortcuts();
 
 #if QT_VERSION < 0x050000
 	// this effectively enables support for unicode characters in C strings
@@ -10990,6 +10989,7 @@ int main(int argc, char **argv)
 		QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
 #endif
 		qmc2Options->on_pushButtonApply_clicked();
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(initShortcuts()));
 		// finally run the application
 		retCode = qmc2App.exec();
 	}
