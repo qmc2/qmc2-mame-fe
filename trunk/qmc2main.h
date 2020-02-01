@@ -190,6 +190,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void commonWebSearch(QString, QTreeWidgetItem *);
 		void processGlobalEmuConfig();
 		void clearSortedItemMap() { m_sortedItemMap.clear(); }
+		void initShortcuts();
 
 	public slots:
 		// machine menu
@@ -494,7 +495,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void hideLoadAnim() { showLoadAnim(QString(), false); }
 		void actionRebuildRom_triggered(bool checked = false);
 		void update_rebuildRomActions_visibility();
-		void initShortcuts();
 
 		// float toggle button callbacks for 'special' widgets
 		void floatToggleButtonSoftwareDetail_toggled(bool);
