@@ -2,7 +2,7 @@ NAME
   qmc2-arcade - Arcade / non-desktop version of QMC2 - M.A.M.E. Catalog/Launcher II
 
 SYNOPSIS
-  qmc2-arcade [-theme qml_theme] [-console type] [-graphicssystem engine] [-language lang] [-video vdo] [-config_path path] [-fullscreen] [-windowed] [-nojoy] [-joy index] [-debugjoy] [-debugkeys] [-debugqt] [-h|-?|-help]
+  qmc2-arcade [-theme qml_theme] [-console type] [-language lang] [-video vdo] [-config_path path] [-fullscreen] [-windowed] [-nojoy] [-joy index] [-debugjoy] [-debugkeys] [-debugqt] [-h|-?|-help]
 
 DESCRIPTION
   For those who want to 'go straight into the games' there's QMC2 Arcade, a QML / QtQuick based approach to presenting an optionally filtered
@@ -28,10 +28,6 @@ OPTIONS
 
   -console type  Choose the type of console to use. Available values for type are 'terminal' (default), 'window', 'window-minimized' and 'none'.
                  Console type 'none' will effectively suppress all log messages.
-
-  -graphicssystem engine  Select the graphics sub-system engine instead of the currently set default one. Available values for engine are 'raster'
-                          (default), 'opengl', 'opengl1', 'opengl2', 'openvg' and 'native'. Note that this option only exists when QMC2 Arcade has
-			  been built with Qt 4 (which is recommended). Qt 5 builds do not include it!
 
   -language lang  Choose translation to load. Run 'qmc2-arcade -h' for a list of available values for lang. Note that the default value for -language
                   is shared with the main GUI's language setting!
