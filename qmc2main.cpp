@@ -9971,10 +9971,9 @@ void MainWindow::treeWidgetMachineList_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetMachineList;
-	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	QFontMetrics fm(treeWidget->fontMetrics());
+	treeWidget->setUpdatesEnabled(false);
 	if ( startItem && endItem ) {
 		while ( startItem->parent() )
 			startItem = startItem->parent();
@@ -9987,6 +9986,7 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 		if ( endIndex + 1 < treeWidget->topLevelItemCount() )
 			endIndex++;
 		int minWidth = 0;
+		QFontMetrics fm(treeWidget->fontMetrics());
 		for (int i = startIndex; i <= endIndex && !m_mlRankUpdateTimer.isActive(); i++) {
 			QTreeWidgetItem *item = treeWidget->topLevelItem(i);
 			if ( item->isHidden() )
@@ -10020,10 +10020,9 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetHierarchy;
-	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	QFontMetrics fm(treeWidget->fontMetrics());
+	treeWidget->setUpdatesEnabled(false);
 	if ( startItem && endItem ) {
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
@@ -10034,6 +10033,7 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 			startItem = item;
 		item = startItem;
 		int minWidth = 0;
+		QFontMetrics fm(treeWidget->fontMetrics());
 		while ( item && item != endItem && !m_hlRankUpdateTimer.isActive() ) {
 			RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
 			if ( riw ) {
@@ -10079,10 +10079,9 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetCategoryView;
-	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	QFontMetrics fm(treeWidget->fontMetrics());
+	treeWidget->setUpdatesEnabled(false);
 	if ( startItem && endItem ) {
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
@@ -10093,6 +10092,7 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 			startItem = item;
 		item = startItem;
 		int minWidth = 0;
+		QFontMetrics fm(treeWidget->fontMetrics());
 		while ( item && item != endItem && !m_clRankUpdateTimer.isActive() ) {
 			if ( item->parent() ) {
 				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
@@ -10142,10 +10142,9 @@ void MainWindow::treeWidgetVersionView_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetVersionView;
-	treeWidget->setUpdatesEnabled(false);
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	QFontMetrics fm(treeWidget->fontMetrics());
+	treeWidget->setUpdatesEnabled(false);
 	if ( startItem && endItem ) {
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
@@ -10156,6 +10155,7 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 			startItem = item;
 		item = startItem;
 		int minWidth = 0;
+		QFontMetrics fm(treeWidget->fontMetrics());
 		while ( item && item != endItem && !m_clRankUpdateTimer.isActive() ) {
 			if ( item->parent() ) {
 				RankItemWidget *riw = (RankItemWidget *)treeWidget->itemWidget(item, QMC2_MACHINELIST_COLUMN_RANK);
