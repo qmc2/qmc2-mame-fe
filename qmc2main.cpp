@@ -9971,20 +9971,23 @@ void MainWindow::treeWidgetMachineList_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetMachineList;
-	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	treeWidget->setUpdatesEnabled(false);
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	if ( !endItem ) {
+		QTreeWidgetItem *item = startItem;
+		while ( item ) {
+			endItem = item;
+			item = treeWidget->itemBelow(item);
+		}
+	}
 	if ( startItem && endItem ) {
+		treeWidget->setUpdatesEnabled(false);
 		while ( startItem->parent() )
 			startItem = startItem->parent();
 		while ( endItem->parent() )
 			endItem = endItem->parent();
 		int startIndex = treeWidget->indexOfTopLevelItem(startItem);
-		if ( startIndex > 0 )
-			startIndex--;
 		int endIndex = treeWidget->indexOfTopLevelItem(endItem);
-		if ( endIndex + 1 < treeWidget->topLevelItemCount() )
-			endIndex++;
 		int minWidth = 0;
 		QFontMetrics fm(treeWidget->fontMetrics());
 		for (int i = startIndex; i <= endIndex && !m_mlRankUpdateTimer.isActive(); i++) {
@@ -10005,8 +10008,8 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 		}
 		if ( treeWidget->columnWidth(QMC2_MACHINELIST_COLUMN_RANK) < minWidth )
 			treeWidget->resizeColumnToContents(QMC2_MACHINELIST_COLUMN_RANK);
+		treeWidget->setUpdatesEnabled(true);
 	}
-	treeWidget->setUpdatesEnabled(true);
 }
 
 void MainWindow::treeWidgetHierarchy_verticalScrollChanged(int)
@@ -10020,10 +10023,17 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetHierarchy;
-	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	treeWidget->setUpdatesEnabled(false);
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	if ( !endItem ) {
+		QTreeWidgetItem *item = startItem;
+		while ( item ) {
+			endItem = item;
+			item = treeWidget->itemBelow(item);
+		}
+	}
 	if ( startItem && endItem ) {
+		treeWidget->setUpdatesEnabled(false);
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
 		if ( item )
@@ -10059,8 +10069,8 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 		}
 		if ( treeWidget->columnWidth(QMC2_MACHINELIST_COLUMN_RANK) < minWidth )
 			treeWidget->resizeColumnToContents(QMC2_MACHINELIST_COLUMN_RANK);
+		treeWidget->setUpdatesEnabled(true);
 	}
-	treeWidget->setUpdatesEnabled(true);
 }
 
 void MainWindow::on_treeWidgetHierarchy_itemExpanded(QTreeWidgetItem * /*item*/)
@@ -10079,10 +10089,17 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetCategoryView;
-	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	treeWidget->setUpdatesEnabled(false);
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	if ( !endItem ) {
+		QTreeWidgetItem *item = startItem;
+		while ( item ) {
+			endItem = item;
+			item = treeWidget->itemBelow(item);
+		}
+	}
 	if ( startItem && endItem ) {
+		treeWidget->setUpdatesEnabled(false);
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
 		if ( item )
@@ -10122,8 +10139,8 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 		}
 		if ( treeWidget->columnWidth(QMC2_MACHINELIST_COLUMN_RANK) < minWidth )
 			treeWidget->resizeColumnToContents(QMC2_MACHINELIST_COLUMN_RANK);
+		treeWidget->setUpdatesEnabled(true);
 	}
-	treeWidget->setUpdatesEnabled(true);
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemExpanded(QTreeWidgetItem * /*item*/)
@@ -10142,10 +10159,17 @@ void MainWindow::treeWidgetVersionView_updateRanks()
   	if ( !qmc2CurrentItem || qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE) == MachineList::trWaitingForData )
 		return;
 	QTreeWidget *treeWidget = treeWidgetVersionView;
-	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->viewport()->rect().topLeft());
-	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->viewport()->rect().bottomLeft());
-	treeWidget->setUpdatesEnabled(false);
+	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
+	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	if ( !endItem ) {
+		QTreeWidgetItem *item = startItem;
+		while ( item ) {
+			endItem = item;
+			item = treeWidget->itemBelow(item);
+		}
+	}
 	if ( startItem && endItem ) {
+		treeWidget->setUpdatesEnabled(false);
 		QTreeWidgetItem *item;
 		item = treeWidget->itemBelow(endItem);
 		if ( item )
@@ -10185,8 +10209,8 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 		}
 		if ( treeWidget->columnWidth(QMC2_MACHINELIST_COLUMN_RANK) < minWidth )
 			treeWidget->resizeColumnToContents(QMC2_MACHINELIST_COLUMN_RANK);
+		treeWidget->setUpdatesEnabled(true);
 	}
-	treeWidget->setUpdatesEnabled(true);
 }
 
 void MainWindow::on_treeWidgetVersionView_itemExpanded(QTreeWidgetItem *item)
