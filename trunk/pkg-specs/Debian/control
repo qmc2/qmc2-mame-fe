@@ -2,7 +2,7 @@ Source: qmc2
 Section: games
 Priority: extra
 Maintainer: Marcelo Marzola Bossoni <mmbossoni@gmail.com>
-Build-Depends: debhelper (>= 11), qt5-default, qttools5-dev-tools, qtbase5-dev, qtmultimedia5-dev, libqt5webkit5-dev, libqt5webview5-dev, libqt5xmlpatterns5-dev, libqt5svg5-dev, libsdl2-dev, minizip, rsync, libxmu-dev, w3m, gawk
+Build-Depends: debhelper (>= 11), qttools5-dev-tools, qtbase5-dev, qtmultimedia5-dev, libqt5webkit5-dev, libqt5webview5-dev, libqt5xmlpatterns5-dev, qtdeclarative5-dev, libqt5svg5-dev, qtscript5-dev, libsdl2-dev, minizip, rsync, libxmu-dev, w3m, gawk
 Standards-Version: 4.3.0
 Homepage: http://qmc2.batcom-it.net
 
@@ -15,13 +15,13 @@ Description: M.A.M.E. Catalog / Launcher II
 
 Package: qmc2-arcade
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-declarative-shaders, qmc2-sdlmame
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5qml5, qmc2-sdlmame
 Description: QMC2 Arcade Mode
  An Arcade like user interface for QMC2
 
 Package: qchdman
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-script, libqt4-scripttools
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5script5, libqt5scripttools5
 Description: QMC2's Qt chdman interface
  A Qt interface for chdman utility
 
