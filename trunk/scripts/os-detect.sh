@@ -11,7 +11,7 @@ if [ "${OS}" = "Linux" ]; then
 		VERSION=$(cat /etc/os-release | egrep "\bVERSION\b" | sed 's/VERSION=//g' | sed 's/\"//g')
 		NAME=$(cat /etc/os-release | egrep "\bNAME\b" | sed 's/NAME=//g' | sed 's/\"//g' | tr ' ' '_' | tr '/' '_')
 		case ${NAME} in
-			Fedora)
+			Fedora | Fedora_Linux)
 				NAME="Fedora_release"
 				DIST="$(echo ${NAME})_$(echo ${VERSION_ID})"
 				;;
