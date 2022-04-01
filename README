@@ -1,6 +1,3 @@
-M.A.M.E. Catalog / Launcher II - v0.241
----------------------------------------
-
 What is the M.A.M.E. Catalog / Launcher II?
 -------------------------------------------
 
@@ -24,16 +21,41 @@ derivatives, older versions of MAME or even foreign emulators when they use the
 same/similar XML syntax) through the built-in ROMAlyzer.
 
 Today, only Qt 5+ is supported. Note that for the full functionality of QMC2
-Qt 5.11 or above is required!
+Qt 5.11 or above is required! Qt 6 hasn't been tested yet.
 
 Building an installing QMC2 from source
 ---------------------------------------
 
-$ make 
+It's as simple as this:
+
+$ make [-j <number of CPUs>] 
 ...
+
+Followed by
 
 $ sudo make install
 ...
+
+This builds the main GUI - actually all you'd need. But if you want to build
+and install qmc2-arcade (additionally) or qchdman (works stand-alone), you'd
+need to run (either of) the following:
+
+$ make [-j <number of CPUs>] arcade
+$ sudo make arcade-install
+
+$ make [-j <number of CPUs>] qchdman
+$ sudo make qchdman-install
+
+Run 
+
+$ make help
+
+to see the full list of build targets and
+
+$ make config
+
+to get a help on configuration variables that you'd want to change. However,
+most of the time the defaults are okay.
 
 License
 -------
