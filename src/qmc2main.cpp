@@ -10971,8 +10971,8 @@ int main(int argc, char **argv)
 
 	// create & show the greeting string
 	QString greeting(QObject::tr("M.A.M.E. Catalog / Launcher II v") + QString(XSTR(QMC2_VERSION)) +
-#if QMC2_SVN_REV > 0
-			   ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
+#if defined(QMC2_GIT_REV)
+			   ", " + QObject::tr("GIT %1").arg(XSTR(QMC2_GIT_REV)) +
 #endif
 			   " (Qt " + qVersion() + ", " + QMC2_EMU_NAME_VARIANT + ", " + QMC2_OS_NAME + " " + QMC2_MACHINE_ARCHITECTURE + ")");
 	qmc2StartupTimer.start();

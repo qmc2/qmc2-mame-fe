@@ -304,10 +304,11 @@ bool Welcome::checkConfig()
 	}
 	startupConfig->endGroup();
 
+	/*
 	QStringList verList(startupConfig->value("Version").toString().split('.', QString::SkipEmptyParts));
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
-		int osr = startupConfig->value("SVN_Revision").toInt();
+		int osr = startupConfig->value("GIT_Revision").toInt();
 		// current version: 0.196, last 3 versions: 0.195, 0.192, 0.187
 		if ( QMC2_TEST_VERSION(omv, 187, osr, 8076) ) {
 			// QMC2 Arcade / ToxicWaste theme changes
@@ -329,6 +330,7 @@ bool Welcome::checkConfig()
 			}
 		}
 	}
+	*/
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();
 	configOkay &= !QMC2_CLI_OPT_RECONFIGURE;

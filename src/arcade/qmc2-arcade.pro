@@ -1,5 +1,5 @@
-VERSION = 0.218
-MAIN_UI_VERSION = 0.218
+VERSION = 0.241
+MAIN_UI_VERSION = 0.241
 
 # Add more folders to ship with the application, here
 folder_01.source = qml/ToxicWaste
@@ -176,8 +176,8 @@ TRANSLATIONS += translations/qmc2-arcade_de.ts \
     translations/qmc2-arcade_sv.ts \
     translations/qmc2-arcade_us.ts
 
-greaterThan(SVN_REV, 0) {
-    DEFINES += QMC2_ARCADE_SVN_REV=$$SVN_REV
+!equals(GIT_REV, 0) {
+    DEFINES += QMC2_ARCADE_GIT_REV=$$GIT_REV
 }
 
 isEmpty(QMC2_ARCADE_JOYSTICK): QMC2_ARCADE_JOYSTICK = 1
@@ -213,11 +213,11 @@ macx {
 } else {
     !win32 {
 	greaterThan(SDL, 0) {
-	    LIBS += $$system("../scripts/sdl-libs.sh $$SDL")
-	    INCLUDEPATH += $$system("../scripts/sdl-includepath.sh $$SDL")
+	    LIBS += $$system("../../scripts/sdl-libs.sh $$SDL")
+	    INCLUDEPATH += $$system("../../scripts/sdl-includepath.sh $$SDL")
 	} else {
-	    LIBS += $$system("../scripts/sdl-libs.sh")
-	    INCLUDEPATH += $$system("../scripts/sdl-includepath.sh")
+	    LIBS += $$system("../../scripts/sdl-libs.sh")
+	    INCLUDEPATH += $$system("../../scripts/sdl-includepath.sh")
 	}
     } else {
 	DEFINES += PSAPI_VERSION=1

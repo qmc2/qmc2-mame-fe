@@ -105,8 +105,8 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	setButtonText(QWizard::FinishButton, tr("&Finish"));
 
 	// we want to show our version :)...
-#if QMC2_SVN_REV > 0
-	labelVersion->setText(QString("QMC2 v%1 (SVN r%2)").arg(XSTR(QMC2_VERSION)).arg(QMC2_SVN_REV));
+#if defined(QMC2_GIT_REV)
+	labelVersion->setText(QString("QMC2 v%1 (GIT %2)").arg(XSTR(QMC2_VERSION)).arg(XSTR(QMC2_GIT_REV)));
 #else
 	labelVersion->setText(QString("QMC2 v%1").arg(XSTR(QMC2_VERSION)));
 #endif

@@ -825,10 +825,10 @@ void Options::on_pushButtonApply_clicked()
 
 	// General
 	config->setValue("Version", QString(XSTR(QMC2_VERSION)));
-#if QMC2_SVN_REV > 0
-	config->setValue("SVN_Revision", QMC2_SVN_REV);
+#if defined(QMC2_GIT_REV)
+	config->setValue("GIT_Revision", XSTR(QMC2_GIT_REV));
 #else
-	config->remove("SVN_Revision");
+	config->remove("GIT_Revision");
 #endif
 
 	// Frontend

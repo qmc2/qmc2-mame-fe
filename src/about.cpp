@@ -117,10 +117,10 @@ void About::showEvent(QShowEvent *e)
 	QString titleString = "<p><font size=\"+1\"><b>QMC2 - M.A.M.E. Catalog / Launcher II</b></font><br>" +
 		tr("Qt based multi-platform/multi-emulator front end") + "<br>" +
 		tr("Version ") + QString(XSTR(QMC2_VERSION)) +
-#if QMC2_SVN_REV > 0
-		" (" + tr("SVN r%1").arg(QMC2_SVN_REV) + ")" +
+#if defined(QMC2_GIT_REV)
+		" (" + tr("GIT %1").arg(XSTR(QMC2_GIT_REV)) + ")" +
 #endif
-		", " + tr("built for") + " " + QMC2_EMU_NAME_VARIANT + "<br>" + tr("Copyright") + " &copy; 2006 - 2018 R. Reucher, " + tr("Germany") + "</p>";
+		", " + tr("built for") + " " + QMC2_EMU_NAME_VARIANT + "<br>" + tr("Copyright") + " &copy; 2006 - 2022 R. Reucher, " + tr("Germany") + "</p>";
 
 	labelTitle->setText(titleString);
 

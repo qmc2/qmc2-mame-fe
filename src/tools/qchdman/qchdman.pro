@@ -1,4 +1,4 @@
-VERSION = 0.218
+VERSION = 0.241
 
 QT += core gui script scripttools
 TARGET = qchdman
@@ -6,10 +6,10 @@ TEMPLATE = app
 
 # copy Qt translations from base project
 win32 {
-    system(copy ..\\..\\data\\lng\\qt_*.qm translations > NUL)
+    system(copy ..\\..\\..\\data\\lng\\qt_*.qm translations > NUL)
 } else {
     system(rm -f translations/qt_*.qm > /dev/null)
-    system(ln ../../data/lng/qt_*.qm translations > /dev/null)
+    system(ln ../../../data/lng/qt_*.qm translations > /dev/null)
 }
 QMAKE_CLEAN += translations/qt_*.qm
 
@@ -21,8 +21,8 @@ greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(CONFIG, "warn_off release"): CONFIG += warn_off release
 }
 
-greaterThan(SVN_REV, 0) {
-    DEFINES += QCHDMAN_SVN_REV=$$SVN_REV
+!equals(GIT_REV, 0) {
+    DEFINES += QCHDMAN_GIT_REV=$$GIT_REV
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {

@@ -11,7 +11,7 @@ else
     echo "unsupported combination: debian + unstable"
     exit 0
   fi
-  SVN_REV=`svnversion 2>&1 | sed -r -e "s/[MS]//g" -e "s/^[[:digit:]]*://"`
+  GIT_REV=`git describe --always`
   UBUNTU_VERSION_NAME=$1
   MAJOR_VERSION=$3
   MINOR_VERSION=$4
@@ -29,7 +29,7 @@ else
     QMC2_VERSION=${MAJOR_VERSION}.${MINOR_VERSION}${PPA_VERSION}
     PACKAGE_VERSION=${QMC2_VERSION}-${PACKAGE_REVISION}
   else
-  PPA_VERSION=+ppa2~${UBUNTU_VERSION_NAME}+${MAJOR_VERSION}.${MINOR_VERSION}~svn${SVN_REV}
+  PPA_VERSION=+ppa2~${UBUNTU_VERSION_NAME}+${MAJOR_VERSION}.${MINOR_VERSION}~git${GIT_REV}
   QMC2_VERSION=${MAJOR_VERSION}.$(( $MINOR_VERSION - 1 ))${PPA_VERSION}
   PACKAGE_VERSION=${QMC2_VERSION}-${PACKAGE_REVISION}
   fi

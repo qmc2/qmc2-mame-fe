@@ -22,11 +22,6 @@
 
 #include <stdio.h>
 
-// don't use SVN revision in version strings when QMC2_SVN_REV is undefined
-#if !defined(QMC2_SVN_REV)
-#define QMC2_SVN_REV				0
-#endif
-
 // standard sizes
 #define QMC2_ONE_KILOBYTE			1024
 #define QMC2_ONE_MEGABYTE			1048576
@@ -844,6 +839,9 @@
 #define QMC2_IFS_COLUMN_ARTWORK			0
 #define QMC2_IFS_COLUMN_FALLBACK		1
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!! must be newly made to work with git !!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // tests the (minor) version 'v' against the minimum (minor) version 'mv', and the SVN rev. 'r' against the minimum SVN rev. 'mr' (true if 'v' or 'r' are in the relevant ranges)
 #define QMC2_TEST_VERSION(v, mv, r, mr)		((v) < mv || ((r) > 0 && (r) < (mr)))
 

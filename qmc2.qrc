@@ -324,32 +324,32 @@
 	<file>data/lng/qt_pl.qm</file>
 	<file>data/lng/qt_pt.qm</file>
 	<file>data/lng/qt_sv.qm</file>
-        <file>htmleditor/images/document-new.png</file>
-        <file>htmleditor/images/document-open.png</file>
-        <file>htmleditor/images/document-save.png</file>
-        <file>htmleditor/images/edit-copy.png</file>
-        <file>htmleditor/images/edit-cut.png</file>
-        <file>htmleditor/images/edit-paste.png</file>
-        <file>htmleditor/images/edit-redo.png</file>
-        <file>htmleditor/images/edit-select-all.png</file>
-        <file>htmleditor/images/edit-undo.png</file>
-        <file>htmleditor/images/format-indent-less.png</file>
-        <file>htmleditor/images/format-indent-more.png</file>
-        <file>htmleditor/images/format-justify-center.png</file>
-        <file>htmleditor/images/format-justify-fill.png</file>
-        <file>htmleditor/images/format-justify-left.png</file>
-        <file>htmleditor/images/format-justify-right.png</file>
-        <file>htmleditor/images/format-text-bold.png</file>
-        <file>htmleditor/images/format-text-italic.png</file>
-        <file>htmleditor/images/format-text-underline.png</file>
-        <file>htmleditor/images/format-text-strikethrough.png</file>
-        <file>htmleditor/images/bulleted-list.png</file>
-        <file>htmleditor/images/numbered-list.png</file>
-        <file>htmleditor/images/image-x-generic.png</file>
-        <file>htmleditor/images/text-html.png</file>
-        <file>htmleditor/images/list-remove.png</file>
-        <file>htmleditor/images/list-add.png</file>
-        <file>htmleditor/images/insert-html.png</file>
-        <file>htmleditor/images/insert-table.png</file>
+        <file>src/htmleditor/images/document-new.png</file>
+        <file>src/htmleditor/images/document-open.png</file>
+        <file>src/htmleditor/images/document-save.png</file>
+        <file>src/htmleditor/images/edit-copy.png</file>
+        <file>src/htmleditor/images/edit-cut.png</file>
+        <file>src/htmleditor/images/edit-paste.png</file>
+        <file>src/htmleditor/images/edit-redo.png</file>
+        <file>src/htmleditor/images/edit-select-all.png</file>
+        <file>src/htmleditor/images/edit-undo.png</file>
+        <file>src/htmleditor/images/format-indent-less.png</file>
+        <file>src/htmleditor/images/format-indent-more.png</file>
+        <file>src/htmleditor/images/format-justify-center.png</file>
+        <file>src/htmleditor/images/format-justify-fill.png</file>
+        <file>src/htmleditor/images/format-justify-left.png</file>
+        <file>src/htmleditor/images/format-justify-right.png</file>
+        <file>src/htmleditor/images/format-text-bold.png</file>
+        <file>src/htmleditor/images/format-text-italic.png</file>
+        <file>src/htmleditor/images/format-text-underline.png</file>
+        <file>src/htmleditor/images/format-text-strikethrough.png</file>
+        <file>src/htmleditor/images/bulleted-list.png</file>
+        <file>src/htmleditor/images/numbered-list.png</file>
+        <file>src/htmleditor/images/image-x-generic.png</file>
+        <file>src/htmleditor/images/text-html.png</file>
+        <file>src/htmleditor/images/list-remove.png</file>
+        <file>src/htmleditor/images/list-add.png</file>
+        <file>src/htmleditor/images/insert-html.png</file>
+        <file>src/htmleditor/images/insert-table.png</file>
     </qresource>
 </RCC>

@@ -186,7 +186,7 @@ void upgradeSettings()
 	QStringList verList = globalConfig->value("Version").toString().split(".", QString::SkipEmptyParts);
 	if ( verList.count() > 1 ) {
 		int omv = verList[1].toInt();
-		int osr = globalConfig->value("SVN_Revision").toInt();
+		int osr = globalConfig->value("GIT_Revision").toInt();
 		if ( QMC2_ARCADE_TEST_VERSION(omv, 57, osr, 6989) ) {
 			QStringList oldKeys = QStringList() << "/MAME/DatInfoDatabase/GameInfoImportFiles"
 							    << "/MAME/DatInfoDatabase/GameInfoImportDates";
@@ -406,12 +406,8 @@ int main(int argc, char *argv[])
 		// log banner message
 		QString bannerMessage = QString("%1 %2 (%3)").
 				arg(QMC2_ARCADE_APP_TITLE).
-#if defined(QMC2_ARCADE_SVN_REV)
-#if QMC2_ARCADE_SVN_REV > 0
-				arg(QMC2_ARCADE_APP_VERSION + QString(", SVN r%1").arg(XSTR(QMC2_ARCADE_SVN_REV))).
-#else
-				arg(QMC2_ARCADE_APP_VERSION).
-#endif
+#if defined(QMC2_ARCADE_GIT_REV)
+				arg(QMC2_ARCADE_APP_VERSION + QString(", GIT %1").arg(XSTR(QMC2_ARCADE_GIT_REV))).
 #else
 				arg(QMC2_ARCADE_APP_VERSION).
 #endif

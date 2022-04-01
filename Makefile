@@ -552,7 +552,7 @@ PROJECT = qmc2
 
 # version
 VERSION_MAJOR = 0
-VERSION_MINOR = 218
+VERSION_MINOR = 241
 
 # complete version string
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
@@ -568,12 +568,12 @@ ifeq '$(ARCH)' 'Darwin'
 MYAPPICON = mame.icns
 endif
 
-# determine the SVN revision (if any)
-ifndef SVN_REV
-SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
+# determine the "GIT revision" (if any)
+ifndef GIT_REV
+GIT_REV=$(shell $(GITVERSION))
 endif
-ifeq '$(SVN_REV)' ''
-SVN_REV=0
+ifeq '$(GIT_REV)' ''
+GIT_REV=0
 endif
 
 ifneq '$(ARCH)' 'Windows' 
@@ -608,7 +608,10 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_MULTIMEDIA=$(MULTIMEDIA) QMC2_FADER_SPEED=$(FADER_SPEED)
+DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_MULTIMEDIA=$(MULTIMEDIA) QMC2_FADER_SPEED=$(FADER_SPEED)
+ifneq '$(GIT_REV)' '0'
+	DEFINES += QMC2_GIT_REV=$(GIT_REV)
+endif
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
@@ -828,16 +831,19 @@ $(PROJECT): $(PROJECT)-bin
 ifeq '$(ARCH)' 'Darwin'
 # put the version, SCM revision and icon resource in Info.plist on Mac OS X
 %.plist: %.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/$(MYAPPICON)/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(GIT_REV))/g' -e 's/@ICON@/$(MYAPPICON)/g' < $< > $@
 endif
 
 # tools
 ifeq '$(DEBUG)' '0'
 QCHDMAN_CONF += CONFIG+=warn_off CONFIG+=release
-QCHDMAN_DEFINES = DEFINES+=QCHDMAN_RELEASE QCHDMAN_SVN_REV=$(SVN_REV)
+QCHDMAN_DEFINES = DEFINES+=QCHDMAN_RELEASE
 else
 QCHDMAN_CONF += CONFIG+=warn_on CONFIG+=debug
-QCHDMAN_DEFINES = DEFINES+=QCHDMAN_DEBUG QCHDMAN_SVN_REV=$(SVN_REV)
+QCHDMAN_DEFINES = DEFINES+=QCHDMAN_DEBUG
+endif
+ifneq '$(GIT_REV)' '0'
+	QCHDMAN_DEFINES += QCHDMAN_GIT_REV=$(GIT_REV)
 endif
 
 ifeq '$(ARCH)' 'Darwin'
@@ -855,45 +861,45 @@ tools/qchdman/Makefile: tools/qchdman/qchdman.pro
 	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)"
 
 qchdman: qchdman-bin
-qchdman-bin: tools/qchdman/Makefile
-	@$(CD) tools/qchdman && $(MAKE)
+qchdman-bin: src/tools/qchdman/Makefile
+	@$(CD) src/tools/qchdman && $(MAKE)
 
-qchdman-clean: tools/qchdman/Makefile
-	@$(CD) tools/qchdman && $(MAKE) distclean
-	@$(RMDIR) tools/qchdman/release
-	@$(RMDIR) tools/qchdman/debug
-	@$(RM) tools/qchdman/object_script.qchdman.Release tools/qchdman/object_script.qchdman.Debug
+qchdman-clean: src/tools/qchdman/Makefile
+	@$(CD) src/tools/qchdman && $(MAKE) distclean
+	@$(RMDIR) src/tools/qchdman/release
+	@$(RMDIR) src/tools/qchdman/debug
+	@$(RM) src/tools/qchdman/object_script.qchdman.Release src/tools/qchdman/object_script.qchdman.Debug
 
 tools: qchdman
 tools-clean: qchdman-clean
 else
-tools/qchdman/Makefile: tools/qchdman/qchdman.pro
-	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)'
+src/tools/qchdman/Makefile: src/tools/qchdman/qchdman.pro
+	@$(CD) src/tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(QCHDMAN_DEFINES)'
 
 qchdman: qchdman-bin
-qchdman-bin: tools/qchdman/Makefile
-	@$(CD) tools/qchdman && $(MAKE)
+qchdman-bin: src/tools/qchdman/Makefile
+	@$(CD) src/tools/qchdman && $(MAKE)
 
-qchdman-clean: tools/qchdman/Makefile
-	@$(CD) tools/qchdman && $(MAKE) distclean
+qchdman-clean: src/tools/qchdman/Makefile
+	@$(CD) src/tools/qchdman && $(MAKE) distclean
 ifeq '$(ARCH)' 'Darwin'
-	@$(RM) tools/qchdman/Info.plist
+	@$(RM) src/tools/qchdman/Info.plist
 
 QCHDMAN_VERSION=$(shell $(GREP) "VERSION =" tools/qchdman/qchdman.pro | $(AWK) '{ print $$3 }')
-tools/qchdman/Info.plist: tools/qchdman/Info.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(QCHDMAN_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qchdman.icns/g' < $< > $@
-tools/qchdman/qchdman.app/Contents/Resources/qt.conf: tools/qchdman/Info.plist
-	@$(MACDEPLOYQT) tools/qchdman/qchdman.app
-qchdman-macdeployqt: tools/qchdman/qchdman.app/Contents/Resources/qt.conf
+src/tools/qchdman/Info.plist: src/tools/qchdman/Info.plist.in
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(QCHDMAN_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(GIT_REV))/g' -e 's/@ICON@/qchdman.icns/g' < $< > $@
+src/tools/qchdman/qchdman.app/Contents/Resources/qt.conf: src/tools/qchdman/Info.plist
+	@$(MACDEPLOYQT) src/tools/qchdman/qchdman.app
+qchdman-macdeployqt: src/tools/qchdman/qchdman.app/Contents/Resources/qt.conf
 qchdman-install: qchdman-bin qchdman-macdeployqt
-	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman.app" "/Applications"
+	@$(RSYNC) --exclude '*svn*' "src/tools/qchdman/qchdman.app" "/Applications"
 	@$(CHMOD) a+rx "/Applications/qchdman.app"
-	@$(RSYNC) tools/qchdman/images/qchdman.icns /Applications/qchdman.app/Contents/Resources/
-	@$(RSYNC) tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
+	@$(RSYNC) src/tools/qchdman/images/qchdman.icns /Applications/qchdman.app/Contents/Resources/
+	@$(RSYNC) src/tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
 else
 qchdman-install: qchdman-bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
-	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
+	@$(RSYNC) --exclude '*svn*' "src/tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(ECHO) "Installing qchdman.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
@@ -908,10 +914,13 @@ endif
 
 ifeq '$(DEBUG)' '0'
 ARCADE_CONF = CONFIG+=warn_off CONFIG+=release
-ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_RELEASE QMC2_ARCADE_SVN_REV=$(SVN_REV)
+ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_RELEASE
 else
 ARCADE_CONF = CONFIG+=warn_on CONFIG+=debug
-ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_DEBUG QMC2_ARCADE_SVN_REV=$(SVN_REV)
+ARCADE_DEFINES = DEFINES+=QMC2_ARCADE_DEBUG
+endif
+ifneq '$(GIT_REV)' '0'
+	ARCADE_DEFINES += QMC2_ARCADE_GIT_REV=$(GIT_REV)
 endif
 ifeq '$(FORCE_MINGW)' '1'
 ARCADE_DEFINES += QMC2_ARCADE_MINGW
@@ -933,42 +942,42 @@ endif
 ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
 ARCADE_QMAKE_DEFS = QMC2_ARCADE_QML_IMPORT_PATH=$(LOCAL_QML_IMPORT_PATH) QMC2_ARCADE_JOYSTICK=$(JOYSTICK) SDL=$(SDL) $(ARCADE_QMAKE_CONF)
 
-arcade/Makefile: arcade/qmc2-arcade.pro
-	@$(CD) arcade && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)"
+src/arcade/Makefile: src/arcade/qmc2-arcade.pro
+	@$(CD) src/arcade && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(ARCADE_CONF) $(ARCADE_QMAKE_DEFS) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(ARCADE_DEFINES)"
 
 arcade: arcade-bin
-arcade-bin: arcade/Makefile
-	@$(CD) arcade && $(MAKE)
+arcade-bin: src/arcade/Makefile
+	@$(CD) src/arcade && $(MAKE)
 
-arcade-clean: arcade/Makefile
-	@$(CD) arcade && $(MAKE) distclean
+arcade-clean: src/arcade/Makefile
+	@$(CD) src/arcade && $(MAKE) distclean
 ifeq '$(ARCH)' 'Windows'
-	@$(RMDIR) arcade/release
-	@$(RMDIR) arcade/debug
-	@$(RM) arcade/object_script.qmc2-arcade.Release arcade/object_script.qmc2-arcade.Debug
+	@$(RMDIR) src/arcade/release
+	@$(RMDIR) src/arcade/debug
+	@$(RM) src/arcade/object_script.qmc2-arcade.Release src/arcade/object_script.qmc2-arcade.Debug
 endif
 ifeq '$(ARCH)' 'Darwin'
-	@$(RM) arcade/Info.plist
+	@$(RM) src/arcade/Info.plist
 endif
 
 ifeq '$(ARCH)' 'Darwin'
 ARCADE_VERSION=$(shell $(GREP) "VERSION =" arcade/qmc2-arcade.pro | $(AWK) '{ print $$3 }')
-arcade/Info.plist: arcade/Info.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(ARCADE_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qmc2-arcade.icns/g' < $< > $@
-arcade/qmc2-arcade.app/Contents/Resources/qt.conf: arcade/Info.plist
-	@$(MACDEPLOYQT) arcade/qmc2-arcade.app
+src/arcade/Info.plist: src/arcade/Info.plist.in
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(ARCADE_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(GIT_REV))/g' -e 's/@ICON@/qmc2-arcade.icns/g' < $< > $@
+src/arcade/qmc2-arcade.app/Contents/Resources/qt.conf: src/arcade/Info.plist
+	@$(MACDEPLOYQT) src/arcade/qmc2-arcade.app
 	@arch/Darwin/arcade_macdeployimports.sh $(QT_LIBMAJ)
-arcade-macdeployqt: arcade/qmc2-arcade.app/Contents/Resources/qt.conf
+arcade-macdeployqt: src/arcade/qmc2-arcade.app/Contents/Resources/qt.conf
 endif
 
 ifeq '$(ARCH)' 'Windows'
 else
 ifeq '$(ARCH)' 'Darwin'
 arcade-install: arcade-bin arcade-macdeployqt
-	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade.app" "/Applications/qmc2"
+	@$(RSYNC) --exclude '*svn*' "src/arcade/qmc2-arcade.app" "/Applications/qmc2"
 	@$(CHMOD) a+rx "/Applications/qmc2/qmc2-arcade.app"
-	@$(RSYNC) arcade/images/qmc2-arcade.icns /Applications/qmc2/qmc2-arcade.app/Contents/Resources/
-	@$(RSYNC) arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
+	@$(RSYNC) src/arcade/images/qmc2-arcade.icns /Applications/qmc2/qmc2-arcade.app/Contents/Resources/
+	@$(RSYNC) src/arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
 else
 arcade-install: arcade-bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
@@ -1352,6 +1361,7 @@ config:
 ifeq '$(ARCH)' 'Windows'
 	@$(ECHO) "FORCE_MINGW            Force use of MinGW on Windows (0, 1)          $(FORCE_MINGW)"
 endif
+	@$(ECHO) "GITVERSION             Command to determine the git rev (optional)   $(GITVERSION)"
 	@$(ECHO) "GREP                   UNIX command grep                             $(GREP)"
 	@$(ECHO) "IMGSET                 Image set to be used                          $(IMGSET)"
 	@$(ECHO) "JOYSTICK               Compile with SDL joystick support (0, 1)      $(JOYSTICK)"
@@ -1394,7 +1404,6 @@ endif
 	@$(ECHO) "RSYNC                  UNIX command rsync                            $(RSYNC)"
 	@$(ECHO) "SDL                    SDL major version to be used (1, 2)           $(SDL)"
 	@$(ECHO) "SED                    UNIX command sed                              $(SED)"
-	@$(ECHO) "SVNVERSION             UNIX command svnversion (optional)            $(SVNVERSION)"
 	@$(ECHO) "SYSCONFDIR             System configuration directory                $(SYSCONFDIR)"
 	@$(ECHO) "SYSTEM_MINIZIP         Build using system minizip (0, 1)             $(SYSTEM_MINIZIP)"
 	@$(ECHO) "SYSTEM_ZLIB            Build using system zlib (0, 1)                $(SYSTEM_ZLIB)"
@@ -1404,12 +1413,12 @@ endif
 	@$(ECHO) "TIME                   UNIX command time                             $(TIME)"
 	@$(ECHO) "WIP                    Enable unfinished code (0, 1)                 $(WIP)"
 	@$(ECHO) "YOUTUBE                Enable support for YouTube videos (0, 1)      $(YOUTUBE)"
-ifneq '$(SVN_REV)' ''
+ifneq '$(GIT_REV)' ''
 	@$(ECHO) ""
-ifneq '$(SVN_REV)' '0'
-	@$(ECHO) "The SVN revision of your working copy is $(SVN_REV)."
+ifneq '$(GIT_REV)' '0'
+	@$(ECHO) "The GIT revision of your working copy is $(GIT_REV)."
 else
-	@$(ECHO) "The SVN revision of your working copy could not be determined."
+	@$(ECHO) "The GIT revision of your working copy could not be determined."
 endif
 endif
 
