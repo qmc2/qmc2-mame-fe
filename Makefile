@@ -1157,7 +1157,7 @@ clean: $(QMAKEFILE)
 	@$(ECHO) "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) error.log exclude.list
+	@$(RM) error.log
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin
 	@$(RM) -f tools/qmc2_options_editor_java/*.jar
 endif
@@ -1190,7 +1190,7 @@ else
 endif
 else
 ifneq '$(ARCH)' 'Windows'
-	@$(RM) error.log exclude.list > /dev/null
+	@$(RM) error.log > /dev/null
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin > /dev/null
 	@$(RM) -f tools/qmc2_options_editor_java/*.jar > /dev/null
 endif
@@ -1230,22 +1230,18 @@ NOW = $(shell $(DATE))
 SRCDIR = $(shell $(BASENAME) `pwd`)
 snapshot: snap
 snap: distclean
-	@$(MAKE) xl
 	@$(ECHO) -n "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)... "
 	@$(CD) .. ; \
-	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
-	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
-	@$(RM) exclude.list
+	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
+	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
 	@$(ECHO) "done"
 
 distribution: dist
 dist: distclean
-	@$(MAKE) xl
 	@$(ECHO) -n "Creating source distribution archive for QMC2 v$(VERSION)... "
 	@$(CD) .. ; \
-	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
-	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
-	@$(RM) exclude.list
+	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
+	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
 	@$(ECHO) "done"
 
 endif
@@ -1261,19 +1257,6 @@ install: all
 bin: all
 all:
 	@$(ECHO) "Error: Wrong qmake version. Version 3 (Qt 5) required!"
-endif
-
-ifneq '$(ARCH)' 'Windows'
-xl: exclude-list
-xlist: exclude-list
-svn-exclude-list: exclude-list
-exclude.list: exclude-list
-exclude-list:
-	@cd .. ; \
-	$(FIND) $(PROJECT) -name "*svn*" > $(PROJECT)/exclude.list.new ; \
-	$(ECHO) "$(PROJECT)/exclude.list" >> $(PROJECT)/exclude.list.new ; \
-	$(CAT) $(PROJECT)/exclude.list.new | env LOCALE=C sort > $(PROJECT)/exclude.list ; \
-	$(RM) $(PROJECT)/exclude.list.new
 endif
 
 detect-os: os-detect
