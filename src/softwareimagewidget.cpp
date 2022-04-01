@@ -3,6 +3,7 @@
 #include <QHash>
 #include <QDir>
 #include <QClipboard>
+#include <QPainterPath>
 
 #include "softwarelist.h"
 #include "softwaresnapshot.h"
