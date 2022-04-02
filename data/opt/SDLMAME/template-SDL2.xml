@@ -159,6 +159,10 @@
 			<description lang="fr" text="Répertoire pour enregistrer les commentaires de débogage"/>
 			<description lang="pt" text="Diretório para salvar comentários do debugger"/>
 		</option>
+		<option default="share" name="share_directory" type="directory">
+			<description lang="us" text="Directory to share with emulated machines"/>
+			<description lang="de" text="Verzeichnis welches mit der emulierten Maschine geteilt wird"/>
+		</option>
 	</section>
 	<section name="state_playback">
 		<description lang="es" text="Estado / reproducción"/>
@@ -208,10 +212,6 @@
 			<description lang="fr" text="Enregistrer un fichier input"/>
 			<description lang="pt" text="Gravar um arquivo de entrada"/>
 		</option>
-		<option default="false" name="record_timecode" type="bool">
-			<description lang="us" text="Record an input timecode file (requires -record option)"/>
-			<description lang="de" text="Eingabe Timecode Datei aufnehmen (erfordert die -record Option)"/>
-		</option>
 		<option default="" name="mngwrite" type="file" relativeTo="snapshot_directory">
 			<description lang="es" text="Nombre de archivo opcional para guardar una vídeo MNG de la sesión actual"/>
 			<description lang="us" text="Optional filename to write an MNG movie of the current session"/>
@@ -255,14 +255,11 @@
 			<description lang="pt" text="Especifique a resolução (LARGURAxALTURA) do snapshot/filme ou use 'auto' para usar o tamanho mínimo"/>
 			<choice name="auto"/>
 		</option>
-		<option default="internal" name="snapview" type="combo">
-			<description lang="es" text="Especificar la vista de capturas/vídeos o 'internal' para usar la vistas aspecto-píxel internas"/>
-			<description lang="us" text="Specify snapshot/movie view or 'internal' to use internal pixel-aspect views"/>
-			<description lang="de" text="Screenshot/Movie Ansicht festlegen oder 'internal' für interne Ansicht"/>
-			<description lang="pl" text="Określ widok zrzutów ekranu/filmów lub 'internal' aby użyć wewnętrzych widoków zachowujących proporcje pikseli"/>
-			<description lang="fr" text="Spécifier la vue de capture/vidéo ou 'internal' pour utiliser la vue 'interne'"/>
-			<description lang="pt" text="Especifique a visão do snapshot/filme ou 'internal' para usar as visões internas do aspecto do pixel"/>
-			<choice name="internal"/>
+		<option default="auto" name="snapview" type="combo">
+			<description lang="us" text="Snapshot/movie view - 'auto' for default, or 'native' for per-screen pixel-aspect views"/>
+			<description lang="de" text="Screenshot/Movie Ansicht festlegen - 'auto' für Standard oder 'native' für Per-Screen Pixel-Aspect Ansichten"/>
+			<choice name="auto"/>
+			<choice name="native"/>
 		</option>
 		<option default="true" name="snapbilinear" type="bool">
 			<description lang="us" text="Specify if the snapshot/movie should have bilinear filtering applied"/>
@@ -347,6 +344,10 @@
 			<description lang="pl" text="Automatycznie dostosowuje szybkość gry aby utrzymać szybkość odświeżania poniżej ekranu"/>
 			<description lang="fr" text="Ajuste automatiquement la vitesse de jeu pour conserver le taux de rafraichissement du jeu plus bas que celui de l'écran"/>
 			<description lang="pt" text="Automaticamente ajustar a velocidade do jogo para manter a taxa de refresh menor que a da tela"/>
+		</option>
+		<option default="false" name="lowlatency" type="bool">
+			<description lang="us" text="Draws new frame before throttling to reduce input latency"/>
+			<description lang="de" text="Zeichnet neuen Frame bevor gedrosselt wird um Eingabe-Latenz zu verringern"/>
 		</option>
 		<option default="false" name="sdlvideofps" type="bool">
 			<description lang="us" text="Show SDL video performance"/>
@@ -452,46 +453,6 @@
 			<description lang="fr" text="Réduit l'artwork en fonction de la dimension de l'écran du jeu"/>
 			<description lang="pt" text="Cortar arte para o tamanho da tela do jogo"/>
 		</option>
-		<option default="true" name="use_backdrops" type="bool">
-			<description lang="es" text="Permitir fondos de pantalla si el arte está activado y disponible"/>
-			<description lang="us" text="Enable backdrops if artwork is enabled and available"/>
-			<description lang="de" text="Hintergründe anzeigen, falls vorhanden und aktiviert"/>
-			<description lang="pl" text="Aktywuj tła, kiedy ilustracje są dostępne i aktywne"/>
-			<description lang="fr" text="Utilise les arrières plans si l'artwork est activé et disponible"/>
-			<description lang="pt" text="Habilitar cenários se a arte estiver habilitada e disponível"/>
-		</option>
-		<option default="true" name="use_overlays" type="bool">
-			<description lang="es" text="Permitir superposiciones si el arte está activado y disponible"/>
-			<description lang="us" text="Enable overlays if artwork is enabled and available"/>
-			<description lang="de" text="Überlagerungen anzeigen, falls vorhanden und aktiviert"/>
-			<description lang="pl" text="Aktywuj nakładki, kiedy ilustracje są dostępne i aktywne"/>
-			<description lang="fr" text="Utilise l'affichage de calques en transparence si l'artwork est activé et disponible"/>
-			<description lang="pt" text="Habilitar overlays se a arte estiver habilitada e disponível"/>
-		</option>
-		<option default="true" name="use_bezels" type="bool">
-			<description lang="es" text="Permitir marcos si el arte está activado y disponible"/>
-			<description lang="us" text="Enable bezels if artwork is enabled and available"/>
-			<description lang="de" text="Einfassungen anzeigen, falls vorhanden und aktiviert"/>
-			<description lang="pl" text="Aktywuj ramki, kiedy ilustracje są dostępne i aktywne"/>
-			<description lang="fr" text="Utilise l'affichage des bezels si l'artwork est activé et disponible"/>
-			<description lang="pt" text="Habilitar molduras se a arte estiver habilitada e disponível"/>
-		</option>
-		<option default="true" name="use_cpanels" type="bool">
-			<description lang="es" text="Permitir paneles de control si el arte está activado y disponible"/>
-			<description lang="us" text="Enable control panels if artwork is enabled and available"/>
-			<description lang="de" text="Steuerungselemente anzeigen, falls vorhanden und aktiviert"/>
-			<description lang="pl" text="Aktywuj panele kontrolne, kiedy ilustracje są dostępne i aktywne"/>
-			<description lang="fr" text="Activer l'affichage du control pannel si l'artwork est activé et disponible"/>
-			<description lang="pt" text="Habilitar painéis de controle se a arte estiver habilitada e disponível"/>
-		</option>
-		<option default="true" name="use_marquees" type="bool">
-			<description lang="es" text="Permitir marquesinas si el arte está activado y disponible"/>
-			<description lang="us" text="Enable marquees if artwork is enabled and available"/>
-			<description lang="de" text="Marquees anzeigen, falls vorhanden und aktiviert"/>
-			<description lang="pl" text="Aktywuj plansze tytułowe, kiedy ilustracje są dostępne i aktywne"/>
-			<description lang="fr" text="Activer l'affichage du marquee si l'artwork est activé et disponible"/>
-			<description lang="pt" text="Habilitar marquees se a arte estiver habilitada e disponível"/>
-		</option>
 		<option default="" name="fallback_artwork" type="file">
 			<description lang="us" text="Fallback artwork if no external artwork or internal driver layout is defined"/>
 			<description lang="de" text="Artwork auf das zurückgegriffen wird, wenn kein externes Artwork oder kein internes Treiber-Layout bekannt sind"/>
@@ -568,6 +529,10 @@
 			<description lang="us" text="Set vector beam width minimum"/>
 			<description lang="de" text="Minimale Strahlen-Breite"/>
 		</option>
+		<option default="1.0" name="beam_dot_size" type="float">
+			<description lang="us" text="Set vector beam size for dots"/>
+			<description lang="de" text="Strahlen-Größe für Punkte"/>
+		</option>
 		<option default="0.0" name="flicker" type="float">
 			<description lang="es" text="Definir el efecto de parpadeo del vector"/>
 			<description lang="us" text="Set vector flicker effect"/>
@@ -623,6 +588,14 @@
 			<description lang="pl" text="Ustaw zwłokę dźwięku (zwiększ aby zmniejszyć trzaski, zmniejsz dla szybszej odpowiedzi)"/>
 			<description lang="fr" text="Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
 			<description lang="pt" text="Definir latência do áudio (aumente para reduzir defeitos, diminua para aumentar o desempenho)"/>
+		</option>
+		<option default="true" name="compressor" type="bool">
+			<description lang="us" text="Enable compressor for sound"/>
+			<description lang="de" text="Kompressor für Sound aktivieren"/>
+		</option>
+		<option default="0" name="speaker_report" type="int">
+			<description lang="us" text="Print report of speaker ouput maxima (0=none, or 1-4 for more detail)"/>
+			<description lang="de" text="Report der Lautsprecher Ausgabe Maxima ausgeben (0=kein Report, oder 1-4 für mehr Details)"/>
 		</option>
 	</section>
 	<section name="input_devices">
@@ -820,6 +793,10 @@
 			<description lang="us" text="Remote port to connect to"/>
 			<description lang="de" text="Entfernter Port"/>
 		</option>
+		<option default="false" name="comm_framesync" type="bool">
+			<description lang="us" text="Sync frames"/>
+			<description lang="de" text="Synchronisiere Frames"/>
+		</option>
 	</section>
 	<section name="misc">
 		<description lang="es" text="Miscelánea"/>
@@ -929,7 +906,7 @@
 			<description lang="us" text="Enable emulator LUA console"/>
 			<description lang="de" text="Emulator LUA Konsole aktivieren"/>
 		</option>
-		<option default="English" name="language" type="string">
+		<option default="" name="language" type="string">
 			<description lang="us" text="Display language"/>
 			<description lang="de" text="Anzeigesprache"/>
 		</option>
@@ -1046,6 +1023,10 @@
 			<description lang="pt" text="Especificar o tamanho da fonte para uso em debugging; padrão para 9 pt"/>
 			<description lang="es" text="Especifica el tamaño de tipografía a utilizar por el depurador; predeterminado 9 pt"/>
 		</option>
+		<option default="23946" name="debugger_port" type="int">
+			<description lang="us" text="Port to use for gdbstub debugger"/>
+			<description lang="de" text="Verwendeter Port für gdbstub Debugger"/>
+		</option>
 		<option default="" name="debugscript" type="file">
 			<description lang="es" text="Script para depurador"/>
 			<description lang="us" text="Script for debugger"/>
@@ -1053,6 +1034,10 @@
 			<description lang="pl" text="Skrypt dla debuggera"/>
 			<description lang="fr" text="Script pour le débogueur"/>
 			<description lang="pt" text="Script para o debugger"/>
+		</option>
+		<option default="false" name="debuglog" type="bool">
+			<description lang="us" text="Write debug console output to debug.log"/>
+			<description lang="de" text="Debug Konsolenausgaben in debug.log sichern"/>
 		</option>
 		<option default="0" name="watchdog" type="int">
 			<description lang="es" text="Fuerza el programa a terminar si no se actualiza en un número concreto de segundos"/>
@@ -1663,6 +1648,10 @@
 			<description lang="pt" text="Divitir tela entre monitores"/>
 			<description lang="es" text="Dividir la imagen de pantalla completa entre monitores"/>
 		</option>
+		<option default="" name="attach_window" type="string">
+			<description lang="us" text="Attach to arbitrary window"/>
+			<description lang="de" text="An beliebiges Fenster anhängen"/>
+		</option>
 	</section>
 	<section name="automatic_device_selection">
 		<description lang="es" text="Selección automática de dispositivo"/>
@@ -2076,6 +2065,10 @@
 			<description lang="us" text="File name for BGFX output logging"/>
 			<description lang="de" text="Dateiname für BGFX Ausgabe Logging"/>
 			<choice name="auto"/>
+		</option>
+		<option default="lut-default.png" name="bgfx_lut" type="string">
+			<description lang="us" text="LUT texture name"/>
+			<description lang="de" text="Name der LUT Textur"/>
 		</option>
 	</section>
 	<section name="http_server_options">
