@@ -570,7 +570,11 @@ endif
 
 # determine the "GIT revision" (if any)
 ifndef GIT_REV
-GIT_REV=$(shell $(GITVERSION))
+ifneq '$(ARCH)' 'Windows'
+GIT_REV=$(shell $(GITVERSION) 2> /dev/null)
+else
+GIT_REV=$(shell $(GITVERSION) 2> nul)
+endif
 endif
 ifeq '$(GIT_REV)' ''
 GIT_REV=0
