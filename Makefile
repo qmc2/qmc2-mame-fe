@@ -552,7 +552,7 @@ PROJECT = qmc2
 
 # version
 VERSION_MAJOR = 0
-VERSION_MINOR = 241
+VERSION_MINOR = 242
 
 # complete version string
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
@@ -892,15 +892,15 @@ src/tools/qchdman/qchdman.app/Contents/Resources/qt.conf: src/tools/qchdman/Info
 	@$(MACDEPLOYQT) src/tools/qchdman/qchdman.app
 qchdman-macdeployqt: src/tools/qchdman/qchdman.app/Contents/Resources/qt.conf
 qchdman-install: qchdman-bin qchdman-macdeployqt
-	@$(RSYNC) --exclude '*svn*' "src/tools/qchdman/qchdman.app" "/Applications"
+	@$(RSYNC) "src/tools/qchdman/qchdman.app" "/Applications"
 	@$(CHMOD) a+rx "/Applications/qchdman.app"
 	@$(RSYNC) src/tools/qchdman/images/qchdman.icns /Applications/qchdman.app/Contents/Resources/
 	@$(RSYNC) src/tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
 else
 qchdman-install: qchdman-bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
-	@$(RSYNC) --exclude '*svn*' "src/tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
-	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) "src/tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
+	@$(RSYNC) ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(ECHO) "Installing qchdman.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
@@ -974,15 +974,15 @@ ifeq '$(ARCH)' 'Windows'
 else
 ifeq '$(ARCH)' 'Darwin'
 arcade-install: arcade-bin arcade-macdeployqt
-	@$(RSYNC) --exclude '*svn*' "src/arcade/qmc2-arcade.app" "/Applications/qmc2"
+	@$(RSYNC) "src/arcade/qmc2-arcade.app" "/Applications/qmc2"
 	@$(CHMOD) a+rx "/Applications/qmc2/qmc2-arcade.app"
 	@$(RSYNC) src/arcade/images/qmc2-arcade.icns /Applications/qmc2/qmc2-arcade.app/Contents/Resources/
 	@$(RSYNC) src/arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
 else
 arcade-install: arcade-bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
-	@$(RSYNC) --exclude '*svn*' "arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
-	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) "src/arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
+	@$(RSYNC) ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(ECHO) "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
@@ -1105,30 +1105,30 @@ endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 	@$(CHMOD) a+rx "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
-	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME).app" "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
+	@$(RSYNC) "./$(TARGET_NAME).app" "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 else
 	@$(RM) -f "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
-	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME)" "$(DESTDIR)/$(BINDIR)"
+	@$(RSYNC) "./$(TARGET_NAME)" "$(DESTDIR)/$(BINDIR)"
 	@(cd "$(DESTDIR)/$(BINDIR)" && $(LN) -s "$(TARGET_NAME)" "$(PROJECT)")
 endif
-	@$(RSYNC) --exclude '*svn*' ./data/cab "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/cat "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/ctl "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' --exclude '*man*' ./data/doc "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/fly "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/gmn "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/ico "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/js "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/man "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/mrq "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/opt "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/pcb "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/prv "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/swn "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/sws "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/ttl "$(GLOBAL_DATADIR)/$(PROJECT)/"
-	@$(RSYNC) --exclude '*svn*' ./data/vdo "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/cab "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/cat "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/ctl "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) --exclude '*man*' ./data/doc "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/fly "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/gmn "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/ico "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/js "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/man "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/mrq "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/opt "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/pcb "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/prv "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/swn "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/sws "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/ttl "$(GLOBAL_DATADIR)/$(PROJECT)/"
+	@$(RSYNC) ./data/vdo "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@if [ -f "$(GLOBAL_QMC2_INI)" ] ; then \
 	  $(ECHO) "Preserving system-wide configuration in $(GLOBAL_QMC2_INI)" ; \
 	  $(ECHO) "Installing new system-wide configuration as $(GLOBAL_QMC2_INI).new" ; \
@@ -1439,7 +1439,7 @@ doc-install: man-install
 man-install:
 	@$(ECHO) "Installing man-pages to $(DESTDIR)$(MAN_DIR)/man6"
 	@$(MKDIR) $(DESTDIR)$(MAN_DIR)/man6
-	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(DESTDIR)$(MAN_DIR)/man6/
+	@$(RSYNC) ./data/doc/man/*.gz $(DESTDIR)$(MAN_DIR)/man6/
 endif
 
 # process translations
