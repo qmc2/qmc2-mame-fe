@@ -318,7 +318,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_focusSearchResults(false),
 	m_lastMlvSender(0),
 	m_attachedViewer(0),
-	m_searchBoxKeyEventFilter(0)
+	m_searchBoxKeyEventFilter(0),
+	mediaPlayer(0)
 {
 	setUpdatesEnabled(false);
 	setVisible(false);
