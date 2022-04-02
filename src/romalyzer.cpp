@@ -27,8 +27,9 @@
 #include "machinelist.h"
 #include "softwarelist.h"
 #include "macros.h"
-#include "unzip.h"
-#include "zip.h"
+#include "mz_compat.h"
+#include "mz.h"
+#include "zlib.h"
 #include "sevenzipfile.h"
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 #include "archivefile.h"
@@ -535,7 +536,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 	if ( index > QMC2_ROMALYZER_RT_FOLDERS )
 		index = QMC2_ROMALYZER_RT_FOLDERS;
 	comboBoxSetRewriterReproductionType->setCurrentIndex(index);
-	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
+	spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterZipLevel", MZ_COMPRESS_LEVEL_DEFAULT).toInt());
 	checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterUniqueCRCs", false).toBool());
 	comboBoxSetRewriterLibArchiveDeflate->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterLibArchiveDeflate", true).toBool() ? 0 : 1);
 	checkBoxSetRewriterAddZipComment->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + m_settingsKey + "/SetRewriterAddZipComment", true).toBool());
@@ -3642,7 +3643,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			QByteArray data = it.value();
 			if ( writeLog )
 				log(tr("set rewriter: deflating '%1' (uncompressed size: %2)").arg(file).arg(humanReadable(data.length())));
-			if ( zipOpenNewFileInZip(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, Z_DEFLATED, spinBoxSetRewriterZipLevel->value()) == ZIP_OK ) {
+			if ( zipOpenNewFileInZip3(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, MZ_COMPRESS_METHOD_DEFLATE, spinBoxSetRewriterZipLevel->value(), 0, MAX_WBITS, DEF_MEM_LEVEL, 0, NULL, 0) == ZIP_OK ) {
 				quint64 bytesWritten = 0;
 				progressBarFileIO->setInvertedAppearance(true);
 				progressBarFileIO->setRange(0, data.length());

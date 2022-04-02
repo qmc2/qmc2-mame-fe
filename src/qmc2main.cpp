@@ -59,7 +59,7 @@
 #include "romstatusexport.h"
 #include "componentsetup.h"
 #include "miniwebbrowser.h"
-#include "unzip.h"
+#include "mz_compat.h"
 #include "sevenzipfile.h"
 #include "downloaditem.h"
 #include "embedder.h"

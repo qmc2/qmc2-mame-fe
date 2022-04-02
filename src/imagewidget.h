@@ -10,7 +10,7 @@
 #include <QAction>
 #include <QStringList>
 
-#include "unzip.h"
+#include "mz_compat.h"
 #include "sevenzipfile.h"
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 #include "archivefile.h"

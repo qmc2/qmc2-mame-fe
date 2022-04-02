@@ -13,7 +13,7 @@
 #include "ui_imagechecker.h"
 #include "imagewidget.h"
 #include "softwareimagewidget.h"
-#include "unzip.h"
+#include "mz_compat.h"
 #include "sevenzipfile.h"
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 #include "archivefile.h"

@@ -109,9 +109,14 @@ contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
 
 contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
     INCLUDEPATH += ../minizip
-    SOURCES += ../minizip/zip.c \
-	       ../minizip/unzip.c \
-	       ../minizip/ioapi.c
+    SOURCES += ../minizip/mz_compat.c \
+              ../minizip/mz_crypt.c \
+              ../minizip/mz_os.c \
+              ../minizip/mz_os_posix.c \
+              ../minizip/mz_strm.c \
+              ../minizip/mz_strm_mem.c \
+              ../minizip/mz_strm_os_posix.c \
+              ../minizip/mz_zip.c
 } else {
     CONFIG += link_pkgconfig
     PKGCONFIG += minizip

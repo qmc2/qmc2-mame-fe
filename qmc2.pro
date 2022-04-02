@@ -313,9 +313,14 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 	contains(DEFINES, QMC2_BUNDLED_MINIZIP) {
 		INCLUDEPATH += src/minizip
-		SOURCES += src/minizip/ioapi.c \
-			src/minizip/unzip.c \
-			src/minizip/zip.c
+		SOURCES += src/minizip/mz_compat.c \
+			src/minizip/mz_crypt.c \
+			src/minizip/mz_os.c \
+			src/minizip/mz_os_posix.c \
+			src/minizip/mz_strm.c \
+			src/minizip/mz_strm_mem.c \
+			src/minizip/mz_strm_os_posix.c \
+			src/minizip/mz_zip.c
 	} else {
 		CONFIG += link_pkgconfig
 		PKGCONFIG += minizip

@@ -17,8 +17,8 @@
 #include "collectionrebuilder.h"
 #include "settings.h"
 #include "options.h"
-#include "unzip.h"
-#include "zip.h"
+#include "mz_compat.h"
+#include "mz.h"
 #include "sevenzipfile.h"
 #if defined(QMC2_LIBARCHIVE_ENABLED)
 #include "archivefile.h"
@@ -1431,7 +1431,7 @@ bool CollectionRebuilderThread::writeAllZipData(QString baseDir, QString id, QSt
 						errorReason = tr("unknown file type '%1'").arg(type);
 						break;
 				}
-				if ( success && zipOpenNewFileInZip(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, Z_DEFLATED, zipLevel) == ZIP_OK ) {
+				if ( success && zipOpenNewFileInZip3(zip, file.toUtf8().constData(), &zipInfo, file.toUtf8().constData(), file.length(), 0, 0, 0, MZ_COMPRESS_METHOD_DEFLATE, zipLevel, 0, MAX_WBITS, DEF_MEM_LEVEL, 0, NULL, 0) == ZIP_OK ) {
 					emit log(tr("writing '%1' to ZIP archive '%2' (uncompressed size: %3)").arg(file).arg(fileName).arg(ROMAlyzer::humanReadable(data.length())));
 					quint64 bytesWritten = 0;
 					while ( bytesWritten < (quint64)data.length() && !exitThread && success ) {
@@ -1625,8 +1625,8 @@ bool CollectionRebuilderThread::readZipFileData(QString fileName, QString crc, Q
 	if ( zipFile ) {
   		char ioBuffer[QMC2_ZIP_BUFFER_SIZE];
 		unz_file_info zipInfo;
-		QMultiMap<uLong, QString> crcIdentMap;
-		uLong ulCRC = crc.toULong(0, 16);
+		QMultiMap<uint32_t, QString> crcIdentMap;
+		uint32_t ulCRC = crc.toULong(0, 16);
 		do {
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
 				crcIdentMap.insert(zipInfo.crc, QString((const char *)ioBuffer));
