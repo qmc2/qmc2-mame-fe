@@ -18,7 +18,7 @@
 #include "qmc2main.h"
 #include "options.h"
 #include "toolexec.h"
-#include "unzip.h"
+#include "mz_compat.h"
 #include "sevenzipfile.h"
 #include "softwarelist.h"
 #include "macros.h"

@@ -22,7 +22,7 @@
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_TGA     11
 #define QMC2_ARCADE_IMAGE_FORMAT_INDEX_ICO     12
 
-#include "../minizip/unzip.h"
+#include "../minizip/mz_compat.h"
 #include "../sevenzipfile.h"
 #if defined(QMC2_ARCADE_LIBARCHIVE_ENABLED)
 #include "../archivefile.h"

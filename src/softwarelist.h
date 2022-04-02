@@ -15,7 +15,7 @@
 #include <QWidgetAction>
 
 #include "ui_softwarelist.h"
-#include "unzip.h"
+#include "mz_compat.h"
 #include "sevenzipfile.h"
 #include "swlistexport.h"
 #include "imagewidget.h"

@@ -21,7 +21,7 @@
 #endif
 
 #include "macros.h"
-#include "unzip.h"
+#include "mz_compat.h"
 #include "sevenzipfile.h"
 #include "fileiconprovider.h"
 
