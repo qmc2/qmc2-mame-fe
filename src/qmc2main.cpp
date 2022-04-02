@@ -5886,6 +5886,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	if ( phononAudioPlayer )
 		delete phononAudioPlayer;
 #endif
+
 #if QMC2_MULTIMEDIA_ENABLED
 	if ( mediaPlayer ) {
 		log(QMC2_LOG_FRONTEND, tr("destroying media player"));
@@ -6051,6 +6052,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 		}
 		delete qmc2SoftwareList;
 	}
+
 	if ( qmc2DeviceConfigurator ) {
 		log(QMC2_LOG_FRONTEND, tr("saving current machine's device configurations"));
 		qmc2DeviceConfigurator->save();
