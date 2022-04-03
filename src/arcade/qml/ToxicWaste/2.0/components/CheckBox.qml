@@ -33,7 +33,7 @@ Rectangle {
         anchors.topMargin: 0
         Image {
             id: checkboxMarkImage
-            source: "../images/checkmark.png"
+            source: "qrc:qml/darkone/2.0/images/checkmark.png"
             smooth: true
             anchors.fill: parent
             anchors.margins: 1

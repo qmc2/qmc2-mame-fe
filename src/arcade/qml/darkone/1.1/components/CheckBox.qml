@@ -82,7 +82,7 @@ Rectangle {
         radius: 2
         Image {
             id: checkboxMarkImage
-            source: "qrc:../images/checkmark.png"
+            source: "qrc:qml/darkone/2.0/images/checkmark.png"
             smooth: true
             anchors.fill: parent
             anchors.margins: 1

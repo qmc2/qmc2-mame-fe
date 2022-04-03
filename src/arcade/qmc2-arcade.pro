@@ -181,7 +181,7 @@ TRANSLATIONS += translations/qmc2-arcade_de.ts \
     translations/qmc2-arcade_sv.ts \
     translations/qmc2-arcade_us.ts
 
-!equals(GIT_REV, 0) {
+!equals(GIT_REV, ) {
     DEFINES += QMC2_ARCADE_GIT_REV=$$GIT_REV
 }
 

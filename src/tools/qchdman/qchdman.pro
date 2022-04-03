@@ -21,7 +21,7 @@ greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(CONFIG, "warn_off release"): CONFIG += warn_off release
 }
 
-!equals(GIT_REV, 0) {
+!equals(GIT_REV, ) {
     DEFINES += QCHDMAN_GIT_REV=$$GIT_REV
 }
 
