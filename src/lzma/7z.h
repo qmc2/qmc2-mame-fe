@@ -1,5 +1,5 @@
 /* 7z.h -- 7z interface
-2015-11-18 : Igor Pavlov : Public domain */
+2018-07-02 : Igor Pavlov : Public domain */
 
 #ifndef __7Z_H
 #define __7Z_H
@@ -24,15 +24,15 @@ typedef struct
 typedef struct
 {
   size_t PropsOffset;
-  UInt32_7z MethodID;
+  UInt32 MethodID;
   Byte NumStreams;
   Byte PropsSize;
 } CSzCoderInfo;
 
 typedef struct
 {
-  UInt32_7z InIndex;
-  UInt32_7z OutIndex;
+  UInt32 InIndex;
+  UInt32 OutIndex;
 } CSzBond;
 
 #define SZ_NUM_CODERS_IN_FOLDER_MAX 4
@@ -41,11 +41,11 @@ typedef struct
 
 typedef struct
 {
-  UInt32_7z NumCoders;
-  UInt32_7z NumBonds;
-  UInt32_7z NumPackStreams;
-  UInt32_7z UnpackStream;
-  UInt32_7z PackStreams[SZ_NUM_PACK_STREAMS_IN_FOLDER_MAX];
+  UInt32 NumCoders;
+  UInt32 NumBonds;
+  UInt32 NumPackStreams;
+  UInt32 UnpackStream;
+  UInt32 PackStreams[SZ_NUM_PACK_STREAMS_IN_FOLDER_MAX];
   CSzBond Bonds[SZ_NUM_BONDS_IN_FOLDER_MAX];
   CSzCoderInfo Coders[SZ_NUM_CODERS_IN_FOLDER_MAX];
 } CSzFolder;
@@ -55,14 +55,14 @@ SRes SzGetNextFolderItem(CSzFolder *f, CSzData *sd);
 
 typedef struct
 {
-  UInt32_7z Low;
-  UInt32_7z High;
+  UInt32 Low;
+  UInt32 High;
 } CNtfsFileTime;
 
 typedef struct
 {
   Byte *Defs; /* MSB 0 bit numbering */
-  UInt32_7z *Vals;
+  UInt32 *Vals;
 } CSzBitUi32s;
 
 typedef struct
@@ -78,27 +78,29 @@ typedef struct
 
 typedef struct
 {
-  UInt32_7z NumPackStreams;
-  UInt32_7z NumFolders;
+  UInt32 NumPackStreams;
+  UInt32 NumFolders;
 
   UInt64 *PackPositions;          // NumPackStreams + 1
   CSzBitUi32s FolderCRCs;         // NumFolders
 
   size_t *FoCodersOffsets;        // NumFolders + 1
-  UInt32_7z *FoStartPackStreamIndex; // NumFolders + 1
-  UInt32_7z *FoToCoderUnpackSizes;   // NumFolders + 1
+  UInt32 *FoStartPackStreamIndex; // NumFolders + 1
+  UInt32 *FoToCoderUnpackSizes;   // NumFolders + 1
   Byte *FoToMainUnpackSizeIndex;  // NumFolders
   UInt64 *CoderUnpackSizes;       // for all coders in all folders
 
   Byte *CodersData;
+
+  UInt64 RangeLimit;
 } CSzAr;
 
-UInt64 SzAr_GetFolderUnpackSize(const CSzAr *p, UInt32_7z folderIndex);
+UInt64 SzAr_GetFolderUnpackSize(const CSzAr *p, UInt32 folderIndex);
 
-SRes SzAr_DecodeFolder(const CSzAr *p, UInt32_7z folderIndex,
+SRes SzAr_DecodeFolder(const CSzAr *p, UInt32 folderIndex,
     ILookInStream *stream, UInt64 startPos,
     Byte *outBuffer, size_t outSize,
-    ISzAlloc *allocMain);
+    ISzAllocPtr allocMain);
 
 typedef struct
 {
@@ -107,7 +109,7 @@ typedef struct
   UInt64 startPosAfterHeader;
   UInt64 dataPos;
   
-  UInt32_7z NumFiles;
+  UInt32 NumFiles;
 
   UInt64 *UnpackPositions;  // NumFiles + 1
   // Byte *IsEmptyFiles;
@@ -119,8 +121,8 @@ typedef struct
   CSzBitUi64s MTime;
   CSzBitUi64s CTime;
 
-  UInt32_7z *FolderToFile;   // NumFolders + 1
-  UInt32_7z *FileToFolder;   // NumFiles
+  UInt32 *FolderToFile;   // NumFolders + 1
+  UInt32 *FileToFolder;   // NumFiles
 
   size_t *FileNameOffsets; /* in 2-byte steps */
   Byte *FileNames;  /* UTF-16-LE */
@@ -131,9 +133,9 @@ typedef struct
 #define SzArEx_GetFileSize(p, i) ((p)->UnpackPositions[(i) + 1] - (p)->UnpackPositions[i])
 
 void SzArEx_Init(CSzArEx *p);
-void SzArEx_Free(CSzArEx *p, ISzAlloc *alloc);
-UInt64 SzArEx_GetFolderStreamPos(const CSzArEx *p, UInt32_7z folderIndex, UInt32_7z indexInFolder);
-int SzArEx_GetFolderFullPackSize(const CSzArEx *p, UInt32_7z folderIndex, UInt64 *resSize);
+void SzArEx_Free(CSzArEx *p, ISzAllocPtr alloc);
+UInt64 SzArEx_GetFolderStreamPos(const CSzArEx *p, UInt32 folderIndex, UInt32 indexInFolder);
+int SzArEx_GetFolderFullPackSize(const CSzArEx *p, UInt32 folderIndex, UInt64 *resSize);
 
 /*
 if dest == NULL, the return value specifies the required size of the buffer,
@@ -173,14 +175,14 @@ UInt16 *SzArEx_GetFullNameUtf16_Back(const CSzArEx *p, size_t fileIndex, UInt16 
 SRes SzArEx_Extract(
     const CSzArEx *db,
     ILookInStream *inStream,
-    UInt32_7z fileIndex,         /* index of file */
-    UInt32_7z *blockIndex,       /* index of solid block */
+    UInt32 fileIndex,         /* index of file */
+    UInt32 *blockIndex,       /* index of solid block */
     Byte **outBuffer,         /* pointer to pointer to output buffer (allocated with allocMain) */
     size_t *outBufferSize,    /* buffer size for output buffer */
     size_t *offset,           /* offset of stream for required file in *outBuffer */
     size_t *outSizeProcessed, /* size of file in *outBuffer */
-    ISzAlloc *allocMain,
-    ISzAlloc *allocTemp);
+    ISzAllocPtr allocMain,
+    ISzAllocPtr allocTemp);
 
 
 /*
@@ -195,7 +197,7 @@ SZ_ERROR_FAIL
 */
 
 SRes SzArEx_Open(CSzArEx *p, ILookInStream *inStream,
-    ISzAlloc *allocMain, ISzAlloc *allocTemp);
+    ISzAllocPtr allocMain, ISzAllocPtr allocTemp);
 
 EXTERN_C_END
 

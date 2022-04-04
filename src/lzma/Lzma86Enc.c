@@ -1,5 +1,5 @@
 /* Lzma86Enc.c -- LZMA + x86 (BCJ) Filter Encoder
-2016-05-16 : Igor Pavlov : Public domain */
+2018-07-04 : Igor Pavlov : Public domain */
 
 #include "Precomp.h"
 
@@ -11,14 +11,12 @@
 #include "Bra.h"
 #include "LzmaEnc.h"
 
-#define SZE_OUT_OVERFLOW SZE_DATA_ERROR
-
 int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
-    int level, UInt32_7z dictSize, int filterMode)
+    int level, UInt32 dictSize, int filterMode)
 {
   size_t outSize2 = *destLen;
   Byte *filteredStream;
-  Bool_7z useFilter;
+  BoolInt useFilter;
   int mainResult = SZ_ERROR_OUTPUT_EOF;
   CLzmaEncProps props;
   LzmaEncProps_Init(&props);
@@ -48,7 +46,7 @@ int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
       memcpy(filteredStream, src, srcLen);
     }
     {
-      UInt32_7z x86State;
+      UInt32 x86State;
       x86_Convert_Init(x86State);
       x86_Convert(filteredStream, srcLen, 0, &x86State, 1);
     }
@@ -56,7 +54,7 @@ int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
 
   {
     size_t minSize = 0;
-    Bool_7z bestIsFiltered = false;
+    BoolInt bestIsFiltered = False;
 
     /* passes for SZ_FILTER_AUTO:
         0 - BCJ + LZMA
@@ -71,11 +69,11 @@ int Lzma86_Encode(Byte *dest, size_t *destLen, const Byte *src, size_t srcLen,
       size_t outSizeProcessed = outSize2 - LZMA86_HEADER_SIZE;
       size_t outPropsSize = 5;
       SRes curRes;
-      Bool_7z curModeIsFiltered = (numPasses > 1 && i == numPasses - 1);
+      BoolInt curModeIsFiltered = (numPasses > 1 && i == numPasses - 1);
       if (curModeIsFiltered && !bestIsFiltered)
         break;
       if (useFilter && i == 0)
-        curModeIsFiltered = true;
+        curModeIsFiltered = True;
       
       curRes = LzmaEncode(dest + LZMA86_HEADER_SIZE, &outSizeProcessed,
           curModeIsFiltered ? filteredStream : src, srcLen,

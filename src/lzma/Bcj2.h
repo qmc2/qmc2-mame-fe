@@ -68,10 +68,10 @@ typedef struct
 
   unsigned state; /* BCJ2_STREAM_MAIN has more priority than BCJ2_STATE_ORIG */
 
-  UInt32_7z ip;
+  UInt32 ip;
   Byte temp[4];
-  UInt32_7z range;
-  UInt32_7z code;
+  UInt32 range;
+  UInt32 code;
   UInt16 probs[2 + 256];
 } CBcj2Dec;
 
@@ -104,22 +104,22 @@ typedef struct
   Byte prevByte;
 
   Byte cache;
-  UInt32_7z range;
+  UInt32 range;
   UInt64 low;
   UInt64 cacheSize;
 
-  UInt32_7z ip;
+  UInt32 ip;
 
   /* 32-bit ralative offset in JUMP/CALL commands is
        - (mod 4 GB)   in 32-bit mode
        - signed Int32 in 64-bit mode
      We use (mod 4 GB) check for fileSize.
      Use fileSize up to 2 GB, if you want to support 32-bit and 64-bit code conversion. */
-  UInt32_7z fileIp;
-  UInt32_7z fileSize;    /* (fileSize <= ((UInt32_7z)1 << 31)), 0 means no_limit */
-  UInt32_7z relatLimit;  /* (relatLimit <= ((UInt32_7z)1 << 31)), 0 means desable_conversion */
+  UInt32 fileIp;
+  UInt32 fileSize;    /* (fileSize <= ((UInt32)1 << 31)), 0 means no_limit */
+  UInt32 relatLimit;  /* (relatLimit <= ((UInt32)1 << 31)), 0 means desable_conversion */
 
-  UInt32_7z tempTarget;
+  UInt32 tempTarget;
   unsigned tempPos;
   Byte temp[4 * 2];
 
@@ -136,10 +136,10 @@ void Bcj2Enc_Encode(CBcj2Enc *p);
 
 
 #define BCJ2_RELAT_LIMIT_NUM_BITS 26
-#define BCJ2_RELAT_LIMIT ((UInt32_7z)1 << BCJ2_RELAT_LIMIT_NUM_BITS)
+#define BCJ2_RELAT_LIMIT ((UInt32)1 << BCJ2_RELAT_LIMIT_NUM_BITS)
 
 /* limit for CBcj2Enc::fileSize variable */
-#define BCJ2_FileSize_MAX ((UInt32_7z)1 << 31)
+#define BCJ2_FileSize_MAX ((UInt32)1 << 31)
 
 EXTERN_C_END
 

@@ -1,5 +1,5 @@
 /* Bcj2.c -- BCJ2 Decoder (Converter for x86 code)
-2015-08-01 : Igor Pavlov : Public domain */
+2021-02-09 : Igor Pavlov : Public domain */
 
 #include "Precomp.h"
 
@@ -8,7 +8,7 @@
 
 #define CProb UInt16
 
-#define kTopValue ((UInt32_7z)1 << 24)
+#define kTopValue ((UInt32)1 << 24)
 #define kNumModelBits 11
 #define kBitModelTotal (1 << kNumModelBits)
 #define kNumMoveBits 5
@@ -61,7 +61,8 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
       Byte *dest = p->dest;
       if (dest == p->destLim)
         return SZ_OK;
-      *dest = p->temp[p->state++ - BCJ2_DEC_STATE_ORIG_0];
+      *dest = p->temp[(size_t)p->state - BCJ2_DEC_STATE_ORIG_0];
+      p->state++;
       p->dest = dest + 1;
     }
   }
@@ -75,7 +76,7 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
     p->bufs[p->state] = cur + 4;
     
     {
-      UInt32_7z val;
+      UInt32 val;
       Byte *dest;
       SizeT rem;
       
@@ -122,7 +123,7 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
         const Byte *src = p->bufs[BCJ2_STREAM_MAIN];
         const Byte *srcLim;
         Byte *dest;
-        SizeT num = p->lims[BCJ2_STREAM_MAIN] - src;
+        SizeT num = (SizeT)(p->lims[BCJ2_STREAM_MAIN] - src);
         
         if (num == 0)
         {
@@ -133,7 +134,7 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
         dest = p->dest;
         if (num > (SizeT)(p->destLim - dest))
         {
-          num = p->destLim - dest;
+          num = (SizeT)(p->destLim - dest);
           if (num == 0)
           {
             p->state = BCJ2_DEC_STATE_ORIG;
@@ -167,13 +168,13 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
           break;
         }
         
-        num = src - p->bufs[BCJ2_STREAM_MAIN];
+        num = (SizeT)(src - p->bufs[BCJ2_STREAM_MAIN]);
         
         if (src == srcLim)
         {
           p->temp[3] = src[-1];
           p->bufs[BCJ2_STREAM_MAIN] = src;
-          p->ip += (UInt32_7z)num;
+          p->ip += (UInt32)num;
           p->dest += num;
           p->state =
             p->bufs[BCJ2_STREAM_MAIN] ==
@@ -184,7 +185,7 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
         }
         
         {
-          UInt32_7z bound, ttt;
+          UInt32 bound, ttt;
           CProb *prob;
           Byte b = src[0];
           Byte prev = (Byte)(num == 0 ? p->temp[3] : src[-1]);
@@ -192,7 +193,7 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
           p->temp[3] = b;
           p->bufs[BCJ2_STREAM_MAIN] = src + 1;
           num++;
-          p->ip += (UInt32_7z)num;
+          p->ip += (UInt32)num;
           p->dest += num;
           
           prob = p->probs + (unsigned)(b == 0xE8 ? 2 + (unsigned)prev : (b == 0xE9 ? 1 : 0));
@@ -209,7 +210,7 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
     }
 
     {
-      UInt32_7z val;
+      UInt32 val;
       unsigned cj = (p->temp[3] == 0xE8) ? BCJ2_STREAM_CALL : BCJ2_STREAM_JUMP;
       const Byte *cur = p->bufs[cj];
       Byte *dest;
@@ -227,14 +228,14 @@ SRes Bcj2Dec_Decode(CBcj2Dec *p)
       p->ip += 4;
       val -= p->ip;
       dest = p->dest;
-      rem = p->destLim - dest;
+      rem = (SizeT)(p->destLim - dest);
       
       if (rem < 4)
       {
-        SizeT i;
-        SetUi32(p->temp, val);
-        for (i = 0; i < rem; i++)
-          dest[i] = p->temp[i];
+        p->temp[0] = (Byte)val; if (rem > 0) dest[0] = (Byte)val; val >>= 8;
+        p->temp[1] = (Byte)val; if (rem > 1) dest[1] = (Byte)val; val >>= 8;
+        p->temp[2] = (Byte)val; if (rem > 2) dest[2] = (Byte)val; val >>= 8;
+        p->temp[3] = (Byte)val;
         p->dest = dest + rem;
         p->state = BCJ2_DEC_STATE_ORIG_0 + (unsigned)rem;
         break;

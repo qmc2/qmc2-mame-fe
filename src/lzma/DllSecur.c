@@ -1,11 +1,11 @@
 /* DllSecur.c -- DLL loading security
-2016-10-04 : Igor Pavlov : Public domain */
+2021-12-25 : Igor Pavlov : Public domain */
 
 #include "Precomp.h"
 
 #ifdef _WIN32
 
-#include <windows.h>
+#include <Windows.h>
 
 #include "DllSecur.h"
 
@@ -28,9 +28,32 @@ static const char * const g_Dlls =
   "CRYPTBASE\0"
   "OLEACC\0"
   "CLBCATQ\0"
+  "VERSION\0"
   ;
 
 #endif
+
+// #define MY_CAST_FUNC  (void(*)())
+#define MY_CAST_FUNC  
+
+void My_SetDefaultDllDirectories()
+{
+  #ifndef UNDER_CE
+  
+    OSVERSIONINFO vi;
+    vi.dwOSVersionInfoSize = sizeof(vi);
+    if (!GetVersionEx(&vi) || vi.dwMajorVersion != 6 || vi.dwMinorVersion != 0)
+    {
+      Func_SetDefaultDllDirectories setDllDirs = (Func_SetDefaultDllDirectories)
+          MY_CAST_FUNC GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "SetDefaultDllDirectories");
+      if (setDllDirs)
+        if (setDllDirs(MY_LOAD_LIBRARY_SEARCH_SYSTEM32 | MY_LOAD_LIBRARY_SEARCH_USER_DIRS))
+          return;
+    }
+
+  #endif
+}
+
 
 void LoadSecurityDlls()
 {
@@ -45,7 +68,7 @@ void LoadSecurityDlls()
     if (!GetVersionEx(&vi) || vi.dwMajorVersion != 6 || vi.dwMinorVersion != 0)
     {
       Func_SetDefaultDllDirectories setDllDirs = (Func_SetDefaultDllDirectories)
-          GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "SetDefaultDllDirectories");
+          MY_CAST_FUNC GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "SetDefaultDllDirectories");
       if (setDllDirs)
         if (setDllDirs(MY_LOAD_LIBRARY_SEARCH_SYSTEM32 | MY_LOAD_LIBRARY_SEARCH_USER_DIRS))
           return;
@@ -70,7 +93,7 @@ void LoadSecurityDlls()
       for (;;)
       {
         char c = *dll++;
-        buf[pos + k] = c;
+        buf[pos + k] = (Byte)c;
         k++;
         if (c == 0)
           break;

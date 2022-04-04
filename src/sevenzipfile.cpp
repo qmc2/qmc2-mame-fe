@@ -58,7 +58,7 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 			m_extractor = new SevenZipExtractorThread(this);
 			connect(m_extractor, SIGNAL(extracted(uint)), this, SLOT(asyncExtractionFinished(uint)));
 			connect(m_extractor, SIGNAL(failed(uint)), this, SLOT(asyncExtractionFinished(uint)));
-			m_extractor->setParams(db(), &m_lookStream.s, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
+			m_extractor->setParams(db(), &m_lookStream.vt, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
 		}
 		if ( async && *async ) {
 			if ( m_extractor->isActive() )
@@ -109,7 +109,7 @@ quint64 SevenZipFile::read(uint index, QByteArray *buffer, bool *async)
 	} else {
 		buffer->clear();
 		m_sizeProcessed = 0;
-		SRes result = SzArEx_Extract(db(), &m_lookStream.s, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
+		SRes result = SzArEx_Extract(db(), &m_lookStream.vt, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
 		if ( result == SZ_OK )
 			buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
 		else {
@@ -142,7 +142,7 @@ quint64 SevenZipFile::readBig(uint index, BigByteArray *buffer, bool *async)
 			m_extractor = new SevenZipExtractorThread(this);
 			connect(m_extractor, SIGNAL(extracted(uint)), this, SLOT(asyncExtractionFinished(uint)));
 			connect(m_extractor, SIGNAL(failed(uint)), this, SLOT(asyncExtractionFinished(uint)));
-			m_extractor->setParams(db(), &m_lookStream.s, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
+			m_extractor->setParams(db(), &m_lookStream.vt, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
 		}
 		if ( async && *async ) {
 			if ( m_extractor->isActive() )
@@ -193,7 +193,7 @@ quint64 SevenZipFile::readBig(uint index, BigByteArray *buffer, bool *async)
 	} else {
 		buffer->clear();
 		m_sizeProcessed = 0;
-		SRes result = SzArEx_Extract(db(), &m_lookStream.s, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
+		SRes result = SzArEx_Extract(db(), &m_lookStream.vt, index, &m_blockIndex, &m_buffer, &m_bufferSize, &m_offsetMap[index], &m_sizeProcessed, &m_allocImp, &m_allocTempImp);
 		if ( result == SZ_OK )
 			buffer->setRawData((const char *)(m_buffer + m_offsetMap[index]), m_sizeProcessed);
 		else {
@@ -268,13 +268,13 @@ bool SevenZipFile::open(QString fileName)
 	}
 
 	FileInStream_CreateVTable(&m_archiveStream);
-	LookToRead_CreateVTable(&m_lookStream, false);
-	m_lookStream.realStream = &m_archiveStream.s;
-	LookToRead_Init(&m_lookStream);
+	LookToRead2_CreateVTable(&m_lookStream, false);
+	m_lookStream.realStream = &m_archiveStream.vt;
+	LookToRead2_Init(&m_lookStream);
 	CrcGenerateTable();
 	SzArEx_Init(db());
 
-	SRes result = SzArEx_Open(db(), &m_lookStream.s, &m_allocImp, &m_allocTempImp);
+	SRes result = SzArEx_Open(db(), &m_lookStream.vt, &m_allocImp, &m_allocTempImp);
 
 	if ( result == SZ_OK ) {
 		m_isOpen = true;
@@ -321,14 +321,14 @@ QDateTime SevenZipFile::convertFileTime(const CNtfsFileTime *ft)
 	UInt64 v64 = (ft->Low | ((UInt64)ft->High << 32)) / 10000000;
 	Byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	unsigned t;
-	UInt32_7z v;
+	UInt32 v;
 	sec = (unsigned)(v64 % 60);
 	v64 /= 60;
 	min = (unsigned)(v64 % 60);
 	v64 /= 60;
 	hour = (unsigned)(v64 % 24);
 	v64 /= 24;
-	v = (UInt32_7z)v64;
+	v = (UInt32)v64;
 	year = (unsigned)(1601 + v / QMC2_SEVENZIP_PERIOD_400 * 400);
 	v %= QMC2_SEVENZIP_PERIOD_400;
 	t = v / QMC2_SEVENZIP_PERIOD_100;
@@ -410,7 +410,7 @@ SevenZipExtractorThread::~SevenZipExtractorThread()
 	quit();
 }
 
-void SevenZipExtractorThread::setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32_7z *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp)
+void SevenZipExtractorThread::setParams(CSzArEx *db, ILookInStream *lookInStream, uint fileIndex, UInt32 *blockIndex, Byte **buffer, size_t *bufferSize, size_t *offset, size_t *sizeProcessed, ISzAlloc *allocImp, ISzAlloc *allocTempImp)
 {
 	m_db = db;
 	m_lookInStream = lookInStream;

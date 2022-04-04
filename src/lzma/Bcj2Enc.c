@@ -1,5 +1,5 @@
 /* Bcj2Enc.c -- BCJ2 Encoder (Converter for x86 code)
-2014-11-10 : Igor Pavlov : Public domain */
+2021-02-09 : Igor Pavlov : Public domain */
 
 #include "Precomp.h"
 
@@ -12,7 +12,6 @@
 #define PRF(x)
 #endif
 
-#include <windows.h>
 #include <string.h>
 
 #include "Bcj2.h"
@@ -20,7 +19,7 @@
 
 #define CProb UInt16
 
-#define kTopValue ((UInt32_7z)1 << 24)
+#define kTopValue ((UInt32)1 << 24)
 #define kNumModelBits 11
 #define kBitModelTotal (1 << kNumModelBits)
 #define kNumMoveBits 5
@@ -53,9 +52,9 @@ void Bcj2Enc_Init(CBcj2Enc *p)
     p->probs[i] = kBitModelTotal >> 1;
 }
 
-static Bool_7z MY_FAST_CALL RangeEnc_ShiftLow(CBcj2Enc *p)
+static BoolInt MY_FAST_CALL RangeEnc_ShiftLow(CBcj2Enc *p)
 {
-  if ((UInt32_7z)p->low < (UInt32_7z)0xFF000000 || (UInt32_7z)(p->low >> 32) != 0)
+  if ((UInt32)p->low < (UInt32)0xFF000000 || (UInt32)(p->low >> 32) != 0)
   {
     Byte *buf = p->bufs[BCJ2_STREAM_RC];
     do
@@ -64,18 +63,18 @@ static Bool_7z MY_FAST_CALL RangeEnc_ShiftLow(CBcj2Enc *p)
       {
         p->state = BCJ2_STREAM_RC;
         p->bufs[BCJ2_STREAM_RC] = buf;
-        return true;
+        return True;
       }
       *buf++ = (Byte)(p->cache + (Byte)(p->low >> 32));
       p->cache = 0xFF;
     }
     while (--p->cacheSize);
     p->bufs[BCJ2_STREAM_RC] = buf;
-    p->cache = (Byte)((UInt32_7z)p->low >> 24);
+    p->cache = (Byte)((UInt32)p->low >> 24);
   }
   p->cacheSize++;
-  p->low = (UInt32_7z)p->low << 8;
-  return false;
+  p->low = (UInt32)p->low << 8;
+  return False;
 }
 
 static void Bcj2Enc_Encode_2(CBcj2Enc *p)
@@ -105,7 +104,7 @@ static void Bcj2Enc_Encode_2(CBcj2Enc *p)
         const Byte *src = p->src;
         const Byte *srcLim;
         Byte *dest;
-        SizeT num = p->srcLim - src;
+        SizeT num = (SizeT)(p->srcLim - src);
 
         if (p->finishMode == BCJ2_ENC_FINISH_MODE_CONTINUE)
         {
@@ -119,7 +118,7 @@ static void Bcj2Enc_Encode_2(CBcj2Enc *p)
         dest = p->bufs[BCJ2_STREAM_MAIN];
         if (num > (SizeT)(p->lims[BCJ2_STREAM_MAIN] - dest))
         {
-          num = p->lims[BCJ2_STREAM_MAIN] - dest;
+          num = (SizeT)(p->lims[BCJ2_STREAM_MAIN] - dest);
           if (num == 0)
           {
             p->state = BCJ2_STREAM_MAIN;
@@ -153,37 +152,37 @@ static void Bcj2Enc_Encode_2(CBcj2Enc *p)
           break;
         }
         
-        num = src - p->src;
+        num = (SizeT)(src - p->src);
         
         if (src == srcLim)
         {
           p->prevByte = src[-1];
           p->bufs[BCJ2_STREAM_MAIN] = dest;
           p->src = src;
-          p->ip += (UInt32_7z)num;
+          p->ip += (UInt32)num;
           continue;
         }
  
         {
           Byte context = (Byte)(num == 0 ? p->prevByte : src[-1]);
-          Bool_7z needConvert;
+          BoolInt needConvert;
 
           p->bufs[BCJ2_STREAM_MAIN] = dest + 1;
-          p->ip += (UInt32_7z)num + 1;
+          p->ip += (UInt32)num + 1;
           src++;
           
-          needConvert = false;
+          needConvert = False;
 
           if ((SizeT)(p->srcLim - src) >= 4)
           {
-            UInt32_7z relatVal = GetUi32(src);
-            if ((p->fileSize == 0 || (UInt32_7z)(p->ip + 4 + relatVal - p->fileIp) < p->fileSize)
+            UInt32 relatVal = GetUi32(src);
+            if ((p->fileSize == 0 || (UInt32)(p->ip + 4 + relatVal - p->fileIp) < p->fileSize)
                 && ((relatVal + p->relatLimit) >> 1) < p->relatLimit)
-              needConvert = true;
+              needConvert = True;
           }
 
           {
-            UInt32_7z bound;
+            UInt32 bound;
             unsigned ttt;
             Byte b = src[-1];
             CProb *prob = p->probs + (unsigned)(b == 0xE8 ? 2 + (unsigned)context : (b == 0xE9 ? 1 : 0));
@@ -205,8 +204,8 @@ static void Bcj2Enc_Encode_2(CBcj2Enc *p)
             *prob = (CProb)(ttt - (ttt >> kNumMoveBits));
 
             {
-              UInt32_7z relatVal = GetUi32(src);
-              UInt32_7z absVal;
+              UInt32 relatVal = GetUi32(src);
+              UInt32 absVal;
               p->ip += 4;
               absVal = p->ip + relatVal;
               p->prevByte = src[3];
@@ -254,7 +253,7 @@ void Bcj2Enc_Encode(CBcj2Enc *p)
     {
       const Byte *src = p->src;
       const Byte *srcLim = p->srcLim;
-      unsigned finishMode = p->finishMode;
+      EBcj2Enc_FinishMode finishMode = p->finishMode;
       
       p->src = p->temp;
       p->srcLim = p->temp + p->tempPos;
@@ -271,7 +270,7 @@ void Bcj2Enc_Encode(CBcj2Enc *p)
         unsigned i;
         p->tempPos = tempPos;
         for (i = 0; i < tempPos; i++)
-          p->temp[i] = p->temp[i + num];
+          p->temp[i] = p->temp[(size_t)i + num];
       
         p->src = src;
         p->srcLim = srcLim;
