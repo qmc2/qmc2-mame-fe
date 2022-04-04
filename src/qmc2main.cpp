@@ -10264,22 +10264,22 @@ void MainWindow::on_actionDecreaseRank_triggered(bool)
 void MainWindow::updateUserData()
 {
 	if ( tabWidgetMachineList->indexOf(tabMachineList) == tabWidgetMachineList->currentIndex() ) {
-		switch ( stackedWidgetView->currentIndex() ) {
+		switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 			case QMC2_VIEWHIERARCHY_INDEX:
-				treeWidgetHierarchy_verticalScrollChanged();
+				QTimer::singleShot(0, this, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
 				break;
 			case QMC2_VIEWCATEGORY_INDEX:
-				treeWidgetCategoryView_verticalScrollChanged();
+				QTimer::singleShot(0, this, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 				break;
 			case QMC2_VIEWVERSION_INDEX:
-				treeWidgetVersionView_verticalScrollChanged();
+				QTimer::singleShot(0, this, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 				break;
 			case QMC2_VIEWCUSTOM_INDEX:
 				// handled by custom view
 				break;
 			case QMC2_VIEWMACHINELIST_INDEX:
 			default:
-				treeWidgetMachineList_verticalScrollChanged();
+				QTimer::singleShot(0, this, SLOT(treeWidgetMachineList_verticalScrollChanged()));
 				break;
 		}
 	}
