@@ -267,14 +267,27 @@ bool SevenZipFile::open(QString fileName)
 		return false;
 	}
 
+#define kInputBufSize ((size_t)1 << 18)
+
 	FileInStream_CreateVTable(&m_archiveStream);
+	m_archiveStream.wres = 0;
 	LookToRead2_CreateVTable(&m_lookStream, false);
+
+	SRes result;
+	m_lookStream.buf = (Byte *)ISzAlloc_Alloc(&m_allocImp, kInputBufSize);
+	if ( !m_lookStream.buf ) {
+		result = SZ_ERROR_MEM;
+		m_lastError = tr("can't open archive '%1'").arg(m_fileName) + ", " + errorCodeToString(result);
+		emit error(lastError());
+		return false;
+	}
+	m_lookStream.bufSize = kInputBufSize;
 	m_lookStream.realStream = &m_archiveStream.vt;
 	LookToRead2_Init(&m_lookStream);
 	CrcGenerateTable();
 	SzArEx_Init(db());
 
-	SRes result = SzArEx_Open(db(), &m_lookStream.vt, &m_allocImp, &m_allocTempImp);
+	result = SzArEx_Open(db(), &m_lookStream.vt, &m_allocImp, &m_allocTempImp);
 
 	if ( result == SZ_OK ) {
 		m_isOpen = true;
