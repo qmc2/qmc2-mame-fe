@@ -750,19 +750,20 @@ void MachineList::load()
 			}
 			switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
 				case QMC2_VIEWHIERARCHY_INDEX:
-					qmc2MainWindow->treeWidgetHierarchy_verticalScrollChanged();
+					QTimer::singleShot(0, qmc2MainWindow, SLOT(treeWidgetHierarchy_verticalScrollChanged()));
 					break;
 				case QMC2_VIEWCATEGORY_INDEX:
-					qmc2MainWindow->treeWidgetCategoryView_verticalScrollChanged();
+					QTimer::singleShot(0, qmc2MainWindow, SLOT(treeWidgetCategoryView_verticalScrollChanged()));
 					break;
 				case QMC2_VIEWVERSION_INDEX:
-					qmc2MainWindow->treeWidgetVersionView_verticalScrollChanged();
+					QTimer::singleShot(0, qmc2MainWindow, SLOT(treeWidgetVersionView_verticalScrollChanged()));
 					break;
 				case QMC2_VIEWCUSTOM_INDEX:
+					// handled by custom view
 					break;
 				case QMC2_VIEWMACHINELIST_INDEX:
 				default:
-					qmc2MainWindow->treeWidgetMachineList_verticalScrollChanged();
+					QTimer::singleShot(0, qmc2MainWindow, SLOT(treeWidgetMachineList_verticalScrollChanged()));
 					break;
 			}
 		}
