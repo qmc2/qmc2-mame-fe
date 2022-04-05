@@ -1,11 +1,11 @@
 Name:           qmc2
-Version:        0.242
+Version:        0.243
 Release:        1
 Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
 URL:            http://qmc2.batcom-it.net
-Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
+Source0:        https://github.com/qmc2/qmc2-mame-fe/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  libQt5WebKit5-devel
 BuildRequires:  libQt5WebKitWidgets-devel
@@ -123,6 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
+* Tue Apr  5 2022 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.243
+- updated spec to QMC2 0.243
+
 * Sat Apr  2 2022 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.242
 - updated spec to QMC2 0.242
 
@@ -134,9 +137,3 @@ rm -rf $RPM_BUILD_ROOT
 
 * Wed Feb 28 2018 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.195-1
 - updated spec to QMC2 0.195
-
-* Sat Nov  4 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.192-1
-- updated spec to QMC2 0.192
-
-* Thu Jun 15 2017 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.187-1
-- updated spec to QMC2 0.187
