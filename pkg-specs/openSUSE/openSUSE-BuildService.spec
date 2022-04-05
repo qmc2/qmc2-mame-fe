@@ -5,7 +5,7 @@ Summary:        M.A.M.E. Catalog / Launcher II
 Group:          System/Emulators/Other
 License:        GPL-2.0
 URL:            http://qmc2.batcom-it.net
-Source0:        https://github.com/qmc2/qmc2-mame-fe/archive/refs/tags/v%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.bz2
 
 BuildRequires:  libQt5WebKit5-devel
 BuildRequires:  libQt5WebKitWidgets-devel
@@ -32,13 +32,13 @@ QMC2 is a Qt based multi-platform GUI front-end for MAME.
 %prep
 %setup -qcT
 tar -xjf %{SOURCE0}
-mv %{name} sdlmame
+mv qmc2-mame-fe sdlmame
 tar -xjf %{SOURCE0}
-mv %{name} arcade
+mv qmc2-mame-fe arcade
 tar -xjf %{SOURCE0}
-mv %{name} qchdman
+mv qmc2-mame-fe qchdman
 tar -xjf %{SOURCE0}
-mv %{name} manpages
+mv qmc2-mame-fe manpages
 
 %build
 pushd sdlmame
