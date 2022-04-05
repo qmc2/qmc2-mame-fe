@@ -426,10 +426,10 @@ static SRes SbEncInStream_Read(const ISeqInStream *pp, void *data, size_t *size)
       p->enc.readPos += processed;
       if (processed == 0)
       {
-        p->enc.readWasFinished = True;
-        p->enc.isFinalFinished = True;
+        p->enc.readWasFinished = True7z;
+        p->enc.isFinalFinished = True7z;
       }
-      p->enc.needRead = False;
+      p->enc.needRead = False7z;
     }
   
     *size = sizeOriginal;
@@ -467,7 +467,7 @@ void XzFilterProps_Init(CXzFilterProps *p)
   p->id = 0;
   p->delta = 0;
   p->ip = 0;
-  p->ipDefined = False;
+  p->ipDefined = False7z;
 }
 
 void XzProps_Init(CXzProps *p)
@@ -729,7 +729,7 @@ static SRes Xz_CompressBlock(
   if (fp->id == 0)
     fp = NULL;
   
-  *inStreamFinished = False;
+  *inStreamFinished = False7z;
   
   RINOK(Lzma2WithFilters_Create(lzmaf, alloc, allocBig));
   
@@ -816,7 +816,7 @@ static SRes Xz_CompressBlock(
     Byte *outBuf = NULL;
     size_t outSize = 0;
     BoolInt useStream = (fp || inStream);
-    // useStream = True;
+    // useStream = True7z;
     
     if (!useStream)
     {
@@ -893,7 +893,7 @@ static SRes Xz_CompressBlock(
     *inStreamFinished = checkInStream.realStreamFinished;
   else
   {
-    *inStreamFinished = False;
+    *inStreamFinished = False7z;
     if (checkInStream.processed != inBufSize)
       return SZ_ERROR_FAIL;
   }
@@ -959,7 +959,7 @@ static void XzEnc_Construct(CXzEnc *p)
     Lzma2WithFilters_Construct(&p->lzmaf_Items[i]);
 
   #ifndef _7ZIP_ST
-  p->mtCoder_WasConstructed = False;
+  p->mtCoder_WasConstructed = False7z;
   {
     for (i = 0; i < MTCODER__BLOCKS_MAX; i++)
       p->outBufs[i] = NULL;
@@ -995,7 +995,7 @@ static void XzEnc_Free(CXzEnc *p, ISzAllocPtr alloc)
   if (p->mtCoder_WasConstructed)
   {
     MtCoder_Destruct(&p->mtCoder);
-    p->mtCoder_WasConstructed = False;
+    p->mtCoder_WasConstructed = False7z;
   }
   XzEnc_FreeOutBufs(p);
   #endif
@@ -1160,7 +1160,7 @@ SRes XzEnc_Encode(CXzEncHandle pp, ISeqOutStream *outStream, ISeqInStream *inStr
 
     if (!p->mtCoder_WasConstructed)
     {
-      p->mtCoder_WasConstructed = True;
+      p->mtCoder_WasConstructed = True7z;
       MtCoder_Construct(&p->mtCoder);
     }
 

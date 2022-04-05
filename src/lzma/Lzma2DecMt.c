@@ -138,18 +138,18 @@ CLzma2DecMtHandle Lzma2DecMt_Create(ISzAllocPtr alloc, ISzAllocPtr allocMid)
 
   p->inBuf = NULL;
   p->inBufSize = 0;
-  p->dec_created = False;
+  p->dec_created = False7z;
 
   // Lzma2DecMtProps_Init(&p->props);
 
   #ifndef _7ZIP_ST
-  p->mtc_WasConstructed = False;
+  p->mtc_WasConstructed = False7z;
   {
     unsigned i;
     for (i = 0; i < MTDEC__THREADS_MAX; i++)
     {
       CLzma2DecMtThread *t = &p->coders[i];
-      t->dec_created = False;
+      t->dec_created = False7z;
       t->outBuf = NULL;
       t->outBufSize = 0;
     }
@@ -185,7 +185,7 @@ static void Lzma2DecMt_FreeSt(CLzma2DecMt *p)
   if (p->dec_created)
   {
     Lzma2Dec_Free(&p->dec, &p->alignOffsetAlloc.vt);
-    p->dec_created = False;
+    p->dec_created = False7z;
   }
   if (p->inBuf)
   {
@@ -207,7 +207,7 @@ void Lzma2DecMt_Destroy(CLzma2DecMtHandle pp)
   if (p->mtc_WasConstructed)
   {
     MtDec_Destruct(&p->mtc);
-    p->mtc_WasConstructed = False;
+    p->mtc_WasConstructed = False7z;
   }
   {
     unsigned i;
@@ -218,7 +218,7 @@ void Lzma2DecMt_Destroy(CLzma2DecMtHandle pp)
       {
         // we don't need to free dict here
         Lzma2Dec_FreeProbs(&t->dec, &t->alloc.vt); // p->alloc !!!
-        t->dec_created = False;
+        t->dec_created = False7z;
       }
     }
   }
@@ -247,7 +247,7 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
     if (!t->dec_created)
     {
       Lzma2Dec_Construct(&t->dec);
-      t->dec_created = True;
+      t->dec_created = True7z;
       AlignOffsetAlloc_CreateVTable(&t->alloc);
       {
         /* (1 << 12) is expected size of one way in data cache.
@@ -263,8 +263,8 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
     
     t->inPreSize = 0;
     t->outPreSize = 0;
-    // t->blockWasFinished = False;
-    // t->finishedWithMark = False;
+    // t->blockWasFinished = False7z;
+    // t->finishedWithMark = False7z;
     t->parseStatus = (ELzma2ParseStatus)LZMA_STATUS_NOT_SPECIFIED;
     t->state = MTDEC_PARSE_CONTINUE;
 
@@ -280,7 +280,7 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
     BoolInt overflow;
     UInt32 unpackRem = 0;
     
-    int checkFinishBlock = True;
+    int checkFinishBlock = True7z;
     size_t limit = me->props.outBlockMax;
     if (me->outSize_Defined)
     {
@@ -289,11 +289,11 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
       {
         limit = (size_t)rem;
         if (!me->finishMode)
-          checkFinishBlock = False;
+          checkFinishBlock = False7z;
       }
     }
 
-    // checkFinishBlock = False, if we want to decode partial data
+    // checkFinishBlock = False7z, if we want to decode partial data
     // that must be finished at position <= outBlockMax.
 
     {
@@ -302,7 +302,7 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
       SizeT dicPos_Point = 0;
       
       cc->srcSize = 0;
-      overflow = False;
+      overflow = False7z;
 
       for (;;)
       {
@@ -319,7 +319,7 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
         {
           if (t->dec.unpackSize > me->props.outBlockMax - t->dec.decoder.dicPos)
           {
-            overflow = True;
+            overflow = True7z;
             break;
           }
           continue;
@@ -342,7 +342,7 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
             // && limit == me->props.outBlockMax
             )
         {
-          overflow = True;
+          overflow = True7z;
           break;
         }
         
@@ -360,7 +360,7 @@ static void Lzma2DecMt_MtCallback_Parse(void *obj, unsigned coderIndex, CMtDecCa
         unpackRem = 0;
         t->dec.decoder.dicPos = dicPos_Point;
         cc->srcSize = srcSize_Point;
-        overflow = False;
+        overflow = False7z;
       }
     }
 
@@ -446,7 +446,7 @@ static SRes Lzma2DecMt_MtCallback_PreCode(void *pp, unsigned coderIndex)
   t->dec.decoder.dic = dest;
   t->dec.decoder.dicBufSize = t->outPreSize;
 
-  t->needInit = True;
+  t->needInit = True7z;
 
   return Lzma2Dec_AllocateProbs(&t->dec, me->prop, &t->alloc.vt); // alloc.vt
 }
@@ -466,12 +466,12 @@ static SRes Lzma2DecMt_MtCallback_Code(void *pp, unsigned coderIndex,
 
   *inCodePos = t->inCodeSize;
   *outCodePos = 0;
-  *stop = True;
+  *stop = True7z;
 
   if (t->needInit)
   {
     Lzma2Dec_Init(&t->dec);
-    t->needInit = False;
+    t->needInit = False7z;
   }
 
   {
@@ -498,7 +498,7 @@ static SRes Lzma2DecMt_MtCallback_Code(void *pp, unsigned coderIndex,
       return res;
 
     if (srcProcessed == srcSize)
-      *stop = False;
+      *stop = False7z;
 
     if (blockWasFinished)
     {
@@ -509,13 +509,13 @@ static SRes Lzma2DecMt_MtCallback_Code(void *pp, unsigned coderIndex,
       {
         if (t->outPreSize != t->outCodeSize)
           return SZ_ERROR_FAIL;
-        *stop = True;
+        *stop = True7z;
       }
     }
     else
     {
       if (t->outPreSize == t->outCodeSize)
-        *stop = True;
+        *stop = True7z;
     }
 
     return SZ_OK;
@@ -534,7 +534,7 @@ static SRes Lzma2DecMt_MtCallback_Write(void *pp, unsigned coderIndex,
   const CLzma2DecMtThread *t = &me->coders[coderIndex];
   size_t size = t->outCodeSize;
   const Byte *data = t->outBuf;
-  BoolInt needContinue2 = True;
+  BoolInt needContinue2 = True7z;
 
   UNUSED_VAR(src)
   UNUSED_VAR(srcSize)
@@ -542,14 +542,14 @@ static SRes Lzma2DecMt_MtCallback_Write(void *pp, unsigned coderIndex,
 
   PRF_STR_INT_2("Write", coderIndex, srcSize);
 
-  *needContinue = False;
-  *canRecode = True;
+  *needContinue = False7z;
+  *canRecode = True7z;
 
   if (
       // t->parseStatus == LZMA_STATUS_FINISHED_WITH_MARK
          t->state == MTDEC_PARSE_OVERFLOW
       || t->state == MTDEC_PARSE_END)
-    needContinue2 = False;
+    needContinue2 = False7z;
 
 
   if (!needWriteToStream)
@@ -564,7 +564,7 @@ static SRes Lzma2DecMt_MtCallback_Write(void *pp, unsigned coderIndex,
       || t->inPreSize != t->inCodeSize)
     return SZ_ERROR_FAIL;
 
-  *canRecode = False;
+  *canRecode = False7z;
     
   if (me->outStream)
   {
@@ -612,7 +612,7 @@ static SRes Lzma2Dec_Prepare_ST(CLzma2DecMt *p)
   if (!p->dec_created)
   {
     Lzma2Dec_Construct(&p->dec);
-    p->dec_created = True;
+    p->dec_created = True7z;
   }
 
   RINOK(Lzma2Dec_Allocate(&p->dec, p->prop, &p->alignOffsetAlloc.vt));
@@ -688,7 +688,7 @@ static SRes Lzma2Dec_Decode_ST(CLzma2DecMt *p
         inPos = 0;
         if (inData)
           continue;
-        tMode = False;
+        tMode = False7z;
         inLim = 0;
       }
       #endif
@@ -700,9 +700,9 @@ static SRes Lzma2Dec_Decode_ST(CLzma2DecMt *p
         inData = p->inBuf;
         p->readRes = ISeqInStream_Read(p->inStream, (void *)(p->inBuf), &inLim);
         // p->readProcessed += inLim;
-        // inLim -= 5; p->readWasFinished = True; // for test
+        // inLim -= 5; p->readWasFinished = True7z; // for test
         if (inLim == 0 || p->readRes != SZ_OK)
-          p->readWasFinished = True;
+          p->readWasFinished = True7z;
       }
     }
 
@@ -828,10 +828,10 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
   p->progress = progress;
 
   p->outSize = 0;
-  p->outSize_Defined = False;
+  p->outSize_Defined = False7z;
   if (outDataSize)
   {
-    p->outSize_Defined = True;
+    p->outSize_Defined = True7z;
     p->outSize = *outDataSize;
   }
   p->finishMode = finishMode;
@@ -839,15 +839,15 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
   p->outProcessed = 0;
   p->inProcessed = 0;
 
-  p->readWasFinished = False;
+  p->readWasFinished = False7z;
   p->readRes = SZ_OK;
 
-  *isMT = False;
+  *isMT = False7z;
 
   
   #ifndef _7ZIP_ST
 
-  tMode = False;
+  tMode = False7z;
 
   // p->mtc.parseRes = SZ_OK;
 
@@ -855,7 +855,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
   // p->mtc.crossStart = 0;
   // p->mtc.crossEnd = 0;
   // p->mtc.allocError_for_Read_BlockIndex = 0;
-  // p->mtc.isAllocError = False;
+  // p->mtc.isAllocError = False7z;
 
   if (p->props.numThreads > 1)
   {
@@ -867,7 +867,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
 
     if (!p->mtc_WasConstructed)
     {
-      p->mtc_WasConstructed = True;
+      p->mtc_WasConstructed = True7z;
       MtDec_Construct(&p->mtc);
     }
     
@@ -898,7 +898,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
 
     p->mtc.numThreadsMax = p->props.numThreads;
 
-    *isMT = True;
+    *isMT = True7z;
 
     vt.Parse = Lzma2DecMt_MtCallback_Parse;
     vt.PreCode = Lzma2DecMt_MtCallback_PreCode;
@@ -906,7 +906,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
     vt.Write = Lzma2DecMt_MtCallback_Write;
 
     {
-      BoolInt needContinue = False;
+      BoolInt needContinue = False7z;
 
       SRes res = MtDec_Code(&p->mtc);
 
@@ -917,7 +917,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
 
       *inProcessed = p->mtc.inProcessed;
 
-      needContinue = False;
+      needContinue = False7z;
 
       if (res == SZ_OK)
       {
@@ -934,7 +934,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
         return res;
       }
 
-      tMode = True;
+      tMode = True7z;
       p->readRes = p->mtc.readRes;
       p->readWasFinished = p->mtc.readWasFinished;
       p->inProcessed = p->mtc.inProcessed;
@@ -946,7 +946,7 @@ SRes Lzma2DecMt_Decode(CLzma2DecMtHandle pp,
   #endif
 
 
-  *isMT = False;
+  *isMT = False7z;
 
   {
     SRes res = Lzma2Dec_Decode_ST(p
@@ -997,10 +997,10 @@ SRes Lzma2DecMt_Init(CLzma2DecMtHandle pp,
   p->inStream = inStream;
 
   p->outSize = 0;
-  p->outSize_Defined = False;
+  p->outSize_Defined = False7z;
   if (outDataSize)
   {
-    p->outSize_Defined = True;
+    p->outSize_Defined = True7z;
     p->outSize = *outDataSize;
   }
   p->finishMode = finishMode;

@@ -536,14 +536,14 @@ SRes SzGetNextFolderItem(CSzFolder *f, CSzData *sd)
     f->NumPackStreams = numPackStreams;
   
     for (i = 0; i < numInStreams; i++)
-      streamUsed[i] = False;
+      streamUsed[i] = False7z;
     
     if (numBonds != 0)
     {
       Byte coderUsed[SZ_NUM_CODERS_IN_FOLDER_MAX];
 
       for (i = 0; i < numCoders; i++)
-        coderUsed[i] = False;
+        coderUsed[i] = False7z;
       
       for (i = 0; i < numBonds; i++)
       {
@@ -552,12 +552,12 @@ SRes SzGetNextFolderItem(CSzFolder *f, CSzData *sd)
         RINOK(SzReadNumber32(sd, &bp->InIndex));
         if (bp->InIndex >= numInStreams || streamUsed[bp->InIndex])
           return SZ_ERROR_ARCHIVE;
-        streamUsed[bp->InIndex] = True;
+        streamUsed[bp->InIndex] = True7z;
         
         RINOK(SzReadNumber32(sd, &bp->OutIndex));
         if (bp->OutIndex >= numCoders || coderUsed[bp->OutIndex])
           return SZ_ERROR_ARCHIVE;
-        coderUsed[bp->OutIndex] = True;
+        coderUsed[bp->OutIndex] = True7z;
       }
       
       for (i = 0; i < numCoders; i++)
@@ -587,7 +587,7 @@ SRes SzGetNextFolderItem(CSzFolder *f, CSzData *sd)
         RINOK(SzReadNumber32(sd, &index));
         if (index >= numInStreams || streamUsed[index])
           return SZ_ERROR_ARCHIVE;
-        streamUsed[index] = True;
+        streamUsed[index] = True7z;
         f->PackStreams[i] = index;
       }
   }
@@ -742,9 +742,9 @@ static SRes ReadUnpackInfo(CSzAr *p,
           return SZ_ERROR_UNSUPPORTED;
         
         for (i = 0; i < numInStreams; i++)
-          streamUsed[i] = False;
+          streamUsed[i] = False7z;
         for (i = 0; i < numCoders; i++)
-          coderUsed[i] = False;
+          coderUsed[i] = False7z;
         
         for (i = 0; i < numBonds; i++)
         {
@@ -753,12 +753,12 @@ static SRes ReadUnpackInfo(CSzAr *p,
           RINOK(SzReadNumber32(&sd, &index));
           if (index >= numInStreams || streamUsed[index])
             return SZ_ERROR_ARCHIVE;
-          streamUsed[index] = True;
+          streamUsed[index] = True7z;
           
           RINOK(SzReadNumber32(&sd, &index));
           if (index >= numCoders || coderUsed[index])
             return SZ_ERROR_ARCHIVE;
-          coderUsed[index] = True;
+          coderUsed[index] = True7z;
         }
         
         numPackStreams = numInStreams - numBonds;
@@ -770,7 +770,7 @@ static SRes ReadUnpackInfo(CSzAr *p,
             RINOK(SzReadNumber32(&sd, &index));
             if (index >= numInStreams || streamUsed[index])
               return SZ_ERROR_ARCHIVE;
-            streamUsed[index] = True;
+            streamUsed[index] = True7z;
           }
           
         for (i = 0; i < numCoders; i++)
@@ -1762,7 +1762,7 @@ UInt16 *SzArEx_GetFullNameUtf16_Back(const CSzArEx *p, size_t fileIndex, UInt16 
     *(--dest) = 0;
     return dest;
   }
-  needSlash = False;
+  needSlash = False7z;
   for (;;)
   {
     UInt32 parent = (UInt32)(Int32)-1;
@@ -1770,7 +1770,7 @@ UInt16 *SzArEx_GetFullNameUtf16_Back(const CSzArEx *p, size_t fileIndex, UInt16 
     SzArEx_GetFileNameUtf16(p, fileIndex, dest - curLen);
     if (needSlash)
       *(dest - 1) = '/';
-    needSlash = True;
+    needSlash = True7z;
     dest -= curLen;
 
     if SzBitWithVals_Check(&p->Parents, fileIndex)

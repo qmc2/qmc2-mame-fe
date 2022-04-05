@@ -69,7 +69,7 @@ static Byte ReadByte(const IByteIn *pp)
     if (size != 0)
       return *p->cur++;;
   }
-  p->extra = True;
+  p->extra = True7z;
   return 0;
 }
 
@@ -83,7 +83,7 @@ static SRes SzDecodePpmd(const Byte *props, unsigned propsSize, UInt64 inSize, c
   s.vt.Read = ReadByte;
   s.inStream = inStream;
   s.begin = s.end = s.cur = NULL;
-  s.extra = False;
+  s.extra = False7z;
   s.res = SZ_OK;
   s.processed = 0;
 
@@ -288,9 +288,9 @@ static BoolInt IS_MAIN_METHOD(UInt32 m)
     #ifdef _7ZIP_PPMD_SUPPPORT
     case k_PPMD:
     #endif
-      return True;
+      return True7z;
   }
-  return False;
+  return False7z;
 }
 
 static BoolInt IS_SUPPORTED_CODER(const CSzCoderInfo *c)

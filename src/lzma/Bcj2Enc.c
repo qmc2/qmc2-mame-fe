@@ -63,7 +63,7 @@ static BoolInt MY_FAST_CALL RangeEnc_ShiftLow(CBcj2Enc *p)
       {
         p->state = BCJ2_STREAM_RC;
         p->bufs[BCJ2_STREAM_RC] = buf;
-        return True;
+        return True7z;
       }
       *buf++ = (Byte)(p->cache + (Byte)(p->low >> 32));
       p->cache = 0xFF;
@@ -74,7 +74,7 @@ static BoolInt MY_FAST_CALL RangeEnc_ShiftLow(CBcj2Enc *p)
   }
   p->cacheSize++;
   p->low = (UInt32)p->low << 8;
-  return False;
+  return False7z;
 }
 
 static void Bcj2Enc_Encode_2(CBcj2Enc *p)
@@ -171,14 +171,14 @@ static void Bcj2Enc_Encode_2(CBcj2Enc *p)
           p->ip += (UInt32)num + 1;
           src++;
           
-          needConvert = False;
+          needConvert = False7z;
 
           if ((SizeT)(p->srcLim - src) >= 4)
           {
             UInt32 relatVal = GetUi32(src);
             if ((p->fileSize == 0 || (UInt32)(p->ip + 4 + relatVal - p->fileIp) < p->fileSize)
                 && ((relatVal + p->relatLimit) >> 1) < p->relatLimit)
-              needConvert = True;
+              needConvert = True7z;
           }
 
           {

@@ -583,7 +583,7 @@ SRes LzmaEnc_SetProps(CLzmaEncHandle pp, const CLzmaEncProps *props2)
   p->lp = (unsigned)props.lp;
   p->pb = (unsigned)props.pb;
   p->fastMode = (props.algo == 0);
-  // p->_maxMode = True;
+  // p->_maxMode = True7z;
   MFB.btMode = (Byte)(props.btMode ? 1 : 0);
   {
     unsigned numHashBytes = 4;
@@ -1098,7 +1098,7 @@ static unsigned ReadMatchDistances(CLzmaEnc *p, unsigned *numPairsRes)
   p->numAvail = p->matchFinder.GetNumAvailableBytes(p->matchFinderObj);
   {
     const UInt32 *d = p->matchFinder.GetMatches(p->matchFinderObj, p->matches);
-    // if (!d) { p->mf_Failure = True; *numPairsRes = 0;  return 0; }
+    // if (!d) { p->mf_Failure = True7z; *numPairsRes = 0;  return 0; }
     numPairs = (unsigned)(d - p->matches);
   }
   *numPairsRes = numPairs;
@@ -1612,7 +1612,7 @@ static unsigned GetOptimum(CLzmaEnc *p, UInt32 position)
     }
 
     nextOpt = &p->opt[(size_t)cur + 1];
-    nextIsLit = False;
+    nextIsLit = False7z;
 
     // here we can allow skip_items in p->opt, if we don't check (nextOpt->price < kInfinityPrice)
     // 18.new.06
@@ -1634,7 +1634,7 @@ static unsigned GetOptimum(CLzmaEnc *p, UInt32 position)
         nextOpt->price = litPrice;
         nextOpt->len = 1;
         MakeAs_Lit(nextOpt);
-        nextIsLit = True;
+        nextIsLit = True7z;
       }
     }
 
@@ -1668,7 +1668,7 @@ static unsigned GetOptimum(CLzmaEnc *p, UInt32 position)
         nextOpt->price = shortRepPrice;
         nextOpt->len = 1;
         MakeAs_ShortRep(nextOpt);
-        nextIsLit = False;
+        nextIsLit = False7z;
       }
     }
     
@@ -2196,7 +2196,7 @@ static SRes CheckErrors(CLzmaEnc *p)
     p->result = SZ_ERROR_READ;
   
   if (p->result != SZ_OK)
-    p->finished = True;
+    p->finished = True7z;
   return p->result;
 }
 
@@ -2204,7 +2204,7 @@ static SRes CheckErrors(CLzmaEnc *p)
 MY_NO_INLINE static SRes Flush(CLzmaEnc *p, UInt32 nowPos)
 {
   /* ReleaseMFStream(); */
-  p->finished = True;
+  p->finished = True7z;
   if (p->writeEndMark)
     WriteEndMarker(p, nowPos & p->pbMask);
   RangeEnc_FlushData(&p->rc);
@@ -2840,7 +2840,7 @@ static void LzmaEnc_Init(CLzmaEnc *p)
   p->pbMask = ((unsigned)1 << p->pb) - 1;
   p->lpMask = ((UInt32)0x100 << p->lp) - ((unsigned)0x100 >> p->lc);
 
-  // p->mf_Failure = False;
+  // p->mf_Failure = False7z;
 }
 
 
@@ -2870,7 +2870,7 @@ static SRes LzmaEnc_AllocAndInit(CLzmaEnc *p, UInt32 keepWindowSize, ISzAllocPtr
       break;
   p->distTableSize = i * 2;
 
-  p->finished = False;
+  p->finished = False7z;
   p->result = SZ_OK;
   RINOK(LzmaEnc_Alloc(p, keepWindowSize, alloc, allocBig));
   LzmaEnc_Init(p);
@@ -2943,7 +2943,7 @@ static size_t SeqOutStreamBuf_Write(const ISeqOutStream *pp, const void *data, s
   if (p->rem < size)
   {
     size = p->rem;
-    p->overflow = True;
+    p->overflow = True7z;
   }
   if (size != 0)
   {
@@ -2981,10 +2981,10 @@ SRes LzmaEnc_CodeOneMemBlock(CLzmaEncHandle pp, BoolInt reInit,
   outStream.vt.Write = SeqOutStreamBuf_Write;
   outStream.data = dest;
   outStream.rem = *destLen;
-  outStream.overflow = False;
+  outStream.overflow = False7z;
 
-  p->writeEndMark = False;
-  p->finished = False;
+  p->writeEndMark = False7z;
+  p->finished = False7z;
   p->result = SZ_OK;
 
   if (reInit)
@@ -3109,7 +3109,7 @@ SRes LzmaEnc_MemEncode(CLzmaEncHandle pp, Byte *dest, SizeT *destLen, const Byte
   outStream.vt.Write = SeqOutStreamBuf_Write;
   outStream.data = dest;
   outStream.rem = *destLen;
-  outStream.overflow = False;
+  outStream.overflow = False7z;
 
   p->writeEndMark = writeEndMark;
   p->rc.outStream = &outStream.vt;

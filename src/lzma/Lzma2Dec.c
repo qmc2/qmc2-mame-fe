@@ -86,7 +86,7 @@ void Lzma2Dec_Init(CLzma2Dec *p)
 {
   p->state = LZMA2_STATE_CONTROL;
   p->needInitLevel = 0xE0;
-  p->isExtraMode = False;
+  p->isExtraMode = False7z;
   p->unpackSize = 0;
   
   // p->decoder.dicPos = 0; // we can use it instead of full init
@@ -99,7 +99,7 @@ static unsigned Lzma2Dec_UpdateState(CLzma2Dec *p, Byte b)
   switch (p->state)
   {
     case LZMA2_STATE_CONTROL:
-      p->isExtraMode = False;
+      p->isExtraMode = False7z;
       p->control = b;
       PRF(printf("\n %8X", (unsigned)p->decoder.dicPos));
       PRF(printf(" %02X", (unsigned)b));
@@ -234,7 +234,7 @@ SRes Lzma2Dec_DecodeToDic(CLzma2Dec *p, SizeT dicLimit,
         if (p->state == LZMA2_STATE_DATA)
         {
           BoolInt initDic = (p->control == LZMA2_CONTROL_COPY_RESET_DIC);
-          LzmaDec_InitDicAndState(&p->decoder, initDic, False);
+          LzmaDec_InitDicAndState(&p->decoder, initDic, False7z);
         }
 
         if (inCur > outCur)
@@ -377,7 +377,7 @@ ELzma2ParseStatus Lzma2Dec_Parse(CLzma2Dec *p,
       }
       else
       {
-        p->isExtraMode = True;
+        p->isExtraMode = True7z;
 
         if (inCur == 0)
         {

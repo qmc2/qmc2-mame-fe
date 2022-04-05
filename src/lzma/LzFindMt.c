@@ -83,9 +83,9 @@ MY_NO_INLINE
 static void MtSync_Construct(CMtSync *p)
 {
   p->affinity = 0;
-  p->wasCreated = False;
-  p->csWasInitialized = False;
-  p->csWasEntered = False;
+  p->wasCreated = False7z;
+  p->csWasInitialized = False7z;
+  p->csWasEntered = False7z;
   Thread_Construct(&p->thread);
   Event_Construct(&p->canStart);
   Event_Construct(&p->wasStopped);
@@ -108,12 +108,12 @@ static void MtSync_Construct(CMtSync *p)
 #define LOCK_BUFFER(p) { \
     BUFFER_MUST_BE_UNLOCKED(p); \
     CriticalSection_Enter(&(p)->cs); \
-    (p)->csWasEntered = True; }
+    (p)->csWasEntered = True7z; }
 
 #define UNLOCK_BUFFER(p) { \
     BUFFER_MUST_BE_LOCKED(p); \
     CriticalSection_Leave(&(p)->cs); \
-    (p)->csWasEntered = False; }
+    (p)->csWasEntered = False7z; }
 
 
 MY_NO_INLINE
@@ -124,9 +124,9 @@ static UInt32 MtSync_GetNextBlock(CMtSync *p)
   {
     BUFFER_MUST_BE_UNLOCKED(p)
     p->numProcessedBlocks = 1;
-    p->needStart = False;
-    p->stopWriting = False;
-    p->exit = False;
+    p->needStart = False7z;
+    p->stopWriting = False7z;
+    p->exit = False7z;
     Event_Reset(&p->wasStopped);
     Event_Set(&p->canStart);
   }
@@ -171,7 +171,7 @@ static void MtSync_StopWriting(CMtSync *p)
      so we can get fast thread stop.
   */
 
-  p->stopWriting = True;
+  p->stopWriting = True7z;
   Semaphore_Release1(&p->freeSemaphore); // check semaphore count !!!
 
     PRF(printf("\nMtSync_StopWriting %p : Event_Wait(&p->wasStopped)\n", p));
@@ -181,7 +181,7 @@ static void MtSync_StopWriting(CMtSync *p)
   /* 21.03 : we don't restore samaphore counters here.
      We will recreate and reinit samaphores in next start */
 
-  p->needStart = True;
+  p->needStart = True7z;
 }
 
 
@@ -196,7 +196,7 @@ static void MtSync_Destruct(CMtSync *p)
        note: stop(btSync) will stop (htSync) also */
     MtSync_StopWriting(p);
     /* thread in Stopped state here : (p->needStart == true) */
-    p->exit = True;
+    p->exit = True7z;
     // if (p->needStart)  // it's (true)
     Event_Set(&p->canStart);  // we send EXIT command to thread
     Thread_Wait_Close(&p->thread);  // we wait thread finishing
@@ -205,16 +205,16 @@ static void MtSync_Destruct(CMtSync *p)
   if (p->csWasInitialized)
   {
     CriticalSection_Delete(&p->cs);
-    p->csWasInitialized = False;
+    p->csWasInitialized = False7z;
   }
-  p->csWasEntered = False;
+  p->csWasEntered = False7z;
 
   Event_Close(&p->canStart);
   Event_Close(&p->wasStopped);
   Semaphore_Close(&p->freeSemaphore);
   Semaphore_Close(&p->filledSemaphore);
 
-  p->wasCreated = False;
+  p->wasCreated = False7z;
 }
 
 
@@ -246,14 +246,14 @@ static WRes MtSync_Create_WRes(CMtSync *p, THREAD_FUNC_TYPE startAddress, void *
     return SZ_OK;
 
   RINOK_THREAD(CriticalSection_Init(&p->cs));
-  p->csWasInitialized = True;
-  p->csWasEntered = False;
+  p->csWasInitialized = True7z;
+  p->csWasEntered = False7z;
 
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->canStart));
   RINOK_THREAD(AutoResetEvent_CreateNotSignaled(&p->wasStopped));
 
-  p->needStart = True;
-  p->exit = True;  /* p->exit is unused before (canStart) Event.
+  p->needStart = True7z;
+  p->exit = True7z;  /* p->exit is unused before (canStart) Event.
      But in case of some unexpected code failure we will get fast exit from thread */
 
   // return ERROR_TOO_MANY_POSTS; // for debug
@@ -265,7 +265,7 @@ static WRes MtSync_Create_WRes(CMtSync *p, THREAD_FUNC_TYPE startAddress, void *
     wres = Thread_Create(&p->thread, startAddress, obj);
 
   RINOK_THREAD(wres);
-  p->wasCreated = True;
+  p->wasCreated = True7z;
   return SZ_OK;
 }
 
@@ -696,7 +696,7 @@ static void BtGetMatches(CMatchFinderMt *p, UInt32 *d)
           {
             // printf("\n == 2 BtGetMatches() p->failure_BT\n");
             // internal data failure
-            p->failure_BT = True;
+            p->failure_BT = True7z;
             d[0] = 0;
             // d[1] = 0;
             return;
@@ -887,7 +887,7 @@ static void MatchFinderMt_Init(CMatchFinderMt *p)
   p->hashBufPosLimit = 0;
   p->hashNumAvail = 0; // 21.03
   
-  p->failure_BT = False;
+  p->failure_BT = False7z;
 
   /* Init without data reading. We don't want to read data in this thread */
   MatchFinder_Init_4(mf);
@@ -896,8 +896,8 @@ static void MatchFinderMt_Init(CMatchFinderMt *p)
   
   p->pointerToCurPos = Inline_MatchFinder_GetPointerToCurrentPos(mf);
   p->btNumAvailBytes = 0;
-  p->failure_LZ_BT = False;
-  // p->failure_LZ_LZ = False;
+  p->failure_LZ_BT = False7z;
+  // p->failure_LZ_LZ = False7z;
   
   p->lzPos =
       1; // optimal smallest value
@@ -960,7 +960,7 @@ static UInt32 MatchFinderMt_GetNextBlock_Bt(CMatchFinderMt *p)
         p->failureBuf[0] = 0;
         p->btBufPos = p->failureBuf;
         p->btBufPosLimit = p->failureBuf + 1;
-        p->failure_LZ_BT = True;
+        p->failure_LZ_BT = True7z;
         // p->btNumAvailBytes = 0;
         /* we don't want to decrease AvailBytes, that was load before.
             that can be unxepected for the code that have loaded anopther value before */
@@ -998,7 +998,7 @@ static UInt32 MatchFinderMt_GetNumAvailableBytes(CMatchFinderMt *p)
 }
 
 
-// #define CHECK_FAILURE_LZ(_match_, _pos_) if (_match_ >= _pos_) { p->failure_LZ_LZ = True;  return d; }
+// #define CHECK_FAILURE_LZ(_match_, _pos_) if (_match_ >= _pos_) { p->failure_LZ_LZ = True7z;  return d; }
 #define CHECK_FAILURE_LZ(_match_, _pos_)
 
 static UInt32 * MixMatches2(CMatchFinderMt *p, UInt32 matchMinPos, UInt32 *d)

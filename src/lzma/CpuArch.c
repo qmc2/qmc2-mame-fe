@@ -50,7 +50,7 @@ static UInt32 CheckFlag(UInt32 flag)
   #endif
   return flag;
 }
-#define CHECK_CPUID_IS_SUPPORTED if (CheckFlag(1 << 18) == 0 || CheckFlag(1 << 21) == 0) return False;
+#define CHECK_CPUID_IS_SUPPORTED if (CheckFlag(1 << 18) == 0 || CheckFlag(1 << 21) == 0) return False7z;
 #else
 #define CHECK_CPUID_IS_SUPPORTED
 #endif
@@ -163,7 +163,7 @@ BoolInt x86cpuid_CheckAndRead(Cx86cpuid *p)
   CHECK_CPUID_IS_SUPPORTED
   MyCPUID(0, &p->maxFunc, &p->vendor[0], &p->vendor[2], &p->vendor[1]);
   MyCPUID(1, &p->ver, &p->b, &p->c, &p->d);
-  return True;
+  return True7z;
 }
 
 static const UInt32 kVendors[][3] =
@@ -193,7 +193,7 @@ BoolInt CPU_Is_InOrder()
   int firm;
   UInt32 family, model;
   if (!x86cpuid_CheckAndRead(&p))
-    return True;
+    return True7z;
 
   family = x86cpuid_GetFamily(p.ver);
   model = x86cpuid_GetModel(p.ver);
@@ -213,7 +213,7 @@ BoolInt CPU_Is_InOrder()
     case CPU_FIRM_AMD: return (family < 5 || (family == 5 && (model < 6 || model == 0xA)));
     case CPU_FIRM_VIA: return (family < 6 || (family == 6 && model < 0xF));
   }
-  return True;
+  return True7z;
 }
 
 #if !defined(MY_CPU_AMD64) && defined(_WIN32)
@@ -223,10 +223,10 @@ static BoolInt CPU_Sys_Is_SSE_Supported()
   OSVERSIONINFO vi;
   vi.dwOSVersionInfoSize = sizeof(vi);
   if (!GetVersionEx(&vi))
-    return False;
+    return False7z;
   return (vi.dwMajorVersion >= 5);
 }
-#define CHECK_SYS_SSE_SUPPORT if (!CPU_Sys_Is_SSE_Supported()) return False;
+#define CHECK_SYS_SSE_SUPPORT if (!CPU_Sys_Is_SSE_Supported()) return False7z;
 #else
 #define CHECK_SYS_SSE_SUPPORT
 #endif
@@ -261,10 +261,10 @@ BoolInt CPU_IsSupported_SHA()
   Cx86cpuid p;
   CHECK_SYS_SSE_SUPPORT
   if (!x86cpuid_CheckAndRead(&p))
-    return False;
+    return False7z;
 
   if (p.maxFunc < 7)
-    return False;
+    return False7z;
   {
     UInt32 d[4] = { 0 };
     MyCPUID(7, &d[0], &d[1], &d[2], &d[3]);
@@ -286,13 +286,13 @@ BoolInt CPU_IsSupported_AVX2()
   #ifdef _WIN32
   #define MY__PF_XSAVE_ENABLED  17
   if (!IsProcessorFeaturePresent(MY__PF_XSAVE_ENABLED))
-    return False;
+    return False7z;
   #endif
 
   if (!x86cpuid_CheckAndRead(&p))
-    return False;
+    return False7z;
   if (p.maxFunc < 7)
-    return False;
+    return False7z;
   {
     UInt32 d[4] = { 0 };
     MyCPUID(7, &d[0], &d[1], &d[2], &d[3]);
@@ -310,13 +310,13 @@ BoolInt CPU_IsSupported_VAES_AVX2()
   #ifdef _WIN32
   #define MY__PF_XSAVE_ENABLED  17
   if (!IsProcessorFeaturePresent(MY__PF_XSAVE_ENABLED))
-    return False;
+    return False7z;
   #endif
 
   if (!x86cpuid_CheckAndRead(&p))
-    return False;
+    return False7z;
   if (p.maxFunc < 7)
-    return False;
+    return False7z;
   {
     UInt32 d[4] = { 0 };
     MyCPUID(7, &d[0], &d[1], &d[2], &d[3]);
@@ -332,12 +332,12 @@ BoolInt CPU_IsSupported_PageGB()
 {
   Cx86cpuid cpuid;
   if (!x86cpuid_CheckAndRead(&cpuid))
-    return False;
+    return False7z;
   {
     UInt32 d[4] = { 0 };
     MyCPUID(0x80000000, &d[0], &d[1], &d[2], &d[3]);
     if (d[0] < 0x80000001)
-      return False;
+      return False7z;
   }
   {
     UInt32 d[4] = { 0 };

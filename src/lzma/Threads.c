@@ -346,17 +346,17 @@ static WRes Event_Create(CEvent *p, int manualReset, int signaled)
   RINOK(pthread_mutex_init(&p->_mutex, NULL));
   RINOK(pthread_cond_init(&p->_cond, NULL));
   p->_manual_reset = manualReset;
-  p->_state = (signaled ? True : False);
+  p->_state = (signaled ? True7z : False7z);
   p->_created = 1;
   return 0;
 }
 
 WRes ManualResetEvent_Create(CManualResetEvent *p, int signaled)
-  { return Event_Create(p, True, signaled); }
+  { return Event_Create(p, True7z, signaled); }
 WRes ManualResetEvent_CreateNotSignaled(CManualResetEvent *p)
   { return ManualResetEvent_Create(p, 0); }
 WRes AutoResetEvent_Create(CAutoResetEvent *p, int signaled)
-  { return Event_Create(p, False, signaled); }
+  { return Event_Create(p, False7z, signaled); }
 WRes AutoResetEvent_CreateNotSignaled(CAutoResetEvent *p)
   { return AutoResetEvent_Create(p, 0); }
 
@@ -364,7 +364,7 @@ WRes AutoResetEvent_CreateNotSignaled(CAutoResetEvent *p)
 WRes Event_Set(CEvent *p)
 {
   RINOK(pthread_mutex_lock(&p->_mutex));
-  p->_state = True;
+  p->_state = True7z;
   int res1 = pthread_cond_broadcast(&p->_cond);
   int res2 = pthread_mutex_unlock(&p->_mutex);
   return (res2 ? res2 : res1);
@@ -373,23 +373,23 @@ WRes Event_Set(CEvent *p)
 WRes Event_Reset(CEvent *p)
 {
   RINOK(pthread_mutex_lock(&p->_mutex));
-  p->_state = False;
+  p->_state = False7z;
   return pthread_mutex_unlock(&p->_mutex);
 }
  
 WRes Event_Wait(CEvent *p)
 {
   RINOK(pthread_mutex_lock(&p->_mutex));
-  while (p->_state == False)
+  while (p->_state == False7z)
   {
     // ETIMEDOUT
     // ret =
     pthread_cond_wait(&p->_cond, &p->_mutex);
     // if (ret != 0) break;
   }
-  if (p->_manual_reset == False)
+  if (p->_manual_reset == False7z)
   {
-    p->_state = False;
+    p->_state = False7z;
   }
   return pthread_mutex_unlock(&p->_mutex);
 }

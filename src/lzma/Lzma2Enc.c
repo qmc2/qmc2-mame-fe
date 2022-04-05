@@ -98,7 +98,7 @@ static SRes Lzma2EncInt_InitStream(CLzma2EncInt *p, const CLzma2EncProps *props)
     RINOK(LzmaEnc_SetProps(p->enc, &props->lzmaProps));
     RINOK(LzmaEnc_WriteProperties(p->enc, propsEncoded, &propsSize));
     p->propsByte = propsEncoded[0];
-    p->propsAreSet = True;
+    p->propsAreSet = True7z;
   }
   return SZ_OK;
 }
@@ -106,8 +106,8 @@ static SRes Lzma2EncInt_InitStream(CLzma2EncInt *p, const CLzma2EncProps *props)
 static void Lzma2EncInt_InitBlock(CLzma2EncInt *p)
 {
   p->srcPos = 0;
-  p->needInitState = True;
-  p->needInitProp = True;
+  p->needInitState = True7z;
+  p->needInitProp = True7z;
 }
 
 
@@ -157,7 +157,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
     if (res != SZ_ERROR_OUTPUT_EOF)
       return res;
     res = SZ_OK;
-    useCopyBlock = True;
+    useCopyBlock = True7z;
   }
 
   if (useCopyBlock)
@@ -187,7 +187,7 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
       }
       else
         *packSizeRes = destPos;
-      /* needInitState = True; */
+      /* needInitState = True7z; */
     }
     
     LzmaEnc_RestoreState(p->enc);
@@ -211,8 +211,8 @@ static SRes Lzma2EncInt_EncodeSubblock(CLzma2EncInt *p, Byte *outBuf,
     if (p->needInitProp)
       outBuf[destPos++] = p->propsByte;
     
-    p->needInitProp = False;
-    p->needInitState = False;
+    p->needInitProp = False7z;
+    p->needInitState = False7z;
     destPos += packSize;
     p->srcPos += unpackSize;
 
@@ -401,7 +401,7 @@ CLzma2EncHandle Lzma2Enc_Create(ISzAllocPtr alloc, ISzAllocPtr allocBig)
   }
   
   #ifndef _7ZIP_ST
-  p->mtCoder_WasConstructed = False;
+  p->mtCoder_WasConstructed = False7z;
   {
     unsigned i;
     for (i = 0; i < MTCODER__BLOCKS_MAX; i++)
@@ -450,7 +450,7 @@ void Lzma2Enc_Destroy(CLzma2EncHandle pp)
   if (p->mtCoder_WasConstructed)
   {
     MtCoder_Destruct(&p->mtCoder);
-    p->mtCoder_WasConstructed = False;
+    p->mtCoder_WasConstructed = False7z;
   }
   Lzma2Enc_FreeOutBufs(p);
   #endif
@@ -517,7 +517,7 @@ static SRes Lzma2Enc_EncodeMt1(
 
   if (!p->enc)
   {
-    p->propsAreSet = False;
+    p->propsAreSet = False7z;
     p->enc = LzmaEnc_Create(me->alloc);
     if (!p->enc)
       return SZ_ERROR_MEM;
@@ -731,7 +731,7 @@ SRes Lzma2Enc_Encode2(CLzma2EncHandle pp,
   {
     unsigned i;
     for (i = 0; i < MTCODER__THREADS_MAX; i++)
-      p->coders[i].propsAreSet = False;
+      p->coders[i].propsAreSet = False7z;
   }
 
   #ifndef _7ZIP_ST
@@ -742,7 +742,7 @@ SRes Lzma2Enc_Encode2(CLzma2EncHandle pp,
 
     if (!p->mtCoder_WasConstructed)
     {
-      p->mtCoder_WasConstructed = True;
+      p->mtCoder_WasConstructed = True7z;
       MtCoder_Construct(&p->mtCoder);
     }
 
@@ -798,6 +798,6 @@ SRes Lzma2Enc_Encode2(CLzma2EncHandle pp,
       &p->coders[0],
       outStream, outBuf, outBufSize,
       inStream, inData, inDataSize,
-      True, /* finished */
+      True7z, /* finished */
       progress);
 }

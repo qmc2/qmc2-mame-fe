@@ -52,7 +52,7 @@ static SRes MtCoderThread_CreateAndStart(CMtCoderThread *t)
   WRes wres = ArEvent_OptCreate_And_Reset(&t->startEvent);
   if (wres == 0)
   {
-    t->stop = False;
+    t->stop = False7z;
     if (!Thread_WasCreated(&t->thread))
       wres = Thread_Create(&t->thread, ThreadFunc, t);
     if (wres == 0)
@@ -137,7 +137,7 @@ static SRes ThreadFunc2(CMtCoderThread *t)
     
     size = 0;
     inData = NULL;
-    finished = True;
+    finished = True7z;
 
     if (res == SZ_OK)
     {
@@ -204,7 +204,7 @@ static SRes ThreadFunc2(CMtCoderThread *t)
       res = MtProgress_GetError(&mtc->mtProgress);
 
     if (res != SZ_OK)
-      finished = True;
+      finished = True7z;
 
     if (!finished)
     {
@@ -217,13 +217,13 @@ static SRes ThreadFunc2(CMtCoderThread *t)
         else
         {
           MtProgress_SetError(&mtc->mtProgress, res);
-          finished = True;
+          finished = True7z;
         }
       }
     }
 
     if (finished)
-      mtc->stopReading = True;
+      mtc->stopReading = True7z;
 
     RINOK_THREAD(Event_Set(&mtc->readEvent))
 
@@ -264,7 +264,7 @@ static SRes ThreadFunc2(CMtCoderThread *t)
         if (wi == bi)
           mtc->writeIndex = (unsigned)(int)-1;
         else
-          mtc->ReadyBlocks[bi] = True;
+          mtc->ReadyBlocks[bi] = True7z;
         CriticalSection_Leave(&mtc->cs);
       }
 
@@ -306,7 +306,7 @@ static SRes ThreadFunc2(CMtCoderThread *t)
           isReady = mtc->ReadyBlocks[wi];
           
           if (isReady)
-            mtc->ReadyBlocks[wi] = False;
+            mtc->ReadyBlocks[wi] = False7z;
           else
             mtc->writeIndex = wi;
           
@@ -395,7 +395,7 @@ void MtCoder_Construct(CMtCoder *p)
     t->mtCoder = p;
     t->index = i;
     t->inBuf = NULL;
-    t->stop = False;
+    t->stop = False7z;
     Event_Construct(&t->startEvent);
     Thread_Construct(&t->thread);
   }
@@ -419,7 +419,7 @@ static void MtCoder_Free(CMtCoder *p)
   unsigned i;
 
   /*
-  p->stopReading = True;
+  p->stopReading = True7z;
   if (Event_IsCreated(&p->readEvent))
     Event_Set(&p->readEvent);
   */
@@ -506,13 +506,13 @@ SRes MtCoder_Code(CMtCoder *p)
   p->readProcessed = 0;
   p->blockIndex = 0;
   p->numBlocksMax = numBlocksMax;
-  p->stopReading = False;
+  p->stopReading = False7z;
 
   #ifndef MTCODER__USE_WRITE_THREAD
     p->writeIndex = 0;
     p->writeRes = SZ_OK;
     for (i = 0; i < MTCODER__BLOCKS_MAX; i++)
-      p->ReadyBlocks[i] = False;
+      p->ReadyBlocks[i] = False7z;
     p->numFinishedThreads = 0;
   #endif
 

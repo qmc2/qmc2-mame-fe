@@ -243,8 +243,8 @@ typedef size_t SizeT;
 
 typedef int BoolInt;
 /* typedef BoolInt Bool; */
-#define True 1
-#define False 0
+#define True7z 1
+#define False7z 0
 
 
 #ifdef _WIN32

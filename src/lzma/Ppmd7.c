@@ -96,10 +96,10 @@ BoolInt Ppmd7_Alloc(CPpmd7 *p, UInt32 size, ISzAllocPtr alloc)
     Ppmd7_Free(p, alloc);
     p->AlignOffset = (4 - size) & 3;
     if ((p->Base = (Byte *)ISzAlloc_Alloc(alloc, p->AlignOffset + size)) == NULL)
-      return False;
+      return False7z;
     p->Size = size;
   }
-  return True;
+  return True7z;
 }
 
 

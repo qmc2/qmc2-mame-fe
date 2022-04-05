@@ -19,7 +19,7 @@ BoolInt Ppmd7z_RangeDec_Init(CPpmd7_RangeDec *p)
   p->Code = 0;
   p->Range = 0xFFFFFFFF;
   if (READ_BYTE(p) != 0)
-    return False;
+    return False7z;
   for (i = 0; i < 4; i++)
     p->Code = (p->Code << 8) | READ_BYTE(p);
   return (p->Code < 0xFFFFFFFF);

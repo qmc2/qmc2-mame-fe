@@ -74,19 +74,19 @@ BoolInt Sha256_SetFunction(CSha256 *p, unsigned algo)
       else
       {
         if (algo != SHA256_ALGO_HW)
-          return False;
+          return False7z;
         func = g_FUNC_UPDATE_BLOCKS_HW;
         if (!func)
-          return False;
+          return False7z;
       }
     }
   #else
     if (algo > 1)
-      return False;
+      return False7z;
   #endif
 
   p->func_UpdateBlocks = func;
-  return True;
+  return True7z;
 }
 
 
