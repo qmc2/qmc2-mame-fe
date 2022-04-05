@@ -6797,7 +6797,7 @@ void MainWindow::loadYouTubeVideoInfoMap()
 		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2.yti");
 #endif
 		if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-			QString oldFormat = progressBarMachineList->format();
+			QString oldFormat(progressBarMachineList->format());
 			int oldMinimum = progressBarMachineList->minimum();
 			int oldMaximum = progressBarMachineList->maximum();
 			int oldValue = progressBarMachineList->value();
@@ -9149,7 +9149,7 @@ void MainWindow::on_actionTagAll_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 	progressBarMachineList->reset();
-	QString oldFormat = progressBarMachineList->format();
+	QString oldFormat(progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
@@ -9200,7 +9200,7 @@ void MainWindow::on_actionUntagAll_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 	progressBarMachineList->reset();
-	QString oldFormat = progressBarMachineList->format();
+	QString oldFormat(progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
@@ -9251,7 +9251,7 @@ void MainWindow::on_actionInvertTags_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 	progressBarMachineList->reset();
-	QString oldFormat = progressBarMachineList->format();
+	QString oldFormat(progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
@@ -9305,7 +9305,7 @@ void MainWindow::on_actionTagVisible_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 	progressBarMachineList->reset();
-	QString oldFormat = progressBarMachineList->format();
+	QString oldFormat(progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Tag - %p%"));
 	else
@@ -9356,7 +9356,7 @@ void MainWindow::on_actionUntagVisible_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 	progressBarMachineList->reset();
-	QString oldFormat = progressBarMachineList->format();
+	QString oldFormat(progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Untag - %p%"));
 	else
@@ -9407,7 +9407,7 @@ void MainWindow::on_actionInvertVisibleTags_triggered(bool)
 	if ( qmc2ReloadActive )
 		return;
 	progressBarMachineList->reset();
-	QString oldFormat = progressBarMachineList->format();
+	QString oldFormat(progressBarMachineList->format());
 	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 		progressBarMachineList->setFormat(tr("Invert tag - %p%"));
 	else
