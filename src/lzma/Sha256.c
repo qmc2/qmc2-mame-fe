@@ -459,6 +459,9 @@ void Sha256_Final(CSha256 *p, Byte *digest)
   Sha256_InitState(p);
 }
 
+#ifdef _SHA_SUPPORTED
+#undef _SHA_SUPPORTED
+#endif
 
 void Sha256Prepare()
 {
