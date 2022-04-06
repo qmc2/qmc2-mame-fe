@@ -126,7 +126,7 @@ void About::showEvent(QShowEvent *e)
 
 	QString projectInfoString =
 		"<p><b>" + tr("Project homepage:") + "</b><br><a href=\"http://qmc2.batcom-it.net/\">http://qmc2.batcom-it.net/</a></p>" +
-		"<p><b>" + tr("Development site:") + "</b><br><a href=\"http://sourceforge.net/projects/qmc2\">http://sourceforge.net/projects/qmc2</a></p>" +
+		"<p><b>" + tr("Development site:") + "</b><br><a href=\"https://github.com/qmc2/qmc2-mame-fe\">https://github.com/qmc2/qmc2-mame-fe</a></p>" +
 		"<p><b>" + tr("QMC2 development mailing list:") + "</b><br>qmc2-devel@lists.sourceforge.net (" + tr("subscription required") +")</p>" +
 		"<p><b>" + tr("List subscription:") + "</b><br><a href=\"http://lists.sourceforge.net/lists/listinfo/qmc2-devel\">https://lists.sourceforge.net/lists/listinfo/qmc2-devel</a></p>" +
 		"<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"http://tracker.batcom-it.net/view_all_bug_page.php?project_id=1\">http://tracker.batcom-it.net/view_all_bug_page.php?project_id=1</a></p>";
