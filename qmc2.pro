@@ -320,7 +320,9 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 			src/minizip/mz_strm.c \
 			src/minizip/mz_strm_mem.c \
 			src/minizip/mz_strm_os_posix.c \
+			src/minizip/mz_strm_zlib.c \
 			src/minizip/mz_zip.c
+		DEFINES += HAVE_ZLIB ZLIB_COMPAT
 	} else {
 		CONFIG += link_pkgconfig
 		PKGCONFIG += minizip
