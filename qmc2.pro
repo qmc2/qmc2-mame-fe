@@ -316,12 +316,16 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 		SOURCES += src/minizip/mz_compat.c \
 			src/minizip/mz_crypt.c \
 			src/minizip/mz_os.c \
-			src/minizip/mz_os_posix.c \
 			src/minizip/mz_strm.c \
 			src/minizip/mz_strm_mem.c \
-			src/minizip/mz_strm_os_posix.c \
 			src/minizip/mz_strm_zlib.c \
 			src/minizip/mz_zip.c
+		!win32 {
+			SOURCES += src/minizip/mz_os_posix.c \
+				src/minizip/mz_strm_os_posix.c
+		} else {
+			SOURCES += src/minizip/mz_strm_os_win32.c
+		}
 		DEFINES += HAVE_ZLIB ZLIB_COMPAT
 	} else {
 		CONFIG += link_pkgconfig
