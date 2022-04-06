@@ -324,7 +324,8 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 			SOURCES += src/minizip/mz_os_posix.c \
 				src/minizip/mz_strm_os_posix.c
 		} else {
-			SOURCES += src/minizip/mz_strm_os_win32.c
+			SOURCES += src/minizip/mz_os_win32.c \
+				src/minizip/mz_strm_os_win32.c
 		}
 		DEFINES += HAVE_ZLIB ZLIB_COMPAT
 	} else {
