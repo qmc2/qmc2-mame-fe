@@ -172,7 +172,11 @@ endif
 # Use the global OS build configuration file (1) or not (0)?
 #
 ifndef OSCFG
+ifeq '$(FORCE_MINGW)' '1'
+OSCFG = 0
+else
 OSCFG = 1
+endif
 endif
 
 # >>> DISTCFG <<<
