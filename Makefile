@@ -498,7 +498,6 @@ endif
 # commands are platform/distribution-specific
 ifneq '$(ARCH)' 'Windows'
 include arch/default.cfg
-include arch/Windows.cfg
 ifeq '$(OSCFG)' '1'
 OSCFGFILE = $(shell scripts/os-detect.sh | $(GREP) "System cfg-file" | $(COLRM) 1 30)
 ifeq ($(wildcard $(OSCFGFILE)),)
@@ -595,7 +594,6 @@ MULTIMEDIA = 0
 endif
 
 ifneq '$(QMAKEV)' '1'
-
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
 ifeq '$(ARCH)' 'Darwin'
 QMAKEFILE = Makefile.qmake
