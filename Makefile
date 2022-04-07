@@ -860,8 +860,8 @@ QCHDMAN_DEFINES += QCHDMAN_WIP_ENABLED
 endif
 
 ifeq '$(ARCH)' 'Windows'
-tools/qchdman/Makefile: tools/qchdman/qchdman.pro
-	@$(CD) tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)"
+src/tools/qchdman/Makefile: src/tools/qchdman/qchdman.pro
+	@$(CD) src/tools/qchdman && $(QMAKE) -makefile $(QT_MAKE_SPEC) $(QCHDMAN_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) "$(QCHDMAN_DEFINES)"
 
 qchdman: qchdman-bin
 qchdman-bin: src/tools/qchdman/Makefile
