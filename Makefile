@@ -494,6 +494,7 @@ endif
 # commands are platform/distribution-specific
 ifneq '$(ARCH)' 'Windows'
 include arch/default.cfg
+include arch/Windows.cfg
 ifeq '$(OSCFG)' '1'
 OSCFGFILE = $(shell scripts/os-detect.sh | $(GREP) "System cfg-file" | $(COLRM) 1 30)
 ifeq ($(wildcard $(OSCFGFILE)),)
