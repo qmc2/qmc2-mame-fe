@@ -108,18 +108,25 @@ contains(DEFINES, QMC2_ARCADE_LIBARCHIVE_ENABLED) {
 }
 
 contains(DEFINES, QMC2_ARCADE_BUNDLED_MINIZIP) {
-    INCLUDEPATH += ../minizip
-    SOURCES += ../minizip/mz_compat.c \
-              ../minizip/mz_crypt.c \
-              ../minizip/mz_os.c \
-              ../minizip/mz_os_posix.c \
-              ../minizip/mz_strm.c \
-              ../minizip/mz_strm_mem.c \
-              ../minizip/mz_strm_os_posix.c \
-              ../minizip/mz_zip.c
+	INCLUDEPATH += ../minizip
+	SOURCES += ../minizip/mz_compat.c \
+		../minizip/mz_crypt.c \
+		../minizip/mz_os.c \
+		../minizip/mz_strm.c \
+		../minizip/mz_strm_mem.c \
+		../minizip/mz_strm_zlib.c \
+		../minizip/mz_zip.c
+	!win32 {
+		SOURCES += ../minizip/mz_os_posix.c \
+			../minizip/mz_strm_os_posix.c
+	} else {
+		SOURCES += ../minizip/mz_os_win32.c \
+			../minizip/mz_strm_os_win32.c
+	}
+	DEFINES += HAVE_ZLIB ZLIB_COMPAT
 } else {
-    CONFIG += link_pkgconfig
-    PKGCONFIG += minizip
+	CONFIG += link_pkgconfig
+	PKGCONFIG += minizip
 }
 
 contains(DEFINES, QMC2_ARCADE_BUNDLED_ZLIB) {
