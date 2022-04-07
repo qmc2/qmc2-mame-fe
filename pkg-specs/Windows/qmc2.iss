@@ -17,7 +17,7 @@ DefaultGroupName=QMC2
 AllowNoIcons=yes
 LicenseFile=c:\projects\qmc2\gpl-2.0.txt
 OutputDir=c:\projects\InstallerOutput
-OutputBaseFilename=qmc2-win32-0.243
+OutputBaseFilename=qmc2-win32-x64-0.243
 Compression=lzma2/max
 SolidCompression=yes
 
