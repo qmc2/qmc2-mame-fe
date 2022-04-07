@@ -12,7 +12,7 @@ AppPublisher=The QMC2 Development Team
 AppPublisherURL=http://qmc2.batcom-it.net/
 AppSupportURL=http://qmc2.batcom-it.net/
 AppUpdatesURL=http://qmc2.batcom-it.net/
-DefaultDirName={pf}\QMC2
+DefaultDirName={commonpf}\QMC2
 DefaultGroupName=QMC2
 AllowNoIcons=yes
 LicenseFile=c:\projects\qmc2\gpl-2.0.txt
@@ -25,13 +25,10 @@ SolidCompression=yes
 Name: "English"; MessagesFile: "compiler:Default.isl"
 Name: "French"; MessagesFile: "compiler:Languages\French.isl"
 Name: "German"; MessagesFile: "compiler:Languages\German.isl"
-Name: "Greek"; MessagesFile: "compiler:Languages\Greek.isl"
 Name: "Italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "Polish"; MessagesFile: "compiler:Languages\Polish.isl"
 Name: "Portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
-Name: "Romanian"; MessagesFile: "compiler:Languages\Romanian.isl"
 Name: "Spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
-Name: "Swedish"; MessagesFile: "compiler:Languages\Swedish.isl"
 
 [Files]
 Source: "c:\projects\qmc2\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
