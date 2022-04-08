@@ -359,7 +359,7 @@
 #define QMC2_SEARCH_TIMEOUT			2500
 
 // buffer size for reading zip-files
-#define QMC2_ZIP_BUFFER_SIZE			QMC2_64K
+#define QMC2_ZIP_BUFFER_SIZE			QMC2_32K
 
 // buffer size for reading regular files
 #define QMC2_FILE_BUFFER_SIZE			QMC2_256K
