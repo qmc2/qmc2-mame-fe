@@ -18,7 +18,6 @@
 #include <QInputDialog>
 #include <QSplashScreen>
 #include <QNetworkAccessManager>
-#include <QWebSettings>
 #include <QCache>
 
 #include "options.h"

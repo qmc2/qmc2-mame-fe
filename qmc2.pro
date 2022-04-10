@@ -1,7 +1,7 @@
 greaterThan(QT_MAJOR_VERSION, 4) {
 	# general project settings
 	isEmpty(TARGET):TARGET = qmc2
-	QT += core gui widgets xml xmlpatterns network sql svg testlib webkit webkitwidgets
+	QT += core gui widgets xml xmlpatterns network sql svg testlib webkitwidgets
 	win32 {
 		QT += winextras
 	}
