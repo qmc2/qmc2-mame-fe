@@ -4,13 +4,8 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QDir>
-#if QT_VERSION >= 0x050000
 #include <QtWebKitWidgets/QWebFrame>
 #include <QtWebKitWidgets/QWebInspector>
-#else
-#include <QWebFrame>
-#include <QWebInspector>
-#endif
 #include <QWebHistory>
 #include <QFontMetrics>
 
