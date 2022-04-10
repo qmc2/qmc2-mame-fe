@@ -435,7 +435,7 @@ ifeq '$(FORCE_MINGW)' '1'
 MKSPEC = win32-g++
 else
 ifeq '$(ARCH)' 'Darwin'
-MKSPEC = macx-g++
+MKSPEC = macx-clang
 else
 MKSPEC =
 endif
