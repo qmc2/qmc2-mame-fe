@@ -22,7 +22,6 @@
 ****************************************************************************/
 
 #include <QtGui>
-#include <QtWebKit>
 #include <QHBoxLayout>
 #include <QTest>
 #include <QTabBar>
@@ -40,7 +39,6 @@
 #include <QHash>
 #include <QRegExp>
 #include <QDesktopServices>
-#if QT_VERSION >= 0x050000
 #include <QDesktopWidget>
 #include <QToolButton>
 #include <QFileDialog>
@@ -49,7 +47,6 @@
 #include <QColorDialog>
 #include <QToolTip>
 #include <QtWebKitWidgets/QWebFrame>
-#endif
 #include <QListWidgetItem>
 
 #include <algorithm> // std::sort()

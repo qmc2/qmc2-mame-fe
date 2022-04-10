@@ -23,18 +23,15 @@
 #include <QClipboard>
 #include <QDateTime>
 #include <QMutex>
-#include <QtWebKit>
 #include <QNetworkAccessManager>
 #include <QSplashScreen>
 #include <QDir>
 #include <QTest>
 #include <QColorDialog>
 #include <QChar>
-#if QT_VERSION >= 0x050000
 #include <QInputDialog>
 #include <QDesktopWidget>
 #include <QtWebKitWidgets/QWebFrame>
-#endif
 
 #include <algorithm> // std::sort()
 
