@@ -418,6 +418,7 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
 
 void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+	/*
 	QVariant value = index.data();
 	if ( value.isValid() && value.canConvert(QVariant::Bool) ) {
 		QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(mTreeWidget->indexWidget(index));
@@ -429,7 +430,9 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 			}
 			checkBoxEditor->setPalette(pal);
 		}
-	}
+	} else
+		QStyledItemDelegate::paint(painter, option, index);
+	*/
 	QStyledItemDelegate::paint(painter, option, index);
 }
 
@@ -455,28 +458,22 @@ EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 	setStatusTip(isGlobal ? tr("Global emulator configuration") : tr("Machine specific emulator configuration"));
 	loadActive = changed = false;
 	settingsGroup = group;
-	delegate = new EmulatorOptionDelegate(this, this);
-	connect(delegate, SIGNAL(editorDataChanged(QWidget *, QTreeWidgetItem *)), this, SLOT(updateEmuOptActions(QWidget *, QTreeWidgetItem *)));
 	setColumnCount(3);  
-	setItemDelegateForColumn(QMC2_EMUOPT_COLUMN_VALUE, delegate);
 	setAlternatingRowColors(true);
 	headerItem()->setText(0, tr("Option / Attribute"));
 	headerItem()->setText(1, tr("Value"));
 	headerItem()->setText(2, tr("Actions"));
-#if QT_VERSION < 0x050000
-	header()->setClickable(false);
-	header()->setMovable(false);
-	header()->setResizeMode(QHeaderView::Interactive);
-#else
 	header()->setSectionsClickable(false);
 	header()->setSectionsMovable(false);
 	header()->setSectionResizeMode(QHeaderView::Interactive);
-#endif
 	header()->setStretchLastSection(true);
 	restoreHeaderState();
 	setColumnHidden(0, false);
 	setColumnHidden(1, false);
 	setColumnHidden(2, false);
+	delegate = new EmulatorOptionDelegate(this, this);
+	connect(delegate, SIGNAL(editorDataChanged(QWidget *, QTreeWidgetItem *)), this, SLOT(updateEmuOptActions(QWidget *, QTreeWidgetItem *)));
+	setItemDelegateForColumn(QMC2_EMUOPT_COLUMN_VALUE, delegate);
 	if ( templateMap.isEmpty() )
 		createTemplateMap();
 	createMap();
