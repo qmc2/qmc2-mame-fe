@@ -951,7 +951,7 @@
 			<description lang="us" text="LUA script to execute after machine boot"/>
 			<description lang="de" text="Nach dem Boot der Maschine auszuführendes LUA-Skript"/>
 		</option>
-		<option default="false" name="console" type="bool" wip="true">
+		<option default="false" name="console" type="bool">
 			<description lang="us" text="Enable emulator LUA console"/>
 			<description lang="de" text="Emulator LUA Konsole aktivieren"/>
 		</option>
