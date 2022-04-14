@@ -4,7 +4,7 @@
 #include <qglobal.h>
 #include "macros.h"
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 
 #if defined(QMC2_OS_UNIX)
 #include <QX11EmbedContainer>

@@ -537,7 +537,7 @@ void MachineListViewer::on_treeView_activated(const QModelIndex &)
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				qmc2MainWindow->on_actionPlayEmbedded_triggered();
 				break;

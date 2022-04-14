@@ -77,7 +77,7 @@ ComponentInfo *ComponentSetup::initComponent1()
 	componentInfo->setLongTitle(QMC2_FOREIGN_INDEX, tr("Foreign emulator list"));
 	componentInfo->setIcon(QMC2_FOREIGN_INDEX, QIcon(QString::fromUtf8(":/data/img/alien.png")));
 	componentInfo->setWidget(QMC2_FOREIGN_INDEX, qmc2MainWindow->tabWidgetMachineList->widget(QMC2_FOREIGN_INDEX));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	componentInfo->setShortTitle(QMC2_EMBED_INDEX, tr("Embedded emulators"));
 	componentInfo->setLongTitle(QMC2_EMBED_INDEX, tr("Embedded emulators"));
 	componentInfo->setIcon(QMC2_EMBED_INDEX, QIcon(QString::fromUtf8(":/data/img/embed.png")));

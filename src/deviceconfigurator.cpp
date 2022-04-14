@@ -322,7 +322,7 @@ DeviceConfigurator::DeviceConfigurator(QString machine, QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -370,7 +370,7 @@ DeviceConfigurator::DeviceConfigurator(QString machine, QWidget *parent) :
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 	actionChooserPlay = action;
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -1116,7 +1116,7 @@ void DeviceConfigurator::actionRemoveConfiguration_activated()
 void DeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *item)
 {
 	switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		case QMC2_LAUNCH_MODE_EMBEDDED:
 			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 			break;
@@ -1626,7 +1626,7 @@ void DeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(const
 {
 	modelIndexFileModel = treeViewFileChooser->indexAt(p);
 	actionChooserPlay->setVisible(true);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	actionChooserPlayEmbedded->setVisible(true);
 #endif
 	if ( modelIndexFileModel.isValid() ) {
@@ -1640,7 +1640,7 @@ void DeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(const
 			actionChooserToggleArchive->setVisible(false);
 		if ( m_fileModel->isFolder(modelIndexFileModel) ) {
 			actionChooserPlay->setVisible(false);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			actionChooserPlayEmbedded->setVisible(false);
 #endif
 			actionChooserOpenFolder->setVisible(true);
@@ -1673,7 +1673,7 @@ void DeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &ind
 		treeViewFileChooser_openFolder();
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 				break;

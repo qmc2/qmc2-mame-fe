@@ -54,7 +54,7 @@
 #endif
 #include "deviceconfigurator.h"
 #include "softwarelist.h"
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 #include "embedder.h"
 #include "embedderopt.h"
 #endif
@@ -236,7 +236,7 @@ Options::Options(QWidget *parent) :
 	comboBoxDefaultLaunchMode->setVisible(false);
 #endif
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
 
@@ -263,7 +263,7 @@ Options::Options(QWidget *parent) :
 	qmc2ShortcutHash.insert("Ctrl+O", QPair<QString, QAction *>(tr("Open options dialog"), 0));
 #endif
 	qmc2ShortcutHash.insert("Ctrl+P", QPair<QString, QAction *>(tr("Play (independent)"), 0));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	qmc2ShortcutHash.insert("Ctrl+Shift+P", QPair<QString, QAction *>(tr("Play (embedded)"), 0));
 #endif
 #if !defined(QMC2_OS_MAC)
@@ -445,7 +445,7 @@ Options::~Options()
 
 void Options::apply()
 {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
 		qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 		qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -697,7 +697,7 @@ void Options::apply()
 		qmc2SoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
 		qmc2SoftwareList->toolButtonFavoritesOptions->setIconSize(iconSize);
 		qmc2SoftwareList->toolButtonPlay->setIconSize(iconSize);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		qmc2SoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
 #endif
 		qmc2SoftwareList->toolButtonToggleSoftwareInfo->setIconSize(iconSize);
@@ -741,7 +741,7 @@ void Options::apply()
 	if ( tabBar )
 		tabBar->setIconSize(iconSizeMiddle);
 	qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	for (int i = 0; i < qmc2MainWindow->tabWidgetEmbeddedEmulators->count(); i++) {
 		Embedder *embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(i);
 		embedder->adjustIconSizes();
@@ -1182,7 +1182,7 @@ void Options::on_pushButtonApply_clicked()
 
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
 		if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
@@ -2430,7 +2430,7 @@ void Options::applyDelayed()
 			if ( componentInfo->appliedFeatureList().contains(QMC2_FOREIGN_INDEX) ) {
 				int index = qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabForeignEmulators);
 				int foreignIndex = componentInfo->appliedFeatureList().indexOf(QMC2_FOREIGN_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 				int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 				if ( embedIndex >= 0 && embedIndex < foreignIndex )
 					if ( qmc2MainWindow->tabWidgetMachineList->indexOf(qmc2MainWindow->tabEmbeddedEmus) < 0 )
@@ -2473,7 +2473,7 @@ void Options::applyDelayed()
 	}
 	checkPlaceholderStatus();
 	// hide / show the menu bar
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( qmc2MainWindow->tabWidgetMachineList->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
 		qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #else

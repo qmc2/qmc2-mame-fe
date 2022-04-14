@@ -662,21 +662,26 @@
 #define QMC2_WINDOWS_MEMORY_INFO_ENABLED
 #endif
 
-// X11 and Windows only: embedder specific delays (in ms)
+// Currently no OS: embedder supported?
+#ifdef QMC2_EMBEDDER_SUPPORTED
+#undef QMC2_EMBEDDER_SUPPORTED
+#endif
+
+// Currently no OS: embedder specific delays (in ms)
 #define QMC2_EMBED_DELAY			250
 #define QMC2_EMBED_MAXIMIZE_DELAY		100
 #define QMC2_EMBED_FOCUS_DELAY			100
 #define QMC2_EMBED_PAUSERESUME_DELAY		250
 #define QMC2_EMBED_RELEASE_DELAY		25
 
-// X11 and Windows only: embedder snapshot item default size (100% zoom)
+// Currently no OS: embedder snapshot item default size (100% zoom)
 #define QMC2_EMBED_SNAPSHOT_DEFAULT_ITEM_SIZE	50.0
 
-// maximum number of retries to find an emulator window via xlib (we'll wait for up to three seconds for the emulator to get ready)
+// Currently no OS: maximum number of retries to find an emulator window via xlib (we'll wait for up to three seconds for the emulator to get ready)
 #define QMC2_MAX_XWININFO_RETRIES		60
 #define QMC2_XWININFO_DELAY			50
 
-// same for the Windows world
+// Currently no OS: same for the Windows world
 #define QMC2_MAX_WININFO_RETRIES		60
 #define QMC2_WININFO_DELAY			50
 

@@ -467,7 +467,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	labelMachineStatus->setVisible(false);
 	labelMachineStatus->setPalette(qmc2StatusColorBlue);
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	embedderCornerWidget = new QWidget(tabWidgetEmbeddedEmulators);
 	embedderCornerLayout = new QHBoxLayout(embedderCornerWidget);
 	embedderCornerLayout->setContentsMargins(0, 0, 0, 0);
@@ -673,7 +673,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	QString s;
 
 	qmc2EmulatorMenu = new QMenu(0);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Embed emulator widget");
 	action = qmc2EmulatorMenu->addAction(tr("&Embed"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -699,7 +699,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = qmc2ForeignIDsMenu->addAction(tr("Play &embedded"));
 	contextMenuPlayActions.append(action);
@@ -715,7 +715,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = qmc2MachineMenu->addAction(tr("Play &embedded"));
 	contextMenuPlayActions.append(action);
@@ -759,7 +759,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = qmc2SearchMenu->addAction(tr("Play &embedded"));
 	contextMenuPlayActions.append(action);
@@ -804,7 +804,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = qmc2FavoritesMenu->addAction(tr("Play &embedded"));
 	contextMenuPlayActions.append(action);
@@ -859,7 +859,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected machine (embedded)");
 	action = qmc2PlayedMenu->addAction(tr("Play &embedded"));
 	contextMenuPlayActions.append(action);
@@ -1473,7 +1473,7 @@ void MainWindow::tabWidgetMachineList_tabMoved(int from, int to)
 
 	int adjustedFrom = from;
 	int adjustedTo = to;
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( embedIndex >= 0 ) {
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 ) {
@@ -1845,7 +1845,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 
 	QStringList extraOpts;
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( qmc2StartEmbedded )
 		extraOpts << "enable-window" << "disable-maximize" << "enable-keepaspect" << "enable-rotate" << "disable-ror" << "disable-rol";
 #endif
@@ -2144,7 +2144,7 @@ void MainWindow::on_vSplitter_splitterMoved(int pos, int index)
 
 void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) != tabWidgetMachineList->currentIndex() || (tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
 		hSplitterSizes = hSplitter->sizes();
 	} else if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) == tabWidgetMachineList->currentIndex() && toolButtonEmbedderMaximizeToggle->isChecked() ) {
@@ -3247,7 +3247,7 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 				if ( qmc2DemoModeDialog->demoModeRunning )
 					return;
 			switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 				case QMC2_LAUNCH_MODE_EMBEDDED:
 					QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
 					break;
@@ -3292,7 +3292,7 @@ void MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item)
 
 void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	static int lastTabWidgetMachineListIndex = -1;
 #endif
 
@@ -3307,7 +3307,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 	if ( componentInfo->appliedFeatureList().count() <= currentIndex || currentIndex < 0 )
 		return;
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( hSplitterSizes.count() > 1 && componentInfo->appliedFeatureList().at(currentIndex) != QMC2_EMBED_INDEX )
 		hSplitter->setSizes(hSplitterSizes);
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
@@ -3323,7 +3323,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 		case QMC2_MACHINELIST_INDEX:
 			actionToggleTagCursorDown->setVisible(true);
 			actionToggleTagCursorUp->setVisible(true);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			if ( lastTabWidgetMachineListIndex >= 0 )
 				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
@@ -3370,7 +3370,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 		case QMC2_SEARCH_INDEX:
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			if ( lastTabWidgetMachineListIndex >= 0 )
 				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
@@ -3392,7 +3392,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 		case QMC2_FAVORITES_INDEX:
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			if ( lastTabWidgetMachineListIndex >= 0 )
 				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
@@ -3411,7 +3411,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 		case QMC2_PLAYED_INDEX:
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			if ( lastTabWidgetMachineListIndex >= 0 )
 				if ( componentInfo->appliedFeatureList().at(lastTabWidgetMachineListIndex) != QMC2_EMBED_INDEX )
 					QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
@@ -3430,7 +3430,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 		case QMC2_FOREIGN_INDEX:
 			actionToggleTagCursorDown->setVisible(true);
 			actionToggleTagCursorUp->setVisible(true);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
 			statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
 			toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -3443,7 +3443,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 			}
 			break;
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		case QMC2_EMBED_INDEX:
 			actionToggleTagCursorDown->setVisible(false);
 			actionToggleTagCursorUp->setVisible(false);
@@ -3481,7 +3481,7 @@ void MainWindow::on_tabWidgetMachineList_currentChanged(int currentIndex)
 	} else
 		labelMachineStatus->setVisible(false);
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	lastTabWidgetMachineListIndex = currentIndex;
 #endif
 }
@@ -3863,7 +3863,7 @@ void MainWindow::showAttachedView(const QString &name)
 	}
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
@@ -4763,7 +4763,7 @@ void MainWindow::on_treeWidgetMachineList_itemActivated(QTreeWidgetItem *item, i
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				on_actionPlayEmbedded_triggered();
 				break;
@@ -4786,7 +4786,7 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				on_actionPlayEmbedded_triggered();
 				break;
@@ -4817,7 +4817,7 @@ void MainWindow::on_treeWidgetForeignIDs_itemActivated(QTreeWidgetItem *item, in
 			launchForeignID = true;
 			qmc2StartEmbedded = false;
 			switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 				case QMC2_LAUNCH_MODE_EMBEDDED:
 					QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
 					break;
@@ -5009,7 +5009,7 @@ void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint 
 	}
 }
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 void MainWindow::action_embedEmulator_triggered()
 {
 	qmc2StartEmbedded = false;
@@ -5697,7 +5697,7 @@ void MainWindow::mapJoystickFunction(QString function)
 	QWidget *focusWidget = QApplication::focusWidget();
 
 	if ( focusWidget ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		// don't map joystick functions when they are really meant for an embedded emulator
 		if ( focusWidget->objectName() == "QMC2_EMBED_CONTAINER" )
 			return;
@@ -5963,7 +5963,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 		ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		int currentIndex = tabWidgetMachineList->currentIndex();
 		int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 		if ( embedIndex >= 0 && embedIndex <= currentIndex )
@@ -5986,7 +5986,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitterSizes.at(0), vSplitterSizes.at(1)));
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSoftwareDetail", QSize(vSplitterSizesSoftwareDetail.at(0), vSplitterSizesSoftwareDetail.at(1)));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		if ( componentInfo->appliedFeatureList().at(currentIndex) == QMC2_EMBED_INDEX )
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", qmc2LastListIndex);
 		else
@@ -6139,7 +6139,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 	log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
 	if ( qmc2ProcessManager->procMap.count() > 0 ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		for (int j = 0; j < tabWidgetEmbeddedEmulators->count(); j++) {
 			Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
 			if ( embedder )
@@ -6359,7 +6359,7 @@ void MainWindow::init()
 	qmc2GhostImagePixmap.isGhost = true;
 
 	qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineListTab", 0).toInt();
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
 		qmc2LastListIndex = 0;
 #endif
@@ -6509,7 +6509,7 @@ void MainWindow::viewFullDetail()
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
@@ -6535,7 +6535,7 @@ void MainWindow::viewParentClones()
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
@@ -6561,7 +6561,7 @@ void MainWindow::viewByCategory()
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
@@ -6602,7 +6602,7 @@ void MainWindow::viewByVersion()
 {
 	ComponentInfo *componentInfo = qmc2ComponentSetup->componentInfoHash().value("Component1");
 	int index = componentInfo->appliedFeatureList().indexOf(QMC2_MACHINELIST_INDEX);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	int embedIndex = componentInfo->appliedFeatureList().indexOf(QMC2_EMBED_INDEX);
 	if ( index > 0 && embedIndex >= 0 && embedIndex <= index )
 		if ( tabWidgetMachineList->indexOf(tabEmbeddedEmus) < 0 )
@@ -8033,7 +8033,7 @@ void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, 
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				on_actionPlayEmbedded_triggered();
 				break;
@@ -8116,7 +8116,7 @@ void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, i
 	qmc2StartEmbedded = false;
 	if ( !qmc2IgnoreItemActivation ) {
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				on_actionPlayEmbedded_triggered();
 				break;
@@ -10772,7 +10772,7 @@ void MainWindow::initShortcuts()
 	qmc2ShortcutHash["Ctrl+O"].second = actionOptions;
 #endif
 	qmc2ShortcutHash["Ctrl+P"].second = actionPlay;
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	qmc2ShortcutHash["Ctrl+Shift+P"].second = actionPlayEmbedded;
 #endif
 #if !defined(QMC2_OS_MAC)

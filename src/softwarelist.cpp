@@ -163,7 +163,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
 	toolButtonSoftwareStates->setIconSize(iconSize);
 	toolButtonAnalyzeSoftware->setIconSize(iconSize);
 	toolButtonRebuildSoftware->setIconSize(iconSize);
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
 	toolButtonPlayEmbedded->setVisible(false);
@@ -195,7 +195,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent) :
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playActivated()));
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	s = tr("Play selected software (embedded)");
 	action = softwareListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
@@ -3203,7 +3203,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -3230,7 +3230,7 @@ void SoftwareList::on_treeWidgetKnownSoftwareTree_itemActivated(QTreeWidgetItem 
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -3257,7 +3257,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;
@@ -3284,7 +3284,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
 		switch ( qmc2DefaultLaunchMode ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
 				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
 				break;

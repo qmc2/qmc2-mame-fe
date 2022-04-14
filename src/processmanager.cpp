@@ -227,7 +227,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( il.count() > 0 ) {
 		QTreeWidgetItem *item = qmc2MainWindow->treeWidgetEmulators->takeTopLevelItem(qmc2MainWindow->treeWidgetEmulators->indexOfTopLevelItem(il[0]));
 		if ( item ) {
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			Embedder *embedder = 0;
 			for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
 				if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(item->text(QMC2_EMUCONTROL_COLUMN_ID))) )
@@ -319,7 +319,7 @@ void ProcessManager::started()
 		videoWasPlaying = false;
 #endif
 
-#if (defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000) || defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 	if ( qmc2StartEmbedded ) {
 		qmc2MainWindow->treeWidgetEmulators->clearSelection();
 		procItem->setSelected(true);
