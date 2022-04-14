@@ -1374,7 +1374,7 @@ ifneq '$(ARCH)' 'Windows'
 endif
 	@$(ECHO) "MKDIR                  UNIX command mkdir                            $(MKDIR)"
 	@$(ECHO) "MKSPEC                 Qt mkspec to be used (empty = default)        $(MKSPEC)"
-	@$(ECHO) "MULTIMEDIA             Enabled Qt Multimedia features (0, 1)         $(MULTIMEDIA)"
+	@$(ECHO) "MULTIMEDIA             Enable Qt Multimedia features (0, 1)          $(MULTIMEDIA)"
 	@$(ECHO) "MV                     UNIX command mv                               $(MV)"
 	@$(ECHO) "OSCFG                  Use global OS configuration (0, 1)            $(OSCFG)"
 	@$(ECHO) "OSNAME                 Target system's OS name                       $(OSNAME)"
