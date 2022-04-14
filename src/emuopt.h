@@ -23,11 +23,11 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
 	public:
 		EmulatorOptionDelegate(QTreeWidget *treeWidget = 0, QObject *parent = 0);
 
-		virtual QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
-		virtual void setEditorData(QWidget *, const QModelIndex &) const;
-		virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const;
-		virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
-		virtual void paint(QPainter *, const QStyleOptionViewItem &, const QModelIndex &) const;
+		virtual QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
+		virtual void setEditorData(QWidget *, const QModelIndex &) const override;
+		virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const override;
+		virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
+		virtual void paint(QPainter *, const QStyleOptionViewItem &, const QModelIndex &) const override;
 
 		static QString boolToString(bool b) { return (b ? QString("true") : QString("false")); }
 		static bool stringToBool(QString s) { return (s == "true" ? true : false); }
