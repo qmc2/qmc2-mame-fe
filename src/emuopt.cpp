@@ -439,6 +439,8 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 	QTreeWidget(parent)
 {
+	if ( templateMap.isEmpty() )
+		createTemplateMap();
 	if ( typeNameToIndexHash.isEmpty() ) {
 		typeNameToIndexHash.insert("checkBoxEditor", QMC2_EMUOPT_TYPE_BOOL);
 		typeNameToIndexHash.insert("spinBoxEditor", QMC2_EMUOPT_TYPE_INT);
@@ -474,8 +476,6 @@ EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 	delegate = new EmulatorOptionDelegate(this, this);
 	connect(delegate, SIGNAL(editorDataChanged(QWidget *, QTreeWidgetItem *)), this, SLOT(updateEmuOptActions(QWidget *, QTreeWidgetItem *)));
 	setItemDelegateForColumn(QMC2_EMUOPT_COLUMN_VALUE, delegate);
-	if ( templateMap.isEmpty() )
-		createTemplateMap();
 	createMap();
 }
 
