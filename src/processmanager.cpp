@@ -139,7 +139,7 @@ void ProcessManager::terminate(ushort index)
 {
 	QProcess *proc = process(index);
 	if ( proc ) {
-#if defined(QMC2_OS_WIN)
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 		Embedder *embedder = 0;
 		for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
 			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(index)) )
