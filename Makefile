@@ -1004,7 +1004,7 @@ $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
 $(PROJECT)-bin: lang $(QMAKEFILE) 
 endif
-	@$(ECHO) "Updating build of QMC2 v$(VERSION)"
+	@$(ECHO) "Updating build of QMC2 $(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QT_LIB48PLUS)' 'true'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null
@@ -1018,14 +1018,14 @@ else
 	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null
 endif
 endif
-	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
+	@$(ECHO) "Build of QMC2 $(VERSION) complete"
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
 else
 $(QMAKEFILE): $(PROJECT).pro
 endif
-	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
+	@$(ECHO) "Configuring build of QMC2 $(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(FORCE_MINGW) SDL=$(SDL) $(QMAKE_CONF) $(SDL_LIBS) $(SDL_INCLUDEPATH) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_L_LIBDIRFLAGS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
@@ -1051,7 +1051,7 @@ $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
 $(PROJECT)-bin: lang $(QMAKEFILE)
 endif
-	@$(ECHO) "Updating build of QMC2 v$(VERSION)"
+	@$(ECHO) "Updating build of QMC2 $(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(QT_LIB48PLUS)' 'true'
 	+@$(MAKE) -f $(QMAKEFILE)
@@ -1065,14 +1065,14 @@ else
 	+@$(MAKE) -f $(QMAKEFILE)
 endif
 endif
-	@$(ECHO) "Build of QMC2 v$(VERSION) complete"
+	@$(ECHO) "Build of QMC2 $(VERSION) complete"
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
 else
 $(QMAKEFILE): $(PROJECT).pro
 endif
-	@$(ECHO) "Configuring build of QMC2 v$(VERSION)"
+	@$(ECHO) "Configuring build of QMC2 $(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
@@ -1103,7 +1103,7 @@ install: bin macdeployqt
 else
 install: bin
 endif
-	@$(ECHO) "Installing QMC2 v$(VERSION)"
+	@$(ECHO) "Installing QMC2 $(VERSION)"
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
@@ -1157,7 +1157,7 @@ distclean: clean tools-clean arcade-clean
 endif
 
 clean: $(QMAKEFILE)
-	@$(ECHO) "Cleaning up build of QMC2 v$(VERSION)"
+	@$(ECHO) "Cleaning up build of QMC2 $(VERSION)"
 ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) error.log
@@ -1234,7 +1234,7 @@ NOW = $(shell $(DATE))
 SRCDIR = $(shell $(BASENAME) `pwd`)
 snapshot: snap
 snap: distclean
-	@$(ECHO) -n "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)... "
+	@$(ECHO) -n "Creating source distribution snapshot for QMC2 $(VERSION)-$(NOW)... "
 	@$(CD) .. ; \
 	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
 	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
@@ -1242,7 +1242,7 @@ snap: distclean
 
 distribution: dist
 dist: distclean
-	@$(ECHO) -n "Creating source distribution archive for QMC2 v$(VERSION)... "
+	@$(ECHO) -n "Creating source distribution archive for QMC2 $(VERSION)... "
 	@$(CD) .. ; \
 	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
 	$(TAR) -c -f - --exclude-vcs $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
