@@ -1,6 +1,13 @@
 #include <QProcess>
 #include <QThread>
 #include <QApplication>
+#if defined(QMC2_OS_MAC) || defined(QMC2_OS_WIN)
+#include <QSysInfo>
+#endif
+
+#if QMC2_JOYSTICK == 1
+#include <SDL.h>
+#endif
 
 #include "about.h"
 #include "macros.h"
@@ -11,20 +18,9 @@
 #if defined(QMC2_OS_WIN)
 #include "windows_tools.h"
 #endif
-
-#if QMC2_JOYSTICK == 1
-#include <SDL.h>
-#endif
-
 #if QMC2_USE_PHONON_API
 #include "qmc2_phonon.h"
 #endif
-
-#if defined(QMC2_OS_MAC) || defined(QMC2_OS_WIN)
-#include <QSysInfo>
-#endif
-
-#include <QLibraryInfo>
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -114,12 +110,7 @@ void About::showEvent(QShowEvent *e)
 #endif
 		"<p><b>" + tr("Emulator version:") + "</b><br>" + qmc2MachineList->emulatorVersion + "</p>" +
 		"<p><b>" + tr("Template information:") + "</b><br>" + tr("Emulator:") + " " + qmc2GlobalEmulatorOptions->templateEmulator + "<br>" + tr("Version:") + " " + qmc2GlobalEmulatorOptions->templateVersion + "<br>" + tr("Format:") + " " + qmc2GlobalEmulatorOptions->templateFormat + "</p>" +
-		"<p><b>" + tr("Qt version:") + "</b><br>" + tr("Compile-time:") + " " + QT_VERSION_STR + "<br>" + tr("Run-time:") + " " + qVersion() +
-#if QT_VERSION >= 0x050000
-		"</p>" +
-#else
-		"<br>" + tr("Build key:") + " " + QLibraryInfo::buildKey() + "</p>" +
-#endif
+		"<p><b>" + tr("Qt version:") + "</b><br>" + tr("Compile-time:") + " " + QT_VERSION_STR + "<br>" + tr("Run-time:") + " " + qVersion() + "</p>" +
 		"<p><b>" + tr("Qt library paths:") + "</b>" + libPaths + "</p>";
 #if QMC2_JOYSTICK == 1
 #if SDL_MAJOR_VERSION == 1
