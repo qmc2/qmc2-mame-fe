@@ -43,9 +43,9 @@ About::About(QWidget *parent)
 	adjustSize();
 
 #if defined(QMC2_OS_MAC)
-	macVersion = productVersion();
+	macVersion = QSysInfo::productVersion();
 #elif defined(QMC2_OS_WIN)
-	winVersion = productVersion();
+	winVersion = QSysInfo::productVersion();
 #endif
 }
 
