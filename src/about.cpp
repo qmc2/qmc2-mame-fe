@@ -43,42 +43,9 @@ About::About(QWidget *parent)
 	adjustSize();
 
 #if defined(QMC2_OS_MAC)
-	switch ( QSysInfo::MacintoshVersion ) {
-		case QSysInfo::MV_10_3: macVersion = tr("Mac OS X 10.3"); break;
-		case QSysInfo::MV_10_4: macVersion = tr("Mac OS X 10.4"); break;
-		case QSysInfo::MV_10_5: macVersion = tr("Mac OS X 10.5"); break;
-		case QSysInfo::MV_10_6: macVersion = tr("Mac OS X 10.6"); break;
-		case QSysInfo::MV_10_7: macVersion = tr("Mac OS X 10.7"); break;
-#if QT_VERSION >= 0x040803
-		case QSysInfo::MV_10_8: macVersion = tr("Mac OS X 10.8"); break;
-#endif
-#if QT_VERSION >= 0x050200 || (QT_VERSION >= 0x040806 && QT_VERSION < 0x050000)
-		case QSysInfo::MV_10_9: macVersion = tr("Mac OS X 10.9"); break;
-#endif
-#if QT_VERSION >= 0x050500 || (QT_VERSION >= 0x040807 && QT_VERSION < 0x050000)
-		case QSysInfo::MV_10_10: macVersion = tr("Mac OS X 10.10"); break;
-#endif
-		default: macVersion = tr("Mac OS X"); break;
-	}
+	macVersion = productVersion();
 #elif defined(QMC2_OS_WIN)
-	switch ( QSysInfo::WindowsVersion ) {
-		case QSysInfo::WV_4_0: winVersion = tr("Windows NT (Windows 4.0)"); break;
-		case QSysInfo::WV_5_0: winVersion = tr("Windows 2000 (Windows 5.0)"); break;
-		case QSysInfo::WV_5_1: winVersion = tr("Windows XP (Windows 5.1)"); break;
-		case QSysInfo::WV_5_2: winVersion = tr("Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)"); break;
-		case QSysInfo::WV_6_0: winVersion = tr("Windows Vista or Windows Server 2008 (Windows 6.0)"); break;
-		case QSysInfo::WV_6_1: winVersion = tr("Windows 7 or Windows Server 2008 R2 (Windows 6.1)"); break;
-#if QT_VERSION >= 0x040803
-		case QSysInfo::WV_6_2: winVersion = tr("Windows 8 (Windows 6.2)"); break;
-#endif
-#if QT_VERSION >= 0x050200 || (QT_VERSION >= 0x040806 && QT_VERSION < 0x050000)
-		case QSysInfo::WV_6_3: winVersion = tr("Windows 8.1 (Windows 6.3)"); break;
-#endif
-#if QT_VERSION >= 0x050500 || (QT_VERSION >= 0x040807 && QT_VERSION < 0x050000)
-		case QSysInfo::WV_10_0: winVersion = tr("Windows 10 (Windows 10.0)"); break;
-#endif
-		default: winVersion = tr("Windows"); break;
-	}
+	winVersion = productVersion();
 #endif
 }
 
@@ -125,11 +92,11 @@ void About::showEvent(QShowEvent *e)
 	labelTitle->setText(titleString);
 
 	QString projectInfoString =
-		"<p><b>" + tr("Project homepage:") + "</b><br><a href=\"http://qmc2.batcom-it.net/\">http://qmc2.batcom-it.net/</a></p>" +
+		"<p><b>" + tr("Project homepage:") + "</b><br><a href=\"https://qmc2.batcom-it.net/\">https://qmc2.batcom-it.net/</a></p>" +
 		"<p><b>" + tr("Development site:") + "</b><br><a href=\"https://github.com/qmc2/qmc2-mame-fe\">https://github.com/qmc2/qmc2-mame-fe</a></p>" +
 		"<p><b>" + tr("QMC2 development mailing list:") + "</b><br>qmc2-devel@lists.sourceforge.net (" + tr("subscription required") +")</p>" +
-		"<p><b>" + tr("List subscription:") + "</b><br><a href=\"http://lists.sourceforge.net/lists/listinfo/qmc2-devel\">https://lists.sourceforge.net/lists/listinfo/qmc2-devel</a></p>" +
-		"<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"http://tracker.batcom-it.net/view_all_bug_page.php?project_id=1\">http://tracker.batcom-it.net/view_all_bug_page.php?project_id=1</a></p>";
+		"<p><b>" + tr("List subscription:") + "</b><br><a href=\"https://lists.sourceforge.net/lists/listinfo/qmc2-devel\">https://lists.sourceforge.net/lists/listinfo/qmc2-devel</a></p>" +
+		"<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"https://tracker.batcom-it.net/view_all_bug_page.php?project_id=1\">https://tracker.batcom-it.net/view_all_bug_page.php?project_id=1</a></p>";
 
 	labelProjectInfo->setText(projectInfoString);
 
