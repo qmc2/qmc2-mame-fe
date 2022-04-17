@@ -64,9 +64,9 @@ QString optionRelativeTo;
 #define _MAX (2 * 1024 * 1024)
 
 EmulatorOptionDelegate::EmulatorOptionDelegate(QTreeWidget *treeWidget, QObject *parent) :
-	QStyledItemDelegate(parent)
+	QStyledItemDelegate(parent),
+	mTreeWidget(treeWidget)
 {
-	mTreeWidget = treeWidget;
 }
 
 void EmulatorOptionDelegate::dataChanged()
@@ -202,7 +202,8 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 
 void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-	switch ( EmulatorOptions::typeNameToIndexHash.value(editor->whatsThis()) ) {
+	optionType = EmulatorOptions::typeNameToIndexHash.value(editor->whatsThis());
+	switch ( optionType ) {
 		case QMC2_EMUOPT_TYPE_BOOL: {
 			bool value = index.model()->data(index, Qt::EditRole).toBool();
 			QCheckBox *checkBoxEditor = static_cast<QCheckBox *>(editor);
