@@ -21,6 +21,7 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
 	Q_OBJECT
 
 	public:
+		using QStyledItemDelegate::QStyledItemDelegate;
 		EmulatorOptionDelegate(QTreeWidget *treeWidget = 0, QObject *parent = 0);
 
 		virtual QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
