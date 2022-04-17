@@ -449,8 +449,6 @@ void EmulatorOptionDelegate::paint(QPainter *painter, const QStyleOptionViewItem
 EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 	QTreeWidget(parent)
 {
-	if ( templateMap.isEmpty() )
-		createTemplateMap();
 	if ( typeNameToIndexHash.isEmpty() ) {
 		typeNameToIndexHash.insert("checkBoxEditor", QMC2_EMUOPT_TYPE_BOOL);
 		typeNameToIndexHash.insert("spinBoxEditor", QMC2_EMUOPT_TYPE_INT);
@@ -463,6 +461,8 @@ EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 		typeNameToIndexHash.insert("colorEditor", QMC2_EMUOPT_TYPE_COLOR);
 		typeNameToIndexHash.insert("lineEditEditor", QMC2_EMUOPT_TYPE_STRING);
 	}
+	if ( templateMap.isEmpty() )
+		createTemplateMap();
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
 	lineEditSearch = 0;
 	isGlobal = group.contains("Global");
