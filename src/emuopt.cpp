@@ -453,7 +453,6 @@ EmulatorOptions::EmulatorOptions(const QString &group, QWidget *parent) :
 		typeNameToIndexHash.insert("colorEditor", QMC2_EMUOPT_TYPE_COLOR);
 		typeNameToIndexHash.insert("lineEditEditor", QMC2_EMUOPT_TYPE_STRING);
 	}
-	templateVersion = tr("unknown");
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(searchTimeout()));
 	lineEditSearch = 0;
 	isGlobal = group.contains("Global");

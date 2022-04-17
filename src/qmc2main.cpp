@@ -10888,11 +10888,7 @@ int main(int argc, char **argv)
 	qsrand(QDateTime::currentDateTime().toTime_t());
 
 	// install message handler
-#if QT_VERSION < 0x050000
-	qInstallMsgHandler(myQtMessageHandler);
-#else
 	qInstallMessageHandler(myQtMessageHandler);
-#endif
 
 	// prepare application and resources
 	QApplication qmc2App(argc, argv);
@@ -10962,12 +10958,6 @@ int main(int argc, char **argv)
 	// finalize initial setup
 	qmc2Options->apply();
 	qmc2GuiReady = true;
-
-#if QT_VERSION < 0x050000
-	// this effectively enables support for unicode characters in C strings
-	QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
-#endif
 
 	// create & show the greeting string
 	QString greeting(QObject::tr("M.A.M.E. Catalog / Launcher II v") + QString(XSTR(QMC2_VERSION)) +
