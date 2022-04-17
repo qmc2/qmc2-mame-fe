@@ -79,7 +79,7 @@ void EmulatorOptionDelegate::dataChanged()
 	}
 }
 
-QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &/*index*/) const
+QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 	switch ( optionType ) {
 		case QMC2_EMUOPT_TYPE_BOOL: {
@@ -187,8 +187,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(colorEditor, SIGNAL(dataChanged()), this, SLOT(dataChanged()));
 			return colorEditor;
 		}
-		case QMC2_EMUOPT_TYPE_STRING:
-		default: {
+		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEditEditor = new QLineEdit(parent);
 			lineEditEditor->setWhatsThis("lineEditEditor");
 			lineEditEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
@@ -197,6 +196,8 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			connect(lineEditEditor, SIGNAL(textEdited(const QString &)), this, SLOT(dataChanged()));
 			return lineEditEditor;
 		}
+		default:
+			return QStyledItemDelegate::createEditor(parent, option, index);
 	}
 }
 
@@ -321,13 +322,15 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			colorEditor->updateColor();
 			}
 			break;
-		case QMC2_EMUOPT_TYPE_STRING:
-		default: {
+		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEdit = qobject_cast<QLineEdit *>(editor);
 			int cPos = lineEdit->cursorPosition();
 			lineEdit->setText(index.model()->data(index, Qt::EditRole).toString());
 			lineEdit->setCursorPosition(cPos);
 			}
+			break;
+		default:
+			QStyledItemDelegate::setEditorData(editor, index);
 			break;
 	}
 	emit editorDataChanged(editor, ((EmulatorOptions*)mTreeWidget)->index2item(index));
@@ -393,11 +396,13 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 			model->setData(index, colorEditor->argbValue());
 			}
 			break;
-		case QMC2_EMUOPT_TYPE_STRING:
-		default: {
+		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEdit = qobject_cast<QLineEdit*>(editor);
 			model->setData(index, lineEdit->text());
 			}
+			break;
+		default:
+			QStyledItemDelegate::setModelData(editor, model, index);
 			break;
 	}
 }
