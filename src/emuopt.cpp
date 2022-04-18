@@ -552,7 +552,7 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 		QLocale cLoc(QLocale::C);
 		switch ( typeNameToIndexHash.value(editor->whatsThis()) ) {
 			case QMC2_EMUOPT_TYPE_BOOL: {
-				QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
+				QCheckBox *checkBoxEditor = qobject_cast<QCheckBox*>(editor);
 				if ( checkBoxEditor->isChecked() )
 					currentValue = "true";
 				else
@@ -560,18 +560,18 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_INT: {
-				QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+				QSpinBox *spinBox = qobject_cast<QSpinBox*>(editor);
 				currentValue = QString::number(spinBox->value());
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_FLOAT: {
-				QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox*>(editor);
+				QDoubleSpinBox *doubleSpinBox = qobject_cast<QDoubleSpinBox*>(editor);
 				currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
 				defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_FLOAT2: {
-				FloatEditWidget *float2Editor = static_cast<FloatEditWidget*>(editor);
+				FloatEditWidget *float2Editor = qobject_cast<FloatEditWidget*>(editor);
 				currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
 				QStringList defaultSubValues = defaultValue.split(",");
 				double dv1, dv2;
@@ -594,7 +594,7 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_FLOAT3: {
-				FloatEditWidget *float3Editor = static_cast<FloatEditWidget*>(editor);
+				FloatEditWidget *float3Editor = qobject_cast<FloatEditWidget*>(editor);
 				currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
 				QStringList defaultSubValues = defaultValue.split(",");
 				double dv1, dv2, dv3;
@@ -621,28 +621,28 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_FILE: {
-				FileEditWidget *fileEditor = static_cast<FileEditWidget*>(editor);
+				FileEditWidget *fileEditor = qobject_cast<FileEditWidget*>(editor);
 				currentValue = fileEditor->lineEditFile->text();
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_DIRECTORY: {
-				DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
+				DirectoryEditWidget *directoryEditor = qobject_cast<DirectoryEditWidget*>(editor);
 				currentValue = directoryEditor->lineEditDirectory->text();
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_COMBO: {
-				ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
+				ComboBoxEditWidget *comboEditor = qobject_cast<ComboBoxEditWidget*>(editor);
 				currentValue = comboEditor->comboBoxValue->lineEdit()->text();
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_COLOR: {
-				ColorWidget *colorEditor = static_cast<ColorWidget*>(editor);
+				ColorWidget *colorEditor = qobject_cast<ColorWidget*>(editor);
 				currentValue = colorEditor->argbValue();
 				break;
 			}
 			case QMC2_EMUOPT_TYPE_STRING:
 			default: {
-				QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+				QLineEdit *lineEdit = qobject_cast<QLineEdit*>(editor);
 				currentValue = lineEdit->text();
 				break;
 			}
