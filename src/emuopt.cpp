@@ -407,7 +407,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 	}
 }
 
-void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
+void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 	editor->setGeometry(option.rect);
 	switch ( EmulatorOptions::typeNameToIndexHash.value(editor->whatsThis()) ) {
@@ -427,6 +427,7 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
 			}
 			break;
 		default:
+			QStyledItemDelegate::updateEditorGeometry(editor, option, index);
 			break;
 	}
 }
