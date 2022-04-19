@@ -307,6 +307,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	phononAudioPlayer(0),
 	phononAudioOutput(0),
 #endif
+	mediaPlayer(0),
 	m_ignoreSelectionChange(false),
 	m_ignoreDetailTabChange(false),
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -315,8 +316,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_focusSearchResults(false),
 	m_lastMlvSender(0),
 	m_attachedViewer(0),
-	m_searchBoxKeyEventFilter(0),
-	mediaPlayer(0)
+	m_searchBoxKeyEventFilter(0)
 {
 	setUpdatesEnabled(false);
 	setVisible(false);
