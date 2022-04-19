@@ -207,7 +207,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 	switch ( optionType ) {
 		case QMC2_EMUOPT_TYPE_BOOL: {
 			QCheckBox *checkBoxEditor = qobject_cast<QCheckBox *>(editor);
-			bool value = index.model()->data(index).toBool();
+			bool value = index.model()->data(index, Qt::EditRole).toBool();
 			checkBoxEditor->setChecked(value);
 			if ( value )
 				checkBoxEditor->setText("(" + tr("enabled") + ")");
@@ -221,7 +221,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			QLineEdit *lineEdit = spinBox->findChild<QLineEdit *>();
 			if ( lineEdit )
 				cPos = lineEdit->cursorPosition();
-			spinBox->setValue(index.model()->data(index).toInt());
+			spinBox->setValue(index.model()->data(index, Qt::EditRole).toInt());
 			if ( lineEdit )
 				lineEdit->setCursorPosition(cPos);
 			}
@@ -232,14 +232,14 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			QLineEdit *lineEdit = doubleSpinBox->findChild<QLineEdit *>();
 			if ( lineEdit )
 				cPos = lineEdit->cursorPosition();
-			doubleSpinBox->setValue(index.model()->data(index).toDouble());
+			doubleSpinBox->setValue(index.model()->data(index, Qt::EditRole).toDouble());
 			if ( lineEdit )
 				lineEdit->setCursorPosition(cPos);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT2: {
 			FloatEditWidget *float2Editor = qobject_cast<FloatEditWidget *>(editor);
-			QString value(index.model()->data(index).toString());
+			QString value(index.model()->data(index, Qt::EditRole).toString());
 			QStringList subValues(value.split(","));
 			int cPos = 0;
 			if ( subValues.count() > 0 ) {
@@ -262,7 +262,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT3: {
 			FloatEditWidget *float3Editor = qobject_cast<FloatEditWidget *>(editor);
-			QString value(index.model()->data(index).toString());
+			QString value(index.model()->data(index, Qt::EditRole).toString());
 			QStringList subValues(value.split(","));
 			int cPos = 0;
 			if ( subValues.count() > 0 ) {
@@ -294,20 +294,20 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = qobject_cast<FileEditWidget *>(editor);
 			int cPos = fileEditor->lineEditFile->cursorPosition();
-			fileEditor->lineEditFile->setText(index.model()->data(index).toString());
+			fileEditor->lineEditFile->setText(index.model()->data(index, Qt::EditRole).toString());
 			fileEditor->lineEditFile->setCursorPosition(cPos);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = qobject_cast<DirectoryEditWidget *>(editor);
 			int cPos = directoryEditor->lineEditDirectory->cursorPosition();
-			directoryEditor->lineEditDirectory->setText(index.model()->data(index).toString());
+			directoryEditor->lineEditDirectory->setText(index.model()->data(index, Qt::EditRole).toString());
 			directoryEditor->lineEditDirectory->setCursorPosition(cPos);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = qobject_cast<ComboBoxEditWidget *>(editor);
-			QString value(index.model()->data(index).toString());
+			QString value(index.model()->data(index, Qt::EditRole).toString());
 			int cPos = comboEditor->comboBoxValue->lineEdit()->cursorPosition();
 			comboEditor->comboBoxValue->lineEdit()->setText(value);
 			comboEditor->comboBoxValue->lineEdit()->setCursorPosition(cPos);
@@ -318,14 +318,14 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			break;
 		case QMC2_EMUOPT_TYPE_COLOR: {
 			ColorWidget *colorEditor = qobject_cast<ColorWidget *>(editor);
-			colorEditor->setArgb(index.model()->data(index).toString());
+			colorEditor->setArgb(index.model()->data(index, Qt::EditRole).toString());
 			colorEditor->updateColor();
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEdit = qobject_cast<QLineEdit *>(editor);
 			int cPos = lineEdit->cursorPosition();
-			lineEdit->setText(index.model()->data(index).toString());
+			lineEdit->setText(index.model()->data(index, Qt::EditRole).toString());
 			lineEdit->setCursorPosition(cPos);
 			}
 			break;
@@ -344,19 +344,19 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 			QCheckBox *checkBoxEditor = qobject_cast<QCheckBox*>(editor);
 			model->setData(index, QColor(0, 0, 0, 0), Qt::ForegroundRole);
 			model->setData(index, QFont("Helvetica", 1), Qt::FontRole);
-			model->setData(index, checkBoxEditor->isChecked());
+			model->setData(index, checkBoxEditor->isChecked(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_INT: {
 			QSpinBox *spinBox = qobject_cast<QSpinBox*>(editor);
 			spinBox->interpretText();
-			model->setData(index, spinBox->value());
+			model->setData(index, spinBox->value(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT: {
 			QDoubleSpinBox *doubleSpinBox = qobject_cast<QDoubleSpinBox*>(editor);
 			doubleSpinBox->interpretText();
-			model->setData(index, doubleSpinBox->value());
+			model->setData(index, doubleSpinBox->value(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT2: {
@@ -364,7 +364,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 			float2Editor->doubleSpinBox0->interpretText();
 			float2Editor->doubleSpinBox1->interpretText();
 			QLocale cLoc(QLocale::C);
-			model->setData(index, cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals()));
+			model->setData(index, cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT3: {
@@ -373,32 +373,32 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 			float3Editor->doubleSpinBox1->interpretText();
 			float3Editor->doubleSpinBox2->interpretText();
 			QLocale cLoc(QLocale::C);
-			model->setData(index, cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals()));
+			model->setData(index, cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = qobject_cast<FileEditWidget*>(editor);
-			model->setData(index, fileEditor->lineEditFile->text());
+			model->setData(index, fileEditor->lineEditFile->text(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = qobject_cast<DirectoryEditWidget*>(editor);
-			model->setData(index, directoryEditor->lineEditDirectory->text());
+			model->setData(index, directoryEditor->lineEditDirectory->text(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = qobject_cast<ComboBoxEditWidget*>(editor);
-			model->setData(index, comboEditor->comboBoxValue->lineEdit()->text());
+			model->setData(index, comboEditor->comboBoxValue->lineEdit()->text(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_COLOR: {
 			ColorWidget *colorEditor = qobject_cast<ColorWidget*>(editor);
-			model->setData(index, colorEditor->argbValue());
+			model->setData(index, colorEditor->argbValue(), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEdit = qobject_cast<QLineEdit*>(editor);
-			model->setData(index, lineEdit->text());
+			model->setData(index, lineEdit->text(), Qt::EditRole);
 			}
 			break;
 		default:
