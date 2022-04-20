@@ -342,21 +342,21 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 	switch ( optionType ) {
 		case QMC2_EMUOPT_TYPE_BOOL: {
 			QCheckBox *checkBoxEditor = qobject_cast<QCheckBox*>(editor);
-			model->setData(index, QColor(0, 0, 0, 0), Qt::ForegroundRole);
-			model->setData(index, QFont("Helvetica", 1), Qt::FontRole);
-			model->setData(index, checkBoxEditor->isChecked(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(QColor(0, 0, 0, 0)), Qt::ForegroundRole);
+			model->setData(index, QVariant::fromValue(QFont("Helvetica", 1)), Qt::FontRole);
+			model->setData(index, QVariant::fromValue(checkBoxEditor->isChecked()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_INT: {
 			QSpinBox *spinBox = qobject_cast<QSpinBox*>(editor);
 			spinBox->interpretText();
-			model->setData(index, spinBox->value(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(spinBox->value()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT: {
 			QDoubleSpinBox *doubleSpinBox = qobject_cast<QDoubleSpinBox*>(editor);
 			doubleSpinBox->interpretText();
-			model->setData(index, doubleSpinBox->value(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(doubleSpinBox->value()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT2: {
@@ -364,7 +364,7 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 			float2Editor->doubleSpinBox0->interpretText();
 			float2Editor->doubleSpinBox1->interpretText();
 			QLocale cLoc(QLocale::C);
-			model->setData(index, cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals()), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals())), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT3: {
@@ -373,32 +373,32 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 			float3Editor->doubleSpinBox1->interpretText();
 			float3Editor->doubleSpinBox2->interpretText();
 			QLocale cLoc(QLocale::C);
-			model->setData(index, cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals()), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals())), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = qobject_cast<FileEditWidget*>(editor);
-			model->setData(index, fileEditor->lineEditFile->text(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(fileEditor->lineEditFile->text()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = qobject_cast<DirectoryEditWidget*>(editor);
-			model->setData(index, directoryEditor->lineEditDirectory->text(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(directoryEditor->lineEditDirectory->text()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = qobject_cast<ComboBoxEditWidget*>(editor);
-			model->setData(index, comboEditor->comboBoxValue->lineEdit()->text(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(comboEditor->comboBoxValue->lineEdit()->text()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_COLOR: {
 			ColorWidget *colorEditor = qobject_cast<ColorWidget*>(editor);
-			model->setData(index, colorEditor->argbValue(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(colorEditor->argbValue()), Qt::EditRole);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEdit = qobject_cast<QLineEdit*>(editor);
-			model->setData(index, lineEdit->text(), Qt::EditRole);
+			model->setData(index, QVariant::fromValue(lineEdit->text()), Qt::EditRole);
 			}
 			break;
 		default:
@@ -760,9 +760,9 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					} else
 						v = qmc2Config->value(option.name, option.dvalue.toInt()).toInt(&ok);
 					if ( ok ) {
-						optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
 						optionsMap[sectionTitle][i].value.sprintf("%d", v);
 						optionsMap[sectionTitle][i].valid = true;
+						optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					}
 					break;
 				}
@@ -781,9 +781,9 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					} else
 						v = qmc2Config->value(option.name, option.dvalue.toDouble()).toDouble(&ok);
 					if ( ok ) {
-						optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
 						optionsMap[sectionTitle][i].value.setNum(v, 'f', option.decimals);
 						optionsMap[sectionTitle][i].valid = true;
+						optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					}
 					break;
 				}
@@ -800,9 +800,9 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 							v = qmc2Config->value(option.name, qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value).toString();
 					} else
 						v = qmc2Config->value(option.name, option.dvalue).toString();
-					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
 					optionsMap[sectionTitle][i].value = v;
 					optionsMap[sectionTitle][i].valid = true;
+					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
@@ -818,9 +818,9 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 							v = qmc2Config->value(option.name, qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value).toString();
 					} else
 						v = qmc2Config->value(option.name, option.dvalue).toString();
-					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
 					optionsMap[sectionTitle][i].value = v;
 					optionsMap[sectionTitle][i].valid = true;
+					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_BOOL: {
@@ -836,10 +836,10 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					} else
 						v = EmulatorOptionDelegate::stringToBool(qmc2Config->value(option.name, option.dvalue).toString());
 					optionsMap[sectionTitle][i].value = EmulatorOptionDelegate::boolToString(v);
-					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
-					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetica", 1));
-					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
 					optionsMap[sectionTitle][i].valid = true;
+					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QVariant::fromValue(QColor(0, 0, 0, 0)));
+					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QVariant::fromValue(QFont("Helvetica", 1)));
+					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					break;
 				}
 				case QMC2_EMUOPT_TYPE_COMBO:
@@ -865,9 +865,9 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 							v = qmc2Config->value(option.name, qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value).toString();
 					} else
 						v = qmc2Config->value(option.name, option.dvalue).toString();
-					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
 					optionsMap[sectionTitle][i].value = v;
 					optionsMap[sectionTitle][i].valid = true;
+					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					break;
 				}
 			}
@@ -1905,41 +1905,41 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 						switch ( optionsMap[sectionTitleFound][optionPosFound].type ) {
 							case QMC2_EMUOPT_TYPE_INT: {
 								if ( isGlobal )
-									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toInt());
+									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value.toInt()));
 								else
-									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toInt());
+									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value.toInt()));
 								break;
 							}
 							case QMC2_EMUOPT_TYPE_FLOAT: {
 								if ( isGlobal )
-									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toDouble());
+									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value.toDouble()));
 								else
-									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.toDouble());
+									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value.toDouble()));
 								break;
 							}
 							case QMC2_EMUOPT_TYPE_FLOAT2:
 							case QMC2_EMUOPT_TYPE_FLOAT3: {
 								if ( isGlobal )
-									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value);
+									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value));
 								else
-									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value);
+									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value));
 								break;
 							}
 							case QMC2_EMUOPT_TYPE_BOOL: {
 								if ( isGlobal ) {
-									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
-									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetica", 1));
+									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QVariant::fromValue(QColor(0, 0, 0, 0)));
+									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QVariant::fromValue(QFont("Helvetica", 1)));
 									if ( value == "0" )
-										qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, false);
+										qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(false));
 									else
-										qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, true);
+										qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(true));
 								} else {
-									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
-									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetica", 1));
+									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QVariant::fromValue(QColor(0, 0, 0, 0)));
+									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QVariant::fromValue(QFont("Helvetica", 1)));
 									if ( value == "0" )
-										qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, false);
+										qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(false));
 									else
-										qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, true);
+										qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(true));
 								}
 								break;
 							}
@@ -1950,9 +1950,9 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 							case QMC2_EMUOPT_TYPE_STRING:
 							default: {
 								if ( isGlobal )
-									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.replace("$HOME", "~"));
+									qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value.replace("$HOME", "~")));
 								else
-									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, value.replace("$HOME", "~"));
+									qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(value.replace("$HOME", "~")));
 								break;
 							}
 						}
