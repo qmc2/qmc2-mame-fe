@@ -85,7 +85,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_BOOL: {
 			QCheckBox *checkBoxEditor = new QCheckBox(parent);
 			checkBoxEditor->setWhatsThis("checkBoxEditor");
-			checkBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//checkBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				checkBoxEditor->setToolTip(optionDescription);
 			connect(checkBoxEditor, SIGNAL(toggled(bool)), this, SLOT(dataChanged()));
@@ -96,7 +96,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			spinBoxEditor->setWhatsThis("spinBoxEditor");
 			spinBoxEditor->setRange(_MIN, _MAX);
 			spinBoxEditor->setSingleStep(1);
-			spinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//spinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				spinBoxEditor->setToolTip(optionDescription);
 			connect(spinBoxEditor, SIGNAL(valueChanged(int)), this, SLOT(dataChanged()));
@@ -108,7 +108,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			doubleSpinBoxEditor->setRange(_MIN, _MAX);
 			doubleSpinBoxEditor->setSingleStep(0.1);
 			doubleSpinBoxEditor->setDecimals(optionDecimals);
-			doubleSpinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//doubleSpinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				doubleSpinBoxEditor->setToolTip(optionDescription);
 			connect(doubleSpinBoxEditor, SIGNAL(valueChanged(double)), this, SLOT(dataChanged()));
@@ -123,7 +123,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			float2Editor->doubleSpinBox1->setRange(_MIN, _MAX);
 			float2Editor->doubleSpinBox1->setSingleStep(0.1);
 			float2Editor->doubleSpinBox1->setDecimals(optionDecimals);
-			float2Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//float2Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				float2Editor->setToolTip(optionDescription);
 			connect(float2Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
@@ -141,7 +141,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 			float3Editor->doubleSpinBox2->setRange(_MIN, _MAX);
 			float3Editor->doubleSpinBox2->setSingleStep(0.1);
 			float3Editor->doubleSpinBox2->setDecimals(optionDecimals);
-			float3Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//float3Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				float3Editor->setToolTip(optionDescription);
 			connect(float3Editor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
@@ -150,7 +150,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), optionPart, parent, false, optionRelativeTo, mTreeWidget);
 			fileEditor->setWhatsThis("fileEditor");
-			fileEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//fileEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() ) {
 				fileEditor->lineEditFile->setToolTip(optionDescription);
 				fileEditor->toolButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
@@ -161,7 +161,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = new DirectoryEditWidget("", parent, mTreeWidget);
 			directoryEditor->setWhatsThis("directoryEditor");
-			directoryEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//directoryEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() ) {
 				directoryEditor->lineEditDirectory->setToolTip(optionDescription);
 				directoryEditor->toolButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
@@ -172,7 +172,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = new ComboBoxEditWidget(optionChoices, "", parent);
 			comboEditor->setWhatsThis("comboEditor");
-			comboEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//comboEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				comboEditor->comboBoxValue->setToolTip(optionDescription);
 			connect(comboEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
@@ -181,7 +181,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_COLOR: {
 			ColorWidget *colorEditor = new ColorWidget(QString(), QString(), QPalette::Active, QPalette::NoRole, QColor(), QBrush(), parent, false, true);
 			colorEditor->setWhatsThis("colorEditor");
-			colorEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//colorEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				colorEditor->setToolTip(optionDescription);
 			connect(colorEditor, SIGNAL(dataChanged()), this, SLOT(dataChanged()));
@@ -190,7 +190,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEditEditor = new QLineEdit(parent);
 			lineEditEditor->setWhatsThis("lineEditEditor");
-			lineEditEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+			//lineEditEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
 			if ( !optionDescription.isEmpty() )
 				lineEditEditor->setToolTip(optionDescription);
 			connect(lineEditEditor, SIGNAL(textEdited(const QString &)), this, SLOT(dataChanged()));
