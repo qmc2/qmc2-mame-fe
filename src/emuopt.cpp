@@ -207,7 +207,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 	switch ( optionType ) {
 		case QMC2_EMUOPT_TYPE_BOOL: {
 			QCheckBox *checkBoxEditor = qobject_cast<QCheckBox *>(editor);
-			bool value = index.data().toBool();
+			bool value = qvariant_cast<bool>(index.data());
 			checkBoxEditor->setChecked(value);
 			if ( value )
 				checkBoxEditor->setText("(" + tr("enabled") + ")");
@@ -221,7 +221,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			QLineEdit *lineEdit = spinBox->findChild<QLineEdit *>();
 			if ( lineEdit )
 				cPos = lineEdit->cursorPosition();
-			spinBox->setValue(index.data().toInt());
+			spinBox->setValue(qvariant_cast<int>(index.data()));
 			if ( lineEdit )
 				lineEdit->setCursorPosition(cPos);
 			}
@@ -232,14 +232,14 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			QLineEdit *lineEdit = doubleSpinBox->findChild<QLineEdit *>();
 			if ( lineEdit )
 				cPos = lineEdit->cursorPosition();
-			doubleSpinBox->setValue(index.data().toDouble());
+			doubleSpinBox->setValue(qvariant_cast<double>(index.data()));
 			if ( lineEdit )
 				lineEdit->setCursorPosition(cPos);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT2: {
 			FloatEditWidget *float2Editor = qobject_cast<FloatEditWidget *>(editor);
-			QString value(index.data().toString());
+			QString value(qvariant_cast<QString>(index.data()));
 			QStringList subValues(value.split(","));
 			int cPos = 0;
 			if ( subValues.count() > 0 ) {
@@ -262,7 +262,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			break;
 		case QMC2_EMUOPT_TYPE_FLOAT3: {
 			FloatEditWidget *float3Editor = qobject_cast<FloatEditWidget *>(editor);
-			QString value(index.data().toString());
+			QString value(qvariant_cast<QString>(index.data()));
 			QStringList subValues(value.split(","));
 			int cPos = 0;
 			if ( subValues.count() > 0 ) {
@@ -294,20 +294,20 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 		case QMC2_EMUOPT_TYPE_FILE: {
 			FileEditWidget *fileEditor = qobject_cast<FileEditWidget *>(editor);
 			int cPos = fileEditor->lineEditFile->cursorPosition();
-			fileEditor->lineEditFile->setText(index.data().toString());
+			fileEditor->lineEditFile->setText(qvariant_cast<QString>(index.data()));
 			fileEditor->lineEditFile->setCursorPosition(cPos);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_DIRECTORY: {
 			DirectoryEditWidget *directoryEditor = qobject_cast<DirectoryEditWidget *>(editor);
 			int cPos = directoryEditor->lineEditDirectory->cursorPosition();
-			directoryEditor->lineEditDirectory->setText(index.data().toString());
+			directoryEditor->lineEditDirectory->setText(qvariant_cast<QString>(index.data()));
 			directoryEditor->lineEditDirectory->setCursorPosition(cPos);
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_COMBO: {
 			ComboBoxEditWidget *comboEditor = qobject_cast<ComboBoxEditWidget *>(editor);
-			QString value(index.data().toString());
+			QString value(qvariant_cast<QString>(index.data()));
 			int cPos = comboEditor->comboBoxValue->lineEdit()->cursorPosition();
 			comboEditor->comboBoxValue->lineEdit()->setText(value);
 			comboEditor->comboBoxValue->lineEdit()->setCursorPosition(cPos);
@@ -318,14 +318,14 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 			break;
 		case QMC2_EMUOPT_TYPE_COLOR: {
 			ColorWidget *colorEditor = qobject_cast<ColorWidget *>(editor);
-			colorEditor->setArgb(index.data().toString());
+			colorEditor->setArgb(qvariant_cast<QString>(index.data()));
 			colorEditor->updateColor();
 			}
 			break;
 		case QMC2_EMUOPT_TYPE_STRING: {
 			QLineEdit *lineEdit = qobject_cast<QLineEdit *>(editor);
 			int cPos = lineEdit->cursorPosition();
-			lineEdit->setText(index.data().toString());
+			lineEdit->setText(qvariant_cast<QString>(index.data()));
 			lineEdit->setCursorPosition(cPos);
 			}
 			break;
