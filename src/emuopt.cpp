@@ -558,19 +558,19 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 					currentValue = "true";
 				else
 					currentValue = "false";
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_INT: {
 				QSpinBox *spinBox = qobject_cast<QSpinBox*>(editor);
 				currentValue = QString::number(spinBox->value());
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_FLOAT: {
 				QDoubleSpinBox *doubleSpinBox = qobject_cast<QDoubleSpinBox*>(editor);
 				currentValue = cLoc.toString(doubleSpinBox->value(), 'f', doubleSpinBox->decimals());
 				defaultValue = cLoc.toString(defaultValue.toDouble(), 'f', doubleSpinBox->decimals());
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_FLOAT2: {
 				FloatEditWidget *float2Editor = qobject_cast<FloatEditWidget*>(editor);
 				currentValue = cLoc.toString(float2Editor->doubleSpinBox0->value(), 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float2Editor->doubleSpinBox1->value(), 'f', float2Editor->doubleSpinBox1->decimals());
@@ -592,8 +592,8 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 						sv2 = storedSubValues[1].toDouble();
 					storedValue = cLoc.toString(sv1, 'f', float2Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(sv2, 'f', float2Editor->doubleSpinBox1->decimals());
 				}
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_FLOAT3: {
 				FloatEditWidget *float3Editor = qobject_cast<FloatEditWidget*>(editor);
 				currentValue = cLoc.toString(float3Editor->doubleSpinBox0->value(), 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox1->value(), 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(float3Editor->doubleSpinBox2->value(), 'f', float3Editor->doubleSpinBox2->decimals());
@@ -619,34 +619,34 @@ void EmulatorOptions::updateEmuOptActions(QWidget *editor, QTreeWidgetItem *item
 						sv3 = storedSubValues[2].toDouble();
 					storedValue = cLoc.toString(sv1, 'f', float3Editor->doubleSpinBox0->decimals()) + "," + cLoc.toString(sv2, 'f', float3Editor->doubleSpinBox1->decimals()) + "," + cLoc.toString(sv3, 'f', float3Editor->doubleSpinBox2->decimals());
 				}
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_FILE: {
 				FileEditWidget *fileEditor = qobject_cast<FileEditWidget*>(editor);
 				currentValue = fileEditor->lineEditFile->text();
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_DIRECTORY: {
 				DirectoryEditWidget *directoryEditor = qobject_cast<DirectoryEditWidget*>(editor);
 				currentValue = directoryEditor->lineEditDirectory->text();
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_COMBO: {
 				ComboBoxEditWidget *comboEditor = qobject_cast<ComboBoxEditWidget*>(editor);
 				currentValue = comboEditor->comboBoxValue->lineEdit()->text();
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_COLOR: {
 				ColorWidget *colorEditor = qobject_cast<ColorWidget*>(editor);
 				currentValue = colorEditor->argbValue();
+				}
 				break;
-			}
 			case QMC2_EMUOPT_TYPE_STRING:
 			default: {
 				QLineEdit *lineEdit = qobject_cast<QLineEdit*>(editor);
 				currentValue = lineEdit->text();
+				}
 				break;
-			}
 		}
 		if ( currentValue.isEmpty() )
 			currentValue = tr("<EMPTY>");
@@ -764,8 +764,8 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 						optionsMap[sectionTitle][i].valid = true;
 						optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					}
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_FLOAT: {
 					optionDecimals = option.decimals;
 					optionChoices.clear();
@@ -785,8 +785,8 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 						optionsMap[sectionTitle][i].valid = true;
 						optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
 					}
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
 					optionDecimals = option.decimals;
 					optionChoices.clear();
@@ -803,8 +803,8 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].value = v;
 					optionsMap[sectionTitle][i].valid = true;
 					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					optionDecimals = option.decimals;
 					optionChoices.clear();
@@ -821,8 +821,8 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].value = v;
 					optionsMap[sectionTitle][i].valid = true;
 					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_BOOL: {
 					optionChoices.clear();
 					optionPart.clear();
@@ -840,8 +840,8 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QVariant::fromValue(QColor(0, 0, 0, 0)));
 					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QVariant::fromValue(QFont("Helvetica", 1)));
 					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_COMBO:
 				case QMC2_EMUOPT_TYPE_COLOR:
 				case QMC2_EMUOPT_TYPE_FILE:
@@ -868,8 +868,8 @@ void EmulatorOptions::load(bool overwrite, QString optName)
 					optionsMap[sectionTitle][i].value = v;
 					optionsMap[sectionTitle][i].valid = true;
 					optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, QVariant::fromValue(v));
+					}
 					break;
-				}
 			}
 		}
 	}
@@ -924,8 +924,8 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 					} else
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_FLOAT: {
 					double v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toDouble();
 					double gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toDouble();
@@ -941,8 +941,8 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 					} else
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_FLOAT2: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toString();
 					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toString();
@@ -971,8 +971,8 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 					} else
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_FLOAT3: {
 					QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toString();
 					QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toString();
@@ -1005,8 +1005,8 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 					} else
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_BOOL: {
 					bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toBool();
 					bool gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::DisplayRole).toBool();
@@ -1021,8 +1021,8 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->setValue(optionsMap[sectionTitle][i].name, EmulatorOptionDelegate::boolToString(v));
 					} else
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					}
 					break;
-				}
 				case QMC2_EMUOPT_TYPE_COMBO:
 				case QMC2_EMUOPT_TYPE_COLOR:
 				case QMC2_EMUOPT_TYPE_FILE:
@@ -1042,8 +1042,8 @@ void EmulatorOptions::save(QString optName)
 						qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
 					} else
 						qmc2Config->remove(optionsMap[sectionTitle][i].name);
+					}
 					break;
-				}
 			}
 		}
 	}
