@@ -71,7 +71,7 @@ EmulatorOptionDelegate::EmulatorOptionDelegate(QTreeWidget *treeWidget, QObject 
 
 void EmulatorOptionDelegate::dataChanged()
 {
-	QWidget *widget = (QWidget *)sender();
+	QWidget *widget = qobject_cast<QWidget *>(sender());
 	if ( widget ) {
 		emit commitData(widget);
 		if ( qmc2GlobalEmulatorOptions && parent() == qmc2GlobalEmulatorOptions )
