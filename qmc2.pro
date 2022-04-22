@@ -1,11 +1,9 @@
 defineTest(haveMinimumQtVersion) {
-    !equals(QT_MAJOR_VERSION, $$1): return(false)
+    lessThan(QT_MAJOR_VERSION, $$1): return(false)
     count(ARGS, 1, greaterThan) {
         lessThan(QT_MINOR_VERSION, $$2): return(false)
-        greaterThan(QT_MINOR_VERSION, $$2): return(true)
         count(ARGS, 2, greaterThan) {
             lessThan(QT_PATCH_VERSION, $$3): return(false)
-            greaterThan(QT_PATCH_VERSION, $$3): return(true)
         }
     }
     return(true)
