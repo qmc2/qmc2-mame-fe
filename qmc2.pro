@@ -2,14 +2,11 @@ defineTest(haveMinimumQtVersion) {
 	lessThan(QT_MAJOR_VERSION, $$1): return(false)
 	count(ARGS, 1, greaterThan) {
 		lessThan(QT_MINOR_VERSION, $$2): return(false)
-		count(ARGS, 2, greaterThan) {
-			lessThan(QT_PATCH_VERSION, $$3): return(false)
-		}
 	}
 	return(true)
 }
 
-haveMinimumQtVersion(5, 4, 0) {
+haveMinimumQtVersion(5, 4) {
 	# general project settings
 	isEmpty(TARGET):TARGET = qmc2
 	QT += core gui widgets xml xmlpatterns network sql svg testlib webkitwidgets
