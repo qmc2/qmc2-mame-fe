@@ -1186,9 +1186,8 @@ void EmulatorOptions::createMap()
 				childItem->setText(1, optionDescription);
 			} else
 				optionDescription.clear();
+			setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, new EmulatorOptionActions(optionItem, isGlobal, sysName));
 			openPersistentEditor(optionItem, QMC2_EMUOPT_COLUMN_VALUE);
-			EmulatorOptionActions *emuOptActions = new EmulatorOptionActions(optionItem, isGlobal, sysName);
-			setItemWidget(optionItem, QMC2_EMUOPT_COLUMN_ACTIONS, emuOptActions);
 		}
 	}
 	setUpdatesEnabled(true);
