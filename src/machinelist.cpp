@@ -3268,7 +3268,7 @@ bool MachineList::loadIcon(const QString &machineName, QTreeWidgetItem *item)
 		iconCacheDb()->queryIconData();
 		while ( iconCacheDb()->nextIconData(&id, &imageData) ) {
 			QPixmap iconPixmap;
-			if ( iconPixmap.loadFromData(imageData, "ICO") )
+			if ( iconPixmap.loadFromData(imageData) )
 				qmc2IconHash.insert(id, QIcon(iconPixmap));
 			if ( ++iconCount % QMC2_ICONCACHE_DB_RESPONSIVENESS == 0 ) {
 				mainProgressBar->setValue(iconCount);
