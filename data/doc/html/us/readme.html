@@ -5,7 +5,7 @@
   <title>M.A.M.E. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(../images/doc-bg.png);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.243, 05-APR-2022</h3>
+<h3>README - v0.243, 23-APR-2022</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol style="padding-left: 2em;">
   <li><a href="#1.">What is the M.A.M.E. Catalog / Launcher II?</a></li>
@@ -23,14 +23,14 @@
 <h3><a name="1."></a>1. What is the M.A.M.E. Catalog / Launcher II?</h3>
 <p><i>M.A.M.E. Catalog / Launcher II</i> - also referred to as <i>QMC2</i> - is the successor of one of the first UNIX M.A.M.E. GUI front ends available on this planet called <i>QMamecat</i> (derived from <i>MAMECAT</i>, which was text-only). QMamecat was based upon Qt 2; its development was frozen in 2003.</p>
 <p>By the beginning of March 2006, we started to build QMC2 from scratch as a Qt 4 project. Parts of the design and code were inspired by its predecessor, but it's not just a remake. We tried to make the new design as flexible as possible to minimize dependencies from front end and CLI related MAME changes, which was a major deficiency of QMamecat. QMC2 now uses a template based emulator configuration scheme, which can easily be enhanced with additional command line options (defined in an XML template file).</p>
-<p>As a result of this flexible design and countless hours of work, QMC2 today is not only a stable, feature-rich and fast multi-platform GUI front-end for M.A.M.E. but also a fully-featured ROM manager for this emulator (and its derivatives, older versions of MAME or even foreign emulators when they use the same/similar XML syntax) through the built-in <i>ROMAlyzer</i>.</p>
-<p>Today, only Qt 5 is supported. Note that for the full functionality of QMC2 Qt 5.11 or above is required!</p>
+<p>As a result of this flexible design and countless hours of work, QMC2 today is not only a stable, feature-rich and fast multi-platform GUI front-end for M.A.M.E. but also a fully-featured ROM manager for this emulator (and its derivatives, older versions of MAME or even foreign emulators when they use the same/similar XML data) through the built-in <i>ROMAlyzer</i>.</p>
+<p>Today, only Qt 5.4+ is supported. Note that for the full functionality of QMC2 Qt 5.11 or above is required! Qt 6 isn't supported yet.</p>
 <p>See the incomplete <a href="http://wiki.batcom-it.net/index.php?title=About_QMC2#Features" target="_blank">feature list</a> for more details.</p>
 <h3><a name="2."></a>2. Build and installation instructions</h3>
 <p>Please see <a href="http://wiki.batcom-it.net/index.php?title=The_%27ultimate%27_guide_to_QMC2#Building_and_installing_QMC2_from_source" target="_blank">this section in the QMC2 wiki</a> and/or
 <a href="http://wiki.batcom-it.net/index.php?title=QMC2_FAQ#Build_and_installation_instructions_for_specific_distributions" target="_blank">this FAQ</a> for build and installation instructions.</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
-<p>Usage example (for Linux/UNIX and Mac OS X, the binary is called <code>qmc2-mame.exe</code> on Windows):</p>
+<p>Usage example (for Linux/UNIX and macOS, the binary is called <code>qmc2-mame.exe</code> on Windows):</p>
 <pre>$ qmc2-sdlmame [-config_path &lt;path&gt;] [-cc] [-tc] [-r] [-h|-?|-help] [qt_arguments]</pre>
 <p>
 Arguments in detail:
@@ -48,10 +48,10 @@ Arguments in detail:
 Note that it's in your responsibility to copy/move the data to its desired place prior to starting QMC2 when this option is set, otherwise QMC2 will start over (which may be wanted behavior, though). Also, any settings
 that may have inherited the previous dot-path will have to be changed manually (probably by editing qmc2.ini, but take care).</p>
 <p><a name="config_notes"><b>Notes on the configuration of QMC2</b></p>
-<p>UNIX and Mac OS X:</p>
+<p>Linux/UNIX and macOS:</p>
 <ul>
-  <li>The user's configuration file will be stored as <i>~/.qmc2/qmc2.ini</i> on UNIX, or as <i>~/Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X.</li>
-  <li>A system-wide default configuration can be used to pre-configure QMC2 for your users (common paths: <i>/etc/qmc2/qmc2.ini</i> on UNIX, or <i>/Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X).</li>
+  <li>The user's configuration file will be stored as <i>~/.qmc2/qmc2.ini</i> on UNIX, or as <i>~/Library/Application Support/qmc2/qmc2.ini</i> on macOS.</li>
+  <li>A system-wide default configuration can be used to pre-configure QMC2 for your users (common paths: <i>/etc/qmc2/qmc2.ini</i> on UNIX, or <i>/Library/Application Support/qmc2/qmc2.ini</i> on macOS).</li>
 </ul>
 <p>Windows:</p>
 <ul>
@@ -67,7 +67,7 @@ that may have inherited the previous dot-path will have to be changed manually (
 <ul>
   <li>If no configuration can be found for a specific option, hard-coded default values will be used for all front end settings (see code);
       default values for the emulator configuration are read from the current XML template (default paths: <i>/usr/local/share/qmc2/opt/&lt;EMULATOR&gt;/template.xml</i>
-      on UNIX, <i>/Library/Application Support/qmc2/opt/&lt;EMULATOR&gt;/template.xml</i> on Mac OS X, and <i>data\opt\&lt;EMULATOR&gt;\template.xml</i> on Windows).</li>
+      on Linux/UNIX, <i>/Library/Application Support/qmc2/opt/&lt;EMULATOR&gt;/template.xml</i> on macOS, and <i>data\opt\&lt;EMULATOR&gt;\template.xml</i> on Windows).</li>
   <li>If the path to the emulator's executable file has not been set (yet), QMC2 will assume that you are starting it for the first time
       (your setup is considered <i>incomplete</i> as long as this option hasn't been set).</li>
   <li>Although it is recommended to edit the configuration with the built-in setup dialog, you may change it manually with
@@ -142,7 +142,7 @@ in front of each machine entry (see table above). When using the <i>classic</i> 
 in their ROM status icons. Device ROMs contain a white <b>D</b> and cannot run standalone. Other (= non-default) image sets may indicate BIOS and device ROMs differently.</p>
 <p>Depending on your hardware, ROM status determination may be a very time-consuming task, so it's not started automatically.
 You have to explicitly trigger a ROM check (see <i>Tools</i> menu) at least once. To speed up this process for future runs, ROM states
-are cached in an external <i>ROM state cache</i> file (default: <i>~/.qmc2/&lt;emulator&gt;.rsc</i> on UNIX, <i>~/Library/Application Support/qmc2/&lt;emulator&gt;.rsc</i> on Mac OS X,
+are cached in an external <i>ROM state cache</i> file (default: <i>~/.qmc2/&lt;emulator&gt;.rsc</i> on Linux/UNIX, <i>~/Library/Application Support/qmc2/&lt;emulator&gt;.rsc</i> on macOS,
 or <i>%USERPROFILE%\.qmc2\&lt;emulator&gt;.rsc</i> on Windows). If QMC2 finds cached ROM state information in this file, it will read the states for each machine from the cache
 when the machine list is reloaded.</p>
 <p>Unless the option <i>AutoTriggerROMCheck</i> hasn't been activated, it is in your responsibility to trigger a re-check of the ROM states when anything changes (ROM images or
@@ -208,7 +208,7 @@ Please refer to the <a href="http://wiki.batcom-it.net/index.php?title=The_%27ul
 <p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.</p>
 <h3><a name="7."></a>7. Multi-platform support</h3>
 <p>As the front end code has been designed with portability in mind, QMC2 should work on any UNIX or UNIX-like
-platform, on Mac OS X and meanwhile also on Windows, provided Qt 5 and (SDL)MAME are supported on this platform as well.</p>
+platform, on macOS and meanwhile also on Windows, provided Qt 5 and (SDL)MAME are supported on this platform as well.</p>
 <p>
 However, you may have to create or adopt the corresponding OS-specific configuration file, which is
 <span style="font-style: italic;">arch/`uname`.cfg</span>. If it does not exist nor fit your local situation, the build
