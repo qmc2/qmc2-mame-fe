@@ -21,8 +21,7 @@ derivatives, older versions of MAME or even foreign emulators when they use the
 same/similar XML syntax) through the built-in ROMAlyzer.
 
 Today, only Qt 5.4+ is supported. Note that for the full functionality of QMC2
-Qt 5.11 or above is required! Qt 6 hasn't been tested yet, but this wouldn't
-work without source migration, I'm afraid.
+Qt 5.11 or above is required! Qt 6 isn't supported yet.
 
 Building and installing QMC2 from source
 ----------------------------------------
