@@ -138,7 +138,7 @@
           <string>Browse working directory used when executing QMC2 Arcade</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
          </property>
         </widget>
@@ -179,7 +179,7 @@
           <string>Browse configuration path for QMC2 Arcade</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
          </property>
         </widget>
@@ -384,7 +384,7 @@
           <string>Browse QMC2 Arcade executable file</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
          </property>
         </widget>
@@ -453,7 +453,7 @@
             <string>Select ROM state C (correct)?</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
            </property>
            <property name="checkable">
@@ -479,7 +479,7 @@
             <string>Select ROM state M (mostly correct)?</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
            </property>
            <property name="checkable">
@@ -505,7 +505,7 @@
             <string>Select ROM state I (incorrect)?</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
            </property>
            <property name="checkable">
@@ -528,7 +528,7 @@
             <string>Select ROM state N (not found)?</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
            </property>
            <property name="checkable">
@@ -551,7 +551,7 @@
             <string>Select ROM state U (unknown)?</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
            </property>
            <property name="checkable">
@@ -589,7 +589,7 @@
           <string>Browse the output file used as the filtered machine list</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
          </property>
         </widget>
@@ -661,7 +661,7 @@
           <string>Export</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
          </property>
         </widget>
@@ -681,7 +681,7 @@
           <string>Clear name filter</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
          </property>
         </widget>
@@ -783,7 +783,7 @@
            <string>Ascending</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
           </property>
          </item>
@@ -792,7 +792,7 @@
            <string>Descending</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
           </property>
          </item>
@@ -851,7 +851,7 @@
           <string>Deselect all categories</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/minus_all.png</normaloff>:/data/img/minus_all.png</iconset>
          </property>
         </widget>
@@ -862,7 +862,7 @@
           <string>Select all categories</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/plus_all.png</normaloff>:/data/img/plus_all.png</iconset>
          </property>
         </widget>
@@ -1184,7 +1184,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

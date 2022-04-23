@@ -42,7 +42,7 @@
       <string>&amp;Ok</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
      </property>
      <property name="autoDefault">
@@ -65,7 +65,7 @@
       <string>&amp;Cancel</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
      </property>
      <property name="autoDefault">
@@ -91,7 +91,7 @@
       <string>&amp;Restore</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
      </property>
      <property name="autoDefault">
@@ -174,7 +174,7 @@
   <tabstop>comboBoxImageType</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

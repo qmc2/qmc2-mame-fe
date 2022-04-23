@@ -35,7 +35,7 @@
       <string>Toggle ROM state 'correct'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
      </property>
      <property name="checkable">
@@ -61,7 +61,7 @@
       <string>Toggle ROM state 'unknown'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
      </property>
      <property name="checkable">
@@ -87,7 +87,7 @@
       <string>Toggle ROM state 'mostly correct'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
      </property>
      <property name="checkable">
@@ -113,7 +113,7 @@
       <string>Toggle ROM state 'not found'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
      </property>
      <property name="checkable">
@@ -139,7 +139,7 @@
       <string>Toggle ROM state 'incorrect'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
      </property>
      <property name="checkable">
@@ -157,7 +157,7 @@
   <tabstop>toolButtonUnknown</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

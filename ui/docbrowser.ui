@@ -25,7 +25,7 @@
  </widget>
  <layoutdefault spacing="6" margin="9"/>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

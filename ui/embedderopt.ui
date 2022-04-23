@@ -32,7 +32,7 @@
       <string>Take snapshot</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
      </property>
      <property name="autoRepeat">
@@ -142,7 +142,7 @@
       <string>Save as</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
      </property>
      <property name="toolButtonStyle">
@@ -165,7 +165,7 @@
       <string>Clear</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
      </property>
      <property name="toolButtonStyle">
@@ -191,7 +191,7 @@
       <string>Use as</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/filesaveas_and_apply.png</normaloff>:/data/img/filesaveas_and_apply.png</iconset>
      </property>
      <property name="popupMode">
@@ -249,7 +249,7 @@
   <tabstop>listWidgetSnapshots</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

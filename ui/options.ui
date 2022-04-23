@@ -189,7 +189,7 @@
                     <string>Browse font used in logs</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fonts.png</normaloff>:/data/img/fonts.png</iconset>
                    </property>
                   </widget>
@@ -450,7 +450,7 @@
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/exit_small.png</pixmap>
+                      <pixmap resource="../qmc2.qrc">:/data/img/exit_small.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -546,7 +546,7 @@
                     <string>Browse Qt style sheet file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -716,7 +716,7 @@
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/exit_small.png</pixmap>
+                      <pixmap resource="../qmc2.qrc">:/data/img/exit_small.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -754,7 +754,7 @@
                     <string>Browse application font</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fonts.png</normaloff>:/data/img/fonts.png</iconset>
                    </property>
                   </widget>
@@ -903,7 +903,7 @@
                     <string>Browse system manual folder</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -930,7 +930,7 @@
                     <string>Browse DAT-info database file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -947,7 +947,7 @@
                     <string>Browse frontend data directory</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1026,7 +1026,7 @@
                     <string>Browse MESS machine information database (sysinfo.dat)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1043,7 +1043,7 @@
                     <string>Browse machine favorites file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1081,7 +1081,7 @@
                     <string>Import MESS emulator information to DAT-info database</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
                    </property>
                   </widget>
@@ -1098,7 +1098,7 @@
                     <string>Import MESS machine information to DAT-info database</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
                    </property>
                   </widget>
@@ -1183,7 +1183,7 @@
                         <string>Browse PCB directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1224,7 +1224,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -1233,7 +1233,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -1242,7 +1242,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -1260,7 +1260,7 @@
                         <string>Browse compressed PCB file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1310,7 +1310,7 @@
                         <string>Browse marquee directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1351,7 +1351,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -1360,7 +1360,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -1369,7 +1369,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -1387,7 +1387,7 @@
                         <string>Browse compressed marquee file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1421,7 +1421,7 @@
                     <string>Use category.ini</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                    </property>
                   </widget>
@@ -1445,7 +1445,7 @@
                     <string>Import MAME machine information to DAT-info database</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
                    </property>
                   </widget>
@@ -1478,7 +1478,7 @@
                     <string>Import MAME emulator information to DAT-info database</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
                    </property>
                   </widget>
@@ -1547,7 +1547,7 @@
                         <string>Browse software snap-shot directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1588,7 +1588,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -1597,7 +1597,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -1606,7 +1606,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -1624,7 +1624,7 @@
                         <string>Browse compressed software snap-shot file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1658,7 +1658,7 @@
                     <string>Browse play history file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1704,7 +1704,7 @@
                         <string>Browse cabinet directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1745,7 +1745,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -1754,7 +1754,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -1763,7 +1763,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -1781,7 +1781,7 @@
                         <string>Browse compressed cabinet file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -1802,7 +1802,7 @@
                     <string>Browse MESS emulator information database (messinfo.dat)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1819,7 +1819,7 @@
                     <string>Browse software information database (history.dat)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1849,7 +1849,7 @@
                     <string>Browse system notes template</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1918,7 +1918,7 @@
                     <string>Browse software notes folder</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -1961,7 +1961,7 @@
                     <string>Browse path to catver.ini</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2020,7 +2020,7 @@
                         <string>Browse title directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2061,7 +2061,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -2070,7 +2070,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -2079,7 +2079,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -2097,7 +2097,7 @@
                         <string>Browse compressed title file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2131,7 +2131,7 @@
                     <string>Browse path to category.ini</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2177,7 +2177,7 @@
                         <string>Browse preview directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2218,7 +2218,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -2227,7 +2227,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -2236,7 +2236,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -2254,7 +2254,7 @@
                         <string>Browse compressed preview file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2304,7 +2304,7 @@
                     <string>Browse MAME emulator information database (mameinfo.dat)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2334,7 +2334,7 @@
                     <string>Browse software notes template</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2356,7 +2356,7 @@
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                      <pixmap resource="../qmc2.qrc">:/data/img/reload_small.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -2400,7 +2400,7 @@
                     <string>Browse front end log file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2446,7 +2446,7 @@
                         <string>Browse flyer directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2487,7 +2487,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -2496,7 +2496,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -2505,7 +2505,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -2523,7 +2523,7 @@
                         <string>Browse compressed flyer file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2573,7 +2573,7 @@
                         <string>Browse icon directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2614,7 +2614,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -2623,7 +2623,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -2632,7 +2632,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -2650,7 +2650,7 @@
                         <string>Browse compressed icon file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2700,7 +2700,7 @@
                         <string>Browse controller directory</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2741,7 +2741,7 @@
                          <string>ZIP</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                         </property>
                        </item>
@@ -2750,7 +2750,7 @@
                          <string>7z</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/7z-compressed.png</normaloff>:/data/img/7z-compressed.png</iconset>
                         </property>
                        </item>
@@ -2759,7 +2759,7 @@
                          <string>Archive</string>
                         </property>
                         <property name="icon">
-                         <iconset resource="qmc2.qrc">
+                         <iconset resource="../qmc2.qrc">
                           <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                         </property>
                        </item>
@@ -2777,7 +2777,7 @@
                         <string>Browse compressed controller file</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="qmc2.qrc">
+                        <iconset resource="../qmc2.qrc">
                          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                        </property>
                       </widget>
@@ -2867,7 +2867,7 @@
                     <string>Browse system notes folder</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2934,7 +2934,7 @@
                     <string>Import software information to DAT-info database</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
                    </property>
                   </widget>
@@ -2951,7 +2951,7 @@
                     <string>Browse MAME machine information database (history.dat)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -2988,7 +2988,7 @@
                     <string>Setup the icon cache database</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/setup_database.png</normaloff>:/data/img/setup_database.png</iconset>
                    </property>
                   </widget>
@@ -3005,7 +3005,7 @@
                     <string>Browse video snap folder</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -3019,7 +3019,7 @@
                     <string>Use catver.ini</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                    </property>
                   </widget>
@@ -3049,7 +3049,7 @@
                     <string>Optimize catver.ini for faster loading</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/optimize.png</normaloff>:/data/img/optimize.png</iconset>
                    </property>
                   </widget>
@@ -3095,7 +3095,7 @@
                     <string>Browse software manual folder</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -3126,7 +3126,7 @@
                     <string>Scan available software manuals</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/scan_manuals.png</normaloff>:/data/img/scan_manuals.png</iconset>
                    </property>
                   </widget>
@@ -3143,7 +3143,7 @@
                     <string>Scan available system manuals</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/scan_manuals.png</normaloff>:/data/img/scan_manuals.png</iconset>
                    </property>
                   </widget>
@@ -3331,7 +3331,7 @@
                    <string>independent</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
                   </property>
                  </item>
@@ -3340,7 +3340,7 @@
                    <string>embedded</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
                   </property>
                  </item>
@@ -3375,7 +3375,7 @@
                   <string>Show BIOS sets</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="qmc2.qrc">
+                  <iconset resource="../qmc2.qrc">
                    <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                  </property>
                 </widget>
@@ -3389,7 +3389,7 @@
                   <string>ROM state filter</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="qmc2.qrc">
+                  <iconset resource="../qmc2.qrc">
                    <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                  </property>
                 </widget>
@@ -3402,7 +3402,7 @@
                     <string>Show ROM state C (correct)?</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
                    </property>
                    <property name="checkable">
@@ -3419,7 +3419,7 @@
                     <string>Show ROM state M (mostly correct)?</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
                    </property>
                    <property name="checkable">
@@ -3436,7 +3436,7 @@
                     <string>Show ROM state I (incorrect)?</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
                    </property>
                    <property name="checkable">
@@ -3453,7 +3453,7 @@
                     <string>Show ROM state N (not found)?</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
                    </property>
                    <property name="checkable">
@@ -3470,7 +3470,7 @@
                     <string>Show ROM state U (unknown)?</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
                    </property>
                    <property name="checkable">
@@ -3511,7 +3511,7 @@
                   <string>Show device sets</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="qmc2.qrc">
+                  <iconset resource="../qmc2.qrc">
                    <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                  </property>
                 </widget>
@@ -3531,7 +3531,7 @@
                   <string>Show ROM status icons</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="qmc2.qrc">
+                  <iconset resource="../qmc2.qrc">
                    <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                  </property>
                 </widget>
@@ -3645,7 +3645,7 @@
                     <string/>
                    </property>
                    <property name="pixmap">
-                    <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                    <pixmap resource="../qmc2.qrc">:/data/img/reload_small.png</pixmap>
                    </property>
                    <property name="scaledContents">
                     <bool>true</bool>
@@ -3755,7 +3755,7 @@
                    <string>Ascending</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
                   </property>
                  </item>
@@ -3764,7 +3764,7 @@
                    <string>Descending</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
                   </property>
                  </item>
@@ -3911,7 +3911,7 @@
                     <string>Redefine key sequence</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/keyboard.png</normaloff>:/data/img/keyboard.png</iconset>
                    </property>
                    <property name="autoDefault">
@@ -3931,7 +3931,7 @@
                     <string>Reset</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
                    </property>
                    <property name="autoDefault">
@@ -4049,7 +4049,7 @@
                     <string>Rescan joysticks</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/joystick.png</normaloff>:/data/img/joystick.png</iconset>
                    </property>
                    <property name="autoDefault">
@@ -4379,7 +4379,7 @@
                           <string>Remap</string>
                          </property>
                          <property name="icon">
-                          <iconset resource="qmc2.qrc">
+                          <iconset resource="../qmc2.qrc">
                            <normaloff>:/data/img/controller.png</normaloff>:/data/img/controller.png</iconset>
                          </property>
                          <property name="autoDefault">
@@ -4399,7 +4399,7 @@
                           <string>Remove</string>
                          </property>
                          <property name="icon">
-                          <iconset resource="qmc2.qrc">
+                          <iconset resource="../qmc2.qrc">
                            <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
                          </property>
                          <property name="autoDefault">
@@ -4528,7 +4528,7 @@
                        <string>Browse for zip tool</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="qmc2.qrc">
+                       <iconset resource="../qmc2.qrc">
                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                       </property>
                      </widget>
@@ -4607,7 +4607,7 @@
                        <string>Browse ROM tool</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="qmc2.qrc">
+                       <iconset resource="../qmc2.qrc">
                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                       </property>
                      </widget>
@@ -4667,7 +4667,7 @@
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="qmc2.qrc">
+                       <iconset resource="../qmc2.qrc">
                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                       </property>
                      </widget>
@@ -4830,7 +4830,7 @@
                        <string>Browse cookie database</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="qmc2.qrc">
+                       <iconset resource="../qmc2.qrc">
                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                       </property>
                      </widget>
@@ -4948,7 +4948,7 @@
                        <string>Browse for 7-zip tool</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="qmc2.qrc">
+                       <iconset resource="../qmc2.qrc">
                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                       </property>
                      </widget>
@@ -5045,7 +5045,7 @@
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                      <pixmap resource="../qmc2.qrc">:/data/img/reload_small.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -5073,7 +5073,7 @@
                     <string>Browse emulator executable file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5097,7 +5097,7 @@
                     <string>Browse emulator log file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5121,7 +5121,7 @@
                     <string>Browse options template file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5158,7 +5158,7 @@
                     <string>Browse machine list cache file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5182,7 +5182,7 @@
                     <string>Browse ROM state cache file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5204,7 +5204,7 @@
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                      <pixmap resource="../qmc2.qrc">:/data/img/reload_small.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>true</bool>
@@ -5242,7 +5242,7 @@
                     <string>Browse software list cache database file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5266,7 +5266,7 @@
                     <string>Browse general software folder</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5290,7 +5290,7 @@
                     <string>Browse working directory</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5314,7 +5314,7 @@
                     <string>Browse software state cache directory</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5338,7 +5338,7 @@
                     <string>Browse XML cache database file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5375,7 +5375,7 @@
                     <string>Browse user data database file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5392,7 +5392,7 @@
                     <string>Recreate user data database (removes &lt;b&gt;all&lt;/b&gt; entries)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/reset.png</normaloff>:/data/img/reset.png</iconset>
                    </property>
                   </widget>
@@ -5409,7 +5409,7 @@
                     <string>Clean up user data database (removes obsolete entries)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
                    </property>
                   </widget>
@@ -5611,7 +5611,7 @@
                     <string>Browse machine list database file</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
@@ -5737,7 +5737,7 @@
                     <string>Add</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
                    </property>
                    <property name="toolButtonStyle">
@@ -5763,7 +5763,7 @@
                     <string> Remove</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
                    </property>
                    <property name="toolButtonStyle">
@@ -5789,7 +5789,7 @@
                     <string>Replace</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
                    </property>
                    <property name="toolButtonStyle">
@@ -5883,7 +5883,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="qmc2.qrc">
+                  <iconset resource="../qmc2.qrc">
                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                  </property>
                 </widget>
@@ -5923,7 +5923,7 @@
                   <string/>
                  </property>
                  <property name="icon">
-                  <iconset resource="qmc2.qrc">
+                  <iconset resource="../qmc2.qrc">
                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                  </property>
                 </widget>
@@ -5988,7 +5988,7 @@
         <string>&amp;Apply</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
        </property>
        <property name="autoDefault">
@@ -6005,7 +6005,7 @@
         <string>&amp;Restore</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
        </property>
        <property name="autoDefault">
@@ -6022,7 +6022,7 @@
         <string>&amp;Default</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
        </property>
        <property name="autoDefault">
@@ -6052,7 +6052,7 @@
         <string>&amp;Ok</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
        <property name="autoDefault">
@@ -6069,7 +6069,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
        </property>
        <property name="autoDefault">
@@ -6361,7 +6361,7 @@
   <tabstop>scrollAreaFrontendJoystick</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

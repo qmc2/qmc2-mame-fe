@@ -45,7 +45,7 @@
       <string>Choose color</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/colors.png</normaloff>:/data/img/colors.png</iconset>
      </property>
     </widget>
@@ -62,7 +62,7 @@
       <string>Edit brush</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/brush.png</normaloff>:/data/img/brush.png</iconset>
      </property>
     </widget>
@@ -74,7 +74,7 @@
   <tabstop>toolButtonBrush</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

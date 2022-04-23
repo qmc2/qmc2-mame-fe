@@ -55,7 +55,7 @@
          </sizepolicy>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -67,7 +67,7 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

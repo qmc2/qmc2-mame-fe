@@ -39,7 +39,7 @@
        </rect>
       </property>
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/movie.png</normaloff>:/data/img/movie.png</iconset>
       </attribute>
       <attribute name="label">
@@ -149,7 +149,7 @@
        </rect>
       </property>
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/youtube.png</normaloff>:/data/img/youtube.png</iconset>
       </attribute>
       <attribute name="label">
@@ -171,7 +171,7 @@
           </sizepolicy>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/sound.png</normaloff>:/data/img/sound.png</iconset>
          </property>
          <property name="checkable">
@@ -201,7 +201,7 @@
            <string>FLV 240P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -210,7 +210,7 @@
            <string>FLV 360P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -219,7 +219,7 @@
            <string>MP4 360P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -228,7 +228,7 @@
            <string>FLV 480P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -237,7 +237,7 @@
            <string>MP4 720P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -246,7 +246,7 @@
            <string>MP4 1080P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -255,7 +255,7 @@
            <string>MP4 3072P</string>
           </property>
           <property name="icon">
-           <iconset resource="qmc2.qrc">
+           <iconset resource="../qmc2.qrc">
             <normaloff>:/data/img/trafficlight_off.png</normaloff>:/data/img/trafficlight_off.png</iconset>
           </property>
          </item>
@@ -276,7 +276,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
          </property>
         </widget>
@@ -387,7 +387,7 @@
        </rect>
       </property>
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/pacman.png</normaloff>:/data/img/pacman.png</iconset>
       </attribute>
       <attribute name="label">
@@ -422,7 +422,7 @@
           <string>Search YouTube videos using the specified search pattern</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
          </property>
         </widget>
@@ -449,7 +449,7 @@
           <string>Suggest a search pattern (hold down for menu)</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
          </property>
         </widget>
@@ -555,7 +555,7 @@
   <tabstop>listWidgetSearchResults</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

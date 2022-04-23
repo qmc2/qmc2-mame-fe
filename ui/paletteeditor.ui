@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
-    <height>316</height>
+    <width>746</width>
+    <height>383</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -217,7 +217,7 @@
       <string>&amp;Ok</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
      </property>
      <property name="autoDefault">
@@ -240,7 +240,7 @@
       <string>&amp;Cancel</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
      </property>
      <property name="autoDefault">
@@ -266,7 +266,7 @@
       <string>&amp;Restore</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
      </property>
      <property name="autoDefault">
@@ -312,7 +312,7 @@
       <string>&amp;Preview</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/preview.png</normaloff>:/data/img/preview.png</iconset>
      </property>
      <property name="checkable">
@@ -330,7 +330,40 @@
   <tabstop>checkBoxCalculateDetails</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonOk</sender>
+   <signal>clicked()</signal>
+   <receiver>PaletteEditor</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>55</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>PaletteEditor</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>359</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>116</x>
+     <y>381</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

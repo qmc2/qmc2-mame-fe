@@ -28,7 +28,7 @@
      </property>
      <widget class="QWidget" name="tabAnalyzer">
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/analyze.png</normaloff>:/data/img/analyze.png</iconset>
       </attribute>
       <attribute name="title">
@@ -148,7 +148,7 @@
             <string>Tools menu</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
            </property>
            <property name="popupMode">
@@ -168,7 +168,7 @@
             <string>&amp;Analyze</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
            </property>
            <property name="autoDefault">
@@ -185,7 +185,7 @@
             <string>&amp;Pause</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
            </property>
            <property name="autoDefault">
@@ -199,7 +199,7 @@
      </widget>
      <widget class="QWidget" name="tabLog">
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/notes.png</normaloff>:/data/img/notes.png</iconset>
       </attribute>
       <attribute name="title">
@@ -221,7 +221,7 @@
           <string>&amp;Backward</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
          </property>
          <property name="autoRepeat">
@@ -247,7 +247,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
          </property>
         </widget>
@@ -267,7 +267,7 @@
           <string>&amp;Forward</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
          </property>
          <property name="autoRepeat">
@@ -330,7 +330,7 @@
      </widget>
      <widget class="QWidget" name="tabSettings">
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
       </attribute>
       <attribute name="title">
@@ -476,7 +476,7 @@
                    <string>Browse additional ROM path</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                   </property>
                  </widget>
@@ -493,7 +493,7 @@
                    <string>Browse output path for the set rewriter</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                   </property>
                  </widget>
@@ -676,7 +676,7 @@
                     <string>ZIPs (built-in)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                    </property>
                   </item>
@@ -685,7 +685,7 @@
                     <string>ZIPs (libarchive)</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                    </property>
                   </item>
@@ -694,7 +694,7 @@
                     <string>Sub-directories</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="qmc2.qrc">
+                    <iconset resource="../qmc2.qrc">
                      <normaloff>:/data/img/view_tree.png</normaloff>:/data/img/view_tree.png</iconset>
                    </property>
                   </item>
@@ -1204,7 +1204,7 @@
                      <string>Browse the backup folder</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                     </property>
                    </widget>
@@ -1295,7 +1295,7 @@
                    <string>Browse temporary directory used by the CHD manager</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                   </property>
                  </widget>
@@ -1312,7 +1312,7 @@
                    <string>Browse CHD manager executable file</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="qmc2.qrc">
+                   <iconset resource="../qmc2.qrc">
                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                   </property>
                  </widget>
@@ -1425,7 +1425,7 @@
                      <string>Start scanner</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
                     </property>
                     <property name="autoDefault">
@@ -1442,7 +1442,7 @@
                      <string>Pause</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
                     </property>
                     <property name="autoDefault">
@@ -1557,7 +1557,7 @@
                      <string>Browse path to the check-sum database file</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                     </property>
                    </widget>
@@ -1593,7 +1593,7 @@
                      <string>Add a path</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
                     </property>
                    </widget>
@@ -1607,7 +1607,7 @@
                      <string>Remove selected paths</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
                     </property>
                    </widget>
@@ -1691,7 +1691,7 @@
                      <string>Use libarchive instead of built-in decompressors</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="qmc2.qrc">
+                     <iconset resource="../qmc2.qrc">
                       <normaloff>:/data/img/archive.png</normaloff>:/data/img/archive.png</iconset>
                     </property>
                     <property name="checkable">
@@ -1752,7 +1752,7 @@
      </widget>
      <widget class="QWidget" name="tabChecksumWizard">
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/hash.png</normaloff>:/data/img/hash.png</iconset>
       </attribute>
       <attribute name="title">
@@ -1831,7 +1831,7 @@
             <string>Search</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
            </property>
            <property name="autoDefault">
@@ -1857,7 +1857,7 @@
             <string>Analyze selected sets</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/romalyzer.png</normaloff>:/data/img/romalyzer.png</iconset>
            </property>
            <property name="autoDefault">
@@ -1930,7 +1930,7 @@
      </widget>
      <widget class="QWidget" name="tabRomPathCleaner">
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/cleanup.png</normaloff>:/data/img/cleanup.png</iconset>
       </attribute>
       <attribute name="title">
@@ -1944,7 +1944,7 @@
      </widget>
      <widget class="QWidget" name="tabCollectionRebuilder">
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
       </attribute>
       <attribute name="title">
@@ -1972,7 +1972,7 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
        <property name="autoDefault">
@@ -2129,7 +2129,7 @@
   <tabstop>pushButtonChecksumWizardAnalyzeSelectedSets</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
      </property>
     </widget>
@@ -40,7 +40,7 @@
       </sizepolicy>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
      </property>
     </widget>
@@ -54,7 +54,7 @@
       </sizepolicy>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
      </property>
     </widget>
@@ -67,7 +67,7 @@
   <tabstop>toolButtonRemove</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

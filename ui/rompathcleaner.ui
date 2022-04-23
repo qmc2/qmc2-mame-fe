@@ -33,7 +33,7 @@
        <string>Current ROM path</string>
       </property>
       <property name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/rompath.png</normaloff>:/data/img/rompath.png</iconset>
       </property>
      </item>
@@ -42,7 +42,7 @@
        <string>Select path...</string>
       </property>
       <property name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
       </property>
      </item>
@@ -70,7 +70,7 @@
       <string>Start check</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
      </property>
     </widget>
@@ -141,7 +141,7 @@
       <string>Pause</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
      </property>
     </widget>
@@ -291,7 +291,7 @@
   <tabstop>toolButtonClear</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

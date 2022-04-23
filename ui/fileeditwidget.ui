@@ -89,7 +89,7 @@
          </sizepolicy>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -103,7 +103,7 @@
          </sizepolicy>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
         </property>
        </widget>
@@ -121,7 +121,7 @@
   <tabstop>toolButtonClear</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

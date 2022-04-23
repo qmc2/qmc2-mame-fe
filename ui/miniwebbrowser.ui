@@ -96,7 +96,7 @@
          <string>Find previous occurrence</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
         </property>
        </widget>
@@ -113,7 +113,7 @@
          <string>Find next occurrence</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
         </property>
        </widget>
@@ -137,7 +137,7 @@
          <string>Case-sensitive</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/characters.png</normaloff>:/data/img/characters.png</iconset>
         </property>
         <property name="checkable">
@@ -157,7 +157,7 @@
          <string>Highlight matches</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/highlight.png</normaloff>:/data/img/highlight.png</iconset>
         </property>
         <property name="checkable">
@@ -192,7 +192,7 @@
          <string>Go back</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
         </property>
        </widget>
@@ -215,7 +215,7 @@
          <string>Go forward</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/forward.png</normaloff>:/data/img/forward.png</iconset>
         </property>
        </widget>
@@ -238,7 +238,7 @@
          <string>Reload current page</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
         </property>
        </widget>
@@ -261,7 +261,7 @@
          <string>Stop loading of current page</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
         </property>
        </widget>
@@ -284,7 +284,7 @@
          <string>Go home (first page)</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
         </property>
        </widget>
@@ -332,7 +332,7 @@
          <string>Toggle display of the search bar</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
         </property>
         <property name="checkable">
@@ -380,7 +380,7 @@
          <string>Load URL</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
         </property>
        </widget>
@@ -404,7 +404,7 @@
   <tabstop>lineEditSearch</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

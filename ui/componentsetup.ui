@@ -36,7 +36,7 @@
          <string>Master system list views</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/1.png</normaloff>:/data/img/1.png</iconset>
         </property>
        </item>
@@ -45,7 +45,7 @@
          <string>System-specific detail tabs</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/2.png</normaloff>:/data/img/2.png</iconset>
         </property>
        </item>
@@ -54,7 +54,7 @@
          <string>Logs and special widgets</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/3.png</normaloff>:/data/img/3.png</iconset>
         </property>
        </item>
@@ -63,7 +63,7 @@
          <string>Software-detail widget</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/4.png</normaloff>:/data/img/4.png</iconset>
         </property>
        </item>
@@ -91,7 +91,7 @@
          <string>Component arrangement I</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_00.png</normaloff>:/data/img/component_arrangement_00.png</iconset>
         </property>
        </item>
@@ -100,7 +100,7 @@
          <string>Component arrangement II</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_01.png</normaloff>:/data/img/component_arrangement_01.png</iconset>
         </property>
        </item>
@@ -109,7 +109,7 @@
          <string>Component arrangement III</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_02.png</normaloff>:/data/img/component_arrangement_02.png</iconset>
         </property>
        </item>
@@ -118,7 +118,7 @@
          <string>Component arrangement IV</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_03.png</normaloff>:/data/img/component_arrangement_03.png</iconset>
         </property>
        </item>
@@ -127,7 +127,7 @@
          <string>Component arrangement V</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_04.png</normaloff>:/data/img/component_arrangement_04.png</iconset>
         </property>
        </item>
@@ -136,7 +136,7 @@
          <string>Component arrangement VI</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_05.png</normaloff>:/data/img/component_arrangement_05.png</iconset>
         </property>
        </item>
@@ -145,7 +145,7 @@
          <string>Component arrangement VII</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_06.png</normaloff>:/data/img/component_arrangement_06.png</iconset>
         </property>
        </item>
@@ -154,7 +154,7 @@
          <string>Component arrangement VIII</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_07.png</normaloff>:/data/img/component_arrangement_07.png</iconset>
         </property>
        </item>
@@ -163,7 +163,7 @@
          <string>Component arrangement IX</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_08.png</normaloff>:/data/img/component_arrangement_08.png</iconset>
         </property>
        </item>
@@ -172,7 +172,7 @@
          <string>Component arrangement X</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_09.png</normaloff>:/data/img/component_arrangement_09.png</iconset>
         </property>
        </item>
@@ -181,7 +181,7 @@
          <string>Component arrangement XI</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_10.png</normaloff>:/data/img/component_arrangement_10.png</iconset>
         </property>
        </item>
@@ -190,7 +190,7 @@
          <string>Component arrangement XII</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_11.png</normaloff>:/data/img/component_arrangement_11.png</iconset>
         </property>
        </item>
@@ -199,7 +199,7 @@
          <string>Component arrangement XIII</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_12.png</normaloff>:/data/img/component_arrangement_12.png</iconset>
         </property>
        </item>
@@ -208,7 +208,7 @@
          <string>Component arrangement XIV</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/component_arrangement_13.png</normaloff>:/data/img/component_arrangement_13.png</iconset>
         </property>
        </item>
@@ -271,7 +271,7 @@
             <string>Configure...</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
            </property>
           </widget>
@@ -294,7 +294,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
            </property>
           </widget>
@@ -347,7 +347,7 @@
             <string>Deactivate selected features</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
            </property>
           </widget>
@@ -367,7 +367,7 @@
             <string>Move selected feature up</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
            </property>
            <property name="autoRepeat">
@@ -390,7 +390,7 @@
             <string>Move selected feature down</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
            </property>
            <property name="autoRepeat">
@@ -428,7 +428,7 @@
         <string>&amp;Ok</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
       </widget>
@@ -442,7 +442,7 @@
         <string>&amp;Apply</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
        </property>
       </widget>
@@ -456,7 +456,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
        </property>
       </widget>
@@ -494,7 +494,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

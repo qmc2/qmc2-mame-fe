@@ -88,7 +88,7 @@
       <string>&amp;Ok</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
      </property>
      <property name="autoDefault">
@@ -111,7 +111,7 @@
       <string>&amp;Cancel</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
      </property>
      <property name="autoDefault">
@@ -137,7 +137,7 @@
       <string>&amp;Restore</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
      </property>
      <property name="autoDefault">
@@ -170,7 +170,7 @@
       <string>Add a new artwork class</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
      </property>
     </widget>
@@ -190,7 +190,7 @@
       <string>Remove selected artwork classes</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
      </property>
     </widget>
@@ -206,7 +206,7 @@
   <tabstop>toolButtonRemove</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

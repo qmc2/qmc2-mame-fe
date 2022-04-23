@@ -39,7 +39,7 @@
          <string>Previews</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
         </property>
        </item>
@@ -48,7 +48,7 @@
          <string>Flyers</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/thumbnail.png</normaloff>:/data/img/thumbnail.png</iconset>
         </property>
        </item>
@@ -57,7 +57,7 @@
          <string>Cabinets</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/arcadecabinet.png</normaloff>:/data/img/arcadecabinet.png</iconset>
         </property>
        </item>
@@ -66,7 +66,7 @@
          <string>Controllers</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/joystick.png</normaloff>:/data/img/joystick.png</iconset>
         </property>
        </item>
@@ -75,7 +75,7 @@
          <string>Marquees</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/marquee.png</normaloff>:/data/img/marquee.png</iconset>
         </property>
        </item>
@@ -84,7 +84,7 @@
          <string>Titles</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
         </property>
        </item>
@@ -93,7 +93,7 @@
          <string>PCBs</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/circuit.png</normaloff>:/data/img/circuit.png</iconset>
         </property>
        </item>
@@ -102,7 +102,7 @@
          <string>Icons</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/icon.png</normaloff>:/data/img/icon.png</iconset>
         </property>
        </item>
@@ -143,7 +143,7 @@
         <string>Select sets in master list when selected in the found- or missing-lists below</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/ok.png</normaloff>:/data/img/ok.png</iconset>
        </property>
        <property name="checkable">
@@ -189,7 +189,7 @@
         <string>Start / stop checking images</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/refresh.png</normaloff>:/data/img/refresh.png</iconset>
        </property>
       </widget>
@@ -209,7 +209,7 @@
         <string>Clear check results and log</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
        </property>
       </widget>
@@ -229,7 +229,7 @@
         <string>Save the current log contents to a file</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
        </property>
       </widget>
@@ -280,7 +280,7 @@
             <string>Bad:</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
            </property>
            <property name="checkable">
@@ -306,7 +306,7 @@
             <string>Remove bad image files</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
            </property>
           </widget>
@@ -364,7 +364,7 @@
             <string>Remove obsolete files / folders</string>
            </property>
            <property name="icon">
-            <iconset resource="qmc2.qrc">
+            <iconset resource="../qmc2.qrc">
              <normaloff>:/data/img/remove.png</normaloff>:/data/img/remove.png</iconset>
            </property>
           </widget>
@@ -411,7 +411,7 @@
   <tabstop>plainTextEditLog</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

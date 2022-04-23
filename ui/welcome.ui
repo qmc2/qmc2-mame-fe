@@ -40,7 +40,7 @@
          <string>Browse ROM path</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -64,7 +64,7 @@
          <string>Browse hash path</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -114,7 +114,7 @@
          <string>Browse emulator executable file</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -167,7 +167,7 @@
          <string>Browse working directory</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -178,7 +178,7 @@
          <string>Browse sample path</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -202,7 +202,7 @@
          <string>Alternatively, configure QMC2 through the setup wizard...</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/wizard.png</normaloff>:/data/img/wizard.png</iconset>
         </property>
        </widget>
@@ -301,7 +301,7 @@
          </sizepolicy>
         </property>
         <property name="pixmap">
-         <pixmap resource="qmc2.qrc">:/data/img/qmc2_logo_big.png</pixmap>
+         <pixmap resource="../qmc2.qrc">:/data/img/qmc2_logo_big.png</pixmap>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -342,7 +342,7 @@
   <tabstop>comboBoxLanguage</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

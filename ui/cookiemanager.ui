@@ -48,7 +48,7 @@
       <string>Remove</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
      </property>
     </widget>
@@ -90,7 +90,7 @@
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

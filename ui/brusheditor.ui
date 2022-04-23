@@ -51,7 +51,7 @@
       <string>&amp;Cancel</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
      </property>
      <property name="autoDefault">
@@ -105,7 +105,7 @@
           <string>Browse image file</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
          </property>
         </widget>
@@ -281,7 +281,7 @@
           <string>Choose pattern color</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/colors.png</normaloff>:/data/img/colors.png</iconset>
          </property>
         </widget>
@@ -406,7 +406,7 @@
           <string>Add color-stop</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
          </property>
         </widget>
@@ -996,7 +996,7 @@
       <string>&amp;Ok</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
      </property>
      <property name="autoDefault">
@@ -1045,7 +1045,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

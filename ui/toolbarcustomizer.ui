@@ -57,7 +57,7 @@
          <string>Activate</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/right_action.png</normaloff>:/data/img/right_action.png</iconset>
         </property>
         <property name="autoDefault">
@@ -108,7 +108,7 @@
          <string>Deactivate selected tool-bar actions</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/left_action.png</normaloff>:/data/img/left_action.png</iconset>
         </property>
         <property name="autoDefault">
@@ -131,7 +131,7 @@
          <string>Move selected action up</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/up_action.png</normaloff>:/data/img/up_action.png</iconset>
         </property>
         <property name="autoRepeat">
@@ -157,7 +157,7 @@
          <string>Move selected action down</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/down_action.png</normaloff>:/data/img/down_action.png</iconset>
         </property>
         <property name="autoRepeat">
@@ -186,7 +186,7 @@
          <string>Separator</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
         </property>
         <property name="autoDefault">
@@ -209,7 +209,7 @@
          <string>Default</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
         </property>
        </widget>
@@ -241,7 +241,7 @@
         <string>&amp;Ok</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
        <property name="autoDefault">
@@ -258,7 +258,7 @@
         <string>&amp;Apply</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
        </property>
        <property name="autoDefault">
@@ -275,7 +275,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
        </property>
       </widget>
@@ -311,7 +311,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

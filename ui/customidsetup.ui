@@ -108,7 +108,7 @@
       <string>Enable / disable sorting</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/sort.png</normaloff>:/data/img/sort.png</iconset>
      </property>
      <property name="checkable">
@@ -137,7 +137,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
      </property>
     </widget>
@@ -157,7 +157,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
      </property>
     </widget>
@@ -239,7 +239,7 @@
       <string>&amp;Cancel</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
      </property>
     </widget>
@@ -259,7 +259,7 @@
       <string>&amp;Ok</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
      </property>
     </widget>
@@ -277,7 +277,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

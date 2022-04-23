@@ -38,7 +38,7 @@
         <string>Reload all information</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
        </property>
       </widget>
@@ -58,7 +58,7 @@
         <string>Toggle filtering of compatible software titles</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
        </property>
        <property name="checkable">
@@ -81,7 +81,7 @@
         <string>Toggle detailed software information</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/detail.png</normaloff>:/data/img/detail.png</iconset>
        </property>
        <property name="checkable">
@@ -101,7 +101,7 @@
         <string>Toggle checking / displaying software-states (hold down for menu)</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
        </property>
        <property name="checkable">
@@ -124,7 +124,7 @@
         <string>Analyze software menu</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/romalyzer_sw.png</normaloff>:/data/img/romalyzer_sw.png</iconset>
        </property>
        <property name="popupMode">
@@ -144,7 +144,7 @@
         <string>Rebuild software menu</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
        </property>
        <property name="popupMode">
@@ -174,7 +174,7 @@
         <string>Toggle automatic adjustment of the snapname parameter (hold down for menu)</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
        </property>
        <property name="checkable">
@@ -197,7 +197,7 @@
         <string>Toggle automatic adjustment of the statename parameter (hold down for menu)</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/checkpoint.png</normaloff>:/data/img/checkpoint.png</iconset>
        </property>
        <property name="checkable">
@@ -267,7 +267,7 @@
         <string>Open manual in PDF viewer</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/no_book.png</normaloff>:/data/img/no_book.png</iconset>
        </property>
       </widget>
@@ -300,7 +300,7 @@
         <string>Export</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
        </property>
        <property name="toolButtonStyle">
@@ -320,7 +320,7 @@
         <string>Open options menu for the favorites list</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/favorites_multiple.png</normaloff>:/data/img/favorites_multiple.png</iconset>
        </property>
        <property name="popupMode">
@@ -343,7 +343,7 @@
         <string>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/add_to_favorites.png</normaloff>:/data/img/add_to_favorites.png</iconset>
        </property>
       </widget>
@@ -363,7 +363,7 @@
         <string>Remove the currently selected favorite software configuration</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/remove_from_favorites.png</normaloff>:/data/img/remove_from_favorites.png</iconset>
        </property>
       </widget>
@@ -383,7 +383,7 @@
         <string>Play the selected software configuration</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
        </property>
       </widget>
@@ -403,7 +403,7 @@
         <string>Play the selected software configuration (embedded)</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
        </property>
       </widget>
@@ -428,7 +428,7 @@
        </rect>
       </property>
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
       </attribute>
       <attribute name="label">
@@ -610,7 +610,7 @@
        </rect>
       </property>
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/favorites.png</normaloff>:/data/img/favorites.png</iconset>
       </attribute>
       <attribute name="label">
@@ -708,7 +708,7 @@
        </rect>
       </property>
       <attribute name="icon">
-       <iconset resource="qmc2.qrc">
+       <iconset resource="../qmc2.qrc">
         <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
       </attribute>
       <attribute name="label">
@@ -917,7 +917,7 @@
   <tabstop>treeWidgetSearchResults</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

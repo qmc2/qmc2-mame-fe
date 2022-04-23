@@ -47,7 +47,7 @@
          <string>Update</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -73,7 +73,7 @@
          <string>Filters</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -102,7 +102,7 @@
          <string>Flat</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -141,7 +141,7 @@
          <string>Tools menu</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/toolbox.png</normaloff>:/data/img/toolbox.png</iconset>
         </property>
         <property name="popupMode">
@@ -190,7 +190,7 @@
          <string>Columns</string>
         </property>
         <property name="icon">
-         <iconset resource="qmc2.qrc">
+         <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/columns.png</normaloff>:/data/img/columns.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -284,7 +284,7 @@
   <tabstop>treeView</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

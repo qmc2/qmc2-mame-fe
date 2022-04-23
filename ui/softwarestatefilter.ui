@@ -47,7 +47,7 @@
       <string>Toggle software-state 'correct'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/software_correct.png</normaloff>:/data/img/software_correct.png</iconset>
      </property>
      <property name="checkable">
@@ -76,7 +76,7 @@
       <string>Toggle software-state 'unknown'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/software_unknown.png</normaloff>:/data/img/software_unknown.png</iconset>
      </property>
      <property name="checkable">
@@ -105,7 +105,7 @@
       <string>Toggle software-state 'mostly correct'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/software_mostlycorrect.png</normaloff>:/data/img/software_mostlycorrect.png</iconset>
      </property>
      <property name="checkable">
@@ -134,7 +134,7 @@
       <string>Toggle software-state 'not found'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/software_notfound.png</normaloff>:/data/img/software_notfound.png</iconset>
      </property>
      <property name="checkable">
@@ -163,7 +163,7 @@
       <string>Toggle software-state 'incorrect'</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/software_incorrect.png</normaloff>:/data/img/software_incorrect.png</iconset>
      </property>
      <property name="checkable">
@@ -204,7 +204,7 @@
   <tabstop>toolButtonUnknown</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

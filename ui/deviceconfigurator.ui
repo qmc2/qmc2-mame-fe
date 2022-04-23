@@ -49,7 +49,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
          </property>
         </widget>
@@ -94,7 +94,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
          </property>
         </widget>
@@ -258,7 +258,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
                 </property>
                </widget>
@@ -297,7 +297,7 @@
                  <string>Automatically select the first matching device instance when selecting a file with a valid extension</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/ok.png</normaloff>:/data/img/ok.png</iconset>
                 </property>
                 <property name="checkable">
@@ -320,7 +320,7 @@
                  <string>Merge file-chooser mapping with current device-mappings</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/merge_unknown.png</normaloff>:/data/img/merge_unknown.png</iconset>
                 </property>
                 <property name="checkable">
@@ -343,7 +343,7 @@
                  <string>Filter files by allowed extensions for the current device instance</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
                 </property>
                 <property name="checkable">
@@ -366,7 +366,7 @@
                  <string>Process ZIP and 7z contents on item activation</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
                 </property>
                 <property name="checkable">
@@ -386,7 +386,7 @@
                  <string>Folder mode selection</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/folders-off.png</normaloff>:/data/img/folders-off.png</iconset>
                 </property>
                 <property name="popupMode">
@@ -428,7 +428,7 @@
                  <string>Clear search string</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
                 </property>
                </widget>
@@ -470,7 +470,7 @@
                  <string>Reload directory contents</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                 </property>
                </widget>
@@ -490,7 +490,7 @@
                  <string>Play the selected configuration</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
                 </property>
                </widget>
@@ -510,7 +510,7 @@
                  <string>Play the selected configuration (embedded)</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="qmc2.qrc">
+                 <iconset resource="../qmc2.qrc">
                   <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
                 </property>
                </widget>
@@ -610,7 +610,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
          </property>
         </widget>
@@ -636,7 +636,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/filenew.png</normaloff>:/data/img/filenew.png</iconset>
          </property>
         </widget>
@@ -679,7 +679,7 @@
           <string>Device configuration menu</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
          </property>
          <property name="popupMode">
@@ -751,7 +751,7 @@
   <tabstop>listWidgetDeviceConfigurations</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

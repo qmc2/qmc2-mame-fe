@@ -64,7 +64,7 @@
         <string>Browse icon cache database file</string>
        </property>
        <property name="icon">
-        <iconset resource="qmc2.qrc">
+        <iconset resource="../qmc2.qrc">
          <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
        </property>
       </widget>
@@ -143,7 +143,7 @@
       <string>Reimport icons now</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/rebuild.png</normaloff>:/data/img/rebuild.png</iconset>
      </property>
      <property name="toolButtonStyle">
@@ -162,7 +162,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

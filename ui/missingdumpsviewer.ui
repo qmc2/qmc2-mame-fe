@@ -143,7 +143,7 @@
   <tabstop>checkBoxSelectedDumpsOnly</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -159,7 +159,7 @@
           <string>Clear filter expression</string>
          </property>
          <property name="icon">
-          <iconset resource="qmc2.qrc">
+          <iconset resource="../qmc2.qrc">
            <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
          </property>
         </widget>
@@ -282,7 +282,7 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections>
   <connection>

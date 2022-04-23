@@ -32,7 +32,7 @@
       <string>Store value</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
      </property>
     </widget>
@@ -65,7 +65,7 @@
       <string>Revert to stored value</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/undo.png</normaloff>:/data/img/undo.png</iconset>
      </property>
     </widget>
@@ -85,7 +85,7 @@
       <string>Forcibly pass the default value (when checked)</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/enforce.png</normaloff>:/data/img/enforce.png</iconset>
      </property>
      <property name="checkable">
@@ -108,7 +108,7 @@
       <string>Reset to default value</string>
      </property>
      <property name="icon">
-      <iconset resource="qmc2.qrc">
+      <iconset resource="../qmc2.qrc">
        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
      </property>
     </widget>
@@ -121,7 +121,7 @@
   <tabstop>toolButtonStore</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc"/>
+  <include location="../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>
