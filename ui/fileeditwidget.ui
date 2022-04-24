@@ -8,11 +8,20 @@
     <x>0</x>
     <y>0</y>
     <width>188</width>
-    <height>25</height>
+    <height>32</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <property name="spacing">
@@ -30,7 +39,16 @@
       <enum>QFrame::Plain</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <property name="spacing">
@@ -43,7 +61,16 @@
         </property>
         <widget class="QWidget" name="pageLineEdit">
          <layout class="QGridLayout" name="gridLayoutPageLineEdit">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item row="0" column="0">
@@ -54,13 +81,25 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="toolTip">
+             <string>File path</string>
+            </property>
            </widget>
           </item>
          </layout>
         </widget>
         <widget class="QWidget" name="pageComboBox">
          <layout class="QGridLayout" name="gridLayoutPageComboBox">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item row="0" column="0">
@@ -88,6 +127,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip">
+         <string>Browse</string>
+        </property>
         <property name="icon">
          <iconset resource="../qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
@@ -101,6 +143,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Clear</string>
         </property>
         <property name="icon">
          <iconset resource="../qmc2.qrc">
