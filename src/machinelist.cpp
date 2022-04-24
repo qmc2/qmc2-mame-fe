@@ -77,6 +77,8 @@ extern bool qmc2StatesTogglesEnabled;
 extern bool qmc2ForceCacheRefresh;
 extern bool qmc2SortingActive;
 extern bool qmc2GuiReady;
+extern bool qmc2PlayHistoryChanged;
+extern bool qmc2FavoritesChanged;
 extern int qmc2MachineListResponsiveness;
 extern Preview *qmc2Preview;
 extern Flyer *qmc2Flyer;
@@ -2183,6 +2185,7 @@ void MachineList::saveFavorites()
 		for (int i = 0; i < qmc2MainWindow->listWidgetFavorites->count(); i++)
 			ts << qmc2MainWindow->listWidgetFavorites->item(i)->whatsThis() << "\n";
 		f.close();
+		qmc2FavoritesChanged = false;
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open favorites file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/FavoritesFile").toString()));
 }
@@ -2229,6 +2232,7 @@ void MachineList::savePlayHistory()
 		for (int i = 0; i < qmc2MainWindow->listWidgetPlayed->count(); i++)
 			ts << qmc2MainWindow->listWidgetPlayed->item(i)->whatsThis() << "\n";
 		f.close();
+		qmc2PlayHistoryChanged = false;
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open play history file for writing, path = %1").arg(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/HistoryFile").toString()));
 }

@@ -191,6 +191,8 @@ bool qmc2CriticalSection = false;
 bool qmc2UseDefaultEmulator = true;
 bool qmc2ForceCacheRefresh = false;
 bool qmc2ReconfigureRestartRequested = false;
+bool qmc2PlayHistoryChanged = false;
+bool qmc2FavoritesChanged = false;
 int qmc2MachineListResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = 0;
@@ -2110,6 +2112,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 		listWidgetPlayed->insertItem(0, playedItem);
 		listWidgetPlayed->setCurrentItem(playedItem);
 		listWidgetPlayed->blockSignals(false);
+		qmc2PlayHistoryChanged = true;
 	} else {
 		if ( qmc2DemoModeDialog ) {
 			QProcess *proc = qmc2ProcessManager->process(qmc2ProcessManager->procCount - 1);
@@ -2196,6 +2199,7 @@ void MainWindow::on_actionToFavorites_triggered(bool)
 		item->setText(itemText);
 		item->setWhatsThis(itemName);
 		listWidgetFavorites->sortItems();
+		qmc2FavoritesChanged = true;
 	}
 }
 
@@ -2245,9 +2249,13 @@ void MainWindow::on_actionReload_triggered(bool)
 			} else
 				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedMachine");
 		}
-		if ( !qmc2LoadingInterrupted )
+		if ( !qmc2LoadingInterrupted ) {
+			if ( qmc2PlayHistoryChanged )
+				qmc2MachineList->savePlayHistory();
+			if ( qmc2FavoritesChanged )
+				qmc2MachineList->saveFavorites();
 			qmc2MachineList->load();
-		else
+		} else
 			QTimer::singleShot(0, qmc2MachineList, SLOT(enableWidgets()));
 	}
 	static bool initialCall = true;
@@ -5389,6 +5397,7 @@ void MainWindow::action_removeFromFavorites_triggered()
 	if ( i ) {
 		QListWidgetItem *item = listWidgetFavorites->takeItem(listWidgetFavorites->row(i));
 		delete item;
+		qmc2FavoritesChanged = true;
 	}
 }
 
@@ -5422,6 +5431,7 @@ void MainWindow::action_removeFromPlayed_triggered()
 	if ( i ) {
 		QListWidgetItem *item = listWidgetPlayed->takeItem(listWidgetPlayed->row(i));
 		delete item;
+		qmc2PlayHistoryChanged = true;
 	}
 }
 
@@ -5909,12 +5919,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/RanksLocked", RankItemWidget::ranksLocked);
 
 	if ( !qmc2TemplateCheck ) {
-		if ( listWidgetFavorites->count() > 0 )
+		if ( qmc2FavoritesChanged )
 			qmc2MachineList->saveFavorites();
-
-		if ( listWidgetPlayed->count() > 0 )
+		if ( qmc2PlayHistoryChanged )
 			qmc2MachineList->savePlayHistory();
-
 		QStringList searchStrings;
 		for (int index = 0; index < comboBoxSearch->count(); index++)
 			searchStrings << comboBoxSearch->itemText(index);
@@ -5922,7 +5930,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 			qmc2Config->remove(QMC2_FRONTEND_PREFIX + "MachineSearchHistory");
 		else
 			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MachineSearchHistory", searchStrings);
-
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MachineListView", comboBoxViewSelect->currentIndex());
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveMachineSelection").toBool() ) {
 			if ( qmc2CurrentItem ) {
@@ -5931,7 +5938,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 			} else
 				qmc2Config->remove(QMC2_EMULATOR_PREFIX + "SelectedMachine");
 		}
-
 		QTreeWidgetItem *foreignItem = treeWidgetForeignIDs->currentItem();
 		if ( foreignItem && foreignItem->isSelected() ) {
 			QTreeWidgetItem *parentItem = foreignItem;
@@ -8852,6 +8858,7 @@ void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 		}
 	}
 	qmc2CurrentItem = oldCurrentItem;
+	qmc2FavoritesChanged = true;
 	progressBarMachineList->reset();
 }
 
