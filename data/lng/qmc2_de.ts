@@ -5254,17 +5254,17 @@ Lokale Einstellung für Option &apos;%1&apos; verwenden, mit globaler Einstellun
     <message>
         <location filename="../../ui/fileeditwidget.ui" line="85"/>
         <source>File path</source>
-        <translation></translation>
+        <translation>Dateipfad</translation>
     </message>
     <message>
         <location filename="../../ui/fileeditwidget.ui" line="131"/>
         <source>Browse</source>
-        <translation></translation>
+        <translation>Auswählen</translation>
     </message>
     <message>
         <location filename="../../ui/fileeditwidget.ui" line="148"/>
         <source>Clear</source>
-        <translation></translation>
+        <translation>Löschen</translation>
     </message>
 </context>
 <context>
