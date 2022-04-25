@@ -10,16 +10,11 @@
 #include <QMap>
 #include <QDesktopWidget>
 #include <QPainterPath>
-#if QT_VERSION >= 0x050000
 #include <QMediaPlayer>
 #include <QVideoWidget>
-#endif
 
 #include "ui_youtubevideoplayer.h"
 #include "videoitemwidget.h"
-#if QT_VERSION < 0x050000
-#include "qmc2_phonon.h"
-#endif
 
 // supported YouTube formats (see http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs)
 #define YOUTUBE_FORMAT_COUNT		7
@@ -224,16 +219,6 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = 0, bool videoInfoOnly = false);
 		QString indexToFormat(int);
 
-#if QT_VERSION < 0x050000
-		bool isPlaying() { return videoPlayer()->isPlaying(); }
-		bool isPaused() { return videoPlayer()->isPaused(); }
-		bool hasVideo() { return mediaObject()->hasVideo(); }
-		Phonon::VideoPlayer *videoPlayer() { return mVideoPlayer; }
-		Phonon::VideoWidget *videoWidget() { return mVideoPlayer->videoWidget(); }
-		Phonon::AudioOutput *audioOutput() { return mVideoPlayer->audioOutput(); }
-		Phonon::MediaObject *mediaObject() { return mVideoPlayer->mediaObject(); }
-		qint64 remainingTime() { return mediaObject()->remainingTime(); }
-#else
 		bool isPlaying() { return videoPlayer()->state() == QMediaPlayer::PlayingState; }
 		bool isPaused() { return videoPlayer()->state() == QMediaPlayer::PausedState; }
 		bool hasVideo() { return videoPlayer()->isVideoAvailable(); }
@@ -242,7 +227,6 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QMediaPlayer *audioOutput() { return mVideoPlayer; }
 		QMediaPlayer *mediaObject() { return mVideoPlayer; }
 		qint64 remainingTime() { return videoPlayer()->duration() - videoPlayer()->position(); }
-#endif
 		void showMessage(QString message, int timeout = 2000) { videoOverlayWidget->showMessage(message, timeout); }
 		void clearMessage() { videoOverlayWidget->clearMessage(); }
 		void reload(const QString &, const QString &);
@@ -264,11 +248,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void playNextVideo();
 		void videoTick(qint64);
 		void videoFinished();
-#if QT_VERSION < 0x050000
-		void videoStateChanged(Phonon::State, Phonon::State);
-#else
 		void videoStateChanged(QMediaPlayer::State);
-#endif
 		void videoBufferStatus(int);
 
 		void videoInfoReadyRead();
@@ -329,13 +309,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void hideEvent(QHideEvent *);
 
 	private:
-#if QT_VERSION < 0x050000
-		Phonon::VideoPlayer *mVideoPlayer;
-#else
 		QMediaPlayer *mVideoPlayer;
 		QVideoWidget *mVideoWidget;
 		QVideoWidget *mFullscreenVideoWidget;
-#endif
 };
 
 class YouTubeXmlHandler : public QXmlDefaultHandler

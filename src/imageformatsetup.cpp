@@ -20,11 +20,7 @@ ImageFormatSetup::ImageFormatSetup(QWidget *parent)
 {
 	setupUi(this);
 	m_previousClassIndex = -1;
-#if QT_VERSION < 0x050000
-	treeWidget->header()->setMovable(false);
-#else
 	treeWidget->header()->setSectionsMovable(false);
-#endif
 	artworkClassPrefixes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws";
 	artworkClassNames << tr("Preview") << tr("Flyer") << tr("Cabinet") << tr("Controller") << tr("Marquee") << tr("Title") << tr("PCB") << tr("Software snap");
 	artworkClassIcons << ":/data/img/camera.png" << ":/data/img/thumbnail.png" << ":/data/img/arcadecabinet.png" << ":/data/img/joystick.png" << ":/data/img/marquee.png" << ":/data/img/arcademode.png" << ":/data/img/circuit.png" << ":/data/img/pacman.png";
