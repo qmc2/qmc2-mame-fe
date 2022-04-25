@@ -222,9 +222,8 @@ DeviceConfigurator::DeviceConfigurator(QString machine, QWidget *parent) :
 
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
 
-#if (!defined(QMC2_OS_UNIX) && !defined(QMC2_OS_WIN)) || QT_VERSION >= 0x050000
+	// FIXME
 	toolButtonChooserPlayEmbedded->setVisible(false);
-#endif
 
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
 	comboBoxChooserFilterPattern->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxChooserFilterPattern));
@@ -1457,13 +1456,8 @@ void DeviceConfigurator::setupFileChooser()
 		treeViewDirChooser->setColumnHidden(i, true);
 	treeViewDirChooser->setSortingEnabled(true);
 
-#if QT_VERSION < 0x050000
-	treeViewDirChooser->header()->setMovable(false);
-	treeViewDirChooser->header()->setResizeMode(QHeaderView::Stretch);
-#else
 	treeViewDirChooser->header()->setSectionsMovable(false);
 	treeViewDirChooser->header()->setSectionResizeMode(QHeaderView::Stretch);
-#endif
 	treeViewDirChooser->header()->setStretchLastSection(true);
   	treeViewDirChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DeviceConfigurator/DirChooserHeaderState").toByteArray());
 	treeViewDirChooser->sortByColumn(0, treeViewDirChooser->header()->sortIndicatorOrder());
@@ -1792,14 +1786,12 @@ void DeviceConfigurator::fileModel_finished()
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
-#if QT_VERSION >= 0x050000
+
 	// a sorting-enabled tree-view that's already sorted will not be resorted in case of Qt 5 (that's good, but we need to do it here in order to support "folders first")
 	treeViewFileChooser->setSortingEnabled(false);
 	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 	treeViewFileChooser->setSortingEnabled(true);
-#else
-	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
-#endif
+
 	toolButtonChooserReload->setEnabled(true);
 	if ( comboBoxChooserFilterPatternHadFocus )
 		comboBoxChooserFilterPattern->setFocus();

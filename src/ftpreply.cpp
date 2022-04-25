@@ -88,11 +88,7 @@ void FtpReply::setListContent()
 	open(ReadOnly | Unbuffered);
 
 	QString content("<html><head>\n"
-#if QT_VERSION < 0x050000
-			"<title>" + Qt::escape(base_url) + "</title>\n"
-#else
 			"<title>" + QString(base_url).toHtmlEscaped() + "</title>\n"
-#endif
 			"<style type=\"text/css\">\n"
 			"th { background-color: #aaaaaa; color: black; }\n"
 			"table { border: solid 1px #aaaaaa; }\n"
@@ -118,11 +114,7 @@ void FtpReply::setListContent()
 			content += QString("<tr class=\"odd\">");
 		else
 			content += QString("<tr class=\"even\">");
-#if QT_VERSION < 0x050000
-		content += QString("<td><a href=\"" + child.toString() + "\">" + Qt::escape(item.name()) + "</a></td>");
-#else
 		content += QString("<td><a href=\"" + child.toString() + "\">" + QString(item.name()).toHtmlEscaped() + "</a></td>");
-#endif
 		if ( item.isFile() )
 			content += QString("<td>" + tr("File") + "</td><td>" + ROMAlyzer::humanReadable(item.size(), 2) + "</td></tr>\n");
 		else if ( item.isDir() )
