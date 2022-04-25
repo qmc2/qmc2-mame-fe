@@ -1,19 +1,13 @@
 #ifndef TWEAKEDQMLAPPVIEWER_H
 #define TWEAKEDQMLAPPVIEWER_H
 
-#include <qglobal.h>
 #include <QTimer>
 #include <QStringList>
 #include <QMap>
 #include <QHash>
-
-#if QT_VERSION < 0x050000
-#include "qmlapplicationviewer/qmlapplicationviewer.h"
-#else
 #include <QQuickView>
 #include <QWindow>
 #include <QByteArray>
-#endif
 
 #include "processmanager.h"
 #include "imageprovider.h"
@@ -25,22 +19,11 @@
 #endif
 
 #define QMC2_ARCADE_PARAM_THEME     0
-#if QT_VERSION < 0x050000
-#define QMC2_ARCADE_PARAM_GRASYS    1
-#define QMC2_ARCADE_PARAM_CONSOLE   2
-#define QMC2_ARCADE_PARAM_LANGUAGE  3
-#define QMC2_ARCADE_PARAM_VIDEO     4
-#else
 #define QMC2_ARCADE_PARAM_CONSOLE   1
 #define QMC2_ARCADE_PARAM_LANGUAGE  2
 #define QMC2_ARCADE_PARAM_VIDEO     3
-#endif
 
-#if QT_VERSION < 0x050000
-class TweakedQmlApplicationViewer : public QmlApplicationViewer
-		#else
 class TweakedQmlApplicationViewer : public QQuickView
-		#endif
 {
 	Q_OBJECT
 
@@ -66,14 +49,9 @@ public:
 #endif
 	static int consoleMode;
 
-#if QT_VERSION < 0x050000
-	explicit TweakedQmlApplicationViewer(QWidget *parent = 0);
-#else
 	explicit TweakedQmlApplicationViewer(QWindow *parent = 0);
-#endif
 	virtual ~TweakedQmlApplicationViewer();
 
-#if QT_VERSION >= 0x050000
 	bool isFullScreen()
 	{
 		return windowState() & Qt::WindowFullScreen;
@@ -91,7 +69,6 @@ public:
 	{
 		// FIXME
 	}
-#endif
 
 	int themeIndex();
 	void setVideoEnabled(bool enable) { m_videoEnabled = enable; }
@@ -133,10 +110,8 @@ public slots:
 	void setCliParamValue(QString, QString);
 	void linkActivated(QString);
 	QString emuMode();
-#if QT_VERSION >= 0x050000
 	void frameBufferSwapped() { numFrames++; }
 	void handleQuit();
-#endif
 	int runningEmulators() { return processManager->runningProcesses(); }
 	void imageDataUpdate(const QString &cachePrefix) { emit imageDataUpdated(cachePrefix); }
 	bool isSevenZippedImageType(const QString & type) { return imageProvider->isSevenZippedImageType(type); }
@@ -159,12 +134,6 @@ private:
 	QHash<QString, QString> m_videoSnapUrlCache;
 	int m_currentSystemArtworkIndex;
 	int m_currentSoftwareArtworkIndex;
-
-#if QT_VERSION < 0x050000
-protected:
-	void paintEvent(QPaintEvent *);
-	void closeEvent(QCloseEvent *);
-#endif
 };
 
 #endif

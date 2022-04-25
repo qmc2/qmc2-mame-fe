@@ -1,19 +1,12 @@
 #ifndef FTPREPLY_H
 #define FTPREPLY_H
 
-#include <qglobal.h>
-
 #include <QNetworkReply>
 #include <QStringList>
 #include <QMap>
 
-#if QT_VERSION < 0x050000
-#include <QFtp>
-#include <QUrlInfo>
-#else
 #include "qftp/qftp.h"
 #include "qftp/qurlinfo.h"
-#endif
 
 class FtpReply : public QNetworkReply
 {

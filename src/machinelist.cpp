@@ -1,9 +1,5 @@
 #include <Qt>
-#if QT_VERSION >= 0x050000
 #include <QtWebKitWidgets/QWebView>
-#else
-#include <QWebView>
-#endif
 #include <QTextStream>
 #include <QHeaderView>
 #include <QTreeWidgetItem>

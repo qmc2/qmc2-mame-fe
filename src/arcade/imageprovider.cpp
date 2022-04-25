@@ -1,10 +1,6 @@
 #include <qglobal.h>
 
-#if QT_VERSION < 0x050000
-#include <QApplication>
-#else
 #include <QGuiApplication>
-#endif
 #include <QImage>
 #include <QPixmap>
 #include <QPainter>
@@ -19,15 +15,9 @@
 
 extern ArcadeSettings *globalConfig;
 
-#if QT_VERSION < 0x050000
-ImageProvider::ImageProvider(QDeclarativeImageProvider::ImageType type, QObject *parent) :
-	QObject(parent),
-	QDeclarativeImageProvider(type),
-#else
 ImageProvider::ImageProvider(QQuickImageProvider::ImageType type, QObject *parent) :
 	QObject(parent),
 	QQuickImageProvider(type),
-#endif
 	m_iconCacheDb(0)
 {
 	mImageTypes << "prv" << "fly" << "cab" << "ctl" << "mrq" << "ttl" << "pcb" << "sws" << "ico";

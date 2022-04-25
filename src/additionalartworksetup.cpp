@@ -29,11 +29,7 @@ AdditionalArtworkSetup::AdditionalArtworkSetup(QWidget *parent)
 	: QDialog(parent)
 {
 	setupUi(this);
-#if QT_VERSION < 0x050000
-	treeWidget->header()->setMovable(false);
-#else
 	treeWidget->header()->setSectionsMovable(false);
-#endif
 	load();
 }
 

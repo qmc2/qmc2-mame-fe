@@ -539,9 +539,6 @@ class FileSystemModel : public QAbstractItemModel
 		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder)
 		{
 			emit layoutAboutToBeChanged();
-#if QT_VERSION < 0x050000
-			reset();
-#endif
 			mRootItem->sort(order, column, mFoldersFirst);
 			emit layoutChanged();
 		}

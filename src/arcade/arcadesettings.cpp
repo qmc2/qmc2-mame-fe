@@ -171,18 +171,6 @@ QString ArcadeSettings::defaultConsoleType()
 	return value(QString("%1/Arcade/ConsoleType").arg(frontEndPrefix), "terminal").toString();
 }
 
-#if QT_VERSION < 0x050000
-void ArcadeSettings::setDefaultGraphicsSystem(QString graphicsSystem)
-{
-	setValue(QString("%1/Arcade/GraphicsSystem").arg(frontEndPrefix), graphicsSystem);
-}
-
-QString ArcadeSettings::defaultGraphicsSystem()
-{
-	return value(QString("%1/Arcade/GraphicsSystem").arg(frontEndPrefix), "raster").toString();
-}
-#endif
-
 void ArcadeSettings::setDefaultLanguage(QString lang)
 {
 	setValue(QString("%1/GUI/Language").arg(frontEndPrefix), lang);

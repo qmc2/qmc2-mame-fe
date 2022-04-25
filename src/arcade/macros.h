@@ -128,14 +128,6 @@
 #define QMC2_ARCADE_CLI_CONS			(argumentList.indexOf("-console") >= 0 && argumentList.count() > argumentList.indexOf("-console") + 1 ? argumentList[argumentList.indexOf("-console") + 1] : "terminal")
 #define QMC2_ARCADE_CLI_CONS_INV		(argumentList.indexOf("-console") >= 0 && argumentList.count() == argumentList.indexOf("-console") + 1)
 #define QMC2_ARCADE_CLI_CONS_VAL		(argumentList.indexOf("-console") >= 0 && argumentList.count() > argumentList.indexOf("-console") + 1)
-// -graphicssystem <gsys> ([raster], native, opengl)
-#if QT_VERSION < 0x050000
-#define QMC2_ARCADE_CLI_GSYS			(argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1 ? argumentList[argumentList.indexOf("-graphicssystem") + 1] : "raster")
-#define QMC2_ARCADE_CLI_GSYS_INV		(argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() == argumentList.indexOf("-graphicssystem") + 1)
-#define QMC2_ARCADE_CLI_GSYS_VAL		(argumentList.indexOf("-graphicssystem") >= 0 && argumentList.count() > argumentList.indexOf("-graphicssystem") + 1)
-#else
-#define QMC2_ARCADE_CLI_GSYS_INV		false
-#endif
 // -language <lang>
 #define QMC2_ARCADE_CLI_LANG			(argumentList.indexOf("-language") >= 0 && argumentList.count() > argumentList.indexOf("-language") + 1 ? argumentList[argumentList.indexOf("-language") + 1] : "us")
 #define QMC2_ARCADE_CLI_LANG_INV		(argumentList.indexOf("-language") >= 0 && argumentList.count() == argumentList.indexOf("-language") + 1)
@@ -163,7 +155,7 @@
 // -h|-?|-help
 #define QMC2_ARCADE_CLI_HELP			(argumentList.indexOf(QRegExp("(-h|-\\?|-help)")) >= 0)
 // argument validation
-#define QMC2_ARCADE_CLI_INVALID			(QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_GSYS_INV || QMC2_ARCADE_CLI_LANG_INV || QMC2_ARCADE_CLI_VIDEO_INV || QMC2_ARCADE_CLI_JOY_INV)
+#define QMC2_ARCADE_CLI_INVALID			(QMC2_ARCADE_CLI_EMU_INV || QMC2_ARCADE_CLI_THEME_INV || QMC2_ARCADE_CLI_CONS_INV || QMC2_ARCADE_CLI_LANG_INV || QMC2_ARCADE_CLI_VIDEO_INV || QMC2_ARCADE_CLI_JOY_INV)
 
 // console logging macros
 #define QMC2_ARCADE_LOG_STR(s)			TweakedQmlApplicationViewer::logString(s)

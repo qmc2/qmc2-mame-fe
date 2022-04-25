@@ -1,8 +1,6 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#if QT_VERSION >= 0x050000
-
 #ifndef QSETTINGS_H
 #include <QtCore/QSettings>
 #endif
@@ -14,23 +12,6 @@
 #endif
 #ifndef QREGEXP_H
 #include <QtCore/QRegExp>
-#endif
-
-#else
-
-#ifndef QSETTINGS_H
-#include <QSettings>
-#endif
-#ifndef QSTRING_H
-#include <QString>
-#endif
-#ifndef QSTRINGLIST_H
-#include <QStringList>
-#endif
-#ifndef QREGEXP_H
-#include <QRegExp>
-#endif
-
 #endif
 
 class Settings : public QSettings

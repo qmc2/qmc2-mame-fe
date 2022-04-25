@@ -68,11 +68,6 @@ SOURCES += main.cpp \
     ../lzma/Sha256.c \
     ../iconcachedbmgr.cpp
 
-lessThan(QT_MAJOR_VERSION, 5) {
-    include(qmlapplicationviewer/qmlapplicationviewer.pri)
-    qtcAddDeployment()
-}
-
 HEADERS += \
     tweakedqmlappviewer.h \
     imageprovider.h \

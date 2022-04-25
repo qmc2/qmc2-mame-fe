@@ -45,15 +45,9 @@ BrushEditor::BrushEditor(QWidget *parent)
 	connect(doubleSpinBoxConicalCenterPointY, SIGNAL(valueChanged(double)), this, SLOT(updateGradientPreview()));
 	connect(doubleSpinBoxConicalAngle, SIGNAL(valueChanged(double)), this, SLOT(updateGradientPreview()));
 
-#if QT_VERSION < 0x050000
-	treeWidgetColorStops->header()->setMovable(false);
-	treeWidgetColorStops->header()->setClickable(false);
-	treeWidgetColorStops->header()->setResizeMode(QHeaderView::Fixed);
-#else
 	treeWidgetColorStops->header()->setSectionsMovable(false);
 	treeWidgetColorStops->header()->setSectionsClickable(false);
 	treeWidgetColorStops->header()->setSectionResizeMode(QHeaderView::Fixed);
-#endif
 }
 
 BrushEditor::~BrushEditor()

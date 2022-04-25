@@ -1,10 +1,6 @@
 #include <qglobal.h>
 
-#if QT_VERSION < 0x050000
-#include <QApplication>
-#else
 #include <QGuiApplication>
-#endif
 #include <QXmlStreamReader>
 #include <QFileInfo>
 #include <QStringList>

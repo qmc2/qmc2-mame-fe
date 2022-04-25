@@ -27,10 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	closeOk = true;
 	forceQuit = false;
 
-#if QT_VERSION >= 0x040800
 	ui->mdiArea->setTabsMovable(true);
 	ui->mdiArea->setTabsClosable(true);
-#endif
 
 	preferencesDialog = new PreferencesDialog(this);
 	aboutDialog = new AboutDialog(this);

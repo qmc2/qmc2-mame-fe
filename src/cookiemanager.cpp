@@ -23,11 +23,7 @@ CookieManager::CookieManager(QWidget *parent) : QDialog(parent)
 	adjustIconSizes();
 	restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CookieManager/Geometry", QByteArray()).toByteArray());
 	tableViewCookies->horizontalHeader()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CookieManager/CookieTableHeaderState", QByteArray()).toByteArray());
-#if QT_VERSION < 0x050000
-	tableViewCookies->horizontalHeader()->setMovable(true);
-#else
 	tableViewCookies->horizontalHeader()->setSectionsMovable(true);
-#endif
 
 	CookieJar *cj = (CookieJar *)qmc2NetworkAccessManager->cookieJar();
 	if ( cj->db.isOpen() ) {

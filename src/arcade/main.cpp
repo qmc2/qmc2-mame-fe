@@ -4,11 +4,7 @@
 #include <QTimer>
 #include <QString>
 #include <QUrl>
-#if QT_VERSION < 0x050000
-#include <QApplication>
-#else
 #include <QGuiApplication>
-#endif
 
 #include "arcadesettings.h"
 #include "tweakedqmlappviewer.h"
@@ -32,9 +28,6 @@ QStringList emulatorModes;
 QStringList arcadeThemes;
 QStringList mameThemes;
 QStringList consoleModes;
-#if QT_VERSION < 0x050000
-QStringList graphicsSystems;
-#endif
 QStringList argumentList;
 bool runApp = true;
 bool debugKeys = false;
@@ -43,11 +36,7 @@ bool debugJoy = false;
 #endif
 bool debugQt = false;
 
-#if QT_VERSION < 0x050000
-void qtMessageHandler(QtMsgType type, const char *msg)
-#else
 void qtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
-#endif
 {
 	if ( !runApp )
 		return;
@@ -85,9 +74,6 @@ void showHelp()
 
 	QString defTheme(globalConfig->defaultTheme());
 	QString defConsole(globalConfig->defaultConsoleType());
-#if QT_VERSION < 0x050000
-	QString defGSys(globalConfig->defaultGraphicsSystem());
-#endif
 	QString defLang(globalConfig->defaultLanguage());
 	QString defVideo(globalConfig->defaultVideo());
 
@@ -109,17 +95,6 @@ void showHelp()
 	}
 	QString availableConsoles(consoleList.join(", "));
 
-#if QT_VERSION < 0x050000
-	QStringList gSysList;
-	foreach (QString gSys, graphicsSystems) {
-		if ( defGSys == gSys )
-			gSysList << "[" + gSys + "]";
-		else
-			gSysList << gSys;
-	}
-	QString availableGraphicsSystems(gSysList.join(", "));
-#endif
-
 	QStringList langList;
 	foreach (QString lang, globalConfig->languageMap.keys()) {
 		if ( defLang == lang )
@@ -139,26 +114,15 @@ void showHelp()
 	QString availableVideoSettings(videoList.join(", "));
 
 	QString helpMessage;
-#if QT_VERSION < 0x050000
-#if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
-	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-nojoy] [-joy <index>] [-debugjoy] [-debugkeys] [-debugqt] [-h|-?|-help]\n\n";
-#else
-	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-graphicssystem <engine>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-debugqt] [-h|-?|-help]\n\n";
-#endif
-#else
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-nojoy] [-joy <index>] [-debugjoy] [-debugkeys] [-debugqt] [-h|-?|-help]\n\n";
 #else
 	helpMessage  = "Usage: qmc2-arcade [-theme <theme>] [-console <type>] [-language <lang>] [-video <vdo>] [-config_path <path>] [-fullscreen] [-windowed] [-debugkeys] [-debugqt] [-h|-?|-help]\n\n";
 #endif
-#endif
 	helpMessage += "Option           Meaning                Possible values ([..] = default)\n"
 		       "---------------  ---------------------  --------------------------------------------------\n";
 	helpMessage += "-theme           Theme selection        " + availableThemes + "\n";
 	helpMessage += "-console         Console type           " + availableConsoles + "\n";
-#if QT_VERSION < 0x050000
-	helpMessage += "-graphicssystem  Graphics engine        " + availableGraphicsSystems + "\n";
-#endif
 	helpMessage += "-language        Language selection     " + availableLanguages + "\n";
 	helpMessage += "-video           Video snap support     " + availableVideoSettings + "\n";
 	helpMessage += QString("-config_path     Configuration path     [%1], ...\n").arg(QMC2_ARCADE_DOT_PATH);
@@ -230,75 +194,26 @@ int main(int argc, char *argv[])
 #endif
 
 	qsrand(QDateTime::currentDateTime().toTime_t());
-#if QT_VERSION < 0x050000
-	qInstallMsgHandler(qtMessageHandler);
-#else
 	qInstallMessageHandler(qtMessageHandler);
-#endif
 
 	// available emulator-modes, themes, console-modes and graphics-systems
 	emulatorModes << "mame";
 	arcadeThemes << "ToxicWaste" << "darkone";
 	mameThemes << "ToxicWaste" << "darkone";
 	consoleModes << "terminal" << "window" << "window-minimized" << "none";
-#if QT_VERSION < 0x050000
-	graphicsSystems << "raster" << "native" << "opengl" << "opengl1" << "opengl2" << "openvg";
-#endif
 
 	// we have to make a copy of the command line arguments since QApplication's constructor "eats"
 	// -graphicssystem and its value (and we *really* need to know if it has been set or not!)
 	for (int i = 0; i < argc; i++)
 		argumentList << argv[i];
 
-#if QT_VERSION < 0x050000 && !defined(QMC2_ARCADE_OS_MAC)
-	// work-around for a weird style-related issue with GTK (we actually don't need to set a GUI style, but
-	// somehow Qt and/or GTK do this implicitly, which may cause crashes when the automatically chosen style
-	// isn't bug-free, so we try to fall back to a safe built-in style to avoid this)
-	QStringList wantedStyles = QStringList() << "Plastique" << "Cleanlooks" << "Fusion" << "CDE" << "Motif" << "Windows";
-	QStringList availableStyles = QStyleFactory::keys();
-	int styleIndex = -1;
-	foreach (QString style, wantedStyles) {
-		styleIndex = availableStyles.indexOf(style);
-		if ( styleIndex >= 0 )
-			break;
-	}
-	if ( styleIndex >= 0 )
-		QApplication::setStyle(availableStyles[styleIndex]);
-	QApplication *tempApp = new QApplication(argc, argv);
-#endif
-
 	QCoreApplication::setOrganizationName(QMC2_ARCADE_ORG_NAME);
 	QCoreApplication::setOrganizationDomain(QMC2_ARCADE_ORG_DOMAIN);
 	QCoreApplication::setApplicationName(QMC2_ARCADE_APP_NAME);
 	QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, ArcadeSettings::configPath());
 
-#if QT_VERSION < 0x050000
-	globalConfig = new ArcadeSettings;
-
-	QString gSys = globalConfig->defaultGraphicsSystem();
-	if ( QMC2_ARCADE_CLI_GSYS_VAL )
-		gSys = QMC2_ARCADE_CLI_GSYS;
-
-	delete globalConfig;
-	globalConfig = 0;
-
-#if !defined(QMC2_ARCADE_OS_MAC)
-	delete tempApp;
-#endif
-
-	if ( !graphicsSystems.contains(gSys) ) {
-		QMC2_ARCADE_LOG_STR_NT(QObject::tr("%1 is not a valid graphics-system - available graphics-systems: %2").arg(gSys).arg(graphicsSystems.join(", ")));
-		return 1;
-	}
-
-	QApplication::setGraphicsSystem(gSys);
-
-	// create the actual application instance
-	QScopedPointer<QApplication> app(createApplication(argc, argv));
-#else
 	// create the actual application instance
 	QGuiApplication *app = new QGuiApplication(argc, argv);
-#endif
 
 	if ( !QMC2_ARCADE_CLI_EMU_UNK ) {
 		emulatorMode = QMC2_ARCADE_EMUMODE_MAME;
@@ -414,9 +329,6 @@ int main(int argc, char *argv[])
 				arg(QString("Qt") + " " + qVersion() + ", " +
 				    QObject::tr("emulator-mode: %1").arg(emulatorModes[emulatorMode]) + ", " +
 				    QObject::tr("console-mode: %1").arg(consoleModes[TweakedQmlApplicationViewer::consoleMode]) + ", " +
-#if QT_VERSION < 0x050000
-				    QObject::tr("graphics-system: %1").arg(gSys) + ", " +
-#endif
 				    QObject::tr("language: %1").arg(language) + ", " +
 				    QObject::tr("theme: %1").arg(theme));
 
@@ -439,17 +351,10 @@ int main(int argc, char *argv[])
 		KeyEventFilter keyEventFilter(viewer->keySequenceMap);
 		app->installEventFilter(&keyEventFilter);
 
-#if QT_VERSION < 0x050000
-		viewer->setWindowTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
-		viewer->setWindowIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
-		viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-		viewer->setStyleSheet("background-color: black");
-#else
 		viewer->setTitle(QMC2_ARCADE_APP_TITLE + " " + QMC2_ARCADE_APP_VERSION + " [Qt " + qVersion() + "]");
 		viewer->winId(); // see QTBUG-33370 QQuickView does not set icon correctly
 		viewer->setIcon(QIcon(QLatin1String(":/images/qmc2-arcade.png")));
 		viewer->setColor(QColor(0, 0, 0, 255));
-#endif
 
 		bool initialFullScreen = globalConfig->fullScreen();
 		if ( QMC2_ARCADE_CLI_FULLSCREEN )
@@ -467,17 +372,10 @@ int main(int argc, char *argv[])
 
 		// load theme
 		QString themeUrl;
-#if QT_VERSION < 0x050000
-		if ( viewer->videoEnabled() )
-			themeUrl = QString("qrc:/qml/%1/1.1/%1-video.qml").arg(theme);
-		else
-			themeUrl = QString("qrc:/qml/%1/1.1/%1.qml").arg(theme);
-#else
 		if ( viewer->videoEnabled() )
 			themeUrl = QString("qrc:/qml/%1/2.0/%1-video.qml").arg(theme);
 		else
 			themeUrl = QString("qrc:/qml/%1/2.0/%1.qml").arg(theme);
-#endif
 		viewer->setSource(QUrl(themeUrl));
 
 		// delayed setup of the initial display mode

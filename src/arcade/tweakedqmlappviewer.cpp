@@ -1,15 +1,8 @@
 #include <qglobal.h>
 
-#if QT_VERSION < 0x050000
-#include <QApplication>
-#include <QGraphicsObject>
-#include <QDeclarativeContext>
-#include <QDeclarativeEngine>
-#else
 #include <QMetaType>
 #include <QGuiApplication>
 #include <QtQml>
-#endif
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
@@ -26,9 +19,6 @@
 #include "machineobject.h"
 #include "consolewindow.h"
 #include "macros.h"
-#if QT_VERSION < 0x050000
-#include "wheel.h"
-#endif
 #include "pointer.h"
 #include "keysequences.h"
 
@@ -39,19 +29,11 @@ extern QStringList emulatorModeNames;
 extern QStringList mameThemes;
 extern QStringList arcadeThemes;
 extern QStringList consoleModes;
-#if QT_VERSION < 0x050000
-extern QStringList graphicsSystems;
-#endif
 
 int TweakedQmlApplicationViewer::consoleMode = QMC2_ARCADE_CONSOLE_TERM;
 
-#if QT_VERSION < 0x050000
-TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWidget *parent)
-	: QmlApplicationViewer(parent)
-	#else
 TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 	: QQuickView(parent)
-	#endif
 {
 	m_initialized = m_initialFullScreen = m_videoEnabled = windowModeSwitching = false;
 	m_currentSystemArtworkIndex = m_currentSoftwareArtworkIndex = -2;
@@ -75,35 +57,22 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 
 	infoClasses << "sysinfo" << "emuinfo" << "softinfo";
 	videoSnapAllowedFormatExtensions << ".mp4" << ".avi";
-
-#if QT_VERSION < 0x050000
-	cliParams << "theme" << "graphicssystem" << "console" << "language" << "video";
-#else
 	cliParams << "theme" << "console" << "language" << "video";
-#endif
+
 	switch ( emulatorMode ) {
 	case QMC2_ARCADE_EMUMODE_MAME:
 	default:
 		cliAllowedParameterValues["theme"] = mameThemes;
 		break;
 	}
-#if QT_VERSION < 0x050000
-	cliAllowedParameterValues["graphicssystem"] = graphicsSystems;
-#endif
 	cliAllowedParameterValues["console"] = consoleModes;
 	cliAllowedParameterValues["language"] = globalConfig->languageMap.keys();
 	cliAllowedParameterValues["video"] = QStringList() << "on" << "off";
 	cliParameterDescriptions["theme"] = tr("Theme");
-#if QT_VERSION < 0x050000
-	cliParameterDescriptions["graphicssystem"] = tr("Graphics system");
-#endif
 	cliParameterDescriptions["console"] = tr("Console mode");
 	cliParameterDescriptions["language"] = tr("Language");
 	cliParameterDescriptions["video"] = tr("Video snaps");
 
-#if QT_VERSION < 0x050000
-	qmlRegisterType<WheelArea>("Wheel", 1, 0, "WheelArea");
-#endif
 	qmlRegisterType<CursorShapeArea>("Pointer", 1, 0, "CursorShapeArea");
 
 	processManager = new ProcessManager(this);
@@ -111,14 +80,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 	connect(processManager, SIGNAL(emulatorStarted(int)), this, SIGNAL(emulatorStarted(int)));
 	connect(processManager, SIGNAL(emulatorFinished(int)), this, SIGNAL(emulatorFinished(int)));
 
-#if QT_VERSION < 0x050000
-	setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-	setResizeMode(QDeclarativeView::SizeRootObjectToView);
-	imageProvider = new ImageProvider(QDeclarativeImageProvider::Image);
-#else
 	setResizeMode(QQuickView::SizeRootObjectToView);
 	imageProvider = new ImageProvider(QQuickImageProvider::Image);
-#endif
 
 	connect(imageProvider, SIGNAL(imageDataUpdated(const QString &)), this, SLOT(imageDataUpdate(const QString &)), Qt::DirectConnection);
 	engine()->addImageProvider(QString("qmc2"), imageProvider);
@@ -140,10 +103,8 @@ TweakedQmlApplicationViewer::TweakedQmlApplicationViewer(QWindow *parent)
 		break;
 	}
 
-#if QT_VERSION >= 0x050000
 	connect(this, SIGNAL(frameSwapped()), this, SLOT(frameBufferSwapped()));
 	connect(engine(), SIGNAL(quit()), this, SLOT(handleQuit()));
-#endif
 
 	connect(&frameCheckTimer, SIGNAL(timeout()), this, SLOT(fpsReady()));
 }
@@ -656,10 +617,6 @@ QString TweakedQmlApplicationViewer::cliParamValue(QString param)
 	switch ( cliParams.indexOf(param) ) {
 	case QMC2_ARCADE_PARAM_THEME:
 		return globalConfig->defaultTheme();
-#if QT_VERSION < 0x050000
-	case QMC2_ARCADE_PARAM_GRASYS:
-		return globalConfig->defaultGraphicsSystem();
-#endif
 	case QMC2_ARCADE_PARAM_CONSOLE:
 		return globalConfig->defaultConsoleType();
 	case QMC2_ARCADE_PARAM_LANGUAGE:
@@ -682,11 +639,6 @@ void TweakedQmlApplicationViewer::setCliParamValue(QString param, QString value)
 	case QMC2_ARCADE_PARAM_THEME:
 		globalConfig->setDefaultTheme(value);
 		break;
-#if QT_VERSION < 0x050000
-	case QMC2_ARCADE_PARAM_GRASYS:
-		globalConfig->setDefaultGraphicsSystem(value);
-		break;
-#endif
 	case QMC2_ARCADE_PARAM_CONSOLE:
 		globalConfig->setDefaultConsoleType(value);
 		break;
@@ -800,7 +752,6 @@ QString TweakedQmlApplicationViewer::previousCustomSoftwareArtwork()
 	}
 }
 
-#if QT_VERSION >= 0x050000
 void TweakedQmlApplicationViewer::handleQuit()
 {
 	QMC2_ARCADE_LOG_STR(tr("Stopping QML viewer"));
@@ -816,25 +767,3 @@ void TweakedQmlApplicationViewer::handleQuit()
 
 	close();
 }
-#else
-void TweakedQmlApplicationViewer::paintEvent(QPaintEvent *e)
-{
-	QmlApplicationViewer::paintEvent(e);
-	numFrames++;
-}
-
-void TweakedQmlApplicationViewer::closeEvent(QCloseEvent *e)
-{
-	QMC2_ARCADE_LOG_STR(tr("Stopping QML viewer"));
-
-	if ( consoleWindow ) {
-		QString consoleMessage(tr("QML viewer stopped - please close the console window to exit"));
-		QMC2_ARCADE_LOG_STR(QString("-").repeated(consoleMessage.length()));
-		QMC2_ARCADE_LOG_STR(consoleMessage);
-		QMC2_ARCADE_LOG_STR(QString("-").repeated(consoleMessage.length()));
-		consoleWindow->showNormal();
-		consoleWindow->raise();
-	}
-	e->accept();
-}
-#endif
