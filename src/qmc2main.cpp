@@ -6168,12 +6168,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	log(QMC2_LOG_FRONTEND, tr("so long and thanks for all the fish"));
 
 	qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), false);
-
-#if QT_VERSION < 0x050000
-	qInstallMsgHandler(0);
-#else
 	qInstallMessageHandler(0);
-#endif
 	delete qmc2MainEventFilter;
 	delete m_searchBoxKeyEventFilter;
 
