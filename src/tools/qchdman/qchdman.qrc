@@ -46,11 +46,5 @@
         <file>translations/qchdman_ro.qm</file>
         <file>translations/qchdman_sv.qm</file>
         <file>translations/qchdman_us.qm</file>
-        <file>translations/qt_de.qm</file>
-        <file>translations/qt_es.qm</file>
-        <file>translations/qt_fr.qm</file>
-        <file>translations/qt_pl.qm</file>
-        <file>translations/qt_pt.qm</file>
-        <file>translations/qt_sv.qm</file>
     </qresource>
 </RCC>

@@ -200,7 +200,6 @@ QFile *qmc2EmulatorLogFile = 0;
 QTextStream qmc2FrontendLogStream;
 QTextStream qmc2EmulatorLogStream;
 QTranslator *qmc2Translator = 0;
-QTranslator *qmc2QtTranslator = 0;
 QString qmc2LastFrontendLogMessage;
 quint64 qmc2FrontendLogMessageRepeatCount = 0;
 QString qmc2LastEmulatorLogMessage;

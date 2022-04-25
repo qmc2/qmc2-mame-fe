@@ -21,7 +21,6 @@
 
 // external global variables
 extern QTranslator *qmc2Translator;
-extern QTranslator *qmc2QtTranslator;
 
 Welcome::Welcome(QWidget *parent) :
 	QDialog(parent)
@@ -249,13 +248,6 @@ void Welcome::setupLanguage()
 		}
 		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);
 	}
-	if ( qmc2QtTranslator ) {
-		qApp->removeTranslator(qmc2QtTranslator);
-		delete qmc2QtTranslator;
-	}
-	qmc2QtTranslator = new QTranslator(0);
-	qmc2QtTranslator->load(QString(":/data/lng/qt_%1.qm").arg(lang));
-	qApp->installTranslator(qmc2QtTranslator);
 	if ( qmc2Translator ) {
 		qApp->removeTranslator(qmc2Translator);
 		delete qmc2Translator;

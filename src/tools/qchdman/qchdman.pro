@@ -4,15 +4,6 @@ QT += core gui script scripttools
 TARGET = qchdman
 TEMPLATE = app
 
-# copy Qt translations from base project
-win32 {
-    system(copy ..\\..\\..\\data\\lng\\qt_*.qm translations > NUL)
-} else {
-    system(rm -f translations/qt_*.qm > /dev/null)
-    system(ln ../../../data/lng/qt_*.qm translations > /dev/null)
-}
-QMAKE_CLEAN += translations/qt_*.qm
-
 greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(DEFINES, "QCHDMAN_DEBUG"): DEFINES += QCHDMAN_DEBUG
     !contains(CONFIG, "warn_on debug"): CONFIG += warn_on debug

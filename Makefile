@@ -618,7 +618,6 @@ endif
 
 # available translations
 QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
-QT_TRANSLATIONS = de es fr pl pt sv
 
 # process make options
 ifeq '$(DEBUG)' '2'
@@ -1446,7 +1445,7 @@ man-install:
 endif
 
 # process translations
-LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
+LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS)))
 LREL = $(LRELEASE) $<
 
 lang: $(LBINARIES)
@@ -1482,37 +1481,5 @@ data/lng/qmc2_sv.qm: data/lng/qmc2_sv.ts
 
 data/lng/qmc2_us.qm: data/lng/qmc2_us.ts
 	$(LREL)
-
-# Qt translations
-
-data/lng/qt_de.qm: data/lng/qt_de.ts
-	$(LREL)
-
-#data/lng/qt_el.qm: data/lng/qt_el.ts
-#	$(LREL)
-
-data/lng/qt_es.qm: data/lng/qt_es.ts
-	$(LREL)
-
-data/lng/qt_fr.qm: data/lng/qt_fr.ts
-	$(LREL)
-
-#data/lng/qt_it.qm: data/lng/qt_it.ts
-#	$(LREL)
-
-data/lng/qt_pl.qm: data/lng/qt_pl.ts
-	$(LREL)
-
-data/lng/qt_pt.qm: data/lng/qt_pt.ts
-	$(LREL)
-
-#data/lng/qt_ro.qm: data/lng/qt_ro.ts
-#	$(LREL)
-
-data/lng/qt_sv.qm: data/lng/qt_sv.ts
-	$(LREL)
-
-#data/lng/qt_us.qm: data/lng/qt_us.ts
-#	$(LREL)
 
 # end of file

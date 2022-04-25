@@ -34,9 +34,6 @@ int main(int argc, char *argv[])
 	QTranslator qchdmanTranslator;
 	if ( qchdmanTranslator.load(QString("qchdman_%1").arg(language), ":/translations") )
 		qchdmanApplication.installTranslator(&qchdmanTranslator);
-	QTranslator qtTranslator;
-	if ( qtTranslator.load(QString("qt_%1").arg(language), ":/translations") )
-		qchdmanApplication.installTranslator(&qtTranslator);
 
 	// setup main window and run
 	MainWindow w;

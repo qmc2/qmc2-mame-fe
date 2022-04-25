@@ -318,12 +318,6 @@
 	<file>data/lng/qmc2_ro.qm</file>
 	<file>data/lng/qmc2_sv.qm</file>
 	<file>data/lng/qmc2_us.qm</file>
-	<file>data/lng/qt_de.qm</file>
-	<file>data/lng/qt_es.qm</file>
-	<file>data/lng/qt_fr.qm</file>
-	<file>data/lng/qt_pl.qm</file>
-	<file>data/lng/qt_pt.qm</file>
-	<file>data/lng/qt_sv.qm</file>
         <file>src/htmleditor/images/document-new.png</file>
         <file>src/htmleditor/images/document-open.png</file>
         <file>src/htmleditor/images/document-save.png</file>
