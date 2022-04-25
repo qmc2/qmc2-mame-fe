@@ -525,11 +525,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #if QMC2_MULTIMEDIA_ENABLED
 	toolButtonAudioSetupEffects->setVisible(false);
 #endif
-#if QT_VERSION < 0x050000
-	lcdNumberSearchResults->setNumDigits(5);
-#else
 	lcdNumberSearchResults->setDigitCount(5);
-#endif
 
 	qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECTMESS_CACHE_SIZE);
 	messDevCfgTimer.setSingleShot(true);
@@ -1277,25 +1273,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	// connect header click signals
 	connect(treeWidgetMachineList->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetMachineList_headerSectionClicked(int)));
 	connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetHierarchy_headerSectionClicked(int)));
-#if QT_VERSION < 0x050000
-	treeWidgetMachineList->header()->setClickable(true);
-	treeWidgetHierarchy->header()->setClickable(true);
-#else
 	treeWidgetMachineList->header()->setSectionsClickable(true);
 	treeWidgetHierarchy->header()->setSectionsClickable(true);
-#endif
 	connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetCategoryView_headerSectionClicked(int)));
-#if QT_VERSION < 0x050000
-	treeWidgetCategoryView->header()->setClickable(true);
-#else
 	treeWidgetCategoryView->header()->setSectionsClickable(true);
-#endif
 	connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetVersionView_headerSectionClicked(int)));
-#if QT_VERSION < 0x050000
-	treeWidgetVersionView->header()->setClickable(true);
-#else
 	treeWidgetVersionView->header()->setSectionsClickable(true);
-#endif
 
 	// connections for dock/undock buttons
 	connect(floatToggleButtonSoftwareDetail, SIGNAL(toggled(bool)), this, SLOT(floatToggleButtonSoftwareDetail_toggled(bool)));
@@ -2767,11 +2750,7 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 #if defined(QMC2_YOUTUBE_ENABLED)
 	if ( qmc2YouTubeWidget )
 		if ( qmc2YouTubeWidget->videoWidget()->isFullScreen() ) {
-#if QT_VERSION < 0x050000
-			qmc2YouTubeWidget->videoWidget()->setFullScreen(false);
-#else
 			qmc2YouTubeWidget->switchToWindowed();
-#endif
 			qmc2YouTubeWidget->clearMessage();
 			qApp->processEvents();
 			if ( windowState() & Qt::WindowFullScreen )
@@ -2807,19 +2786,9 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", true);
 			else {
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry", saveGeometry());
-#if QT_VERSION < 0x050000
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position", pos());
-				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size", size());
-#endif
 				qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false);
 			}
 		} else {
-#if QT_VERSION < 0x050000
-			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size") )
-				resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size").toSize());
-			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position") )
-				move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position").toPoint());
-#endif
 			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
 				restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
 		}
@@ -2843,12 +2812,6 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", false).toBool() )
 			showMaximized();
 		else {
-#if QT_VERSION < 0x050000
-			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size") )
-				resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size").toSize());
-			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position") )
-				move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position").toPoint());
-#endif
 			if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
 				restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
 			showNormal();
@@ -3605,15 +3568,9 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2SoftwareNotesEditor->enableFileNewFromTemplateAction(useSoftwareNotesTemplate);
 
 				qmc2SoftwareNotesEditor->templateMap.clear();
-#if QT_VERSION < 0x050000
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE));
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
-				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = Qt::escape(qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR));
-#else
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE).toHtmlEscaped();
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER).toHtmlEscaped();
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR).toHtmlEscaped();
-#endif
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PARENT_ID$"] = softwareParent;
 				qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
@@ -4394,24 +4351,13 @@ void MainWindow::on_tabWidgetMachineDetail_currentChanged(int currentIndex)
 				qmc2SystemNotesEditor->enableFileNewFromTemplateAction(useSystemNotesTemplate);
 
 				qmc2SystemNotesEditor->templateMap.clear();
-#if QT_VERSION < 0x050000
-				qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE));
-				qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = Qt::escape(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MANU));
-				qmc2SystemNotesEditor->templateMap["$YEAR$"] = Qt::escape(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_YEAR));
-				qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = Qt::escape(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY));
-#else
 				qmc2SystemNotesEditor->templateMap["$DESCRIPTION$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MACHINE).toHtmlEscaped();
 				qmc2SystemNotesEditor->templateMap["$MANUFACTURER$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_MANU).toHtmlEscaped();
 				qmc2SystemNotesEditor->templateMap["$YEAR$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_YEAR).toHtmlEscaped();
 				qmc2SystemNotesEditor->templateMap["$CATEGORY$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_CATEGORY).toHtmlEscaped();
-#endif
 				qmc2SystemNotesEditor->templateMap["$ID$"] = machineName;
 				qmc2SystemNotesEditor->templateMap["$PARENT_ID$"] = parentSystem;
-#if QT_VERSION < 0x050000
-				qmc2SystemNotesEditor->templateMap["$VERSION$"] = Qt::escape(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_VERSION));
-#else
 				qmc2SystemNotesEditor->templateMap["$VERSION$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_VERSION).toHtmlEscaped();
-#endif
 				qmc2SystemNotesEditor->templateMap["$PLAYERS$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_PLAYERS);
 				qmc2SystemNotesEditor->templateMap["$ROM_TYPES$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_RTYPES);
 				qmc2SystemNotesEditor->templateMap["$DRIVER_STATUS$"] = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_DRVSTAT);
@@ -5220,7 +5166,7 @@ void MainWindow::action_embedEmulator_triggered()
 	}
 }
 
-#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 void MainWindow::action_embedderScanPauseKey_triggered()
 {
 	qApp->removeEventFilter(qmc2MainEventFilter);
@@ -5714,13 +5660,8 @@ void MainWindow::mapJoystickFunction(QString function)
 #endif
 		QKeySequence keySeq(shortcut);
 		int key = 0;
-#if QT_VERSION < 0x050000
-		for (uint i = 0; i < keySeq.count(); i++)
-			key += keySeq[i];
-#else
 		for (int i = 0; i < keySeq.count(); i++)
 			key += keySeq[i];
-#endif
 		QKeyEvent *emulatedKeyEvent = new QKeyEvent(QEvent::KeyPress, key, Qt::NoModifier);
 		qApp->postEvent(focusWidget, emulatedKeyEvent);
 	}
@@ -6245,50 +6186,6 @@ void MainWindow::init()
 	if ( qmc2TemplateCheck )
 		return;
  
-#if QT_VERSION < 0x050000
-#if !(QMC2_USE_PHONON_API)
-	tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
-	menuTools->removeAction(menuAudioPlayer->menuAction());
-#else
-	audioState = Phonon::StoppedState;
-	phononAudioPlayer = new Phonon::MediaObject(this);
-	phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-	phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
-	listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
-	listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	QStringList psl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList());
-	listWidgetAudioPlaylist->addItems(psl);
-	int row = psl.indexOf(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString());
-	if ( row >= 0 ) {
-		listWidgetAudioPlaylist->setCurrentRow(row);
-		listWidgetAudioPlaylist->scrollToItem(listWidgetAudioPlaylist->item(row), qmc2CursorPositioningMode);
-		qmc2AudioLastIndividualTrack = psl.at(row);
-	}
-	checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", false).toBool());
-	checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", false).toBool());
-	checkBoxAudioPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", true).toBool());
-	checkBoxAudioFade->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", true).toBool());
-	dialAudioVolume->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", 50).toInt());
-	phononAudioOutput->setVolume((qreal)dialAudioVolume->value()/100.0);
-	toolButtonAudioPreviousTrack->setDefaultAction(actionAudioPreviousTrack);
-	toolButtonAudioNextTrack->setDefaultAction(actionAudioNextTrack);
-	toolButtonAudioStopTrack->setDefaultAction(actionAudioStopTrack);
-	toolButtonAudioPauseTrack->setDefaultAction(actionAudioPauseTrack);
-	toolButtonAudioPlayTrack->setDefaultAction(actionAudioPlayTrack);
-	phononAudioPlayer->setTickInterval(1000);
-	connect(phononAudioPlayer, SIGNAL(tick(qint64)), this, SLOT(audioTick(qint64)));
-	connect(phononAudioPlayer, SIGNAL(totalTimeChanged(qint64)), this, SLOT(audioTotalTimeChanged(qint64)));
-	connect(phononAudioPlayer, SIGNAL(finished()), this, SLOT(audioFinished()));
-	connect(phononAudioPlayer, SIGNAL(metaDataChanged()), this, SLOT(audioMetaDataChanged()));
-	connect(phononAudioPlayer, SIGNAL(bufferStatus(int)), this, SLOT(audioBufferStatus(int)));
-	audioFastForwarding = audioFastBackwarding = audioSkippingTracks = false;
-	if ( checkBoxAudioPlayOnStart->isChecked() ) {
-		audioState = Phonon::PlayingState;
-		QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
-	} else
-		QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
-#endif
-#else
 #if !(QMC2_MULTIMEDIA_ENABLED)
 	tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
 	menuTools->removeAction(menuAudioPlayer->menuAction());
@@ -6328,7 +6225,6 @@ void MainWindow::init()
 		QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
 	} else
 		QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
-#endif
 #endif
 
 	// signal setup requests for style, style-sheet and palette
@@ -7538,7 +7434,7 @@ void MainWindow::processOutputNotifier(int emuId, const QString &name, const QSt
 	QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(QString::number(emuId), Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_ID);
 	if ( il.count() > 0 ) {
 		if ( name == "pause" ) {
-#if defined(QMC2_OS_UNIX) && QT_VERSION < 0x050000
+#if defined(QMC2_EMBEDDER_SUPPORTED)
 			Embedder *embedder = 0;
 			int embedderIndex = -1;
 			for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == 0; j++) {
@@ -10682,11 +10578,7 @@ void MainWindow::updateTabWidgets()
 	tabWidgetSoftwareDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", 0).toInt());
 }
 
-#if QT_VERSION < 0x050000
-void myQtMessageHandler(QtMsgType type, const char *msg)
-#else
 void myQtMessageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
-#endif
 {
 	if ( qmc2SuppressQtMessages )
 		return;
