@@ -6187,7 +6187,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 	if ( qmc2ReconfigureRestartRequested ) {
 		QStringList args(qApp->arguments());
 		args << "-r";
-		QProcess::startDetached(args.at(0), args);
+		QProcess::startDetached(args.first(), args);
 	}
 }
 
