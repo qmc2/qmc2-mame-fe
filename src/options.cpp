@@ -231,11 +231,10 @@ Options::Options(QWidget *parent) :
 	checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif
 
-	// FIXME
+#if !defined(QMC2_EMBEDDER_SUPPORTED)
 	labelDefaultLaunchMode->setVisible(false);
 	comboBoxDefaultLaunchMode->setVisible(false);
-
-#if defined(QMC2_EMBEDDER_SUPPORTED)
+#else
 	checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
 

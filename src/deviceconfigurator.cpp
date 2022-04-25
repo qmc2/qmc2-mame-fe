@@ -222,8 +222,9 @@ DeviceConfigurator::DeviceConfigurator(QString machine, QWidget *parent) :
 
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
 
-	// FIXME
+#if !defined(QMC2_EMBEDDER_SUPPORTED)
 	toolButtonChooserPlayEmbedded->setVisible(false);
+#endif
 
 	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
 	comboBoxChooserFilterPattern->setLineEdit(new IconLineEdit(QIcon(QString::fromUtf8(":/data/img/find.png")), QMC2_ALIGN_LEFT, comboBoxChooserFilterPattern));
