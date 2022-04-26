@@ -1648,7 +1648,7 @@
 			<description lang="pt" text="Divitir tela entre monitores"/>
 			<description lang="es" text="Dividir la imagen de pantalla completa entre monitores"/>
 		</option>
-		<option default="" name="attach_window" type="string">
+		<option default="" ignore.Darwin="true" name="attach_window" type="string">
 			<description lang="us" text="Attach to arbitrary window"/>
 			<description lang="de" text="An beliebiges Fenster anhängen"/>
 		</option>
