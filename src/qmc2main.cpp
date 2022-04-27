@@ -9870,6 +9870,9 @@ void MainWindow::treeWidgetMachineList_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetMachineList;
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	// hack to go five items further
+	for (int i = 0; i < 4; i++)
+		endItem = treeWidget->itemBelow(endItem);
 	if ( !endItem ) {
 		QTreeWidgetItem *item = startItem;
 		while ( item ) {
@@ -9922,6 +9925,9 @@ void MainWindow::treeWidgetHierarchy_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetHierarchy;
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	// hack to go five items further
+	for (int i = 0; i < 4; i++)
+		endItem = treeWidget->itemBelow(endItem);
 	if ( !endItem ) {
 		QTreeWidgetItem *item = startItem;
 		while ( item ) {
@@ -9988,6 +9994,9 @@ void MainWindow::treeWidgetCategoryView_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetCategoryView;
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	// hack to go five items further
+	for (int i = 0; i < 4; i++)
+		endItem = treeWidget->itemBelow(endItem);
 	if ( !endItem ) {
 		QTreeWidgetItem *item = startItem;
 		while ( item ) {
@@ -10058,6 +10067,9 @@ void MainWindow::treeWidgetVersionView_updateRanks()
 	QTreeWidget *treeWidget = treeWidgetVersionView;
 	QTreeWidgetItem *startItem = treeWidget->itemAt(treeWidget->rect().topLeft());
 	QTreeWidgetItem *endItem = treeWidget->itemAt(treeWidget->rect().bottomLeft());
+	// hack to go five items further
+	for (int i = 0; i < 4; i++)
+		endItem = treeWidget->itemBelow(endItem);
 	if ( !endItem ) {
 		QTreeWidgetItem *item = startItem;
 		while ( item ) {
