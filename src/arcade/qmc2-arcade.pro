@@ -204,7 +204,7 @@ macx {
 	INCLUDEPATH += /Library/Frameworks/SDL.framework/Headers
     }
     ICON = images/qmc2-arcade.icns
-    contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86 ppc
+    contains(DEFINES, QMC2_ARCADE_MAC_UNIVERSAL): CONFIG += x86_64 arm64
     QMAKE_INFO_PLIST = Info.plist
 } else {
     !win32 {

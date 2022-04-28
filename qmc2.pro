@@ -368,7 +368,7 @@ macx {
 	ICON = data/img/classic/mame.icns
 	# hmmm?
 	greaterThan(QMC2_MAC_UNIVERSAL, 0) {
-		CONFIG += x86 ppc
+		CONFIG += x86_64 arm64
 	}
 	QMAKE_INFO_PLIST = arch/Darwin/Info.plist
 } else {
