@@ -1426,6 +1426,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/XmlCacheDatabase", lineEditXmlCacheDatabase->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/UserDataDatabase", lineEditUserDataDatabase->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListCacheFile", lineEditMachineListCacheFile->text());
+	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/MachineListDatabase", lineEditMachineListDatabase->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareListCacheDatabase", lineEditSoftwareListCacheDb->text());
 	config->setValue(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/SoftwareStateCache", lineEditSoftwareStateCache->text());
