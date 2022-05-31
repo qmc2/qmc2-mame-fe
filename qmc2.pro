@@ -1,6 +1,6 @@
 # general project settings
 isEmpty(TARGET):TARGET = qmc2
-QT += core gui widgets xml xmlpatterns network sql svg testlib webkitwidgets
+QT += core gui widgets xml xmlpatterns network sql svg testlib webenginewidgets
 win32 {
 	QT += winextras
 }

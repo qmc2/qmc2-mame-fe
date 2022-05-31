@@ -41,7 +41,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWebView" name="webView">
+         <widget class="QWebEngineView" name="webView">
           <property name="url">
            <url>
             <string>about:blank</string>
@@ -107,7 +107,7 @@
       <string>Insert &amp;image</string>
      </property>
      <property name="icon">
-      <iconset resource="../qmc2.qrc">
+     <iconset resource="../../qmc2.qrc">
        <normaloff>:/htmleditor/images/image-x-generic.png</normaloff>:/htmleditor/images/image-x-generic.png</iconset>
      </property>
      <addaction name="actionInsertImageFromFile"/>
@@ -236,7 +236,7 @@
   </widget>
   <action name="actionFileNew">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/document-new.png</normaloff>:/htmleditor/images/document-new.png</iconset>
    </property>
    <property name="text">
@@ -254,7 +254,7 @@
   </action>
   <action name="actionFileNewFromTemplate">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/document-new.png</normaloff>:/htmleditor/images/document-new.png</iconset>
    </property>
    <property name="text">
@@ -272,7 +272,7 @@
   </action>
   <action name="actionFileRevert">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-undo.png</normaloff>:/htmleditor/images/edit-undo.png</iconset>
    </property>
    <property name="text">
@@ -290,7 +290,7 @@
   </action>
   <action name="actionFileOpen">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/document-open.png</normaloff>:/htmleditor/images/document-open.png</iconset>
    </property>
    <property name="text">
@@ -308,7 +308,7 @@
   </action>
   <action name="actionFileSave">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/document-save.png</normaloff>:/htmleditor/images/document-save.png</iconset>
    </property>
    <property name="text">
@@ -326,7 +326,7 @@
   </action>
   <action name="actionFileSaveAs">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
    </property>
    <property name="text">
@@ -344,7 +344,7 @@
   </action>
   <action name="actionFileOpenInBrowser">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/data/img/browser.png</normaloff>:/data/img/browser.png</iconset>
    </property>
    <property name="text">
@@ -362,7 +362,7 @@
   </action>
   <action name="actionEditUndo">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-undo.png</normaloff>:/htmleditor/images/edit-undo.png</iconset>
    </property>
    <property name="text">
@@ -374,7 +374,7 @@
   </action>
   <action name="actionEditRedo">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-redo.png</normaloff>:/htmleditor/images/edit-redo.png</iconset>
    </property>
    <property name="text">
@@ -386,7 +386,7 @@
   </action>
   <action name="actionEditCut">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-cut.png</normaloff>:/htmleditor/images/edit-cut.png</iconset>
    </property>
    <property name="text">
@@ -398,7 +398,7 @@
   </action>
   <action name="actionEditCopy">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-copy.png</normaloff>:/htmleditor/images/edit-copy.png</iconset>
    </property>
    <property name="text">
@@ -410,7 +410,7 @@
   </action>
   <action name="actionEditPaste">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-paste.png</normaloff>:/htmleditor/images/edit-paste.png</iconset>
    </property>
    <property name="text">
@@ -422,7 +422,7 @@
   </action>
   <action name="actionEditSelectAll">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/edit-select-all.png</normaloff>:/htmleditor/images/edit-select-all.png</iconset>
    </property>
    <property name="text">
@@ -437,7 +437,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-text-bold.png</normaloff>:/htmleditor/images/format-text-bold.png</iconset>
    </property>
    <property name="text">
@@ -452,7 +452,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-text-italic.png</normaloff>:/htmleditor/images/format-text-italic.png</iconset>
    </property>
    <property name="text">
@@ -467,7 +467,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-text-underline.png</normaloff>:/htmleditor/images/format-text-underline.png</iconset>
    </property>
    <property name="text">
@@ -482,7 +482,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-text-strikethrough.png</normaloff>:/htmleditor/images/format-text-strikethrough.png</iconset>
    </property>
    <property name="text">
@@ -494,7 +494,7 @@
   </action>
   <action name="actionFormatAlignLeft">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-justify-left.png</normaloff>:/htmleditor/images/format-justify-left.png</iconset>
    </property>
    <property name="text">
@@ -506,7 +506,7 @@
   </action>
   <action name="actionFormatAlignCenter">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-justify-center.png</normaloff>:/htmleditor/images/format-justify-center.png</iconset>
    </property>
    <property name="text">
@@ -518,7 +518,7 @@
   </action>
   <action name="actionFormatAlignRight">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-justify-right.png</normaloff>:/htmleditor/images/format-justify-right.png</iconset>
    </property>
    <property name="text">
@@ -530,7 +530,7 @@
   </action>
   <action name="actionFormatAlignJustify">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-justify-fill.png</normaloff>:/htmleditor/images/format-justify-fill.png</iconset>
    </property>
    <property name="text">
@@ -542,7 +542,7 @@
   </action>
   <action name="actionFormatIncreaseIndent">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-indent-more.png</normaloff>:/htmleditor/images/format-indent-more.png</iconset>
    </property>
    <property name="text">
@@ -554,7 +554,7 @@
   </action>
   <action name="actionFormatDecreaseIndent">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/format-indent-less.png</normaloff>:/htmleditor/images/format-indent-less.png</iconset>
    </property>
    <property name="text">
@@ -569,7 +569,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/bulleted-list.png</normaloff>:/htmleditor/images/bulleted-list.png</iconset>
    </property>
    <property name="text">
@@ -584,7 +584,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/numbered-list.png</normaloff>:/htmleditor/images/numbered-list.png</iconset>
    </property>
    <property name="text">
@@ -596,7 +596,7 @@
   </action>
   <action name="actionInsertImageFromFile">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/document-open.png</normaloff>:/htmleditor/images/document-open.png</iconset>
    </property>
    <property name="text">
@@ -608,7 +608,7 @@
   </action>
   <action name="actionInsertImageFromUrl">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/text-html.png</normaloff>:/htmleditor/images/text-html.png</iconset>
    </property>
    <property name="text">
@@ -620,7 +620,7 @@
   </action>
   <action name="actionCreateLink">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/text-html.png</normaloff>:/htmleditor/images/text-html.png</iconset>
    </property>
    <property name="text">
@@ -632,7 +632,7 @@
   </action>
   <action name="actionZoomOut">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/list-remove.png</normaloff>:/htmleditor/images/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -644,7 +644,7 @@
   </action>
   <action name="actionZoomIn">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/list-add.png</normaloff>:/htmleditor/images/list-add.png</iconset>
    </property>
    <property name="text">
@@ -733,7 +733,7 @@
   </action>
   <action name="actionInsertHtml">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/insert-html.png</normaloff>:/htmleditor/images/insert-html.png</iconset>
    </property>
    <property name="text">
@@ -751,7 +751,7 @@
   </action>
   <action name="actionInsertTable">
    <property name="icon">
-    <iconset resource="../qmc2.qrc">
+	   <iconset resource="../../qmc2.qrc">
      <normaloff>:/htmleditor/images/insert-table.png</normaloff>:/htmleditor/images/insert-table.png</iconset>
    </property>
    <property name="text">
@@ -769,13 +769,13 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QWebView</class>
+   <class>QWebEngineView</class>
    <extends>QWidget</extends>
-   <header>QtWebKitWidgets/QWebView</header>
+   <header>QWebEngineView</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../qmc2.qrc"/>
+	 <include location="../../qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

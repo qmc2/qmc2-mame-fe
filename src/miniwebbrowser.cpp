@@ -4,9 +4,8 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QDir>
-#include <QtWebKitWidgets/QWebFrame>
-#include <QtWebKitWidgets/QWebInspector>
-#include <QWebHistory>
+#include <QWebEngineHistory>
+#include <QWebEngineSettings>
 #include <QFontMetrics>
 
 #include "settings.h"
@@ -28,8 +27,6 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 {
 	setObjectName("MiniWebBrowser");
 	m_isPdfViewer = useAsPdfViewer;
-
-	QWebSettings::setMaximumPagesInCache(QMC2_BROWSER_CACHE_PAGES);
 
 	if ( MiniWebBrowser::supportedSchemes.isEmpty() )
 		MiniWebBrowser::supportedSchemes << "http" << "ftp" << "file";
@@ -64,17 +61,16 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 	iconCache.setMaxCost(QMC2_BROWSER_ICONCACHE_SIZE);
 
 	// we want the same global network access manager for all browsers
-	webViewBrowser->page()->setNetworkAccessManager(qmc2NetworkAccessManager);
+	//webViewBrowser->page()->setNetworkAccessManager(qmc2NetworkAccessManager);
 
 	// we want to manipulate the link activation
-	webViewBrowser->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+	//webViewBrowser->page()->setLinkDelegationPolicy(QWebEnginePage::DelegateAllLinks);
 
 	// connect page actions we provide
 	connect(webViewBrowser->page(), SIGNAL(downloadRequested(const QNetworkRequest &)), this, SLOT(processPageActionDownloadRequested(const QNetworkRequest &)));
 	connect(webViewBrowser->page(), SIGNAL(unsupportedContent(QNetworkReply *)), this, SLOT(processPageActionHandleUnsupportedContent(QNetworkReply *)));
 	connect(webViewBrowser->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), this, SLOT(webViewBrowser_linkHovered(const QString &, const QString &, const QString &)));
 	connect(webViewBrowser->page(), SIGNAL(statusBarVisibilityChangeRequested(bool)), this, SLOT(webViewBrowser_statusBarVisibilityChangeRequested(bool)));
-	connect(webViewBrowser->page(), SIGNAL(frameCreated(QWebFrame *)), this, SLOT(webViewBrowser_frameCreated(QWebFrame *)));
 
 	connect(webViewBrowser, SIGNAL(linkClicked(const QUrl)), this, SLOT(webViewBrowser_linkClicked(const QUrl)));
 	connect(webViewBrowser, SIGNAL(urlChanged(const QUrl)), this, SLOT(webViewBrowser_urlChanged(const QUrl)));
@@ -89,97 +85,103 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent, bool useAsPdfViewer)
 	if ( isPdfViewer() ) {
 		frameUrl->hide();
 		// hide all page actions
-		for (QWebPage::WebAction pa = QWebPage::OpenLink; pa != QWebPage::AlignRight; pa = static_cast<QWebPage::WebAction>(static_cast<int>(pa) + 1)) {
+		/*
+		for (QWebEnginePage::WebAction pa = QWebEnginePage::Back; pa != QWebEnginePage::InsertUnorderedList; pa = static_cast<QWebEnginePage::WebAction>(static_cast<int>(pa) + 1)) {
 			QAction *a= webViewBrowser->pageAction(pa);
 			if ( a )
 				a->setVisible(false);
 		}
+		*/
 	} else {
+		/* 
 		// hide page actions we don't provide
-		webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
+		webViewBrowser->pageAction(QWebEnginePage::OpenFrameInNewWindow)->setVisible(false);
 
 		// change provided page actions to better fit our usage / integrate into QMC2's look
-		webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
-		webViewBrowser->pageAction(QWebPage::OpenLink)->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-		webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setText(tr("Open link in new window"));
-		webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
-		webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setText(tr("Open image in new window"));
-		webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
-		webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setText(tr("Save link as..."));
-		webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
-		webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setText(tr("Copy link"));
-		webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-		webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setText(tr("Save image as..."));
-		webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
-		webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setText(tr("Copy image"));
-		webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-		webViewBrowser->pageAction(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy image address"));
-		webViewBrowser->pageAction(QWebPage::Back)->setText(tr("Go back"));
-		webViewBrowser->pageAction(QWebPage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
-		webViewBrowser->pageAction(QWebPage::Forward)->setText(tr("Go forward"));
-		webViewBrowser->pageAction(QWebPage::Forward)->setIcon(QIcon(QString::fromUtf8(":/data/img/forward.png")));
-		webViewBrowser->pageAction(QWebPage::Reload)->setText(tr("Reload"));
-		webViewBrowser->pageAction(QWebPage::Reload)->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
-		webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
-		webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
-		webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
-		webViewBrowser->pageAction(QWebPage::Copy)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+		webViewBrowser->pageAction(QWebEnginePage::OpenLink)->setText(tr("Open link"));
+		webViewBrowser->pageAction(QWebEnginePage::OpenLink)->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+		webViewBrowser->pageAction(QWebEnginePage::OpenLinkInNewWindow)->setText(tr("Open link in new window"));
+		webViewBrowser->pageAction(QWebEnginePage::OpenLinkInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
+		webViewBrowser->pageAction(QWebEnginePage::OpenImageInNewWindow)->setText(tr("Open image in new window"));
+		webViewBrowser->pageAction(QWebEnginePage::OpenImageInNewWindow)->setIcon(QIcon(QString::fromUtf8(":/data/img/thumbnail.png")));
+		webViewBrowser->pageAction(QWebEnginePage::DownloadLinkToDisk)->setText(tr("Save link as..."));
+		webViewBrowser->pageAction(QWebEnginePage::DownloadLinkToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+		webViewBrowser->pageAction(QWebEnginePage::CopyLinkToClipboard)->setText(tr("Copy link"));
+		webViewBrowser->pageAction(QWebEnginePage::CopyLinkToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+		webViewBrowser->pageAction(QWebEnginePage::DownloadImageToDisk)->setText(tr("Save image as..."));
+		webViewBrowser->pageAction(QWebEnginePage::DownloadImageToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+		webViewBrowser->pageAction(QWebEnginePage::CopyImageToClipboard)->setText(tr("Copy image"));
+		webViewBrowser->pageAction(QWebEnginePage::CopyImageToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+		webViewBrowser->pageAction(QWebEnginePage::CopyImageUrlToClipboard)->setText(tr("Copy image address"));
+		webViewBrowser->pageAction(QWebEnginePage::Back)->setText(tr("Go back"));
+		webViewBrowser->pageAction(QWebEnginePage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
+		webViewBrowser->pageAction(QWebEnginePage::Forward)->setText(tr("Go forward"));
+		webViewBrowser->pageAction(QWebEnginePage::Forward)->setIcon(QIcon(QString::fromUtf8(":/data/img/forward.png")));
+		webViewBrowser->pageAction(QWebEnginePage::Reload)->setText(tr("Reload"));
+		webViewBrowser->pageAction(QWebEnginePage::Reload)->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
+		webViewBrowser->pageAction(QWebEnginePage::Stop)->setText(tr("Stop"));
+		webViewBrowser->pageAction(QWebEnginePage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
+		webViewBrowser->pageAction(QWebEnginePage::Copy)->setText(tr("Copy"));
+		webViewBrowser->pageAction(QWebEnginePage::Copy)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
-		webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
-		webViewBrowser->pageAction(QWebPage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));
+		webViewBrowser->pageAction(QWebEnginePage::InspectElement)->setText(tr("Inspect"));
+		webViewBrowser->pageAction(QWebEnginePage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));
 #endif
+		*/
 
 		// connect page actions to own routines
-		connect(webViewBrowser->pageAction(QWebPage::Back), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
-		connect(webViewBrowser->pageAction(QWebPage::Forward), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
+		connect(webViewBrowser->pageAction(QWebEnginePage::Back), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
+		connect(webViewBrowser->pageAction(QWebEnginePage::Forward), SIGNAL(triggered()), this, SLOT(checkBackAndForward()));
 	}
 
 	// setup browser settings
+	/*
 	webViewBrowser->page()->settings()->setIconDatabasePath(Options::configPath());
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
 #if defined(QMC2_BROWSER_JAVASCRIPT_ENABLED)
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, true);
 #else
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
 #endif
 #if defined(QMC2_BROWSER_JAVA_ENABLED)
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::JavaEnabled, true);
 #else
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::JavaEnabled, false);
 #endif
 #if defined(QMC2_BROWSER_PLUGINS_ENABLED)
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
 #else
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
 #endif
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::PrivateBrowsingEnabled, false);
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, true);
 #else
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::DeveloperExtrasEnabled, false);
 #endif
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::LinksIncludedInFocusChain, false);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, false);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrintElementBackgrounds, false);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, false);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, false);
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageEnabled, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::ZoomTextOnly, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::PrintElementBackgrounds, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::OfflineStorageDatabaseEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::OfflineWebApplicationCacheEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
 #if defined(QMC2_BROWSER_PREFETCH_DNS_ENABLED)
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
 #else
-	webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, false);
+	webViewBrowser->page()->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, false);
 #endif
+	*/
 
 	connect(this, SIGNAL(titleChanged(QString &)), this, SLOT(changeTitle(QString &)));
 
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
-	connect(webViewBrowser->pageAction(QWebPage::InspectElement), SIGNAL(triggered()), this, SLOT(postProcessPageActionInspect()), Qt::QueuedConnection);
+	connect(webViewBrowser->pageAction(QWebEnginePage::InspectElement), SIGNAL(triggered()), this, SLOT(postProcessPageActionInspect()), Qt::QueuedConnection);
 #endif
 
 	// we want to detect/handle unsupported content
-	webViewBrowser->page()->setForwardUnsupportedContent(true);
+	//webViewBrowser->page()->setForwardUnsupportedContent(true);
 
 	// status bar timeout connection
 	connect(&statusTimer, SIGNAL(timeout()), this, SLOT(statusTimeout()));
@@ -230,26 +232,32 @@ void MiniWebBrowser::on_toolButtonHighlight_clicked()
 
 void MiniWebBrowser::on_toolButtonNext_clicked()
 {
+	// FIXME
+	/*
 	searchTimer.stop();
-	webViewBrowser->page()->findText("", QWebPage::HighlightAllOccurrences);
-	QWebPage::FindFlags flags = QWebPage::FindWrapsAroundDocument;
+	webViewBrowser->page()->findText("", QWebEnginePage::HighlightAllOccurrences);
+	QWebEnginePage::FindFlags flags = QWebEnginePage::FindWrapsAroundDocument;
 	if ( toolButtonCaseSensitive->isChecked() )
-		flags |= QWebPage::FindCaseSensitively;
+		flags |= QWebEnginePage::FindCaseSensitively;
 	webViewBrowser->page()->findText(iconLineEditSearch->text(), flags);
 	if ( toolButtonHighlight->isChecked() )
-		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebPage::HighlightAllOccurrences);
+		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebEnginePage::HighlightAllOccurrences);
+	*/
 }
 
 void MiniWebBrowser::on_toolButtonPrevious_clicked()
 {
+	// FIXME
+	/*
 	searchTimer.stop();
-	webViewBrowser->page()->findText("", QWebPage::HighlightAllOccurrences);
-	QWebPage::FindFlags flags = QWebPage::FindWrapsAroundDocument | QWebPage::FindBackward;
+	webViewBrowser->page()->findText("", QWebEnginePage::HighlightAllOccurrences);
+	QWebEnginePage::FindFlags flags = QWebEnginePage::FindWrapsAroundDocument | QWebEnginePage::FindBackward;
 	if ( toolButtonCaseSensitive->isChecked() )
-		flags |= QWebPage::FindCaseSensitively;
+		flags |= QWebEnginePage::FindCaseSensitively;
 	webViewBrowser->page()->findText(iconLineEditSearch->text(), flags);
 	if ( toolButtonHighlight->isChecked() )
-		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebPage::HighlightAllOccurrences);
+		webViewBrowser->page()->findText(iconLineEditSearch->text(), flags | QWebEnginePage::HighlightAllOccurrences);
+	*/
 }
 
 void MiniWebBrowser::on_toolButtonToggleSearchBar_clicked()
@@ -287,6 +295,8 @@ void MiniWebBrowser::on_toolButtonForward_clicked()
 void MiniWebBrowser::hideEvent(QHideEvent *e)
 {
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
+	// FIXME
+	/*
   	foreach (QWidget *widget, QApplication::topLevelWidgets()) {
 		if ( widget->inherits("QWebInspector") ) {
 			QWebInspector *inspector = (QWebInspector *)widget;
@@ -299,6 +309,7 @@ void MiniWebBrowser::hideEvent(QHideEvent *e)
 			}
 		}
 	}
+	*/
 #endif
 	if ( !e )
 		return;
@@ -309,6 +320,8 @@ void MiniWebBrowser::hideEvent(QHideEvent *e)
 void MiniWebBrowser::postProcessPageActionInspect()
 {
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
+	// FIXME
+	/*
   	foreach (QWidget *widget, QApplication::topLevelWidgets()) {
 		if ( widget->inherits("QWebInspector") ) {
 			QWebInspector *inspector = (QWebInspector *)widget;
@@ -318,6 +331,7 @@ void MiniWebBrowser::postProcessPageActionInspect()
 			}
 		}
 	}
+	*/
 #endif
 }
 
@@ -383,6 +397,7 @@ void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 			webBrowser->webViewBrowser->load(url);
 			webBrowser->show();
 		} else {
+			/*
 			QWebHitTestResult hitTest = webViewBrowser->page()->mainFrame()->hitTestContent(webViewBrowser->lastMouseClickPosition);
 			if ( hitTest.linkTargetFrame() )
 				hitTest.linkTargetFrame()->load(url);
@@ -390,6 +405,9 @@ void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 				webViewBrowser->load(url);
 				webViewBrowser_urlChanged(url);
 			}
+			*/
+			webViewBrowser->load(url);
+			webViewBrowser_urlChanged(url);
 		}
 	}
 	QTimer::singleShot(0, this, SLOT(checkBackAndForward()));
@@ -517,7 +535,7 @@ void MiniWebBrowser::webViewBrowser_iconChanged()
 		if ( iconCache.contains(urlStr) )
 			pageIcon = *iconCache[urlStr];
 		if ( pageIcon.isNull() ) {
-			pageIcon = QWebSettings::iconForUrl(webViewBrowser->url());
+			//pageIcon = QWebEngineSettings::iconForUrl(webViewBrowser->url());
 			if ( pageIcon.isNull() )
 				pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
 			else
@@ -544,11 +562,6 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
 void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible)
 {
 	progressBar->setVisible(visible);
-}
-
-void MiniWebBrowser::webViewBrowser_frameCreated(QWebFrame *frame)
-{
-	// NOP
 }
 
 void MiniWebBrowser::statusTimeout()
@@ -652,11 +665,11 @@ void MiniWebBrowser::setStatus(QString statusMessage)
 	updateGeometry();
 }
 
-QWebView *BrowserWidget::createWindow(QWebPage::WebWindowType type)
+QWebEngineView *BrowserWidget::createWindow(QWebEnginePage::WebWindowType type)
 {
 	MiniWebBrowser *webBrowser = new MiniWebBrowser(0);
-	if ( type == QWebPage::WebModalDialog )
-		webBrowser->setWindowModality(Qt::ApplicationModal);
+	//if ( type == QWebEnginePage::WebModalDialog )
+	//	webBrowser->setWindowModality(Qt::ApplicationModal);
 	webBrowser->setAttribute(Qt::WA_DeleteOnClose);
 	if ( parentBrowser )
 		webBrowser->spinBoxZoom->setValue(parentBrowser->spinBoxZoom->value());
@@ -679,6 +692,6 @@ void BrowserWidget::wheelEvent(QWheelEvent *e)
 		e->accept();
 	} else {
 		e->ignore();
-		QWebView::wheelEvent(e);
+		QWebEngineView::wheelEvent(e);
 	}
 }

@@ -2,7 +2,7 @@
 #define MINIWEBBROWSER_H
 
 #include <Qt>
-#include <QtWebKitWidgets/QWebView>
+#include <QWebEngineView>
 #include <QMouseEvent>
 #include <QTimer>
 #include <QCache>
@@ -13,7 +13,7 @@
 
 class MiniWebBrowser;
 
-class BrowserWidget : public QWebView
+class BrowserWidget : public QWebEngineView
 {
 	Q_OBJECT
 
@@ -23,7 +23,7 @@ class BrowserWidget : public QWebView
 		QTimer bwuDelayTimer;
 		MiniWebBrowser *parentBrowser;
 
-		BrowserWidget(QWidget *parent, MiniWebBrowser *browserParent) : QWebView(parent)
+		BrowserWidget(QWidget *parent, MiniWebBrowser *browserParent) : QWebEngineView(parent)
 		{
 			bwuDelayTimer.setSingleShot(true);
 			lastMouseClickPosition = QPoint(-1, -1);
@@ -38,22 +38,22 @@ class BrowserWidget : public QWebView
 		void mousePressEvent(QMouseEvent *e)
 		{
 			lastMouseClickPosition = e->pos();
-			QWebView::mousePressEvent(e);
+			QWebEngineView::mousePressEvent(e);
 		}
 		void enterEvent(QEvent *e)
 		{
-			QWebView::enterEvent(e);
+			QWebEngineView::enterEvent(e);
 			mouseCurrentlyOnView = true;
 			emit mouseOnView(true);
 		}
 		void leaveEvent(QEvent *e)
 		{
-			QWebView::leaveEvent(e);
+			QWebEngineView::leaveEvent(e);
 			mouseCurrentlyOnView = false;
 			emit mouseOnView(false);
 		}
 		void wheelEvent(QWheelEvent *);
-		QWebView *createWindow(QWebPage::WebWindowType);
+		QWebEngineView *createWindow(QWebEnginePage::WebWindowType);
 };
 
 class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
@@ -110,7 +110,6 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 		void webViewBrowser_iconChanged();
 		void webViewBrowser_linkHovered(const QString &, const QString &, const QString &);
 		void webViewBrowser_statusBarVisibilityChangeRequested(bool);
-		void webViewBrowser_frameCreated(QWebFrame *);
 		void statusTimeout();
 		void adjustIconSizes();
 		void setStatus(QString);

@@ -558,9 +558,6 @@
 // ProjectMESS base URL (default)
 #define QMC2_PROJECT_MESS_BASE_URL		"http://www.progettoemma.net/mess/gioco.php?game=%1&list=%2"
 
-// maximum number of pages held in QtWebKit's page cache
-#define QMC2_BROWSER_CACHE_PAGES		100
-
 // type conversions
 #define QMC2_TO_UINT32(a)			((uchar)*((a) + 0) * (quint32)16777216ULL + \
 						(uchar)*((a) + 1) * (quint32)65536ULL + \

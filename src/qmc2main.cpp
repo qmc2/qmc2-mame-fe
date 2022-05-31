@@ -8130,8 +8130,10 @@ void MainWindow::projectMessLoadFinished(bool ok)
 		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 		if ( qmc2ProjectMESSCache.contains(cacheKey) )
 			qmc2ProjectMESSCache.remove(cacheKey);
-		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toUtf8());
-		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
+		QString data("%1");
+		qmc2ProjectMESS->webViewBrowser->page()->toHtml([data](const QString &result) { data.arg(result); });
+		QByteArray cdata = QMC2_COMPRESS(data.toUtf8());
+		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(cdata), cdata.size());
 	}
 
 	// we only want to know this ONCE
@@ -8146,8 +8148,10 @@ void MainWindow::projectMessSystemLoadStarted()
 void MainWindow::projectMessSystemLoadFinished(bool ok)
 {
 	if ( ok ) {
-		QByteArray projectMessData = QMC2_COMPRESS(qmc2ProjectMESSLookup->webViewBrowser->page()->mainFrame()->toHtml().toUtf8());
-    		QString machName = qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME);
+		QString data("%1");
+		qmc2ProjectMESSLookup->webViewBrowser->page()->toHtml([data](const QString &result) { data.arg(result); });
+		QByteArray projectMessData = QMC2_COMPRESS(data.toUtf8());
+    		QString machName(qmc2CurrentItem->text(QMC2_MACHINELIST_COLUMN_NAME));
 		if ( qmc2ProjectMESSCache.contains(machName) )
 			qmc2ProjectMESSCache.remove(machName);
 		qmc2ProjectMESSCache.insert(machName, new QByteArray(projectMessData), projectMessData.size());

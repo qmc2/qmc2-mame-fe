@@ -46,7 +46,7 @@
 #include <QMessageBox>
 #include <QColorDialog>
 #include <QToolTip>
-#include <QtWebKitWidgets/QWebFrame>
+#include <QWebEngineView>
 #include <QListWidgetItem>
 
 #include <algorithm> // std::sort()
@@ -120,7 +120,6 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	// replace the standard QWebView with the MiniWebBrowser's tweaked one
 	ui->verticalLayoutWYSIWYG->removeWidget(ui->webView);
 	delete ui->webView;
 	ui->webView = new BrowserWidget(ui->tabWYSIWYG, 0);
@@ -224,6 +223,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent) :
 	connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(changeZoom(int)));
 	ui->standardToolBar->insertWidget(ui->actionZoomIn, zoomSlider);
 
+	/*
 #if defined(QMC2_BROWSER_PLUGINS_ENABLED)
 	ui->webView->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
 #else
@@ -231,6 +231,7 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent) :
 #endif
 	ui->webView->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, false);
 	ui->webView->page()->settings()->setAttribute(QWebSettings::LocalStorageEnabled, true);
+	*/
 
 	connect(ui->webView, SIGNAL(loadStarted()), this, SLOT(setLoadActive()));
 	connect(ui->webView, SIGNAL(loadFinished(bool)), this, SLOT(setLoadInactive()));
@@ -260,19 +261,17 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent) :
 	connect(ui->actionZoomOut, SIGNAL(triggered()), SLOT(zoomOut()));
 	connect(ui->actionZoomIn, SIGNAL(triggered()), SLOT(zoomIn()));
 
-	// these are forwarded to the internal QWebView
-	FORWARD_ACTION(ui->actionEditUndo, QWebPage::Undo);
-	FORWARD_ACTION(ui->actionEditRedo, QWebPage::Redo);
-	FORWARD_ACTION(ui->actionEditCut, QWebPage::Cut);
-	FORWARD_ACTION(ui->actionEditCopy, QWebPage::Copy);
-	FORWARD_ACTION(ui->actionEditPaste, QWebPage::Paste);
-	FORWARD_ACTION(ui->actionFormatBold, QWebPage::ToggleBold);
-	FORWARD_ACTION(ui->actionFormatItalic, QWebPage::ToggleItalic);
-	FORWARD_ACTION(ui->actionFormatUnderline, QWebPage::ToggleUnderline);
-
-	// Qt 4.5.0 has a bug: always returns 0 for QWebPage::SelectAll
-	connect(ui->actionEditSelectAll, SIGNAL(triggered()), SLOT(editSelectAll()));
-	// FIXME: still required?
+	// these are forwarded to the internal QWebEngineView
+	FORWARD_ACTION(ui->actionEditUndo, QWebEnginePage::Undo);
+	FORWARD_ACTION(ui->actionEditRedo, QWebEnginePage::Redo);
+	FORWARD_ACTION(ui->actionEditCut, QWebEnginePage::Cut);
+	FORWARD_ACTION(ui->actionEditCopy, QWebEnginePage::Copy);
+	FORWARD_ACTION(ui->actionEditPaste, QWebEnginePage::Paste);
+	/*
+	FORWARD_ACTION(ui->actionFormatBold, QWebEnginePage::ToggleBold);
+	FORWARD_ACTION(ui->actionFormatItalic, QWebEnginePage::ToggleItalic);
+	FORWARD_ACTION(ui->actionFormatUnderline, QWebEnginePage::ToggleUnderline);
+	*/
 
 	connect(ui->actionStyleParagraph, SIGNAL(triggered()), SLOT(styleParagraph()));
 	connect(ui->actionStyleHeading1, SIGNAL(triggered()), SLOT(styleHeading1()));
@@ -310,27 +309,31 @@ HtmlEditor::HtmlEditor(QString editorName, bool embedded, QWidget *parent) :
 	connect(ui->webView->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), SLOT(linkHovered(const QString &, const QString &, const QString &)));
 
 	// this effectively *disables* internal link-following
-	ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+	//ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 	connect(ui->webView, SIGNAL(linkClicked(QUrl)), SLOT(openLink(QUrl)));
-	ui->webView->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
-	ui->webView->pageAction(QWebPage::DownloadImageToDisk)->setVisible(false);
-	ui->webView->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
-	ui->webView->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
-	ui->webView->pageAction(QWebPage::OpenLink)->setVisible(false);
-	ui->webView->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
-	ui->webView->pageAction(QWebPage::Back)->setVisible(false);
-	ui->webView->pageAction(QWebPage::Forward)->setVisible(false);
-	ui->webView->pageAction(QWebPage::Stop)->setVisible(false);
-	ui->webView->pageAction(QWebPage::Reload)->setVisible(false);
+	//ui->webView->pageAction(QWebEnginePage::OpenImageInNewWindow)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::DownloadImageToDisk)->setVisible(false);
+	//ui->webView->pageAction(QWebEnginePage::OpenFrameInNewWindow)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::OpenLinkInNewWindow)->setVisible(false);
+	//ui->webView->pageAction(QWebEnginePage::OpenLink)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::DownloadLinkToDisk)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::Back)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::Forward)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::Stop)->setVisible(false);
+	ui->webView->pageAction(QWebEnginePage::Reload)->setVisible(false);
 
 	ui->webView->setFocus();
-	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+	if ( actionReadOnly->isChecked() )
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = false");
+	else
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = true");
 	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
 	if ( !actionShowHTML->isChecked() )
 		showHtmlTab(false);
 
-	connect(ui->webView->page()->mainFrame(), SIGNAL(javaScriptWindowObjectCleared()), this, SLOT(javaScriptWindowObjectCleared()));
+	// FIXME
+	//connect(ui->webView->page(), SIGNAL(javaScriptWindowObjectCleared()), this, SLOT(javaScriptWindowObjectCleared()));
 
 	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("HtmlEditor/%1/Zoom").arg(myEditorName), 100).toInt());
 
@@ -399,22 +402,26 @@ void HtmlEditor::loadFinished(bool)
 
 void HtmlEditor::setContentEditable(bool readonly)
 {
-	ui->webView->page()->setContentEditable(!readonly);
+	if ( readonly )
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = false");
+	else
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = true");
 	ui->plainTextEdit->setReadOnly(readonly);
 }
 
 void HtmlEditor::checkRevertStatus()
 {
 	if ( !fileName.isEmpty() ) {
-		bool wasModified;
-		if ( loadedContent.isEmpty() )
-			wasModified = false;
-		else if ( ui->tabWidget->currentIndex() == 0 )
-			wasModified = loadedContent != ui->webView->page()->mainFrame()->toHtml();
-		else
+		bool wasModified = !loadedContent.isEmpty();
+		if ( ui->tabWidget->currentIndex() == 0 ) {
+			QString data("%1");
+			ui->webView->page()->toHtml([data](const QString &result) { data.arg(result); });
+			wasModified = loadedContent != data;
+		} else
 			wasModified = loadedContent != ui->plainTextEdit->toPlainText();
-		
-		if ( ui->webView->page()->mainFrame()->toHtml() != emptyContent && wasModified ) {
+		QString data("%1");
+		ui->webView->page()->toHtml([data](const QString &result) { data.arg(result); });
+		if ( data != emptyContent && wasModified ) {
 			QFile f(fileName);
 			ui->actionFileRevert->setVisible(f.exists());
 		} else
@@ -446,13 +453,16 @@ QString &HtmlEditor::noScript(QString &data)
 
 void HtmlEditor::fileNew()
 {
-	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+	if ( actionReadOnly->isChecked() )
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = false");
+	else
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = true");
 	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
 	if ( !isEmbeddedEditor )
 		setCurrentFileName(QString());
 
-	// quirk in QWebView: need an initial mouse click to show the cursor
+	// quirk in QWebEngineView: need an initial mouse click to show the cursor
 	int mx = ui->webView->width() / 2;
 	int my = ui->webView->height() / 2;
 	QPoint center = QPoint(mx, my);
@@ -510,11 +520,12 @@ void HtmlEditor::fileOpenInBrowser()
 	}
 	connect(webBrowser->webViewBrowser->page(), SIGNAL(windowCloseRequested()), webBrowser, SLOT(close()));
 	if ( ui->tabWidget->currentIndex() == 1 ) {
-		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+		ui->webView->page()->setHtml(ui->plainTextEdit->toPlainText());
 		wysiwygDirty = false;
 	}
-	QString data(ui->webView->page()->mainFrame()->toHtml());
-	webBrowser->webViewBrowser->setHtml(noScript(data));
+	QString data("%1");
+	webBrowser->webViewBrowser->page()->toHtml([data](const QString &result) { data.arg(result); });
+	webBrowser->webViewBrowser->page()->setHtml(noScript(data));
 	if ( !fileName.isEmpty() && QFile(fileName).exists() ) {
 		webBrowser->homeUrl = QUrl::fromUserInput(fileName);
 		webBrowser->comboBoxURL->lineEdit()->setText(webBrowser->homeUrl.toString());
@@ -540,10 +551,11 @@ bool HtmlEditor::fileSave()
 	bool success = file.open(QIODevice::WriteOnly);
 	if ( success ) {
 		if ( ui->tabWidget->currentIndex() == 1 ) {
-			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+			ui->webView->page()->setHtml(ui->plainTextEdit->toPlainText());
 			wysiwygDirty = false;
 		}
-		QString content(ui->webView->page()->mainFrame()->toHtml());
+		QString content("%1");
+		ui->webView->page()->toHtml([content](const QString &result) { content.arg(result); });
 		QTextStream ts(&file);
 		ts << noScript(content);
 		ts.flush();
@@ -572,10 +584,11 @@ bool HtmlEditor::fileSaveAs()
 	bool success = file.open(QIODevice::WriteOnly);
 	if ( success ) {
 		if ( ui->tabWidget->currentIndex() == 1 ) {
-			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+			ui->webView->page()->setHtml(ui->plainTextEdit->toPlainText());
 			wysiwygDirty = false;
 		}
-		QString content(ui->webView->page()->mainFrame()->toHtml());
+		QString content("%1");
+		ui->webView->page()->toHtml([content](const QString &result) { content.arg(result); });
 		QTextStream ts(&file);
 		ts << noScript(content);
 		ts.flush();
@@ -751,38 +764,41 @@ void HtmlEditor::zoomIn()
 
 void HtmlEditor::editSelectAll()
 {
-	ui->webView->triggerPageAction(QWebPage::SelectAll);
+	ui->webView->triggerPageAction(QWebEnginePage::SelectAll);
 }
 
 void HtmlEditor::execCommand(const QString &cmd)
 {
-	QWebFrame *frame = ui->webView->page()->mainFrame();
+	QWebEnginePage *page = ui->webView->page();
 	QString js(QString("document.execCommand(\"%1\", false, null)").arg(cmd));
-	frame->evaluateJavaScript(js);
+	page->runJavaScript(js);
 	localModified = true;
 }
 
 void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
 {
-	QWebFrame *frame = ui->webView->page()->mainFrame();
+	QWebEnginePage *page = ui->webView->page();
 	QString js(QString("document.execCommand(\"%1\", false, \"%2\")").arg(cmd).arg(arg));
-	frame->evaluateJavaScript(js);
+	page->runJavaScript(js);
 	localModified = true;
 }
 
 bool HtmlEditor::queryCommandState(const QString &cmd)
 {
-	QWebFrame *frame = ui->webView->page()->mainFrame();
+	QWebEnginePage *page = ui->webView->page();
 	QString js(QString("document.queryCommandState(\"%1\", false, null)").arg(cmd));
-	QVariant result = frame->evaluateJavaScript(js);
-	return result.toString().simplified().toLower() == "true";
+	QString result("%1");
+	page->runJavaScript(js, [result](const QVariant &r) { result.arg(r.toString()); });
+	return result.simplified().toLower() == "true";
 }
 
 void HtmlEditor::styleParagraph()
 {
 	execCommand("formatBlock", "p");
 	if ( generateEmptyContent ) {
-		emptyContent = ui->webView->page()->mainFrame()->toHtml();
+		QString data("%1");
+		ui->webView->page()->toHtml([data](const QString &result) { data.arg(result); });
+		emptyContent = data;
 		generateEmptyContent = false;
 	}
 }
@@ -907,14 +923,16 @@ void HtmlEditor::formatBackgroundColor()
 
 void HtmlEditor::adjustActions()
 {
-	FOLLOW_ENABLE(ui->actionEditUndo, QWebPage::Undo);
-	FOLLOW_ENABLE(ui->actionEditRedo, QWebPage::Redo);
-	FOLLOW_ENABLE(ui->actionEditCut, QWebPage::Cut);
-	FOLLOW_ENABLE(ui->actionEditCopy, QWebPage::Copy);
-	FOLLOW_ENABLE(ui->actionEditPaste, QWebPage::Paste);
-	FOLLOW_CHECK(ui->actionFormatBold, QWebPage::ToggleBold);
-	FOLLOW_CHECK(ui->actionFormatItalic, QWebPage::ToggleItalic);
-	FOLLOW_CHECK(ui->actionFormatUnderline, QWebPage::ToggleUnderline);
+	FOLLOW_ENABLE(ui->actionEditUndo, QWebEnginePage::Undo);
+	FOLLOW_ENABLE(ui->actionEditRedo, QWebEnginePage::Redo);
+	FOLLOW_ENABLE(ui->actionEditCut, QWebEnginePage::Cut);
+	FOLLOW_ENABLE(ui->actionEditCopy, QWebEnginePage::Copy);
+	FOLLOW_ENABLE(ui->actionEditPaste, QWebEnginePage::Paste);
+	/*
+	FOLLOW_CHECK(ui->actionFormatBold, QWebEnginePage::ToggleBold);
+	FOLLOW_CHECK(ui->actionFormatItalic, QWebEnginePage::ToggleItalic);
+	FOLLOW_CHECK(ui->actionFormatUnderline, QWebEnginePage::ToggleUnderline);
+	*/
 
 	ui->actionFormatStrikethrough->setChecked(queryCommandState("strikeThrough"));
 	ui->actionFormatNumberedList->setChecked(queryCommandState("insertOrderedList"));
@@ -940,7 +958,7 @@ void HtmlEditor::changeTab(int index)
 	switch ( index ) {
 		case 0:
 			if ( wysiwygDirty ) {
-				ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+				ui->webView->page()->setHtml(ui->plainTextEdit->toPlainText());
 				wysiwygDirty = false;
 			}
 			break;
@@ -948,7 +966,9 @@ void HtmlEditor::changeTab(int index)
 		case 1:
 			if ( htmlDirty ) {
 				ui->plainTextEdit->blockSignals(true);
-				ui->plainTextEdit->setPlainText(ui->webView->page()->mainFrame()->toHtml());
+				QString data("%1");
+				ui->webView->page()->toHtml([data](const QString &result) { data.arg(result); });
+				ui->plainTextEdit->setPlainText(data);
 				ui->plainTextEdit->blockSignals(false);
 				htmlDirty = false;
 			}
@@ -1021,7 +1041,10 @@ bool HtmlEditor::load(const QString &f)
 		loadedContent = data;
 
 	ui->webView->setHtml(data);
-	ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+	if ( actionReadOnly->isChecked() )
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = false");
+	else
+		ui->webView->page()->runJavaScript("document.documentElement.contentEditable = true");
 	ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 
 	if ( fileName.isEmpty() )
@@ -1093,11 +1116,16 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	}
 	if ( !qmc2CleaningUp && !stopLoading ) {
 		ui->webView->setHtml(data, QUrl::fromLocalFile(f));
-		ui->webView->page()->setContentEditable(!actionReadOnly->isChecked());
+		if ( actionReadOnly->isChecked() )
+			ui->webView->page()->runJavaScript("document.documentElement.contentEditable = false");
+		else
+			ui->webView->page()->runJavaScript("document.documentElement.contentEditable = true");
 		ui->plainTextEdit->setReadOnly(actionReadOnly->isChecked());
 		if ( fileName.isEmpty() )
 			setCurrentFileName(f);
-		emptyContent = ui->webView->page()->mainFrame()->toHtml();
+		QString data("%1");
+		ui->webView->page()->toHtml([data](const QString &result) { data.arg(result); });
+		emptyContent = data;
 		adjustHTML();
 	} else
 		emptyContent = "QMC2_INVALID";
@@ -1107,8 +1135,9 @@ bool HtmlEditor::loadTemplate(const QString &f)
 
 void HtmlEditor::javaScriptWindowObjectCleared()
 {
-	ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("qmc2NotesEditorObject", this);
-	ui->webView->page()->mainFrame()->addToJavaScriptWindowObject("qmc2NEO", this);
+	// FIXME
+	//ui->webView->page()->addToJavaScriptWindowObject("qmc2NotesEditorObject", this);
+	//ui->webView->page()->addToJavaScriptWindowObject("qmc2NEO", this);
 }
 
 QString HtmlEditor::getIconData()
@@ -1627,18 +1656,17 @@ bool HtmlEditor::save()
 	if ( emptyContent == "QMC2_INVALID" )
 		return true;
 
-	if ( !ui->webView->page()->isModified() && !ui->plainTextEdit->document()->isModified() && !localModified )
-		return true;
-
 	if ( fileName.isEmpty() )
 		return false;
 
 	if ( ui->tabWidget->currentIndex() == 1 ) {
-		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+		ui->webView->page()->setHtml(ui->plainTextEdit->toPlainText());
 		wysiwygDirty = false;
 	}
 
-	loadedContent = ui->webView->page()->mainFrame()->toHtml();
+	QString data("%1");
+	ui->webView->page()->toHtml([data](const QString &result) { data.arg(result); });
+	loadedContent = data;
 
 	if ( loadedContent == emptyContent ) {
 		QFile f(fileName);
