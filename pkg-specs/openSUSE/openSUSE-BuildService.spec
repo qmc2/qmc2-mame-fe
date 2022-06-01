@@ -7,8 +7,6 @@ License:        GPL-2.0
 URL:            http://qmc2.batcom-it.net
 Source0:        %{name}-%{version}.tar.bz2
 
-BuildRequires:  libQt5WebKit5-devel
-BuildRequires:  libQt5WebKitWidgets-devel
 BuildRequires:  libQt5Xml-devel
 BuildRequires:  libQt5Sql-devel
 BuildRequires:  libQt5Sql5-sqlite
@@ -17,6 +15,7 @@ BuildRequires:  libqt5-qtscript-devel
 BuildRequires:  libqt5-qtxmlpatterns-devel
 BuildRequires:  libqt5-qtsvg-devel
 BuildRequires:  libqt5-qtmultimedia-devel
+BuildRequires:  libqt5-qtwebengine-devel
 BuildRequires:  libSDL2-devel
 BuildRequires:  libarchive-devel
 BuildRequires:  make
@@ -123,7 +122,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/qchdman.6.gz
 
 %changelog
-* Fri Apr 29 2022 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.244
+* Wed Jun  1 2022 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.244-2
+- uses Qt WebEngine now (ditched Qt WebKit support)
+
+* Fri Apr 29 2022 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.244-1
 - updated spec to QMC2 0.244
 
 * Tue Apr  5 2022 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.243
