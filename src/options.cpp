@@ -1358,14 +1358,11 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
 	config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
 	config->setValue("Network/HTTPProxy/UserID", lineEditHTTPProxyUserID->text());
-	CryptedByteArray cpw(lineEditHTTPProxyPassword->text().toLatin1());
-	config->setValue("Network/HTTPProxy/Password", cpw.encryptedData());
 	if ( groupBoxHTTPProxy->isChecked() ) {
 		QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::HttpProxy, 
 					lineEditHTTPProxyHost->text(),
 					spinBoxHTTPProxyPort->value(),
-					lineEditHTTPProxyUserID->text().isEmpty() ? QString() : lineEditHTTPProxyUserID->text(),
-					lineEditHTTPProxyPassword->text().isEmpty() ? QString() : lineEditHTTPProxyPassword->text()));
+					lineEditHTTPProxyUserID->text().isEmpty() ? QString() : lineEditHTTPProxyUserID->text()));
 	} else
 		QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::NoProxy));
 
@@ -2161,8 +2158,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", QString()).toString());
 	spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
 	lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", QString()).toString());
-	CryptedByteArray cpw(config->value("Network/HTTPProxy/Password", QString()).toByteArray());
-	lineEditHTTPProxyPassword->setText(QString(cpw.decryptedData()));
 
 	// Emulator
 

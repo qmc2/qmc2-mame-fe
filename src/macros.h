@@ -841,12 +841,6 @@
 #define QMC2_IFS_COLUMN_ARTWORK			0
 #define QMC2_IFS_COLUMN_FALLBACK		1
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!! must be newly made to work with git !!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// tests the (minor) version 'v' against the minimum (minor) version 'mv', and the SVN rev. 'r' against the minimum SVN rev. 'mr' (true if 'v' or 'r' are in the relevant ranges)
-#define QMC2_TEST_VERSION(v, mv, r, mr)		((v) < mv || ((r) > 0 && (r) < (mr)))
-
 // debugging macros
 #define QMC2_PRINT_TXT(t)			printf("%s\n", #t)
 #define QMC2_PRINT_STR(s)			printf("%s = %s\n", #s, s.toUtf8().constData())

@@ -296,33 +296,15 @@ bool Welcome::checkConfig()
 	}
 	startupConfig->endGroup();
 
-	/*
 	QStringList verList(startupConfig->value("Version").toString().split('.', QString::SkipEmptyParts));
 	if ( verList.count() > 1 ) {
 		int omv = verList.at(1).toInt();
-		int osr = startupConfig->value("GIT_Revision").toInt();
-		// current version: 0.196, last 3 versions: 0.195, 0.192, 0.187
-		if ( QMC2_TEST_VERSION(omv, 187, osr, 8076) ) {
-			// QMC2 Arcade / ToxicWaste theme changes
-			if ( startupConfig->contains("Arcade/ToxicWaste/gameCardPage") ) {
-				startupConfig->setValue("Arcade/ToxicWaste/machineCardPage", startupConfig->value("Arcade/ToxicWaste/gameCardPage", 0).toInt());
-				startupConfig->remove("Arcade/ToxicWaste/gameCardPage");
-			}
-			if ( startupConfig->contains("Arcade/ToxicWaste/gameListOpacity") ) {
-				startupConfig->setValue("Arcade/ToxicWaste/machineListOpacity", startupConfig->value("Arcade/ToxicWaste/gameListOpacity", 1.0).toDouble());
-				startupConfig->remove("Arcade/ToxicWaste/gameListOpacity");
-			}
-		}
-		if ( QMC2_TEST_VERSION(omv, 195, osr, 8239) ) {
-			if ( startupConfig->contains("MAME/FilesAndDirectories/SlotInfoCacheFile") ) {
-				QFile f(startupConfig->value("MAME/FilesAndDirectories/SlotInfoCacheFile", Options::configPath() + "/mame.sic").toString());
-				if ( f.exists() )
-					f.remove();
-				startupConfig->remove("MAME/FilesAndDirectories/SlotInfoCacheFile");
+		if ( omv < 245 ) {
+			if ( startupConfig->contains("Network/HTTPProxy/Password") ) {
+				startupConfig->remove("Network/HTTPProxy/Password");
 			}
 		}
 	}
-	*/
 
 	configOkay &= !startupConfig->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile", QString()).toString().isEmpty();
 	configOkay &= !QMC2_CLI_OPT_RECONFIGURE;

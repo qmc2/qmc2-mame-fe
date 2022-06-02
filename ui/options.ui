@@ -41,7 +41,16 @@
            <string>&amp;GUI</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_0">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -58,7 +67,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>615</width>
-                <height>739</height>
+                <height>676</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_1">
@@ -868,7 +877,16 @@
            <string>F&amp;iles / Directories</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_3">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -884,8 +902,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>433</width>
-                <height>1176</height>
+                <width>376</width>
+                <height>1142</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -1155,7 +1173,16 @@
                    </property>
                    <widget class="QWidget" name="pagePCBDirectory">
                     <layout class="QHBoxLayout" name="_18">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1192,7 +1219,16 @@
                    </widget>
                    <widget class="QWidget" name="pagePCBFile">
                     <layout class="QHBoxLayout" name="_19">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1282,7 +1318,16 @@
                    </property>
                    <widget class="QWidget" name="pageMarqueeDirectory">
                     <layout class="QHBoxLayout" name="_10">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1319,7 +1364,16 @@
                    </widget>
                    <widget class="QWidget" name="pageMarqueeFile">
                     <layout class="QHBoxLayout" name="_11">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1519,7 +1573,16 @@
                    </property>
                    <widget class="QWidget" name="pageSoftwareSnapDirectory">
                     <layout class="QHBoxLayout" name="_20">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1556,7 +1619,16 @@
                    </widget>
                    <widget class="QWidget" name="pageSoftwareSnapFile">
                     <layout class="QHBoxLayout" name="_21">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1676,7 +1748,16 @@
                    </property>
                    <widget class="QWidget" name="pageCabinetDirectory">
                     <layout class="QHBoxLayout" name="_2">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1713,7 +1794,16 @@
                    </widget>
                    <widget class="QWidget" name="pageCabinetFile">
                     <layout class="QHBoxLayout" name="_3">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -1992,7 +2082,16 @@
                    </property>
                    <widget class="QWidget" name="pageTitleDirectory">
                     <layout class="QHBoxLayout" name="_14">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2029,7 +2128,16 @@
                    </widget>
                    <widget class="QWidget" name="pageTitleFile">
                     <layout class="QHBoxLayout" name="_15">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2149,7 +2257,16 @@
                    </property>
                    <widget class="QWidget" name="pagePreviewDirectory">
                     <layout class="QGridLayout">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item row="0" column="0">
@@ -2186,7 +2303,16 @@
                    </widget>
                    <widget class="QWidget" name="pagePreviewFile">
                     <layout class="QHBoxLayout">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2418,7 +2544,16 @@
                    </property>
                    <widget class="QWidget" name="pageFlyerDirectory">
                     <layout class="QHBoxLayout">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2455,7 +2590,16 @@
                    </widget>
                    <widget class="QWidget" name="pageFlyerFile">
                     <layout class="QHBoxLayout">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2545,7 +2689,16 @@
                    </property>
                    <widget class="QWidget" name="pageIconDirectory">
                     <layout class="QHBoxLayout">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2582,7 +2735,16 @@
                    </widget>
                    <widget class="QWidget" name="pageIconFile">
                     <layout class="QHBoxLayout">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2672,7 +2834,16 @@
                    </property>
                    <widget class="QWidget" name="pageControllerDirectory">
                     <layout class="QHBoxLayout" name="_4">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -2709,7 +2880,16 @@
                    </widget>
                    <widget class="QWidget" name="pageControllerFile">
                     <layout class="QHBoxLayout" name="_5">
-                     <property name="margin">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
                       <number>0</number>
                      </property>
                      <item>
@@ -3161,7 +3341,16 @@
            <string>Machine- / Software-&amp;lists</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -3177,8 +3366,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>608</width>
-                <height>599</height>
+                <width>531</width>
+                <height>551</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3876,7 +4065,16 @@
            <string>&amp;Shortcuts / Keys</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_9">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -3892,8 +4090,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>291</width>
-                <height>55</height>
+                <width>259</width>
+                <height>52</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -3998,7 +4196,16 @@
            <string>&amp;Joystick</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_12">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -4014,8 +4221,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>491</width>
-                <height>292</height>
+                <width>388</width>
+                <height>274</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
@@ -4364,7 +4571,16 @@
                        </sizepolicy>
                       </property>
                       <layout class="QGridLayout" name="gridLayoutCalibrationAndTest">
-                       <property name="margin">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
                         <number>0</number>
                        </property>
                        <item row="0" column="0">
@@ -4467,7 +4683,16 @@
            <string>Network / &amp;Tools</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_15">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -4483,8 +4708,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>466</width>
-                <height>752</height>
+                <width>615</width>
+                <height>654</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_16">
@@ -4779,41 +5004,14 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="labelHTTPProxyPassword">
-                      <property name="text">
-                       <string>Password</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1" colspan="3">
-                     <widget class="QLineEdit" name="lineEditHTTPProxyPassword">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="toolTip">
-                       <string>Password to access the HTTP proxy service (empty = no authentication)</string>
-                      </property>
-                      <property name="echoMode">
-                       <enum>QLineEdit::Password</enum>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1" colspan="3">
-                     <widget class="QLabel" name="labelWeakEncryptionWarning">
-                      <property name="text">
-                       <string>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</string>
-                      </property>
-                     </widget>
-                    </item>
                    </layout>
                   </widget>
                  </item>
                  <item row="1" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBox">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
                    <property name="title">
                     <string>Browser settings</string>
                    </property>
@@ -5008,7 +5206,16 @@
            <string>F&amp;iles / Directories</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_22">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -5024,8 +5231,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>615</width>
-                <height>567</height>
+                <width>466</width>
+                <height>546</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_23">
@@ -5629,7 +5836,16 @@
            <string>Foreign &amp;emulators</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_25">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item row="0" column="0">
@@ -5645,8 +5861,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>418</width>
-                <height>295</height>
+                <width>362</width>
+                <height>284</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_26">
@@ -6287,7 +6503,6 @@
   <tabstop>lineEditHTTPProxyHost</tabstop>
   <tabstop>spinBoxHTTPProxyPort</tabstop>
   <tabstop>lineEditHTTPProxyUserID</tabstop>
-  <tabstop>lineEditHTTPProxyPassword</tabstop>
   <tabstop>checkBoxRestoreCookies</tabstop>
   <tabstop>pushButtonManageCookies</tabstop>
   <tabstop>pushButtonClearCookieDatabase</tabstop>
