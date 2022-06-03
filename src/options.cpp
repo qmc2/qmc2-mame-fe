@@ -888,7 +888,7 @@ void Options::on_pushButtonApply_clicked()
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RetryLoadingImages", qmc2RetryLoadingImages);
 	qmc2ParentImageFallback = checkBoxParentImageFallback->isChecked();
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", qmc2ParentImageFallback);
-	s = comboBoxLanguage->currentText().left(2).toLower();
+	s = comboBoxLanguage->currentText().split(' ').first();
 	needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString() != s);
 	config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
 
@@ -1836,7 +1836,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	checkBoxRetryLoadingImages->setChecked(qmc2RetryLoadingImages);
 	qmc2ParentImageFallback = config->value(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", true).toBool();
 	checkBoxParentImageFallback->setChecked(qmc2ParentImageFallback);
-	comboBoxLanguage->setCurrentIndex(comboBoxLanguage->findText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString().toUpper(), Qt::MatchContains | Qt::MatchCaseSensitive));
+	comboBoxLanguage->setCurrentIndex(comboBoxLanguage->findText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString(), Qt::MatchContains | Qt::MatchCaseSensitive));
 	comboBoxStyle->clear();
 	comboBoxStyle->addItem(QObject::tr("Default"));
 	comboBoxStyle->addItems(QStyleFactory::keys());

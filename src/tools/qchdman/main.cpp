@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 	// load translations
 	QString language = globalConfig->preferencesLanguage();
-	if ( !globalConfig->languageMap.contains(language) )
+	if ( !globalConfig->languageMap.contains(language) && !globalConfig->countryMap.contains(language) )
 		language = "us";
 	QTranslator qchdmanTranslator;
 	if ( qchdmanTranslator.load(QString("qchdman_%1").arg(language), ":/translations") )

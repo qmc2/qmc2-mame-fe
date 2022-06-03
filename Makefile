@@ -617,7 +617,7 @@ ifneq '$(GIT_REV)' '0'
 endif
 
 # available translations
-QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
+QMC2_TRANSLATIONS = de es el fr it pl pt pt_BR ro sv us
 
 # process make options
 ifeq '$(DEBUG)' '2'
@@ -1471,6 +1471,9 @@ data/lng/qmc2_pl.qm: data/lng/qmc2_pl.ts
 	$(LREL)
 
 data/lng/qmc2_pt.qm: data/lng/qmc2_pt.ts
+	$(LREL)
+
+data/lng/qmc2_pt_BR.qm: data/lng/qmc2_pt_BR.ts
 	$(LREL)
 
 data/lng/qmc2_ro.qm: data/lng/qmc2_ro.ts

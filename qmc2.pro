@@ -297,6 +297,7 @@ TRANSLATIONS += data/lng/qmc2_de.ts \
 	data/lng/qmc2_it.ts \
 	data/lng/qmc2_pl.ts \
 	data/lng/qmc2_pt.ts \
+	data/lng/qmc2_pt_BR.ts \
 	data/lng/qmc2_ro.ts \
 	data/lng/qmc2_sv.ts \
 	data/lng/qmc2_us.ts

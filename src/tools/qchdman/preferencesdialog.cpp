@@ -38,7 +38,9 @@ void PreferencesDialog::applySettings()
 {
 	// GUI
 	QString lang = ui->comboBoxLanguage->currentText();
-	globalConfig->setPreferencesLanguage(lang.mid(lang.indexOf("(") + 1, 2));
+	QRegExp exp("\\((.*)\\)");
+	exp.indexIn(lang);
+	globalConfig->setPreferencesLanguage(exp.cap(1));
 	globalConfig->setPreferencesGuiStyle(ui->comboBoxStyle->currentText());
 	qApp->setStyle(globalConfig->preferencesGuiStyle());
 	globalConfig->setPreferencesAppFont(ui->fontComboBoxAppFont->currentFont().toString());

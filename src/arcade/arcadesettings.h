@@ -19,12 +19,17 @@ public:
 	QString frontEndPrefix;
 	QString emulatorPrefix;
 	QMap<QString, QLocale::Language> languageMap;
+	QMap<QString, QLocale::Country> countryMap;
 
 	explicit ArcadeSettings(QString theme = QString());
 	virtual ~ArcadeSettings();
 
 	QString languageToString(QLocale::Language);
 	QLocale::Language languageFromString(QString);
+
+	QString countryToString(QLocale::Country);
+	QLocale::Country countryFromString(QString);
+
 	QString keySequenceMapBaseKey();
 #if defined(QMC2_ARCADE_ENABLE_JOYSTICK)
 	QString joyFunctionMapBaseKey();

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>369</width>
-    <height>257</height>
+    <width>407</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -127,6 +127,11 @@
          </item>
          <item>
           <property name="text">
+           <string>Brazilian Portuguese (pt_BR)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>Romanian (ro)</string>
           </property>
          </item>
@@ -137,7 +142,7 @@
          </item>
          <item>
           <property name="text">
-           <string>English (us)</string>
+           <string>American English (us)</string>
           </property>
          </item>
         </widget>

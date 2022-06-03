@@ -74,7 +74,7 @@ SetupWizard::SetupWizard(QSettings *cfg, QWidget *parent) :
 	m_defaultStyle = QApplication::style()->objectName();
 
 	// initialize available languages and mewUi-to-QMC2 mappings
-	m_availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
+	m_availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "pt_BR" << "ro" << "sv" << "us";
 	m_uiToQmc2Hash.insert("cabinets_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/CabinetDirectory");
 	m_uiToQmc2Hash.insert("cpanels_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ControllerDirectory");
 	m_uiToQmc2Hash.insert("pcbs_directory", QMC2_EMULATOR_PREFIX + "FilesAndDirectories/PCBDirectory");
@@ -730,7 +730,14 @@ void SetupWizard::setupLanguage()
 				lang = "sv";
 				break;
 			default:
-				lang = "us";
+				switch ( QLocale::system().country() ) {
+					case QLocale::Brazil:
+						lang = "pt_BR";
+						break;
+					default:
+						lang = "us";
+						break;
+				}
 				break;
 		}
 		m_customSettings->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);

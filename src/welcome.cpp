@@ -25,7 +25,7 @@ extern QTranslator *qmc2Translator;
 Welcome::Welcome(QWidget *parent) :
 	QDialog(parent)
 {
-	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "ro" << "sv" << "us";
+	availableLanguages << "de" << "es" << "el" << "fr" << "it" << "pl" << "pt" << "pt_BR" << "ro" << "sv" << "us";
 	checkOkay = false;
 	hide();
 	if ( !checkConfig() ) {
@@ -243,7 +243,14 @@ void Welcome::setupLanguage()
 				lang = "sv";
 				break;
 			default:
-				lang = "us";
+				switch ( QLocale::system().country() ) {
+					case QLocale::Brazil:
+						lang = "pt_BR";
+						break;
+					default:
+						lang = "us";
+						break;
+				}
 				break;
 		}
 		startupConfig->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", lang);

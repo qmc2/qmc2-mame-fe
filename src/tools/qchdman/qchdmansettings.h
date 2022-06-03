@@ -18,6 +18,7 @@ class QtChdmanGuiSettings : public Settings
 
 public:
 	QMap<QString, QLocale::Language> languageMap;
+	QMap<QString, QLocale::Country> countryMap;
 
 	QtChdmanGuiSettings() : Settings(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_APP_NAME)
 	{
@@ -31,6 +32,8 @@ public:
 		languageMap["ro"] = QLocale::Romanian;
 		languageMap["sv"] = QLocale::Swedish;
 		languageMap["us"] = QLocale::English;
+
+		countryMap["pt_BR"] = QLocale::Brazil;
 	}
 
 	~QtChdmanGuiSettings()
@@ -53,6 +56,23 @@ public:
 			return languageMap[lang];
 		else
 			return QLocale::English;
+	}
+
+	QString countryToString(QLocale::Country country)
+	{
+		QString countryStr = countryMap.key(country);
+		if ( !countryStr.isEmpty() )
+			return countryStr;
+		else
+			return "us";
+	}
+
+	QLocale::Country countryFromString(QString country)
+	{
+		if ( countryMap.contains(country) )
+			return countryMap[country];
+		else
+			return QLocale::UnitedStates;
 	}
 
 public slots:

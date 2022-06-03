@@ -26,6 +26,8 @@ ArcadeSettings::ArcadeSettings(QString theme)
 	languageMap["sv"] = QLocale::Swedish;
 	languageMap["us"] = QLocale::English;
 
+	countryMap["pt_BR"] = QLocale::Brazil;
+
 	// theme-specific default values (add only if different from global default)
 	m_themeDefaults["darkone"]["sortByName"] = true;
 
@@ -59,8 +61,25 @@ QLocale::Language ArcadeSettings::languageFromString(QString lang)
 {
 	if ( languageMap.contains(lang) )
 		return languageMap[lang];
-	else
+	else 
 		return QLocale::English;
+}
+
+QString ArcadeSettings::countryToString(QLocale::Country country)
+{
+	QString countryStr = countryMap.key(country);
+	if ( !countryStr.isEmpty() )
+		return countryStr;
+	else
+		return "us";
+}
+
+QLocale::Country ArcadeSettings::countryFromString(QString country)
+{
+	if ( countryMap.contains(country) )
+		return countryMap[country];
+	else 
+		return QLocale::UnitedStates;
 }
 
 QString ArcadeSettings::keySequenceMapBaseKey()

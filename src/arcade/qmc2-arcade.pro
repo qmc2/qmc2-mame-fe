@@ -168,6 +168,7 @@ TRANSLATIONS += translations/qmc2-arcade_de.ts \
     translations/qmc2-arcade_fr.ts \
     translations/qmc2-arcade_pl.ts \
     translations/qmc2-arcade_pt.ts \
+    translations/qmc2-arcade_pt_BR.ts \
     translations/qmc2-arcade_ro.ts \
     translations/qmc2-arcade_sv.ts \
     translations/qmc2-arcade_us.ts

@@ -300,52 +300,57 @@
                    </property>
                    <item>
                     <property name="text">
-                     <string>DE (German)</string>
+                     <string>de (German)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>ES (Spanish)</string>
+                     <string>es (Spanish)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>EL (Greek)</string>
+                     <string>el (Greek)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>FR (French)</string>
+                     <string>fr (French)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>IT (Italian)</string>
+                     <string>it (Italian)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>PL (Polish)</string>
+                     <string>pl (Polish)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>PT (Portuguese)</string>
+                     <string>pt (Portuguese)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>RO (Romanian)</string>
+                     <string>pt_BR (Brazilian Portuguese)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>SV (Swedish)</string>
+                     <string>ro (Romanian)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>US (English)</string>
+                     <string>sv (Swedish)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>us (American English)</string>
                     </property>
                    </item>
                   </widget>
@@ -4708,7 +4713,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>615</width>
+                <width>382</width>
                 <height>654</height>
                </rect>
               </property>

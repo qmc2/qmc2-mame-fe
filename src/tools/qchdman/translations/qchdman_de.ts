@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -397,117 +397,117 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="83"/>
+        <location filename="../mainwindow.cpp" line="81"/>
         <source>avhu (A/V Huffman)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="84"/>
+        <location filename="../mainwindow.cpp" line="82"/>
         <source>cdfl (CD FLAC)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="83"/>
         <source>cdlz (CD LZMA)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="86"/>
+        <location filename="../mainwindow.cpp" line="84"/>
         <source>cdzl (CD Deflate)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="87"/>
+        <location filename="../mainwindow.cpp" line="85"/>
         <source>flac (FLAC)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="88"/>
+        <location filename="../mainwindow.cpp" line="86"/>
         <source>huff (Huffman)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="89"/>
+        <location filename="../mainwindow.cpp" line="87"/>
         <source>lzma (LZMA)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="90"/>
+        <location filename="../mainwindow.cpp" line="88"/>
         <source>zlib (Deflate)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="348"/>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="346"/>
+        <location filename="../mainwindow.cpp" line="359"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="348"/>
+        <location filename="../mainwindow.cpp" line="346"/>
         <source>Choose project file</source>
         <translation>Projekt Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="348"/>
+        <location filename="../mainwindow.cpp" line="346"/>
         <source>Project files (*.prj)</source>
         <translation>Projekt Dateien (*.prj)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="359"/>
         <source>Choose script file</source>
         <translation>Skript Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="359"/>
         <source>Script files (*.scr)</source>
         <translation>Skript Dateien (*.scr)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="540"/>
-        <location filename="../mainwindow.cpp" line="554"/>
+        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="543"/>
-        <location filename="../mainwindow.cpp" line="557"/>
+        <location filename="../mainwindow.cpp" line="541"/>
+        <location filename="../mainwindow.cpp" line="555"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="546"/>
-        <location filename="../mainwindow.cpp" line="560"/>
+        <location filename="../mainwindow.cpp" line="544"/>
+        <location filename="../mainwindow.cpp" line="558"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
+        <location filename="../mainwindow.cpp" line="547"/>
         <source> TB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="567"/>
         <source>Running scripts / projects: %1 / %2</source>
         <translation>Laufende Skripte / Projekte: %1 / %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="652"/>
+        <location filename="../mainwindow.cpp" line="650"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Projekt &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="668"/>
+        <location filename="../mainwindow.cpp" line="666"/>
         <source>Script &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Skript &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="747"/>
-        <location filename="../mainwindow.cpp" line="773"/>
+        <location filename="../mainwindow.cpp" line="745"/>
+        <location filename="../mainwindow.cpp" line="771"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="746"/>
         <source>There are %n script(s) currently running.
 
 Proceed?</source>
@@ -521,7 +521,7 @@ Fortfahren?</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="775"/>
+        <location filename="../mainwindow.cpp" line="773"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -534,7 +534,7 @@ Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="776"/>
+        <location filename="../mainwindow.cpp" line="774"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
@@ -580,105 +580,110 @@ Fortfahren?</translation>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="154"/>
+        <location filename="../preferencesdialog.ui" line="159"/>
         <source>Style</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="174"/>
+        <location filename="../preferencesdialog.ui" line="179"/>
         <source>Font</source>
         <translation>Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="194"/>
+        <location filename="../preferencesdialog.ui" line="199"/>
         <source>Application font</source>
         <translation>Allgemeine Schriftart der Applikation</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="207"/>
-        <location filename="../preferencesdialog.ui" line="247"/>
-        <location filename="../preferencesdialog.ui" line="331"/>
+        <location filename="../preferencesdialog.ui" line="212"/>
+        <location filename="../preferencesdialog.ui" line="252"/>
+        <location filename="../preferencesdialog.ui" line="336"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="214"/>
+        <location filename="../preferencesdialog.ui" line="219"/>
         <source>Application font size</source>
         <translation>Größe der allgemeinen Applikationsschriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="227"/>
-        <location filename="../preferencesdialog.ui" line="234"/>
+        <location filename="../preferencesdialog.ui" line="232"/>
+        <location filename="../preferencesdialog.ui" line="239"/>
         <source>Log font</source>
         <translation>Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="254"/>
+        <location filename="../preferencesdialog.ui" line="259"/>
         <source>Log font size</source>
         <translation>Größe der Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="263"/>
+        <location filename="../preferencesdialog.ui" line="268"/>
         <source>Maximize new project or script windows</source>
         <translation>Neue Projekt- oder Skript-Fenster maximieren</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="266"/>
+        <location filename="../preferencesdialog.ui" line="271"/>
         <source>Maximize windows</source>
         <translation>Fenster maximieren</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="276"/>
+        <location filename="../preferencesdialog.ui" line="281"/>
         <source>Display project help texts</source>
         <translation>Projekt Hilfe Texte anzeigen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="399"/>
+        <location filename="../preferencesdialog.ui" line="404"/>
         <source>&lt;b&gt;Paths to program binaries&lt;/b&gt;</source>
         <translation>&lt;b&gt;Pfade zu binären Programmdateien&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="550"/>
+        <location filename="../preferencesdialog.ui" line="555"/>
         <source>Non-CHD input</source>
         <translation>Nicht-CHD Eingabe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="406"/>
+        <location filename="../preferencesdialog.ui" line="411"/>
         <source>&lt;b&gt;Preferred folders for input &amp;amp; output files&lt;/b&gt;</source>
         <translation>&lt;b&gt;Bevorzugte Ordner für Ein- &amp;amp; Ausgabe Dateien&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="557"/>
+        <location filename="../preferencesdialog.ui" line="562"/>
         <source>CHD output</source>
         <translation>CHD Ausgabe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="564"/>
+        <location filename="../preferencesdialog.ui" line="569"/>
         <source>Non-CHD output</source>
         <translation>Nicht-CHD Ausgabe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="419"/>
+        <location filename="../preferencesdialog.ui" line="424"/>
         <source>Preferred folder to use for non-CHD output files</source>
         <translation>Bevorzugter Ordner für Nicht-CHD Ausgabe Dateien</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="432"/>
+        <location filename="../preferencesdialog.ui" line="145"/>
+        <source>American English (us)</source>
+        <translation>Amerikanisches Englisch (us)</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="437"/>
         <source>Preferred folder to use for CHD output files</source>
         <translation>Bevorzugter Ordner für CHD Ausgabe Dateien</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="445"/>
+        <location filename="../preferencesdialog.ui" line="450"/>
         <source>Preferred folder to search for non-CHD input files</source>
         <translation>Bevorzugter Ordner für Nicht-CHD Eingabe Dateien</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="458"/>
+        <location filename="../preferencesdialog.ui" line="463"/>
         <source>Preferred folder to search for CHD input files</source>
         <translation>Bevorzugter Ordner für CHD Eingabe Dateien</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="161"/>
+        <location filename="../preferencesdialog.ui" line="166"/>
         <source>Select the GUI style</source>
         <translation>GUI Style auswählen</translation>
     </message>
@@ -724,72 +729,72 @@ Fortfahren?</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="130"/>
+        <source>Brazilian Portuguese (pt_BR)</source>
+        <translation>Brasilianisches Portugiesisch (pt_BR)</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="135"/>
         <source>Romanian (ro)</source>
         <translation>Rumänisch (ro)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="135"/>
+        <location filename="../preferencesdialog.ui" line="140"/>
         <source>Swedish (sv)</source>
         <translation>Schwedisch (sv)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="140"/>
-        <source>English (us)</source>
-        <translation>Englisch (us)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="273"/>
+        <location filename="../preferencesdialog.ui" line="278"/>
         <source>Make sure project help texts are shown</source>
         <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="283"/>
+        <location filename="../preferencesdialog.ui" line="288"/>
         <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
         <translation>Verwendung der nativen Datei-Dialoge des Systems oder der in Qt eingebauten Dialoge</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="286"/>
+        <location filename="../preferencesdialog.ui" line="291"/>
         <source>Use native file dialogs</source>
         <translation>Native Dialoge verwenden</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="293"/>
+        <location filename="../preferencesdialog.ui" line="298"/>
         <source>Include the names of the I/O channels (stdout / stderr) when logging CHDMAN output</source>
         <translation>Namen der Ein-/Ausgabe-Kanäle (stdout / stderr) beim Loggen der CHDMAN Ausgaben einschließen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="296"/>
+        <location filename="../preferencesdialog.ui" line="301"/>
         <source>Log channel names</source>
         <translation>Kanalbezeichnungen loggen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="311"/>
-        <location filename="../preferencesdialog.ui" line="318"/>
+        <location filename="../preferencesdialog.ui" line="316"/>
+        <location filename="../preferencesdialog.ui" line="323"/>
         <source>Editor font</source>
         <translation>Editor-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="338"/>
+        <location filename="../preferencesdialog.ui" line="343"/>
         <source>Editor font size</source>
         <translation>Größe der Editor-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="346"/>
+        <location filename="../preferencesdialog.ui" line="351"/>
         <source>Paths</source>
         <translation>Pfade</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="543"/>
+        <location filename="../preferencesdialog.ui" line="548"/>
         <source>CHD input</source>
         <translation>CHD Eingabe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="352"/>
+        <location filename="../preferencesdialog.ui" line="357"/>
         <source>CHDMAN binary</source>
         <translation>CHDMAN Binary</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="365"/>
+        <location filename="../preferencesdialog.ui" line="370"/>
         <source>Path to the CHDMAN binary</source>
         <translation>Pfad zum CHDMAN Binary</translation>
     </message>
@@ -2024,71 +2029,99 @@ Meta-Daten einer CHD entfernen.
         <translation>Kommando kopieren</translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="153"/>
+        <location filename="../projectwidget.cpp" line="170"/>
         <location filename="../projectwidget.cpp" line="383"/>
         <source>Info</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="154"/>
+        <location filename="../projectwidget.cpp" line="171"/>
         <location filename="../projectwidget.cpp" line="391"/>
         <source>Verify</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="155"/>
+        <location filename="../projectwidget.cpp" line="172"/>
         <location filename="../projectwidget.cpp" line="399"/>
         <source>Copy</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="156"/>
+        <location filename="../projectwidget.cpp" line="173"/>
         <location filename="../projectwidget.cpp" line="429"/>
         <source>CreateRaw</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="157"/>
+        <location filename="../projectwidget.cpp" line="174"/>
         <location filename="../projectwidget.cpp" line="459"/>
         <source>CreateHD</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="158"/>
+        <location filename="../projectwidget.cpp" line="175"/>
         <location filename="../projectwidget.cpp" line="503"/>
         <source>CreateCD</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="159"/>
+        <location filename="../projectwidget.cpp" line="176"/>
         <location filename="../projectwidget.cpp" line="523"/>
         <source>CreateLD</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="160"/>
+        <location filename="../projectwidget.cpp" line="177"/>
         <location filename="../projectwidget.cpp" line="547"/>
         <source>ExtractRaw</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="161"/>
+        <location filename="../projectwidget.cpp" line="178"/>
         <location filename="../projectwidget.cpp" line="567"/>
         <source>ExtractHD</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="162"/>
+        <location filename="../projectwidget.cpp" line="179"/>
         <location filename="../projectwidget.cpp" line="587"/>
         <source>ExtractCD</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="163"/>
+        <location filename="../projectwidget.cpp" line="180"/>
         <location filename="../projectwidget.cpp" line="601"/>
         <source>ExtractLD</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="164"/>
+        <location filename="../projectwidget.cpp" line="181"/>
         <location filename="../projectwidget.cpp" line="617"/>
         <source>DumpMeta</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="165"/>
+        <location filename="../projectwidget.cpp" line="182"/>
         <location filename="../projectwidget.cpp" line="631"/>
         <source>AddMeta</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../projectwidget.cpp" line="166"/>
+        <location filename="../projectwidget.cpp" line="183"/>
         <location filename="../projectwidget.cpp" line="647"/>
         <source>DelMeta</source>
         <translation></translation>

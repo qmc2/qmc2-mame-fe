@@ -301,9 +301,11 @@ int main(int argc, char *argv[])
 	QString language(globalConfig->defaultLanguage());
 	if ( QMC2_ARCADE_CLI_LANG_VAL )
 		language = QMC2_ARCADE_CLI_LANG;
-	if ( !globalConfig->languageMap.contains(language) ) {
+	if ( !globalConfig->languageMap.contains(language) && !globalConfig->countryMap.contains(language) ) {
 		if ( QMC2_ARCADE_CLI_LANG_VAL ) {
-			QMC2_ARCADE_LOG_STR_NT(QString("%1 is not a valid language - available languages: %2").arg(language).arg(QStringList(globalConfig->languageMap.keys()).join(", ")));
+			QStringList languages = globalConfig->languageMap.keys() + globalConfig->countryMap.keys();
+			languages.sort();
+			QMC2_ARCADE_LOG_STR_NT(QString("%1 is not a valid language - available languages: %2").arg(language).arg(languages.join(", ")));
 			delete globalConfig;
 			return 1;
 		} else
