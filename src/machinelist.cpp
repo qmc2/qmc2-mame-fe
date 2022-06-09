@@ -1,5 +1,4 @@
 #include <Qt>
-#include <QtWebKitWidgets/QWebView>
 #include <QTextStream>
 #include <QHeaderView>
 #include <QTreeWidgetItem>
