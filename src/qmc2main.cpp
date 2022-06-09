@@ -31,7 +31,6 @@
 #include <QChar>
 #include <QInputDialog>
 #include <QDesktopWidget>
-#include <QtWebKitWidgets/QWebFrame>
 
 #include <algorithm> // std::sort()
 
