@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QTextStream>
 #include <QTextCodec>
+#include <QXmlStreamReader>
 #include <QRegExp>
 #include <QDir>
 #include <QUuid>
@@ -568,77 +569,83 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 			qmc2MainWindow->progressBarMachineList->setRange(0, swInfoDB.size());
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			qApp->processEvents();
-			QTextStream ts(&swInfoDB);
-			ts.setCodec(QTextCodec::codecForName("UTF-8"));
+			QXmlStreamReader xsr(&swInfoDB);
 			quint64 recordsProcessed = 0, pendingUpdates = 0;
-			QRegExp markRegExp("^\\$\\S+\\=\\S+\\,$");
-			QRegExp reduceLinesRegExp("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2LoadingInterrupted ) {
-				QString singleLineSimplified = ts.readLine().simplified();
-				bool containsMark = singleLineSimplified.contains(markRegExp);
-				while ( !containsMark && !ts.atEnd() ) {
-					singleLineSimplified = ts.readLine().simplified();
-					if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
+			QRegularExpression headerRx("^\n?(.*)\n{2,}");
+			QRegularExpression textEndRx("\n\t{2}$");
+			QRegularExpression doubleLineBreakRx("\n{2,}");
+			QRegularExpression singleLineBreakRx("\n");
+			if ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+				if ( xsr.name() == "history" ) {
+					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 						qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 						qApp->processEvents();
 					}
-					containsMark = singleLineSimplified.contains(markRegExp);
-				}
-				if ( containsMark && !singleLineSimplified.startsWith("$info=") ) {
-					QStringList infoWords = singleLineSimplified.mid(1).split("=", QString::SkipEmptyParts);
-					if ( infoWords.count() == 2 ) {
-						QStringList systemNames = infoWords[0].split(",", QString::SkipEmptyParts);
-						QStringList gameNames = infoWords[1].split(",", QString::SkipEmptyParts);
-						bool startsWithDollarBio = false;
-						while ( !startsWithDollarBio && !ts.atEnd() ) {
-							singleLineSimplified = ts.readLine().simplified();
-							if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
+					while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+						if ( xsr.name() == "entry" ) {
+							QStringList systemNames;
+							QStringList gameNames;
+							QString swInfoString;
+							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 								qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 								qApp->processEvents();
 							}
-							startsWithDollarBio = singleLineSimplified.startsWith("$bio");
-						}
-						if ( startsWithDollarBio ) {
-							QString swInfoString;
-							bool firstLine = true;
-							bool startsWithDollarEnd = false;
-							while ( !startsWithDollarEnd && !ts.atEnd() ) {
-								QString singleLine = ts.readLine();
-								singleLineSimplified = singleLine.simplified();
-								startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-								if ( !startsWithDollarEnd ) {
-									if ( !firstLine )
-										swInfoString.append(singleLine + "<br>");
-									else if ( !singleLine.isEmpty() ) {
-										swInfoString.append("<b>" + singleLine + "</b><br>");
-										firstLine = false;
+							while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+								if ( xsr.name() == "software" ) {
+									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+										qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
+										qApp->processEvents();
+									}
+									while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+										if ( xsr.name() == "item" && xsr.attributes().hasAttribute("list") && xsr.attributes().hasAttribute("name")) {
+											if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+												qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
+												qApp->processEvents();
+											}
+											systemNames << xsr.attributes().value("list").toString();
+											gameNames << xsr.attributes().value("name").toString();
+											xsr.skipCurrentElement();
+										}
 									}
 								}
-								if ( recordsProcessed++ % QMC2_SWINFO_RESPONSIVENESS == 0 ) {
-									qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
-									qApp->processEvents();
+								else if ( xsr.name() == "text") {
+									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+										qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
+										qApp->processEvents();
+									}
+									swInfoString = xsr.readElementText();
+								}
+								else {
+									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+										qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
+										qApp->processEvents();
+									}
+									xsr.skipCurrentElement();
 								}
 							}
-							if ( startsWithDollarEnd ) {
-								// reduce the number of line breaks
-								swInfoString.replace(reduceLinesRegExp, "<p>");
-								if ( swInfoString.endsWith("<p>") )
-									swInfoString.remove(swInfoString.length() - 3, 3);
-								foreach (QString gameName, gameNames) {
-									foreach (QString systemName, systemNames) {
-										setSoftwareInfo(systemName, gameName, swInfoString);
-										pendingUpdates++;
-									}
+							// format for display in frontend
+							swInfoString.replace(headerRx, "<b>\\1</b><p>");
+							swInfoString.replace(textEndRx, "");
+							swInfoString.replace(doubleLineBreakRx, "<p>");
+							swInfoString.replace(singleLineBreakRx, "<br>");
+							foreach (QString gameName, gameNames) {
+								foreach (QString systemName, systemNames) {
+									setSoftwareInfo(systemName, gameName, swInfoString);
+									pendingUpdates++;
 								}
-								if ( pendingUpdates > QMC2_DATINFO_COMMIT ) {
-									commitTransaction();
-									pendingUpdates = 0;
-									beginTransaction();
-								}
+							}
+							if ( pendingUpdates > QMC2_DATINFO_COMMIT ) {
+								commitTransaction();
+								pendingUpdates = 0;
+								beginTransaction();
 							}
 						}
+						else
+							xsr.skipCurrentElement();
 					}
 				}
+				else
+					xsr.skipCurrentElement();
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
@@ -886,62 +893,63 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 			qmc2MainWindow->progressBarMachineList->setRange(0, machineInfoDB.size());
 			qmc2MainWindow->progressBarMachineList->setValue(0);
 			qApp->processEvents();
-			QTextStream ts(&machineInfoDB);
-			ts.setCodec(QTextCodec::codecForName("UTF-8"));
+			QXmlStreamReader xsr(&machineInfoDB);
 			quint64 recordsProcessed = 0, pendingUpdates = 0;
-			QRegExp lineBreakRx("(<br>){2,}");
-			while ( !ts.atEnd() && !qmc2LoadingInterrupted ) {
-				QString singleLineSimplified = ts.readLine().simplified();
-				bool startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-				while ( !startsWithDollarInfo && !ts.atEnd() ) {
-					singleLineSimplified = ts.readLine().simplified();
+			QRegularExpression headerRx("^\n?(.*)\n{2,}");
+			QRegularExpression textEndRx("\n\t{2}$");
+			QRegularExpression doubleLineBreakRx("\n{2,}");
+			QRegularExpression singleLineBreakRx("\n");
+			if ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+				if ( xsr.name() == "history" ) {
 					if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 						qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
 						qApp->processEvents();
 					}
-					startsWithDollarInfo = singleLineSimplified.startsWith("$info=");
-				}
-				if ( startsWithDollarInfo ) {
-					QStringList gameNames = singleLineSimplified.mid(6).split(",", QString::SkipEmptyParts);
-					bool startsWithDollarBio = false;
-					while ( !startsWithDollarBio && !ts.atEnd() ) {
-						singleLineSimplified = ts.readLine().simplified();
-						if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
-							qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
-							qApp->processEvents();
-						}
-						startsWithDollarBio = singleLineSimplified.startsWith("$bio");
-					}
-					if ( startsWithDollarBio ) {
-						QString machineInfoString;
-						bool firstLine = true;
-						bool lastLineWasHeader = false;
-						bool startsWithDollarEnd = false;
-						while ( !startsWithDollarEnd && !ts.atEnd() ) {
-							QString singleLine = ts.readLine();
-							singleLineSimplified = singleLine.simplified();
-							startsWithDollarEnd = singleLineSimplified.startsWith("$end");
-							if ( !startsWithDollarEnd ) {
-								if ( !firstLine ) {
-									if ( !lastLineWasHeader )
-										machineInfoString.append(singleLine + "<br>");
-									lastLineWasHeader = false;
-								} else if ( !singleLine.isEmpty() ) {
-									machineInfoString.append("<h2>" + singleLine + "</h2>");
-									firstLine = false;
-									lastLineWasHeader = true;
-								}
-							}
+					while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+						if ( xsr.name() == "entry" ) {
+							QStringList gameNames;
+							QString machineInfoString;
 							if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 								qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
 								qApp->processEvents();
 							}
-						}
-						if ( startsWithDollarEnd ) {
-							// reduce the number of line breaks
-							machineInfoString.replace(lineBreakRx, "<p>");
-							if ( machineInfoString.endsWith("<p>") )
-								machineInfoString.remove(machineInfoString.length() - 3, 3);
+							while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+								if ( xsr.name() == "systems" ) {
+									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+										qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
+										qApp->processEvents();
+									}
+									while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
+										if ( xsr.name() == "system" && xsr.attributes().hasAttribute("name")) {
+											if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+												qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
+												qApp->processEvents();
+											}
+											gameNames << xsr.attributes().value("name").toString();
+											xsr.skipCurrentElement();
+										}
+									}
+								}
+								else if ( xsr.name() == "text") {
+									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+										qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
+										qApp->processEvents();
+									}
+									machineInfoString = xsr.readElementText();
+								}
+								else {
+									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+										qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
+										qApp->processEvents();
+									}
+									xsr.skipCurrentElement();
+								}
+							}
+							// format for display in frontend
+							machineInfoString.replace(headerRx, "<h2>\\1</h2>");
+							machineInfoString.replace(textEndRx, "");
+							machineInfoString.replace(doubleLineBreakRx, "<p>");
+							machineInfoString.replace(singleLineBreakRx, "<br>");
 							foreach (QString setName, gameNames) {
 								setMachineInfo(setName, machineInfoString, emulator);
 								pendingUpdates++;
@@ -951,12 +959,13 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 								pendingUpdates = 0;
 								beginTransaction();
 							}
-						} else
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$end' in machine info file %1").arg(QDir::toNativeSeparators(path)));
-					} else
-						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$bio' in machine info file %1").arg(QDir::toNativeSeparators(path)));
-				} else if ( !ts.atEnd() )
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("DAT-info database") + ": " + tr("WARNING: missing '$info' in machine info file %1").arg(QDir::toNativeSeparators(path)));
+						}
+						else
+							xsr.skipCurrentElement();
+					}
+				}
+				else
+					xsr.skipCurrentElement();
 			}
 			commitTransaction();
 			qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
