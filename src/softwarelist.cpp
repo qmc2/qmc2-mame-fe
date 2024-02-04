@@ -1110,20 +1110,19 @@ void SoftwareList::getXmlData()
 	QStringList softwareList(systemSoftwareListHash.value(systemName));
 	if ( softwareList.isEmpty() || softwareList.contains("NO_SOFTWARE_LIST") ) {
 		softwareList.clear();
-		int i = 0;
 		QString filter;
-		QStringList xmlLines = qmc2MachineList->xmlDb()->xml(systemName).split("\n", QString::SkipEmptyParts);
-		while ( !interruptLoad && i < xmlLines.count() && !xmlLines[i].contains("</machine>") ) {
-			QString line = xmlLines[i++];
-			if ( line.startsWith("<softwarelist ") ) {
-				int startIndex = line.indexOf(" name=\"") + 7;
-				int endIndex = line.indexOf("\"", startIndex);
-				softwareList << line.mid(startIndex, endIndex - startIndex); 
-				startIndex = line.indexOf(" filter=\"");
-				if ( startIndex >= 0 ) {
-					startIndex += 9;
-					endIndex = line.indexOf("\"", startIndex);
-					filter = line.mid(startIndex, endIndex - startIndex);
+		QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(systemName));
+		if ( xmlMachineEntry.readNextStartElement()) {
+			if ( xmlMachineEntry.name() == "machine"){
+				while ( !interruptLoad && xmlMachineEntry.readNextStartElement()){
+					if ( xmlMachineEntry.name() == "softwarelist" && xmlMachineEntry.attributes().hasAttribute("name") ){
+						softwareList << xmlMachineEntry.attributes().value("name").toString();
+						if ( xmlMachineEntry.attributes().hasAttribute("filter"))
+							filter = xmlMachineEntry.attributes().value("filter").toString();
+						xmlMachineEntry.skipCurrentElement();
+					}
+					else
+						xmlMachineEntry.skipCurrentElement();
 				}
 			}
 		}
