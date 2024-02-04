@@ -1114,8 +1114,8 @@ void SoftwareList::getXmlData()
 		QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(systemName));
 		if ( xmlMachineEntry.readNextStartElement()) {
 			if ( xmlMachineEntry.name() == "machine"){
-				while ( !interruptLoad && xmlMachineEntry.readNextStartElement()){
-					if ( xmlMachineEntry.name() == "softwarelist" && xmlMachineEntry.attributes().hasAttribute("name") ){
+				while ( !interruptLoad && xmlMachineEntry.readNextStartElement()) {
+					if ( xmlMachineEntry.name() == "softwarelist" && xmlMachineEntry.attributes().hasAttribute("name") ) {
 						softwareList << xmlMachineEntry.attributes().value("name").toString();
 						if ( xmlMachineEntry.attributes().hasAttribute("filter"))
 							filter = xmlMachineEntry.attributes().value("filter").toString();
