@@ -1,5 +1,5 @@
 The "cat" directory is the default place to store any types of catalogs -- such
-as mameinfo.dat, history.dat and catver.ini for MAME, or sysinfo.dat, messinfo.dat
+as mameinfo.dat, history.xml and catver.ini for MAME, or sysinfo.dat, messinfo.dat
 and category.ini for MESS.
 
 File                              Description
