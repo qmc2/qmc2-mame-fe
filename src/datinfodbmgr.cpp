@@ -597,7 +597,7 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 										qApp->processEvents();
 									}
 									while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
-										if ( xsr.name() == "item" && xsr.attributes().hasAttribute("list") && xsr.attributes().hasAttribute("name")) {
+										if ( xsr.name() == "item" && xsr.attributes().hasAttribute("list") && xsr.attributes().hasAttribute("name") ) {
 											if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 												qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 												qApp->processEvents();
@@ -607,15 +607,13 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 											xsr.skipCurrentElement();
 										}
 									}
-								}
-								else if ( xsr.name() == "text") {
+								} else if ( xsr.name() == "text") {
 									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 										qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 										qApp->processEvents();
 									}
 									swInfoString = xsr.readElementText();
-								}
-								else {
+								} else {
 									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 										qmc2MainWindow->progressBarMachineList->setValue(swInfoDB.pos());
 										qApp->processEvents();
@@ -639,12 +637,10 @@ void DatInfoDatabaseManager::importSoftwareInfo(QStringList pathList, bool fromS
 								pendingUpdates = 0;
 								beginTransaction();
 							}
-						}
-						else
+						} else
 							xsr.skipCurrentElement();
 					}
-				}
-				else
+				} else
 					xsr.skipCurrentElement();
 			}
 			commitTransaction();
@@ -920,7 +916,7 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 										qApp->processEvents();
 									}
 									while ( xsr.readNextStartElement() && !qmc2LoadingInterrupted ) {
-										if ( xsr.name() == "system" && xsr.attributes().hasAttribute("name")) {
+										if ( xsr.name() == "system" && xsr.attributes().hasAttribute("name") ) {
 											if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 												qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
 												qApp->processEvents();
@@ -929,15 +925,13 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 											xsr.skipCurrentElement();
 										}
 									}
-								}
-								else if ( xsr.name() == "text") {
+								} else if ( xsr.name() == "text") {
 									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 										qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
 										qApp->processEvents();
 									}
 									machineInfoString = xsr.readElementText();
-								}
-								else {
+								} else {
 									if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
 										qmc2MainWindow->progressBarMachineList->setValue(machineInfoDB.pos());
 										qApp->processEvents();
@@ -959,12 +953,10 @@ void DatInfoDatabaseManager::importMachineInfo(QStringList pathList, QStringList
 								pendingUpdates = 0;
 								beginTransaction();
 							}
-						}
-						else
+						} else
 							xsr.skipCurrentElement();
 					}
-				}
-				else
+				} else
 					xsr.skipCurrentElement();
 			}
 			commitTransaction();
