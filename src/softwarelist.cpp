@@ -1087,7 +1087,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 
 	if ( briefNames.contains(device) )
 		softwareListDeviceName = device;
-	else for (int i = 0; i < briefNames.count() && softwareListDeviceName.isEmpty(); i++) {
+	else for ( int i = 0; i < briefNames.count() && softwareListDeviceName.isEmpty(); i++ ) {
 			softwareListDeviceName = briefNames.at(i);
 			if ( successfulLookups.contains(softwareListDeviceName) )
 				softwareListDeviceName.clear();
@@ -1112,9 +1112,9 @@ void SoftwareList::getXmlData()
 		softwareList.clear();
 		QString filter;
 		QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(systemName));
-		if ( xmlMachineEntry.readNextStartElement()) {
-			if ( xmlMachineEntry.name() == "machine"){
-				while ( !interruptLoad && xmlMachineEntry.readNextStartElement()) {
+		if ( xmlMachineEntry.readNextStartElement() ) {
+			if ( xmlMachineEntry.name() == "machine" ) {
+				while ( !interruptLoad && xmlMachineEntry.readNextStartElement() ) {
 					if ( xmlMachineEntry.name() == "softwarelist" && xmlMachineEntry.attributes().hasAttribute("name") ) {
 						softwareList << xmlMachineEntry.attributes().value("name").toString();
 						if ( xmlMachineEntry.attributes().hasAttribute("filter"))
