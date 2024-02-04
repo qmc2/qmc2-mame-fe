@@ -1033,7 +1033,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Software information database - history.dat (read)</string>
+                    <string>Software information database - history.xml (read)</string>
                    </property>
                   </widget>
                  </item>
@@ -1719,7 +1719,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>MAME machine information database - history.dat (read)</string>
+                    <string>MAME machine information database - history.xml (read)</string>
                    </property>
                   </widget>
                  </item>
@@ -1911,7 +1911,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse software information database (history.dat)</string>
+                    <string>Browse software information database (history.xml)</string>
                    </property>
                    <property name="icon">
                     <iconset resource="../qmc2.qrc">
@@ -3060,7 +3060,7 @@
                  <item row="5" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessMameHistoryDat">
                    <property name="toolTip">
-                    <string>Load MAME machine information database (history.dat)</string>
+                    <string>Load MAME machine information database (history.xml)</string>
                    </property>
                    <property name="text">
                     <string>Machine info (MAME)</string>
@@ -3100,7 +3100,7 @@
                  <item row="9" column="0">
                   <widget class="QCheckBox" name="checkBoxProcessSoftwareInfoDB">
                    <property name="toolTip">
-                    <string>Load software information database (from history.dat)</string>
+                    <string>Load software information database (from history.xml)</string>
                    </property>
                    <property name="text">
                     <string>Software info</string>
@@ -3133,7 +3133,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse MAME machine information database (history.dat)</string>
+                    <string>Browse MAME machine information database (history.xml)</string>
                    </property>
                    <property name="icon">
                     <iconset resource="../qmc2.qrc">
