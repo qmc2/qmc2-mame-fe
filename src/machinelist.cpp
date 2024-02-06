@@ -892,14 +892,11 @@ void MachineList::verify(bool currentOnly)
 	verifyProc->start(command, args, QIODevice::ReadOnly | QIODevice::Text);
 }
 
-QString MachineList::value(QString element, QString attribute, bool translate)
+QString MachineList::value(QXmlStreamReader *element, QString attribute, bool translate)
 {
-	QString attributePattern(" " + attribute + "=\"");
-	if ( element.contains(attributePattern) ) {
-		QString valueString(element.remove(0, element.indexOf(attributePattern) + attributePattern.length()));
-		valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
-		if ( valueString == ">" )
-			return QString();
+	if ( element->attributes().hasAttribute(attribute) ) {
+		QString valueString(element->attributes().value(attribute).toString());
+		valueString = valueString.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 		if ( translate )
 			return tr(valueString.toUtf8().constData());
 		else
@@ -908,7 +905,7 @@ QString MachineList::value(QString element, QString attribute, bool translate)
 		return QString();
 }
 
-void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
+void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QXmlStreamReader *element, QStringList attributes, QStringList descriptions, bool translate)
 {
 	QList<QTreeWidgetItem *> itemList;
 	for (int i = 0; i < attributes.count(); i++) {
@@ -923,7 +920,7 @@ void MachineList::insertAttributeItems(QTreeWidgetItem *parent, QString element,
 	parent->addChildren(itemList);
 }
 
-void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate)
+void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QXmlStreamReader *element, QStringList attributes, QStringList descriptions, bool translate)
 {
 	for (int i = 0; i < attributes.count(); i++) {
 		QString valueString(value(element, attributes.at(i), translate));
@@ -939,12 +936,7 @@ void MachineList::insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QStri
 void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 {
 	QString machineName(item->text(QMC2_MACHINELIST_COLUMN_NAME));
-	QStringList xmlLines(xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts));
-	if ( xmlLines.count() < 2 ) {
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(machineName));
-		return;
-	}
-	int gamePos = 1;
+	QXmlStreamReader xmlMachineEntry(xmlDb()->xml(machineName));
 	item->child(0)->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Updating"));
 	qmc2MainWindow->treeWidgetMachineList->viewport()->repaint();
 	qApp->processEvents();
@@ -955,259 +947,264 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 
 	attributes << "name" << "sourcefile" << "isbios" << "isdevice" << "runnable" << "cloneof" << "romof" << "sampleof";
 	descriptions << tr("Name") << tr("Source file") << tr("Is BIOS?") << tr("Is device?") << tr("Runnable") << tr("Clone of") << tr("ROM of") << tr("Sample of");
-	element = xmlLines.at(gamePos - 1).simplified();
-	insertAttributeItems(&itemList, element, attributes, descriptions, true);
-	QString endMark("</machine>");
 
-	while ( !xmlLines.at(gamePos).contains(endMark) ) {
-		childItem = 0;
-		element = xmlLines.at(gamePos).simplified();
-		if ( element.contains("<year>") ) {
-			content = element.remove("<year>").remove("</year>");
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Year"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, content);
-		}
-		if ( element.contains("<manufacturer>") ) {
-			content = element.remove("<manufacturer>").remove("</manufacturer>");
-			content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Manufacturer"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, content);
-		}
-		if ( element.contains("<rom ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("ROM"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-			attributes.clear();
-			attributes << "bios" << "size" << "crc" << "sha1" << "merge" << "region" << "offset" << "status" << "optional";
-			descriptions.clear();
-			descriptions << tr("BIOS") << tr("Size") << tr("CRC") << tr("SHA-1") << tr("Merge") << tr("Region") << tr("Offset") << tr("Status") << tr("Optional");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<device_ref ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Device reference"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-		}
-		if ( element.contains("<chip ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Chip"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-			attributes.clear();
-			attributes << "tag" << "type" << "clock";
-			descriptions.clear();
-			descriptions << tr("Tag") << tr("Type") << tr("Clock");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<display ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Display"));
-			attributes.clear();
-			attributes << "type" << "rotate" << "flipx" << "width" << "height" << "refresh" << "pixclock" << "htotal" << "hbend" << "hbstart" << "vtotal" << "vbend" << "vbstart";
-			descriptions.clear();
-			descriptions << tr("Type") << tr("Rotate") << tr("Flip-X") << tr("Width") << tr("Height") << tr("Refresh") << tr("Pixel clock") << tr("H-Total") << tr("H-Bend") << tr("HB-Start") << tr("V-Total") << tr("V-Bend") << tr("VB-Start");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<sound ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Sound"));
-			attributes.clear();
-			attributes << "channels";
-			descriptions.clear();
-			descriptions << tr("Channels");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<input ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Input"));
-			attributes.clear();
-			attributes << "service" << "tilt" << "players" << "buttons" << "coins";
-			descriptions.clear();
-			descriptions << tr("Service") << tr("Tilt") << tr("Players") << tr("Buttons") << tr("Coins");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-			gamePos++;
-			while ( xmlLines.at(gamePos).contains("<control ") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *nextChildItem = new QTreeWidgetItem(childItem);
-				nextChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Control"));
-				nextChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "type", true));
-				attributes.clear();
-				attributes << "minimum" << "maximum" << "sensitivity" << "keydelta" << "reverse" << "player" << "buttons" << "ways";
-				descriptions.clear();
-				descriptions << tr("Minimum") << tr("Maximum") << tr("Sensitivity") << tr("Key Delta") << tr("Reverse") << tr("Player") << tr("Buttons") << tr("Ways");
-				insertAttributeItems(nextChildItem, subElement, attributes, descriptions, true);
-				gamePos++;
+	if ( xmlMachineEntry.readNextStartElement() ) {
+		if ( xmlMachineEntry.name() == "machine" ) {
+			insertAttributeItems(&itemList, &xmlMachineEntry, attributes, descriptions, true);
+			while ( xmlMachineEntry.readNextStartElement() ) {
+				if ( xmlMachineEntry.name() == "year" ) {
+					content = xmlMachineEntry.readElementText();
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Year"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, content);
+				} else if ( xmlMachineEntry.name() =="manufacturer" ) {
+					content = xmlMachineEntry.readElementText();
+					content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Manufacturer"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, content);
+				} else if ( xmlMachineEntry.name() == "rom" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("ROM"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					attributes.clear();
+					attributes << "bios" << "size" << "crc" << "sha1" << "merge" << "region" << "offset" << "status" << "optional";
+					descriptions.clear();
+					descriptions << tr("BIOS") << tr("Size") << tr("CRC") << tr("SHA-1") << tr("Merge") << tr("Region") << tr("Offset") << tr("Status") << tr("Optional");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "device_ref" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Device reference"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "chip") {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Chip"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					attributes.clear();
+					attributes << "tag" << "type" << "clock";
+					descriptions.clear();
+					descriptions << tr("Tag") << tr("Type") << tr("Clock");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "display" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Display"));
+					attributes.clear();
+					attributes << "type" << "rotate" << "flipx" << "width" << "height" << "refresh" << "pixclock" << "htotal" << "hbend" << "hbstart" << "vtotal" << "vbend" << "vbstart";
+					descriptions.clear();
+					descriptions << tr("Type") << tr("Rotate") << tr("Flip-X") << tr("Width") << tr("Height") << tr("Refresh") << tr("Pixel clock") << tr("H-Total") << tr("H-Bend") << tr("HB-Start") << tr("V-Total") << tr("V-Bend") << tr("VB-Start");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "sound" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Sound"));
+					attributes.clear();
+					attributes << "channels";
+					descriptions.clear();
+					descriptions << tr("Channels");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "input" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Input"));
+					attributes.clear();
+					attributes << "service" << "tilt" << "players" << "buttons" << "coins";
+					descriptions.clear();
+					descriptions << tr("Service") << tr("Tilt") << tr("Players") << tr("Buttons") << tr("Coins");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					while ( xmlMachineEntry.readNextStartElement() ) {
+						if ( xmlMachineEntry.name() == "control" ) {
+							QTreeWidgetItem *nextChildItem = new QTreeWidgetItem(childItem);
+							nextChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Control"));
+							nextChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "type", true));
+							attributes.clear();
+							attributes << "minimum" << "maximum" << "sensitivity" << "keydelta" << "reverse" << "player" << "buttons" << "ways";
+							descriptions.clear();
+							descriptions << tr("Minimum") << tr("Maximum") << tr("Sensitivity") << tr("Key Delta") << tr("Reverse") << tr("Player") << tr("Buttons") << tr("Ways");
+							insertAttributeItems(nextChildItem, &xmlMachineEntry, attributes, descriptions, true);
+							xmlMachineEntry.skipCurrentElement();
+						} else
+							xmlMachineEntry.skipCurrentElement();
+					}
+				} else if ( xmlMachineEntry.name() == "dipswitch") {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("DIP switch"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", true));
+					while ( xmlMachineEntry.readNextStartElement() ) {
+						if ( xmlMachineEntry.name() == "dipvalue") {
+							QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("DIP value"));
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", true));
+							attributes.clear();
+							attributes << "default";
+							descriptions.clear();
+							descriptions << tr("Default");
+							insertAttributeItems(secondChildItem, &xmlMachineEntry, attributes, descriptions, true);
+							xmlMachineEntry.skipCurrentElement();
+						} else
+							xmlMachineEntry.skipCurrentElement();
+					}
+				} else if ( xmlMachineEntry.name() == "configuration" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Configuration"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", true));
+					attributes.clear();
+					attributes << "tag" << "mask";
+					descriptions.clear();
+					descriptions << tr("Tag") << tr("Mask");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					while ( xmlMachineEntry.readNextStartElement() ) {
+						if ( xmlMachineEntry.name() == "confsetting" ) {
+							QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Setting"));
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", true));
+							attributes.clear();
+							attributes << "value" << "default";
+							descriptions.clear();
+							descriptions << tr("Value") << tr("Default");
+							insertAttributeItems(secondChildItem, &xmlMachineEntry, attributes, descriptions, true);
+							xmlMachineEntry.skipCurrentElement();
+						} else
+							xmlMachineEntry.skipCurrentElement();
+					}
+				} else if ( xmlMachineEntry.name() == "driver" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Driver"));
+					attributes.clear();
+					attributes << "status" << "emulation" << "color" << "sound" << "graphic" << "cocktail" << "protection" << "savestate" << "palettesize";
+					descriptions.clear();
+					descriptions << tr("Status") << tr("Emulation") << tr("Color") << tr("Sound") << tr("Graphic") << tr("Cocktail") << tr("Protection") << tr("Save state") << tr("Palette size");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "biosset" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("BIOS set"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					attributes.clear();
+					attributes << "description" << "default";
+					descriptions.clear();
+					descriptions << tr("Description") << tr("Default");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "sample" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Sample"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "disk" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Disk"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					attributes.clear();
+					attributes << "md5" << "sha1" << "merge" << "region" << "index" << "status" << "optional";
+					descriptions.clear();
+					descriptions << tr("MD5") << tr("SHA-1") << tr("Merge") << tr("Region") << tr("Index") << tr("Status") << tr("Optional");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "adjuster" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Adjuster"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					attributes.clear();
+					attributes << "default";
+					descriptions.clear();
+					descriptions << tr("Default");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "softwarelist" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Software list"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name"));
+					attributes.clear();
+					attributes << "status";
+					descriptions.clear();
+					descriptions << tr("Status");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, true);
+					xmlMachineEntry.skipCurrentElement();
+				} else if ( xmlMachineEntry.name() == "category" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Category"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", true));
+					while ( xmlMachineEntry.readNextStartElement() ) {
+						if ( xmlMachineEntry.name() == "item" ) {
+							QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Item"));
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", true));
+							attributes.clear();
+							attributes << "default";
+							descriptions.clear();
+							descriptions << tr("Default");
+							insertAttributeItems(secondChildItem, &xmlMachineEntry, attributes, descriptions, true);
+							xmlMachineEntry.skipCurrentElement();
+						} else
+							xmlMachineEntry.skipCurrentElement();
+					}
+				} else if ( xmlMachineEntry.name() == "device" ) {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Device"));
+					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "type", true));
+					attributes.clear();
+					attributes << "tag" << "mandatory" << "interface";
+					descriptions.clear();
+					descriptions << tr("Tag") << tr("Mandatory") << tr("Interface");
+					insertAttributeItems(childItem, &xmlMachineEntry, attributes, descriptions, false);
+					while ( xmlMachineEntry.readNextStartElement() ) {
+						if ( xmlMachineEntry.name() == "instance" ) {
+							QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Instance"));
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", false));
+							attributes.clear();
+							attributes << "briefname";
+							descriptions.clear();
+							descriptions << tr("Brief name");
+							insertAttributeItems(secondChildItem, &xmlMachineEntry, attributes, descriptions, false);
+							xmlMachineEntry.skipCurrentElement();
+						} else if ( xmlMachineEntry.name() == "extension" ) {
+							QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Extension"));
+							secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(&xmlMachineEntry, "name", false));
+							xmlMachineEntry.skipCurrentElement();
+						} else
+							xmlMachineEntry.skipCurrentElement();
+					}
+				} else if ( xmlMachineEntry.name() == "ramoption") {
+					childItem = new QTreeWidgetItem();
+					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("RAM options"));
+					QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+					secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Option"));
+					attributes.clear();
+					attributes << "default";
+					descriptions.clear();
+					descriptions << tr("Default");
+					insertAttributeItems(secondChildItem, &xmlMachineEntry, attributes, descriptions, false);
+					QString ramOptionValue = xmlMachineEntry.readElementText();
+					secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ramOptionValue);
+					while ( xmlMachineEntry.readNextStartElement() ) {
+						if (  xmlMachineEntry.name() == "ramoption" ) {
+							QTreeWidgetItem *anotherSecondChildItem = new QTreeWidgetItem(childItem);
+							anotherSecondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Option"));
+							attributes.clear();
+							attributes << "default";
+							descriptions.clear();
+							descriptions << tr("Default");
+							insertAttributeItems(anotherSecondChildItem, &xmlMachineEntry, attributes, descriptions, false);
+							QString ramOptionValue = xmlMachineEntry.readElementText();
+							anotherSecondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ramOptionValue);
+						}
+					}
+				} else
+					xmlMachineEntry.skipCurrentElement();
+				if ( childItem )
+					itemList.append(childItem);
 			}
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(machineName));
+			return;
 		}
-		if ( element.contains("<dipswitch ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("DIP switch"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name", true));
-			gamePos++;
-			while ( xmlLines.at(gamePos).contains("<dipvalue ") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("DIP value"));
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", true));
-				attributes.clear();
-				attributes << "default";
-				descriptions.clear();
-				descriptions << tr("Default");
-				insertAttributeItems(secondChildItem, subElement, attributes, descriptions, true);
-				gamePos++;
-			}
-		}
-		if ( element.contains("<configuration ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Configuration"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name", true));
-			attributes.clear();
-			attributes << "tag" << "mask";
-			descriptions.clear();
-			descriptions << tr("Tag") << tr("Mask");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-			gamePos++;
-			while ( xmlLines.at(gamePos).contains("<confsetting ") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Setting"));
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", true));
-				attributes.clear();
-				attributes << "value" << "default";
-				descriptions.clear();
-				descriptions << tr("Value") << tr("Default");
-				insertAttributeItems(secondChildItem, subElement, attributes, descriptions, true);
-				gamePos++;
-			}
-		}
-		if ( element.contains("<driver ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Driver"));
-			attributes.clear();
-			attributes << "status" << "emulation" << "color" << "sound" << "graphic" << "cocktail" << "protection" << "savestate" << "palettesize";
-			descriptions.clear();
-			descriptions << tr("Status") << tr("Emulation") << tr("Color") << tr("Sound") << tr("Graphic") << tr("Cocktail") << tr("Protection") << tr("Save state") << tr("Palette size");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<biosset ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("BIOS set"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-			attributes.clear();
-			attributes << "description" << "default";
-			descriptions.clear();
-			descriptions << tr("Description") << tr("Default");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<sample ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Sample"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-		}
-		if ( element.contains("<disk ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Disk"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-			attributes.clear();
-			attributes << "md5" << "sha1" << "merge" << "region" << "index" << "status" << "optional";
-			descriptions.clear();
-			descriptions << tr("MD5") << tr("SHA-1") << tr("Merge") << tr("Region") << tr("Index") << tr("Status") << tr("Optional");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<adjuster ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Adjuster"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-			attributes.clear();
-			attributes << "default";
-			descriptions.clear();
-			descriptions << tr("Default");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<softwarelist ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Software list"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name"));
-			attributes.clear();
-			attributes << "status";
-			descriptions.clear();
-			descriptions << tr("Status");
-			insertAttributeItems(childItem, element, attributes, descriptions, true);
-		}
-		if ( element.contains("<category ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Category"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "name", true));
-			gamePos++;
-			while ( xmlLines.at(gamePos).contains("<item ") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Item"));
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", true));
-				attributes.clear();
-				attributes << "default";
-				descriptions.clear();
-				descriptions << tr("Default");
-				insertAttributeItems(secondChildItem, subElement, attributes, descriptions, true);
-				gamePos++;
-			}
-		}
-		if ( element.contains("<device ") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Device"));
-			childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(element, "type", true));
-			attributes.clear();
-			attributes << "tag" << "mandatory" << "interface";
-			descriptions.clear();
-			descriptions << tr("Tag") << tr("Mandatory") << tr("Interface");
-			insertAttributeItems(childItem, element, attributes, descriptions, false);
-			gamePos++;
-			while ( xmlLines.at(gamePos).contains("<instance ") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Instance"));
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", false));
-				attributes.clear();
-				attributes << "briefname";
-				descriptions.clear();
-				descriptions << tr("Brief name");
-				insertAttributeItems(secondChildItem, element, attributes, descriptions, false);
-				gamePos++;
-			}
-			while ( xmlLines.at(gamePos).contains("<extension ") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Extension"));
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, value(subElement, "name", false));
-				gamePos++;
-			}
-		}
-		if ( element.contains("<ramoption") ) {
-			childItem = new QTreeWidgetItem();
-			childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("RAM options"));
-			while ( xmlLines.at(gamePos).contains("<ramoption") ) {
-				QString subElement(xmlLines.at(gamePos).simplified());
-				QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Option"));
-				int fromIndex = subElement.indexOf('>') + 1;
-				int toIndex = subElement.indexOf('<', fromIndex);
-				QString ramOptionValue(subElement.mid(fromIndex, toIndex - fromIndex));
-				secondChildItem->setText(QMC2_MACHINELIST_COLUMN_ICON, ramOptionValue);
-				attributes.clear();
-				attributes << "default";
-				descriptions.clear();
-				descriptions << tr("Default");
-				insertAttributeItems(secondChildItem, subElement, attributes, descriptions, false);
-				gamePos++;
-			}
-			if ( xmlLines.at(gamePos).contains(endMark) )
-				gamePos--;
-		}
-		gamePos++;
-		if ( childItem )
-			itemList.append(childItem);
 	}
+
 	qmc2MainWindow->treeWidgetMachineList->setUpdatesEnabled(false);
 	delete item->takeChild(0);
 	item->addChildren(itemList);
@@ -1548,26 +1545,21 @@ void MachineList::parse()
 			machineListDb()->beginTransaction();
 			int pendingDbUpdates = 0;
 			for (qint64 rowCounter = 1; rowCounter <= xmlRowCount && !qmc2LoadingInterrupted; rowCounter++) {
-				QStringList xmlLines(xmlDb()->xml(rowCounter).split(lineSplitChar, QString::SkipEmptyParts));
-				for (int lineCounter = 0; lineCounter < xmlLines.count() && !qmc2LoadingInterrupted; lineCounter++) {
-					while ( lineCounter < xmlLines.count() && !xmlLines.at(lineCounter).contains("<description>") )
-						lineCounter++;
-					if ( !qmc2LoadingInterrupted && lineCounter < xmlLines.count() ) {
-						QString machineElement(xmlLines.at(lineCounter - 1).simplified());
-						if ( !machineElement.contains(" name=\"") )
-							continue;
-						bool isBIOS = value(machineElement, "isbios").compare("yes") == 0;
-						bool isDev = value(machineElement, "isdevice").compare("yes") == 0;
-						QString machineName(value(machineElement, "name"));
+				QXmlStreamReader xmlMachineEntry(xmlDb()->xml(rowCounter));
+				if ( xmlMachineEntry.readNextStartElement() && !qmc2LoadingInterrupted ) {
+					if ( xmlMachineEntry.name() == "machine" ) {
+						bool isBIOS = value(&xmlMachineEntry, "isbios").compare("yes") == 0;
+						bool isDev = value(&xmlMachineEntry, "isdevice").compare("yes") == 0;
+						QString machineName(value(&xmlMachineEntry, "name"));
 						if ( machineName.isEmpty() ) {
-							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(lineCounter + 2));
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: name attribute empty on XML line %1 (set will be ignored!) -- please inform MAME developers and include the offending output from -listxml").arg(xmlMachineEntry.lineNumber()));
 							qApp->processEvents();
 							continue;
 						}
-						QString machineSource(value(machineElement, "sourcefile"));
-						QString machineCloneOf(value(machineElement, "cloneof"));
-						QString descriptionElement(xmlLines.at(lineCounter).simplified());
-						QString machineDescription(descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+						QString machineSource(value(&xmlMachineEntry, "sourcefile"));
+						QString machineCloneOf(value(&xmlMachineEntry, "cloneof"));
+						QString descriptionElement;
+						QString machineDescription;
 						MachineListItem *machineItem = new MachineListItem();
 						qmc2MachineListItemHash.insert(machineName, machineItem);
 						machineItem->setFlags(MachineListItem::defaultItemFlags);
@@ -1576,37 +1568,40 @@ void MachineList::parse()
 							hiddenItemHash.insert(machineItem, true);
 						// find year & manufacturer and determine ROM/CHD requirements
 						bool endMachine = false;
-						int i = lineCounter;
+
 						QString machineYear(trQuestionMark), machineManufacturer(trQuestionMark), machinePlayers(trQuestionMark), machineDrvStat(trQuestionMark);
 						bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
-						QString endMark("</machine>");
-						while ( !endMachine ) {
-							QString xmlLine(xmlLines.at(i));
-							if ( xmlLine.contains("<year>") ) {
-								machineYear = xmlLine.simplified().remove("<year>").remove("</year>");
+						while ( xmlMachineEntry.readNextStartElement() && !endMachine ) {
+							if ( xmlMachineEntry.name() == "description" ) {
+								descriptionElement = xmlMachineEntry.readElementText();
+								machineDescription = descriptionElement.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+							} else if ( xmlMachineEntry.name() == "year" ) {
+								machineYear = xmlMachineEntry.readElementText();
 								yearFound = true;
-							} else if ( xmlLine.contains("<manufacturer>") ) {
-								machineManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+							} else if ( xmlMachineEntry.name() == "manufacturer" ) {
+								machineManufacturer = xmlMachineEntry.readElementText().replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 								manufacturerFound = true;
-							} else if ( xmlLine.contains("<rom name") ) {
+							} else if ( xmlMachineEntry.name() == "rom" ) {
 								hasROMs = true;
-							} else if ( xmlLine.contains("<disk name") ) {
+								xmlMachineEntry.skipCurrentElement();
+							} else if ( xmlMachineEntry.name() == "disk" ) {
 								hasCHDs = true;
-							} else if ( xmlLine.contains("<input players") ) {
-								int playersPos = xmlLine.indexOf("input players=\"") + 15;
-								if ( playersPos >= 0 ) {
-									machinePlayers = xmlLine.mid(playersPos, xmlLine.indexOf("\"", playersPos) - playersPos);
+								xmlMachineEntry.skipCurrentElement();
+							} else if ( xmlMachineEntry.name() == "input" ) {
+								if ( xmlMachineEntry.attributes().hasAttribute("players") ) {
+									machinePlayers = xmlMachineEntry.attributes().value("players").toString();
 									playersFound = true;
 								}
-							} else if ( xmlLine.contains("<driver status") ) {
-								int statusPos = xmlLine.indexOf("driver status=\"") + 15;
-								if ( statusPos >= 0 ) {
-									machineDrvStat = xmlLine.mid(statusPos, xmlLine.indexOf("\"", statusPos) - statusPos);
+								xmlMachineEntry.skipCurrentElement();
+							} else if ( xmlMachineEntry.name() == "driver" ) {
+								if ( xmlMachineEntry.attributes().hasAttribute("status") ) {
+									machineDrvStat = xmlMachineEntry.attributes().value("status").toString();
 									statusFound = true;
 								}
-							}
-							endMachine = xmlLine.contains(endMark) || (yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound);
-							i++;
+								xmlMachineEntry.skipCurrentElement();
+							} else
+								xmlMachineEntry.skipCurrentElement();
+							endMachine = yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound && statusFound;
 						}
 						if ( machineCloneOf.isEmpty() ) {
 							if ( !hierarchyHash.contains(machineName) )
@@ -2544,28 +2539,29 @@ void MachineList::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				QTreeWidgetItem *versionItem = qmc2VersionItemHash.value(machineName);
 				// there are quite a number of sets in MAME that don't require any ROMs... many/most device-sets in particular
 				bool romRequired = true;
-				int xmlCounter = 0;
-				QStringList xmlLines(xmlDb()->xml(machineName).split("\n", QString::SkipEmptyParts));
-				if ( xmlLines.count() > 0 ) {
-					int romCounter = 0;
-					int chdCounter = 0;
-					bool endFound = false;
-					QString endMark = "</machine>";
-					while ( !endFound && xmlCounter < xmlLines.count() ) {
-						if ( xmlLines.at(xmlCounter).contains("<rom name=\"") ) {
-							romCounter++;
-							endFound = true;
-						} else if ( xmlLines.at(xmlCounter).contains("<disk name=\"") ) {
-							chdCounter++;
-							endFound = true;
-						} else if ( xmlLines.at(xmlCounter).contains(endMark) )
-							endFound = true;
-						xmlCounter++;
+				QXmlStreamReader xmlMachineEntry(xmlDb()->xml(machineName));
+				if ( xmlMachineEntry.readNextStartElement() ) {
+					if ( xmlMachineEntry.name() == "machine" ) {
+						int romCounter = 0;
+						int chdCounter = 0;
+						bool endFound = false;
+						while ( xmlMachineEntry.readNextStartElement() && !endFound ) {
+							if ( xmlMachineEntry.name() == "rom" ) {
+								romCounter++;
+								endFound = true;
+								xmlMachineEntry.skipCurrentElement();
+							} else if ( xmlMachineEntry.name() == "disk" ) {
+								chdCounter++;
+								endFound = true;
+								xmlMachineEntry.skipCurrentElement();
+							} else
+								xmlMachineEntry.skipCurrentElement();
+						}
+						if ( romCounter == 0 && chdCounter > 0 )
+							romRequired = true;
+						else
+							romRequired = (romCounter > 0);
 					}
-					if ( romCounter == 0 && chdCounter > 0 )
-						romRequired = true;
-					else
-						romRequired = (romCounter > 0);
 				}
 				if ( romItem && hierarchyItem ) {
 					if ( romStateCache.isOpen() ) {

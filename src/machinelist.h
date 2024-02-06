@@ -132,11 +132,11 @@ class MachineList : public QObject
 		void verifyReadyReadStandardOutput();
 
 		// internal methods
-		QString value(QString, QString, bool translate = false);
+		QString value(QXmlStreamReader *, QString, bool translate = false);
 		void parse();
 		void parseMachineDetail(QTreeWidgetItem *);
-		void insertAttributeItems(QTreeWidgetItem *, QString, QStringList, QStringList, bool translate = false);
-		void insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QString element, QStringList attributes, QStringList descriptions, bool translate = false);
+		void insertAttributeItems(QTreeWidgetItem *, QXmlStreamReader *, QStringList, QStringList, bool translate = false);
+		void insertAttributeItems(QList<QTreeWidgetItem *> *itemList, QXmlStreamReader *element, QStringList attributes, QStringList descriptions, bool translate = false);
 		void enableWidgets(bool enable = true);
 		void disableWidgets() { enableWidgets(false); }
 		void filter(bool initial = false);
