@@ -2006,55 +2006,53 @@ QString DeviceTreeXmlHandler::getXmlData(const QString &machine)
 
 QString DeviceTreeXmlHandler::lookupDescription(const QString &machine)
 {
-	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machine).split('\n'));
-	if ( xmlLines.count() > 1 ) {
-		int index = 0;
-		while ( index < xmlLines.count() && !xmlLines.at(index).startsWith("<description>") )
-			index++;
-		QString description(xmlLines.at(index));
-		description.remove("<description>").remove("</description>");
-		QTextDocument doc;
-		doc.setHtml(description);
-		return doc.toPlainText();
+	QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(machine));
+	if ( xmlMachineEntry.readNextStartElement() ) {
+		if ( xmlMachineEntry.name() == "machine" ) {
+			while ( xmlMachineEntry.readNextStartElement() ) {
+				if ( xmlMachineEntry.name() == "description" ) {
+					QString description(xmlMachineEntry.readElementText());
+					QTextDocument doc;
+					doc.setHtml(description);
+					return doc.toPlainText();
+				} else
+					xmlMachineEntry.skipCurrentElement();
+			}
+		}
 	} else
 		return QString();
 }
 
 QString DeviceTreeXmlHandler::lookupBiosOptions(const QString &machine, QStringList *bioses, QStringList *biosDescriptions)
 {
-	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machine).split('\n'));
-	if ( xmlLines.count() > 1 ) {
-		int index = 0;
-		QString defaultOption;
-		while ( index < xmlLines.count() ) {
-			if ( xmlLines.at(index).startsWith("<biosset ") ) {
-				QString name;
-				QString description;
-				int startIndex = xmlLines.at(index).indexOf("name=\"");
-				if ( startIndex >= 0 ) {
-					startIndex += 6;
-					int endIndex = xmlLines.at(index).indexOf("\"", startIndex);
-					name = xmlLines.at(index).mid(startIndex, endIndex - startIndex);
-				}
-				startIndex = xmlLines.at(index).indexOf("description=\"");
-				if ( startIndex >= 0 ) {
-					startIndex += 13;
-					int endIndex = xmlLines.at(index).indexOf("\"", startIndex);
-					description = xmlLines.at(index).mid(startIndex, endIndex - startIndex);
-					QTextDocument doc;
-					doc.setHtml(description);
-					description = doc.toPlainText();
-				}
-				if ( !name.isEmpty() && !description.isEmpty() ) {
-					bioses->append(name);
-					biosDescriptions->append(description);
-					if ( xmlLines.at(index).indexOf("default=\"yes\"") >= 0 )
-						defaultOption = name;
-				}
+	QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(machine));
+	if ( xmlMachineEntry.readNextStartElement() ) {
+		if ( xmlMachineEntry.name() == "machine" ) {
+			QString defaultOption;
+			while ( xmlMachineEntry.readNextStartElement() ) {
+				if ( xmlMachineEntry.name() == "biosset" ) {
+					QString name;
+					QString description;
+					if ( xmlMachineEntry.attributes().hasAttribute("name") )
+						name = xmlMachineEntry.attributes().value("name").toString();
+					if ( xmlMachineEntry.attributes().hasAttribute("description") ) {
+						description = xmlMachineEntry.attributes().value("description").toString();
+						QTextDocument doc;
+						doc.setHtml(description);
+						description = doc.toPlainText();
+					}
+					if ( !name.isEmpty() && !description.isEmpty() ) {
+						bioses->append(name);
+						biosDescriptions->append(description);
+						if ( xmlMachineEntry.attributes().hasAttribute("default") && xmlMachineEntry.attributes().value("default").toString() == "yes" )
+							defaultOption = name;
+					}
+					xmlMachineEntry.skipCurrentElement();
+				} else
+					xmlMachineEntry.skipCurrentElement();
 			}
-			index++;
+			return defaultOption;
 		}
-		return defaultOption;
 	} else
 		return QString();
 }
