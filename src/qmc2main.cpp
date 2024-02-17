@@ -4631,44 +4631,36 @@ QStringList &MainWindow::getXmlChoices(const QString &machineName, const QString
 		return xmlChoices;
 	if ( defaultChoice )
 		defaultChoice->clear();
-	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(machineName).split('\n', QString::SkipEmptyParts));
-	QString defaultYes("default=\"yes\"");
-	QString defaultOne("default=\"1\"");
-	int i = 0;
-	while ( i < xmlLines.count() ) {
-		QString xmlLine(xmlLines.at(i++).simplified());
-		int index = xmlLine.indexOf('<' + optionElement);
-		if ( index >= 0 ) {
-			if ( optionAttribute.isEmpty() ) {
-				index = xmlLine.indexOf('>', index);
-				if ( index >= 0 ) {
-					xmlLine.remove(0, index + 1);
-					bool isDefaultChoice = false;
-					if ( defaultChoice && (xmlLine.indexOf(defaultYes) >= 0 || xmlLine.indexOf(defaultOne) >= 0 || defaultChoice->isEmpty()) )
-						isDefaultChoice = true;
-					xmlLine.replace("</" + optionElement + '>', "");
-					QTextDocument doc;
-					doc.setHtml(xmlLine);
-					xmlLine = doc.toPlainText();
-					xmlChoices << xmlLine;
-					if ( isDefaultChoice )
-						*defaultChoice = xmlLine;
-				}
-			} else {
-				QString prefix(optionAttribute + "=\"");
-				index = xmlLine.indexOf(prefix);
-				if ( index >= 0 ) {
-					xmlLine.remove(0, index + prefix.length());
-					index = xmlLine.indexOf('\"');
-					if ( index >= 0 ) {
+	QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(machineName));
+	QString defaultYes("yes");
+	QString defaultOne("1");
+	if ( xmlMachineEntry.readNextStartElement() ) {
+		if ( xmlMachineEntry.name() == "machine" ) {
+			while ( xmlMachineEntry.readNextStartElement() ) {
+				if ( xmlMachineEntry.name() == optionElement ) {
+					if ( optionAttribute.isEmpty() ) {
+						bool isDefaultChoice = false;
+						if ( defaultChoice && (xmlMachineEntry.attributes().hasAttribute("default") && xmlMachineEntry.attributes().value("default").toString() == defaultYes || xmlMachineEntry.attributes().value("default").toString() == defaultOne || defaultChoice->isEmpty()) )
+							isDefaultChoice = true;
 						QTextDocument doc;
-						doc.setHtml(xmlLine.left(index));
-						QString choice = doc.toPlainText();
-						xmlChoices << choice;
-						if ( defaultChoice && (xmlLine.indexOf(defaultYes) >= 0 || xmlLine.indexOf(defaultOne) >= 0 || defaultChoice->isEmpty()) )
-							*defaultChoice = choice;
+						doc.setHtml(xmlMachineEntry.readElementText());
+						QString xmlLine = doc.toPlainText();
+						xmlChoices << xmlLine;
+						if ( isDefaultChoice )
+							*defaultChoice = xmlLine;
+					} else {
+						if ( xmlMachineEntry.attributes().hasAttribute(optionAttribute) ) {
+							QTextDocument doc;
+							doc.setHtml(xmlMachineEntry.attributes().value(optionAttribute).toString());
+							QString choice = doc.toPlainText();
+							xmlChoices << choice;
+							if ( defaultChoice && (xmlMachineEntry.attributes().hasAttribute("default") && xmlMachineEntry.attributes().value("default").toString() == defaultYes || xmlMachineEntry.attributes().value("default").toString() == defaultOne || defaultChoice->isEmpty()) )
+								*defaultChoice = choice;
+							xmlMachineEntry.skipCurrentElement();
+						}
 					}
-				}
+				} else
+					xmlMachineEntry.skipCurrentElement();
 			}
 		}
 	}
