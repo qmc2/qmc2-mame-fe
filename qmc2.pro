@@ -360,6 +360,7 @@ macx {
 	greaterThan(SDL, 1) {
 		LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
 		INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
+		QMAKE_CXXFLAGS += -framework SDL2 -F/Library/Frameworks
 	} else {
 		OBJECTIVE_SOURCES += src/SDLMain_tmpl.m
 		HEADERS += src/SDLMain_tmpl.h
