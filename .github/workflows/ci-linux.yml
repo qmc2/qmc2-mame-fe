@@ -1,0 +1,26 @@
+name: CI (Ubuntu)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install libqt5svg5-dev libqt5xmlpatterns5-dev libsdl2-dev qt5-qmake qtmultimedia5-dev qttools5-dev-tools qtwebengine5-dev
+    - name: Build
+      env:
+        DISTCFG: 1
+      run: make -j4
+    - uses: actions/upload-artifact@master
+      with:
+        name: qmc2-ubuntu-latest-${{ github.sha }}
+        path: |
+          qmc2-sdlmame

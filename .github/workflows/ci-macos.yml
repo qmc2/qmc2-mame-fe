@@ -1,0 +1,40 @@
+name: CI (macOS)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        os: [macos-latest, macos-14]
+        include:
+          - os: macos-latest
+            qtpath: /usr/local/opt/qt@5/bin
+          - os: macos-14
+            qtpath: /opt/homebrew/opt/qt@5/bin
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Install dependencies
+      run: |
+        brew update
+        brew install qt@5
+        wget https://github.com/libsdl-org/SDL/releases/download/release-2.30.0/SDL2-2.30.0.dmg
+        sudo hdiutil attach SDL2-2.30.0.dmg
+        sudo cp -R /Volumes/SDL2/SDL2.framework /Library/Frameworks
+        sudo hdiutil detach /Volumes/SDL2
+    - name: Build
+      env:
+        DISTCFG: 1
+      run: |
+        export PATH="${{ matrix.qtpath }}:$PATH"
+        make -j3
+    - uses: actions/upload-artifact@master
+      with:
+        name: qmc2-${{ matrix.os }}-${{ github.sha }}
+        path: |
+          qmc2-sdlmame.app
