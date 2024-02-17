@@ -335,6 +335,7 @@ contains(DEFINES, QMC2_BUNDLED_MINIZIP) {
 
 contains(DEFINES, QMC2_BUNDLED_ZLIB) {
 	INCLUDEPATH += src/zlib
+	QMAKE_CFLAGS += -DHAVE_UNISTD_H
 	SOURCES += src/zlib/adler32.c \
 		src/zlib/compress.c \
 		src/zlib/crc32.c \
