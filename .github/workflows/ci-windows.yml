@@ -1,0 +1,48 @@
+name: CI (Windows)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+      - uses: jurplel/install-qt-action@v3
+        with:
+          version:      5.15.2
+          host:         windows
+          target:       desktop
+          arch:         win64_msvc2019_64
+          modules:      qtwebengine
+          archives:     qtbase qtdeclarative qtlocation qtmultimedia qtsvg qttools qtwebchannel qtwinextras qtxmlpatterns
+          setup-python: false
+          cache: true
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: make
+          path-type: inherit
+      - uses: actions/checkout@v4
+      - name: Configure
+        env:
+          MKSPEC: win32-msvc
+          JOYSTICK: 0
+          FORCE_MINGW: 0
+          ARCH: Windows
+          SDL: 2
+        shell: msys2 {0}
+        run: make -j4 configure
+      - name: Build
+        run: nmake /f Makefile.qmake.release
+      - name: Deploy
+        run: windeployqt release\qmc2-mame.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qmc2-windows-2019-${{ github.sha }}
+          path: |
+            release
+
