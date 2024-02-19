@@ -394,7 +394,7 @@ win32 {
 		INCLUDEPATH += $$QMC2_INCLUDEPATH
 	} else {
 		CONFIG += embed_manifest_exe windows
-		LIBS += psapi.lib ole32.lib
+		LIBS += psapi.lib ole32.lib user32.lib
 	}
 	RC_FILE = qmc2-mame.rc
 }
