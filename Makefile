@@ -673,11 +673,22 @@ DEFINES += QMC2_BUNDLED_ZLIB
 endif
 
 # setup SDL library and include paths
+ifneq '$(ARCH)' 'Windows'
 ifdef SDL_LIBS
 undef SDL_LIBS
 endif
 ifdef SDL_INCLUDEPATH
 undef SDL_INCLUDEPATH
+endif
+else
+ifeq '$(FORCE_MINGW)' '1'
+ifdef SDL_LIBS
+undef SDL_LIBS
+endif
+ifdef SDL_INCLUDEPATH
+undef SDL_INCLUDEPATH
+endif
+endif
 endif
 ifneq '$(ARCH)' 'Windows'
 ifneq '$(ARCH)' 'Darwin'
@@ -718,6 +729,7 @@ endif
 
 # setup library and include paths for MinGW environment
 ifeq '$(ARCH)' 'Windows'
+ifeq '$(FORCE_MINGW)' '1'
 TEST_FILE=$(shell gcc -print-file-name=libSDL2.a)
 MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
 ifeq '$(SDL)' '2'
@@ -726,6 +738,7 @@ ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARC
 else
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
+endif
 endif
 endif
 
