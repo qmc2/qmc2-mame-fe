@@ -673,21 +673,32 @@ DEFINES += QMC2_BUNDLED_ZLIB
 endif
 
 # setup SDL library and include paths
+ifneq '$(ARCH)' 'Windows'
 ifdef SDL_LIBS
 undef SDL_LIBS
 endif
 ifdef SDL_INCLUDEPATH
 undef SDL_INCLUDEPATH
 endif
+else # '$(ARCH)' 'Windows'
+ifeq '$(FORCE_MINGW)' '1'
+ifdef SDL_LIBS
+undef SDL_LIBS
+endif
+ifdef SDL_INCLUDEPATH
+undef SDL_INCLUDEPATH
+endif
+endif # '$(FORCE_MINGW)' '1'
+endif # '$(ARCH)' 'Windows'
 ifneq '$(ARCH)' 'Windows'
 ifneq '$(ARCH)' 'Darwin'
 ifeq '$(JOYSTICK)' '1'
 SDL_LIBS = LIBS+='$(shell scripts/sdl-libs.sh $(SDL))'
 SDL_INCLUDEPATH = INCLUDEPATH+='$(shell scripts/sdl-includepath.sh $(SDL))'
 DEFINES += $(shell scripts/sdl-defines.sh $(SDL))
-endif
-endif
-endif
+endif # '$(JOYSTICK)' '1'
+endif # '$(ARCH)' 'Darwin'
+endif # '$(ARCH)' 'Windows'
 
 # setup additional qmake features for release or debug builds
 ifdef QMAKE_CONF
@@ -718,16 +729,18 @@ endif
 
 # setup library and include paths for MinGW environment
 ifeq '$(ARCH)' 'Windows'
+ifeq '$(FORCE_MINGW)' '1'
 TEST_FILE=$(shell gcc -print-file-name=libSDL2.a)
 MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
 ifeq '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
-else
+else # '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
-endif
-endif
+endif # '$(SDL)' '2'
+endif # '$(FORCE_MINGW)' '1'
+endif # '$(ARCH)' 'Windows'
 
 # optionally setup the qmake spec
 ifdef QT_MAKE_SPEC
