@@ -303,7 +303,7 @@ TRANSLATIONS += data/lng/qmc2_de.ts \
 	data/lng/qmc2_us.ts
 RESOURCES += qmc2.qrc
 QMAKE_MAKEFILE = Makefile.qmake
-DEFINES += _7ZIP_PPMD_SUPPORT _7ZIP_ST
+DEFINES += Z7_PPMD_SUPPORT Z7_ST
 
 contains(DEFINES, QMC2_LIBARCHIVE_ENABLED) {
 	SOURCES += src/archivefile.cpp

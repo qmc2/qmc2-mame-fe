@@ -283,7 +283,7 @@ bool SevenZipFile::open(QString fileName)
 	}
 	m_lookStream.bufSize = kInputBufSize;
 	m_lookStream.realStream = &m_archiveStream.vt;
-	LookToRead2_Init(&m_lookStream);
+	LookToRead2_INIT(&m_lookStream);
 	CrcGenerateTable();
 	SzArEx_Init(db());
 
