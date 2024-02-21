@@ -118,18 +118,18 @@ MACHINE = $(shell uname -m)
 endif
 endif
 
-# >>> DATADIR <<<
+# >>> QMC2DATADIR <<<
 #
 # The data directory used by the 'make install' target.
 #
-ifndef DATADIR
+ifndef QMC2DATADIR
 ifeq '$(ARCH)' 'Darwin'
-DATADIR = /Library/Application Support
+QMC2DATADIR = /Library/Application Support
 else
 ifeq '$(FORCE_MINGW)' '1'
-DATADIR = data
+QMC2DATADIR = data
 else
-DATADIR = $(PREFIX)/share
+QMC2DATADIR = $(PREFIX)/share
 endif
 endif
 endif
@@ -584,7 +584,7 @@ ifneq '$(ARCH)' 'Windows'
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell $(ECHO) $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 # global data directory
-GLOBAL_DATADIR=$(shell $(ECHO) $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
+GLOBAL_DATADIR=$(shell $(ECHO) $(DESTDIR)/$(QMC2DATADIR) | $(SED) -e "s*//*/*g")
 endif
 
 ifeq '$(QMAKEV)' '3'
@@ -611,7 +611,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_MULTIMEDIA=$(MULTIMEDIA) QMC2_FADER_SPEED=$(FADER_SPEED)
+DEFINES = DEFINES+=QMC2_$(QMC2_EMULATOR) QMC2_VERSION=$(VERSION) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) QMC2DATADIR="$(subst $(space),:,$(QMC2DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_PHONON=$(PHONON) QMC2_MULTIMEDIA=$(MULTIMEDIA) QMC2_FADER_SPEED=$(FADER_SPEED)
 ifneq '$(GIT_REV)' '0'
 	DEFINES += QMC2_GIT_REV=$(GIT_REV)
 endif
@@ -913,13 +913,13 @@ qchdman-install: qchdman-bin qchdman-macdeployqt
 	@$(RSYNC) src/tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
 else
 qchdman-install: qchdman-bin
-	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
+	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(QMC2DATADIR)/$(PROJECT)"
 	@$(RSYNC) "src/tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(ECHO) "Installing qchdman.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
-	@$(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/qchdman.desktop.template > $(GLOBAL_DATADIR)/applications/qchdman.desktop
+	@$(SED) -e "s*DATADIR*$(QMC2DATADIR)*g" < ./inst/qchdman.desktop.template > $(GLOBAL_DATADIR)/applications/qchdman.desktop
 endif
 
 tools: qchdman
@@ -995,13 +995,13 @@ arcade-install: arcade-bin arcade-macdeployqt
 	@$(RSYNC) src/arcade/Info.plist /Applications/qmc2/qmc2-arcade.app/Contents/
 else
 arcade-install: arcade-bin
-	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)"
+	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(QMC2DATADIR)/$(PROJECT)"
 	@$(RSYNC) "src/arcade/qmc2-arcade" "$(DESTDIR)/$(BINDIR)"
 	@$(RSYNC) ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(ECHO) "Installing qmc2-arcade.desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
-	@$(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/qmc2-arcade.desktop.template > $(GLOBAL_DATADIR)/applications/qmc2-arcade.desktop
+	@$(SED) -e "s*DATADIR*$(QMC2DATADIR)*g" < ./inst/qmc2-arcade.desktop.template > $(GLOBAL_DATADIR)/applications/qmc2-arcade.desktop
 endif
 endif
 
@@ -1116,7 +1116,7 @@ else
 install: bin
 endif
 	@$(ECHO) "Installing QMC2 $(VERSION)"
-	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
+	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(QMC2DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 	@$(CHMOD) a+rx "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
@@ -1147,16 +1147,16 @@ endif
 	@if [ -f "$(GLOBAL_QMC2_INI)" ] ; then \
 	  $(ECHO) "Preserving system-wide configuration in $(GLOBAL_QMC2_INI)" ; \
 	  $(ECHO) "Installing new system-wide configuration as $(GLOBAL_QMC2_INI).new" ; \
-	  $(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/$(PROJECT).ini.template > "$(GLOBAL_QMC2_INI).new" ; \
+	  $(SED) -e "s*DATADIR*$(QMC2DATADIR)*g" < ./inst/$(PROJECT).ini.template > "$(GLOBAL_QMC2_INI).new" ; \
 	else \
 	  $(ECHO) "Installing system-wide configuration as $(GLOBAL_QMC2_INI)" ; \
-	  $(SED) -e "s*DATADIR*$(DATADIR)*g" < ./inst/$(PROJECT).ini.template > "$(GLOBAL_QMC2_INI)" ; \
+	  $(SED) -e "s*DATADIR*$(QMC2DATADIR)*g" < ./inst/$(PROJECT).ini.template > "$(GLOBAL_QMC2_INI)" ; \
 	fi
 ifneq '$(ARCH)' 'Darwin'
 	@$(ECHO) "Installing $(TARGET_NAME).desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
-	@$(SED) -e "s*DATADIR*$(DATADIR)*g; s*EMULATOR*$(QMC2_EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
+	@$(SED) -e "s*DATADIR*$(QMC2DATADIR)*g; s*EMULATOR*$(QMC2_EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
 endif
 	@$(ECHO) "Installation complete"
 
@@ -1348,7 +1348,7 @@ config:
 	@$(ECHO) "CHOWN                  UNIX command chown                            $(CHOWN)"
 	@$(ECHO) "COLRM                  UNIX command colrm                            $(COLRM)"
 	@$(ECHO) "CP                     UNIX command cp                               $(CP)"
-	@$(ECHO) "DATADIR                Data directory for installation               $(DATADIR)"
+	@$(ECHO) "QMC2DATADIR            Data directory for installation               $(QMC2DATADIR)"
 	@$(ECHO) "DATE                   UNIX command date                             $(DATE)"
 	@$(ECHO) "DEBUG                  Choose debugging level (0, 1, 2)              $(DEBUG)"
 	@$(ECHO) "DISTCC                 Use a distributed compiler (0, 1)             $(DISTCC)"
