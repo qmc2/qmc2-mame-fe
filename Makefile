@@ -735,12 +735,12 @@ MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
 ifeq '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL2
-else
+else # '$(SDL)' '2'
 QMAKE_CONF += QMC2_LIBS+=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
 ARCADE_QMAKE_CONF += QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include QMC2_ARCADE_INCLUDEPATH+=$(MINGW_LIBDIR)../include/SDL
-endif
-endif
-endif
+endif # '$(SDL)' '2'
+endif # '$(FORCE_MINGW)' '1'
+endif # '$(ARCH)' 'Windows'
 
 # optionally setup the qmake spec
 ifdef QT_MAKE_SPEC
