@@ -680,7 +680,7 @@ endif
 ifdef SDL_INCLUDEPATH
 undef SDL_INCLUDEPATH
 endif
-else
+else # '$(ARCH)' 'Windows'
 ifeq '$(FORCE_MINGW)' '1'
 ifdef SDL_LIBS
 undef SDL_LIBS
@@ -688,17 +688,17 @@ endif
 ifdef SDL_INCLUDEPATH
 undef SDL_INCLUDEPATH
 endif
-endif
-endif
+endif # '$(FORCE_MINGW)' '1'
+endif # '$(ARCH)' 'Windows'
 ifneq '$(ARCH)' 'Windows'
 ifneq '$(ARCH)' 'Darwin'
 ifeq '$(JOYSTICK)' '1'
 SDL_LIBS = LIBS+='$(shell scripts/sdl-libs.sh $(SDL))'
 SDL_INCLUDEPATH = INCLUDEPATH+='$(shell scripts/sdl-includepath.sh $(SDL))'
 DEFINES += $(shell scripts/sdl-defines.sh $(SDL))
-endif
-endif
-endif
+endif # '$(JOYSTICK)' '1'
+endif # '$(ARCH)' 'Darwin'
+endif # '$(ARCH)' 'Windows'
 
 # setup additional qmake features for release or debug builds
 ifdef QMAKE_CONF
