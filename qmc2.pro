@@ -335,6 +335,9 @@ contains(DEFINES, QMC2_BUNDLED_MINIZIP) {
 
 contains(DEFINES, QMC2_BUNDLED_ZLIB) {
 	INCLUDEPATH += src/zlib
+	!win32 {
+		QMAKE_CFLAGS += -DHAVE_UNISTD_H
+	}
 	SOURCES += src/zlib/adler32.c \
 		src/zlib/compress.c \
 		src/zlib/crc32.c \
@@ -360,6 +363,7 @@ macx {
 	greaterThan(SDL, 1) {
 		LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
 		INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
+		QMAKE_CXXFLAGS += -framework SDL2 -F/Library/Frameworks
 	} else {
 		OBJECTIVE_SOURCES += src/SDLMain_tmpl.m
 		HEADERS += src/SDLMain_tmpl.h
