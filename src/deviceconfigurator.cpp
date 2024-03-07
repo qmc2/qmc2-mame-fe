@@ -2019,8 +2019,8 @@ QString DeviceTreeXmlHandler::lookupDescription(const QString &machine)
 					xmlMachineEntry.skipCurrentElement();
 			}
 		}
-	} else
-		return QString();
+	}
+	return QString();
 }
 
 QString DeviceTreeXmlHandler::lookupBiosOptions(const QString &machine, QStringList *bioses, QStringList *biosDescriptions)
@@ -2053,8 +2053,8 @@ QString DeviceTreeXmlHandler::lookupBiosOptions(const QString &machine, QStringL
 			}
 			return defaultOption;
 		}
-	} else
-		return QString();
+	}
+	return QString();
 }
 
 bool FileChooserKeyEventFilter::eventFilter(QObject *obj, QEvent *event)
