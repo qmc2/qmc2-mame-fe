@@ -2753,7 +2753,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	lineEditSets->setEnabled(false);
 	labelStatus->setText(tr("Check-sum search"));
 
-    QString hashAttribute;
+	QString hashAttribute;
 	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
 		case QMC2_ROMALYZER_CSF_HASHTYPE_CRC:
 			hashAttribute = "crc";
