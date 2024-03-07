@@ -896,7 +896,6 @@ QString MachineList::value(QXmlStreamReader *element, QString attribute, bool tr
 {
 	if ( element->attributes().hasAttribute(attribute) ) {
 		QString valueString(element->attributes().value(attribute).toString());
-		valueString = valueString.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 		if ( translate )
 			return tr(valueString.toUtf8().constData());
 		else
@@ -959,7 +958,6 @@ void MachineList::parseMachineDetail(QTreeWidgetItem *item)
 					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, content);
 				} else if ( xmlMachineEntry.name() =="manufacturer" ) {
 					content = xmlMachineEntry.readElementText();
-					content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
 					childItem = new QTreeWidgetItem();
 					childItem->setText(QMC2_MACHINELIST_COLUMN_MACHINE, tr("Manufacturer"));
 					childItem->setText(QMC2_MACHINELIST_COLUMN_ICON, content);
@@ -1573,13 +1571,12 @@ void MachineList::parse()
 						bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false, statusFound = false;
 						while ( xmlMachineEntry.readNextStartElement() && !endMachine ) {
 							if ( xmlMachineEntry.name() == "description" ) {
-								descriptionElement = xmlMachineEntry.readElementText();
-								machineDescription = descriptionElement.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+								machineDescription = xmlMachineEntry.readElementText();
 							} else if ( xmlMachineEntry.name() == "year" ) {
 								machineYear = xmlMachineEntry.readElementText();
 								yearFound = true;
 							} else if ( xmlMachineEntry.name() == "manufacturer" ) {
-								machineManufacturer = xmlMachineEntry.readElementText().replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'");
+								machineManufacturer = xmlMachineEntry.readElementText();
 								manufacturerFound = true;
 							} else if ( xmlMachineEntry.name() == "rom" ) {
 								hasROMs = true;

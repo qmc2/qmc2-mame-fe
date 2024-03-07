@@ -2787,7 +2787,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 											QString fileName(xmlMachineEntry.attributes().value("name").toString());
 											QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
 											item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, list + ":" + set);
-											item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName);
 											item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
 											item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
 										}
@@ -2831,7 +2831,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 									QString fileName(xmlMachineEntry.attributes().value("name").toString());
 									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
 									item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, currentMachine);
-									item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName);
 									item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
 									item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
 								}
