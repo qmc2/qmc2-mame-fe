@@ -2753,18 +2753,15 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	lineEditSets->setEnabled(false);
 	labelStatus->setText(tr("Check-sum search"));
 
-	QString hashStartString;
-	int hashStartOffset;
+	QString hashAttribute;
 	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
 		case QMC2_ROMALYZER_CSF_HASHTYPE_CRC:
-			hashStartString = "crc=\"";
-			hashStartOffset = 5;
+			hashAttribute = "crc";
 			break;
 
 		default:
 		case QMC2_ROMALYZER_CSF_HASHTYPE_SHA1:
-			hashStartString = "sha1=\"";
-			hashStartOffset = 6;
+			hashAttribute = "sha1";
 			break;
 	}
 
@@ -2775,29 +2772,28 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 				int progressCount = 0, updateCount = 0;
 				foreach (QString list, uniqueSoftwareLists) {
 					foreach (QString set, qmc2MainWindow->swlDb->uniqueSoftwareSets(list)) {
-						QStringList xmlLines(qmc2MainWindow->swlDb->xml(list, set).split('\n', QString::SkipEmptyParts));
-						for (int i = 0; i < xmlLines.count(); i++) {
-							QString xmlLine(xmlLines.at(i));
-							int hashIndex = xmlLine.indexOf(hashStartString);
-							if ( hashIndex >= 0 ) {
-								int hashPos = hashIndex + hashStartOffset;
-								QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf('\"', hashPos) - hashPos).toLower());
-								if ( currentChecksum.compare(searchedChecksum) == 0 ) {
-									int fileNamePos;
-									QString fileType;
-									if ( xmlLine.startsWith("<disk name=\"") ) {
-										fileType = tr("CHD");
-										fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
-									} else {
-										fileType = tr("ROM");
-										fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
-									}
-									QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos));
-									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-									item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, list + ":" + set);
-									item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
-									item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
-									item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
+						QXmlStreamReader xmlMachineEntry(qmc2MainWindow->swlDb->xml(list, set));
+						if ( xmlMachineEntry.readNextStartElement() ) {
+							if ( xmlMachineEntry.name() == "machine" ) {
+								while ( xmlMachineEntry.readNextStartElement() ) {
+									if ( xmlMachineEntry.attributes().hasAttribute(hashAttribute) ) {
+										QString currentChecksum(xmlMachineEntry.attributes().value(hashAttribute).toString().toLower());
+										if ( currentChecksum.compare(searchedChecksum) == 0 ) {
+											QString fileType;
+											if ( xmlMachineEntry.name() == "disk" )
+												fileType = tr("CHD");
+											else
+												fileType = tr("ROM");
+											QString fileName(xmlMachineEntry.attributes().value("name").toString());
+											QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, list + ":" + set);
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName);
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
+											item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
+										}
+										xmlMachineEntry.skipCurrentElement();
+									} else
+										xmlMachineEntry.skipCurrentElement();
 								}
 							}
 						}
@@ -2820,29 +2816,28 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 					qApp->processEvents();
 				}
 				QString currentMachine(qmc2MainWindow->treeWidgetMachineList->topLevelItem(i)->text(QMC2_MACHINELIST_COLUMN_NAME));
-				QStringList xmlLines(qmc2MachineList->xmlDb()->xml(currentMachine).split('\n', QString::SkipEmptyParts));
-				for (int j = 0; j < xmlLines.count(); j++) {
-					QString xmlLine(xmlLines.at(j));
-					int hashIndex = xmlLine.indexOf(hashStartString);
-					if ( hashIndex >= 0 ) {
-						int hashPos = hashIndex + hashStartOffset;
-						QString currentChecksum(xmlLine.mid(hashPos, xmlLine.indexOf('\"', hashPos) - hashPos).toLower());
-						if ( currentChecksum.compare(searchedChecksum) == 0 ) {
-							int fileNamePos;
-							QString fileType;
-							if ( xmlLine.startsWith("<disk name=\"") ) {
-								fileType = tr("CHD");
-								fileNamePos = xmlLine.indexOf("<disk name=\"") + 12;
-							} else {
-								fileType = tr("ROM");
-								fileNamePos = xmlLine.indexOf("<rom name=\"") + 11;
-							}
-							QString fileName(xmlLine.mid(fileNamePos, xmlLine.indexOf('\"', fileNamePos) - fileNamePos));
-							QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
-							item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, currentMachine);
-							item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"").replace("&apos;", "'"));
-							item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
-							item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
+				QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(currentMachine));
+				if ( xmlMachineEntry.readNextStartElement() ) {
+					if ( xmlMachineEntry.name() == "machine" ) {
+						while ( xmlMachineEntry.readNextStartElement() ) {
+							if ( xmlMachineEntry.attributes().hasAttribute(hashAttribute) ) {
+								QString currentChecksum(xmlMachineEntry.attributes().value(hashAttribute).toString().toLower());
+								if ( currentChecksum.compare(searchedChecksum) == 0 ) {
+									QString fileType;
+									if ( xmlMachineEntry.name() == "disk" )
+										fileType = tr("CHD");
+									else
+										fileType = tr("ROM");
+									QString fileName(xmlMachineEntry.attributes().value("name").toString());
+									QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_ID, currentMachine);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_FILENAME, fileName);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_TYPE, fileType);
+									item->setText(QMC2_ROMALYZER_CSF_COLUMN_STATUS, tr("unknown"));
+								}
+								xmlMachineEntry.skipCurrentElement();
+							} else
+								xmlMachineEntry.skipCurrentElement();
 						}
 					}
 				}

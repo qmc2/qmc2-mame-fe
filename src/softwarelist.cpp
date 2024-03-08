@@ -1012,6 +1012,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 	QStringList xmlLines(qmc2MachineList->xmlDb()->xml(systemName).split('\n', QString::SkipEmptyParts));
 	QStringList *xmlData = &xmlLines;
 	QStringList dynamicXmlData;
+	QXmlStreamReader xmlMachineEntry(qmc2MachineList->xmlDb()->xml(systemName));
 	if ( comboBoxDeviceConfiguration->currentIndex() > 0 ) {
 		qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + QString("Configuration/Devices/%1/%2").arg(systemName).arg(comboBoxDeviceConfiguration->currentText()));
 		QStringList instances(qmc2Config->value("Instances").toStringList());
@@ -1047,37 +1048,34 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 #endif
 	}
 
-	int i = 0;
-	while ( i < xmlData->count() && !xmlData->at(i).contains("</machine>") ) {
-		QString line(xmlData->at(i++).simplified());
-		if ( line.startsWith("<device type=\"") ) {
-			int startIndex = line.indexOf("interface=\"");
-			int endIndex = -1;
-			QString devName;
-			if ( startIndex >= 0 ) {
-				startIndex += 11;
-				endIndex = line.indexOf("\"", startIndex);
-				QStringList devInterfaces(line.mid(startIndex, endIndex - startIndex).split(',', QString::SkipEmptyParts));
-				line = xmlData->at(i++).simplified();
-				startIndex = line.indexOf("briefname=\"");
-				if ( startIndex >= 0 ) {
-					startIndex += 11;
-					endIndex = line.indexOf("\"", startIndex);
-					devName = line.mid(startIndex, endIndex - startIndex);
-				}
-				if ( !devName.isEmpty() )
-					foreach (QString devIf, devInterfaces)
-						deviceInstanceHash[devIf] << devName;
-			} else {
-				line = xmlData->at(i++).simplified();
-				startIndex = line.indexOf("briefname=\"");
-				if ( startIndex >= 0 ) {
-					startIndex += 11;
-					endIndex = line.indexOf("\"", startIndex);
-					devName = line.mid(startIndex, endIndex - startIndex);
-				}
-				if ( !devName.isEmpty() )
-					deviceInstanceHash[devName] << devName;
+	if ( xmlMachineEntry.readNextStartElement() ) {
+		if ( xmlMachineEntry.name() == "machine" ) {
+			while ( xmlMachineEntry.readNextStartElement() ) {
+				if ( xmlMachineEntry.name() == "device" && xmlMachineEntry.attributes().hasAttribute("type") ) {
+					QString devName;
+					if ( xmlMachineEntry.attributes().hasAttribute("interface") ) {
+						QStringList devInterfaces(xmlMachineEntry.attributes().value("interface").toString().split(',', QString::SkipEmptyParts));
+						while ( xmlMachineEntry.readNextStartElement() ) {
+							if ( xmlMachineEntry.name() == "instance" && xmlMachineEntry.attributes().hasAttribute("briefname") ) {
+								devName = xmlMachineEntry.attributes().value("briefname").toString();
+								if ( !devName.isEmpty() )
+									foreach (QString devIf, devInterfaces)
+										deviceInstanceHash[devIf] << devName;
+							}
+							xmlMachineEntry.skipCurrentElement();
+						}
+					} else {
+						while ( xmlMachineEntry.readNextStartElement() ) {
+							if ( xmlMachineEntry.name() == "instance" && xmlMachineEntry.attributes().hasAttribute("briefname") ) {
+								devName = xmlMachineEntry.attributes().value("briefname").toString();
+								if ( !devName.isEmpty() )
+									deviceInstanceHash[devName] << devName;
+							}
+							xmlMachineEntry.skipCurrentElement();
+						}
+					}
+				} else
+					xmlMachineEntry.skipCurrentElement();
 			}
 		}
 	}
