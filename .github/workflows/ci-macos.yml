@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+env:
+  SDL_VERSION: 2.30.1
+
 jobs:
   build:
 
@@ -23,8 +26,8 @@ jobs:
       run: |
         brew update
         brew install qt@5
-        wget https://github.com/libsdl-org/SDL/releases/download/release-2.30.0/SDL2-2.30.0.dmg
-        sudo hdiutil attach SDL2-2.30.0.dmg
+        wget https://github.com/libsdl-org/SDL/releases/download/release-$SDL_VERSION/SDL2-$SDL_VERSION.dmg
+        sudo hdiutil attach SDL2-$SDL_VERSION.dmg
         sudo cp -R /Volumes/SDL2/SDL2.framework /Library/Frameworks
         sudo hdiutil detach /Volumes/SDL2
     - name: Build

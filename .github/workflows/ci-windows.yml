@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+env:
+  SDL_VERSION: 2.30.1
+
 jobs:
   build:
 
@@ -23,7 +26,7 @@ jobs:
           cache: true
       - name: Download SDL
         run: |
-          Invoke-WebRequest "https://github.com/libsdl-org/SDL/releases/download/release-2.30.0/SDL2-devel-2.30.0-VC.zip" -OutFile ${{ runner.workspace }}\SDL2.zip
+          Invoke-WebRequest "https://github.com/libsdl-org/SDL/releases/download/release-$env:SDL_VERSION/SDL2-devel-$env:SDL_VERSION-VC.zip" -OutFile ${{ runner.workspace }}\SDL2.zip
           Expand-Archive ${{ runner.workspace }}\SDL2.zip -DestinationPath ${{ runner.workspace }}
       - uses: ilammy/msvc-dev-cmd@v1
       - uses: msys2/setup-msys2@v2
@@ -38,8 +41,8 @@ jobs:
           FORCE_MINGW: 0
           ARCH: Windows
           SDL: 2
-          SDL_LIBS: 'LIBS+="../SDL2-2.30.0/lib/x64/SDL2.lib ../SDL2-2.30.0/lib/x64/SDL2main.lib"'
-          SDL_INCLUDEPATH: 'INCLUDEPATH+=../SDL2-2.30.0/include'
+          SDL_LIBS: 'LIBS+="../SDL2-${SDL_VERSION}/lib/x64/SDL2.lib ../SDL2-${SDL_VERSION}/lib/x64/SDL2main.lib"'
+          SDL_INCLUDEPATH: 'INCLUDEPATH+=../SDL2-${SDL_VERSION}/include'
         shell: msys2 {0}
         run: make -j4 configure
       - name: Build
@@ -47,7 +50,7 @@ jobs:
       - name: Deploy
         run: |
           windeployqt release\qmc2-mame.exe
-          Copy-Item ${{ runner.workspace }}\SDL2-2.30.0\lib\x64\SDL2.dll  release
+          Copy-Item ${{ runner.workspace }}\SDL2-$env:SDL_VERSION\lib\x64\SDL2.dll  release
       - uses: actions/upload-artifact@v4
         with:
           name: qmc2-windows-2019-${{ github.sha }}
