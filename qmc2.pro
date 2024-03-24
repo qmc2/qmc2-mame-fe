@@ -361,7 +361,7 @@ contains(DEFINES, QMC2_BUNDLED_ZLIB) {
 # platform specific stuff
 macx {
 	greaterThan(SDL, 1) {
-		LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks
+		LIBS += -framework SDL2 -framework Cocoa -F/Library/Frameworks -rpath /Library/Frameworks
 		INCLUDEPATH += /Library/Frameworks/SDL2.framework/Headers
 		QMAKE_CXXFLAGS += -framework SDL2 -F/Library/Frameworks
 	} else {
