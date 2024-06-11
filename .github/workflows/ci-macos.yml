@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env:
-  SDL_VERSION: 2.30.1
+  SDL_VERSION: 2.30.3
 
 jobs:
   build:
