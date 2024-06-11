@@ -12,11 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, macos-14]
+        os: [macos-13, macos-latest]
         include:
-          - os: macos-latest
+          - os: macos-13
             qtpath: /usr/local/opt/qt@5/bin
-          - os: macos-14
+          - os: macos-latest
             qtpath: /opt/homebrew/opt/qt@5/bin
     runs-on: ${{ matrix.os }}
 
