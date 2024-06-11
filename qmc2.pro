@@ -191,7 +191,8 @@ SOURCES += src/qmc2main.cpp \
 	src/lzma/Ppmd7.c \
 	src/lzma/Ppmd7Dec.c \
 	src/lzma/Ppmd7Enc.c \
-	src/lzma/Sha256.c
+	src/lzma/Sha256.c \
+	src/lzma/Sha256Opt.c
 HEADERS += src/qmc2main.h \
 	src/options.h \
 	src/docbrowser.h \
