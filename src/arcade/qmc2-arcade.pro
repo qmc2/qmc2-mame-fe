@@ -45,6 +45,8 @@ SOURCES += main.cpp \
     ../lzma/CpuArch.c \
     ../lzma/Delta.c \
     ../lzma/LzFind.c \
+    ../lzma/LzFindMt.c \
+    ../lzma/LzFindOpt.c \
     ../lzma/Lzma2Dec.c \
     ../lzma/Lzma2Enc.c \
     ../lzma/Lzma86Dec.c \
@@ -52,10 +54,13 @@ SOURCES += main.cpp \
     ../lzma/LzmaDec.c \
     ../lzma/LzmaEnc.c \
     ../lzma/LzmaLib.c \
+    ../lzma/MtCoder.c \
+    ../lzma/MtDec.c \
     ../lzma/Ppmd7.c \
     ../lzma/Ppmd7Dec.c \
     ../lzma/Ppmd7Enc.c \
     ../lzma/Sha256.c \
+    ../lzma/Threads.c \
     ../iconcachedbmgr.cpp
 
 HEADERS += \
