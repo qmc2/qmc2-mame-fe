@@ -1849,11 +1849,15 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 	lineEditStyleSheet->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
 	lineEditFont->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
 	QFont f;
-	f.fromString(lineEditFont->text());
-	lineEditFont->setFont(f);
+	if ( !lineEditFont->text().isEmpty() )  {
+		f.fromString(lineEditFont->text());
+		lineEditFont->setFont(f);
+	}
 	lineEditLogFont->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
-	f.fromString(lineEditLogFont->text());
-	lineEditLogFont->setFont(f);
+	if ( !lineEditLogFont->text().isEmpty() ) {
+		f.fromString(lineEditLogFont->text());
+		lineEditLogFont->setFont(f);
+	}
 	int pixmapCacheSize = config->value(QMC2_FRONTEND_PREFIX + "GUI/PixmapCacheSize", 64).toInt();
 	spinBoxPixmapCacheSize->setValue(pixmapCacheSize);
 	checkBoxMinimizeOnEmuLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool());
