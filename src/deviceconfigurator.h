@@ -289,7 +289,7 @@ class DeviceConfigurator : public QWidget, public Ui::DeviceConfigurator
 		void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
 		void on_tabWidgetDeviceSetup_currentChanged(int);
 		void on_toolButtonChooserFilter_toggled(bool);
-		void on_comboBoxDeviceInstanceChooser_activated(const QString &);
+		void on_comboBoxDeviceInstanceChooser_textActivated(const QString &);
 		void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
 		void on_treeViewFileChooser_customContextMenuRequested(const QPoint &);
 		void on_treeViewFileChooser_activated(const QModelIndex &);

@@ -273,7 +273,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		// search widget
 		void on_comboBoxSearch_editTextChanged(const QString &);
 		void comboBoxSearch_editTextChanged_delayed();
-		void on_comboBoxSearch_activated(const QString &);
+		void on_comboBoxSearch_textActivated(const QString &);
 		void on_listWidgetSearch_itemActivated(QListWidgetItem *);
 		void on_listWidgetSearch_currentItemChanged(QListWidgetItem *, QListWidgetItem *);
 		void on_listWidgetSearch_itemPressed(QListWidgetItem *);
@@ -511,8 +511,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 		void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);
 		void actionVersionHeader_triggered();
 		void comboBoxToolbarSearch_editTextChanged(const QString &);
-		void comboBoxToolbarSearch_activated(const QString &);
-		void comboBoxToolbarSearch_activated() { comboBoxToolbarSearch_activated(comboBoxToolbarSearch->currentText()); }
+		void comboBoxToolbarSearch_textActivated(const QString &);
+		void comboBoxToolbarSearch_textActivated() { comboBoxToolbarSearch_textActivated(comboBoxToolbarSearch->currentText()); }
 
 		void signalStyleSetupRequested(QString style) { emit styleSetupRequested(style); }
 		void signalStyleSheetSetupRequested(QString styleSheet) { emit styleSheetSetupRequested(styleSheet); }

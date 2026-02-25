@@ -1593,7 +1593,7 @@ void DeviceConfigurator::folderModeMenu_foldersFirst()
 	QTimer::singleShot(0, m_fileModel, SLOT(refresh()));
 }
 
-void DeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QString &text)
+void DeviceConfigurator::on_comboBoxDeviceInstanceChooser_textActivated(const QString &text)
 {
 	if ( toolButtonChooserFilter->isChecked() )
 		on_toolButtonChooserFilter_toggled(true);

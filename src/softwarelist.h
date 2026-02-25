@@ -327,7 +327,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetSearchResults_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetSearchResults_itemSelectionChanged(); }
 		void on_comboBoxSearch_editTextChanged(const QString &);
-		void on_comboBoxSearch_activated(const QString &);
+		void on_comboBoxSearch_textActivated(const QString &);
 		void on_comboBoxDeviceConfiguration_currentIndexChanged(int);
 		void on_toolBoxSoftwareList_currentChanged(int);
 		void on_toolButtonSoftwareStates_toggled(bool);

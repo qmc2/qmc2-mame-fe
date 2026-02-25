@@ -3461,7 +3461,7 @@ void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 	searchActive = false;
 }
 
-void SoftwareList::on_comboBoxSearch_activated(const QString &pattern)
+void SoftwareList::on_comboBoxSearch_textActivated(const QString &pattern)
 {
 	autoSelectSearchItem = true;
 	comboBoxSearch_editTextChanged_delayed();

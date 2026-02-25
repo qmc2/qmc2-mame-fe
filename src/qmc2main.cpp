@@ -401,7 +401,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	widgetActionToolbarSearch->setObjectName("WATS");
 	toolbar->addSeparator();
 	toolbar->addAction(widgetActionToolbarSearch);
-	connect(comboBoxToolbarSearch, SIGNAL(activated(const QString &)), this, SLOT(comboBoxToolbarSearch_activated(const QString &)));
+	connect(comboBoxToolbarSearch, SIGNAL(textActivated(const QString &)), this, SLOT(comboBoxToolbarSearch_textActivated(const QString &)));
 	connect(comboBoxToolbarSearch, SIGNAL(editTextChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_editTextChanged(const QString &)));
 
 	// save splitter widgets at index 0 for later comparison
@@ -1220,7 +1220,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	IconLineEdit *ileSearch = ((IconLineEdit *)comboBoxSearch->lineEdit());
 	connect(ileSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
 	IconLineEdit *ileToolbarSearch = ((IconLineEdit *)comboBoxToolbarSearch->lineEdit());
-	connect(ileToolbarSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxToolbarSearch_activated()));
+	connect(ileToolbarSearch, SIGNAL(returnPressed()), this, SLOT(comboBoxToolbarSearch_textActivated()));
 	ileSearch->button()->setPopupMode(QToolButton::InstantPopup);
 	ileToolbarSearch->button()->setPopupMode(QToolButton::InstantPopup);
 	ileSearch->button()->setMenu(menuSearchOptions);
@@ -3138,7 +3138,7 @@ void MainWindow::comboBoxSearch_editTextChanged_delayed()
 	searchActive = m_focusSearchResults = false;
 }
 
-void MainWindow::on_comboBoxSearch_activated(const QString &text)
+void MainWindow::on_comboBoxSearch_textActivated(const QString &text)
 {
 	if ( tabWidgetMachineList->currentWidget() != tabSearch ) {
 		tabWidgetMachineList->blockSignals(true);
@@ -9817,7 +9817,7 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 	}
 }
 
-void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
+void MainWindow::comboBoxToolbarSearch_textActivated(const QString &text)
 {
 	comboBoxSearch->lineEdit()->setText(text);
 	int index = comboBoxSearch->findText(text);
