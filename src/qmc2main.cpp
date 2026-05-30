@@ -1808,7 +1808,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 						args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(QDir::cleanPath(v));
 #else
 					if ( enforceDefault || v != dv )
-						args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(v.replace("~", "$HOME"));
+ 					args << QString("-%1").arg(option.name) << QDir::toNativeSeparators(v.replace("~", QDir::homePath()));
 #endif
 					break;
 				}
@@ -1938,14 +1938,14 @@ void MainWindow::on_actionPlay_triggered(bool)
 #if defined(QMC2_OS_WIN)
 								args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
-								args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
+ 							args << QString("-%1").arg(instance) << file.replace("~", QDir::homePath());
 #endif
 								doMapping = false;
 							} else {
 #if defined(QMC2_OS_WIN)
 								args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
 #else
-								args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
+								args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", QDir::homePath());
 #endif
 							}
 						}
@@ -1955,7 +1955,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 #if defined(QMC2_OS_WIN)
 						args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
-						args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
+						args << QString("-%1").arg(instance) << file.replace("~", QDir::homePath());
 #endif
 					}
 				}
@@ -2010,7 +2010,7 @@ void MainWindow::on_actionPlay_triggered(bool)
 #if defined(QMC2_OS_WIN)
 							args << QString("-%1").arg(valuePair.first.at(i)) << valuePair.second[i].replace('/', '\\');
 #else
-							args << QString("-%1").arg(valuePair.first.at(i)) << valuePair.second[i].replace("~", "$HOME");
+							args << QString("-%1").arg(valuePair.first.at(i)) << valuePair.second[i].replace("~", QDir::homePath());
 #endif
 					}
 				} else {

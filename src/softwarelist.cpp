@@ -1035,7 +1035,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString deviceInterface
 #if defined(QMC2_OS_WIN)
 			swlArgs << QString("-%1").arg(instances.at(j)) << files[j].replace('/', '\\');
 #else
-			swlArgs << QString("-%1").arg(instances.at(j)) << files[j].replace("~", "$HOME");
+			swlArgs << QString("-%1").arg(instances.at(j)) << files[j].replace("~", QDir::homePath());
 #endif
 		}
 		foreach (QString line, getXmlDataWithEnabledSlots(swlArgs).split('\n', Qt::SkipEmptyParts))
@@ -1292,7 +1292,7 @@ bool SoftwareList::load()
 #if defined(QMC2_OS_WIN)
 		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString());
 #else
-		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", "$HOME"));
+		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", QDir::homePath()));
 #endif
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << QString("%1").arg(hashPath);
@@ -2069,10 +2069,10 @@ void SoftwareList::checkSoftwareStates()
 		QString command(qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/ExecutableFile").toString());
 		QStringList args;
 		args << "-verifysoftlist" << softwareList;
-		QString romPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString().replace("~", "$HOME"));
+		QString romPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/rompath", QString()).toString().replace("~", QDir::homePath()));
 		if ( !romPath.isEmpty() )
 			args << "-rompath" << romPath;
-		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", "$HOME"));
+		QString hashPath(qmc2Config->value(QMC2_EMULATOR_PREFIX + "Configuration/Global/hashpath", QString()).toString().replace("~", QDir::homePath()));
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << hashPath;
 		if ( !qmc2Config->value(QMC2_EMULATOR_PREFIX + "FilesAndDirectories/WorkingDirectory", QString()).toString().isEmpty() )
@@ -3511,7 +3511,7 @@ QStringList &SoftwareList::arguments(QStringList *softwareLists, QStringList *so
 #if defined(QMC2_OS_WIN)
 			swlArgs << QString("-%1").arg(instances.at(i)) << files[i].replace('/', '\\');
 #else
-			swlArgs << QString("-%1").arg(instances.at(i)) << files[i].replace("~", "$HOME");
+			swlArgs << QString("-%1").arg(instances.at(i)) << files[i].replace("~", QDir::homePath());
 #endif
 		}
 	}

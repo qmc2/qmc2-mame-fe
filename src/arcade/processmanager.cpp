@@ -118,7 +118,7 @@ int ProcessManager::startEmulator(QString id)
 				QString gv = globalConfig->value(globalOptionKey, dv).toString();
 				QString v = globalConfig->value(localOptionKey, gv).toString();
 				if ( enforceDefault || v != dv )
-					args << QString("-%1").arg(emuOpt.name) << v.replace("~", "$HOME");
+ 				args << QString("-%1").arg(emuOpt.name) << v.replace("~", QDir::homePath());
 				break;
 			}
 			}
