@@ -12,12 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-13, macos-latest]
-        include:
-          - os: macos-13
-            qtpath: /usr/local/opt/qt@6/bin
-          - os: macos-latest
-            qtpath: /opt/homebrew/opt/qt@6/bin
+        os: [macos-26-intel, macos-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -35,7 +30,7 @@ jobs:
         DISTCFG: 1
         MULTIMEDIA: 0
       run: |
-        export PATH="${{ matrix.qtpath }}:$PATH"
+        export PATH="/opt/homebrew/opt/qt@6/bin:$PATH"
         make -j3
     - uses: actions/upload-artifact@master
       with:
