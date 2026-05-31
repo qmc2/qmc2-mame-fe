@@ -185,7 +185,7 @@ greaterThan(QMC2_ARCADE_JOYSTICK, 0) {
 isEmpty(QMC2_ARCADE_QML_IMPORT_PATH): QMC2_ARCADE_QML_IMPORT_PATH = imports
 DEFINES += QMC2_ARCADE_QML_IMPORT_PATH=$$QMC2_ARCADE_QML_IMPORT_PATH
 
-QT += core gui svg sql opengl
+QT += core core5compat gui svg sql opengl
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += quick qml testlib
